@@ -6,66 +6,55 @@ import { getTag, isComponent } from "./tags.js";
 import styled from "./styled-component.js";
 
 const React = function () {
-  // 클로저 내부
+  // 클로저 내부(훅 인덱스, 루트 타겟)
   let global = {
     hooks: [],
     callback: {}
   };
   let i = 0;
-  // 루트 타겟
   let $target = null;
-  // 훅 교체해주기
-  function setHooks(_hooks) {
-    global.hooks = _hooks;
-  }
-
-  // useEffect셋 실행함수
-  const runUseEffect = function (id) {
-    const callbacks = memoset.getCallbackById(id)
-    // console.log(callbacks)
-    for (let idx of Object.keys(callbacks)) {
-      // console.log(idx)
-      callbacks[idx]()
-    }
-  }
   // 초기 글로벌 설정
-  function setGlobal(Component, _params){
+  function setGlobal(Component, _params) {
     global.Component = Component;
     global.params = _params
     const instance = global.Component(_params);
     i = 0;
     global.instance = instance;
+    // jsx 부분
     let Jsx = global.instance.jsx;
-    // 키 생성
     const jsxs = isComponent(Jsx) || [];
     // 등록 컴포넌트 지우기
     jsxs.forEach(jsx => {
       Jsx = Jsx.replace(jsx.jsx, "")
     })
-    const params = jsxs.params
-    return [jsxs, Jsx, params]
+    return [jsxs, Jsx]
+  }
+  // useEffect 실행
+  function runUseEffect(id) {
+    const callbacks = memoset.getCallbackById(id)
+    if (callbacks) {
+      for (let idx of Object.keys(callbacks)) {
+        callbacks[idx]()
+      }
+    }
   }
   // 초기 렌더링
   function render(Component, target, params) {
-    // 루트 타겟 잡기
-    $target = target;
     // 새로운 element
     let El = document.createElement("div");
     El.id = getID();
-    // 아우터 달기
     El.className = Component.name + "Outer" + " Outer";
-    // global 변수에 나중에 쓸 id, name, className 달기
+    // 루트 타겟 잡기, global 변수에 나중에 쓸 id, name, className 달기
+    const modules = memoset.getModules();
+    $target = target;
     global.id = El.id;
     global.name = Component.name;
     global.className = El.className;
-    // 글로벌 컴포넌트 세팅, instance 만들기
+    // 글로벌 컴포넌트 세팅, instance 만들기 후 렌더링, 그리고 useEffect 훅 내 콜백 실행
     const [jsxs, Jsx] = setGlobal(Component, params)
-    // 재귀함수 부분
     El.innerHTML = Jsx;
-    // 콜백 함수 지연 실행
     runUseEffect(global.id)
-
-    const modules = memoset.getModules();
+    // 하위 컴포넌트 재귀
     for (let item of jsxs) {
       const jsx = item.jsx;
       const params = item.params;
@@ -94,9 +83,8 @@ const React = function () {
 
   // 리렌더링
   function rerender(Component, target, head, params) {
-    // 메모셋 가져오기
+    // 메모셋 가져오기, 루트 타겟 잡기, 글로벌 세팅
     const _memo = memoset.getMemo();
-    // 루트 타겟 잡기, 글로벌 세팅
     $target = target;
     const [jsxs, Jsx] = setGlobal(Component, params)
     if (target === head) {
@@ -215,12 +203,7 @@ const React = function () {
     if (_value) changed = value.some((d, i) => d !== _value[i]);
     // 바뀌었으면 콜백 함수 글로벌에 push
     if (changed) {
-      // cb();
-      // 콜백 함수를 memo에 넣어줌
       memoset.setCallback(global.id, i, cb)
-      // const callbacks = memoset.getCallback()
-      // console.log(global.id, i, callbacks)
-      // global.callback.push(cb)
     }
     hooks[i] = value;
     // 인덱스 늘리기
@@ -232,7 +215,6 @@ const React = function () {
     useState,
     useEffect,
     global,
-    setHooks,
     renderStyle,
   };
 };
