@@ -1,0 +1,12 @@
+# node
+node_modules
+
+# env
+.env
+.env.dev
+.env.prod
+
+# mac
+.DS_Store
+
+# build
