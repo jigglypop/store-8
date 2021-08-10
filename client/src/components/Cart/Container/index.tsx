@@ -1,16 +1,20 @@
 import React, { ReactElement } from 'react';
+import CartContent from '@components/Cart/Content';
 import * as S from './style';
+import { ContentData } from '@constants/Cart';
 
-interface Props {}
+interface ContentDataList {
+  contents: ContentData[];
+}
 
-function CartContainer({}: Props): ReactElement {
+function CartContentsContainer({ contents }: ContentDataList): ReactElement {
   return (
     <S.CartContainer>
-      <div>
-        
-      </div>
+      {contents.map((content: ContentData, index: number) => (
+        <CartContent content={content} key={index} />
+      ))}
     </S.CartContainer>
   );
 }
 
-export default CartContainer;
+export default CartContentsContainer;

@@ -1,14 +1,16 @@
 import React, { ReactElement } from 'react';
+import { ContentData } from '@constants/Cart';
 import * as S from './style';
 
-interface Props {}
+interface Contents {
+  content: ContentData;
+}
 
-function CartContent({}: Props): ReactElement {
+function CartContent({ content }: Contents): ReactElement {
+  console.log(content);
   return (
     <S.CartContent>
-      <div>
-        
-      </div>
+      <div></div>
     </S.CartContent>
   );
 }

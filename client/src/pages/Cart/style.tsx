@@ -1,3 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Cart = styled.div``;
+export const Cart = styled.div`
+  padding: 0px 296px 0px 296px;
+`;
