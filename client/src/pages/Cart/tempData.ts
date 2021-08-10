@@ -1,8 +1,14 @@
+import image0 from '@image/image0.jpg';
+import image1 from '@image/image1.jpg';
+import image2 from '@image/image2.jpg';
+import image3 from '@image/image3.png';
+import image4 from '@image/image4.jpg';
+
 export const tempData = [
   {
     isCoupon: true,
     isChecked: true,
-    imgLink: 'https://store.baemin.com/data/goods/20/10/44/312/312_list_011.jpg',
+    imgLink: image0,
     title: '을지로 목장갑, 위잉 뚝딱',
     option: '',
     count: 1,
@@ -11,7 +17,7 @@ export const tempData = [
   {
     isCoupon: true,
     isChecked: true,
-    imgLink: 'https://store.baemin.com/data/goods/20/12/50/332/332_list_040.jpg',
+    imgLink: image1,
     title: '요모포켓X배달이친구들 메이배달이 포켓',
     option: '',
     count: 1,
@@ -20,7 +26,7 @@ export const tempData = [
   {
     isCoupon: true,
     isChecked: true,
-    imgLink: 'https://store.baemin.com/data/goods/21/04/14/341/341_list_068.jpg',
+    imgLink: image2,
     title: '재생지에 콩기름으로 인쇄한 일기장',
     option: '',
     count: 3,
@@ -29,7 +35,7 @@ export const tempData = [
   {
     isCoupon: true,
     isChecked: true,
-    imgLink: 'https://store.baemin.com/data/goods/19/11/48/237/237_list_055.png',
+    imgLink: image3,
     title: 'ㅋㅋ슬리퍼 화이트',
     option: '',
     count: 1,
@@ -38,7 +44,7 @@ export const tempData = [
   {
     isCoupon: false,
     isChecked: true,
-    imgLink: 'https://store.baemin.com/data/goods/21/06/22/345/345_list_082.jpg',
+    imgLink: image4,
     title: '매거진F No.16 Namul',
     option: '',
     count: 1,

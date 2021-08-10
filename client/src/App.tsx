@@ -1,15 +1,11 @@
 import React, { ReactElement } from 'react';
-
-import TestIcon from '@image/icon.svg';
+import Cart from '@src/pages/Cart';
 
 interface Props {}
 
 function App({}: Props): ReactElement {
   return (
-    <>
-      <h1>hello world</h1>
-      <TestIcon />
-    </>
+    <Cart />
   );
 }
 
