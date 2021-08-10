@@ -2,12 +2,11 @@ import styled from 'styled-components';
 
 export const CartHeader = styled.div`
   .header-container {
-    width: calc(100% - 80px);
+    width: calc(100% - 80px); /* 원본은 고정 길이. */
     display: flex;
     justify-content: space-between;
-    padding: 40px;
-  }
-  .header-title {
+    padding: 40px 5px 10px 5px;
+    border-bottom: 1px solid var(--cartGrey);
   }
   .cart-progress-container {
     display: flex;
@@ -23,15 +22,6 @@ export const CartHeader = styled.div`
     width: 10px;
     margin: 0px 16px 0px 12px;
   }
-  .progress {
-    color: var(--realBlack);
-  }
-  .wait {
-    color: var(--cartGrey);
-  }
-`;
-
-export const ProgressText = styled.p`
   .progress {
     color: var(--realBlack);
   }
