@@ -14,20 +14,34 @@ interface ContentDataList {
 }
 
 function CartContentsContainer({ contents }: ContentDataList): ReactElement {
+  const getAllChecked = () => {
+    let result: boolean = true;
+
+    contents.forEach((content) => {
+      if (!content.isChecked) result = false;
+    });
+    if (result) {
+      return <input type="checkbox" defaultChecked />;
+    } else {
+      return <input type="checkbox" />;
+    }
+  };
+
   return (
     <S.CartContainer>
       <div className="container-header">
-        <div className="content-info">
-          <p>{INFO_HEADER_TEXT}</p>
+        <div className="content-center-align content-check">{getAllChecked()}</div>
+        <div className="content-center-align content-info">
+          <p className="content-title-text">{INFO_HEADER_TEXT}</p>
         </div>
-        <div className="content-count">
-          <p>{COUNT_HEADER_TEXT}</p>
+        <div className="content-center-align content-count">
+          <p className="content-title-text">{COUNT_HEADER_TEXT}</p>
         </div>
-        <div className="content-amount">
-          <p>{AMOUNT_HEADER_TEXT}</p>
+        <div className="content-center-align content-amount">
+          <p className="content-title-text">{AMOUNT_HEADER_TEXT}</p>
         </div>
-        <div className="content-ship">
-          <p>{SHIP_HEADER_TEXT}</p>
+        <div className="content-center-align content-ship">
+          <p className="content-title-text">{SHIP_HEADER_TEXT}</p>
         </div>
       </div>
       {contents.map((content: ContentData, index: number) => (
