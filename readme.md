@@ -1,6 +1,8 @@
 # 드림 문방구
 > 생산성 있는 태클을 걸고, 이유있게 반박하자!
+
 안녕하세요! 저희는 D가 4명이 모인 개발팀 Dream D4 입니다!
+
 ![d4logo](https://user-images.githubusercontent.com/20200204/128798549-e7ed6e03-5f1c-4c81-8c2d-802595e77b1f.png)
 
 ## 팀원
