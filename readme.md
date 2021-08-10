@@ -3,7 +3,7 @@
 
 안녕하세요! 저희는 D가 4명이 모인 개발팀 Dream D4 입니다!
 
-![d4logo](https://user-images.githubusercontent.com/20200204/128798549-e7ed6e03-5f1c-4c81-8c2d-802595e77b1f.png)
+![dflogo coffee](https://user-images.githubusercontent.com/20200204/128799295-5f74841b-c0da-4372-ad24-81791e979fea.png)
 
 ## 팀원
 ### 남영우
