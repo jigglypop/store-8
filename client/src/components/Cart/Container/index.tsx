@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import CartContent from '@components/Cart/Content';
+import CartContent from './Content';
 import * as S from './style';
 import {
   ContentData,
@@ -29,24 +29,35 @@ function CartContentsContainer({ contents }: ContentDataList): ReactElement {
 
   return (
     <S.CartContainer>
-      <div className="container-header">
-        <div className="content-center-align content-check">{getAllChecked()}</div>
-        <div className="content-center-align content-info">
-          <p className="content-title-text">{INFO_HEADER_TEXT}</p>
-        </div>
-        <div className="content-center-align content-count">
-          <p className="content-title-text">{COUNT_HEADER_TEXT}</p>
-        </div>
-        <div className="content-center-align content-amount">
-          <p className="content-title-text">{AMOUNT_HEADER_TEXT}</p>
-        </div>
-        <div className="content-center-align content-ship">
-          <p className="content-title-text">{SHIP_HEADER_TEXT}</p>
-        </div>
-      </div>
-      {contents.map((content: ContentData, index: number) => (
-        <CartContent content={content} key={index} />
-      ))}
+      <colgroup>
+        <col className="content-check"></col>
+        <col className="content-info"></col>
+        <col className="content-count"></col>
+        <col className="content-amount"></col>
+        <col className="content-ship"></col>
+      </colgroup>
+      <thead className="container-header">
+        <tr>
+          <th className="content-center-align">{getAllChecked()}</th>
+          <th className="content-center-align">
+            <p className="content-title-text">{INFO_HEADER_TEXT}</p>
+          </th>
+          <th className="content-center-align">
+            <p className="content-title-text">{COUNT_HEADER_TEXT}</p>
+          </th>
+          <th className="content-center-align">
+            <p className="content-title-text">{AMOUNT_HEADER_TEXT}</p>
+          </th>
+          <th className="content-center-align">
+            <p className="content-title-text">{SHIP_HEADER_TEXT}</p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {contents.map((content: ContentData, index: number) => (
+          <CartContent content={content} key={index} />
+        ))}
+      </tbody>
     </S.CartContainer>
   );
 }
