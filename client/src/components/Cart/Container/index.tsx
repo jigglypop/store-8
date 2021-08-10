@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import CartContent from './Content';
 import * as S from './style';
 import {
@@ -14,17 +14,30 @@ interface ContentDataList {
 }
 
 function CartContentsContainer({ contents }: ContentDataList): ReactElement {
-  const getAllChecked = () => {
+  const [contentsData, setContentsData] = useState(contents);
+
+  const isOff = () => {
     let result: boolean = true;
 
-    contents.forEach((content) => {
+    contentsData.forEach((content) => {
       if (!content.isChecked) result = false;
     });
-    if (result) {
-      return <input type="checkbox" defaultChecked />;
-    } else {
-      return <input type="checkbox" />;
-    }
+    return result;
+  };
+
+  const toggleAllSelect = () => {
+    const temp: ContentData[] = [...contentsData];
+    const toggleDest = !isOff();
+    temp.forEach((content) => {
+      content.isChecked = toggleDest;
+    });
+    setContentsData([...temp]);
+  };
+
+  const toggleHandler = (index: number) => {
+    const temp: ContentData[] = [...contentsData];
+    temp[index].isChecked = !temp[index].isChecked;
+    setContentsData([...temp]);
   };
 
   return (
@@ -38,7 +51,9 @@ function CartContentsContainer({ contents }: ContentDataList): ReactElement {
       </colgroup>
       <thead className="container-header">
         <tr>
-          <th className="content-center-align">{getAllChecked()}</th>
+          <th className="content-center-align">
+            <input type="checkbox" onChange={() => toggleAllSelect()} checked={isOff()} />
+          </th>
           <th className="content-center-align">
             <p className="content-title-text">{INFO_HEADER_TEXT}</p>
           </th>
@@ -55,7 +70,7 @@ function CartContentsContainer({ contents }: ContentDataList): ReactElement {
       </thead>
       <tbody>
         {contents.map((content: ContentData, index: number) => (
-          <CartContent content={content} key={index} />
+          <CartContent content={content} key={index} index={index} toggleHandler={toggleHandler} />
         ))}
       </tbody>
     </S.CartContainer>

@@ -5,9 +5,11 @@ import * as S from './style';
 
 interface Contents {
   content: ContentData;
+  index: number;
+  toggleHandler: (index: number) => void;
 }
 
-function CartContent({ content }: Contents): ReactElement {
+function CartContent({ content, index, toggleHandler }: Contents): ReactElement {
   const getCouponBlock = (isCoupon: boolean) => {
     if (isCoupon) {
       return <div className="center-align coupon-badge">{COUPON_BLOCK_TEXT}</div>;
@@ -15,11 +17,18 @@ function CartContent({ content }: Contents): ReactElement {
       return <></>;
     }
   };
+
   return (
     <S.CartContent>
       <td>
         <div className="center-align">
-          <input type="checkbox" defaultChecked></input>
+          <input
+            type="checkbox"
+            onChange={() => {
+              toggleHandler(index);
+            }}
+            checked={content.isChecked}
+          ></input>
         </div>
       </td>
       <td>
