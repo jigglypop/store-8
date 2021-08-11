@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es6" /* Specify ECMAScript target version: "ES3" (default), "ES5", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ES2021", or "ESNEXT". */,
+    "module": "commonjs" /* Specify module code generation: "none", "commonjs", "amd", "system", "umd", "es2015", "es2020", or "ESNext". */,
+    "allowJs": true /* Allow javascript files to be compiled. */,
+    "jsx": "react-jsx" /* Specify JSX code generation: "preserve", "react-native", "react", "react-jsx" or "react-jsxdev". */,
+    "rootDir": "./" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "isolatedModules": true /* Transpile each file as a separate module (similar to "ts.transpileModule"). */,
+    "moduleResolution": "node" /* Specify module resolution strategy: "node" (Node.js) or "classic" (TypeScript pre-1.6). */,
+
+    "strict": true,
+    "noImplicitThis": false, 
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@api/*": ["src/api/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@constants/*": ["src/constants/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@image/*": ["public/image/*"],
+      "@font/*": ["public/font/*"]
+    }
+    
+  },
+  "include": ["public", "server", "client", "custom.d.ts"],
+  "exclude": ["node_modules", "build", "webpack.common.js", "webpack.dev.js", "webpack.prod.js"]
+}
