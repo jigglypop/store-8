@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const CartContainer = styled.table`
-  width: calc(100% - 70px);
+  width: 100%;
+  margin-top: 60px;
   border-spacing: 0px;
   border-collapse: separate;
   border-bottom: 0.5px solid var(--cartGrey);
+
   .cart-container-header {
     width: 100%;
     height: 36px;

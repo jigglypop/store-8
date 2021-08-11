@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const CartHeader = styled.div`
   .cart-header-container {
-    width: calc(100% - 80px); /* 원본은 고정 길이. */
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 40px 5px 10px 5px;
+    padding: 50px 5px 30px 5px;
     border-bottom: 1px solid var(--cartGrey);
   }
   .cart-progress-container {

@@ -6,8 +6,9 @@ export const Receipt = styled.div`
     justify-content: flex-end;
     align-items: center;
     flex-direction: row;
-    width: calc(100% - 150px);
+    width: 100%;
     border: 1.5px solid var(--cartGrey);
+    border-radius: 4px;
     margin-top: 40px;
     padding: 40px;
   }

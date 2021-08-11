@@ -4,6 +4,7 @@ export const Button = styled.div`
   .button-base {
     cursor: pointer;
     padding: 8px 32px;
+    box-sizing: content-box;
   }
 
   .button-background-white {

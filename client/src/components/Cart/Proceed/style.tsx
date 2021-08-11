@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Proceed = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100% - 70px);
+  width: 100%;
   margin-top: 40px;
 
   .cart-proceed-button-container {
@@ -16,6 +16,7 @@ export const Proceed = styled.div`
     display: flex;
     flex-direction: row;
   }
+
   .cart-proceed-button-side-layout > div:first-child {
     margin-right: 10px;
   }
