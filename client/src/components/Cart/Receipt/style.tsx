@@ -6,24 +6,24 @@ export const Receipt = styled.div`
     justify-content: flex-end;
     align-items: center;
     flex-direction: row;
-    width: 100%;
-    border: 1.5px solid var(--cartGrey);
+    border: 1.5px solid var(--line-gray);
     border-radius: 4px;
-    margin-top: 40px;
-    padding: 40px;
+    margin-top: 2.5rem;
+    padding: 2.5rem;
   }
 
   .cart-receipt-container > img {
-    width: 24px;
-    height: 24px;
-    margin-left: 32px;
-    margin-right: 32px;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 
   .cart-price-layout {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-top: 0.5rem;
   }
 
   .cart-receipt-title-layout {
@@ -34,31 +34,30 @@ export const Receipt = styled.div`
 
   .cart-select-amount-title {
     display: flex;
-    align-items: center;
     flex-direction: row;
+    align-items: center;
   }
 
   .cart-title-text-black-large {
     font-weight: bold;
-    font-size: 16px;
     margin: 0px 2px;
   }
 
   .cart-price-text-black-large {
     font-weight: bold;
-    font-size: 20px;
+    font-size: var(--body-large-font);
     color: var(--realBlack);
   }
+
   .cart-price-text-mint-large {
     font-weight: bold;
-    font-size: 20px;
-    color: var(--mint);
+    font-size: var(--body-large-font);
+    color: var(--text-mint);
   }
 
   .cart-price-text-unit {
-    line-height: 20px;
-    font-size: 16px;
-    margin-top: 2px;
-    margin-left: 2px;
+    line-height: var(--body-large-font);
+    margin-top: 1px;
+    margin-left: 1px;
   }
 `;

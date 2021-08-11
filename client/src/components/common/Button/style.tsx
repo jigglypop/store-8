@@ -3,38 +3,38 @@ import styled from 'styled-components';
 export const Button = styled.div`
   .button-base {
     cursor: pointer;
-    padding: 8px 32px;
+    padding: 0.5rem 2rem;
     box-sizing: content-box;
   }
 
   .button-background-white {
-    background-color: var(--realWhite);
-    border: 1px solid var(--textGrey);
+    background-color: var(--background-white);
+    border: 1px solid var(--text-gray);
   }
 
   .button-background-white:hover {
-    background-color: var(--textGrey);
+    background-color: var(--background-gray);
   }
 
   .button-background-white > p {
-    color: var(--textGrey);
+    color: var(--text-gray);
   }
 
   .button-background-white:hover > p {
-    color: var(--realBlack);
+    color: var(--text-black);
   }
 
   .button-background-black {
-    background-color: var(--pastelBlack);
-    border: 1px solid var(--pastelBlack);
+    background-color: var(--background-pastel-black);
+    border: 1px solid var(--pastel-black);
   }
 
   .button-background-black:hover {
-    background-color: var(--realBlack);
+    background-color: var(--background-black);
   }
 
   .button-background-black > p {
-    color: var(--realWhite);
+    color: var(--text-white);
   }
 
   .button-background-small {
@@ -44,7 +44,7 @@ export const Button = styled.div`
   }
 
   .button-background-small > p {
-    font-size: 12px;
+    font-size: var(--body-small-font);
   }
 
   .button-background-large {
@@ -54,7 +54,7 @@ export const Button = styled.div`
   }
 
   .button-background-large > p {
-    font-size: 14px;
+    font-size: var(--body-middle-font);
     font-weight: bold;
   }
 `;
