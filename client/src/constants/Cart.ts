@@ -8,6 +8,8 @@ const INFO_HEADER_TEXT: string = '상품/옵션 정보';
 const COUNT_HEADER_TEXT: string = '수량';
 const AMOUNT_HEADER_TEXT: string = '상품금액';
 const SHIP_HEADER_TEXT: string = '배송비';
+const SHIP_BASE_TEXT: string = '기본배송비';
+const PAY_TYPE_FIRST: string = '(택배-선결제)';
 
 const SHIPMENT_BASE: number = 4500;
 const SHIPMENT_HIGH: number = 3500;
@@ -26,6 +28,8 @@ export {
   COUNT_HEADER_TEXT,
   AMOUNT_HEADER_TEXT,
   SHIP_HEADER_TEXT,
+  SHIP_BASE_TEXT,
+  PAY_TYPE_FIRST,
   SHIPMENT_BASE,
   SHIPMENT_HIGH,
   SHIPMENT_HIGH_BASE,

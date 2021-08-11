@@ -37,7 +37,7 @@ export const tempData = [
     isChecked: true,
     imgLink: image3,
     title: 'ㅋㅋ슬리퍼 화이트',
-    option: '',
+    option: '사이즈 : 더 작은발',
     count: 1,
     amount: 21000,
   },

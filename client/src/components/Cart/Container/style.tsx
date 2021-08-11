@@ -5,7 +5,7 @@ export const CartContainer = styled.table`
   border-spacing: 0px;
   border-collapse: separate;
   border-bottom: 0.5px solid var(--cartGrey);
-  .container-header {
+  .cart-container-header {
     width: 100%;
     height: 36px;
     margin: 40px 0px 0px 0px;
@@ -13,30 +13,30 @@ export const CartContainer = styled.table`
     background-color: var(--backgroundGrey);
     border-top: 0.5px solid var(--pastelBlack);
   }
-  .content-center-align {
+  .cart-container-header th {
     height: 36px;
   }
-  .content-check {
+  .cart-content-check-colgroup {
     width: 36px;
   }
-  .content-info {
+  .cart-content-info-colgroup {
     width: calc(70% - 36px);
   }
-  .content-count {
+  .cart-content-count-colgroup {
     width: 10%;
   }
-  .content-amount {
+  .cart-content-amount-colgroup {
     width: 10%;
   }
-  .content-ship {
+  .cart-content-ship-colgroup {
     width: 10%;
   }
-  .content-title-text {
+  .cart-content-title-text {
     font-weight: bold;
     color: var(--pastelBlack);
     font-size: 12px;
   }
-  tr:first-child > td:last-child {
+  .cart-content-body > tr:first-child > td:last-child {
     border-left: 0.5px solid var(--cartGrey);
     border-right: 0.5px solid var(--cartGrey);
   }

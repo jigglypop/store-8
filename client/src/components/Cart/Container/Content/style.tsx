@@ -7,56 +7,54 @@ export const CartContent = styled.tr`
   td {
     border-top: 0.5px solid var(--cartGrey);
   }
-  .vertical-center-align {
-    display: flex;
-    align-items: center;
-  }
-  .center-align {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
-  .content-info {
+  .cart-content-info-container {
     flex-direction: row;
     padding: 9px 0px;
   }
 
-  .content-text-main {
-    flex-direction: column;
-  }
-
-  .coupon-badge {
-    background-color: var(--realBlack);
-    width: 48px;
-    height: 18px;
-    font-size: 10px;
-    color: var(--realWhite);
-    margin-bottom: -6px;
-  }
-
-  .content-title {
-    font-weight: bold;
-    font-size: 12px;
-  }
-
-  .content-info > img {
+  .cart-content-info-container > img {
     width: 46px;
     height: 62px;
     border: 1px solid var(--cartGrey);
     margin-right: 8px;
   }
 
-  .count-container {
+  .cart-content-text-main {
     flex-direction: column;
   }
 
-  .count-container > p {
+  .cart-content-title {
     font-weight: bold;
     font-size: 12px;
   }
 
-  .count-container > button {
+  .cart-coupon-badge {
+    background-color: var(--realBlack);
+    width: 48px;
+    height: 18px;
+    font-size: 10px;
+    color: var(--realWhite);
+    margin-bottom: 6px;
+  }
+
+  .cart-option-block {
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--textGrey);
+  }
+
+  .cart-count-container {
+    flex-direction: column;
+  }
+
+  .cart-count-container > p {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .cart-count-container > button {
     width: 92px;
     height: 24px;
     padding: 6px;
@@ -67,13 +65,23 @@ export const CartContent = styled.tr`
     border-radius: 3px;
   }
 
-  .count-container > button > p {
+  .cart-count-container > button > p {
     color: var(--pastelBlack);
     font-size: 12px;
   }
 
-  .amount-container > p {
-    font-weight: 800;
+  .cart-amount-container > p {
+    font-weight: bold;
     font-size: 14px;
+  }
+
+  .cart-ship-container {
+    flex-direction: column;
+  }
+
+  .cart-ship-container > p {
+    color: var(--textGrey);
+    font-size: 14px;
+    margin-bottom: 6px;
   }
 `;

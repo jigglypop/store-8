@@ -23,43 +23,43 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
     <>
       <S.CartContainer>
         <colgroup>
-          <col className="content-check"></col>
-          <col className="content-info"></col>
-          <col className="content-count"></col>
-          <col className="content-amount"></col>
-          <col className="content-ship"></col>
+          <col className="cart-content-check-colgroup"></col>
+          <col className="cart-content-info-colgroup"></col>
+          <col className="cart-content-count-colgroup"></col>
+          <col className="cart-content-amount-colgroup"></col>
+          <col className="cart-content-ship-colgroup"></col>
         </colgroup>
-        <thead className="container-header">
+        <thead className="cart-container-header">
           <tr>
-            <th className="content-center-align">
+            <th>
               <input
                 type="checkbox"
                 onChange={() => props.toggleAllHandler()}
                 checked={props.metaData.allToggle}
               />
             </th>
-            <th className="content-center-align">
-              <p className="content-title-text">{INFO_HEADER_TEXT}</p>
+            <th>
+              <p className="cart-content-title-text">{INFO_HEADER_TEXT}</p>
             </th>
-            <th className="content-center-align">
-              <p className="content-title-text">{COUNT_HEADER_TEXT}</p>
+            <th>
+              <p className="cart-content-title-text">{COUNT_HEADER_TEXT}</p>
             </th>
-            <th className="content-center-align">
-              <p className="content-title-text">{AMOUNT_HEADER_TEXT}</p>
+            <th>
+              <p className="cart-content-title-text">{AMOUNT_HEADER_TEXT}</p>
             </th>
-            <th className="content-center-align">
-              <p className="content-title-text">{SHIP_HEADER_TEXT}</p>
+            <th>
+              <p className="cart-content-title-text">{SHIP_HEADER_TEXT}</p>
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="cart-content-body">
           {props.contents.map((content: CartContentData, index: number) => (
             <CartContent
               content={content}
               key={index}
               index={index}
               toggleHandler={props.toggleOneHandler}
-              maxLength={props.metaData.maxLength}
+              metaData={props.metaData}
             />
           ))}
         </tbody>
