@@ -22,12 +22,16 @@ export function Router({ children }: IRouter): ReactElement {
   const DEFAULT_PATH = window.location.pathname;
   const DEFAULT_QUERY = window.location.search;
   const [currentPath, setCurrentPath] = useState<string>('');
+
+  const handlePopstate = (e: PopStateEvent) => {
+    e.state ? setCurrentPath(e.state?.page.to) : setCurrentPath(DEFAULT_PATH);
+  };
+
   useEffect(() => {
     setCurrentPath(DEFAULT_PATH + DEFAULT_QUERY);
-    window.onpopstate = function (e) {
-      e.state ? setCurrentPath(e.state?.page.to) : setCurrentPath(DEFAULT_PATH);
-    };
+    window.addEventListener('popstate', handlePopstate);
   }, []);
+
   return (
     <HistoryContext.Provider value={{ currentPath, setCurrentPath }}>
       {children}
@@ -64,7 +68,8 @@ interface IRoute {
 
 export function Route({ children, exact, path }: IRoute): ReactElement | null {
   const { currentPath } = useContext<ICurrentPath>(HistoryContext);
-  if (exact && currentPath !== path) return null;
+
+  if (exact && currentPath.split('?')[0] !== path) return null;
 
   if (currentPath?.includes(path)) return <>{children}</>;
   else return null;
