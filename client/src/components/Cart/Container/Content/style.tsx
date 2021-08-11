@@ -7,9 +7,6 @@ export const CartContent = styled.tr`
   td {
     border-top: 0.5px solid var(--cartGrey);
   }
-  td:last-child {
-    border-right: 0.5px solid var(--cartGrey);
-  }
   .vertical-center-align {
     display: flex;
     align-items: center;

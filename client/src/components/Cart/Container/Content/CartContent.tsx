@@ -1,18 +1,35 @@
 import React, { ReactElement } from 'react';
-import { ContentData, COUPON_BLOCK_TEXT, CHANGE_COUNT_TEXT } from '@constants/Cart';
+import { COUPON_BLOCK_TEXT, CHANGE_COUNT_TEXT } from '@constants/Cart';
 import { kstFormatter } from '@utils/utils';
 import * as S from './style';
 
+import type { CartContentData } from '@src/types/CartContentData';
+
 interface Contents {
-  content: ContentData;
+  content: CartContentData;
   index: number;
+  maxLength: number;
   toggleHandler: (index: number) => void;
 }
 
-function CartContent({ content, index, toggleHandler }: Contents): ReactElement {
+function CartContent({ content, index, maxLength, toggleHandler }: Contents): ReactElement {
   const getCouponBlock = (isCoupon: boolean) => {
     if (isCoupon) {
       return <div className="center-align coupon-badge">{COUPON_BLOCK_TEXT}</div>;
+    } else {
+      return <></>;
+    }
+  };
+
+  const getShippment = () => {
+    if (index === 0) {
+      return (
+        <td rowSpan={maxLength}>
+          <div className="content-ship">
+            <p></p>
+          </div>
+        </td>
+      );
     } else {
       return <></>;
     }
@@ -50,9 +67,10 @@ function CartContent({ content, index, toggleHandler }: Contents): ReactElement 
       </td>
       <td>
         <div className="amount-container center-align">
-          <p>{kstFormatter(content.amount)}</p>
+          <p>{kstFormatter(content.amount * content.count)}</p>
         </div>
       </td>
+      {getShippment()}
     </S.CartContent>
   );
 }

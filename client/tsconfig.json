@@ -24,6 +24,7 @@
       "@pages/*" : ["src/pages/*"],
       "@constants/*" : ["src/constants/*"],
       "@store/*" : ["src/store/*"],
+      "@types/*" : ["src/types/*"],
       "@utils/*" : ["src/utils/*"],
       "@image/*": ["public/image/*"],
       "@font/*": ["public/font/*"],

@@ -9,15 +9,15 @@ const COUNT_HEADER_TEXT: string = '수량';
 const AMOUNT_HEADER_TEXT: string = '상품금액';
 const SHIP_HEADER_TEXT: string = '배송비';
 
-export type ContentData = {
-  isCoupon: boolean;
-  isChecked: boolean;
-  imgLink: string;
-  title: string;
-  option: string;
-  count: number;
-  amount: number /* TODO : 금액을 number 로 할지, Big Int 로 할지? */;
-};
+const SHIPMENT_BASE: number = 4500;
+const SHIPMENT_HIGH: number = 3500;
+const SHIPMENT_HIGH_BASE: number = 10000;
+const SHIPMENT_MIDDLE: number = 2500;
+const SHIPMENT_MIDDLE_BASE: number = 20000;
+const SHIPMENT_LOW: number = 1500;
+const SHIPMENT_LOW_BASE: number = 30000;
+const SHIPMENT_ZERO: number = 0;
+const SHIPMENT_ZERO_BASE: number = 40000;
 
 export {
   COUPON_BLOCK_TEXT,
@@ -26,6 +26,15 @@ export {
   COUNT_HEADER_TEXT,
   AMOUNT_HEADER_TEXT,
   SHIP_HEADER_TEXT,
+  SHIPMENT_BASE,
+  SHIPMENT_HIGH,
+  SHIPMENT_HIGH_BASE,
+  SHIPMENT_MIDDLE,
+  SHIPMENT_MIDDLE_BASE,
+  SHIPMENT_LOW,
+  SHIPMENT_LOW_BASE,
+  SHIPMENT_ZERO,
+  SHIPMENT_ZERO_BASE,
   ORDER_READY,
   ORDER_START,
   ORDER_FINISH,

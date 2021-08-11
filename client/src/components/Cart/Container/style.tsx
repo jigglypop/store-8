@@ -36,4 +36,11 @@ export const CartContainer = styled.table`
     color: var(--pastelBlack);
     font-size: 12px;
   }
+  tr:first-child > td:last-child {
+    border-left: 0.5px solid var(--cartGrey);
+    border-right: 0.5px solid var(--cartGrey);
+  }
+  .keep-shopping {
+    margin-top: 8px;
+  }
 `;
