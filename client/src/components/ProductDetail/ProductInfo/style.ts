@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const ProductInfo = styled.div`
+  width: 560px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   .product__info {
     & > div {
       display: flex;

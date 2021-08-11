@@ -19,6 +19,6 @@ const StyledZoomImg = styled.div`
   padding: 0 20px;
   & > img {
     width: 480px;
-    height: 580px;
+    height: 500px;
   }
 `;
