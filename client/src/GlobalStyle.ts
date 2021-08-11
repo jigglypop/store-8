@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --realBlack: #000000;
     --pastelBlack: #353535;
     --realWhite: #FFFFFF;
+    --mint: #5DBEBB;
   }
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {
