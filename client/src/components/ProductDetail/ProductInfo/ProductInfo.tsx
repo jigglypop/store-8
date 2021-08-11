@@ -8,7 +8,10 @@ interface Props {
   title: string;
   originAmount?: number;
   amount: number;
-  delivery_info: string;
+  delivery_info: {
+    fee: string;
+    timeLimit: string;
+  };
 }
 
 export default function ProductInfo({
@@ -55,37 +58,42 @@ export default function ProductInfo({
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
+        {/* 동환님 dot number 유틸 적용 */}
         {originAmount && (
           <div className="product-info__origin-amount">
             <S.InfoTitle>정가</S.InfoTitle>
-            <div>{originAmount}</div>
+            <div className="stroke">{originAmount}원</div>
           </div>
         )}
+        {/* 동환님 dot number 유틸 적용 */}
         <div className="producto-info__amount">
           <S.InfoTitle>판매가격</S.InfoTitle>
-          <div>{amount}</div>
+          <div className="price">{amount}원</div>
         </div>
         <div className="producto-info__delivery-info">
           <S.InfoTitle>배송정보</S.InfoTitle>
-          <div>{delivery_info}</div>
+          <div>
+            <div className="delivery-info-fee">{delivery_info.fee}</div>
+            <div>{delivery_info.timeLimit}</div>
+          </div>
         </div>
         <div className="producto-info__count">
           <S.InfoTitle>구매수량</S.InfoTitle>
           <form onSubmit={handleCountSumbit}>
-            <button type="button" onClick={handleClickCountMinus}>
+            <button type="button" className="count-btn" onClick={handleClickCountMinus}>
               <MinusIcon />
             </button>
             <input type="number" value={inputValue} onChange={handleInputChange} />
-            <button type="button" onClick={handleClickCountPlus}>
+            <button type="button" className="count-btn" onClick={handleClickCountPlus}>
               <PlusIcon />
             </button>
           </form>
         </div>
       </div>
-
+      {/* 동환님 dot number 유틸 적용 */}
       <div className="product__total-info">
         <S.InfoTitle>총 합계금액</S.InfoTitle>
-        <div>{amount * count}</div>
+        <div className="total-price">{amount * count}원</div>
       </div>
     </S.ProductInfo>
   );

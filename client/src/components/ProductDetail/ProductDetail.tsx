@@ -12,7 +12,7 @@ export default function ProductDetail({}: Props): ReactElement {
   return (
     <StyledProductDetail>
       <ZoomImg src={img} />
-      <div>
+      <div className="product-detail__info">
         <ProductInfo {...{ title, originAmount, amount, delivery_info }} />
         <DetailBtns {...{ id, isLiked }} />
       </div>
@@ -22,7 +22,16 @@ export default function ProductDetail({}: Props): ReactElement {
 
 const StyledProductDetail = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 80px;
+
+  height: 530px;
+  .product-detail__info {
+    margin-top: 8px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 const sampleData = {
@@ -31,6 +40,9 @@ const sampleData = {
   title: '맥주짠 세트',
   originAmount: 20000,
   amount: 10900,
-  delivery_info: '2,500원 (3만원 이상 구매시 무료) 오후 2시 당일배송마감',
+  delivery_info: {
+    fee: '2,500원 (3만원 이상 구매시 무료)',
+    timeLimit: '오후 2시 당일배송마감',
+  },
   isLiked: false,
 };
