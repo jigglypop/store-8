@@ -48,13 +48,13 @@ export const Button = styled.div`
   }
 
   .button-background-large {
-    width: 160px;
+    width: 140px;
     height: 36px;
     border-radius: 4px;
   }
 
   .button-background-large > p {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
   }
 `;

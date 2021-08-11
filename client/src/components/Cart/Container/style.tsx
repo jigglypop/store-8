@@ -6,6 +6,7 @@ export const CartContainer = styled.table`
   border-spacing: 0px;
   border-collapse: separate;
   border-bottom: 0.5px solid var(--cartGrey);
+  border-top: 0.5px solid var(--pastelBlack);
 
   .cart-container-header {
     width: 100%;
@@ -13,7 +14,6 @@ export const CartContainer = styled.table`
     margin: 40px 0px 0px 0px;
     padding: 0px;
     background-color: var(--backgroundGrey);
-    border-top: 0.5px solid var(--pastelBlack);
   }
   .cart-container-header th {
     height: 36px;
@@ -40,7 +40,6 @@ export const CartContainer = styled.table`
   }
   .cart-content-body > tr:first-child > td:last-child {
     border-left: 0.5px solid var(--cartGrey);
-    border-right: 0.5px solid var(--cartGrey);
   }
 `;
 

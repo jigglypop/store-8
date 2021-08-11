@@ -4,7 +4,7 @@ export const Proceed = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 30px;
 
   .cart-proceed-button-container {
     display: flex;
@@ -29,8 +29,13 @@ export const Proceed = styled.div`
   }
 
   .cart-proceed-guide-container > img {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     margin-right: 8px;
+  }
+
+  .cart-proceed-guide-container > p {
+    font-size: 12px;
+    line-height: 14px;
   }
 `;

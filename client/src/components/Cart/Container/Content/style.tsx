@@ -10,12 +10,12 @@ export const CartContent = styled.tr`
 
   .cart-content-info-container {
     flex-direction: row;
-    padding: 9px 0px;
+    padding: 12px 0px;
   }
 
   .cart-content-info-container > img {
-    width: 46px;
-    height: 62px;
+    width: 48px;
+    height: 54px;
     border: 1px solid var(--cartGrey);
     margin-right: 8px;
   }
@@ -55,9 +55,7 @@ export const CartContent = styled.tr`
   }
 
   .cart-count-container > button {
-    width: 92px;
-    height: 24px;
-    padding: 6px;
+    padding: 4px 12px;
     appearance: none;
     background-color: var(--backgroundGrey);
     border: none;
@@ -67,7 +65,7 @@ export const CartContent = styled.tr`
 
   .cart-count-container > button > p {
     color: var(--pastelBlack);
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .cart-amount-container > p {
