@@ -6,9 +6,12 @@ interface Props {}
 
 export default function NavigationBar({}: Props): ReactElement {
   return (
+  
   <S.NavigationBar>
-    <h4>쇼핑정보</h4>
+    <h3>마이페이지</h3>
+    
     <S.NavigatorGroup>
+      <h4>쇼핑정보</h4>
       <Link to="/order-list">주문목록/배송조회</Link>
       <Link to="/cancel-list">취소/반품/교환 내역</Link>
       <Link to="/refund-list">환불 내역</Link>
@@ -17,8 +20,9 @@ export default function NavigationBar({}: Props): ReactElement {
       <Link to="/mileage">적립금</Link>
     </S.NavigatorGroup>
     
-    <h4>회원정보</h4>
+    
     <S.NavigatorGroup>
+      <h4>회원정보</h4>
       <Link to="/my-page-qa">1:1 문의게시판</Link>
       <Link to="/my-page-password-check">회원정보 변경</Link>
       <Link to="/shipping">배송지 관리</Link>
