@@ -1,3 +1,3 @@
 import styled from 'styled-components';
 
-export const Mypage = styled.div``;
+export const MyPage = styled.div``;
