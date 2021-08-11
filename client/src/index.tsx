@@ -2,7 +2,6 @@ import './ResetStyle.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import GlobalStyle from './GlobalStyle';
 import App from './App';
 import GlobalStyle from './GlobalStyle';
 import ResetStyle from './ResetStyle';

@@ -54,12 +54,14 @@ export const GlobalStyle = createGlobalStyle`
     --realBlack: #000000;
     --pastelBlack: #353535;
 */
-    --tinyFont: 0.625rem;
-    --smallFont: 0.75rem;
-    --middleFont: 0.875rem;
-    --largeFont: 1.125rem;
+
+    --body-tiny-font: 0.625rem;
+    --body-small-font: 0.75rem;
+    --body-middle-font: 0.875rem;
+    --body-large-font: 1.125rem;
     --body-huge-font: 1.5rem;
     --body-title-font:2.5rem;
+    --body-subtitle-font:2rem;
   }
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {

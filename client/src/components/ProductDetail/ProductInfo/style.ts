@@ -5,6 +5,10 @@ export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  h3 {
+    font-size: var(--body-subtitle-font);
+    font-weight: bold;
+  }
   .product__info {
     & > div {
       display: flex;
@@ -17,7 +21,7 @@ export const ProductInfo = styled.div`
         justify-content: space-around;
         width: 100px;
         height: 30px;
-        border: 1px solid #dddfe1;
+        border: 1px solid var(--gray5);
         border-radius: 3px;
       }
       input {
@@ -27,10 +31,7 @@ export const ProductInfo = styled.div`
       }
       button {
         text-align: center;
-        padding: 8px;
         cursor: pointer;
-        font-size: 1.2rem;
-        font-weight: bold;
       }
     }
   }
@@ -42,5 +43,5 @@ export const ProductInfo = styled.div`
 
 export const InfoTitle = styled.div`
   width: 150px;
-  color: #bbbbbb;
+  color: var(--text-gray);
 `;
