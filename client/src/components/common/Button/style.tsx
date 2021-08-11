@@ -39,6 +39,7 @@ export const Button = styled.div`
   .button-background-small {
     width: 80px;
     height: 12px;
+    border-radius: 2px;
   }
 
   .button-background-small > p {
@@ -48,6 +49,7 @@ export const Button = styled.div`
   .button-background-large {
     width: 160px;
     height: 36px;
+    border-radius: 4px;
   }
 
   .button-background-large > p {

@@ -4,6 +4,13 @@ import ExclamMark from '@image/exclamMark.png';
 import * as S from './style';
 import type { CartContentData } from '@src/types/CartContentData';
 import type { CartContentMetaData } from '@src/types/CartContentMetaData';
+import {
+  DELETE_SELECT_PRODUCT,
+  LIKE_SELECT_PRODUCT,
+  ORDER_SELECT_PRODUCT,
+  ORDER_ALL_PRODUCT,
+  PROCEED_GUIDE_TEXT,
+} from '@constants/Cart';
 
 interface ProceedType {
   contents: CartContentData[];
@@ -16,13 +23,13 @@ function Proceed({ contents, metaData }: ProceedType): ReactElement {
       <div className="cart-proceed-button-container">
         <div className="cart-proceed-button-side-layout">
           <Button
-            buttonTitle="선택 상품 삭제"
+            buttonTitle={DELETE_SELECT_PRODUCT}
             size="small"
             background="white"
             clickHandler={() => {}}
           />
           <Button
-            buttonTitle="선택 상품 찜"
+            buttonTitle={LIKE_SELECT_PRODUCT}
             size="small"
             background="white"
             clickHandler={() => {}}
@@ -30,13 +37,13 @@ function Proceed({ contents, metaData }: ProceedType): ReactElement {
         </div>
         <div className="cart-proceed-button-side-layout">
           <Button
-            buttonTitle="선택 상품 주문"
+            buttonTitle={ORDER_SELECT_PRODUCT}
             size="large"
             background="white"
             clickHandler={() => {}}
           />
           <Button
-            buttonTitle="전체 상품 주문"
+            buttonTitle={ORDER_ALL_PRODUCT}
             size="large"
             background="black"
             clickHandler={() => {}}
@@ -45,7 +52,7 @@ function Proceed({ contents, metaData }: ProceedType): ReactElement {
       </div>
       <div className="cart-proceed-guide-container">
         <img src={ExclamMark} />
-        <p>{'주문서 작성 단계에서 할인/적립금 적용을 하실 수 있습니다.'}</p>
+        <p>{PROCEED_GUIDE_TEXT}</p>
       </div>
     </S.Proceed>
   );

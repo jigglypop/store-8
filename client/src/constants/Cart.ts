@@ -15,6 +15,12 @@ const TOTAL_AMOUNT_TEXT: string = '개의 상품금액';
 const KST_AMOUNT_UNIT: string = '원';
 const TOTAL_ADD_TEXT: string = '합계';
 
+const DELETE_SELECT_PRODUCT: string = '선택 상품 삭제';
+const LIKE_SELECT_PRODUCT: string = '선택 상품 찜';
+const ORDER_SELECT_PRODUCT: string = '선택 상품 주문';
+const ORDER_ALL_PRODUCT: string = '전체 상품 주문';
+const PROCEED_GUIDE_TEXT: string = '주문서 작성 단계에서 할인/적립금 적용을 하실 수 있습니다.';
+
 const SHIPMENT_BASE: number = 4500;
 const SHIPMENT_HIGH: number = 3500;
 const SHIPMENT_HIGH_BASE: number = 10000;
@@ -38,6 +44,11 @@ export {
   KST_AMOUNT_UNIT,
   TOTAL_ADD_TEXT,
   PAY_TYPE_FIRST,
+  DELETE_SELECT_PRODUCT,
+  LIKE_SELECT_PRODUCT,
+  ORDER_SELECT_PRODUCT,
+  ORDER_ALL_PRODUCT,
+  PROCEED_GUIDE_TEXT,
   SHIPMENT_BASE,
   SHIPMENT_HIGH,
   SHIPMENT_HIGH_BASE,
