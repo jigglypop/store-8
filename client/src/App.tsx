@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 
-import Mypage from '@pages/Mypage/Mypage';
+import MyPage from '@src/pages/MyPage/MyPage';
 
 interface Props {}
 
 function App({}: Props): ReactElement {
   return (
     <>
-      <Mypage />
+      <MyPage />
     </>
   );
 }

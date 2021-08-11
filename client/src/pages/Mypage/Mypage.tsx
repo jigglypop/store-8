@@ -5,7 +5,7 @@ import OrderSection from '@src/components/MyPage/OrderSection/OrderSection';
 
 interface Props {}
 
-export default function Mypage({}: Props): ReactElement {
+export default function MyPage({}: Props): ReactElement {
   return (
     <S.Mypage>
       <OrderSection />
