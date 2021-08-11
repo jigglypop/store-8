@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const DeliveryInfo = styled.div`
+export const RefundInfo = styled.div`
   background-color: var(--white);
   margin-top: 45px;
   font-size: var(--body-small-font);
   color: var(--text-gray);
+
+  & > section {
+    margin-top: 60px;
+  }
 
   .title {
     color: var(--text-pastel-black);
@@ -14,16 +18,14 @@ export const DeliveryInfo = styled.div`
     margin-bottom: 20px;
   }
 
-  .delivery-info__content {
-    display: flex;
+  .subject {
     margin-bottom: 8px;
   }
-
-  .subtitle {
-    margin-right: 5px;
+  .description {
+    margin-left: 8px;
+    margin-bottom: 8px;
   }
-
-  & > div:last-child {
-    margin-top: 32px;
+  .divider {
+    height: 16px;
   }
 `;
