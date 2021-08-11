@@ -11,6 +11,7 @@ export const NavigationBar = styled.div`
         font-weight: 600;
         padding-bottom: 16px;
         border-bottom: 1.5px solid var(--gray5);
+        padding-left: 12px;
     }
 
 `;
