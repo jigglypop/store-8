@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
 
+import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
+
 import ZoomImg from './ZoomImg/ZoomImg';
 import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
@@ -36,7 +38,7 @@ const StyledProductDetail = styled.div`
 
 const sampleData = {
   id: '1234',
-  img: 'https://cdn.pixabay.com/photo/2014/08/10/18/06/beers-414914_960_720.jpg',
+  img: sampleThumbnail,
   title: '맥주짠 세트',
   originAmount: 20000,
   amount: 10900,
