@@ -37,6 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     --black: #000000;
     --text-black: #000000;
     --pastel-black: #353535;
+    --text-pastel-black: #353535;
 
     --mint: #2AC1BC;
     --dark-mint: #219A95;
@@ -57,6 +58,8 @@ export const GlobalStyle = createGlobalStyle`
     --smallFont: 0.75rem;
     --middleFont: 0.875rem;
     --largeFont: 1.125rem;
+    --hugeFont: 1.5rem;
+    --titleFont:2.5rem;
   }
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {
@@ -79,6 +82,8 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
   }
+
+  
 `;
 
 export default GlobalStyle;
