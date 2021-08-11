@@ -20,16 +20,16 @@ export const CartContainer = styled.table`
     width: 36px;
   }
   .cart-content-info-colgroup {
-    width: calc(70% - 36px);
+    width: calc(67% - 36px);
   }
   .cart-content-count-colgroup {
-    width: 10%;
+    width: 11%;
   }
   .cart-content-amount-colgroup {
-    width: 10%;
+    width: 11%;
   }
   .cart-content-ship-colgroup {
-    width: 10%;
+    width: 11%;
   }
   .cart-content-title-text {
     font-weight: bold;

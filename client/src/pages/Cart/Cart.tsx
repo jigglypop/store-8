@@ -1,7 +1,8 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import CartHeader from '@src/components/Cart/Header/CartHeader';
-import CartContentsContainer from '@src/components/Cart/Container/CartContentsContainer';
-import Receipt from '@src/components/Cart/Receipt/Receipt';
+import CartHeader from '@components/Cart/Header/CartHeader';
+import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
+import Receipt from '@components/Cart/Receipt/Receipt';
+import Proceed from '@components/Cart/Proceed/Proceed';
 import * as S from './style';
 import { ORDER_READY, ORDER_START } from '@constants/Cart';
 import type { CartContentData } from '@src/types/CartContentData';
@@ -83,6 +84,7 @@ function Cart(): ReactElement {
         metaData={metaData}
       />
       <Receipt metaData={metaData} />
+      <Proceed contents={contents} metaData={metaData} />
     </S.Cart>
   );
 }
