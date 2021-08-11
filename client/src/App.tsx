@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import MyPage from '@src/pages/MyPage/MyPage';
+import MyPage from '@pages/MyPage/MyPage';
 
 interface Props {}
 
