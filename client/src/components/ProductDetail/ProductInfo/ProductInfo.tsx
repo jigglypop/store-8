@@ -6,11 +6,17 @@ import MinusIcon from '@image/minusIcon.svg';
 
 interface Props {
   title: string;
+  originAmount?: number;
   amount: number;
   delivery_info: string;
 }
 
-export default function ProductInfo({ title, amount, delivery_info }: Props): ReactElement {
+export default function ProductInfo({
+  title,
+  originAmount,
+  amount,
+  delivery_info,
+}: Props): ReactElement {
   const [count, setCount] = useState(1);
   const [inputValue, setInputValue] = useState<string>(count + '');
 
@@ -49,6 +55,12 @@ export default function ProductInfo({ title, amount, delivery_info }: Props): Re
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
+        {originAmount && (
+          <div className="product-info__origin-amount">
+            <S.InfoTitle>정가</S.InfoTitle>
+            <div>{originAmount}</div>
+          </div>
+        )}
         <div className="producto-info__amount">
           <S.InfoTitle>판매가격</S.InfoTitle>
           <div>{amount}</div>
