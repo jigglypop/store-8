@@ -48,7 +48,6 @@ function Cart(): ReactElement {
       shipmentPrice: getShipmentAmount(totalPrice),
     };
   };
-  console.log(calcMetaData());
 
   const [metaData, setMetaData] = useState(calcMetaData());
 

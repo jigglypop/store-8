@@ -48,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
     --body-small-font: 0.75rem;
     --body-middle-font: 0.875rem;
     --body-large-font: 1.125rem;
+    --app-width: 1200px;
   }
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {
