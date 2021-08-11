@@ -3,7 +3,7 @@
     "target": "es5" /* Specify ECMAScript target version: "ES3" (default), "ES5", "ES2015", "ES2016", "ES2017", "ES2018", "ES2019", "ES2020", "ES2021", or "ESNEXT". */,
     "module": "commonjs" /* Specify module code generation: "none", "commonjs", "amd", "system", "umd", "es2015", "es2020", or "ESNext". */,
     "allowJs": true /* Allow javascript files to be compiled. */,
-    "jsx": "react" /* Specify JSX code generation: "preserve", "react-native", "react", "react-jsx" or "react-jsxdev". */,
+    "jsx": "react-jsx" /* Specify JSX code generation: "preserve", "react-native", "react", "react-jsx" or "react-jsxdev". */,
     "rootDir": "./" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     "isolatedModules": true /* Transpile each file as a separate module (similar to "ts.transpileModule"). */,
 
@@ -27,7 +27,7 @@
       "@types/*" : ["src/types/*"],
       "@utils/*" : ["src/utils/*"],
       "@image/*": ["public/image/*"],
-      "@font/*": ["public/font/*"],
+      "@font/*": ["public/font/*"]
     }
   },
   "include": ["public", "src", "custom.d.ts"],

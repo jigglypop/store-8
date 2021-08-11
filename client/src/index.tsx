@@ -1,13 +1,16 @@
+import './ResetStyle.tsx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as S from './GlobalStyle';
+import GlobalStyle from './GlobalStyle';
+import ResetStyle from './ResetStyle';
 
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(
   <React.StrictMode>
-    <S.GlobalStyle />
+    <ResetStyle />
+    <GlobalStyle />
     <App />
   </React.StrictMode>,
   rootEl
