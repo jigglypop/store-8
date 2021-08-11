@@ -8,6 +8,10 @@ export const CartHeader = styled.div`
     padding: 50px 5px 30px 5px;
     border-bottom: 1px solid var(--line-gray);
   }
+  .cart-header-title {
+    font-size: var(--head-small-font);
+    font-weight: bold;
+  }
   .cart-progress-container {
     display: flex;
     flex-direction: row;

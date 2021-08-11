@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray5: #E0E0E0;
     --gray6: #F5F5F7;
     --background-gray: #F5F5F7;
+    --text-lightgray: #BDBDBD;
     --text-gray: #828282;
 
     --white: #FFFFFF;
@@ -45,6 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     --body-small-font: 0.75rem;
     --body-middle-font: 0.875rem;
     --body-large-font: 1.125rem;
+    --head-small-font: 1.75rem;
     --app-width: 1200px;
   }
 
