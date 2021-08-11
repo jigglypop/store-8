@@ -1,14 +1,13 @@
 import React, { ReactElement } from 'react';
 
-import TestIcon from '@image/icon.svg';
+import Mypage from '@pages/Mypage/Mypage';
 
 interface Props {}
 
 function App({}: Props): ReactElement {
   return (
     <>
-      <h1>hello world</h1>
-      <TestIcon />
+      <Mypage />
     </>
   );
 }
