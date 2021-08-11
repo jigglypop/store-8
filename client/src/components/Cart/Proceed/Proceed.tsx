@@ -22,6 +22,9 @@ interface ProceedType {
 }
 
 function Proceed(props: ProceedType): ReactElement {
+  if (props.metaData.maxLength === 0) {
+    return <></>;
+  }
   return (
     <S.Proceed>
       <div className="cart-proceed-button-container">
