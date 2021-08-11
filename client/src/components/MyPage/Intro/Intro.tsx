@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 
 interface Props {
   couponCount: number;
@@ -10,43 +10,26 @@ interface Props {
 
 export default function Intro({ couponCount, bonusPoint, name, grade }: Props): ReactElement {
   return (
-    <StyledIntro>
+    <S.Intro>
       <h2>반가워요,</h2>
       <div className="container-user-point">
-        <StyledUserPoint className="container-user-coupon">
+        <S.UserPoint className="container-user-coupon">
           <div>쿠폰</div>
           <div>
             <b>{couponCount}</b>장
           </div>
-        </StyledUserPoint>
-        <StyledUserPoint>
+        </S.UserPoint>
+        <S.UserPoint>
           <div>적립금</div>
           <div>
             <b>{bonusPoint}</b>원
           </div>
-        </StyledUserPoint>
+        </S.UserPoint>
       </div>
-      <div>
-        {name}님의
-        <br />
-        회원등급은 {grade}그룹 입니다.
+      <div className="text-user-info">
+        <div>{name}님의</div>
+        <div>회원등급은 {grade}그룹 입니다.</div>
       </div>
-    </StyledIntro>
+    </S.Intro>
   );
 }
-
-const StyledIntro = styled.div`
-  .container-user-point {
-    display: flex;
-    .container-user-coupon {
-      padding-right: 16px;
-      margin-right: 16px;
-      border-right: 1px solid #626666;
-    }
-  }
-`;
-
-const StyledUserPoint = styled.div`
-  display: flex;
-  gap: 16px;
-`;
