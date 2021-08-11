@@ -3,26 +3,26 @@ import * as S from './style';
 
 interface Props {
   couponCount: number;
-  bonusPoint: number;
+  mileage: number;
   name: string;
   grade: string;
 }
 
-export default function Intro({ couponCount, bonusPoint, name, grade }: Props): ReactElement {
+export default function Intro({ couponCount, mileage, name, grade }: Props): ReactElement {
   return (
     <S.Intro>
       <h2>반가워요,</h2>
       <div className="container-user-point">
         <S.UserPoint className="container-user-coupon">
           <div>쿠폰</div>
-          <div>
+          <div className="text-bold">
             <b>{couponCount}</b>장
           </div>
         </S.UserPoint>
         <S.UserPoint>
           <div>적립금</div>
-          <div>
-            <b>{bonusPoint}</b>원
+          <div className="text-bold">
+            <b>{mileage}</b>원
           </div>
         </S.UserPoint>
       </div>

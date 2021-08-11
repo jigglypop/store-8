@@ -10,6 +10,7 @@ export default function OrderSection({}: Props): ReactElement {
   return (
     <S.OrderSection>
       <Intro {...sampleData} />
+      
       <SearchBar />
     </S.OrderSection>
   );
@@ -17,7 +18,7 @@ export default function OrderSection({}: Props): ReactElement {
 
 const sampleData = {
   couponCount: 1,
-  bonusPoint: 1000,
-  name: '송하영',
+  mileage: 1000,
+  name: '남영우',
   grade: '일반회원',
 };
