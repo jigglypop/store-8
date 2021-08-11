@@ -73,6 +73,41 @@ function Cart(): ReactElement {
     setContents([...temp]);
   };
 
+  const deleteCheckedItem = () => {
+    const temp: CartContentData[] = [];
+    contents.forEach((content) => {
+      if (!content.isChecked) {
+        temp.push(content);
+      }
+    });
+
+    setContents(temp);
+  };
+
+  const likeCheckedItem = () => {
+    const temp: CartContentData[] = [];
+    contents.forEach((content) => {
+      if (content.isChecked) {
+        temp.push(content);
+      }
+    });
+    console.log('TODO: LIKE CHECKED ITEM', temp);
+  };
+
+  const orderCheckedItem = () => {
+    const temp: CartContentData[] = [];
+    contents.forEach((content) => {
+      if (content.isChecked) {
+        temp.push(content);
+      }
+    });
+    console.log('TODO: ORDER CHECKED ITEM', temp);
+  };
+
+  const orderAllItem = () => {
+    console.log('TODO: ORDER ALL ITEM', contents);
+  };
+
   return (
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
@@ -83,7 +118,14 @@ function Cart(): ReactElement {
         metaData={metaData}
       />
       <Receipt metaData={metaData} />
-      <Proceed contents={contents} metaData={metaData} />
+      <Proceed
+        contents={contents}
+        metaData={metaData}
+        deleteCheckedItem={deleteCheckedItem}
+        likeCheckedItem={likeCheckedItem}
+        orderCheckedItem={orderCheckedItem}
+        orderAllItem={orderAllItem}
+      />
     </S.Cart>
   );
 }

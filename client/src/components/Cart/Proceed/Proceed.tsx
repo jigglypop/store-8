@@ -15,9 +15,13 @@ import {
 interface ProceedType {
   contents: CartContentData[];
   metaData: CartContentMetaData;
+  deleteCheckedItem: () => void;
+  likeCheckedItem: () => void;
+  orderCheckedItem: () => void;
+  orderAllItem: () => void;
 }
 
-function Proceed({ contents, metaData }: ProceedType): ReactElement {
+function Proceed(props: ProceedType): ReactElement {
   return (
     <S.Proceed>
       <div className="cart-proceed-button-container">
@@ -26,13 +30,17 @@ function Proceed({ contents, metaData }: ProceedType): ReactElement {
             buttonTitle={DELETE_SELECT_PRODUCT}
             size="small"
             background="white"
-            clickHandler={() => {}}
+            clickHandler={() => {
+              props.deleteCheckedItem();
+            }}
           />
           <Button
             buttonTitle={LIKE_SELECT_PRODUCT}
             size="small"
             background="white"
-            clickHandler={() => {}}
+            clickHandler={() => {
+              props.likeCheckedItem();
+            }}
           />
         </div>
         <div className="cart-proceed-button-side-layout">
@@ -40,13 +48,17 @@ function Proceed({ contents, metaData }: ProceedType): ReactElement {
             buttonTitle={ORDER_SELECT_PRODUCT}
             size="large"
             background="white"
-            clickHandler={() => {}}
+            clickHandler={() => {
+              props.orderCheckedItem();
+            }}
           />
           <Button
             buttonTitle={ORDER_ALL_PRODUCT}
             size="large"
             background="black"
-            clickHandler={() => {}}
+            clickHandler={() => {
+              props.orderAllItem();
+            }}
           />
         </div>
       </div>

@@ -8,7 +8,7 @@ interface ButtonProps {
   clickHandler: () => void;
 }
 
-function Button({ buttonTitle, size, background }: ButtonProps): ReactElement {
+function Button({ buttonTitle, size, background, clickHandler }: ButtonProps): ReactElement {
   const getButtonBackgroundClass = () => {
     if (background) {
       return `button-background-${background}`;
@@ -31,6 +31,9 @@ function Button({ buttonTitle, size, background }: ButtonProps): ReactElement {
         className={
           'button-base center-align ' + getButtonBackgroundClass() + ' ' + getButtonBackgroundSize()
         }
+        onClick={() => {
+          clickHandler();
+        }}
       >
         <p>{buttonTitle}</p>
       </div>

@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
-// styled component thema?
-
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
   * {
@@ -53,7 +51,6 @@ export const GlobalStyle = createGlobalStyle`
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {
     font-family: "NotoSans", "Nanum Gothic", sans-serif;
-    /* 제목이나 큰 글씨, 제목 등은 배민 폰트로 써도 좋을 듯 하다. + 배민 폰트도 추가해놓자 */
   }
 
   button {
