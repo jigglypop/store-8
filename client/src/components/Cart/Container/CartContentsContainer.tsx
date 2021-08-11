@@ -64,7 +64,9 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
           ))}
         </tbody>
       </S.CartContainer>
-      <a className="keep-shopping">{'< 쇼핑 계속하기'}</a>
+      <S.CartGoToBack>
+        <a className="cart-keep-shopping">{'< 쇼핑 계속하기'}</a>
+      </S.CartGoToBack>
     </>
   );
 }

@@ -40,7 +40,17 @@ export const CartContainer = styled.table`
     border-left: 0.5px solid var(--cartGrey);
     border-right: 0.5px solid var(--cartGrey);
   }
-  .keep-shopping {
-    margin-top: 8px;
+`;
+
+export const CartGoToBack = styled.div`
+  margin-top: 12px;
+  .cart-keep-shopping {
+    font-size: 12px;
+    color: var(--realBlack);
+    line-height: 16px;
+    text-align: center;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--realBlack);
+    cursor: pointer;
   }
 `;
