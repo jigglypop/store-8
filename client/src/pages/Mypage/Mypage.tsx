@@ -7,8 +7,8 @@ interface Props {}
 
 export default function MyPage({}: Props): ReactElement {
   return (
-    <S.Mypage>
+    <S.MyPage>
       <OrderSection />
-    </S.Mypage>
+    </S.MyPage>
   );
 }
