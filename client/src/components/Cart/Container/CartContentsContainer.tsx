@@ -6,6 +6,7 @@ import {
   COUNT_HEADER_TEXT,
   AMOUNT_HEADER_TEXT,
   SHIP_HEADER_TEXT,
+  NOTHING_IN_TEXT,
 } from '@constants/Cart';
 
 import type { CartContentData } from '@src/types/CartContentData';
@@ -19,6 +20,20 @@ interface CartContentProps {
 }
 
 function CartContentsContainer(props: CartContentProps): ReactElement {
+  if (props.metaData.maxLength === 0) {
+    return (
+      <>
+        <S.NothingView>
+          <div className="center-align cart-nothing-container">
+            <p>{NOTHING_IN_TEXT}</p>
+          </div>
+        </S.NothingView>
+        <S.CartGoToBack>
+          <a className="cart-keep-shopping">{'< 쇼핑 계속하기'}</a>
+        </S.CartGoToBack>
+      </>
+    );
+  }
   return (
     <>
       <S.CartContainer>

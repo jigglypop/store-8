@@ -21,6 +21,8 @@ const ORDER_SELECT_PRODUCT: string = '선택 상품 주문';
 const ORDER_ALL_PRODUCT: string = '전체 상품 주문';
 const PROCEED_GUIDE_TEXT: string = '주문서 작성 단계에서 할인/적립금 적용을 하실 수 있습니다.';
 
+const NOTHING_IN_TEXT: string = '장바구니에 담겨있는 상품이 없습니다.';
+
 const SHIPMENT_BASE: number = 4500;
 const SHIPMENT_HIGH: number = 3500;
 const SHIPMENT_HIGH_BASE: number = 10000;
@@ -43,6 +45,7 @@ export {
   TOTAL_AMOUNT_TEXT,
   KST_AMOUNT_UNIT,
   TOTAL_ADD_TEXT,
+  NOTHING_IN_TEXT,
   PAY_TYPE_FIRST,
   DELETE_SELECT_PRODUCT,
   LIKE_SELECT_PRODUCT,

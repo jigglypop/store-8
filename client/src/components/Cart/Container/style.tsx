@@ -71,3 +71,13 @@ export const CartGoToBack = styled.div`
     cursor: pointer;
   }
 `;
+
+export const NothingView = styled.div`
+  .cart-nothing-container {
+    height: 140px;
+  }
+  .cart-nothing-container > p {
+    font-size: var(--body-small-font);
+    color: var(--text-gray);
+  }
+`;

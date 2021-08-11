@@ -23,7 +23,8 @@ function getShipmentAmount(amount: number) {
   else if (amount > SHIPMENT_LOW_BASE) return SHIPMENT_LOW;
   else if (amount > SHIPMENT_MIDDLE_BASE) return SHIPMENT_MIDDLE;
   else if (amount > SHIPMENT_HIGH_BASE) return SHIPMENT_HIGH;
-  else return SHIPMENT_BASE;
+  else if (amount > 0) return SHIPMENT_BASE;
+  else return SHIPMENT_ZERO;
 }
 
 export { kstFormatter, getShipmentAmount };
