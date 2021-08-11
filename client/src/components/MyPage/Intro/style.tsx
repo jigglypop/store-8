@@ -4,10 +4,10 @@ export const Intro = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  font-size: var(--hugeFont);
+  font-size: var(--body-huge-font);
 
   h2 {
-    font-size: var(--titleFont);
+    font-size: var(--body-title-font);
     font-weight: bold;
   }
   .container-user-point {
