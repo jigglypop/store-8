@@ -10,6 +10,10 @@ const AMOUNT_HEADER_TEXT: string = '상품금액';
 const SHIP_HEADER_TEXT: string = '배송비';
 const SHIP_BASE_TEXT: string = '기본배송비';
 const PAY_TYPE_FIRST: string = '(택배-선결제)';
+const TOTAL_TEXT: string = '총';
+const TOTAL_AMOUNT_TEXT: string = '개의 상품금액';
+const KST_AMOUNT_UNIT: string = '원';
+const TOTAL_ADD_TEXT: string = '합계';
 
 const SHIPMENT_BASE: number = 4500;
 const SHIPMENT_HIGH: number = 3500;
@@ -29,6 +33,10 @@ export {
   AMOUNT_HEADER_TEXT,
   SHIP_HEADER_TEXT,
   SHIP_BASE_TEXT,
+  TOTAL_TEXT,
+  TOTAL_AMOUNT_TEXT,
+  KST_AMOUNT_UNIT,
+  TOTAL_ADD_TEXT,
   PAY_TYPE_FIRST,
   SHIPMENT_BASE,
   SHIPMENT_HIGH,

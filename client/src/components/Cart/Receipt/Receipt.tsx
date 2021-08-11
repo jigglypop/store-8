@@ -1,8 +1,15 @@
 import React, { ReactElement } from 'react';
 import { CartContentMetaData } from '@src/types/CartContentMetaData';
 import PlusCircle from '@image/plusCircle.png';
-import EqualCircle from '@image/eqaulCirlce.png';
+import EqualCircle from '@image/equalCircle.png';
 import { kstFormatter } from '@src/utils/utils';
+import {
+  SHIP_HEADER_TEXT,
+  TOTAL_TEXT,
+  TOTAL_AMOUNT_TEXT,
+  KST_AMOUNT_UNIT,
+  TOTAL_ADD_TEXT,
+} from '@constants/Cart';
 import * as S from './style';
 
 interface MetaData {
@@ -15,41 +22,41 @@ function Receipt({ metaData }: MetaData): ReactElement {
       <div className="cart-receipt-container">
         <div>
           <div className="cart-receipt-title-layout cart-select-amount-title">
-            <p>{'총'}</p>
+            <p>{TOTAL_TEXT}</p>
             <p className="cart-title-text-black-large">
               {kstFormatter(metaData.checkedCount, false)}
             </p>
-            <p>{'개의 상품금액'}</p>
+            <p>{TOTAL_AMOUNT_TEXT}</p>
           </div>
           <div className="cart-price-layout">
             <p className="cart-price-text-black-large">
               {kstFormatter(metaData.totalPrice, false)}
             </p>
-            <p className="cart-price-text-unit">{'원'}</p>
+            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
           </div>
         </div>
         <img src={PlusCircle} />
         <div>
           <div className="cart-receipt-title-layout">
-            <p>{`배송비`}</p>
+            <p>{SHIP_HEADER_TEXT}</p>
           </div>
           <div className="cart-price-layout">
             <p className="cart-price-text-black-large">
               {kstFormatter(metaData.shipmentPrice, false)}
             </p>
-            <p className="cart-price-text-unit">{'원'}</p>
+            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
           </div>
         </div>
         <img src={EqualCircle} />
         <div>
           <div className="cart-receipt-title-layout">
-            <p>{`합계`}</p>
+            <p>{TOTAL_ADD_TEXT}</p>
           </div>
           <div className="cart-price-layout">
             <p className="cart-price-text-mint-large">
               {kstFormatter(metaData.totalPrice + metaData.shipmentPrice, false)}
             </p>
-            <p className="cart-price-text-unit">{'원'}</p>
+            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
           </div>
         </div>
       </div>
