@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DeliveryInfo = styled.div`
+export const DeliveryInfo = styled.section`
   background-color: var(--white);
   margin-top: 45px;
   font-size: var(--body-small-font);

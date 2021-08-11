@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RefundInfo = styled.div`
+export const RefundInfo = styled.section`
   background-color: var(--white);
   margin-top: 45px;
   font-size: var(--body-small-font);
