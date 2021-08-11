@@ -72,7 +72,7 @@ function CartContent({ content, index, metaData, toggleHandler }: Contents): Rea
       </td>
       <td>
         <div className="cart-count-container center-align">
-          <p>{content.count + '개'}</p>
+          <p>{kstFormatter(content.count, false) + '개'}</p>
           <button className="center-align">
             <p>{CHANGE_COUNT_TEXT}</p>
           </button>

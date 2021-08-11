@@ -20,7 +20,7 @@ export const tempData = [
     imgLink: image1,
     title: '요모포켓X배달이친구들 메이배달이 포켓',
     option: '',
-    count: 1,
+    count: 120000,
     amount: 64000,
   },
   {
@@ -38,7 +38,7 @@ export const tempData = [
     imgLink: image3,
     title: 'ㅋㅋ슬리퍼 화이트',
     option: '사이즈 : 더 작은발',
-    count: 1,
+    count: 180,
     amount: 21000,
   },
   {
@@ -47,7 +47,7 @@ export const tempData = [
     imgLink: image4,
     title: '매거진F No.16 Namul',
     option: '',
-    count: 1,
+    count: 1200,
     amount: 13500,
   },
 ];

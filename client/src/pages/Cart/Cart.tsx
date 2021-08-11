@@ -82,7 +82,7 @@ function Cart(): ReactElement {
         contents={contents}
         metaData={metaData}
       />
-      <Receipt />
+      <Receipt metaData={metaData} />
     </S.Cart>
   );
 }

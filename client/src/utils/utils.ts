@@ -10,8 +10,12 @@ import {
   SHIPMENT_ZERO_BASE,
 } from '@constants/Cart';
 
-function kstFormatter(amount: number) {
-  return amount.toLocaleString() + '원';
+function kstFormatter(amount: number, suffix: boolean = true) {
+  if (suffix) {
+    return amount.toLocaleString() + '원';
+  } else {
+    return amount.toLocaleString();
+  }
 }
 
 function getShipmentAmount(amount: number) {
