@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CartHeader = styled.div`
-  .header-container {
+  .cart-header-container {
     width: calc(100% - 80px); /* 원본은 고정 길이. */
     display: flex;
     justify-content: space-between;
@@ -22,10 +22,10 @@ export const CartHeader = styled.div`
     width: 10px;
     margin: 0px 16px 0px 12px;
   }
-  .progress {
+  .cart-progress {
     color: var(--realBlack);
   }
-  .wait {
+  .cart-wait {
     color: var(--cartGrey);
   }
 `;

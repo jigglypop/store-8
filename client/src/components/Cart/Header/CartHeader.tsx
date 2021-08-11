@@ -13,12 +13,12 @@ function CartHeader({ nowStep }: CartHeaderProps): ReactElement {
     return nowStep === destStep ? cartNextBlack : cartNextGrey;
   };
   const getTextColorStep = (destStep: number) => {
-    return nowStep === destStep ? 'prgoress' : 'wait';
+    return nowStep === destStep ? 'cart-prgoress' : 'cart-wait';
   };
   return (
     <S.CartHeader>
-      <div className="header-container">
-        <h2 className="header-title">장바구니</h2>
+      <div className="cart-header-container">
+        <h2 className="cart-header-title">장바구니</h2>
         <div className="cart-progress-container">
           <p className={getTextColorStep(ORDER_READY)}>01 장바구니</p>
           <img src={getImgSourceStep(ORDER_READY)} />
