@@ -30,11 +30,27 @@ export const CartContainer = styled.table`
   }
 
   .cart-content-check-colgroup {
-    width: 2.25rem;
+    @media only screen and (min-width: 375px) {
+      width: 1.25rem;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 1.75rem;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 2.25rem;
+    }
   }
 
   .cart-content-info-colgroup {
-    width: calc(67% - 36px);
+    @media only screen and (min-width: 375px) {
+      width: calc(54% - 1.75rem);
+    }
+    @media only screen and (min-width: 768px) {
+      width: calc(59% - 1.75rem);
+    }
+    @media only screen and (min-width: 1300px) {
+      width: calc(67% - 2.25rem);
+    }
   }
 
   .cart-content-count-colgroup {
@@ -42,7 +58,15 @@ export const CartContainer = styled.table`
   }
 
   .cart-content-amount-colgroup {
-    width: 11%;
+    @media only screen and (min-width: 375px) {
+      width: 22%;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 18%;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 11%;
+    }
   }
 
   .cart-content-ship-colgroup {

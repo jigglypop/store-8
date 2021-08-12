@@ -12,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100vw;
     min-height: 100vh;
+    /* TODO: 이후에 Main Page 및 Header, Footer 만들고 정렬 부분 재정의 필요 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     --gray1: #333333;
     --gray2: #4F4F4F; 
@@ -47,7 +51,16 @@ export const GlobalStyle = createGlobalStyle`
     --body-middle-font: 0.875rem;
     --body-large-font: 1.125rem;
     --head-small-font: 1.75rem;
-    --app-width: 1200px;
+    
+    @media only screen and (min-width: 375px) {
+      --app-width: 100vw;
+    }
+    @media only screen and (min-width: 768px) {
+      --app-width: 668px;
+    }
+    @media only screen and (min-width: 1300px) {
+      --app-width: 1200px;
+    }
   }
 
   p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {

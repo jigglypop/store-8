@@ -10,6 +10,8 @@ import {
   SHIPMENT_ZERO_BASE,
 } from '@constants/Cart';
 
+import { PC_WIDTH_MIN, TABLET_WIDTH_MIN } from '@constants/Media';
+
 function kstFormatter(amount: number, suffix: boolean = true) {
   if (suffix) {
     return amount.toLocaleString() + '원';
@@ -27,4 +29,15 @@ function getShipmentAmount(amount: number) {
   else return SHIPMENT_ZERO;
 }
 
-export { kstFormatter, getShipmentAmount };
+function mediaStringFormatter(pcString: string, tabletString: string, mobileString: string) {
+  const width = window.innerWidth;
+  if (width > PC_WIDTH_MIN) {
+    return pcString;
+  } else if (width > TABLET_WIDTH_MIN) {
+    return tabletString;
+  } else {
+    return mobileString;
+  }
+}
+
+export { kstFormatter, getShipmentAmount, mediaStringFormatter };

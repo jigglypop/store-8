@@ -21,6 +21,15 @@ export const CartContent = styled.tr`
     height: 4rem;
     border: 1px solid var(--line-gray);
     margin-right: var(--tableSideMargin);
+    @media only screen and (min-width: 375px) {
+      margin-right: 1rem;
+    }
+    @media only screen and (min-width: 768px) {
+      margin-right: 1rem;
+    }
+    @media only screen and (min-width: 1300px) {
+      margin-right: 0.5rem;
+    }
   }
 
   .cart-content-text-main {

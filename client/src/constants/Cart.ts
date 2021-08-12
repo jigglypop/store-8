@@ -1,15 +1,17 @@
+import { mediaStringFormatter } from '@utils/utils';
+
 const ORDER_READY: number = 1;
 const ORDER_START: number = 2;
 const ORDER_FINISH: number = 3;
 
 const COUPON_BLOCK_TEXT: string = '쿠폰적용';
-const CHANGE_COUNT_TEXT: string = '옵션/수량변경';
+const CHANGE_COUNT_TEXT: string = mediaStringFormatter('옵션/수량변경', '옵션변경', '옵션변경');
 const INFO_HEADER_TEXT: string = '상품/옵션 정보';
 const COUNT_HEADER_TEXT: string = '수량';
 const AMOUNT_HEADER_TEXT: string = '상품금액';
 const SHIP_HEADER_TEXT: string = '배송비';
 const SHIP_BASE_TEXT: string = '기본배송비';
-const PAY_TYPE_FIRST: string = '(택배-선결제)';
+const PAY_TYPE_FIRST: string = mediaStringFormatter('(택배-선결제)', '', '');
 const TOTAL_TEXT: string = '총';
 const TOTAL_AMOUNT_TEXT: string = '개의 상품금액';
 const KST_AMOUNT_UNIT: string = '원';
