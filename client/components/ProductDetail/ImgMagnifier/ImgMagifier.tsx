@@ -10,16 +10,12 @@ export default function ImgMagifier({ src }: Props): ReactElement {
   const IMG_HEIGHT = 530;
   const MAGNIFIER_HEIGHT = 300;
   const MAGNIFIER_WIDTH = 300;
+
   const [showMagifier, setShowMagifier] = useState(false);
   const [[positionX, positionY], setPosition] = useState([0, 0]);
-  const [[width, height], setSize] = useState([0, 0]);
 
-  const handleMouseEnter = (e: React.MouseEvent) => {
-    const imgElem = e.currentTarget;
-    const { width, height } = imgElem.getBoundingClientRect();
-    setSize([width, height]);
-    setShowMagifier(true);
-  };
+  const handleMouseEnter = () => setShowMagifier(true);
+
   const handleMouseLeave = () => setShowMagifier(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -70,8 +66,8 @@ export default function ImgMagifier({ src }: Props): ReactElement {
       )}
       {showMagifier && (
         <MagnifiedImg
-          imgWidth={width}
-          imgHeight={height}
+          imgWidth={IMG_WIDTH}
+          imgHeight={IMG_HEIGHT}
           magnifierWidth={MAGNIFIER_WIDTH}
           magnifierHeight={MAGNIFIER_HEIGHT}
           positionX={positionX}
@@ -107,7 +103,6 @@ interface IMagnifier {
 
 const Magnifier = styled.div<IMagnifier>`
   position: absolute;
-  cursor: none;
   height: ${(props) => props.width}px;
   width: ${(props) => props.height}px;
 
@@ -115,7 +110,7 @@ const Magnifier = styled.div<IMagnifier>`
   left: ${({ positionX, width }) => positionX - width / 2}px;
 
   border: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
 `;
 
 interface IMagnifiedImg {
@@ -149,10 +144,10 @@ const MagnifiedImg = styled.div<IMagnifiedImg>`
   }};
 
   background-position-x: ${({ positionX, magnifierWidth }) => {
-    return (-positionX * positionX) / magnifierWidth + 75;
+    return (-positionX * positionX) / magnifierWidth + positionX / 2;
   }}px;
 
   background-position-y: ${({ positionY, magnifierHeight }) => {
-    return (-positionY * positionY) / magnifierHeight + 75;
+    return (-positionY * positionY) / magnifierHeight + positionY / 2;
   }}px;
 `;
