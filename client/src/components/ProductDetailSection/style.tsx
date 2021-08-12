@@ -25,3 +25,18 @@ export const UserFeedbackTitleContainer = styled.div`
     border-radius: 3px;
   }
 `;
+
+export const UserPostingList = styled.ul`
+  & > li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--gray4);
+    padding: 5px 0;
+  }
+  .empty-msg {
+    justify-content: center;
+    padding: 30px;
+  }
+`;
