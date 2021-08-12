@@ -17,8 +17,8 @@ export default function SearchBar({}: Props): ReactElement {
     <S.SearchBar>
       <h3>주문목록/배송조회</h3>
       <div className="container-input">
-        <div>조회기간</div>
-        <div onClick={radioButtonHandler}>
+        <div className="label">조회기간</div>
+        <div className="container-offset-button" onClick={radioButtonHandler}>
           <S.OffsetRadioButton value="0" isSelected={selectedOffset === 0}>
             오늘
           </S.OffsetRadioButton>
