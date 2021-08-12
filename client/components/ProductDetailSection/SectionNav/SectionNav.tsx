@@ -56,9 +56,9 @@ const SSectionNav = styled.ul`
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: var(--gray5);
+  background-color: var(--gray6);
   color: var(--text-pastel-black);
-  border: 1px solid var(--line-gray);
+  border: 1px solid var(--gray6);
   & > li {
     display: flex;
     align-items: center;
