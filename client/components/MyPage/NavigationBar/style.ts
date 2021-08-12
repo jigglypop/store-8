@@ -30,14 +30,14 @@ export const NavigatorGroup = styled.div`
         margin-bottom: 12px;
     }
 
-    a {
+    .router-link {
         /* height: 20px; */
         padding: 10px 12px;
-        text-decoration: none;
+        /* text-decoration: none; */
         color: var(--pastelBlack);
     }
 
-    a:hover {
+    .router-link:hover {
         font-weight: 600;
         color: var(--realBlack);
         background-color: var(--gray6);
