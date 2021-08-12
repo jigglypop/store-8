@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import Button from '@components/common/Button/Button';
 import ExclamMark from '@image/exclamMark.png';
 import * as S from './style';
-import type { CartContentData } from '@src/types/CartContentData';
-import type { CartContentMetaData } from '@src/types/CartContentMetaData';
+import type { CartContentData } from '@type/CartContentData';
+import type { CartContentMetaData } from '@type/CartContentMetaData';
 import {
   DELETE_SELECT_PRODUCT,
   LIKE_SELECT_PRODUCT,

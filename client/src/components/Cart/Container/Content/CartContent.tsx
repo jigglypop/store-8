@@ -3,8 +3,8 @@ import { COUPON_BLOCK_TEXT, CHANGE_COUNT_TEXT, PAY_TYPE_FIRST } from '@constants
 import { kstFormatter } from '@utils/utils';
 import * as S from './style';
 
-import type { CartContentData } from '@src/types/CartContentData';
-import { CartContentMetaData } from '@src/types/CartContentMetaData';
+import type { CartContentData } from '@type/CartContentData';
+import { CartContentMetaData } from '@type/CartContentMetaData';
 import { SHIP_BASE_TEXT } from '@constants/Cart';
 
 interface Contents {

@@ -3,11 +3,12 @@ import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
 import Proceed from '@components/Cart/Proceed/Proceed';
-import * as S from './style';
+
+import type { CartContentData } from '@type/CartContentData';
 import { ORDER_READY, ORDER_START } from '@constants/Cart';
-import type { CartContentData } from '@src/types/CartContentData';
 import { getShipmentAmount } from '@utils/utils';
 import { tempData } from './tempData';
+import * as S from './style';
 
 function Cart(): ReactElement {
   const [contents, setContents] = useState(tempData);

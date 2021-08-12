@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { CartContentMetaData } from '@src/types/CartContentMetaData';
+import { CartContentMetaData } from '@type/CartContentMetaData';
 import PlusCircle from '@image/plusCircle.png';
 import EqualCircle from '@image/equalCircle.png';
-import { kstFormatter } from '@src/utils/utils';
+import { kstFormatter } from '@utils/utils';
 import {
   SHIP_HEADER_TEXT,
   TOTAL_TEXT,

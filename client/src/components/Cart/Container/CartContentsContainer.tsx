@@ -9,8 +9,8 @@ import {
   NOTHING_IN_TEXT,
 } from '@constants/Cart';
 
-import type { CartContentData } from '@src/types/CartContentData';
-import type { CartContentMetaData } from '@src/types/CartContentMetaData';
+import type { CartContentData } from '@type/CartContentData';
+import type { CartContentMetaData } from '@type/CartContentMetaData';
 
 interface CartContentProps {
   contents: CartContentData[];
