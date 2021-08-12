@@ -15,14 +15,15 @@ module.exports = {
   resolve: {
     alias: {
       '@src': path.resolve(__dirname, 'src'),
-      '@api': path.resolve(__dirname, 'src/api'), 
-      '@components': path.resolve(__dirname, 'src/components'), 
-      '@pages': path.resolve(__dirname, 'src/pages'), 
-      '@constants': path.resolve(__dirname, 'src/constants'), 
-      '@store': path.resolve(__dirname, 'src/store'), 
-      '@utils': path.resolve(__dirname, 'src/utils'), 
-      '@image': path.resolve(__dirname, 'public/image'), 
-      '@font': path.resolve(__dirname, 'public/font'), 
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@store': path.resolve(__dirname, 'src/store'),
+      '@types': path.resolve(__dirname, 'src/types'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@image': path.resolve(__dirname, 'public/image'),
+      '@font': path.resolve(__dirname, 'public/font'),
     },
     extensions: ['.ts', '.tsx', '.js', 'jsx'],
   },
@@ -32,11 +33,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            "presets": ["@babel/preset-env", "@babel/preset-react"]
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.ts(x?)$/,
