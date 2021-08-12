@@ -1,0 +1,14 @@
+{
+    "1": {
+        "id": 1,
+        "title": "ㅋㅋ아이스트레이",
+        "imgSrc": "public/image/product/big/1.jpg",
+        "detailImgSrc": "public/image/product/product/detail/1.jpg"
+    },
+    "2": {
+        "id": 2,
+        "title": "머그컵. 카페못가",
+        "imgSrc": "public/image/product/big/2.jpg",
+        "detailImgSrc": "public/image/product/product/detail/2.jpg"
+    }
+}

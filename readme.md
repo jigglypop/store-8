@@ -1,20 +1,19 @@
-# 드림 문방구
-> 생산성 있는 태클을 걸고, 이유있게 반박하자!
+# 우아하게 배민문방구 이미지 훔치기
 
-안녕하세요! 저희는 D가 4명이 모인 개발팀 Dream D4 입니다!
+### 1. 파이썬 설치
+* 3.9.6 권장
 
-![dflogo coffee](https://user-images.githubusercontent.com/20200204/128799295-5f74841b-c0da-4372-ad24-81791e979fea.png)
+### 2. venv(파이썬 가상환경 만들기)
+* python -m venv venv
 
-## 팀원
-### 남영우
-> 더 나은 팀 경험과 개발을 위해 노력하겠습니다.
+### 3. 가상환경 실행
+* source ./venv/bin/activate
 
-### 송하영
-> 기능의 완성보다 코드의 완성을 중요하게 생각합니다.
-### 염동환
-> **다작으로 승부한다** 다양한 포트폴리오를 가진 개발자
+### 4. requirements.txt 자동 설치
+* pip3 install -r requirements.txt
 
-### 최현준
-> 내가 표현하지 못하면 남들이 알지 못합니다.
+### 5. 크롤러 실행
+* python ./server.py
 
-저희에 대한 더 자세한 소개는 [자기소개 링크](https://github.com/woowa-techcamp-2021/store-8/wiki/자기소개) 를 참고해주세요!
+### 번외) requirements.txt에 모든 가상환경 패키지 버전이 들어있음
+* 현재 버전 기록하기) pip3 freeze > requirements.txt
