@@ -16,7 +16,7 @@ export default function ZoomImg({ src }: Props): ReactElement {
 const StyledZoomImg = styled.div`
   width: 500px;
 
-  padding: 0 20px;
+  padding-right: 20px;
   & > img {
     width: 480px;
     height: 530px;

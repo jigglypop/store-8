@@ -27,6 +27,7 @@ const StyledProductDetail = styled.div`
   gap: 80px;
 
   height: 530px;
+  margin-bottom: 48px;
   .product-detail__info {
     margin-top: 8px;
     flex-grow: 1;
