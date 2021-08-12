@@ -19,12 +19,13 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["src/*"],
-      "@api/*": ["src/api/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@constants/*": ["src/constants/*"],
-      "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
+      "@api/*" : ["src/api/*"],
+      "@components/*" : ["src/components/*"],
+      "@pages/*" : ["src/pages/*"],
+      "@constants/*" : ["src/constants/*"],
+      "@store/*" : ["src/store/*"],
+      "@type/*" : ["src/type/*"],
+      "@utils/*" : ["src/utils/*"],
       "@image/*": ["public/image/*"],
       "@font/*": ["public/font/*"]
     }

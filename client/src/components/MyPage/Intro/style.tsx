@@ -4,7 +4,7 @@ export const Intro = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  font-size: var(--body-huge-font);
+  font-size: var(--largeFont);
 
   h2 {
     font-size: var(--body-title-font);
@@ -32,5 +32,10 @@ export const UserPoint = styled.div`
   color: var(--text-gray);
   b {
     color: var(--text-pastel-black);
+    margin-right: 5px;
+  }
+
+  .text-bold {
+    font-weight: 600;
   }
 `;
