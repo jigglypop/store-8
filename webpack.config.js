@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -17,6 +18,8 @@ module.exports = {
   resolve: {
     alias: {
       '@client': path.resolve(__dirname, 'client'),
+      '@server': path.resolve(__dirname, 'server'),
+      '@middle': path.resolve(__dirname, 'middle'),
       '@api': path.resolve(__dirname, 'client/api'), 
       '@components': path.resolve(__dirname, 'client/components'), 
       '@pages': path.resolve(__dirname, 'client/pages'), 
@@ -76,6 +79,7 @@ module.exports = {
       template: './public/index.html',
       filename: './index.html'
     }),
+    new Dotenv(),
     new CopyWebpackPlugin({
       patterns: [
         { from: "public/", to: "./public" },

@@ -3,7 +3,7 @@ import styled from "styled-components";
 // 아이템 부분
 export const HeaderItem = styled.li`
   list-style: none;
-  a {
+  .router-link {
     display: inline-block;
     padding: 0 19px;
     font-size: 16px;
@@ -11,6 +11,7 @@ export const HeaderItem = styled.li`
     font-weight: normal;
     text-align: center;
     line-height: 55px;
+    cursor: pointer;
   }
 `;
 
@@ -18,7 +19,7 @@ export const HeaderItem = styled.li`
 export const Header = styled.header`
   .headerInner {
     position: relative;
-    background: var(--grayA);
+    background: var(--white);
     width: 100%;
     display: grid;
     grid-template-rows: 40px 100px 55px;

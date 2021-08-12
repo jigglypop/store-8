@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
-import Auth from "./pages/Auth";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./pages/Main";
-import { Router, Route } from "./utils/router";
+import Footer from "./components/Footer/Footer";
+import MainPage from "./pages/MainPage/MainPage";
+import { Router, Route, RouterSet } from "./utils/router";
+import ThreePage from "./pages/ThreePage/ThreePage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import Headers from "./pages/Headers/Headers";
+import GibhubPage from "./pages/GithubPage/GibhubPage";
 
 
 function App() {
-
   return (
     <div className="App">
       <Router>
-        <Header />
-        <Route path='/' component={Main} />
-        <Route path='/auth' component={Auth} />
+        <Headers />
+        <Route path='/' component={MainPage} />
+        <Route path='/login' component={LoginPage} />
+        <Route path='/register' component={RegisterPage} />
+        <Route path='/github' component={GibhubPage} />
+        <Route path='/three' component={ThreePage} />
         <Footer />
+        <RouterSet />
       </Router>
     </div>
   );

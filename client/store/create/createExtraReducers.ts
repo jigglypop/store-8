@@ -12,15 +12,16 @@ interface IAction<TData> {
 const createExtraReducer = <TForm, TData>(func: AsyncThunk<string, TForm, {}>, name: string) =>{
     return {
         [func.pending.type]: (state: IState<TData, TForm>) => {
-            state.loading = false;
+            state.loading = true;
         },
         [func.fulfilled.type]: (state: IState<TData, TForm>, action: IAction<TData>) => {
-            state.loading = true;
+            state.loading = false;
             state[name] = action.payload;
+            state.error = ""
         },
         [func.rejected.type]: (state: IState<TData, TForm>, action: IAction<TData>) => {
             state.loading = false;
-            state.error = action.error
+            state.error = action.payload
         }
     }
 }

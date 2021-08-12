@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import { github, githubtoken } from "../controllers/github";
-import wrapAsync from "../util/wrapAsync";
+import wrapAsync from "../utils/wrapAsync";
 
 const githubRouter: Router = express.Router();
 

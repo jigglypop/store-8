@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Input = styled.div`
 
-
   textarea {
     padding: 30px;
     background: #F5F5F5;
@@ -17,17 +16,14 @@ export const Input = styled.div`
     outline: none;
     padding: 1rem;
     margin-bottom: 1rem;
-    width: 100%;
+    width: 300px;
     box-sizing: border-box;
 
     border-style: solid;
+    border: 2px solid var(--black);
     border-radius: 5px;
-
-    border-image-slice: 1;
     background: none;
-    border-color: white;
-    color: white;
-    caret-color: white;
+    color: var(--black);
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -35,7 +31,7 @@ export const Input = styled.div`
   input:-webkit-autofill:active {
 	  transition: background-color 5000s ease-in-out 0s;
 	  -webkit-transition: background-color 9999s ease-out;
-    -webkit-box-shadow: 0 0 0px 1000px #141414 inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--gray1) inset !important;
     -webkit-text-fill-color: #fff !important;
   }
 `;

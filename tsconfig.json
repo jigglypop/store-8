@@ -23,13 +23,15 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@api/*": ["src/api/*"],
-      "@components/*": ["src/components/*"],
-      "@pages/*": ["src/pages/*"],
-      "@constants/*": ["src/constants/*"],
-      "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
+      "@client/*": ["client/*"],
+      "@middle/*": ["middle/*"],
+      "@server/*": ["server/*"],
+      "@api/*": ["client/api/*"],
+      "@components/*": ["client/components/*"],
+      "@pages/*": ["client/pages/*"],
+      "@constants/*": ["client/constants/*"],
+      "@store/*": ["client/store/*"],
+      "@utils/*": ["client/utils/*"],
       "@image/*": ["public/image/*"],
       "@font/*": ["public/font/*"]
     }

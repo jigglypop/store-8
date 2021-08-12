@@ -1,62 +1,46 @@
 
-import { SERVER_URL } from "../constants/server_url"
-import { IRegisterForm } from "../store/register/type"
-import { createToast } from "../utils/createToast"
-
-interface IThunkApi {
-    rejectWithValue: (error: string) => void
-}
+import { BASE_URL, SERVER_URL } from "../constants/server_url"
+import { IRegisterReq } from "@middle/type/auth/register"
+import { ILoginReq } from "@middle/type/auth/login"
+import request, { IThunkApi } from "./utils/request";
 
 // 회원가입
-export const registerApi = async (registerform: IRegisterForm, thunkApi: IThunkApi) => {
-    const res = await fetch(`${SERVER_URL}/api/auth/register`,{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            "user": registerform
-        }),
-    })
-    if (res.status !== 200){
-        const error = await res.json()
+export const registerApi = async (registerform: IRegisterReq, thunkApi: IThunkApi) => {
+    const data = await request.post<IRegisterReq>(BASE_URL + "/register", registerform);
+    if (data.status !== 200){
+        const error = data.message
         return await thunkApi.rejectWithValue(error)
     }
-    createToast("회원 가입")
-    return await res.json()
+    return await data.data
 }
 
-// // 로그인
-// export const loginApi  = async (login: ILoginForm, thunkAPI: any) => {
-//     const res : any = await fetch(`${SERVER_URL}/api/auth/login`,{
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             "user": login
-//         }),
-//     })
-//     if (res.status !== 200){
-//         const error = await res.json()
-//         return await thunkAPI.rejectWithValue(error)
-//     }
-//     createToast("로그인")
-//     return await res.json()
-// }
-// 
-// // 체크
-// export const checkApi  = async (token: string, thunkAPI: any) => {
-//     const res : any = await fetch(`${SERVER_URL}/api/auth/check`,{
-//         method: "GET",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Authorization":`${token}`
-//         },
-//     })
-//     if (res.status !== 200){
-//         const error = await res.json()
-//         return await thunkAPI.rejectWithValue(error)
-//     }
-//     return await res.json()
-// }
+// 로그인
+export const loginApi  = async (loginform: ILoginReq, thunkApi: IThunkApi) => {
+    const data = await request.post<ILoginReq>(BASE_URL + "/login", loginform);
+    if (data.status !== 200){
+        const error = data.message
+        return await thunkApi.rejectWithValue(error)
+    }
+    return await data.data
+}
+
+// 체크
+export const checkApi = async (token: string, thunkApi: IThunkApi) => {
+    const data = await request.get(BASE_URL + "/check", token);
+    if (data.status !== 200){
+        const error = data.message
+        return await thunkApi.rejectWithValue(error)
+    }
+    return await data.data
+}
+
+// 깃허브
+
+export const githubApi = async (token: string, thunkApi: IThunkApi) => {
+    const data = await request.github(SERVER_URL + '/callback/github', token);
+    if (data.status !== 200){
+        const error = data.message
+        return await thunkApi.rejectWithValue(error)
+    }
+    return await data.data
+};

@@ -4,7 +4,7 @@
   "description": "---",
   "main": "index.js",
   "scripts": {
-    "start" : "yarn start:client && nodemon --watch '*ts' --exec 'ts-node' ./server/index.ts",
+    "start": "yarn start:client && nodemon --watch '*ts' --exec 'ts-node' ./server/index.ts",
     "server": "nodemon --watch '*ts' --exec 'ts-node' ./server/index.ts",
     "dev": "webpack serve --config webpack.dev.js --progress",
     "develop": "webpack serve --config webpack.dev.js --progress",

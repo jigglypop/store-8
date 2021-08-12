@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { check, login, register, updateImg } from "../controllers/auth";
 import jwtMiddleware from "../middleware/jwtMiddleware";
-import wrapAsync from "../util/wrapAsync";
+import wrapAsync from "../utils/wrapAsync";
 
 const userRouter: Router = express.Router();
 

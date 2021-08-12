@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import HttpError from "../util/HttpError";
+import HttpError from "../utils/HttpError";
 import { BaseError, UniqueConstraintError } from "sequelize";
 
 const handleDBError = (error: BaseError, res: Response) => {

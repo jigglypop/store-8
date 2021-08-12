@@ -21,11 +21,11 @@ export const CarouselDot = styled.li`
   }
 
   .dot-white {
-    background: var(--grayA);
+    background: var(--white);
   }
 
   .dot-gray {
-    background: var(--grayD);
+    background: var(--gray3);
   }
 
   h4 {

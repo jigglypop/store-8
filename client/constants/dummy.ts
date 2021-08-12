@@ -1,6 +1,6 @@
 // 클론 코딩을 위한 더미값들입니다. 나중에 지워질 예정입니다.
 
-import { ICardItem } from "../components/Main/Card";
+import { ICardItem } from "../components/Main/Card/Card";
 
 export const mainBest: ICardItem[] = [
   {
