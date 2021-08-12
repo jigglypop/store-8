@@ -46,10 +46,14 @@ export const GlobalStyle = createGlobalStyle`
 
     --red: #F45452;
 
+
     --body-tiny-font: 0.625rem;
     --body-small-font: 0.75rem;
     --body-middle-font: 0.875rem;
     --body-large-font: 1.125rem;
+    --body-huge-font: 1.5rem;
+    --body-title-font:2.5rem;
+    --body-subtitle-font:2rem;
     --head-small-font: 1.75rem;
     
     @media only screen and (min-width: 375px) {
