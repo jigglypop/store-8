@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 
 interface Props {
   src: string;
@@ -48,7 +48,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
   };
 
   return (
-    <StyledZoomImg
+    <S.ZoomImg
       imgWitdh={IMG_WIDTH}
       imgHeight={IMG_HEIGHT}
       onMouseEnter={handleMouseEnter}
@@ -57,7 +57,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
     >
       <img src={src} alt="image" />
       {showMagifier && (
-        <Magnifier
+        <S.Magnifier
           width={MAGNIFIER_WIDTH}
           height={MAGNIFIER_HEIGHT}
           positionX={positionX}
@@ -65,7 +65,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
         />
       )}
       {showMagifier && (
-        <MagnifiedImg
+        <S.MagnifiedImg
           imgWidth={IMG_WIDTH}
           imgHeight={IMG_HEIGHT}
           magnifierWidth={MAGNIFIER_WIDTH}
@@ -75,79 +75,6 @@ export default function ImgMagifier({ src }: Props): ReactElement {
           src={src}
         />
       )}
-    </StyledZoomImg>
+    </S.ZoomImg>
   );
 }
-
-interface IStyledZoomImg {
-  imgWitdh: number;
-  imgHeight: number;
-}
-
-const StyledZoomImg = styled.div<IStyledZoomImg>`
-  width: ${(props) => props.imgWitdh}px;
-  position: relative;
-
-  & > img {
-    width: ${(props) => props.imgWitdh}px;
-    height: ${(props) => props.imgHeight}px;
-  }
-`;
-
-interface IMagnifier {
-  width: number;
-  height: number;
-  positionX: number;
-  positionY: number;
-}
-
-const Magnifier = styled.div<IMagnifier>`
-  position: absolute;
-  height: ${(props) => props.width}px;
-  width: ${(props) => props.height}px;
-
-  top: ${({ positionY, height }) => positionY - height / 2}px;
-  left: ${({ positionX, width }) => positionX - width / 2}px;
-
-  border: none;
-  background-color: rgba(255, 255, 255, 0.7);
-`;
-
-interface IMagnifiedImg {
-  imgWidth: number;
-  imgHeight: number;
-  magnifierWidth: number;
-  magnifierHeight: number;
-  positionX: number;
-  positionY: number;
-  src: string;
-}
-
-const MagnifiedImg = styled.div<IMagnifiedImg>`
-  position: absolute;
-
-  width: ${(props) => props.imgWidth}px;
-  height: ${(props) => props.imgHeight}px;
-  top: 0;
-  left: ${(props) => props.imgWidth + 80}px;
-
-  background-color: green;
-
-  background-image: url(${(props) => props.src});
-
-  background-repeat: no-repeat;
-
-  background-size: ${({ imgWidth, imgHeight, magnifierWidth, magnifierHeight }) => {
-    return `${(imgWidth * imgWidth) / magnifierWidth}px ${
-      (imgHeight * imgHeight) / magnifierHeight
-    }px`;
-  }};
-
-  background-position-x: ${({ positionX, magnifierWidth }) => {
-    return (-positionX * positionX) / magnifierWidth + positionX / 2;
-  }}px;
-
-  background-position-y: ${({ positionY, magnifierHeight }) => {
-    return (-positionY * positionY) / magnifierHeight + positionY / 2;
-  }}px;
-`;
