@@ -37,6 +37,7 @@ export const GlobalStyle = createGlobalStyle`
     --background-black: #000000;
     --text-black: #000000;
     --pastel-black: #353535;
+    --text-pastel-black: #353535;
     --background-pastel-black: #353535;
     --line-black: #353535;
 

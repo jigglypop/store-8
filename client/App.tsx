@@ -8,6 +8,7 @@ import Headers from './pages/Headers/Headers';
 import GithubPage from './pages/GithubPage/GithubPage';
 import OrderPage from './pages/MyPage/OrderPage/OrderPage';
 import RefundPage from './pages/MyPage/RefundPage/RefundPage';
+import MyPage from './pages/MyPage/MyPage';
 import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage';
 import Cart from './pages/Cart/Cart';
 
@@ -26,7 +27,7 @@ function App() {
         <Route path="/mypage-order-list" component={OrderPage} />
         <Route path="/mypage-cancel-list" component={RefundPage} />
         <Route path="/mypage-refund-list" component={RefundPage} />
-
+        <Route path="/product" component={ProductDetailPage} />
         <Footer />
         <RouterSet />
       </Router>
