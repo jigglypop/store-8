@@ -11,15 +11,15 @@ import ProductQuestionList from './ProductQuestionList/ProductQuestionList';
 interface Props {}
 
 export default function ProductDetailSection({}: Props): ReactElement {
-  const [section, setSection] = useState<string>('otherInfo');
+  const [section, setSection] = useState(0);
 
-  const detailSection: { [key: string]: ReactElement } = {
-    productDetailInfo: <DetailInfo />,
-    deliveryInfo: <DeliveryInfo />,
-    refundInfo: <RefundInfo />,
-    review: <ProductReviewList />,
-    question: <ProductQuestionList />,
-  };
+  const detailSection: ReactElement[] = [
+    <DetailInfo />,
+    <DeliveryInfo />,
+    <RefundInfo />,
+    <ProductReviewList />,
+    <ProductQuestionList />,
+  ];
 
   return (
     <StyledProductDetailSection>
