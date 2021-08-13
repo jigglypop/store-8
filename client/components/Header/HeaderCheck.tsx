@@ -17,7 +17,7 @@ export const HeaderNotLoggedIn = () => {
             <Link to="/register">회원가입</Link>
         </S.HeaderItem>
         <S.HeaderItem>
-            <Link to="/mypage">마이페이지</Link>
+            <Link to="/mypage-order-list">마이페이지</Link>
         </S.HeaderItem>
         <S.HeaderItem>
             <Link to="/cart">장바구니</Link>
@@ -35,7 +35,7 @@ export const HeaderLoggedIn = ({ check, onLogout }: IHeaderNotLoggedIn ) => {
             <div onClick={() => onLogout()}>로그아웃</div>
         </S.HeaderItem>
         <S.HeaderItem>
-            <Link to="/mypage">마이페이지</Link>
+            <Link to="/mypage-order-list">마이페이지</Link>
         </S.HeaderItem>
         <S.HeaderItem>
             <Link to="/cart">장바구니</Link>

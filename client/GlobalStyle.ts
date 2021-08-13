@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray4: #BDBDBD;
     --line-gray: #BDBDBD;
     --gray5: #E0E0E0;
+    --gray5-button-hover: #E0E0E0;
     --gray6: #F5F5F7;
     --background-gray: #F5F5F7;
     --text-lightgray: #BDBDBD;

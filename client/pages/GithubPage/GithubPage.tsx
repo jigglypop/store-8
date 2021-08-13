@@ -1,13 +1,13 @@
 import { useGithub } from "@client/hooks/github";
 import * as S from "./style";
 
-const GibhubPage = () => {
+const GithubPage = () => {
   const {  } = useGithub()
   return (
-    <S.GibhubPage>
+    <S.GithubPage>
       <h1>잠시만 기다려주세요</h1>
-    </S.GibhubPage>
+    </S.GithubPage>
   );
 };
 
-export default GibhubPage;
+export default GithubPage;
