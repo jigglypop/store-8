@@ -1,6 +1,7 @@
 export interface ILoginReq {
     username: string;
     password: string;
+    [key: string]: string;
 }
 
 export interface ILoginRes {

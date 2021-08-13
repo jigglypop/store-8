@@ -1,4 +1,5 @@
 import * as S from "./style";
+import footer from '@image/footer.png';
 
 export const footerTop = [
   "공지사항",
@@ -36,7 +37,7 @@ const Footer = () => {
       <div className="footerInner">
         <div className="footerWrap">
           <div className="footerLogo">
-            <img src="public/image/footer.png" />
+            <img src={footer} />
           </div>
           <div className="footerText">
             <div className="footerTextTop">

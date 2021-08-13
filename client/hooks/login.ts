@@ -1,29 +1,30 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, ChangeEvent } from "react";
-import { changeLogin, postLogin, initLogin } from "../store/auth/login";
+import { changeLogin, postLogin, initLogin, ILoginInput } from "../store/auth/login";
 import { RootState } from "@client/store";
 import { HistoryPush } from "@client/utils/router";
 import cache from "@client/utils/cache";
 import { getCheck } from "@client/store/auth/check";
+import { ILoginReq } from "@middle/type/auth/login";
 
 export function useLogin () {
     const { loginform, login, error, loading } = useSelector((state: RootState) => state.login);
     const dispatch = useDispatch();
     
     // 인풋 박스 디바운싱
-    let timer: any
+    let timer: NodeJS.Timeout
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const name: any = e.target.name
+        const name: keyof ILoginReq = e.target.name
         const value =  e.target.value
         if (timer){
             clearTimeout(timer)
         }
         timer = setTimeout(() => {
             dispatch(changeLogin({ key: name, value: value }))
-        }, 200);
+        }, 300);
     }
 
-    const onSubmit = async (e:any) =>{
+    const onSubmit = async (e: { preventDefault: () => void; }) =>{
         e.preventDefault();
         await dispatch(postLogin(loginform))
     }

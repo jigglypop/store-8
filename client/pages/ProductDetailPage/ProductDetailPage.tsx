@@ -1,10 +1,8 @@
-import { ReactElement } from 'react';
 import * as S from './style';
 
 import ProductDetail from '@components/ProductDetail/ProductDetail';
 import ProductDetailSection from '@client/components/ProductDetailSection/ProductDetailSection';
-
-interface Props {}
+import { IPage, IPageQuery } from '@client/utils/router';
 
 export default function ProductDetailPage() {
   return (

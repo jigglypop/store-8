@@ -1,3 +1,4 @@
+
 export const createPage = (title: string) => {
   const page = `
   <!DOCTYPE html>
