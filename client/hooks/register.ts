@@ -5,15 +5,17 @@ import { RootState } from "@client/store";
 import { HistoryPush } from "@client/utils/router";
 import { getCheck } from "@client/store/auth/check";
 import cache from "@client/utils/cache";
+import { IRegisterReq } from "@middle/type/auth/register";
+import _ from 'lodash';
 
 export function useRegister () {
     const { registerform, register, error, loading } = useSelector((state: RootState) => state.register);
     const dispatch = useDispatch();
     
     // 인풋 박스 디바운싱
-    let timer: any
+    let timer: NodeJS.Timeout
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const name: any = e.target.name
+        const name: keyof IRegisterReq = e.target.name
         const value =  e.target.value
         if (timer){
             clearTimeout(timer)
@@ -23,7 +25,8 @@ export function useRegister () {
         }, 200);
     }
 
-    const onSubmit = async (e:any) =>{
+
+    const onSubmit = async (e: { preventDefault: () => void; }) =>{
         e.preventDefault();
         await dispatch(postRegister(registerform))
     }

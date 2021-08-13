@@ -1,6 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-// import { useEffect } from "react";
-// import { setUser, cleanCheck } from "../module/check";
 import { RootState } from "@client/store";
 import { logout } from "@client/store/auth/check";
 import { HistoryPush } from "@client/utils/router";

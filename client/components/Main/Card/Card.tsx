@@ -1,3 +1,4 @@
+import { Link } from "@client/utils/router";
 import { dot } from "../../../utils/dot";
 import * as S from "./style";
 
@@ -17,7 +18,9 @@ const Card = ({ index, item }: ICard) => {
     <S.Card>
       <div className="cardInner">
         <div className="image">
-          <img src={`public/image/mainc/mainc${index + 1}.jpg`} alt="title" />
+          <Link to={`/product/${index + 1}?id=1&value=hello`} >
+            <img src={`public/image/mainc/mainc${index + 1}.jpg`} alt="title" />
+          </Link>
           <div className="underbutton">
             <button className="smallbutton">
               <i className="far fa-heart"></i>

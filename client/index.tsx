@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./GlobalStyle";
 import { Provider } from 'react-redux';
 import { store } from "./store";
@@ -9,6 +8,7 @@ import { store } from "./store";
 import { getCheck } from "./store/auth/check";
 import cache from "./utils/cache";
 import ResetStyle from './ResetStyle';
+import { HelmetProvider } from "react-helmet-async"
 
 const loadUser = () =>{
   try{
@@ -25,13 +25,13 @@ const rootEl = document.getElementById('root');
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <ResetStyle />
-        <GlobalStyle />
+    <React.StrictMode>
+      <ResetStyle />
+      <GlobalStyle />
+      <HelmetProvider>
         <App/>
-      </React.StrictMode>
-    </BrowserRouter>
+      </HelmetProvider>
+    </React.StrictMode>
   </Provider>,
   rootEl
 );

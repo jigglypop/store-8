@@ -11,6 +11,7 @@ module.exports = {
   mode,
   entry: './client/index.tsx',
   output: {
+    publicPath: "/",
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
