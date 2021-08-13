@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
 
-import ZoomImg from './ZoomImg/ZoomImg';
+import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
 
@@ -13,7 +13,7 @@ export default function ProductDetail({}: Props): ReactElement {
   const { id, img, title, originAmount, amount, delivery_info, isLiked } = sampleData;
   return (
     <StyledProductDetail>
-      <ZoomImg src={img} />
+      <ImgMagifier src={img} />
       <div className="product-detail__info">
         <ProductInfo {...{ title, originAmount, amount, delivery_info }} />
         <DetailBtns {...{ id, isLiked }} />
@@ -27,6 +27,7 @@ const StyledProductDetail = styled.div`
   gap: 80px;
 
   height: 530px;
+  margin-bottom: 48px;
   .product-detail__info {
     margin-top: 8px;
     flex-grow: 1;

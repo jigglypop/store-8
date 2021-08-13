@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 // 메인
-export const GibhubPage = styled.div`
+export const GithubPage = styled.div`
     position: relative;
     width: 100%;
     min-height: 60vh;
