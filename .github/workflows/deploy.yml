@@ -45,4 +45,4 @@ jobs:
           --application-name store-8
           --deployment-config-name CodeDeployDefault.AllAtOnce
           --deployment-group-name store-8-group
-          --s3-location bucket=store-8,key=s3://store-8/dist/store-8-build.zip,bundleType=zip
+          --s3-location bucket=store-8,key=dist/store-8-build.zip,bundleType=zip
