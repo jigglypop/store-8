@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
   
     steps:
       - name: Checkout source code. # Repo checkout
@@ -32,11 +32,6 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: zip create
-        run: zip -qq -r ./store-8-build.zip.
-        shell: bash
-        working-directory: ./
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -44,16 +39,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Upload to S3
+      - name: Transfer to S3 for serving static
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
         env:
+          AWS_S3_BUCKET: store-8
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 cp --region ap-northeast-2 ./store-8-build.zip s3://store-8/dist/store-8-build.zip
-
-      - name: Deploy to EC2
-        run: aws deploy create-deployment
-          --application-name store-8
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name store-8-group
-          --s3-location bucket=store-8,key=s3://store-8/dist/store-8-build.zip,bundleType=zip
+          AWS_REGION: ap-northeast-2
+          SOURCE_DIR: 'dist'
