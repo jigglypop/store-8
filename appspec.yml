@@ -6,7 +6,8 @@ files:
     destination: /home/ubuntu/store-8
     overwrite: yes
 permissions:
-  - object: /home/ubuntu/store-8
+  - object: /home/ubuntu/
+    patern: '**'
     owner: ubuntu
     group: ubuntu
     mode: 755
