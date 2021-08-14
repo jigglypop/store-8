@@ -15,25 +15,27 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.6.x]
-
+        node-version: [12.x, 14.x, 16.x]
+  
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout source code. # Repo checkout
+        uses: actions/checkout@v2
 
-      - name: Use Node.js version ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Yarn install
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build
 
       - name: zip create
-        run: zip -r ./store-8-build.zip.
+        run: zip -qq -r ./store-8-build.zip.
         shell: bash
+        working-directory: ./
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
