@@ -67,7 +67,7 @@ export default function ProductInfo({
         )}
         {/* 동환님 dot number 유틸 적용 */}
         <div className="producto-info__amount">
-          <S.InfoTitle>성공이다!</S.InfoTitle>
+          <S.InfoTitle>판매가격</S.InfoTitle>
           <div className="price">{amount}원</div>
         </div>
         <div className="producto-info__delivery-info">
