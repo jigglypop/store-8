@@ -18,6 +18,7 @@ function makeRandomClassName() {
 }
 
 const styled = {
+  generateCss: () => {},
   div: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
@@ -32,6 +33,20 @@ const styled = {
       );
     };
   },
+  tr: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
+    return (props: any): ReactElement => {
+      const randomClass = makeRandomClassName();
+      // const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = generateCssString(stringArray, '.' + randomClass);
+
+      return (
+        <tr className={randomClass}>
+          <style>{cssString}</style>
+          {props.children}
+        </tr>
+      );
+    };
+  },
 };
 
 export default styled;
@@ -43,17 +58,11 @@ function ThemeProvider({ theme }) {
 }
 */
 
-/*
-function assembleParsedArray(
-  stringArray: TemplateStringsArray,
-  values: ((props: any) => string)[] | string[],
-  props: any
-) {
+function assembleParsedArray(stringArray: TemplateStringsArray, values: string[], props: any) {
   return stringArray.reduce((acc, str, i) => {
-    return values[i] ? acc + str + values[i](props) : acc + str;
+    return values[i] ? acc + str + values[i] : acc + str;
   }, '');
 }
-*/
 
 function generateCssString(stringArray: TemplateStringsArray, randomClass: string) {
   // Template String과 무작위 Class 이름을 통해서 CSS 문자열을 만들어줌.
@@ -99,3 +108,87 @@ function generateCssString(stringArray: TemplateStringsArray, randomClass: strin
   }
   return cssString;
 }
+
+function tempGenerator(stringArray: string) {
+  const randomClass = makeRandomClassName();
+  return getCssString(preProcessingString(stringArray), '.' + randomClass);
+}
+
+function preProcessingString(scssString: string) {
+  const parsedScssString = scssString.split('\n');
+  let result = '';
+  for (let i = 0; i < parsedScssString.length; i += 1) {
+    let temp = parsedScssString[i].trim();
+    if (temp.endsWith(',')) {
+      result += temp + ' ';
+    } else {
+      result += temp + '\n';
+    }
+  }
+  console.log(result);
+  return result;
+}
+
+// styled-component의 문자열을 css 문법으로 교체해주는 함수.
+function getCssString(scssString: string, prefix: string) {
+  let braceStack = 0;
+  const parsedScssString = scssString.split('\n');
+  let { result, index } = deleteNamelessPart(parsedScssString, prefix);
+
+  let tempScssString = '';
+  let tempDeclarePart = '';
+  for (let i = index; i < parsedScssString.length; i += 1) {
+    if (isStart(parsedScssString[i])) {
+      if (braceStack === 0) {
+        braceStack += 1;
+        tempDeclarePart = getScssDeclare(parsedScssString[i]);
+      }
+      tempScssString = parsedScssString[i];
+    }
+  }
+
+  return result;
+}
+
+function deleteNamelessPart(scssStrings: string[], prefix: string) {
+  let result = prefix + ' {';
+  let i = 0;
+  for (i = 0; i < scssStrings.length; i += 1) {
+    if (isStart(scssStrings[i])) {
+      return { result: result + '}\n', index: i - 1 };
+    } else if (isEnd(scssStrings[i])) {
+      throw new Error(
+        '[styledComponent] : Nameless Part에서 } 를 발견했습니다. 문제되는 SCSS 문자열 : ' +
+          scssStrings[i]
+      );
+    } else {
+      result += '  ' + scssStrings[i] + '\n';
+    }
+  }
+  return { result: result + '}\n', index: i };
+}
+
+function isStart(scssString: string) {
+  return scssString.indexOf('{') >= 0;
+}
+
+function isEnd(scssString: string) {
+  return scssString.indexOf('}') >= 0;
+}
+
+function getScssDeclare(scssString: string) {
+  // CSS 선언부를 공백없이 가져오기
+  return scssString.split('{')[0].trim();
+}
+
+function isStratWithAnd(scssString: string) {
+  // 만약 선언부에 & 가 있다면?
+  if (isStart(scssString)) {
+    if (getScssDeclare(scssString).charAt(0) === '&') {
+      return true;
+    }
+  }
+  return false;
+}
+
+export { tempGenerator, getCssString };
