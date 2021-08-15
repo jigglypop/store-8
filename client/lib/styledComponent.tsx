@@ -76,11 +76,6 @@ function assembleParsedArray(
   }, '');
 }
 
-function tempGenerator(stringArray: string) {
-  const randomClass = makeRandomClassName();
-  return getCssFromScss(preProcessingString(stringArray), '.' + randomClass);
-}
-
 function preProcessingString(scssString: string) {
   // "," 로 끝난 것들을 모두 이어줌.
   const parsedScssString = scssString.split('\n');
@@ -263,11 +258,9 @@ function isMedia(scssString: string) {
 function isStratWithAnd(scssString: string) {
   // 만약 선언부에 & 가 있다면?
   if (isStart(scssString)) {
-    if (getScssDeclare(scssString).charAt(0) === '&') {
+    if (getScssDeclare(scssString).indexOf('&') >= 0) {
       return true;
     }
   }
   return false;
 }
-
-export { tempGenerator, getCssFromScss };
