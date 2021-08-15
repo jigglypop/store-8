@@ -21,14 +21,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Yarn install
         run: yarn install
-      - name: Build
-        run: yarn build
 
       - name: Make .env file
         run: |
           touch .env	
           cat << EOF >> .env	
           ${{ secrets.ENV }}
+
+      - name: Build
+        run: yarn build
 
       - name: zip create
         run: zip -qq -r ./store-8-build.zip ./dist ./server ./middle ./appspec.yml ./scripts ./node_modules ./.env ./custom.d.ts ./tsconfig.json
