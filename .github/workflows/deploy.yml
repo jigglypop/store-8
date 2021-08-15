@@ -32,7 +32,7 @@ jobs:
         run: yarn build
 
       - name: zip create
-        run: zip -qq -r ./store-8-build.zip ./dist ./server ./middle ./appspec.yml ./scripts ./node_modules ./.env ./custom.d.ts ./tsconfig.json
+        run: zip -qq -r .
         shell: bash
 
       - name: Configure AWS credentials
