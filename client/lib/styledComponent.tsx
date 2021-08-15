@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 const MAX_CLASS_NAME_LENGTH: number = 16;
 const MIN_CLASS_NAME_LENGTH: number = 8;
@@ -18,7 +18,10 @@ function makeRandomClassName() {
 }
 
 const styled = {
-  button: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+  button: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       const assembledString = assembleParsedArray(stringArray, values, props);
@@ -32,7 +35,10 @@ const styled = {
       );
     };
   },
-  footer: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+  footer: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       const assembledString = assembleParsedArray(stringArray, values, props);
@@ -46,7 +52,10 @@ const styled = {
       );
     };
   },
-  h2: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+  h2: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       const assembledString = assembleParsedArray(stringArray, values, props);
@@ -60,7 +69,10 @@ const styled = {
       );
     };
   },
-  div: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+  div: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       const assembledString = assembleParsedArray(stringArray, values, props);
@@ -74,21 +86,27 @@ const styled = {
       );
     };
   },
-  tr: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
-    return (styledProps: any): ReactElement => {
+  tr: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
+    return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, styledProps);
+      const assembledString = assembleParsedArray(stringArray, values, props);
       const cssString = getCssFromScss(assembledString, '.' + randomClass);
 
       return (
         <tr className={randomClass}>
           <style>{cssString}</style>
-          {styledProps.children}
+          {props.children}
         </tr>
       );
     };
   },
-  table: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+  table: <T extends unknown>(
+    stringArray: TemplateStringsArray,
+    ...values: ((props: T) => string)[]
+  ) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       const assembledString = assembleParsedArray(stringArray, values, props);
@@ -105,13 +123,6 @@ const styled = {
 };
 
 export default styled;
-
-/*
-function ThemeProvider({ theme }) {
-  // 모든 Children 요소들에게 map을 통해 props로 theme을 강제로 내려준다.
-  // !! 문제 !! 특정 React Element가 theme 라는 props를 쓴다면 CSS가 덮어 씌워질 수 있다.
-}
-*/
 
 function assembleParsedArray(
   stringArray: TemplateStringsArray,
