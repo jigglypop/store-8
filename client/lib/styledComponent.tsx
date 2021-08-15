@@ -23,7 +23,7 @@ const styled = {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       // const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = generateCssString(stringArray, '.' + randomClass);
+      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
 
       return (
         <div className={randomClass}>
@@ -37,13 +37,27 @@ const styled = {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
       // const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = generateCssString(stringArray, '.' + randomClass);
+      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
 
       return (
         <tr className={randomClass}>
           <style>{cssString}</style>
           {props.children}
         </tr>
+      );
+    };
+  },
+  table: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
+    return (props: any): ReactElement => {
+      const randomClass = makeRandomClassName();
+      // const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
+
+      return (
+        <table className={randomClass}>
+          <style>{cssString}</style>
+          {props.children}
+        </table>
       );
     };
   },
@@ -64,57 +78,13 @@ function assembleParsedArray(stringArray: TemplateStringsArray, values: string[]
   }, '');
 }
 
-function generateCssString(stringArray: TemplateStringsArray, randomClass: string) {
-  // Template String과 무작위 Class 이름을 통해서 CSS 문자열을 만들어줌.
-  const parsedCSS = stringArray[0].split('\n');
-
-  let cssString = '' + randomClass + ' { \n';
-  let isFirst = true;
-  let isStarted = true;
-
-  for (let i = 0; i < parsedCSS.length; i++) {
-    if (parsedCSS[i].length === 0) continue;
-    if (isFirst) {
-      if (isStarted) {
-        // 만약 { 를 만나서 붙이는 중이었다면...
-        if (parsedCSS[i].indexOf('{') >= 0) {
-          cssString += '}' + '\n';
-          cssString += randomClass + ' ' + parsedCSS[i] + '\n';
-          isStarted = true;
-          isFirst = false;
-        } else {
-          cssString += parsedCSS[i] + '\n';
-        }
-      }
-    } else {
-      if (isStarted) {
-        // 만약 { 를 만나서 붙이는 중이었다면...
-        if (parsedCSS[i].indexOf('}') >= 0) {
-          cssString += parsedCSS[i] + '\n';
-          isStarted = false;
-        } else {
-          cssString += parsedCSS[i] + '\n';
-        }
-      } else {
-        // 만약 붙이는 중이 아니었다면
-        if (parsedCSS[i].indexOf('{') >= 0) {
-          cssString += randomClass + ' ' + parsedCSS[i] + '\n';
-          isStarted = true;
-        } else {
-          throw Error('STYLED ERROR!');
-        }
-      }
-    }
-  }
-  return cssString;
-}
-
 function tempGenerator(stringArray: string) {
   const randomClass = makeRandomClassName();
   return getCssFromScss(preProcessingString(stringArray), '.' + randomClass);
 }
 
 function preProcessingString(scssString: string) {
+  // "," 로 끝난 것들을 모두 이어줌.
   const parsedScssString = scssString.split('\n');
   let result = '';
   for (let i = 0; i < parsedScssString.length; i += 1) {
@@ -130,8 +100,8 @@ function preProcessingString(scssString: string) {
 
 // styled-component의 문자열을 css 문법으로 교체해주는 함수.
 function getCssFromScss(scssString: string, prefix: string) {
+  const parsedScssString = preProcessingString(scssString).split('\n');
   let braceStack = 0;
-  const parsedScssString = scssString.trim().split('\n');
   let { result, index } = deleteNamelessPart(parsedScssString, prefix);
 
   let tempScssString = '';

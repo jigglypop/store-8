@@ -8,8 +8,6 @@ interface CartHeaderProps {
   nowStep: number;
 }
 
-console.log(<S.CartHeader />);
-
 function CartHeader({ nowStep }: CartHeaderProps): ReactElement {
   const getImgSourceStep = (destStep: number) => {
     return nowStep === destStep ? cartNextBlack : cartNextGrey;
