@@ -142,7 +142,9 @@ function getCssString(scssString: string, prefix: string) {
   let tempDeclarePart = '';
   let tempScssString = '';
 
-  if (isMedia(parsedScssString[0])) {
+  if (isKeyframe(parsedScssString[0])) {
+    return parseKeyframeQuery(scssString, prefix);
+  } else if (isMedia(parsedScssString[0])) {
     return parseMediaQuery(scssString, prefix);
   } else {
     let result = '';
@@ -220,6 +222,23 @@ function parseMediaQuery(scssString: string, prefix: string) {
   return result;
 }
 
+function parseKeyframeQuery(scssString: string, prefix: string) {
+  // Keyframe을 만난 경우의 SCSS Parsing, 그냥 모두 더해서 내보내준다.
+  let mediaPrefix = '@' + prefix.split('@')[1].trim();
+  const parsedScssString = scssString.trim().split('\n');
+
+  // 물론 media query 내부에도 block 이 있을 수 있다.
+  let result = mediaPrefix + ' {\n';
+
+  for (let i = 1; i < parsedScssString.length - 1; i += 1) {
+    result += '  ' + parsedScssString[i] + '\n';
+  }
+
+  result += '}\n';
+
+  return result;
+}
+
 function deleteNamelessPart(scssStrings: string[], prefix: string) {
   let result = prefix + ' {';
   let i = 0;
@@ -259,6 +278,15 @@ function isStratWithAnd(scssString: string) {
   // 만약 선언부에 & 가 있다면?
   if (isStart(scssString)) {
     if (getScssDeclare(scssString).indexOf('&') >= 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function isKeyframe(scssString: string) {
+  if (isMedia(scssString)) {
+    if (scssString.includes('@keyframes')) {
       return true;
     }
   }
