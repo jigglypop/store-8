@@ -31,7 +31,7 @@ jobs:
           ${{ secrets.ENV }}
 
       - name: zip create
-        run: zip -qq -r ./store-8-build.zip ./dist ./server ./appspec.yml ./scripts
+        run: zip -qq -r ./store-8-build.zip ./dist ./server ./appspec.yml ./scripts ./node_modules ./.env
         shell: bash
 
       - name: Configure AWS credentials
