@@ -18,7 +18,48 @@ function makeRandomClassName() {
 }
 
 const styled = {
-  generateCss: () => {},
+  button: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+    return (props: any): ReactElement => {
+      const randomClass = makeRandomClassName();
+      const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
+
+      return (
+        <button className={randomClass}>
+          <style>{cssString}</style>
+          {props.children}
+        </button>
+      );
+    };
+  },
+  footer: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+    return (props: any): ReactElement => {
+      const randomClass = makeRandomClassName();
+      const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
+
+      return (
+        <footer className={randomClass}>
+          <style>{cssString}</style>
+          {props.children}
+        </footer>
+      );
+    };
+  },
+  h2: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+    return (props: any): ReactElement => {
+      const randomClass = makeRandomClassName();
+      const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
+
+      return (
+        <h2 className={randomClass}>
+          <style>{cssString}</style>
+          {props.children}
+        </h2>
+      );
+    };
+  },
   div: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
