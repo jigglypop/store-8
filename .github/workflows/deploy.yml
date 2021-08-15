@@ -24,6 +24,12 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Make .env file
+        run: |
+          touch .env	
+          cat << EOF >> .env	
+          ${{ secrets.ENV }}
+
       - name: zip create
         run: zip -qq -r ./store-8-build.zip .
         shell: bash

@@ -1,5 +1,3 @@
 cd /home/ubuntu/store-8
 
-tsc
-
-pm2 start ./server/index.js
+pm2 start 'ts-node ./server/index.ts'
