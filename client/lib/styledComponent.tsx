@@ -17,116 +17,58 @@ function makeRandomClassName() {
   return result;
 }
 
+function styledGenerator<T extends unknown>(
+  JSXType: string,
+  stringArray: TemplateStringsArray,
+  ...values: ((props: T) => string | number)[]
+): (props: any) => ReactElement {
+  return (props: any): ReactElement => {
+    const randomClass = makeRandomClassName();
+    const assembledString = assembleParsedArray(stringArray, values, props);
+    const cssString = getCssFromScss(assembledString, '.' + randomClass);
+
+    const styleElement = React.createElement('style', { key: 'style' }, cssString);
+
+    // TODO : Styled Component에 이벤트를 주려면 여기에 추가하기.
+    return React.createElement(
+      JSXType,
+      {
+        onMouseEnter: props.onMouseEnter,
+        onMouseLeave: props.onMouseLeave,
+        onMouseMove: props.onMouseMove,
+        className: randomClass,
+      },
+      [styleElement, props.children]
+    );
+  };
+}
+
+function setStyledItem<T extends unknown>(
+  stringArray: TemplateStringsArray,
+  ...values: ((props: T) => string | number)[]
+) {
+  return styledGenerator(this.type, stringArray, ...values);
+}
+
 const styled = {
-  button: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <button className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </button>
-      );
-    };
-  },
-  footer: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <footer className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </footer>
-      );
-    };
-  },
-  h2: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <h2 className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </h2>
-      );
-    };
-  },
-  div: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <div className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </div>
-      );
-    };
-  },
-  tr: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <tr className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </tr>
-      );
-    };
-  },
-  table: <T extends unknown>(
-    stringArray: TemplateStringsArray,
-    ...values: ((props: T) => string)[]
-  ) => {
-    return (props: any): ReactElement => {
-      const randomClass = makeRandomClassName();
-      const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(assembledString, '.' + randomClass);
-
-      return (
-        <table className={randomClass}>
-          <style>{cssString}</style>
-          {props.children}
-        </table>
-      );
-    };
-  },
+  // TODO : Styled Component에 type 을 추가하려면 여기에 추가하기.
+  button: setStyledItem.bind({ type: 'button' }),
+  footer: setStyledItem.bind({ type: 'footer' }),
+  table: setStyledItem.bind({ type: 'table' }),
+  tr: setStyledItem.bind({ type: 'tr' }),
+  h1: setStyledItem.bind({ type: 'h1' }),
+  h2: setStyledItem.bind({ type: 'h2' }),
+  h3: setStyledItem.bind({ type: 'h3' }),
+  h4: setStyledItem.bind({ type: 'h4' }),
+  div: setStyledItem.bind({ type: 'div' }),
+  span: setStyledItem.bind({ type: 'span' }),
 };
 
 export default styled;
 
 function assembleParsedArray(
   stringArray: TemplateStringsArray,
-  values: ((props: any) => string)[],
+  values: ((props: any) => string | number)[],
   props: any
 ) {
   return stringArray.reduce((acc, str, i) => {
