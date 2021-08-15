@@ -32,7 +32,7 @@ jobs:
         run: yarn build
 
       - name: zip create
-        run: zip -qq -r .
+        run: zip -qq -r ./store-8-build.zip .
         shell: bash
 
       - name: Configure AWS credentials
