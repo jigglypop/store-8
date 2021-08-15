@@ -28,8 +28,9 @@ jobs:
           cat << EOF >> .env	
           ${{ secrets.ENV }}
 
+      #임시로 dev모드로 웹팩 번들링 -> safari가 production모드로 번들링 시 font 적용 안되는 문제
       - name: Build
-        run: yarn build
+        run: yarn start:client
 
       - name: zip create
         run: zip -qq -r ./store-8-build.zip .

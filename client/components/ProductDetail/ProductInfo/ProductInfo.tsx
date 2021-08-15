@@ -61,7 +61,7 @@ export default function ProductInfo({
         {/* 동환님 dot number 유틸 적용 */}
         {originAmount && (
           <div className="product-info__origin-amount">
-            <S.InfoTitle>정가테스트</S.InfoTitle>
+            <S.InfoTitle>정가</S.InfoTitle>
             <div className="stroke">{originAmount}원</div>
           </div>
         )}
