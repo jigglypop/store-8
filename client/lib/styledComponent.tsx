@@ -145,6 +145,7 @@ function getCssFromScss(scssString: string, prefix: string) {
   return result;
 }
 
+// GetCssFromScss 에서 재귀적으로 호출하는 함수
 function getCssString(scssString: string, prefix: string) {
   // & 를 prefix로 변경한 css 구문 호출. 내부에 또 다른 block 이 있을 수 있다.
   const parsedScssString = scssString.trim().split('\n');
@@ -155,10 +156,18 @@ function getCssString(scssString: string, prefix: string) {
   if (isMedia(parsedScssString[0])) {
     return parseMediaQuery(scssString, prefix);
   } else {
-    let result = prefix + ' {\n';
+    let result = '';
+    let realPrefix = prefix;
+    if (isStratWithAnd(parsedScssString[0])) {
+      // 만약 & 를 만나면 prefix 를 붙여서 해결.
+      realPrefix = prefix.split('&')[0].trim() + prefix.split('&')[1];
+      result = realPrefix + ' {\n';
+    } else {
+      result = prefix + ' {\n';
+    }
     for (let i = 1; i < parsedScssString.length; i += 1) {
       if (isStart(parsedScssString[i])) {
-        // 만약 내부의 또다른 Block 을 만났다면 parsing 하지 않고 Declare를 선언.
+        // 만약 내부의 또다른 Block 을 만났다면 parsing 하지 않고 선언부를 저장.
         if (braceStack === 0) {
           tempDeclarePart = getScssDeclare(parsedScssString[i]);
         }
@@ -168,11 +177,17 @@ function getCssString(scssString: string, prefix: string) {
         if (braceStack === 1) {
           braceStack -= 1;
           tempScssString += parsedScssString[i] + '\n';
+
+          // 현재까지 이어오던 CSS Block 을 잠시 닫고, 새로운 Block 을 정의. --- 1
           result += '}\n\n';
-          result += getCssString(tempScssString, prefix + ' ' + tempDeclarePart);
-          result += prefix + ' {\n';
+
+          // 새로 Block을 Parsing 하여 추가. 주로 Media Query를 사용하는 경우 이 로직을 탐.
+          result += getCssString(tempScssString, realPrefix + ' ' + tempDeclarePart);
           tempScssString = '';
           tempDeclarePart = '';
+
+          // 위의 1에서 닫은 CSS Block 을 열어서 마저 정의.
+          result += realPrefix + ' {\n';
         } else if (braceStack > 1) {
           braceStack -= 1;
           tempScssString += parsedScssString[i] + '\n';
@@ -194,6 +209,7 @@ function getCssString(scssString: string, prefix: string) {
 }
 
 function parseMediaQuery(scssString: string, prefix: string) {
+  // Media Query 를 만난 경우의 SCSS Parsing
   let mediaPrefix = '@' + prefix.split('@')[1].trim();
   let nonMediaPrefix = prefix.split('@')[0].trim();
   const parsedScssString = scssString.trim().split('\n');
