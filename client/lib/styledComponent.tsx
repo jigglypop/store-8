@@ -111,7 +111,7 @@ function generateCssString(stringArray: TemplateStringsArray, randomClass: strin
 
 function tempGenerator(stringArray: string) {
   const randomClass = makeRandomClassName();
-  return getCssString(preProcessingString(stringArray), '.' + randomClass);
+  return getCssFromScss(preProcessingString(stringArray), '.' + randomClass);
 }
 
 function preProcessingString(scssString: string) {
@@ -125,27 +125,118 @@ function preProcessingString(scssString: string) {
       result += temp + '\n';
     }
   }
-  console.log(result);
   return result;
 }
 
 // styled-component의 문자열을 css 문법으로 교체해주는 함수.
-function getCssString(scssString: string, prefix: string) {
+function getCssFromScss(scssString: string, prefix: string) {
   let braceStack = 0;
-  const parsedScssString = scssString.split('\n');
+  const parsedScssString = scssString.trim().split('\n');
   let { result, index } = deleteNamelessPart(parsedScssString, prefix);
 
   let tempScssString = '';
   let tempDeclarePart = '';
   for (let i = index; i < parsedScssString.length; i += 1) {
     if (isStart(parsedScssString[i])) {
+      // 만약 '.className {' 의 문자열이라면 구문 정의의 시작.
       if (braceStack === 0) {
-        braceStack += 1;
-        tempDeclarePart = getScssDeclare(parsedScssString[i]);
+        // 처음이라면 선언부를 기억하기.
+        tempDeclarePart += getScssDeclare(parsedScssString[i]);
       }
-      tempScssString = parsedScssString[i];
+      braceStack += 1;
+      tempScssString += parsedScssString[i] + '\n';
+    } else if (isEnd(parsedScssString[i])) {
+      // '}' 라면 brace count 를 낮추면서 종료인지 확인하기.
+      if (braceStack === 0) {
+        // '{' 보다 '}' 가 먼저 나온 경우.
+        throw new Error(
+          '[styledComponent] : SCSS Part에서 } 를 먼저 발견했습니다. 문제되는 SCSS 문자열 : ' +
+            parsedScssString[i]
+        );
+      } else if (braceStack === 1) {
+        braceStack = 0;
+        tempScssString += parsedScssString[i] + '\n';
+        result += getCssString(tempScssString, prefix + ' ' + tempDeclarePart);
+        tempScssString = '';
+        tempDeclarePart = '';
+      } else {
+        braceStack -= 1;
+        tempScssString += parsedScssString[i] + '\n';
+      }
+    } else {
+      tempScssString += parsedScssString[i] + '\n';
     }
   }
+
+  return result;
+}
+
+function getCssString(scssString: string, prefix: string) {
+  // & 를 prefix로 변경한 css 구문 호출. 내부에 또 다른 block 이 있을 수 있다.
+  const parsedScssString = scssString.trim().split('\n');
+  let braceStack = 0;
+  let tempDeclarePart = '';
+  let tempScssString = '';
+
+  if (isMedia(parsedScssString[0])) {
+    return parseMediaQuery(scssString, prefix);
+  } else {
+    let result = prefix + ' {\n';
+    for (let i = 1; i < parsedScssString.length; i += 1) {
+      if (isStart(parsedScssString[i])) {
+        // 만약 내부의 또다른 Block 을 만났다면 parsing 하지 않고 Declare를 선언.
+        if (braceStack === 0) {
+          tempDeclarePart = getScssDeclare(parsedScssString[i]);
+        }
+        braceStack += 1;
+        tempScssString += parsedScssString[i] + '\n';
+      } else if (isEnd(parsedScssString[i])) {
+        if (braceStack === 1) {
+          braceStack -= 1;
+          tempScssString += parsedScssString[i] + '\n';
+          result += '}\n\n';
+          result += getCssString(tempScssString, prefix + ' ' + tempDeclarePart);
+          result += prefix + ' {\n';
+          tempScssString = '';
+          tempDeclarePart = '';
+        } else if (braceStack > 1) {
+          braceStack -= 1;
+          tempScssString += parsedScssString[i] + '\n';
+        } else {
+          result += parsedScssString[i] + '\n';
+        }
+      } else {
+        // 만약 "{" 를 만나지 않았다면 결과에 바로 붙이기, 아니라면 temp 에 붙이기.
+        if (braceStack > 0) {
+          tempScssString += parsedScssString[i] + '\n';
+        } else {
+          result += '  ' + parsedScssString[i] + '\n';
+        }
+      }
+    }
+
+    return result + '\n';
+  }
+}
+
+function parseMediaQuery(scssString: string, prefix: string) {
+  let mediaPrefix = '@' + prefix.split('@')[1].trim();
+  let nonMediaPrefix = prefix.split('@')[0].trim();
+  const parsedScssString = scssString.trim().split('\n');
+
+  // 물론 media query 내부에도 block 이 있을 수 있다.
+  let result = mediaPrefix + ' {\n';
+
+  let tempScssString = '  ' + nonMediaPrefix + ' {\n';
+
+  for (let i = 1; i < parsedScssString.length - 1; i += 1) {
+    tempScssString += '  ' + parsedScssString[i] + '\n';
+  }
+
+  tempScssString += '  ' + '}';
+  result += getCssString(tempScssString, '  ' + nonMediaPrefix);
+
+  result += '}\n';
 
   return result;
 }
@@ -181,6 +272,10 @@ function getScssDeclare(scssString: string) {
   return scssString.split('{')[0].trim();
 }
 
+function isMedia(scssString: string) {
+  return scssString.indexOf('@') >= 0;
+}
+
 function isStratWithAnd(scssString: string) {
   // 만약 선언부에 & 가 있다면?
   if (isStart(scssString)) {
@@ -191,4 +286,4 @@ function isStratWithAnd(scssString: string) {
   return false;
 }
 
-export { tempGenerator, getCssString };
+export { tempGenerator, getCssFromScss };
