@@ -19,11 +19,11 @@ function makeRandomClassName() {
 
 const styled = {
   generateCss: () => {},
-  div: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
+  div: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
-      // const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
+      const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
 
       return (
         <div className={randomClass}>
@@ -33,25 +33,25 @@ const styled = {
       );
     };
   },
-  tr: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
-    return (props: any): ReactElement => {
+  tr: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
+    return (styledProps: any): ReactElement => {
       const randomClass = makeRandomClassName();
-      // const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
+      const assembledString = assembleParsedArray(stringArray, values, styledProps);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
 
       return (
         <tr className={randomClass}>
           <style>{cssString}</style>
-          {props.children}
+          {styledProps.children}
         </tr>
       );
     };
   },
-  table: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[] | string[]) => {
+  table: (stringArray: TemplateStringsArray, ...values: ((props: any) => string)[]) => {
     return (props: any): ReactElement => {
       const randomClass = makeRandomClassName();
-      // const assembledString = assembleParsedArray(stringArray, values, props);
-      const cssString = getCssFromScss(stringArray[0], '.' + randomClass);
+      const assembledString = assembleParsedArray(stringArray, values, props);
+      const cssString = getCssFromScss(assembledString, '.' + randomClass);
 
       return (
         <table className={randomClass}>
@@ -72,9 +72,13 @@ function ThemeProvider({ theme }) {
 }
 */
 
-function assembleParsedArray(stringArray: TemplateStringsArray, values: string[], props: any) {
+function assembleParsedArray(
+  stringArray: TemplateStringsArray,
+  values: ((props: any) => string)[],
+  props: any
+) {
   return stringArray.reduce((acc, str, i) => {
-    return values[i] ? acc + str + values[i] : acc + str;
+    return values[i] ? acc + str + values[i](props) : acc + str;
   }, '');
 }
 
