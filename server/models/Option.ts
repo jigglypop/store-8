@@ -38,6 +38,6 @@ export default class ProductOption extends Model<ICart> {
   amount: number;
 
   @AllowNull(false)
-  @Column(DataType.CHAR(60))
+  @Column(DataType.STRING)
   title: string;
 }

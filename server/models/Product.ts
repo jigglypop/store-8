@@ -3,7 +3,8 @@ export interface IProduct {
   id: number;
   title: string;
   amount: number;
-  imgSrc: string;
+  productImgSrc: string;
+  detailImgSrc: string;
 }
 
 @Table
@@ -20,5 +21,8 @@ export default class Product extends Model<IProduct> {
   amount: number;
 
   @Column(DataType.STRING)
-  imgSrc: string;
+  productImgSrc: string;
+
+  @Column(DataType.STRING)
+  detailImgSrc: string;
 }

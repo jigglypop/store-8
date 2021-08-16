@@ -12,7 +12,7 @@ import ProductOption from './Option';
 import User from './User';
 
 export interface ICart {
-  id: number;
+  id?: number;
   productOptionId: number;
   userId: number;
   productCount: number;
