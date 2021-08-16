@@ -5,12 +5,16 @@ import {
   Model,
   Table,
   DataType,
-  NotNull,
+  ForeignKey,
 } from 'sequelize-typescript';
+
+import ProductOption from './Option';
+import User from './User';
 
 export interface ICart {
   id: number;
-  productId: number;
+  productOptionId: number;
+  userId: number;
   productCount: number;
 }
 
@@ -21,11 +25,14 @@ export default class Cart extends Model<ICart> {
   @Column(DataType.BIGINT)
   id: number;
 
-  @NotNull
   @Column(DataType.BIGINT)
-  productId: number;
+  @ForeignKey(() => ProductOption)
+  productOptionId: number;
 
-  @NotNull
+  @Column(DataType.BIGINT)
+  @ForeignKey(() => User)
+  userId: number;
+
   @Column(DataType.INTEGER)
   productCount: number;
 }

@@ -1,5 +1,4 @@
 import { PrimaryKey, AutoIncrement, Column, Model, Table, DataType } from 'sequelize-typescript';
-
 export interface IProduct {
   id: number;
   title: string;
@@ -7,7 +6,6 @@ export interface IProduct {
   imgSrc: string;
 }
 
-// TODO : Set amount, imgSrc into other table.
 @Table
 export default class Product extends Model<IProduct> {
   @PrimaryKey
