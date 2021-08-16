@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 // 아이템 부분
 export const HeaderItem = styled.li`

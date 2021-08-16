@@ -8,9 +8,24 @@ import type { CartContentData } from '../../type/CartContentData';
 import { ORDER_READY, ORDER_START } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { tempData } from './tempData';
+
+import { getCart, setCartStatus } from '@store/product/cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@client/store';
+
 import * as S from './style';
 
 function Cart(): ReactElement {
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    (async () => {
+      const data = await dispatch(getCart({ userId: 1 }));
+      console.log(data);
+    })();
+  }, []);
+
   const [contents, setContents] = useState(tempData);
 
   const getTotalPrice = () => {

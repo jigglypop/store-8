@@ -1,49 +1,49 @@
-import 'regenerator-runtime/runtime'
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import 'regenerator-runtime/runtime';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginApi } from '../../api/auth';
 import createExtraReducer from '../create/createExtraReducers';
 import { ILoginReq, ILoginRes } from '@middle/type/auth/login';
 
-const name = 'login'
+const name = 'login';
 // 회원가입 input
 export interface ILoginInput {
-  payload : {
-    key : keyof ILoginReq
-    value : string
-  }
+  payload: {
+    key: keyof ILoginReq;
+    value: string;
+  };
 }
 // 회원가입 initialState 상태 타입
 export interface ILoginState {
-  loginform: ILoginReq
-  error: string
-  [name]: ILoginRes | null
-  loading : boolean
+  loginform: ILoginReq;
+  error: string;
+  [name]: ILoginRes | null;
+  loading: boolean;
 }
 // thunk부분
-export const postLogin = createAsyncThunk(name, loginApi)
-const loginExtra = createExtraReducer<ILoginReq, ILoginRes | null>(postLogin, name)
+export const postLogin = createAsyncThunk(name, loginApi);
+const loginExtra = createExtraReducer<ILoginReq, ILoginRes | null>(postLogin, name);
 
-const initialState : ILoginState = {
+const initialState: ILoginState = {
   loginform: {
     username: '',
     password: '',
   },
   [name]: null,
-  error: "",
+  error: '',
   loading: false,
-}
+};
 
 const loginSlice = createSlice({
   name,
   initialState,
-  reducers:{
+  reducers: {
     initLogin: () => initialState,
-    changeLogin: (state, { payload : { key, value } } : ILoginInput ) =>{
-      state.loginform[key] = value
+    changeLogin: (state, { payload: { key, value } }: ILoginInput) => {
+      state.loginform[key] = value;
     },
   },
-  extraReducers: loginExtra
-})
+  extraReducers: loginExtra,
+});
 
-export const { initLogin, changeLogin } = loginSlice.actions
+export const { initLogin, changeLogin } = loginSlice.actions;
 export default loginSlice.reducer;
