@@ -5,8 +5,9 @@ import wrapAsync from '../utils/wrapAsync';
 
 const cartRouter: Router = express.Router();
 
+// TODO : jwt middleware 적용하기
 cartRouter.post('/add', wrapAsync(add));
 cartRouter.post('/remove', wrapAsync(remove));
-cartRouter.get('/', jwtMiddleware, wrapAsync(check));
+cartRouter.get('/', wrapAsync(check));
 
 export default cartRouter;

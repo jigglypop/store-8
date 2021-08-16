@@ -6,6 +6,7 @@ import {
   Table,
   DataType,
   ForeignKey,
+  AllowNull,
 } from 'sequelize-typescript';
 
 import ProductOption from './Option';
@@ -31,14 +32,17 @@ export default class Cart extends Model<ICart> {
   @ForeignKey(() => ProductOption)
   productOptionId: number;
 
+  @AllowNull(false)
   @Column(DataType.BIGINT)
   @ForeignKey(() => Product)
   productId: number;
 
+  @AllowNull(false)
   @Column(DataType.BIGINT)
   @ForeignKey(() => User)
   userId: number;
 
+  @AllowNull(false)
   @Column(DataType.INTEGER)
   productCount: number;
 }

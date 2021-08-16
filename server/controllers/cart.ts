@@ -1,7 +1,17 @@
 import { Request, Response } from 'express';
+import Product from '../models/Product';
+import ProductOption from '../models/Option';
 import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
+
+type CartData = {
+  imgSrc: string;
+  title: string;
+  count: number;
+  amount: number;
+  option: string;
+};
 
 export const check = async (req: Request, res: Response) => {
   const { userId } = req.body;
@@ -14,7 +24,39 @@ export const check = async (req: Request, res: Response) => {
     throw new HttpError({ ...err.NO_DATA });
   }
 
-  res.status(200).json({ status: 200, data: JSON.stringify(carts) });
+  const result: CartData[] = [];
+
+  for (let i = 0; i < carts.length; i++) {
+    const cartData = carts[i];
+    const productData = await Product.findOne({ where: { id: cartData.productId } });
+    if (!productData) {
+      throw new HttpError({ ...err.NO_DATA });
+    }
+
+    const tempData = {
+      imgSrc: productData.productImgSrc,
+      title: productData.title,
+      count: cartData.productCount,
+      amount: productData.amount,
+      option: '',
+    };
+
+    if (cartData.productOptionId !== 0) {
+      // 선택된 Option 이 있다면 선택.
+      const productOptionData = await ProductOption.findOne({
+        where: { id: cartData.productOptionId },
+      });
+
+      if (!productOptionData) {
+        throw new HttpError({ ...err.NO_DATA });
+      }
+
+      tempData.amount = productOptionData.amount;
+      tempData.title = productOptionData.title;
+    }
+    result.push(tempData);
+  }
+  res.status(200).json({ status: 200, data: JSON.stringify(result) });
 };
 
 export const add = async (req: Request, res: Response) => {
