@@ -72,8 +72,9 @@ export default function ImgMagifier({ src }: Props): ReactElement {
           magnifierHeight={MAGNIFIER_HEIGHT}
           positionX={positionX}
           positionY={positionY}
-          src={src}
-        />
+        >
+          <img src={src} alt="magnified-image" />
+        </S.MagnifiedImg>
       )}
     </S.ZoomImg>
   );
