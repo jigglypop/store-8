@@ -1,6 +1,8 @@
 import { ReactElement } from 'react';
 import * as S from './style';
 
+import Locker from '@image/question/lockerIcon.svg';
+
 interface Props {
   idx: number;
   id: string;
@@ -24,11 +26,16 @@ export default function QuestionItem({
     return id.slice(0, 2) + new Array(id.slice(2).length).fill('*').join('');
   };
   const questionStatus = status === 'done' ? '답변완료' : '접수';
+
+  const handleQuestionClick = () => {};
   return (
-    <S.QuestionItem>
+    <S.QuestionItem onClick={handleQuestionClick}>
       <div>
         <div className="question-info no">{idx + 1}</div>
-        <div className="question-info title">{title}</div>
+        <div className="question-info title">
+          {isSecret && <Locker />}
+          {title}
+        </div>
       </div>
       <div>
         <div className="question-info user-id">{hideId(userId)}</div>
