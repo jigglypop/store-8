@@ -4,10 +4,10 @@ export const SearchBar = styled.div`
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  font-size: var(--smallFont);
+  font-size: var(--body-small-font);
 
   h3 {
-    font-size: var(--largeFont);
+    font-size: var(--body-middle-font);
     font-weight: 600;
     margin-bottom: 12px;
   }
@@ -17,18 +17,30 @@ export const SearchBar = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 16px;
-    width: 1000px;
-    padding: 30px 20px;
-    border: 2px solid var(--gray5);
-    
-    button {
-      border: 1px solid var(--gray5);
-      height: 30px;
-      width: 50px;
+    width: 940px;
+    padding: 20px 20px;
+    border: 3px solid var(--gray6);
+    color: var(--gray3);
+
+    .label {
+      /* color: var(--gray3); */
+      font-weight: 800;
     }
 
-    button:hover {
-      background-color: var(--gray4);
+    .container-offset-button {
+      border: 1px solid var(--gray5);
+      border-left: 0px;
+      button {
+        border-left: 1px solid var(--gray5);
+        height: 30px;
+        width: 50px;
+        font-weight: 500;
+      }
+
+      button:hover {
+        background-color: var(--gray4);
+        color: var(--white);
+      }
     }
 
     input[type='date'] {
@@ -38,10 +50,12 @@ export const SearchBar = styled.div`
     }
 
     .button-search {
+      height: 30px;
       width: 100px;
       color: var(--white);
       background-color: var(--black);
       font-weight: 600;
+      border: 0px;
     }
 
     .button-search:hover {
@@ -56,4 +70,5 @@ interface IOffsetRadio {
 
 export const OffsetRadioButton = styled.button<IOffsetRadio>`
   background-color: var(${({ isSelected }) => (isSelected ? '--gray4' : '--white')});
+  color: var(${({ isSelected }) => (isSelected ? '--white' : '--gray3')});
 `;

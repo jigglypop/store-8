@@ -35,7 +35,7 @@ const initialState : IRegisterState = {
 }
 
 const registerSlice = createSlice({
-  name: 'register',
+  name,
   initialState,
   reducers:{
     initRegister: () => initialState,

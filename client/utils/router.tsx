@@ -1,12 +1,15 @@
+import { LoadableComponent } from '@loadable/component';
+import { routes } from '@middle/router/routes';
+import { IRouterItem } from '@middle/type/router/router';
 import {
   useContext,
   createContext,
   useState,
   useEffect,
-  ReactElement,
   Dispatch,
-  SetStateAction
+  SetStateAction,
 } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 interface ICurrentPath {
   pathname: string;
@@ -14,11 +17,12 @@ interface ICurrentPath {
 }
 
 interface IRouter {
-  children: ReactElement | ReactElement[] | string;
+  children: JSX.Element | string ;
 }
 
-interface ILink extends IRouter{
+interface ILink extends IRouter {
   to: string;
+  className?: string;
 }
 
 interface ILinkDummy {
@@ -26,18 +30,37 @@ interface ILinkDummy {
   name: string;
 }
 
-interface IRoute {
-  component:  () => JSX.Element;
+interface IQuery {
+  [key: string]: string
+}
+
+export interface IPageQuery<TQuery> {
+  params: number | null;
+  query: TQuery | null;
+}
+
+export interface IPage {
+  params: number | null;
+}
+
+interface IRoute<TQuery> {
+  component: LoadableComponent<IPageQuery<TQuery> | IPage>;
   path: string;
+  title: string;
 }
 
 export const RouterContext = createContext<ICurrentPath>({} as ICurrentPath);
 
-export function Router({ children } : IRouter ) {
-  const [pathname, setPathName] = useState(window.location.pathname);
+export function makePathAndQuery(pathname: string) {
+  const paths = pathname.split(/\/|\?/g)
+  return paths
+}
+
+export function Router({ children }: IRouter) {
+  const [pathname, setPathName] = useState(window.location.pathname + window.location.search);
   useEffect(() => {
     window.addEventListener('popstate', () => {
-      setPathName(window.location.pathname)
+      setPathName(window.location.pathname + window.location.search)
     })
   },[])
   return (
@@ -45,23 +68,45 @@ export function Router({ children } : IRouter ) {
       {children}
     </RouterContext.Provider>)
 }
-export function Route({ path, component: Component }: IRoute) {
+export function Route({ path, component: Component, title }: IRoute<IQuery>) {
   const { pathname } = useContext(RouterContext);
-  return path === pathname
-    ? <Component />
-    : null;
+  const paths = makePathAndQuery(pathname)
+  let RouteResult = null
+  const currentPath = path.split(/\/|\?/g)
+  if (currentPath[1] === paths[1]) {
+    let params = null
+    let query: IQuery = {}
+    if (paths[2]) {
+      params = Number(paths[2])
+    }
+    if (paths[3]) {
+      query = {}
+      const queryArray = paths[3].replace("?", "").split("&").map((str: string) => str.split("="))
+      for (let [key, value] of queryArray) {
+        query[key] = value
+      }
+    }
+    RouteResult = <>
+      <Helmet>
+        <title>배민 문방구 | {title}</title>
+      </Helmet>
+      <Component params={params} query={query} />
+    </>
+  }
+  return RouteResult;
 }
 
-export function Link({ children, to }: ILink) {
+export function Link({ children, to, className }: ILink) {
   const { setPathName } = useContext(RouterContext);
   const onClick = () => {
-    setPathName(to)
-    history.pushState({path: to}, to, to)
-  }
+    setPathName(to);
+    history.pushState({ path: to }, to, to);
+  };
   return (
-    <div className="router-link" onClick={() => onClick()}>
+    <div className={'router-link ' + className} onClick={() => onClick()}>
       {children}
-    </div>)
+    </div>
+  );
 }
 
 export function DummyLink({ to, name }: ILinkDummy) {
@@ -79,15 +124,9 @@ export function DummyLink({ to, name }: ILinkDummy) {
 export function RouterSet() {
   return (
     <div>
-      <DummyLink to="/" name="main" />
-      <DummyLink to="/auth" name="auth" />
-      <DummyLink to="/login" name="login" />
-      <DummyLink to="/register" name="register" />
-      <DummyLink to="/mypage" name="mypage" />
-      <DummyLink to="/product" name="product" />
-      <DummyLink to="/cart" name="cart" />
-      <DummyLink to="/register" name="register" />
-      <DummyLink to="/github" name="github" />
+      {routes.map((item: IRouterItem, index: number) => 
+        <DummyLink to={`${item.path}`} name={`${item.name}`} key={index} />
+      )}
     </div>)
 }
 

@@ -34,7 +34,7 @@ const initialState : ILoginState = {
 }
 
 const loginSlice = createSlice({
-  name: 'login',
+  name,
   initialState,
   reducers:{
     initLogin: () => initialState,

@@ -5,6 +5,7 @@ import * as S from "./style";
 import { useRef } from "react";
 import { ICheckRes } from "@middle/type/auth/check";
 import { HeaderLoggedIn, HeaderNotLoggedIn } from "./HeaderCheck"
+import main from '@image/main.png';
 
 export interface IHeader{
   check: ICheckRes | null
@@ -27,7 +28,7 @@ const Header = ({ check, onLogout } : IHeader) => {
         {check ? <HeaderLoggedIn check={check} onLogout={onLogout}/> :  <HeaderNotLoggedIn />}
         <div className="mid">
           <Link to="/" >
-            <img src="public/image/main.png" />
+            <img src={main} />
           </Link>
         </div>
         <div className="bottom">

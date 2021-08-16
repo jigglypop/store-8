@@ -21,7 +21,7 @@ const initialState : ICheckState = {
 }
 
 const checkSlice = createSlice({
-  name: 'check',
+  name,
   initialState,
   reducers: {
     initLogin: () => initialState,

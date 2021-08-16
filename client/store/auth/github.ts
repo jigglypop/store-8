@@ -21,7 +21,7 @@ const initialState : ICheckState = {
 }
 
 const githubSlice = createSlice({
-  name: 'github',
+  name,
   initialState,
   reducers: {
     initGithub: () => initialState,
