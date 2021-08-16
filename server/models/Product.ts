@@ -1,6 +1,6 @@
 import { PrimaryKey, AutoIncrement, Column, Model, Table, DataType } from 'sequelize-typescript';
 export interface IProduct {
-  id: number;
+  id?: number;
   title: string;
   amount: number;
   productImgSrc: string;

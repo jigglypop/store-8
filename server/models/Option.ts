@@ -5,17 +5,14 @@ import {
   Model,
   Table,
   DataType,
-  NotNull,
   ForeignKey,
-  BelongsTo,
-  HasMany,
   AllowNull,
 } from 'sequelize-typescript';
 
 import Product from './Product';
 
 export interface ICart {
-  id: number;
+  id?: number;
   productId: number;
   amount: number;
   title: string;

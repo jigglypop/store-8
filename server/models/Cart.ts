@@ -9,10 +9,12 @@ import {
 } from 'sequelize-typescript';
 
 import ProductOption from './Option';
+import Product from './Product';
 import User from './User';
 
 export interface ICart {
   id?: number;
+  productId: number;
   productOptionId: number;
   userId: number;
   productCount: number;
@@ -28,6 +30,10 @@ export default class Cart extends Model<ICart> {
   @Column(DataType.BIGINT)
   @ForeignKey(() => ProductOption)
   productOptionId: number;
+
+  @Column(DataType.BIGINT)
+  @ForeignKey(() => Product)
+  productId: number;
 
   @Column(DataType.BIGINT)
   @ForeignKey(() => User)
