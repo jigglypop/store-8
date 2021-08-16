@@ -1,5 +1,5 @@
 import { BASE_URL } from '@constants/server_url';
-import { ICartGetReq, ICartGetRes, CartData } from '@middle/type/cart/cart';
+import { ICartGetReq } from '@middle/type/cart/cart';
 import request, { IThunkApi } from './utils/request';
 
 // 장바구니 데이터 가져오기
