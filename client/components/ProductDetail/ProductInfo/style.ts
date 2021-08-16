@@ -71,7 +71,7 @@ export const ProductInfo = styled.div`
     .total-price {
       font-size: var(--body-subtitle-font);
       font-weight: bold;
-      color: var(--mint);
+      color: var(--text-black);
     }
   }
   .stroke {
