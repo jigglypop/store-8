@@ -149,7 +149,7 @@ function getCssString(scssString: string, prefix: string) {
   } else {
     let result = '';
     let realPrefix = prefix;
-    if (isStratWithAnd(parsedScssString[0])) {
+    if (isStartWithAnd(parsedScssString[0])) {
       // 만약 & 를 만나면 prefix 를 붙여서 해결.
       realPrefix = prefix.split('&')[0].trim() + prefix.split('&')[1];
       result = realPrefix + ' {\n';
@@ -274,7 +274,7 @@ function isMedia(scssString: string) {
   return scssString.indexOf('@') >= 0;
 }
 
-function isStratWithAnd(scssString: string) {
+function isStartWithAnd(scssString: string) {
   // 만약 선언부에 & 가 있다면?
   if (isStart(scssString)) {
     if (getScssDeclare(scssString).indexOf('&') >= 0) {
