@@ -4,14 +4,7 @@ import ProductOption from '../models/Option';
 import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
-
-type CartData = {
-  imgSrc: string;
-  title: string;
-  count: number;
-  amount: number;
-  option: string;
-};
+import { CartData } from '../../middle/type/cart/cart';
 
 export const check = async (req: Request, res: Response) => {
   const { userId } = req.body;

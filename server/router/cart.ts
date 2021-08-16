@@ -8,6 +8,6 @@ const cartRouter: Router = express.Router();
 // TODO : jwt middleware 적용하기
 cartRouter.post('/add', wrapAsync(add));
 cartRouter.post('/remove', wrapAsync(remove));
-cartRouter.get('/', wrapAsync(check));
+cartRouter.post('/', wrapAsync(check));
 
 export default cartRouter;
