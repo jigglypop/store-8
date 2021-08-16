@@ -3,12 +3,15 @@ import * as S from './style';
 import * as CommonS from '../style';
 import QuestionItem from './QuestionItem/QuestionItem';
 import QuestionForm from './QuestionForm/QuestionForm';
+import { IQuestion } from '@client/type/question/question';
 
 interface Props {}
 
 export default function ProductQuestionList({}: Props): ReactElement {
   const [isOpenForm, setIsOpenForm] = useState(false);
-  const questionList = sampleData.map((data) => <QuestionItem key={data.id} {...data} />);
+  const questionList = sampleData.map((data, idx) => (
+    <QuestionItem key={data.id} {...data} idx={idx} />
+  ));
 
   const handlePostBtnClick = () => setIsOpenForm(true);
 
@@ -34,11 +37,10 @@ export default function ProductQuestionList({}: Props): ReactElement {
   );
 }
 
-const sampleData = [
+const sampleData: IQuestion[] = [
   {
-    id: '2',
+    id: '2123',
     title: '색상은?',
-    type: '상품',
     contents: '색상은 뭐가 어떻게 될까요?',
     userId: 'sample',
     isSecret: false,
@@ -46,7 +48,7 @@ const sampleData = [
     status: 'process',
   },
   {
-    id: '1',
+    id: '1123',
     title: '구매문의',
     contents: '테스트 컨텐트 입니다',
     userId: 'aaample',
