@@ -1,11 +1,22 @@
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
+
+import {
+  SECTION_DETAIL_KEY,
+  SECTION_SEVERAL_KEY,
+  SECTION_REVIEW_KEY,
+  SECTION_QUESTION_KEY,
+  SECTION_DETAIL_NAME,
+  SECTION_SEVERAL_NAME,
+  SECTION_REVIEW_NAME,
+  SECTION_QUESTION_NAME,
+} from '@constants/productDetail/productDetailSection/ProductDetailSection';
 
 interface Props {
   reviewCount: number;
   questionCount: number;
-  section: number;
-  setSection: Dispatch<SetStateAction<number>>;
+  section: string;
+  setSection: Dispatch<SetStateAction<string>>;
 }
 
 export default function SectionNav({
@@ -14,27 +25,32 @@ export default function SectionNav({
   section,
   setSection,
 }: Props): ReactElement {
-  const SECTION = ['상품상세정보', '배송안내', '교환 및 반품안내', '상품후기', '상품문의'];
+  const SECTION = [
+    { name: SECTION_DETAIL_NAME, key: SECTION_DETAIL_KEY },
+    { name: SECTION_SEVERAL_NAME, key: SECTION_SEVERAL_KEY },
+    { name: SECTION_REVIEW_NAME, key: SECTION_REVIEW_KEY },
+    { name: SECTION_QUESTION_NAME, key: SECTION_QUESTION_KEY },
+  ];
 
-  const sectionList = SECTION.map((item, idx) => {
-    const className = idx === section ? 'detail__section selected' : 'detail__section';
-    if (item === '상품후기') {
+  const sectionList = SECTION.map((item) => {
+    const className = item.key === section ? 'detail__section selected' : 'detail__section';
+    if (item.key === SECTION_REVIEW_KEY) {
       return (
-        <li key={item} className={className} data-id={idx}>
-          {item} <span>{reviewCount}</span>
+        <li key={item.key} className={className} data-id={item.key}>
+          {item.name} <span>{reviewCount}</span>
         </li>
       );
     }
-    if (item === '상품문의') {
+    if (item.key === SECTION_QUESTION_KEY) {
       return (
-        <li key={item} className={className} data-id={idx}>
-          {item} <span>{questionCount}</span>
+        <li key={item.key} className={className} data-id={item.key}>
+          {item.name} <span>{questionCount}</span>
         </li>
       );
     }
     return (
-      <li key={item} className={className} data-id={idx}>
-        {item}
+      <li key={item.key} className={className} data-id={item.key}>
+        {item.name}
       </li>
     );
   });
@@ -46,32 +62,8 @@ export default function SectionNav({
     if (!(detailSection instanceof HTMLLIElement)) return;
     const sectionNo = detailSection.dataset.id;
     if (!sectionNo) return;
-    setSection(+sectionNo);
+    setSection(sectionNo);
   };
 
-  return <SSectionNav onClick={handleSectionNavClick}>{sectionList}</SSectionNav>;
+  return <S.SectionNav onClick={handleSectionNavClick}>{sectionList}</S.SectionNav>;
 }
-
-const SSectionNav = styled.ul`
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--gray6);
-  color: var(--text-pastel-black);
-  border: 1px solid var(--gray6);
-  & > li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    cursor: pointer;
-    flex: 1;
-    & > span {
-      margin-left: 8px;
-      color: var(--text-mint);
-    }
-  }
-  .selected {
-    background-color: var(--background-white);
-  }
-`;
