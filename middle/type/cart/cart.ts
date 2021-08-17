@@ -36,3 +36,14 @@ export interface ICartDeleteRes {
   status: number;
   cartIds: number[];
 }
+
+export interface ICartAddReq {
+  userId: number;
+  productId: number;
+  productOptionId: number | null;
+  productCount: number;
+}
+
+export interface ICartAddRes {
+  status: number;
+}

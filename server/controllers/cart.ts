@@ -63,7 +63,7 @@ export const add = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.' });
   }
 
-  res.status(200).json({ status: 200, data: JSON.stringify({ result: '쇼핑카트 추가 성공!' }) });
+  res.status(200).json({ status: 200 });
 };
 
 export const remove = async (req: Request, res: Response) => {
