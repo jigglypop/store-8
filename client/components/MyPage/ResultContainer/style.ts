@@ -15,26 +15,27 @@ export const ResultContainer = styled.div`
     border-bottom: 1px solid var(--gray5);
 
     > * {
+      width: 70px;
       flex-grow: 1;
       text-align: center;
       font-size: var(--body-small-font);
       font-weight: 600;
       padding: 10px 0px;
     }
-    .column-date,
-    .column-title {
-      flex-grow: 2;
-      text-align: left;
-    }
 
     .column-date {
-      margin-left: 36px;
+      text-align: center;
+      width: 70px;
+    }
+
+    .column-title {
+      width: 200px;
     }
   }
 
   .container-result-list {
     width: 100%;
-    height: 150px;
+    height: 140px;
     display: flex;
     flex-direction: column;
     overflow-y: hidden;
