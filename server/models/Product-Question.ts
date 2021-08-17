@@ -12,8 +12,11 @@ import User from './User';
 import Product from './Product';
 import Product_Question_Reply from './Product-Question-Reply';
 
-interface IProductQuestion {
-  [key: string]: any;
+export interface IProductQuestion {
+  id: number;
+  title: string;
+  contents: string;
+  isSecret: boolean;
 }
 
 @Table
@@ -21,36 +24,36 @@ export default class Product_Question extends Model<IProductQuestion> {
   @Column({ primaryKey: true })
   id: number;
 
-  @Column(DataType.STRING(60))
   @AllowNull(false)
+  @Column(DataType.STRING(60))
   title: string;
 
-  @Column(DataType.STRING(500))
   @AllowNull(false)
+  @Column(DataType.STRING(500))
   contents: string;
 
-  @Column(DataType.BOOLEAN)
   @AllowNull(false)
+  @Column(DataType.BOOLEAN)
   isSecret: boolean;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => User)
   userId: number;
 
   @BelongsTo(() => User)
   user: User;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => Product)
   productId: number;
 
   @BelongsTo(() => Product)
   product: Product;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => Product_Question_Reply)
   replyId: number;
 

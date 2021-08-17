@@ -13,7 +13,7 @@ import User from './User';
 import Product from './Product';
 import Review_Img from './Review-Img';
 
-interface IReview {
+export interface IReview {
   id: number;
   title: string;
   contents: string;
@@ -25,28 +25,28 @@ export default class Review extends Model<IReview> {
   @Column({ primaryKey: true })
   id: number;
 
-  @Column(DataType.STRING(60))
   @AllowNull(false)
+  @Column(DataType.STRING(60))
   title: string;
 
-  @Column(DataType.STRING(500))
   @AllowNull(false)
+  @Column(DataType.STRING(500))
   contents: string;
 
-  @Column(DataType.FLOAT)
   @AllowNull(false)
+  @Column(DataType.FLOAT)
   score: number;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => User)
   userId: number;
 
   @BelongsTo(() => User)
   user: User;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => Product)
   productId: number;
 

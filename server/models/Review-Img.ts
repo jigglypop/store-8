@@ -1,7 +1,7 @@
 import { Column, Model, Table, ForeignKey, AllowNull, BelongsTo } from 'sequelize-typescript';
 import Review from './Review';
 
-interface IReview_Img {
+export interface IReview_Img {
   id: number;
   img_src: string;
 }
@@ -11,12 +11,12 @@ export default class Review_Img extends Model<IReview_Img> {
   @Column({ primaryKey: true })
   id: number;
 
-  @Column
   @AllowNull(false)
+  @Column
   img_src: string;
 
-  @Column
   @AllowNull(false)
+  @Column
   @ForeignKey(() => Review)
   reviewId: number;
 
