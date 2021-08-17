@@ -11,7 +11,6 @@ import {
 import { CartContentData } from '@client/type/CartContentData';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
-
 interface CartContentProps {
   contents: CartContentData[];
   metaData: CartContentMetaData;
@@ -36,7 +35,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
   }
   return (
     <>
-      <S.CartContainer>
+      <S.CartContainer theme={{ color: 'red' }}>
         <colgroup>
           <col className="cart-content-check-colgroup"></col>
           <col className="cart-content-info-colgroup"></col>

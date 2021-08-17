@@ -1,8 +1,8 @@
 import 'regenerator-runtime/runtime'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { registerApi } from '../../api/auth';
-import createExtraReducer from '../create/createExtraReducers';
 import { IRegisterReq, IRegisterRes } from '@middle/type/auth/register';
+import createExtraPost from '../createExtra/createExtraPost';
 
 const name = 'register'
 // 회원가입 input
@@ -21,7 +21,7 @@ export interface IRegisterState {
 }
 // thunk부분
 export const postRegister = createAsyncThunk(name, registerApi)
-const registerExtra = createExtraReducer<IRegisterReq, IRegisterRes | null>(postRegister, name)
+const registerExtra = createExtraPost<IRegisterReq, IRegisterRes | null>(postRegister, name)
 
 const initialState : IRegisterState = {
   registerform: {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 export const CartHeader = styled.div`
   .cart-header-container {

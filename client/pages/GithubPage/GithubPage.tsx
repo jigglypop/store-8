@@ -1,4 +1,4 @@
-import { useGithub } from "@client/hooks/github";
+import { useGithub } from "@client/hooks/auth/github";
 import * as S from "./style";
 
 const GithubPage = () => {

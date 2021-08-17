@@ -2,8 +2,8 @@ require('dotenv').config();
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -11,7 +11,7 @@ module.exports = {
   mode,
   entry: './client/index.tsx',
   output: {
-    publicPath: "/",
+    publicPath: '/',
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
@@ -21,14 +21,15 @@ module.exports = {
       '@client': path.resolve(__dirname, 'client'),
       '@server': path.resolve(__dirname, 'server'),
       '@middle': path.resolve(__dirname, 'middle'),
-      '@api': path.resolve(__dirname, 'client/api'), 
+      '@api': path.resolve(__dirname, 'client/api'),
+      '@lib': path.resolve(__dirname, 'client/lib'),
       '@components': path.resolve(__dirname, 'client/components'),
       '@constants': path.resolve(__dirname, 'client/constants'),
-      '@pages': path.resolve(__dirname, 'client/pages'), 
-      '@constants': path.resolve(__dirname, 'client/constants'), 
-      '@store': path.resolve(__dirname, 'client/store'), 
-      '@utils': path.resolve(__dirname, 'client/utils'), 
-      '@image': path.resolve(__dirname, 'public/image'), 
+      '@pages': path.resolve(__dirname, 'client/pages'),
+      '@constants': path.resolve(__dirname, 'client/constants'),
+      '@store': path.resolve(__dirname, 'client/store'),
+      '@utils': path.resolve(__dirname, 'client/utils'),
+      '@image': path.resolve(__dirname, 'public/image'),
       '@font': path.resolve(__dirname, 'public/font'),
       '@type': path.resolve(__dirname, 'client/types'),
     },
@@ -40,14 +41,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            "presets": [              
-              "@babel/preset-env",
-              "@babel/preset-react"
-            ]
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.ts(x?)$/,
@@ -65,11 +63,20 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif|ico)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
               esModule: false,
-              name: "public/[contenthash].[ext]",
+              name: 'public/[contenthash].[ext]',
             },
+          },
+        ],
+      },
+      // gltf, glb 파일
+      {
+        test: /\.(glb|gltf)$/,
+        use: [
+          {
+            loader: 'file-loader',
           },
         ],
       },
@@ -80,13 +87,13 @@ module.exports = {
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
-      filename: './index.html'
+      filename: './index.html',
     }),
     new Dotenv(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "public/", to: "./public" },
-        { from: "public/favicon.ico", to: "./favicon.ico" },
+        { from: 'public/', to: './public' },
+        { from: 'public/favicon.ico', to: './favicon.ico' },
       ],
     }),
   ],
