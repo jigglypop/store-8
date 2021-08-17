@@ -1,28 +1,24 @@
+import { useRouter } from '@client/hooks/router/router';
+import { IRouterReq } from '@client/store/router/router';
 import { LoadableComponent } from '@loadable/component';
 import { routes } from '@middle/router/routes';
 import { IRouterItem } from '@middle/type/router/router';
-import {
-  useContext,
-  createContext,
-  useState,
-  useEffect,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import { useContext, createContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { getRouterObj } from './pathname';
 
 interface ICurrentPath {
-  pathname: string;
-  setPathName: Dispatch<SetStateAction<string>>;
+  router: IRouterReq;
 }
 
 interface IRouter {
-  children: JSX.Element | string ;
+  children: JSX.Element | string;
 }
 
 interface ILink extends IRouter {
   to: string;
   className?: string;
+  id?: string;
 }
 
 interface ILinkDummy {
@@ -31,7 +27,7 @@ interface ILinkDummy {
 }
 
 interface IQuery {
-  [key: string]: string
+  [key: string]: string;
 }
 
 export interface IPageQuery<TQuery> {
@@ -52,85 +48,86 @@ interface IRoute<TQuery> {
 export const RouterContext = createContext<ICurrentPath>({} as ICurrentPath);
 
 export function makePathAndQuery(pathname: string) {
-  const paths = pathname.split(/\/|\?/g)
-  return paths
+  const paths = pathname.split(/\/|\?/g);
+  return paths;
+}
+
+export function setPathAndQuery(path: string) {
+  const paths = path
+    .split(/\/|\?/g)
+    .filter((str: string, index: number) => str !== '' || index !== 0);
+
+  return paths;
 }
 
 export function Router({ children }: IRouter) {
-  const [pathname, setPathName] = useState(window.location.pathname + window.location.search);
+  const { router, onChangeRouterAll } = useRouter();
   useEffect(() => {
+    const RouterObj: IRouterReq = getRouterObj(window.location.pathname + window.location.search);
+    onChangeRouterAll(RouterObj);
+
     window.addEventListener('popstate', () => {
-      setPathName(window.location.pathname + window.location.search)
-    })
-  },[])
-  return (
-    <RouterContext.Provider value={{ pathname, setPathName }}>
-      {children}
-    </RouterContext.Provider>)
+      const RouterObj: IRouterReq = getRouterObj(window.location.pathname + window.location.search);
+      onChangeRouterAll(RouterObj);
+    });
+  }, []);
+  return <RouterContext.Provider value={{ router }}>{children}</RouterContext.Provider>;
 }
 export function Route({ path, component: Component, title }: IRoute<IQuery>) {
-  const { pathname } = useContext(RouterContext);
-  const paths = makePathAndQuery(pathname)
-  let RouteResult = null
-  const currentPath = path.split(/\/|\?/g)
-  if (currentPath[1] === paths[1]) {
-    let params = null
-    let query: IQuery = {}
-    if (paths[2]) {
-      params = Number(paths[2])
-    }
-    if (paths[3]) {
-      query = {}
-      const queryArray = paths[3].replace("?", "").split("&").map((str: string) => str.split("="))
-      for (let [key, value] of queryArray) {
-        query[key] = value
-      }
-    }
-    RouteResult = <>
-      <Helmet>
-        <title>배민 문방구 | {title}</title>
-      </Helmet>
-      <Component params={params} query={query} />
-    </>
+  const { router } = useContext(RouterContext);
+  const { pathname, params, query, notfound } = router;
+  let RouteResult = null;
+  const currentPath = path.split(/\/|\?/g);
+  if (currentPath[1] === pathname) {
+    RouteResult = (
+      <>
+        <Helmet>
+          <title>배민 문방구 | {title}</title>
+        </Helmet>
+        <Component params={Number(params)} query={{}} />
+      </>
+    );
   }
   return RouteResult;
 }
 
-export function Link({ children, to, className }: ILink) {
-  const { setPathName } = useContext(RouterContext);
+export function Link({ children, to, className, id }: ILink) {
+  const { onChangeRouterAll } = useRouter();
   const onClick = () => {
-    setPathName(to);
+    const RouterObj: IRouterReq = getRouterObj(to);
+    onChangeRouterAll(RouterObj);
     history.pushState({ path: to }, to, to);
   };
   return (
-    <div className={'router-link ' + className} onClick={() => onClick()}>
+    <div className={'router-link ' + className} id={id} onClick={() => onClick()}>
       {children}
     </div>
   );
 }
-
 export function DummyLink({ to, name }: ILinkDummy) {
-  const { setPathName } = useContext(RouterContext);
+  const { onChangeRouterAll } = useRouter();
   const onClick = () => {
-    setPathName(to)
-    history.pushState({path: to}, to, to)
-  }
+    const RouterObj: IRouterReq = getRouterObj(to);
+    onChangeRouterAll(RouterObj);
+    history.pushState({ path: to }, to, to);
+  };
   return (
-    <div className={`router-go-${name}`} id={`router-go-${name}`} onClick={() => onClick()}>
-    </div>)
+    <div className={`router-go-${name}`} id={`router-go-${name}`} onClick={() => onClick()}></div>
+  );
 }
 
 // 더미셋. 이 이름으로 HistoryPush에 넣어주면 라우팅됩니다. ex) HistoryPush('main') -> 메인으로
 export function RouterSet() {
   return (
     <div>
-      {routes.map((item: IRouterItem, index: number) => 
+      {routes.map((item: IRouterItem, index: number) => (
         <DummyLink to={`${item.path}`} name={`${item.name}`} key={index} />
-      )}
-    </div>)
+      ))}
+    </div>
+  );
 }
 
 export function HistoryPush(name: string) {
-  document.getElementById(`router-go-${name}`)?.click()
-  return (<div></div>)
+  document.getElementById(`router-go-${name}`)?.click();
+  return <div></div>;
 }

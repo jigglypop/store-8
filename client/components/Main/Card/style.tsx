@@ -1,15 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Card = styled.div`
   .cardInner {
     position: relative;
     display: grid;
+    height: 500px;
     grid-column: 1/2;
 
     .image {
       img {
         position: relative;
-        width: 280px;
+        width: 300px;
+        height: 350px;
+        object-fit: cover;
         cursor: pointer;
       }
       .underbutton {
@@ -25,14 +28,13 @@ export const Card = styled.div`
           width: 30px;
           height: 30px;
           line-height: 28px;
-          color: #000;
-          background: #ffffff;
+          color: var(--text-white-dark);
+          background: var(--background-white-dark);
         }
       }
     }
     .text {
       z-index: 1;
-      background: #ffffff;
       .red {
         position: relative;
         margin: 0;
@@ -43,25 +45,23 @@ export const Card = styled.div`
       .large {
         margin: 0;
         padding: 3px 0 0 0;
-        position: relative;
         font-weight: normal;
-        color: #333;
+        color: var(--text-black-dark);
         font-size: 16px;
       }
       .line {
-        color: #888;
+        color: var(--gray3);
         text-decoration: line-through;
         margin: 0;
-        padding: 20px 0 0 0;
+        padding: 10px 0 0 0;
         text-align: left;
-        vertical-align: middle;
         font-size: 12px;
       }
       .small {
         margin: 0;
         font-weight: 600;
         font-size: 18px;
-        color: #000;
+        color: var(--text-black-dark);
       }
     }
     .mark {

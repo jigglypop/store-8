@@ -1,14 +1,14 @@
-import { Link } from "../../utils/router";
-import * as S from "./style";
+import { ICategory } from '@server/models/Category';
+import { Link } from '../../utils/router';
+import * as S from './style';
 
 interface IHeaderItem {
-  item: string;
+  item: ICategory;
 }
 const HeaderItem = ({ item }: IHeaderItem) => {
   return (
     <S.HeaderItem>
-      <Link to="/auth">{item}</Link>
-      <span></span>
+      <Link to={`/category/${item.id}/?page=1`}>{item.title}</Link>
     </S.HeaderItem>
   );
 };

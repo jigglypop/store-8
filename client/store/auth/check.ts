@@ -2,7 +2,7 @@ import 'regenerator-runtime/runtime'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { checkApi } from '../../api/auth';
 import { ICheckRes } from '@middle/type/auth/check';
-import createExtraGet from '../create/createExtraGet';
+import createExtraGet from '../createExtra/createExtraGet';
 
 const name = 'check'
 export const getCheck = createAsyncThunk(name, checkApi)

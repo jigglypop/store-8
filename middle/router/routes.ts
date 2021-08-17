@@ -1,6 +1,12 @@
 export const routes = [
   {
     path: '/',
+    name: 'intro',
+    title: '대문',
+    component: 'IntroPage',
+  },
+  {
+    path: '/main',
     name: 'main',
     title: '메인',
     component: 'MainPage',
@@ -36,10 +42,10 @@ export const routes = [
     component: 'ProductDetailPage',
   },
   {
-    path: '/three',
-    name: 'three',
-    title: '3D',
-    component: 'ThreePage',
+    path: '/store',
+    name: 'store',
+    title: '스토어',
+    component: 'StorePage',
   },
   {
     path: '/mypage-order-list',
@@ -52,5 +58,11 @@ export const routes = [
     name: 'mypage-refund-list',
     title: '마이페이지 - 취소/반품/교환 내역',
     component: 'RefundPage',
+  },
+  {
+    path: '/category/:categoryId',
+    name: 'category',
+    title: '카테고리 페이지',
+    component: 'CategoryPage',
   },
 ];

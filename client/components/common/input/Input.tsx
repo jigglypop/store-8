@@ -21,8 +21,8 @@ export const Input = styled.div`
     border-style: solid;
     border: 2px solid var(--black);
     border-radius: 5px;
-    background: none;
-    color: var(--black);
+    background: var(--gray1);
+    color: var(--text-white);
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -31,7 +31,6 @@ export const Input = styled.div`
     transition: background-color 5000s ease-in-out 0s;
     -webkit-transition: background-color 9999s ease-out;
     -webkit-box-shadow: 0 0 0px 1000px var(--gray1) inset !important;
-    box-shadow: 0 0 0px 1000px var(--gray1) inset !important;
     -webkit-text-fill-color: #fff !important;
   }
 `;
