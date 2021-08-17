@@ -1,14 +1,13 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
 import Proceed from '@components/Cart/Proceed/Proceed';
 
 import type { CartContentData } from '../../type/CartContentData';
-import { ORDER_READY, ORDER_START } from '@constants/Cart';
+import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
-import { tempData } from './tempData';
 
 import { getCart, setCartStatus } from '@store/product/cart';
 import { useDispatch, useSelector } from 'react-redux';
