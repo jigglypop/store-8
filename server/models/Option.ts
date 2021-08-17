@@ -6,9 +6,10 @@ import {
   Model,
   PrimaryKey,
   Table,
-  Unique,
+  HasMany,
 } from 'sequelize-typescript';
 import Product from './Product';
+import Cart from './Cart';
 
 export interface IOption {
   id: number;
@@ -30,6 +31,10 @@ export default class Option extends Model<IOption> {
   @ForeignKey(() => Product)
   @Column
   productId: number;
+
   @BelongsTo(() => Product)
   product: Product;
+
+  @HasMany(() => Cart)
+  carts: Cart[];
 }

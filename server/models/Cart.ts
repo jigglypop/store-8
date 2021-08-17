@@ -7,6 +7,7 @@ import {
   DataType,
   ForeignKey,
   AllowNull,
+  BelongsTo,
 } from 'sequelize-typescript';
 
 import ProductOption from './Option';
@@ -16,7 +17,7 @@ import User from './User';
 export interface ICart {
   id?: number;
   productId: number;
-  productOptionId: number;
+  productOptionId: number | null;
   userId: number;
   productCount: number;
 }
@@ -25,24 +26,33 @@ export interface ICart {
 export default class Cart extends Model<ICart> {
   @PrimaryKey
   @AutoIncrement
-  @Column(DataType.BIGINT)
+  @Column
   id: number;
 
-  @Column(DataType.BIGINT)
-  @ForeignKey(() => ProductOption)
-  productOptionId: number;
-
   @AllowNull(false)
-  @Column(DataType.BIGINT)
+  @Column
   @ForeignKey(() => Product)
   productId: number;
 
+  @BelongsTo(() => Product)
+  product: Product;
+
+  @Column
+  @ForeignKey(() => ProductOption)
+  productOptionId: number;
+
+  @BelongsTo(() => ProductOption)
+  productOption: ProductOption;
+
   @AllowNull(false)
-  @Column(DataType.BIGINT)
+  @Column
   @ForeignKey(() => User)
   userId: number;
 
+  @BelongsTo(() => User)
+  user: Product;
+
   @AllowNull(false)
-  @Column(DataType.INTEGER)
+  @Column
   productCount: number;
 }

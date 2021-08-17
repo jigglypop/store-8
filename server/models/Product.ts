@@ -9,6 +9,7 @@ import {
   Table,
   Unique,
 } from 'sequelize-typescript';
+import Cart from './Cart';
 import Category from './Category';
 import Option from './Option';
 
@@ -61,7 +62,11 @@ export default class Product extends Model<IProduct> {
   categoryId: number;
   @BelongsTo(() => Category)
   category: Category;
+
   // 하위(옵션)
   @HasMany(() => Option)
   options: Option[];
+
+  @HasMany(() => Cart)
+  carts: Cart[];
 }

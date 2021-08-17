@@ -19,6 +19,7 @@ export const check = async (req: Request, res: Response) => {
 
   const result: CartData[] = [];
 
+  // 모든 검색된 product data 에 따라서 데이터를 검색.
   for (let i = 0; i < carts.length; i++) {
     const cartData = carts[i];
     const productData = await Product.findOne({ where: { id: cartData.productId } });
@@ -34,7 +35,7 @@ export const check = async (req: Request, res: Response) => {
       option: '',
     };
 
-    if (cartData.productOptionId !== 0) {
+    if (cartData.productOptionId !== null) {
       // 선택된 Option 이 있다면 선택.
       const productOptionData = await ProductOption.findOne({
         where: { id: cartData.productOptionId },

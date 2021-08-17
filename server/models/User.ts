@@ -1,4 +1,5 @@
-import { AllowNull, Column, Model, Table, Unique } from "sequelize-typescript";
+import { AllowNull, Column, Model, Table, Unique, HasMany } from 'sequelize-typescript';
+import Cart from './Cart';
 
 export interface IUser {
   id?: string;
@@ -10,7 +11,6 @@ export interface IUser {
 
 @Table
 export default class User extends Model<IUser> {
-  
   @AllowNull(false)
   @Unique
   @Column
@@ -27,4 +27,7 @@ export default class User extends Model<IUser> {
   @AllowNull
   @Column
   imageUrl: string;
+
+  @HasMany(() => Cart)
+  carts: Cart[];
 }
