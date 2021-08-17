@@ -4,12 +4,13 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import Proceed from '@components/Cart/Proceed/Proceed';
 
-import type { CartContentData } from '../../type/CartContentData';
+import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, setCartStatus } from '@store/product/cart';
+import { cartGetApi, cartDeleteApi } from '@api/cart';
+import { setCartData } from '@store/product/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 
@@ -23,8 +24,8 @@ function Cart(): ReactElement {
   useEffect(() => {
     // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
     (async () => {
-      await dispatch(getCart({ userId: 1 }));
-      setContents(cartDataChanger(cart));
+      const data = await cartGetApi({ userId: 1 });
+      setContents(cartDataChanger(data.cart));
     })();
   }, []);
 
@@ -78,7 +79,7 @@ function Cart(): ReactElement {
 
   // 전체 toggle이 켜져있다면 모두 끄고, 꺼져있다면 모두 키는 함수
   const toggleAllHandler = () => {
-    const temp: CartContentData[] = [...contents];
+    const temp: ClientCartData[] = [...contents];
     const toggleDest = !isOff();
     temp.forEach((content) => {
       content.isChecked = toggleDest;
@@ -88,24 +89,29 @@ function Cart(): ReactElement {
 
   // 하나의 check toggle을 관리하는 함수.
   const toggleOneHandler = (index: number) => {
-    const temp: CartContentData[] = [...contents];
+    const temp: ClientCartData[] = [...contents];
     temp[index].isChecked = !temp[index].isChecked;
     setContents([...temp]);
   };
 
-  const deleteCheckedItem = () => {
-    const temp: CartContentData[] = [];
+  const deleteCheckedItem = async () => {
+    const temp: ClientCartData[] = [];
+    const deletedItem: number[] = [];
+
     contents.forEach((content) => {
       if (!content.isChecked) {
         temp.push(content);
+      } else {
+        deletedItem.push(content.id);
       }
     });
 
+    await cartDeleteApi({ userId: 1, cartIds: deletedItem });
     setContents(temp);
   };
 
   const likeCheckedItem = () => {
-    const temp: CartContentData[] = [];
+    const temp: ClientCartData[] = [];
     contents.forEach((content) => {
       if (content.isChecked) {
         temp.push(content);
@@ -115,7 +121,7 @@ function Cart(): ReactElement {
   };
 
   const orderCheckedItem = () => {
-    const temp: CartContentData[] = [];
+    const temp: ClientCartData[] = [];
     contents.forEach((content) => {
       if (content.isChecked) {
         temp.push(content);

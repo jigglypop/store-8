@@ -1,10 +1,11 @@
-import { ICartGetRes, ClientCartData } from '@middle/type/cart/cart';
+import { CartData, ClientCartData } from '@middle/type/cart/cart';
 
-export function cartDataChanger(responseCart: ICartGetRes | null): ClientCartData[] {
+export function cartDataChanger(responseCart: CartData[] | null): ClientCartData[] {
   let result: ClientCartData[] = [];
   if (responseCart) {
-    responseCart.cart.map((element) => {
+    responseCart.map((element) => {
       result.push({
+        id: element.id,
         isChecked: true,
         isCoupon: true,
         imgLink: element.imgSrc,

@@ -1,24 +1,18 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// TODO : api/cart 에 cartAddApi, cartDeleteApi 를 추가하자.
-import { cartGetApi } from '../../api/cart';
-import { ICartGetRes, ICartGetReq, CartData } from '@middle/type/cart/cart';
-import createExtraPost from '@store/createExtra/createExtraPost';
+import { CartData } from '@middle/type/cart/cart';
 
 const name = 'cart';
 
 interface ICartState {
-  cart: ICartGetRes | null;
+  cart: CartData[] | null;
   error: string | null;
   loading: boolean;
 }
-export const getCart = createAsyncThunk(name, cartGetApi);
-const cartExtra = createExtraPost<ICartGetReq, ICartGetRes | null>(getCart, name);
 
-export interface ICartGetState {
+export interface ICartSetState {
   payload: {
-    key: 'userId';
-    value: CartData[];
+    cartDatas: CartData[];
   };
 }
 
@@ -33,13 +27,11 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     initCartStatus: () => initialState,
-    setCartStatus: (cartState, { payload: { value } }: ICartGetState) => {
-      console.log(cartState);
-      console.log(value);
+    setCartData: (state, { payload }: ICartSetState) => {
+      state.cart = payload.cartDatas;
     },
   },
-  extraReducers: cartExtra,
 });
 
-export const { initCartStatus, setCartStatus } = cartSlice.actions;
+export const { initCartStatus, setCartData } = cartSlice.actions;
 export default cartSlice.reducer;

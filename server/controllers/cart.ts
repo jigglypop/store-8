@@ -28,6 +28,7 @@ export const check = async (req: Request, res: Response) => {
     }
 
     const tempData = {
+      id: cartData.id,
       imgSrc: productData.productImgSrc,
       title: productData.title,
       count: cartData.productCount,
@@ -66,15 +67,15 @@ export const add = async (req: Request, res: Response) => {
 };
 
 export const remove = async (req: Request, res: Response) => {
-  const { userId, cartId } = req.body;
+  const { userId, cartIds } = req.body;
   if (!userId) {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
 
-  const valid = await Cart.destroy({ where: { id: cartId } });
+  const valid = await Cart.destroy({ where: { id: cartIds } });
   if (!valid) {
     throw new HttpError({ status: 400, message: '요청한 Cart 내역 삭제를 진행 할 수 없었습니다.' });
   }
 
-  res.status(200).json({ status: 200, data: JSON.stringify({ result: '쇼핑카트 삭제 성공!' }) });
+  res.status(200).json({ status: 200, data: cartIds });
 };

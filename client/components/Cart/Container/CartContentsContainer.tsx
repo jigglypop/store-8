@@ -8,11 +8,11 @@ import {
   SHIP_HEADER_TEXT,
   NOTHING_IN_TEXT,
 } from '@constants/Cart';
-import { CartContentData } from '@client/type/CartContentData';
+import { ClientCartData } from '@middle/type/cart/cart';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface CartContentProps {
-  contents: CartContentData[];
+  contents: ClientCartData[];
   metaData: CartContentMetaData;
   toggleAllHandler: () => void;
   toggleOneHandler: (index: number) => void;
@@ -67,7 +67,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
           </tr>
         </thead>
         <tbody className="cart-content-body">
-          {props.contents.map((content: CartContentData, index: number) => (
+          {props.contents.map((content: ClientCartData, index: number) => (
             <CartContent
               content={content}
               key={index}
