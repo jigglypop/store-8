@@ -1,11 +1,11 @@
 import {
-  PrimaryKey,
-  AutoIncrement,
   Column,
   Model,
   Table,
   DataType,
   ForeignKey,
+  AllowNull,
+  BelongsTo,
 } from 'sequelize-typescript';
 
 import Product_Question from './Product-Question';
@@ -16,16 +16,18 @@ interface IProductQuestion {
 
 @Table
 export default class Product_Question_Reply extends Model<IProductQuestion> {
-  @PrimaryKey
-  @AutoIncrement
-  @Column(DataType.BIGINT)
+  @Column({ primaryKey: true })
   id: number;
 
   @Column
+  @AllowNull(false)
   @ForeignKey(() => Product_Question)
   questionId: number;
 
-  @Column
+  @BelongsTo(() => Product_Question)
+  question: Product_Question;
+
   @Column(DataType.STRING(500))
-  description: string;
+  @AllowNull(false)
+  contents: string;
 }
