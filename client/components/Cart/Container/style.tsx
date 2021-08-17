@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 export const CartContainer = styled.table`
   width: 100%;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from '@lib/styledComponent';
 
 // 헤더 부분
 export const Footer = styled.footer`

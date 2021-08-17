@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 import HeartIcon from '@image/heartIcon.svg';
 

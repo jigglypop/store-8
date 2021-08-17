@@ -27,6 +27,7 @@
       "@middle/*": ["middle/*"],
       "@server/*": ["server/*"],
       "@api/*": ["client/api/*"],
+      "@lib/*": ["client/lib/*"],
       "@components/*": ["client/components/*"],
       "@pages/*": ["client/pages/*"],
       "@constants/*": ["client/constants/*"],
