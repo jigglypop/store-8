@@ -7,6 +7,7 @@ import Proceed from '@components/Cart/Proceed/Proceed';
 import type { CartContentData } from '../../type/CartContentData';
 import { ORDER_READY, ORDER_START } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
+import { cartDataChanger } from '@utils/responseTypeChanger';
 import { tempData } from './tempData';
 
 import { getCart, setCartStatus } from '@store/product/cart';
@@ -18,15 +19,19 @@ import * as S from './style';
 function Cart(): ReactElement {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
+  const [contents, setContents] = useState(cartDataChanger(cart));
 
   useEffect(() => {
+    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
     (async () => {
       await dispatch(getCart({ userId: 1 }));
-      console.log(cart);
+      setContents(cartDataChanger(cart));
     })();
   }, []);
 
-  const [contents, setContents] = useState(tempData);
+  useEffect(() => {
+    setContents(cartDataChanger(cart));
+  }, [cart]);
 
   const getTotalPrice = () => {
     let result = 0;

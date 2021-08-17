@@ -6,11 +6,21 @@ export type CartData = {
   option: string;
 };
 
+export type ClientCartData = {
+  isCoupon: boolean;
+  isChecked: boolean;
+  imgLink: string;
+  title: string;
+  option: string;
+  count: number;
+  amount: number;
+};
+
 export interface ICartGetReq {
   userId: number;
 }
 
 export interface ICartGetRes {
   status: number;
-  data: CartData[];
+  cart: CartData[];
 }
