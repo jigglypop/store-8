@@ -1,4 +1,3 @@
-import { API_URL } from '@constants/server_url';
 import { ICartGetReq } from '@middle/type/cart/cart';
 import request, { IThunkApi } from './utils/request';
 

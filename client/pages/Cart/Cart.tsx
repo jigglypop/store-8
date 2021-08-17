@@ -21,8 +21,8 @@ function Cart(): ReactElement {
 
   useEffect(() => {
     (async () => {
-      const data = await dispatch(getCart({ userId: 1 }));
-      console.log(data);
+      await dispatch(getCart({ userId: 1 }));
+      console.log(cart);
     })();
   }, []);
 

@@ -49,7 +49,7 @@ export const check = async (req: Request, res: Response) => {
     }
     result.push(tempData);
   }
-  res.status(200).json({ status: 200, data: JSON.stringify(result) });
+  res.status(200).json({ status: 200, data: JSON.stringify({ cart: result }) });
 };
 
 export const add = async (req: Request, res: Response) => {

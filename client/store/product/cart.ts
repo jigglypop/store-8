@@ -7,9 +7,8 @@ import { ICartGetRes, CartData } from '@middle/type/cart/cart';
 const name = 'cart';
 
 interface ICartState {
-  cart: ICartGetRes | null;
-  error: string | null;
-  loading: boolean;
+  cart: CartData[] | null;
+  data: CartData[] | null;
 }
 export interface ICartGetState {
   payload: {
@@ -20,8 +19,7 @@ export interface ICartGetState {
 
 const initialState: ICartState = {
   cart: null,
-  error: null,
-  loading: false,
+  data: null,
 };
 
 const cartSlice = createSlice({
