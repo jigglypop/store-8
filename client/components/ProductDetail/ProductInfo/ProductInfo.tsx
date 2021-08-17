@@ -3,7 +3,16 @@ import * as S from './style';
 
 import PlusIcon from '@image/plusIcon.svg';
 import MinusIcon from '@image/minusIcon.svg';
+// import { kstFormatter } from '@utils/utils';
 
+//여기 utils import에서 에러 발생해서 임시로 가져다 놨습니다.
+function kstFormatter(amount: number, suffix: boolean = true) {
+  if (suffix) {
+    return amount.toLocaleString() + '원';
+  } else {
+    return amount.toLocaleString();
+  }
+}
 interface Props {
   title: string;
   originAmount?: number;
@@ -58,17 +67,15 @@ export default function ProductInfo({
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
-        {/* 동환님 dot number 유틸 적용 */}
         {originAmount && (
           <div className="product-info__origin-amount">
             <S.InfoTitle>정가</S.InfoTitle>
-            <div className="stroke">{originAmount}원</div>
+            <div className="stroke">{kstFormatter(originAmount, true)}</div>
           </div>
         )}
-        {/* 동환님 dot number 유틸 적용 */}
         <div className="producto-info__amount">
           <S.InfoTitle>판매가격</S.InfoTitle>
-          <div className="price">{amount}원</div>
+          <div className="price">{kstFormatter(amount, true)}</div>
         </div>
         <div className="producto-info__delivery-info">
           <S.InfoTitle>배송정보</S.InfoTitle>
@@ -90,10 +97,9 @@ export default function ProductInfo({
           </form>
         </div>
       </div>
-      {/* 동환님 dot number 유틸 적용 */}
       <div className="product__total-info">
         <S.InfoTitle>총 합계금액</S.InfoTitle>
-        <div className="total-price">{amount * count}원</div>
+        <div className="total-price">{kstFormatter(amount * count, true)}</div>
       </div>
     </S.ProductInfo>
   );
