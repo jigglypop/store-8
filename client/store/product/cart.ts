@@ -11,9 +11,7 @@ interface ICartState {
 }
 
 export interface ICartSetState {
-  payload: {
-    cartDatas: CartData[];
-  };
+  payload: CartData[];
 }
 
 const initialState: ICartState = {
@@ -28,7 +26,7 @@ const cartSlice = createSlice({
   reducers: {
     initCartStatus: () => initialState,
     setCartData: (state, { payload }: ICartSetState) => {
-      state.cart = payload.cartDatas;
+      state.cart = payload;
     },
   },
 });

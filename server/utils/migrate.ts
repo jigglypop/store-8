@@ -73,8 +73,8 @@ const initCart = async () => {
 };
 
 export const migrate = async () => {
-  // await initCategory();
-  // await initProduct();
-  // await initOption();
+  await initCategory();
+  await initProduct();
+  await initOption();
   await initCart();
 };

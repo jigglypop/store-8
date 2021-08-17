@@ -4,6 +4,7 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import Proceed from '@components/Cart/Proceed/Proceed';
 
+import { CartData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
@@ -26,6 +27,7 @@ function Cart(): ReactElement {
     (async () => {
       const data = await cartGetApi({ userId: 1 });
       setContents(cartDataChanger(data.cart));
+      dispatch(setCartData(data.cart));
     })();
   }, []);
 
@@ -95,18 +97,23 @@ function Cart(): ReactElement {
   };
 
   const deleteCheckedItem = async () => {
+    // TODO : 삭제 이전에 물어보는 modal 띄워주기.
     const temp: ClientCartData[] = [];
+    const tempCart: CartData[] = cart ? [...cart] : [];
     const deletedItem: number[] = [];
+    const renewCart: CartData[] = [];
 
-    contents.forEach((content) => {
+    contents.forEach((content, index) => {
       if (!content.isChecked) {
         temp.push(content);
+        renewCart.push(tempCart[index]);
       } else {
         deletedItem.push(content.id);
       }
     });
 
     await cartDeleteApi({ userId: 1, cartIds: deletedItem });
+    setContents(cartDataChanger(renewCart));
     setContents(temp);
   };
 
