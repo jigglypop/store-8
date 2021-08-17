@@ -123,7 +123,7 @@ export const DarkMode = styled.div`
 `;
 
 // 아이템 부분
-export const HeaderItem = styled.li`
+export const HeaderItem = styled.div`
   margin: 0 20px;
   display: flex;
   justify-content: center;
