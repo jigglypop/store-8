@@ -1,11 +1,11 @@
-import bcrypt from "bcryptjs";
-import { Request, Response } from "express";
-import fetch from "node-fetch";
-import HttpError from "../utils/HttpError";
-import User from "../models/User";
-import { generateToken } from "../utils/generateToken";
-import { serialize } from "../utils/serialize";
-import { err } from "../constants/error";
+import bcrypt from 'bcryptjs';
+import { Request, Response } from 'express';
+import fetch from 'node-fetch';
+import HttpError from '../utils/HttpError';
+import User from '../models/User';
+import { generateToken } from '../utils/generateToken';
+import { serialize } from '../utils/serialize';
+import { err } from '../constants/error';
 
 const getAccessToken = async (req: Request) => {
   const clientID = process.env.GITHUB_CLIENT_ID;
@@ -15,9 +15,9 @@ const getAccessToken = async (req: Request) => {
   const token_result = await fetch(
     `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application/json",
+        Accept: 'application/json',
       },
     }
   );
@@ -28,9 +28,9 @@ const getAccessToken = async (req: Request) => {
 };
 
 const getGithubUser = async (token: string) => {
-  const result = await fetch("https://api.github.com/user", {
+  const result = await fetch('https://api.github.com/user', {
     headers: {
-      Authorization: "token " + token,
+      Authorization: 'token ' + token,
     },
   });
   if (!result) throw new HttpError({ ...err.LOGIN_ERROR });
@@ -44,7 +44,7 @@ export const github = async (req: any, res: Response) => {
   req.session.data = {
     data,
   };
-  res.redirect("/github");
+  res.redirect('/github');
 };
 
 export const githubtoken = async (req: any, res: Response) => {
@@ -60,14 +60,14 @@ export const githubtoken = async (req: any, res: Response) => {
     const hashedPassword = await bcrypt.hash(password.toString(), 10);
     user = await User.create({ username, hashedPassword, imageUrl });
   } else {
-    const hashedPassword = user.getDataValue("hashedPassword");
+    const hashedPassword = user.getDataValue('hashedPassword');
     const valid = await bcrypt.compare(password, hashedPassword);
     if (!valid) throw new HttpError({ ...err.WRONG_PASSWORD_ERROR });
   }
   // 로그인 발급
   const serialized = await serialize(user);
   const token = await generateToken(user);
-  res.set("token", token);
-  res.status(200).json({ status: 200,  data: serialized });
+  res.set('token', token);
+  res.status(200).json({ status: 200, data: serialized });
   req.session.destroy();
 };
