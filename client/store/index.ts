@@ -3,6 +3,10 @@ import login from './auth/login';
 import check from './auth/check';
 import github from './auth/github';
 import cart from './product/cart';
+import router from './router/router';
+import category from './category/category';
+import mode from './mode/mode';
+import main from './main/main';
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -13,6 +17,10 @@ export const store = configureStore({
     check,
     github,
     cart,
+    router,
+    category,
+    mode,
+    main,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

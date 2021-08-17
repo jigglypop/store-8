@@ -1,40 +1,35 @@
 import {
-  PrimaryKey,
-  AutoIncrement,
-  Column,
-  Model,
-  Table,
-  DataType,
-  ForeignKey,
   AllowNull,
+  BelongsTo,
+  Column,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
 } from 'sequelize-typescript';
-
 import Product from './Product';
 
-export interface ICart {
-  id?: number;
-  productId: number;
-  amount: number;
+export interface IOption {
+  id: number;
   title: string;
 }
 
 @Table
-export default class ProductOption extends Model<ICart> {
+export default class Option extends Model<IOption> {
+  @AllowNull(false)
   @PrimaryKey
-  @AutoIncrement
-  @Column(DataType.BIGINT)
+  @Column
   id: number;
 
   @AllowNull(false)
-  @Column(DataType.BIGINT)
-  @ForeignKey(() => Product)
-  productId: number;
-
-  @AllowNull(false)
-  @Column(DataType.BIGINT)
-  amount: number;
-
-  @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column
   title: string;
+
+  @AllowNull(false)
+  @ForeignKey(() => Product)
+  @Column
+  productId: number;
+  @BelongsTo(() => Product)
+  product: Product;
 }

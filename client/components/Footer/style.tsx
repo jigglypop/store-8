@@ -1,83 +1,80 @@
-import styled from "styled-components";
+import styled from '@lib/styledComponent';
 
-// 헤더 부분
+// 푸터 부분
 export const Footer = styled.footer`
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
   .footerInner {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 230px;
     bottom: 0;
-    background: #f6f6f6;
+    background: var(--footer-background-dark);
   }
   .footerWrap {
     width: 1200px;
     margin: 0 auto;
     padding-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr 4fr;
   }
 
   .footerLogo {
     grid-column: 1/2;
     width: 300px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: center;
 
     img {
       width: 100px;
-      height: 76px;
     }
   }
-  .footerText {
+  .footerTextTop {
     grid-column: 2/3;
-    position: relative;
     width: 100%;
-    display: grid;
-    grid-template-rows: 80px 180px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    .footerTextTop {
-      grid-row: 1/2;
-      width: 100%;
-      height: 100%;
+    div {
+      margin: 5px;
+      font-size: 14px;
+      color: var(--gray2);
+      font-weight: 800;
+    }
+  }
+
+  .footerTextBottom {
+    grid-column: 3/4;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    .footer-text-bottom-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      margin: 3px;
 
       div {
-        font-size: 14px;
-        color: #333;
-        font-weight: 800;
-      }
-    }
-
-    .footerTextBottom {
-      grid-row: 2/3;
-      margin-top: 20px;
-
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-
-      .footer-text-bottom-item {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 3px;
 
-        div {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 3px;
-
-          p {
-            padding: 3px;
-            font-size: 12px;
-            color: var(--grayD);
-            border-right: 2px solid var(--grayC);
-          }
+        p {
+          padding: 3px;
+          font-size: 12px;
+          color: var(--text-black-dark);
+          border-right: 2px solid var(--grayC);
         }
       }
     }

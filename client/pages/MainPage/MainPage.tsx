@@ -3,13 +3,14 @@ import MainBest from '../../components/Main/MainBest/MainBest';
 import MainGift from '../../components/Main/MainGift/MainGift';
 import MainNew from '../../components/Main/MainNew/MainNew';
 import MainSale from '../../components/Main/MainSale/MainSale';
-import { imageUrls } from '../../constants/dummy';
+import { useMain } from '../../hooks/main/main';
 import * as S from './style';
 
 const MainPage = () => {
+  const { main } = useMain();
   return (
     <S.MainPage>
-      <Carousel imageUrls={imageUrls} />
+      <Carousel />
       <MainBest />
       <MainNew />
       <MainGift />

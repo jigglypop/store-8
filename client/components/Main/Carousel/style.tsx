@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CarouselDot = styled.li`
   position: relative;
@@ -41,8 +41,10 @@ export const Carousel = styled.div`
 
   .carouselInner {
     width: var(--carousel-width);
-    height: 500px;
+    height: 600px;
     overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
   }
 
   .carousels {
@@ -54,7 +56,7 @@ export const Carousel = styled.div`
 
   .carousel {
     width: var(--carousel-width);
-    height: 500px;
+    height: 600px;
     object-fit: cover;
   }
 
@@ -62,7 +64,6 @@ export const Carousel = styled.div`
     position: absolute;
     width: var(--carousel-width);
     bottom: 50px;
-
     display: flex;
     justify-content: center;
     align-items: center;

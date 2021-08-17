@@ -1,8 +1,8 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginApi } from '../../api/auth';
-import createExtraReducer from '../create/createExtraReducers';
 import { ILoginReq, ILoginRes } from '@middle/type/auth/login';
+import createExtraPost from '../createExtra/createExtraPost';
 
 const name = 'login';
 // 회원가입 input
@@ -21,7 +21,7 @@ export interface ILoginState {
 }
 // thunk부분
 export const postLogin = createAsyncThunk(name, loginApi);
-const loginExtra = createExtraReducer<ILoginReq, ILoginRes | null>(postLogin, name);
+const loginExtra = createExtraPost<ILoginReq, ILoginRes | null>(postLogin, name);
 
 const initialState: ILoginState = {
   loginform: {

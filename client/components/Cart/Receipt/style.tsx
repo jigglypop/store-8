@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 export const Receipt = styled.div`
   .cart-receipt-container {

@@ -9,6 +9,7 @@ import { getCheck } from './store/auth/check';
 import cache from './utils/cache';
 import ResetStyle from './ResetStyle';
 import { HelmetProvider } from 'react-helmet-async';
+import { setDarkMode } from './utils/setDisplay';
 
 const loadUser = () => {
   try {
@@ -21,6 +22,8 @@ const loadUser = () => {
 };
 
 loadUser();
+setDarkMode();
+
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 interface IZoomImg {
   imgWitdh: number;
@@ -41,34 +41,37 @@ interface IMagnifiedImg {
   magnifierHeight: number;
   positionX: number;
   positionY: number;
-  src: string;
 }
 
 export const MagnifiedImg = styled.div<IMagnifiedImg>`
   position: absolute;
+  overflow: hidden;
 
   width: ${(props) => props.imgWidth}px;
   height: ${(props) => props.imgHeight}px;
   top: 0;
   left: ${(props) => props.imgWidth + 80}px;
 
-  background-color: green;
+  img {
+    width: ${(props) => props.imgWidth}px;
+    height: ${(props) => props.imgHeight}px;
+    transform-origin: ${({ positionX, positionY }) => `${positionX}px, ${positionY}px`};
 
-  background-image: url(${(props) => props.src});
-
-  background-repeat: no-repeat;
-
-  background-size: ${({ imgWidth, imgHeight, magnifierWidth, magnifierHeight }) => {
-    return `${(imgWidth * imgWidth) / magnifierWidth}px ${
-      (imgHeight * imgHeight) / magnifierHeight
-    }px`;
-  }};
-
-  background-position-x: ${({ positionX, magnifierWidth }) => {
-    return (-positionX * positionX) / magnifierWidth + positionX / 2;
-  }}px;
-
-  background-position-y: ${({ positionY, magnifierHeight }) => {
-    return (-positionY * positionY) / magnifierHeight + positionY / 2;
-  }}px;
+    transform: ${({
+      positionX,
+      positionY,
+      imgWidth,
+      imgHeight,
+      magnifierWidth,
+      magnifierHeight,
+    }) => {
+      const rateX = imgWidth / magnifierWidth;
+      const rateY = imgHeight / magnifierHeight;
+      return `
+        scale(${rateX},${rateY})
+        translateX(${(rateX * magnifierWidth) / 2 - positionX}px)
+        translateY(${(rateY * magnifierHeight) / 2 - positionY}px)
+      `;
+    }};
+  }
 `;

@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 import HeartIcon from '@image/heartIcon.svg';
 
@@ -51,7 +51,8 @@ const StyledDetailBtns = styled.div<StyledProps>`
     border-radius: 5px;
 
     & > svg {
-      fill: var(${({ isHeart }) => (isHeart ? '--dark-mint' : '--white')});
+      stroke-width: ${({ isHeart }) => (isHeart ? '0px' : '1px')};
+      fill: var(${({ isHeart }) => (isHeart ? '--red' : '--white')});
     }
   }
 
@@ -65,8 +66,8 @@ const StyledDetailBtns = styled.div<StyledProps>`
 
   .purchase-btn {
     width: 230px;
-    color: var(--off-white);
-    background-color: var(--black);
+    color: var(--text-white);
+    background-color: var(--mint);
     border-radius: 5px;
   }
 `;

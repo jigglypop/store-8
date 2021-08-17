@@ -43,9 +43,7 @@ export const check = async (req: Request, res: Response) => {
       if (!productOptionData) {
         throw new HttpError({ ...err.NO_DATA });
       }
-
-      tempData.amount = productOptionData.amount;
-      tempData.title = productOptionData.title;
+      tempData.option = productOptionData.title;
     }
     result.push(tempData);
   }
