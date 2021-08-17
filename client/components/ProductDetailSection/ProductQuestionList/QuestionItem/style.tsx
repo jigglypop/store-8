@@ -18,6 +18,13 @@ export const QuestionItem = styled.li`
     width: 60px;
   }
 
+  .question-info.title {
+    & > svg {
+      fill: var(--gary6);
+      margin-right: 8px;
+    }
+  }
+
   .question-info.user-id,
   .question-info.date,
   .question-info.status {

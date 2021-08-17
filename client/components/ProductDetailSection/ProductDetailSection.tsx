@@ -8,18 +8,29 @@ import ProductReviewList from './ProductReviewList/ProductReviewList';
 import styled from 'styled-components';
 import ProductQuestionList from './ProductQuestionList/ProductQuestionList';
 
+import {
+  SECTION_DETAIL_KEY,
+  SECTION_SEVERAL_KEY,
+  SECTION_REVIEW_KEY,
+  SECTION_QUESTION_KEY,
+} from '@constants/productDetail/productDetailSection/ProductDetailSection';
+
 interface Props {}
 
 export default function ProductDetailSection({}: Props): ReactElement {
-  const [section, setSection] = useState(0);
+  const [section, setSection] = useState(SECTION_DETAIL_KEY);
 
-  const detailSection: ReactElement[] = [
-    <DetailInfo />,
-    <DeliveryInfo />,
-    <RefundInfo />,
-    <ProductReviewList />,
-    <ProductQuestionList />,
-  ];
+  const detailSection: { [key: string]: ReactElement } = {
+    [SECTION_DETAIL_KEY]: <DetailInfo />,
+    [SECTION_SEVERAL_KEY]: (
+      <>
+        <DeliveryInfo />
+        <RefundInfo />
+      </>
+    ),
+    [SECTION_REVIEW_KEY]: <ProductReviewList />,
+    [SECTION_QUESTION_KEY]: <ProductQuestionList />,
+  };
 
   return (
     <StyledProductDetailSection>
