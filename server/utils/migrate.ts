@@ -1,4 +1,4 @@
-import Product, { IProduct } from '../models/Product';
+import Product from '../models/Product';
 import { CATEGORIES } from '../constants/migration/CATEGORIES';
 import { PRODUCTS } from '../constants/migration/PRODUCTS';
 import { OPTIONS } from '../constants/migration/OPTIONS';

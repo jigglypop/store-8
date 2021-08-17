@@ -7,7 +7,6 @@ import {
   Model,
   PrimaryKey,
   Table,
-  Unique,
 } from 'sequelize-typescript';
 import Category from './Category';
 import Option from './Option';
