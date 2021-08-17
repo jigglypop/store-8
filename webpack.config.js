@@ -71,6 +71,15 @@ module.exports = {
           },
         ],
       },
+      // gltf, glb 파일
+      {
+        test: /\.(glb|gltf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
 

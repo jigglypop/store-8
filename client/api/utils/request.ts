@@ -16,7 +16,17 @@ const requestGitHub = async (url: string, token?: string) => {
   }
   return data;
 };
-const requestGet = async (url: string, token?: string) => {
+const requestGet = async (url: string) => {
+  const res = await fetch(SERVER_URL + url);
+  const data = await res.json();
+  const _token = res.headers.get("token");
+  if (_token) {
+    cache.set("token", _token);
+  }
+  return data;
+};
+
+const requestGetToken = async (url: string, token?: string) => {
   const res = await fetch(SERVER_URL + url, HTTP_METHOD.GET(token));
   const data = await res.json();
   const _token = res.headers.get("token");
@@ -54,6 +64,7 @@ const requestDelete = async (url: string, token?: string) => {
 
 const request = {
   github: requestGitHub,
+  getToken: requestGetToken,
   get: requestGet,
   post: requestPost,
   put: requestPut,

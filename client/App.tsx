@@ -4,10 +4,13 @@ import Headers from './pages/Headers/Headers';
 import loadable from '@loadable/component';
 import { routes } from '@middle/router/routes';
 import { IRouterItem } from '@middle/type/router/router';
-
+import { useRouter } from './hooks/router/router';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import * as S from './GlobalStyle';
 function App() {
+  const { router } = useRouter();
   return (
-    <div className="App">
+    <S.App>
       <Router>
         <>
           <Headers />
@@ -15,11 +18,13 @@ function App() {
             const Component = loadable(() => import(`./pages/${item.component}/${item.component}`));
             return <Route path={item.path} component={Component} key={index} title={item.title} />;
           })}
-          <Footer />
+          {router.notfound === 'false' ? <NotFoundPage /> : ''}
           <RouterSet />
+          <Footer />
         </>
       </Router>
-    </div>
+      <S.ToastDiv id="toasts"></S.ToastDiv>
+    </S.App>
   );
 }
 

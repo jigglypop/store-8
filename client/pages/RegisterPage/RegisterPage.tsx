@@ -1,4 +1,4 @@
-import { useRegister } from "@client/hooks/register";
+import { useRegister } from "@client/hooks/auth/register";
 import AuthForm from "../../components/Auth/Auth";
 import * as S from "./style";
 

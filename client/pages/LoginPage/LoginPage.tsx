@@ -1,4 +1,4 @@
-import { useLogin } from "@client/hooks/login";
+import { useLogin } from "@client/hooks/auth/login";
 import AuthForm from "../../components/Auth/Auth";
 import * as S from "./style";
 

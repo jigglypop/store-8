@@ -17,6 +17,21 @@ export const AuthForm = styled.div`
   width: 60vw;
   min-height: 80vh;
   padding: 20px;
+
+  h1 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--text-black-dark);
+  }
+  .text-goto {
+    color: var(--text-black-dark);
+    margin: 0 0 10px 0;
+    span {
+      color: var(--text-black-picker);
+    }
+  }
 `;
 
 export const Error = styled.div`
@@ -30,6 +45,9 @@ export const Error = styled.div`
 export const LogoText = styled.h2`
   font-size: 40px;
   margin: 20px;
+  img {
+    width: 300px;
+  }
 `;
 export const FormButton = styled.button`
   margin: 10px;
