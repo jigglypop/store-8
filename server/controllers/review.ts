@@ -12,9 +12,8 @@ import ReviewImg from '../models/ReviewImg';
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const { reviewId } = req.query;
 
-  if (!productId || !reviewId) {
+  if (!productId) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
@@ -26,27 +25,26 @@ export const getReview = async (req: Request, res: Response) => {
     order: [['createdAt', 'DESC']],
   });
 
-  const reviewImgSnapshot = await ReviewImg.findAll({
-    attributes: ['img_src'],
-    where: { reviewId: +reviewId },
-  });
+  const reviews: IReviewRes[] = await Promise.all(
+    reviewSnapshot.map(async (item) => {
+      const id = item.getDataValue('id');
+      const date = item.getDataValue('createdAt');
 
-  const reviewImgSrcs = reviewImgSnapshot.map((item) => item.img_src);
+      if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
-  const reviews: IReviewRes[] = reviewSnapshot.map((item) => {
-    const id = item.getDataValue('id');
-    const date = item.getDataValue('createdAt');
+      const imgSrc = await getReviewImgs(id);
 
-    if (!id || !date) throw new HttpError(err.CREATE_ERROR);
-
-    return {
-      id,
-      title: item.getDataValue('title'),
-      contents: item.getDataValue('contents'),
-      score: item.getDataValue('score'),
-      date: dateStringFormat(date, '.'),
-      imgSrc: reviewImgSrcs,
-    };
+      return {
+        id,
+        title: item.getDataValue('title'),
+        contents: item.getDataValue('contents'),
+        score: item.getDataValue('score'),
+        date: dateStringFormat(date, '.'),
+        imgSrc,
+      };
+    })
+  ).catch((e) => {
+    throw new Error(e.message);
   });
 
   res.status(200).json(reviews);
@@ -173,4 +171,15 @@ const isUserReview = async (userId: number, productId: number, reviewId: number)
     },
   });
   return !!reviewSnapshot;
+};
+
+const getReviewImgs = async (reviewId: number): Promise<string[]> => {
+  const reviewImgSnapshot = await ReviewImg.findAll({
+    attributes: ['img_src'],
+    where: { reviewId: +reviewId },
+  });
+
+  const reviewImgs = reviewImgSnapshot.map((item) => item.img_src);
+
+  return reviewImgs;
 };
