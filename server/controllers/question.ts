@@ -149,3 +149,27 @@ const isUserQuestion = async (userId: number, productId: number, questionId: num
   });
   return !!questionSnapshot;
 };
+
+//관리자 전용 - 문의 답변 달기
+export const createQuestionReply = async (req: Request, res: Response) => {
+  const { questionId } = req.params;
+  const { contents } = req.body;
+
+  //TODO - contents validation
+  if (!contents) {
+    throw new HttpError(err.INVALID_INPUT_ERROR);
+  }
+
+  try {
+    await Question.update(
+      { reply: contents },
+      {
+        where: { id: +questionId },
+      }
+    );
+  } catch (error) {
+    throw new HttpError(err.UPDATE_ERROR);
+  }
+
+  res.status(200).json({ success: true });
+};
