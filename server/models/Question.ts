@@ -8,6 +8,8 @@ import {
   BelongsTo,
   CreatedAt,
   UpdatedAt,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 
 import User from './User';
@@ -28,11 +30,9 @@ export interface IQuestion {
 
 @Table
 export default class Question extends Model<IQuestion> {
-  @Column({
-    autoIncrement: true,
-    primaryKey: true,
-    type: DataType.BIGINT,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)

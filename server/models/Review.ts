@@ -9,6 +9,8 @@ import {
   HasMany,
   CreatedAt,
   UpdatedAt,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 
 import User from './User';
@@ -28,11 +30,9 @@ export interface IReview {
 
 @Table
 export default class Review extends Model<IReview> {
-  @Column({
-    autoIncrement: true,
-    primaryKey: true,
-    type: DataType.BIGINT,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)
@@ -70,5 +70,5 @@ export default class Review extends Model<IReview> {
   product: Product;
 
   @HasMany(() => ReviewImg)
-  reviewimg: ReviewImg[];
+  reviewImg: ReviewImg[];
 }

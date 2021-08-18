@@ -8,24 +8,24 @@ import {
   CreatedAt,
   UpdatedAt,
   DataType,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Review from './Review';
 
 export interface IReview_Img {
   id: number;
   img_src: string;
-  reviewId: number;
+  // reviewId: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 @Table
 export default class ReviewImg extends Model<IReview_Img> {
-  @Column({
-    autoIncrement: true,
-    primaryKey: true,
-    type: DataType.BIGINT,
-  })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)
@@ -39,8 +39,8 @@ export default class ReviewImg extends Model<IReview_Img> {
   updatedAt: Date;
 
   @AllowNull(false)
-  @Column
   @ForeignKey(() => Review)
+  @Column
   reviewId: number;
 
   @BelongsTo(() => Review)
