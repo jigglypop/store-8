@@ -11,7 +11,7 @@ import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
 import { cartGetApi, cartDeleteApi } from '@api/cart';
-import { setCartData } from '@store/product/cart';
+import { getCart, delCart } from '@store/product/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 
@@ -24,11 +24,7 @@ function Cart(): ReactElement {
 
   useEffect(() => {
     // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
-    (async () => {
-      const data = await cartGetApi({ userId: 1 });
-      setContents(cartDataChanger(data.cart));
-      dispatch(setCartData(data.cart));
-    })();
+    dispatch(getCart({ userId: 1 }));
   }, []);
 
   useEffect(() => {
@@ -112,9 +108,7 @@ function Cart(): ReactElement {
       }
     });
 
-    await cartDeleteApi({ userId: 1, cartIds: deletedItem });
-    setContents(cartDataChanger(renewCart));
-    setContents(temp);
+    dispatch(delCart({ userId: 1, cartIds: deletedItem }));
   };
 
   const likeCheckedItem = () => {

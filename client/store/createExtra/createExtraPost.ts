@@ -21,7 +21,7 @@ const createExtraPost = <TForm, TData>(func: AsyncThunk<string, TForm, {}>, name
     },
     [func.rejected.type]: (state: IState<TData, TForm>, action: IAction<TData>) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.error;
     },
   };
 };

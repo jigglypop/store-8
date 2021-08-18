@@ -23,6 +23,9 @@ const requestGet = async (url: string) => {
   if (_token) {
     cache.set('token', _token);
   }
+  if (data.status) {
+    data.status = res.status;
+  }
   return data;
 };
 
@@ -32,6 +35,9 @@ const requestGetToken = async (url: string, token?: string) => {
   const _token = res.headers.get('token');
   if (_token) {
     cache.set('token', _token);
+  }
+  if (!data.status) {
+    data.status = res.status;
   }
   return data;
 };
@@ -43,6 +49,9 @@ const requestPost = async <TReq>(url: string, data: TReq, token?: string) => {
   if (_token) {
     cache.set('token', _token);
   }
+  if (!_data.status) {
+    _data.status = res.status;
+  }
   return _data;
 };
 
@@ -53,12 +62,18 @@ const requestPut = async <TReq>(url: string, data: TReq, token?: string) => {
   if (_token) {
     cache.set('token', _token);
   }
+  if (!_data.status) {
+    _data.status = res.status;
+  }
   return _data;
 };
 
 const requestDelete = async (url: string, token?: string) => {
   const res = await fetch(SERVER_URL + url, HTTP_METHOD.DELETE(token));
   const _data = await res.json();
+  if (!_data.status) {
+    _data.status = res.status;
+  }
   return _data;
 };
 

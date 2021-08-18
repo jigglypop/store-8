@@ -22,21 +22,14 @@ export interface ICartGetReq {
   userId: number;
 }
 
-export interface ICartGetRes {
-  status: number;
-  cart: CartData[];
-}
+export type ICartGetRes = CartData[];
 
 export interface ICartDeleteReq {
   userId: number;
   cartIds: number[];
 }
 
-export interface ICartDeleteRes {
-  status: number;
-  cartIds: number[];
-}
-
+export type ICartDeleteRes = CartData[];
 export interface ICartAddReq {
   userId: number;
   productId: number;
@@ -44,6 +37,4 @@ export interface ICartAddReq {
   productCount: number;
 }
 
-export interface ICartAddRes {
-  status: number;
-}
+export type ICartAddRes = CartData[];

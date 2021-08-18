@@ -6,12 +6,7 @@ import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 import { CartData } from '../../middle/type/cart/cart';
 
-export const check = async (req: Request, res: Response) => {
-  const { userId } = req.body;
-  if (!userId) {
-    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
-  }
-
+const findAll = async (userId: number) => {
   const carts = await Cart.findAll({ where: { userId } });
   if (!carts) {
     throw new HttpError({ ...err.NO_DATA });
@@ -49,7 +44,18 @@ export const check = async (req: Request, res: Response) => {
     }
     result.push(tempData);
   }
-  res.status(200).json({ status: 200, data: JSON.stringify({ cart: result }) });
+  return result;
+};
+
+export const check = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
 };
 
 export const add = async (req: Request, res: Response) => {
@@ -63,7 +69,9 @@ export const add = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.' });
   }
 
-  res.status(200).json({ status: 200 });
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
 };
 
 export const remove = async (req: Request, res: Response) => {
@@ -77,5 +85,7 @@ export const remove = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Cart 내역 삭제를 진행 할 수 없었습니다.' });
   }
 
-  res.status(200).json({ status: 200, data: cartIds });
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
 };

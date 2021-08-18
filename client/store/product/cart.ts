@@ -1,6 +1,14 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { CartData } from '@middle/type/cart/cart';
+import createExtraPost from '@store/createExtra/createExtraPost';
+import { cartGetApi, cartDeleteApi, cartAddApi } from '@api/cart';
+import {
+  CartData,
+  ICartGetRes,
+  ICartGetReq,
+  ICartDeleteRes,
+  ICartDeleteReq,
+} from '@middle/type/cart/cart';
 
 const name = 'cart';
 
@@ -20,16 +28,19 @@ const initialState: ICartState = {
   loading: false,
 };
 
+export const getCart = createAsyncThunk('CART_GET_API', cartGetApi);
+const cartGetPostReducer = createExtraPost<ICartGetReq, ICartGetRes | null>(getCart, name);
+export const delCart = createAsyncThunk('CART_DEL_API', cartDeleteApi);
+const cartDelPostReducer = createExtraPost<ICartDeleteReq, ICartDeleteRes | null>(delCart, name);
+
 const cartSlice = createSlice({
   name,
   initialState,
   reducers: {
     initCartStatus: () => initialState,
-    setCartData: (state, { payload }: ICartSetState) => {
-      state.cart = payload;
-    },
   },
+  extraReducers: { ...cartGetPostReducer, ...cartDelPostReducer },
 });
 
-export const { initCartStatus, setCartData } = cartSlice.actions;
+export const { initCartStatus } = cartSlice.actions;
 export default cartSlice.reducer;
