@@ -2,6 +2,10 @@ import React, { ReactElement } from 'react';
 import { COUPON_BLOCK_TEXT, CHANGE_COUNT_TEXT, PAY_TYPE_FIRST } from '@constants/Cart';
 import { kstFormatter } from '@utils/utils';
 import * as S from './style';
+import checked from '@image/checked.png';
+import unchecked from '@image/unchecked.png';
+import numUp from '@image/numUp.png';
+import numDown from '@image/numDown.png';
 
 import { SHIP_BASE_TEXT } from '@constants/Cart';
 import { ClientCartData } from '@middle/type/cart/cart';
@@ -49,41 +53,26 @@ function CartContent({ content, index, metaData, toggleHandler }: Contents): Rea
 
   return (
     <S.CartContent>
-      <td>
-        <div className="center-align">
-          <input
-            type="checkbox"
-            onChange={() => {
-              toggleHandler(index);
-            }}
-            checked={content.isChecked}
-          ></input>
+      <img className="check-button" src={content.isChecked ? checked : unchecked} />
+      <img className="product-image" src={content.imgLink} />
+      <div className="product-info-container">
+        <div className="product-title-container">
+          <p className="product-title">{content.title}</p>
+          {content.option.length !== 0 ? (
+            <p className="product-subtitle">{content.option}</p>
+          ) : null}
         </div>
-      </td>
-      <td>
-        <div className="vertical-center-align cart-content-info-container">
-          <img src={content.imgLink} />
-          <div className="cart-content-text-main">
-            {getCouponBlock(content.isCoupon)}
-            <p className="cart-content-title">{content.title}</p>
-            {getOptionBlock(content.option)}
+        <div className="cart-detail-container">
+          <div className="cart-amount-container">
+            <p>{kstFormatter(content.amount)}</p>
+          </div>
+          <div className="product-count-container">
+            <img className="num-scaler" src={numDown} />
+            <p>{content.count}</p>
+            <img className="num-scaler" src={numUp} />
           </div>
         </div>
-      </td>
-      <td>
-        <div className="cart-count-container center-align">
-          <p>{kstFormatter(content.count, false) + '개'}</p>
-          <button className="center-align">
-            <p>{CHANGE_COUNT_TEXT}</p>
-          </button>
-        </div>
-      </td>
-      <td>
-        <div className="cart-amount-container center-align">
-          <p>{kstFormatter(content.amount * content.count)}</p>
-        </div>
-      </td>
-      {getShippment(metaData)}
+      </div>
     </S.CartContent>
   );
 }

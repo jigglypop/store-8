@@ -39,8 +39,11 @@ export const GlobalStyle = createGlobalStyle`
     --off-white: #E7E7E7;
     --black: #000000;
     --pastel-black: #353535;
+
+    /* 선 색상 */
     --line-black: #353535;
     --line-gray: #BDBDBD;
+    --border-dark-gray: #717171;
 
     /* 백그라운드 */
     --background-white: #FFFFFF;
@@ -57,6 +60,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-white: #FFFFFF;
     --text-lightgray: #BDBDBD;
     --text-gray: #828282;
+    --text-dark-gray: #525252;
   
     /* 컬러피커용 */
     --text-picker: #000000;

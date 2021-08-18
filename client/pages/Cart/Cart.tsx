@@ -138,12 +138,17 @@ function Cart(): ReactElement {
   return (
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
-      <CartContentsContainer
-        toggleAllHandler={toggleAllHandler}
-        toggleOneHandler={toggleOneHandler}
-        contents={contents}
-        metaData={metaData}
-      />
+      <div className="cart-side-container">
+        <CartContentsContainer
+          toggleAllHandler={toggleAllHandler}
+          toggleOneHandler={toggleOneHandler}
+          contents={contents}
+          metaData={metaData}
+        />
+        <div className="cart-receipt-side-container">
+          <p>임시 공간</p>
+        </div>
+      </div>
       <Receipt metaData={metaData} />
       <Proceed
         contents={contents}
