@@ -10,6 +10,10 @@ import {
 } from 'sequelize-typescript';
 import Category from './Category';
 import Option from './Option';
+import ProductQuestion from './ProductQuestion';
+import Review from './Review';
+import Wish from './Wish';
+import Order from './Order';
 
 export interface IProduct {
   id: number;
@@ -58,9 +62,23 @@ export default class Product extends Model<IProduct> {
   @ForeignKey(() => Category)
   @Column
   categoryId: number;
+
   @BelongsTo(() => Category)
   category: Category;
+
   // 하위(옵션)
   @HasMany(() => Option)
   options: Option[];
+
+  @HasMany(() => Wish)
+  wishes: Wish[];
+
+  @HasMany(() => ProductQuestion)
+  productQuestions: ProductQuestion[];
+
+  @HasMany(() => Review)
+  reviews: Review[];
+
+  @HasMany(() => Order)
+  orders: Order[];
 }

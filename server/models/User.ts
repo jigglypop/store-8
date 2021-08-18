@@ -1,4 +1,10 @@
-import { AllowNull, Column, Model, Table, Unique } from "sequelize-typescript";
+import { AllowNull, Column, ForeignKey, Model, Table, Unique, HasMany } from 'sequelize-typescript';
+
+import Address from './Address';
+import ProductQuestion from './ProductQuestion';
+import Review from './Review';
+import Wish from './Wish';
+import Order from './Order';
 
 export interface IUser {
   id?: string;
@@ -10,7 +16,6 @@ export interface IUser {
 
 @Table
 export default class User extends Model<IUser> {
-  
   @AllowNull(false)
   @Unique
   @Column
@@ -27,4 +32,19 @@ export default class User extends Model<IUser> {
   @AllowNull
   @Column
   imageUrl: string;
+
+  @HasMany(() => Address)
+  addresses: Address[];
+
+  @HasMany(() => Wish)
+  wishes: Wish[];
+
+  @HasMany(() => ProductQuestion)
+  productQuestions: ProductQuestion[];
+
+  @HasMany(() => Review)
+  reviews: Review[];
+
+  @HasMany(() => Order)
+  orders: Order[];
 }

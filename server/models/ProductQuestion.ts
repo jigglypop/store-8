@@ -6,6 +6,8 @@ import {
   ForeignKey,
   AllowNull,
   BelongsTo,
+  CreatedAt,
+  UpdatedAt,
 } from 'sequelize-typescript';
 
 import User from './User';
@@ -15,10 +17,17 @@ export interface IProductQuestion {
   id: number;
   title: string;
   contents: string;
+  reply: string;
   isSecret: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+  productId: number;
 }
 
-@Table
+@Table({
+  timestamps: false,
+})
 export default class ProductQuestion extends Model<IProductQuestion> {
   @Column({ primaryKey: true })
   id: number;
@@ -38,6 +47,12 @@ export default class ProductQuestion extends Model<IProductQuestion> {
   @AllowNull(false)
   @Column(DataType.BOOLEAN)
   isSecret: boolean;
+
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 
   @AllowNull(false)
   @Column

@@ -6,7 +6,7 @@ import wrapAsync from '../utils/wrapAsync';
 
 const router: Router = express.Router();
 
-router.post('/create', jwtMiddleware, wrapAsync(create));
-router.get('/', wrapAsync(get));
+// router.post('/create', jwtMiddleware, wrapAsync(create));
+// router.get('/', wrapAsync(get));
 
 export default router;

@@ -7,6 +7,8 @@ import {
   AllowNull,
   BelongsTo,
   HasMany,
+  CreatedAt,
+  UpdatedAt,
 } from 'sequelize-typescript';
 
 import User from './User';
@@ -18,9 +20,15 @@ export interface IReview {
   title: string;
   contents: string;
   score: number;
+  userId: number;
+  productId: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-@Table
+@Table({
+  timestamps: false,
+})
 export default class Review extends Model<IReview> {
   @Column({ primaryKey: true })
   id: number;
@@ -36,6 +44,12 @@ export default class Review extends Model<IReview> {
   @AllowNull(false)
   @Column(DataType.FLOAT)
   score: number;
+
+  @CreatedAt
+  createdAt: Date;
+
+  @UpdatedAt
+  updatedAt: Date;
 
   @AllowNull(false)
   @Column

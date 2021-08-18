@@ -1,5 +1,16 @@
-import { AllowNull, BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table, Unique } from "sequelize-typescript";
-import Product from "./Product";
+import {
+  AllowNull,
+  BelongsTo,
+  Column,
+  ForeignKey,
+  Model,
+  PrimaryKey,
+  Table,
+  Unique,
+  HasMany,
+} from 'sequelize-typescript';
+import Product from './Product';
+import Order from './Order';
 
 export interface IOption {
   id: number;
@@ -8,7 +19,6 @@ export interface IOption {
 
 @Table
 export default class Option extends Model<IOption> {
-  
   @AllowNull(false)
   @PrimaryKey
   @Column
@@ -22,6 +32,10 @@ export default class Option extends Model<IOption> {
   @ForeignKey(() => Product)
   @Column
   productId: number;
+
   @BelongsTo(() => Product)
-  product: Product;
+  products: Product;
+
+  @HasMany(() => Order)
+  orders: Order[];
 }

@@ -8,6 +8,12 @@ import Option from './Option';
 import ProductQuestion from './ProductQuestion';
 import Review from './Review';
 import ReviewImg from './ReviewImg';
+import Order from './Order';
+import Coupon from './Coupon';
+import Address from './Address';
+import Refund from './Refund';
+import UserCoupon from './UserCoupon';
+import Wish from './Wish';
 
 dotenv.config();
 export const sequelize = new Sequelize({
@@ -15,7 +21,21 @@ export const sequelize = new Sequelize({
   dialect: 'mysql',
   username: process.env.DB_USERNAME || 'root',
   password: process.env.DB_PASSWORD,
-  models: [User, Category, Product, Option, ProductQuestion, Review, ReviewImg],
+  models: [
+    Address,
+    Category,
+    Coupon,
+    Option,
+    Order,
+    Product,
+    ProductQuestion,
+    Refund,
+    Review,
+    ReviewImg,
+    User,
+    UserCoupon,
+    Wish,
+  ],
 });
 
 // 데이터베이스 마이그레이션(테이블 날릴 때 한번 하시고 주석처리하세요)
