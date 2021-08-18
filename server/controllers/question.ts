@@ -15,9 +15,8 @@ import { dateStringFormat } from '../utils/date';
 //상품 문의 조회
 export const getQuestion = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  console.log(productId);
   const questionSnapshot = await Question.findAll({
-    attributes: ['id', 'title', 'contents', 'isSecret', 'reply', 'createdAt'],
+    attributes: ['id', 'title', 'contents', 'isSecret', 'reply', 'createdAt', 'replyDate'],
     where: {
       productId,
     },
@@ -27,6 +26,7 @@ export const getQuestion = async (req: Request, res: Response) => {
   const questions: IQuestionRes[] = questionSnapshot.map((item) => {
     const id = item.getDataValue('id');
     const date = item.getDataValue('createdAt');
+    const answerDate = item.getDataValue('replyDate');
     if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
     return {
@@ -36,6 +36,7 @@ export const getQuestion = async (req: Request, res: Response) => {
       date: dateStringFormat(date, '.'),
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
+      answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
     };
   });
 
@@ -162,7 +163,10 @@ export const updateQuestionReply = async (req: Request, res: Response) => {
 
   try {
     await Question.update(
-      { reply: contents },
+      {
+        reply: contents,
+        replyDate: new Date(),
+      },
       {
         where: { id: +questionId },
       }

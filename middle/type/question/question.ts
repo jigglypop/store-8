@@ -5,4 +5,5 @@ export interface IQuestionRes {
   isSecret: boolean;
   date: string;
   answer: string | null;
+  answerDate: string | null;
 }
