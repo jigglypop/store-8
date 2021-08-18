@@ -4,12 +4,11 @@ import NavigationBar from '@client/components/MyPage/NavigationBar/NavigationBar
 
 interface Props {}
 
-export default function RefundPage() {
+export default function MyRefundPage() {
   return (
-    <S.RefundPage>
+    <S.MyRefundPage>
       <NavigationBar page="REFUND" />
       <RefundSection />
-    </S.RefundPage>
+    </S.MyRefundPage>
   );
 }
- 

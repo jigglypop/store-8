@@ -49,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
     --background-gray: #F5F5F7;
     --body-background: white;
     --header-background: white;
+    --background-button-clicked: #E0E0E0;
 
     /* 텍스트 */
     --text-pastel-black: #353535;

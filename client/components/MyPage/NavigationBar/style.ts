@@ -32,18 +32,18 @@ export const NavigatorGroup = styled.div`
     /* height: 20px; */
     padding: 10px 12px;
     /* text-decoration: none; */
-    color: var(--pastelBlack);
+    color: var(--background-pastel-black);
   }
 
   .router-link:hover {
     font-weight: 600;
     color: var(--black);
-    background-color: var(--gray6);
+    background-color: var(--background-button-clicked);
   }
 
   .clicked {
     font-weight: 600;
     color: var(--black);
-    background-color: var(--gray6);
+    background-color: var(--background-button-clicked);
   }
 `;
