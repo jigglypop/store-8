@@ -13,12 +13,13 @@ import {
   BelongsTo,
 } from 'sequelize-typescript';
 
+import UserCoupon from './UserCoupon';
+
 export interface ICoupon {
   id: number;
   title: string;
   amount: string;
   dDay: string;
-  userId: number;
 }
 
 @Table({
@@ -40,6 +41,9 @@ export default class Coupon extends Model<ICoupon> {
 
   @Column
   dDay: string;
+
+  @HasMany(() => UserCoupon)
+  userCoupons: UserCoupon[];
 
   @Column
   @CreatedAt

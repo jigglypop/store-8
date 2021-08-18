@@ -14,6 +14,9 @@ import {
   Default,
 } from 'sequelize-typescript';
 
+import User from './User';
+import Coupon from './Coupon';
+
 export interface IUserCoupon {
   id: number;
   userId: number;
@@ -28,13 +31,13 @@ export interface IUserCoupon {
 })
 export default class UserCoupon extends Model<IUserCoupon> {
   @PrimaryKey
-  @Column
   @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)
-  @Column
   @Default(false)
+  @Column
   isUsed: boolean;
 
   @AllowNull(false)
@@ -49,4 +52,20 @@ export default class UserCoupon extends Model<IUserCoupon> {
 
   @UpdatedAt
   updatedOn: Date;
+
+  @AllowNull(false)
+  @ForeignKey(() => User)
+  @Column
+  userId: number;
+
+  @BelongsTo(() => User)
+  user: User;
+
+  @AllowNull(false)
+  @ForeignKey(() => Coupon)
+  @Column
+  couponId: number;
+
+  @BelongsTo(() => Coupon)
+  coupon: Coupon;
 }

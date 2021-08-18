@@ -1,10 +1,12 @@
 import { AllowNull, Column, ForeignKey, Model, Table, Unique, HasMany } from 'sequelize-typescript';
 
 import Address from './Address';
-import ProductQuestion from './ProductQuestion';
-import Review from './Review';
-import Wish from './Wish';
 import Order from './Order';
+import Question from './Question';
+import Review from './Review';
+
+import UserCoupon from './UserCoupon';
+import Wish from './Wish';
 
 export interface IUser {
   id?: string;
@@ -39,8 +41,11 @@ export default class User extends Model<IUser> {
   @HasMany(() => Wish)
   wishes: Wish[];
 
-  @HasMany(() => ProductQuestion)
-  productQuestions: ProductQuestion[];
+  @HasMany(() => UserCoupon)
+  userCoupons: UserCoupon[];
+
+  @HasMany(() => Question)
+  questions: Question[];
 
   @HasMany(() => Review)
   reviews: Review[];

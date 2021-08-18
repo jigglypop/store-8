@@ -10,10 +10,10 @@ import {
 } from 'sequelize-typescript';
 import Category from './Category';
 import Option from './Option';
-import ProductQuestion from './ProductQuestion';
+import Order from './Order';
+import Question from './Question';
 import Review from './Review';
 import Wish from './Wish';
-import Order from './Order';
 
 export interface IProduct {
   id: number;
@@ -73,8 +73,8 @@ export default class Product extends Model<IProduct> {
   @HasMany(() => Wish)
   wishes: Wish[];
 
-  @HasMany(() => ProductQuestion)
-  productQuestions: ProductQuestion[];
+  @HasMany(() => Question)
+  Questions: Question[];
 
   @HasMany(() => Review)
   reviews: Review[];

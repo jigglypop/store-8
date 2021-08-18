@@ -5,7 +5,6 @@ import {
   Column,
   Model,
   Table,
-  Unique,
   ForeignKey,
   CreatedAt,
   UpdatedAt,
@@ -32,16 +31,16 @@ export default class Wish extends Model<IWish> {
   id: number;
 
   @AllowNull(false)
-  @Column
   @ForeignKey(() => User)
+  @Column
   userId: number;
 
   @BelongsTo(() => User)
   user: User;
 
   @AllowNull(false)
-  @Column
   @ForeignKey(() => Product)
+  @Column
   productId: number;
 
   @BelongsTo(() => Product)

@@ -5,12 +5,12 @@ import {
   Column,
   Model,
   Table,
-  Unique,
   ForeignKey,
   CreatedAt,
   UpdatedAt,
   BelongsTo,
   HasOne,
+  HasMany,
 } from 'sequelize-typescript';
 
 import User from './User';
@@ -29,6 +29,7 @@ export interface IOrder {
   optionId: number;
   state: string;
   isConfirmed: boolean;
+  refundId: number;
   createdAt: Date;
   updatedOn: Date;
 }

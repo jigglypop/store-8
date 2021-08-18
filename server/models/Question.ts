@@ -13,7 +13,7 @@ import {
 import User from './User';
 import Product from './Product';
 
-export interface IProductQuestion {
+export interface IQuestion {
   id: number;
   title: string;
   contents: string;
@@ -28,7 +28,7 @@ export interface IProductQuestion {
 @Table({
   timestamps: false,
 })
-export default class ProductQuestion extends Model<IProductQuestion> {
+export default class Question extends Model<IQuestion> {
   @Column({ primaryKey: true })
   id: number;
 
@@ -55,16 +55,16 @@ export default class ProductQuestion extends Model<IProductQuestion> {
   updatedAt: Date;
 
   @AllowNull(false)
-  @Column
   @ForeignKey(() => User)
+  @Column
   userId: number;
 
   @BelongsTo(() => User)
   user: User;
 
   @AllowNull(false)
-  @Column
   @ForeignKey(() => Product)
+  @Column
   productId: number;
 
   @BelongsTo(() => Product)
