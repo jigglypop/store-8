@@ -21,18 +21,18 @@ export interface IQuestion {
   isSecret: boolean;
   userId: number;
   productId: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Question extends Model<IQuestion> {
   @Column({
     autoIncrement: true,
     primaryKey: true,
     type: DataType.BIGINT,
   })
-  id!: number;
+  id: number;
 
   @AllowNull(false)
   @Column(DataType.STRING(60))
