@@ -151,7 +151,7 @@ const isUserQuestion = async (userId: number, productId: number, questionId: num
 };
 
 //관리자 전용 - 문의 답변 달기
-export const createQuestionReply = async (req: Request, res: Response) => {
+export const updateQuestionReply = async (req: Request, res: Response) => {
   const { questionId } = req.params;
   const { contents } = req.body;
 

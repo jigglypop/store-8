@@ -7,7 +7,7 @@ import {
   deleteQuestion,
   getQuestion,
   updateQuestion,
-  createQuestionReply,
+  updateQuestionReply,
 } from '../controllers/question';
 
 const questionRouter: Router = express.Router();
@@ -18,6 +18,6 @@ questionRouter.put('/:productId', wrapAsync(updateQuestion));
 questionRouter.delete('/:productId', wrapAsync(deleteQuestion));
 
 //관리자 전용 - 관리자 체크 middleware 추가 필요
-questionRouter.post('/admin/:questionId', wrapAsync(createQuestionReply));
+questionRouter.put('/admin/:questionId', wrapAsync(updateQuestionReply));
 
 export default questionRouter;
