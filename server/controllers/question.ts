@@ -33,7 +33,7 @@ export const getQuestion = async (req: Request, res: Response) => {
       id,
       title: item.getDataValue('title'),
       contents: item.getDataValue('contents'),
-      date: dateStringFormat(date),
+      date: dateStringFormat(date, '.'),
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
     };
