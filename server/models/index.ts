@@ -42,7 +42,7 @@ export const sequelize = new Sequelize({
 });
 
 // 데이터베이스 마이그레이션(테이블 날릴 때 한번 하시고 주석처리하세요)
-migrate();
+// migrate();
 
 const db = {
   sequelize: sequelize,
