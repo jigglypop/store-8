@@ -7,12 +7,12 @@ export function cartDataChanger(responseCart: CartData[] | null): ClientCartData
       result.push({
         id: element.id,
         isChecked: true,
-        isCoupon: true,
         imgLink: element.imgSrc,
         title: element.title,
         option: element.option,
         count: element.count,
         amount: element.amount,
+        originalAmount: element.originalAmount,
       });
     });
   }

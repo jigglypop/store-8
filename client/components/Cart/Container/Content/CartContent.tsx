@@ -51,6 +51,11 @@ function CartContent({ content, index, toggleHandler, changeItem }: Contents): R
         </div>
         <div className="cart-detail-container">
           <div className="cart-amount-container">
+            {content.originalAmount !== 0 ? (
+              <p className="original-amount">{kstFormatter(content.originalAmount)}</p>
+            ) : (
+              <></>
+            )}
             <p>{kstFormatter(content.amount)}</p>
           </div>
           <div className="product-count-container">

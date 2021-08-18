@@ -40,6 +40,16 @@ function Cart(): ReactElement {
     return result;
   };
 
+  const getTotalDiscount = () => {
+    let result = 0;
+    contents.forEach((content) => {
+      if (content.isChecked && content.originalAmount !== 0) {
+        result += (content.amount - content.originalAmount) * content.count;
+      }
+    });
+    return result;
+  };
+
   const getCheckedNum = () => {
     let result = 0;
     contents.forEach((content) => {
@@ -66,6 +76,7 @@ function Cart(): ReactElement {
       totalPrice: totalPrice,
       checkedCount: getCheckedNum(),
       shipmentPrice: getShipmentAmount(totalPrice),
+      totalDiscount: getTotalDiscount(),
     };
   };
 

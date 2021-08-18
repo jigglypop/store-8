@@ -16,7 +16,9 @@ function Receipt({ metaData }: MetaData): ReactElement {
         <p className="amount-title">{'총계'}</p>
         <div className="amount-row">
           <p>{'총 상품 금액'}</p>
-          <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
+          <p className="amount">
+            {kstFormatter(metaData.totalPrice + Math.abs(metaData.totalDiscount))}
+          </p>
         </div>
         <div className="amount-row">
           <p>{'총 배송비'}</p>
@@ -24,7 +26,7 @@ function Receipt({ metaData }: MetaData): ReactElement {
         </div>
         <div className="amount-row">
           <p>{'총 할인금액'}</p>
-          <p className="amount">{kstFormatter(0)}</p>
+          <p className="amount">{kstFormatter(metaData.totalDiscount)}</p>
         </div>
       </S.Receipt>
       <S.TotalPrice>

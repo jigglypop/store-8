@@ -58,9 +58,13 @@ export const CartContent = styled.div`
     align-items: flex-end;
   }
 
-  .cart-amount-container {
+  .original-amount {
+    text-decoration: line-through;
+    text-decoration-color: var(--text-gray);
+    color: var(--text-gray);
+    margin-bottom: 8px;
+    font-size: var(--body-middle-font);
   }
-
   .product-count-container {
     display: flex;
     flex-direction: row;
