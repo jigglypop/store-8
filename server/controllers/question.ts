@@ -49,22 +49,77 @@ export const createQuestion = async (req: Request, res: Response) => {
   const userId = 1;
   const { productId } = req.params;
   const { title, contents, isSecret } = req.body;
+
+  //TODO - title,contents validation
   if (!productId || !title || !contents) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  const result = await Question.create({
-    userId,
-    productId: +productId,
-    title: title as string,
-    contents: contents as string,
-    isSecret: !!isSecret,
-  });
-  const questionId = result.getDataValue('id');
-
-  if (!questionId) {
+  try {
+    await Question.create({
+      userId,
+      productId: +productId,
+      title: title as string,
+      contents: contents as string,
+      isSecret: !!isSecret,
+    });
+  } catch (error) {
     throw new HttpError(err.CREATE_ERROR);
   }
 
   res.status(200).json({ success: true });
+};
+
+//상품 문의 수정
+export const updateQuestion = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
+  const { productId } = req.params;
+  const { questionId, title, contents, isSecret } = req.body;
+
+  const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
+
+  //TODO - title,contents validation
+  console.log(isUserOwnedQuestion);
+  console.log(questionId, title, contents, isSecret);
+  if (!isUserOwnedQuestion) {
+    throw new HttpError(err.WRONG_ACCESS_QUESTION);
+  }
+  try {
+    await Question.update(
+      {
+        title,
+        contents,
+        isSecret: !!isSecret,
+        userId,
+        productId: +productId,
+      },
+      {
+        where: {
+          id: +questionId,
+          userId,
+          productId,
+        },
+      }
+    );
+  } catch (error) {
+    throw new HttpError(err.UPDATE_ERROR);
+  }
+
+  res.status(200).json({ success: true });
+};
+
+//유저가 접근한 문의가 유저의 문의가 맞는지 체크
+const isUserQuestion = async (userId: number, productId: number, questionId: number) => {
+  const questionSnapshot = await Question.findAll({
+    attributes: ['id'],
+    where: {
+      id: questionId,
+      userId,
+      productId,
+    },
+  });
+
+  return !!questionSnapshot;
 };
