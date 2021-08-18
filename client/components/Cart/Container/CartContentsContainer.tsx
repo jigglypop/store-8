@@ -20,6 +20,7 @@ interface CartContentProps {
   toggleAllHandler: () => void;
   toggleOneHandler: (index: number) => void;
   changeItem: (index: number, changeAmount: number) => void;
+  deleteCheckedItem: () => void;
 }
 
 function CartContentsContainer(props: CartContentProps): ReactElement {

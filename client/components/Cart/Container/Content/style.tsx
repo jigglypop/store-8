@@ -9,6 +9,7 @@ export const CartContent = styled.div`
   border-bottom: 0.5px solid var(--line-gray);
 
   .unchecked-opacity {
+    transition-duration: 0.5s;
     opacity: 0.2;
   }
 
@@ -29,6 +30,8 @@ export const CartContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition-duration: 0.3s;
+
     .product-title {
       font-weight: bold;
     }
@@ -44,6 +47,7 @@ export const CartContent = styled.div`
     height: 100%;
     object-fit: contain;
     margin-right: 13px;
+    transition-duration: 0.3s;
   }
 
   .cart-detail-container {

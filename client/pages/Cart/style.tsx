@@ -14,17 +14,11 @@ export const Cart = styled.div`
 
   .cart-receipt-side-container {
     width: 320px;
-    margin-top: 20px;
-    margin-bottom: -20px;
+    height: 303px;
     margin-left: 70px;
-    height: 290px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 47px;
 
     position: sticky;
     top: 60px;
-    bottom: 13px;
   }
 `;

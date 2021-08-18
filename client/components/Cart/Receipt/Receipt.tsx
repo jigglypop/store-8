@@ -7,10 +7,6 @@ import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface MetaData {
   metaData: CartContentMetaData;
-  deleteCheckedItem: () => void;
-  likeCheckedItem: () => void;
-  orderCheckedItem: () => void;
-  orderAllItem: () => void;
 }
 
 function Receipt({ metaData }: MetaData): ReactElement {

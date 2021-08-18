@@ -80,6 +80,9 @@ function Cart(): ReactElement {
     const toggleDest = !isOff();
     temp.forEach((content) => {
       content.isChecked = toggleDest;
+      if (toggleDest && content.count === 0) {
+        content.count = 1;
+      }
     });
     setContents([...temp]);
   };
@@ -96,9 +99,9 @@ function Cart(): ReactElement {
 
   const deleteCheckedItem = async () => {
     // TODO : 삭제 이전에 물어보는 modal 띄워주기.
-    const temp: ClientCartData[] = [];
+    const temp: ClientCartData[] = []; // State 변경을 위해 저장
     const tempCart: CartData[] = cart ? [...cart] : [];
-    const deletedItem: number[] = [];
+    const deletedItem: number[] = []; // API 호출을 위해 저장
     const renewCart: CartData[] = [];
 
     contents.forEach((content, index) => {
@@ -111,30 +114,6 @@ function Cart(): ReactElement {
     });
 
     dispatch(delCart({ userId: 1, cartIds: deletedItem }));
-  };
-
-  const likeCheckedItem = () => {
-    const temp: ClientCartData[] = [];
-    contents.forEach((content) => {
-      if (content.isChecked) {
-        temp.push(content);
-      }
-    });
-    console.log('TODO: LIKE CHECKED ITEM', temp);
-  };
-
-  const orderCheckedItem = () => {
-    const temp: ClientCartData[] = [];
-    contents.forEach((content) => {
-      if (content.isChecked) {
-        temp.push(content);
-      }
-    });
-    console.log('TODO: ORDER CHECKED ITEM', temp);
-  };
-
-  const orderAllItem = () => {
-    console.log('TODO: ORDER ALL ITEM', contents);
   };
 
   const changeItem = (index: number, changeAmount: number): void => {
@@ -164,18 +143,13 @@ function Cart(): ReactElement {
         <CartContentsContainer
           toggleAllHandler={toggleAllHandler}
           toggleOneHandler={toggleOneHandler}
+          deleteCheckedItem={deleteCheckedItem}
           changeItem={changeItem}
           contents={contents}
           metaData={metaData}
         />
         <div className="cart-receipt-side-container">
-          <Receipt
-            metaData={metaData}
-            deleteCheckedItem={deleteCheckedItem}
-            likeCheckedItem={likeCheckedItem}
-            orderCheckedItem={orderCheckedItem}
-            orderAllItem={orderAllItem}
-          />
+          <Receipt metaData={metaData} />
         </div>
       </div>
     </S.Cart>
