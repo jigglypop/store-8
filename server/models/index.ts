@@ -6,6 +6,7 @@ import Category from './Category';
 import User from './User';
 import Product from './Product';
 import Option from './Option';
+import Cart from './Cart';
 import Address from './Address';
 import Wish from './Wish';
 import Coupon from './Coupon';
@@ -36,6 +37,7 @@ export const sequelize = new Sequelize({
     Review,
     ReviewImg,
     Refund,
+    Cart,
   ],
 });
 

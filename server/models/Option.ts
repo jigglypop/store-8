@@ -11,6 +11,7 @@ import {
 } from 'sequelize-typescript';
 import Product from './Product';
 import Order from './Order';
+import Cart from './Cart';
 
 export interface IOption {
   id: number;
@@ -34,6 +35,10 @@ export default class Option extends Model<IOption> {
   productId: number;
 
   @BelongsTo(() => Product)
+  product: Product;
+
+  @HasMany(() => Cart)
+  carts: Cart[];
   products: Product;
 
   @HasMany(() => Order)

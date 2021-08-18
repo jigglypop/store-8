@@ -4,11 +4,11 @@ import { kstFormatter } from '@utils/utils';
 import * as S from './style';
 
 import { SHIP_BASE_TEXT } from '@constants/Cart';
-import { CartContentData } from '@client/type/CartContentData';
+import { ClientCartData } from '@middle/type/cart/cart';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface Contents {
-  content: CartContentData;
+  content: ClientCartData;
   metaData: CartContentMetaData;
   index: number;
   toggleHandler: (index: number) => void;

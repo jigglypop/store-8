@@ -9,12 +9,12 @@ import {
   ORDER_ALL_PRODUCT,
   PROCEED_GUIDE_TEXT,
 } from '@constants/Cart';
-import { CartContentData } from '@client/type/CartContentData';
+import { ClientCartData } from '@middle/type/cart/cart';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 import Button from '@client/components/Button/Button';
 
 interface ProceedType {
-  contents: CartContentData[];
+  contents: ClientCartData[];
   metaData: CartContentMetaData;
   deleteCheckedItem: () => void;
   likeCheckedItem: () => void;

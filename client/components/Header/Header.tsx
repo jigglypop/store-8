@@ -16,7 +16,6 @@ export interface IHeader {
 const Header = ({ check, onLogout }: IHeader) => {
   const [isLeft, setIsLeft] = useState(0);
   const [isUp, setIsUp] = useState(false);
-
   const header = useRef<HTMLDivElement>(null);
   window.addEventListener('scroll', () => {
     if (header.current) {

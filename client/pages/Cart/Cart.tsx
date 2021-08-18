@@ -1,17 +1,35 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
 import Proceed from '@components/Cart/Proceed/Proceed';
 
-import type { CartContentData } from '../../type/CartContentData';
-import { ORDER_READY, ORDER_START } from '@constants/Cart';
+import { CartData } from '@middle/type/cart/cart';
+import { ClientCartData } from '@middle/type/cart/cart';
+import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
-import { tempData } from './tempData';
+import { cartDataChanger } from '@utils/responseTypeChanger';
+
+import { cartGetApi, cartDeleteApi } from '@api/cart';
+import { getCart, delCart } from '@store/product/cart';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@client/store';
+
 import * as S from './style';
 
 function Cart(): ReactElement {
-  const [contents, setContents] = useState(tempData);
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state: RootState) => state.cart);
+  const [contents, setContents] = useState(cartDataChanger(cart));
+
+  useEffect(() => {
+    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
+    dispatch(getCart({ userId: 1 }));
+  }, []);
+
+  useEffect(() => {
+    setContents(cartDataChanger(cart));
+  }, [cart]);
 
   const getTotalPrice = () => {
     let result = 0;
@@ -59,7 +77,7 @@ function Cart(): ReactElement {
 
   // 전체 toggle이 켜져있다면 모두 끄고, 꺼져있다면 모두 키는 함수
   const toggleAllHandler = () => {
-    const temp: CartContentData[] = [...contents];
+    const temp: ClientCartData[] = [...contents];
     const toggleDest = !isOff();
     temp.forEach((content) => {
       content.isChecked = toggleDest;
@@ -69,24 +87,32 @@ function Cart(): ReactElement {
 
   // 하나의 check toggle을 관리하는 함수.
   const toggleOneHandler = (index: number) => {
-    const temp: CartContentData[] = [...contents];
+    const temp: ClientCartData[] = [...contents];
     temp[index].isChecked = !temp[index].isChecked;
     setContents([...temp]);
   };
 
-  const deleteCheckedItem = () => {
-    const temp: CartContentData[] = [];
-    contents.forEach((content) => {
+  const deleteCheckedItem = async () => {
+    // TODO : 삭제 이전에 물어보는 modal 띄워주기.
+    const temp: ClientCartData[] = [];
+    const tempCart: CartData[] = cart ? [...cart] : [];
+    const deletedItem: number[] = [];
+    const renewCart: CartData[] = [];
+
+    contents.forEach((content, index) => {
       if (!content.isChecked) {
         temp.push(content);
+        renewCart.push(tempCart[index]);
+      } else {
+        deletedItem.push(content.id);
       }
     });
 
-    setContents(temp);
+    dispatch(delCart({ userId: 1, cartIds: deletedItem }));
   };
 
   const likeCheckedItem = () => {
-    const temp: CartContentData[] = [];
+    const temp: ClientCartData[] = [];
     contents.forEach((content) => {
       if (content.isChecked) {
         temp.push(content);
@@ -96,7 +122,7 @@ function Cart(): ReactElement {
   };
 
   const orderCheckedItem = () => {
-    const temp: CartContentData[] = [];
+    const temp: ClientCartData[] = [];
     contents.forEach((content) => {
       if (content.isChecked) {
         temp.push(content);
