@@ -9,6 +9,7 @@ import questionRouter from './question';
 
 import templateRouter from './template';
 import cartRouter from './cart';
+import reviewRouter from './review';
 
 const rootRouter = express();
 
@@ -22,5 +23,6 @@ rootRouter.use('/api/product', productRouter);
 rootRouter.use('/api/main', mainRouter);
 rootRouter.use('/api/question', questionRouter);
 rootRouter.use('/api/cart', cartRouter);
+rootRouter.use('/api/review', reviewRouter);
 
 export default rootRouter;
