@@ -23,6 +23,7 @@ export interface IQuestion {
   productId: number;
   createdAt?: Date;
   updatedAt?: Date;
+  replyDate?: Date;
 }
 
 @Table
@@ -55,6 +56,9 @@ export default class Question extends Model<IQuestion> {
 
   @UpdatedAt
   updatedAt: Date;
+
+  @Column
+  replyDate: Date;
 
   @AllowNull(false)
   @ForeignKey(() => User)
