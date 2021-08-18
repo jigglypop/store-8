@@ -56,6 +56,37 @@ export const updateReview = async (req: Request, res: Response) => {
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
+  const { reviewId, title, contents, score } = req.body;
+
+  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+
+  //TODO - title,contents validation
+  if (!isUserOwnedReview) {
+    throw new HttpError(err.WRONG_ACCESS_REVIEW);
+  }
+
+  try {
+    await Review.update(
+      {
+        title,
+        contents,
+        score: +score,
+        userId,
+        productId: +productId,
+      },
+      {
+        where: {
+          id: +reviewId,
+          userId,
+          productId,
+        },
+      }
+    );
+  } catch (error) {
+    throw new HttpError(err.UPDATE_ERROR);
+  }
+
+  res.status(200).json({ success: true });
 };
 
 //리뷰 삭제
@@ -64,6 +95,28 @@ export const deleteReview = async (req: Request, res: Response) => {
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
+  const { reviewId } = req.body;
+
+  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+
+  //TODO - title,contents validation
+  if (!isUserOwnedReview) {
+    throw new HttpError(err.WRONG_ACCESS_REVIEW);
+  }
+
+  try {
+    await Review.destroy({
+      where: {
+        id: +reviewId,
+        userId,
+        productId,
+      },
+    });
+  } catch (error) {
+    throw new HttpError(err.DELETE_ERROR);
+  }
+
+  res.status(200).json({ success: true });
 };
 
 //리뷰 공감/비공감
@@ -72,4 +125,17 @@ export const likeReview = async (req: Request, res: Response) => {
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
+};
+
+//유저가 접근한 리뷰가 유저의 리뷰가 맞는지 체크
+const isUserReview = async (userId: number, productId: number, reviewId: number) => {
+  const reviewSnapshot = await Review.findOne({
+    attributes: ['id'],
+    where: {
+      id: reviewId,
+      userId,
+      productId,
+    },
+  });
+  return !!reviewSnapshot;
 };
