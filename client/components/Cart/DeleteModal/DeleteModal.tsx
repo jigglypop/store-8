@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import * as S from './style';
+import { NEXT_DELETE_TEXT } from '@constants/Cart';
 import Modal from '@client/components/common/Modal/Modal';
 import { ClientCartData } from '@middle/type/cart/cart';
 
@@ -15,7 +16,7 @@ function DeleteModal(props: DeleteModalProps): ReactElement {
     <Modal closeModal={props.closeForm}>
       <S.DeleteModal>
         <div>
-          <p className="delete-modal-title">다음 물품들이 장바구니에서 삭제됩니다.</p>
+          <p className="delete-modal-title">{NEXT_DELETE_TEXT}.</p>
           <div>
             {props.deleteLists.map((deleteIndex) => {
               const { option, title, count } = props.contents[deleteIndex];

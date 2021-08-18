@@ -1,13 +1,7 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import CartContent from './Content/CartContent';
 import * as S from './style';
-import {
-  INFO_HEADER_TEXT,
-  COUNT_HEADER_TEXT,
-  AMOUNT_HEADER_TEXT,
-  SHIP_HEADER_TEXT,
-  NOTHING_IN_TEXT,
-} from '@constants/Cart';
+import { NOTHING_IN_TEXT, DELETE_SELECT_PRODUCT } from '@constants/Cart';
 import checked from '@image/checked.png';
 import unchecked from '@image/unchecked.png';
 
@@ -35,7 +29,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
   if (props.metaData.maxLength === 0) {
     return (
       <S.CartContainer>
-        <p>{'텅 빈 것 같네요~!'}</p>
+        <p className="nothing-text">{NOTHING_IN_TEXT}</p>
       </S.CartContainer>
     );
   }
@@ -43,7 +37,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
     <S.CartContainer>
       <div className="selector-container">
         <img onClick={onClick} src={props.metaData.allToggle ? checked : unchecked} />
-        <button onClick={onDelete}>{'선택 상품 삭제'}</button>
+        <button onClick={onDelete}>{DELETE_SELECT_PRODUCT}</button>
       </div>
       {props.contents.map((content: ClientCartData, index: number) => {
         return (

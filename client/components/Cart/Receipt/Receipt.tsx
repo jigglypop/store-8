@@ -1,7 +1,14 @@
 import React, { ReactElement } from 'react';
 import { kstFormatter } from '@utils/utils';
 import exMark from '@image/exclamMark.png';
-import { PROCEED_GUIDE_TEXT } from '@constants/Cart';
+import {
+  PROCEED_GUIDE_TEXT,
+  TOTAL_DISCOUNT_TEXT,
+  TOTAL_PRODUCTS_TEXT,
+  TOTAL_SHIPMENT_TEXT,
+  TOTAL_RESULT_TEXT,
+  TOTAL_ADD_TEXT,
+} from '@constants/Cart';
 import * as S from './style';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
@@ -13,24 +20,24 @@ function Receipt({ metaData }: MetaData): ReactElement {
   return (
     <S.ReceiptContainer>
       <S.Receipt>
-        <p className="amount-title">{'총계'}</p>
+        <p className="amount-title">{TOTAL_RESULT_TEXT}</p>
         <div className="amount-row">
-          <p>{'총 상품 금액'}</p>
+          <p>{TOTAL_PRODUCTS_TEXT}</p>
           <p className="amount">
             {kstFormatter(metaData.totalPrice + Math.abs(metaData.totalDiscount))}
           </p>
         </div>
         <div className="amount-row">
-          <p>{'총 배송비'}</p>
+          <p>{TOTAL_SHIPMENT_TEXT}</p>
           <p className="amount">{kstFormatter(metaData.shipmentPrice)}</p>
         </div>
         <div className="amount-row">
-          <p>{'총 할인금액'}</p>
+          <p>{TOTAL_DISCOUNT_TEXT}</p>
           <p className="amount">{kstFormatter(metaData.totalDiscount)}</p>
         </div>
       </S.Receipt>
       <S.TotalPrice>
-        <p>{'결제 금액'}</p>
+        <p>{TOTAL_ADD_TEXT}</p>
         <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
       </S.TotalPrice>
       <S.OrderNow>

@@ -3,6 +3,14 @@ import styled from '@lib/styledComponent';
 export const CartContainer = styled.div`
   width: 100%;
   min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .nothing-text {
+    font-size: var(--body-title-font);
+  }
 
   .selector-container {
     display: flex;

@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { COUPON_BLOCK_TEXT, CHANGE_COUNT_TEXT, PAY_TYPE_FIRST } from '@constants/Cart';
 import { kstFormatter } from '@utils/utils';
 import * as S from './style';
 import checked from '@image/checked.png';
@@ -8,7 +7,6 @@ import numUp from '@image/numUp.png';
 import numDown from '@image/numDown.png';
 
 import { ClientCartData } from '@middle/type/cart/cart';
-import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface Contents {
   content: ClientCartData;
