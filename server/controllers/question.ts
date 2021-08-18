@@ -81,8 +81,6 @@ export const updateQuestion = async (req: Request, res: Response) => {
   const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
 
   //TODO - title,contents validation
-  console.log(isUserOwnedQuestion);
-  console.log(questionId, title, contents, isSecret);
   if (!isUserOwnedQuestion) {
     throw new HttpError(err.WRONG_ACCESS_QUESTION);
   }
@@ -110,9 +108,38 @@ export const updateQuestion = async (req: Request, res: Response) => {
   res.status(200).json({ success: true });
 };
 
+//상품 문의 삭제
+export const deleteQuestion = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
+  const { productId } = req.params;
+  const { questionId } = req.body;
+
+  const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
+
+  //TODO - title,contents validation
+  if (!isUserOwnedQuestion) {
+    throw new HttpError(err.WRONG_ACCESS_QUESTION);
+  }
+  try {
+    await Question.destroy({
+      where: {
+        id: +questionId,
+        userId,
+        productId,
+      },
+    });
+  } catch (error) {
+    throw new HttpError(err.DELETE_ERROR);
+  }
+
+  res.status(200).json({ success: true });
+};
+
 //유저가 접근한 문의가 유저의 문의가 맞는지 체크
 const isUserQuestion = async (userId: number, productId: number, questionId: number) => {
-  const questionSnapshot = await Question.findAll({
+  const questionSnapshot = await Question.findOne({
     attributes: ['id'],
     where: {
       id: questionId,
@@ -120,6 +147,5 @@ const isUserQuestion = async (userId: number, productId: number, questionId: num
       productId,
     },
   });
-
   return !!questionSnapshot;
 };

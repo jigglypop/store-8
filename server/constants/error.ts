@@ -110,7 +110,7 @@ export const err: IError = {
   },
   WRONG_ACCESS_QUESTION: {
     status: 409,
-    message: '본인의 문의가 아닙니다.',
+    message: '본인의 문의 혹은 존재하는 문의가 아닙니다.',
     serverMessage: 'wrong access to question',
   },
 };
