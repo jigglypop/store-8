@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
+import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
 import { CartData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
@@ -9,7 +10,6 @@ import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { cartGetApi, cartDeleteApi } from '@api/cart';
 import { getCart, delCart } from '@store/product/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
@@ -20,6 +20,8 @@ function Cart(): ReactElement {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
   const [contents, setContents] = useState(cartDataChanger(cart));
+  const [deleteItem, setDeleteLists] = useState([0]);
+  const [isOpenForm, setOpenForm] = useState(false);
 
   useEffect(() => {
     // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
@@ -98,10 +100,9 @@ function Cart(): ReactElement {
   };
 
   const deleteCheckedItem = async () => {
-    // TODO : 삭제 이전에 물어보는 modal 띄워주기.
     const temp: ClientCartData[] = []; // State 변경을 위해 저장
     const tempCart: CartData[] = cart ? [...cart] : [];
-    const deletedItem: number[] = []; // API 호출을 위해 저장
+    const deletedIndex: number[] = [];
     const renewCart: CartData[] = [];
 
     contents.forEach((content, index) => {
@@ -109,11 +110,28 @@ function Cart(): ReactElement {
         temp.push(content);
         renewCart.push(tempCart[index]);
       } else {
+        deletedIndex.push(index);
+      }
+    });
+    setDeleteLists(deletedIndex);
+    setOpenForm(true);
+  };
+
+  const closeForm = () => {
+    setOpenForm(false);
+  };
+
+  const confirm = () => {
+    const deletedItem: number[] = [];
+
+    contents.forEach((content) => {
+      if (content.isChecked) {
         deletedItem.push(content.id);
       }
     });
 
     dispatch(delCart({ userId: 1, cartIds: deletedItem }));
+    setOpenForm(false);
   };
 
   const changeItem = (index: number, changeAmount: number): void => {
@@ -152,6 +170,14 @@ function Cart(): ReactElement {
           <Receipt metaData={metaData} />
         </div>
       </div>
+      {isOpenForm && (
+        <DeleteModal
+          deleteLists={deleteItem}
+          contents={contents}
+          closeForm={closeForm}
+          confirm={confirm}
+        />
+      )}
     </S.Cart>
   );
 }

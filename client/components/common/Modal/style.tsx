@@ -11,4 +11,7 @@ export const Modal = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 `;

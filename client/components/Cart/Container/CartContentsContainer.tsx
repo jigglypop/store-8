@@ -28,6 +28,10 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
     props.toggleAllHandler();
   };
 
+  const onDelete = () => {
+    props.deleteCheckedItem();
+  };
+
   if (props.metaData.maxLength === 0) {
     return (
       <S.CartContainer>
@@ -39,7 +43,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
     <S.CartContainer>
       <div className="selector-container">
         <img onClick={onClick} src={props.metaData.allToggle ? checked : unchecked} />
-        <button>{'선택 상품 삭제'}</button>
+        <button onClick={onDelete}>{'선택 상품 삭제'}</button>
       </div>
       {props.contents.map((content: ClientCartData, index: number) => {
         return (
