@@ -1,4 +1,4 @@
-interface IReviewRes {
+export interface IReviewRes {
   id: number;
   title: string;
   contents: string;
