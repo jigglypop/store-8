@@ -6,6 +6,7 @@ import { err } from '../constants/error';
 import Question from '../models/Question';
 import HttpError from '../utils/HttpError';
 import { decodeToken, getAccessToken } from '../utils/jwt';
+import { dateStringFormat } from '../utils/date';
 
 /**
  * API
@@ -32,7 +33,7 @@ export const getQuestion = async (req: Request, res: Response) => {
       id,
       title: item.getDataValue('title'),
       contents: item.getDataValue('contents'),
-      date,
+      date: dateStringFormat(date),
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
     };
