@@ -1,9 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 import { dateStringFormat } from '@utils/date';
-interface Props {}
+interface Props {
+  title: string;
+}
 
-export default function SearchBar({}: Props): ReactElement {
+export default function SearchBar({ title }: Props): ReactElement {
   const today = new Date();
   const [selectedOffset, setSelectedOffset] = useState(7);
 
@@ -33,7 +35,7 @@ export default function SearchBar({}: Props): ReactElement {
 
   return (
     <S.SearchBar>
-      <h3>주문목록/배송조회</h3>
+      <h3>{title}</h3>
       <div className="container-input">
         <div className="label">조회기간</div>
         <div className="container-offset-button" onClick={radioButtonHandler}>

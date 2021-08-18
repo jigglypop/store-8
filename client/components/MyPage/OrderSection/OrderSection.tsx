@@ -12,7 +12,7 @@ export default function OrderSection({}: Props): ReactElement {
   return (
     <S.OrderSection>
       <Intro {...sampleData} />
-      <SearchBar />
+      <SearchBar title="주문목록/배송조회" />
       <ResultContainer title="주문목록 / 배송조회 내역 " results={results} />
     </S.OrderSection>
   );
