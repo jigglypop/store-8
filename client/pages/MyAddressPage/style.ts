@@ -6,4 +6,5 @@ export const MyAddressPage = styled.div`
   display: flex;
   flex-direction: row;
   gap: 32px;
+  min-height: 602px;
 `;
