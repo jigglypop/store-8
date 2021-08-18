@@ -1,4 +1,4 @@
-import { err } from '@server/constants/error';
+import { err } from '../constants/error';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 import HttpError from './HttpError';
 
