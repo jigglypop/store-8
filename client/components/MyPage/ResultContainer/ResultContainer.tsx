@@ -13,6 +13,7 @@ interface IResult {
   productCount: number;
   status: string; // 주문상태
   checkOrReview: string; // 확인/리뷰
+  thumbnailSrc: string;
 }
 
 interface Props {
@@ -21,10 +22,14 @@ interface Props {
 }
 
 export default function ResultContainer({ title, results }: Props): ReactElement {
+  const resultBoxList = results.map((data, idx) => {
+    return <ResultBox result={data} key={idx} />;
+  });
+
   return (
     <S.ResultContainer>
       <h4>
-        {title} {0 /* results.length */}건
+        {title} <b>{results.length}</b>건
       </h4>
       <div className="container-column">
         <div className="column-date">날짜/주문번호</div>
@@ -34,13 +39,7 @@ export default function ResultContainer({ title, results }: Props): ReactElement
         <div className="column-check">확인/리뷰</div>
       </div>
       <div className={'container-result-list' + (results.length === 0) ? 'nodata' : ''}>
-        <TextNoData>조회 내역이 없습니다.</TextNoData>
-        <ResultBox result={results[0]} />
-        <ResultBox result={results[1]} />
-        <ResultBox result={results[1]} />
-        <ResultBox result={results[1]} />
-        <ResultBox result={results[1]} />
-        <ResultBox result={results[1]} />
+        {!results.length ? <TextNoData>조회 내역이 없습니다.</TextNoData> : resultBoxList}
       </div>
     </S.ResultContainer>
   );
