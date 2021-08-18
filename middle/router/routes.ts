@@ -56,7 +56,7 @@ export const routes = [
   {
     path: '/mypage-refund-list',
     name: 'mypage-refund-list',
-    title: '마이페이지 - 반품 / 환불 내역',
+    title: '마이페이지 - 반품/환불 내역',
     component: 'MyRefundPage',
   },
   {
