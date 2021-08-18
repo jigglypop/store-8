@@ -3,13 +3,13 @@ export type CartData = {
   imgSrc: string;
   title: string;
   count: number;
+  originalAmount: number;
   amount: number;
   option: string;
 };
 
 export type ClientCartData = {
   id: number;
-  isCoupon: boolean;
   isChecked: boolean;
   imgLink: string;
   title: string;

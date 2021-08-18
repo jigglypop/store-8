@@ -28,6 +28,7 @@ const findAll = async (userId: number) => {
       title: productData.title,
       count: cartData.productCount,
       amount: productData.amount,
+      originalAmount: productData.originalAmount,
       option: '',
     };
 
