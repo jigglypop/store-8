@@ -8,6 +8,10 @@ export const CartContent = styled.div`
   flex-direction: row;
   border-bottom: 0.5px solid var(--line-gray);
 
+  .unchecked-opacity {
+    opacity: 0.2;
+  }
+
   .check-button {
     width: 18px;
     height: 18px;
@@ -16,7 +20,7 @@ export const CartContent = styled.div`
   }
 
   .checked {
-    transform: scale(1.03);
+    transform: scale(1.04);
     transform-origin: center;
   }
 

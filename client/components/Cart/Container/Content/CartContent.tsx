@@ -7,60 +7,42 @@ import unchecked from '@image/unchecked.png';
 import numUp from '@image/numUp.png';
 import numDown from '@image/numDown.png';
 
-import { SHIP_BASE_TEXT } from '@constants/Cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface Contents {
   content: ClientCartData;
-  metaData: CartContentMetaData;
   index: number;
   toggleHandler: (index: number) => void;
+  changeItem: (index: number, changeAmount: number) => void;
 }
 
-function CartContent({ content, index, metaData, toggleHandler }: Contents): ReactElement {
-  const getCouponBlock = (isCoupon: boolean) => {
-    if (isCoupon) {
-      return <div className="center-align cart-coupon-badge">{COUPON_BLOCK_TEXT}</div>;
-    } else {
-      return <></>;
-    }
+function CartContent({ content, index, toggleHandler, changeItem }: Contents): ReactElement {
+  const onClick = () => {
+    toggleHandler(index);
   };
 
-  const getOptionBlock = (option: string) => {
-    if (option.length !== 0) {
-      return <div className="cart-option-block">{option}</div>;
-    } else {
-      return <></>;
-    }
+  const increament = () => {
+    changeItem(index, 1);
   };
 
-  const getShippment = (metaData: CartContentMetaData) => {
-    if (index === 0) {
-      return (
-        <td rowSpan={metaData.maxLength}>
-          <div className="center-align cart-ship-container">
-            <p>{SHIP_BASE_TEXT}</p>
-            <p>{kstFormatter(metaData.shipmentPrice)}</p>
-            <p>{PAY_TYPE_FIRST}</p>
-          </div>
-        </td>
-      );
-    } else {
-      return <></>;
-    }
+  const decrease = () => {
+    changeItem(index, -1);
+  };
+
+  const checkOpacity = () => {
+    return content.isChecked ? '' : ' unchecked-opacity';
   };
 
   return (
     <S.CartContent>
       {content.isChecked ? (
-        <img className={'check-button checked'} src={checked} />
+        <img onClick={onClick} className={'check-button checked'} src={checked} />
       ) : (
-        <img className={'check-button'} src={unchecked} />
+        <img onClick={onClick} className={'check-button'} src={unchecked} />
       )}
-
-      <img className="product-image" src={content.imgLink} />
-      <div className="product-info-container">
+      <img className={'product-image' + checkOpacity()} src={content.imgLink} />
+      <div className={'product-info-container' + checkOpacity()}>
         <div className="product-title-container">
           <p className="product-title">{content.title}</p>
           {content.option.length !== 0 ? (
@@ -72,9 +54,9 @@ function CartContent({ content, index, metaData, toggleHandler }: Contents): Rea
             <p>{kstFormatter(content.amount)}</p>
           </div>
           <div className="product-count-container">
-            <img className="num-scaler" src={numDown} />
+            <img onClick={decrease} className="num-scaler" src={numDown} />
             <p>{content.count}</p>
-            <img className="num-scaler" src={numUp} />
+            <img onClick={increament} className="num-scaler" src={numUp} />
           </div>
         </div>
       </div>

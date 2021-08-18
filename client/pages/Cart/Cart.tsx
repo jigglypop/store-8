@@ -88,6 +88,9 @@ function Cart(): ReactElement {
   const toggleOneHandler = (index: number) => {
     const temp: ClientCartData[] = [...contents];
     temp[index].isChecked = !temp[index].isChecked;
+    if (temp[index].count === 0) {
+      temp[index].count = 1;
+    }
     setContents([...temp]);
   };
 
@@ -134,6 +137,26 @@ function Cart(): ReactElement {
     console.log('TODO: ORDER ALL ITEM', contents);
   };
 
+  const changeItem = (index: number, changeAmount: number): void => {
+    const temp: ClientCartData[] = [...contents];
+
+    if (temp[index].count + changeAmount < 0) {
+      return;
+    }
+
+    temp[index].count += changeAmount;
+
+    if (temp[index].count === 0) {
+      temp[index].isChecked = false;
+    }
+
+    if (temp[index].count !== 0) {
+      temp[index].isChecked = true;
+    }
+
+    setContents([...temp]);
+  };
+
   return (
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
@@ -141,6 +164,7 @@ function Cart(): ReactElement {
         <CartContentsContainer
           toggleAllHandler={toggleAllHandler}
           toggleOneHandler={toggleOneHandler}
+          changeItem={changeItem}
           contents={contents}
           metaData={metaData}
         />

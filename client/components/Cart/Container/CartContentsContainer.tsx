@@ -19,9 +19,14 @@ interface CartContentProps {
   metaData: CartContentMetaData;
   toggleAllHandler: () => void;
   toggleOneHandler: (index: number) => void;
+  changeItem: (index: number, changeAmount: number) => void;
 }
 
 function CartContentsContainer(props: CartContentProps): ReactElement {
+  const onClick = () => {
+    props.toggleAllHandler();
+  };
+
   if (props.metaData.maxLength === 0) {
     return (
       <S.CartContainer>
@@ -32,7 +37,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
   return (
     <S.CartContainer>
       <div className="selector-container">
-        <img src={unchecked} />
+        <img onClick={onClick} src={props.metaData.allToggle ? checked : unchecked} />
         <button>{'선택 상품 삭제'}</button>
       </div>
       {props.contents.map((content: ClientCartData, index: number) => {
@@ -42,7 +47,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
             key={index}
             index={index}
             toggleHandler={props.toggleOneHandler}
-            metaData={props.metaData}
+            changeItem={props.changeItem}
           ></CartContent>
         );
       })}
