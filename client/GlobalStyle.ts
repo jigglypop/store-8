@@ -170,7 +170,7 @@ export const GlobalStyle = createGlobalStyle`
 export const App = styled.div`
   margin-top: 100px;
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 60vh;
 `;
 // 토스트 부분 간단 디자인(수정 가능)

@@ -2,7 +2,6 @@ import { ReactElement, useEffect, useState } from 'react';
 import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
-import Proceed from '@components/Cart/Proceed/Proceed';
 
 import { CartData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
@@ -146,18 +145,15 @@ function Cart(): ReactElement {
           metaData={metaData}
         />
         <div className="cart-receipt-side-container">
-          <p>임시 공간</p>
+          <Receipt
+            metaData={metaData}
+            deleteCheckedItem={deleteCheckedItem}
+            likeCheckedItem={likeCheckedItem}
+            orderCheckedItem={orderCheckedItem}
+            orderAllItem={orderAllItem}
+          />
         </div>
       </div>
-      <Receipt metaData={metaData} />
-      <Proceed
-        contents={contents}
-        metaData={metaData}
-        deleteCheckedItem={deleteCheckedItem}
-        likeCheckedItem={likeCheckedItem}
-        orderCheckedItem={orderCheckedItem}
-        orderAllItem={orderAllItem}
-      />
     </S.Cart>
   );
 }
