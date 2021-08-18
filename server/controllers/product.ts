@@ -1,20 +1,20 @@
-import { Request, Response } from "express";
-import HttpError from "../utils/HttpError";
-import { err } from "../constants/error";
-import Product from "../models/Product";
-import Option from "../models/Option";
+import { Request, Response } from 'express';
+import HttpError from '../utils/HttpError';
+import { err } from '../constants/error';
+import Product from '../models/Product';
+import Option from '../models/Option';
 
 export const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
   const product = await Product.findAll({
     where: { id: productId },
-    include: [    
+    include: [
       {
         model: Option,
-        as: 'options'
+        as: 'options',
       },
-    ]
-  })
+    ],
+  });
   if (!product) {
     throw new HttpError({ ...err.TEST_ERROR });
   }

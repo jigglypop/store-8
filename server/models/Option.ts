@@ -6,9 +6,11 @@ import {
   Model,
   PrimaryKey,
   Table,
+  Unique,
   HasMany,
 } from 'sequelize-typescript';
 import Product from './Product';
+import Order from './Order';
 import Cart from './Cart';
 
 export interface IOption {
@@ -37,4 +39,8 @@ export default class Option extends Model<IOption> {
 
   @HasMany(() => Cart)
   carts: Cart[];
+  products: Product;
+
+  @HasMany(() => Order)
+  orders: Order[];
 }
