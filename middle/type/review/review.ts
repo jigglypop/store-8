@@ -3,5 +3,6 @@ export interface IReviewRes {
   title: string;
   contents: string;
   score: number;
+  date: string;
   imgSrc: string[];
 }

@@ -7,18 +7,49 @@ import Review from '../models/Review';
 import HttpError from '../utils/HttpError';
 import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
-
-// interface IReviewRes {
-//   id: number;
-//   title: string;
-//   contents: string;
-//   score: number;
-//   imgSrc: string[];
-// }
+import ReviewImg from '../models/ReviewImg';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
+  const { reviewId } = req.query;
+
+  if (!productId || !reviewId) {
+    throw new HttpError(err.INVALID_INPUT_ERROR);
+  }
+
+  const reviewSnapshot = await Review.findAll({
+    attributes: ['id', 'title', 'contents', 'score', 'createdAt'],
+    where: {
+      productId,
+    },
+    order: [['createdAt', 'DESC']],
+  });
+
+  const reviewImgSnapshot = await ReviewImg.findAll({
+    attributes: ['img_src'],
+    where: { reviewId: +reviewId },
+  });
+
+  const reviewImgSrcs = reviewImgSnapshot.map((item) => item.img_src);
+
+  const reviews: IReviewRes[] = reviewSnapshot.map((item) => {
+    const id = item.getDataValue('id');
+    const date = item.getDataValue('createdAt');
+
+    if (!id || !date) throw new HttpError(err.CREATE_ERROR);
+
+    return {
+      id,
+      title: item.getDataValue('title'),
+      contents: item.getDataValue('contents'),
+      score: item.getDataValue('score'),
+      date: dateStringFormat(date, '.'),
+      imgSrc: reviewImgSrcs,
+    };
+  });
+
+  res.status(200).json(reviews);
 };
 
 //리뷰 생성
@@ -34,6 +65,8 @@ export const createReview = async (req: Request, res: Response) => {
   if (!productId || !title || !contents || score === undefined) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
+
+  //TODO 사진 추가
 
   try {
     await Review.create({
@@ -64,6 +97,8 @@ export const updateReview = async (req: Request, res: Response) => {
   if (!isUserOwnedReview) {
     throw new HttpError(err.WRONG_ACCESS_REVIEW);
   }
+
+  //TODO 사진 추가
 
   try {
     await Review.update(

@@ -7,7 +7,6 @@ import {
   BelongsTo,
   CreatedAt,
   UpdatedAt,
-  DataType,
   PrimaryKey,
   AutoIncrement,
 } from 'sequelize-typescript';
@@ -16,7 +15,7 @@ import Review from './Review';
 export interface IReview_Img {
   id: number;
   img_src: string;
-  // reviewId: number;
+  reviewId: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
