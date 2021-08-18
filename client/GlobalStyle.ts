@@ -50,6 +50,8 @@ export const GlobalStyle = createGlobalStyle`
     --background-pastel-black: #353535;
     --background-black: #000000;
     --background-gray: #F5F5F7;
+    --background-mint: #2AC1BC;
+    --background-dark-mint: #219A95;
     --body-background: white;
     --header-background: white;
 

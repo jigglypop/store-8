@@ -53,7 +53,12 @@ function CartContent({ content, index, metaData, toggleHandler }: Contents): Rea
 
   return (
     <S.CartContent>
-      <img className="check-button" src={content.isChecked ? checked : unchecked} />
+      {content.isChecked ? (
+        <img className={'check-button checked'} src={checked} />
+      ) : (
+        <img className={'check-button'} src={unchecked} />
+      )}
+
       <img className="product-image" src={content.imgLink} />
       <div className="product-info-container">
         <div className="product-title-container">

@@ -3,7 +3,7 @@ import styled from '@lib/styledComponent';
 export const CartContent = styled.div`
   width: 100%;
   height: 142px;
-  padding: 10px;
+  padding: 10px 10px 10px 13px;
   display: flex;
   flex-direction: row;
   border-bottom: 0.5px solid var(--line-gray);
@@ -13,6 +13,11 @@ export const CartContent = styled.div`
     height: 18px;
     margin-right: 13px;
     cursor: pointer;
+  }
+
+  .checked {
+    transform: scale(1.03);
+    transform-origin: center;
   }
 
   .product-info-container {

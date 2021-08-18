@@ -3,7 +3,6 @@ import styled from '@lib/styledComponent';
 export const CartContainer = styled.div`
   width: 100%;
   min-height: 600px;
-  border-bottom: 0.5px solid var(--line-gray);
 
   .selector-container {
     display: flex;

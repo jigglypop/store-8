@@ -14,11 +14,10 @@ export const Cart = styled.div`
 
   .cart-receipt-side-container {
     width: 320px;
-    margin-top: 60px;
+    margin-top: 20px;
+    margin-bottom: -20px;
     margin-left: 70px;
     height: 290px;
-    border-radius: 7px;
-    background-color: var(--background-gray);
 
     display: flex;
     justify-content: center;
