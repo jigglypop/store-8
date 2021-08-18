@@ -11,7 +11,7 @@ import {
 
 import User from './User';
 import Product from './Product';
-import Review_Img from './Review-Img';
+import ReviewImg from './ReviewImg';
 
 export interface IReview {
   id: number;
@@ -53,6 +53,6 @@ export default class Review extends Model<IReview> {
   @BelongsTo(() => Product)
   product: Product;
 
-  @HasMany(() => Review_Img)
-  review_img: Review_Img[];
+  @HasMany(() => ReviewImg)
+  reviewimg: ReviewImg[];
 }

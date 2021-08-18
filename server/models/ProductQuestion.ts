@@ -10,7 +10,6 @@ import {
 
 import User from './User';
 import Product from './Product';
-import Product_Question_Reply from './Product-Question-Reply';
 
 export interface IProductQuestion {
   id: number;
@@ -20,7 +19,7 @@ export interface IProductQuestion {
 }
 
 @Table
-export default class Product_Question extends Model<IProductQuestion> {
+export default class ProductQuestion extends Model<IProductQuestion> {
   @Column({ primaryKey: true })
   id: number;
 
@@ -31,6 +30,10 @@ export default class Product_Question extends Model<IProductQuestion> {
   @AllowNull(false)
   @Column(DataType.STRING(500))
   contents: string;
+
+  @AllowNull(false)
+  @Column(DataType.STRING(500))
+  reply: string;
 
   @AllowNull(false)
   @Column(DataType.BOOLEAN)
@@ -51,12 +54,4 @@ export default class Product_Question extends Model<IProductQuestion> {
 
   @BelongsTo(() => Product)
   product: Product;
-
-  @AllowNull(false)
-  @Column
-  @ForeignKey(() => Product_Question_Reply)
-  replyId: number;
-
-  @BelongsTo(() => Product_Question_Reply)
-  reply: Product_Question_Reply;
 }

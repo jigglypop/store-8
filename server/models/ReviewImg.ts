@@ -7,7 +7,7 @@ export interface IReview_Img {
 }
 
 @Table
-export default class Review_Img extends Model<IReview_Img> {
+export default class ReviewImg extends Model<IReview_Img> {
   @Column({ primaryKey: true })
   id: number;
 
