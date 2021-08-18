@@ -7,6 +7,7 @@ import {
   BelongsTo,
   CreatedAt,
   UpdatedAt,
+  DataType,
 } from 'sequelize-typescript';
 import Review from './Review';
 
@@ -14,15 +15,17 @@ export interface IReview_Img {
   id: number;
   img_src: string;
   reviewId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class ReviewImg extends Model<IReview_Img> {
-  @Column({ primaryKey: true })
+  @Column({
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataType.BIGINT,
+  })
   id: number;
 
   @AllowNull(false)

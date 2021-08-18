@@ -16,21 +16,23 @@ import Product from './Product';
 import ReviewImg from './ReviewImg';
 
 export interface IReview {
-  id: number;
+  id?: number;
   title: string;
   contents: string;
   score: number;
   userId: number;
   productId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Review extends Model<IReview> {
-  @Column({ primaryKey: true })
+  @Column({
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataType.BIGINT,
+  })
   id: number;
 
   @AllowNull(false)
