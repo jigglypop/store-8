@@ -23,19 +23,6 @@ const initCategory = () => {
   });
 };
 
-// 상품 부분 시작
-// const initProduct = async () => {
-//   return Product.sync().then(async () => {
-//     for (let key of Object.keys(PRODUCTS)) {
-//       const _PRODUCT: any = { ...PRODUCTS[key] };
-//       const _PRODUCT_ORIGIN = PRODUCTS[key];
-//       _PRODUCT.amount = Number(_PRODUCT_ORIGIN.amount.replace(',', ''));
-//       _PRODUCT.originalAmount = Number(_PRODUCT_ORIGIN.originalAmount.replace(',', ''));
-//       await Product.create({ ..._PRODUCT });
-//     }
-//   });
-// };
-
 const initProduct = async () => {
   return Product.sync().then(async () => {
     for (let key of Object.keys(PRODUCTS)) {

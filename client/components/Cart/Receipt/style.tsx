@@ -1,63 +1,81 @@
 import styled from '@lib/styledComponent';
 
+export const ReceiptContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+`;
+
 export const Receipt = styled.div`
-  .cart-receipt-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: row;
-    border: 1.5px solid var(--line-gray);
-    border-radius: 4px;
-    margin-top: 2.5rem;
-    padding: 2.5rem;
-  }
+  padding: 19px;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--background-gray);
+  margin-bottom: 11px;
 
-  .cart-receipt-container > img {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-  }
-
-  .cart-price-layout {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    margin-top: 0.5rem;
-  }
-
-  .cart-receipt-title-layout {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-
-  .cart-select-amount-title {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .cart-title-text-black-large {
-    font-weight: bold;
-    margin: 0px 2px;
-  }
-
-  .cart-price-text-black-large {
-    font-weight: bold;
+  .amount-title {
     font-size: var(--body-large-font);
-    color: var(--realBlack);
-  }
-
-  .cart-price-text-mint-large {
     font-weight: bold;
-    font-size: var(--body-large-font);
-    color: var(--text-mint);
   }
 
-  .cart-price-text-unit {
-    line-height: var(--body-large-font);
-    margin-top: 1px;
-    margin-left: 1px;
+  .amount-row {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > .amount {
+      font-weight: bold;
+    }
+  }
+`;
+
+export const TotalPrice = styled.div`
+  padding: 13px 15px;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-gray);
+
+  & > p {
+    font-weight: bold;
+  }
+  & > .amount {
+    margin-top: 12px;
+    font-size: var(--body-large-font);
+  }
+`;
+
+export const OrderNow = styled.div`
+  button {
+    background-color: var(--background-mint);
+    color: var(--text-white);
+    width: 100%;
+    height: 48px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 11px 0px 8px 0px;
+    &:hover {
+      background-color: var(--background-dark-mint);
+    }
+  }
+  .order-info {
+    display: flex;
+    flex-direction: row;
+
+    & > img {
+      width: var(--body-small-font);
+      height: var(--body-small-font);
+    }
+
+    & > p {
+      margin-top: 1px;
+      margin-left: 6px;
+      font-size: var(--body-small-font);
+    }
   }
 `;

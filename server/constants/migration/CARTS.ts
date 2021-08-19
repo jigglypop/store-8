@@ -18,4 +18,10 @@ export const CARTS: ICart[] = [
     userId: 1,
     productCount: 1,
   },
+  {
+    productId: 162,
+    productOptionId: null,
+    userId: 1,
+    productCount: 5,
+  },
 ];

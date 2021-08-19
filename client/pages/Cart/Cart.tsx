@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import CartHeader from '@components/Cart/Header/CartHeader';
 import CartContentsContainer from '@components/Cart/Container/CartContentsContainer';
 import Receipt from '@components/Cart/Receipt/Receipt';
-import Proceed from '@components/Cart/Proceed/Proceed';
+import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
 import { CartData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
@@ -10,7 +10,6 @@ import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { cartGetApi, cartDeleteApi } from '@api/cart';
 import { getCart, delCart } from '@store/product/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
@@ -21,6 +20,8 @@ function Cart(): ReactElement {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
   const [contents, setContents] = useState(cartDataChanger(cart));
+  const [deleteItem, setDeleteLists] = useState([0]);
+  const [isOpenForm, setOpenForm] = useState(false);
 
   useEffect(() => {
     // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
@@ -35,6 +36,16 @@ function Cart(): ReactElement {
     let result = 0;
     contents.forEach((content) => {
       if (content.isChecked) result += content.amount * content.count;
+    });
+    return result;
+  };
+
+  const getTotalDiscount = () => {
+    let result = 0;
+    contents.forEach((content) => {
+      if (content.isChecked && content.originalAmount !== 0) {
+        result += (content.amount - content.originalAmount) * content.count;
+      }
     });
     return result;
   };
@@ -65,6 +76,7 @@ function Cart(): ReactElement {
       totalPrice: totalPrice,
       checkedCount: getCheckedNum(),
       shipmentPrice: getShipmentAmount(totalPrice),
+      totalDiscount: getTotalDiscount(),
     };
   };
 
@@ -81,6 +93,9 @@ function Cart(): ReactElement {
     const toggleDest = !isOff();
     temp.forEach((content) => {
       content.isChecked = toggleDest;
+      if (toggleDest && content.count === 0) {
+        content.count = 1;
+      }
     });
     setContents([...temp]);
   };
@@ -89,14 +104,16 @@ function Cart(): ReactElement {
   const toggleOneHandler = (index: number) => {
     const temp: ClientCartData[] = [...contents];
     temp[index].isChecked = !temp[index].isChecked;
+    if (temp[index].count === 0) {
+      temp[index].count = 1;
+    }
     setContents([...temp]);
   };
 
   const deleteCheckedItem = async () => {
-    // TODO : 삭제 이전에 물어보는 modal 띄워주기.
-    const temp: ClientCartData[] = [];
+    const temp: ClientCartData[] = []; // State 변경을 위해 저장
     const tempCart: CartData[] = cart ? [...cart] : [];
-    const deletedItem: number[] = [];
+    const deletedIndex: number[] = [];
     const renewCart: CartData[] = [];
 
     contents.forEach((content, index) => {
@@ -104,55 +121,74 @@ function Cart(): ReactElement {
         temp.push(content);
         renewCart.push(tempCart[index]);
       } else {
+        deletedIndex.push(index);
+      }
+    });
+    setDeleteLists(deletedIndex);
+    setOpenForm(true);
+  };
+
+  const closeForm = () => {
+    setOpenForm(false);
+  };
+
+  const confirm = () => {
+    const deletedItem: number[] = [];
+
+    contents.forEach((content) => {
+      if (content.isChecked) {
         deletedItem.push(content.id);
       }
     });
 
     dispatch(delCart({ userId: 1, cartIds: deletedItem }));
+    setOpenForm(false);
   };
 
-  const likeCheckedItem = () => {
-    const temp: ClientCartData[] = [];
-    contents.forEach((content) => {
-      if (content.isChecked) {
-        temp.push(content);
-      }
-    });
-    console.log('TODO: LIKE CHECKED ITEM', temp);
-  };
+  const changeItem = (index: number, changeAmount: number): void => {
+    const temp: ClientCartData[] = [...contents];
 
-  const orderCheckedItem = () => {
-    const temp: ClientCartData[] = [];
-    contents.forEach((content) => {
-      if (content.isChecked) {
-        temp.push(content);
-      }
-    });
-    console.log('TODO: ORDER CHECKED ITEM', temp);
-  };
+    if (temp[index].count + changeAmount < 0) {
+      return;
+    }
 
-  const orderAllItem = () => {
-    console.log('TODO: ORDER ALL ITEM', contents);
+    temp[index].count += changeAmount;
+
+    if (temp[index].count === 0) {
+      temp[index].isChecked = false;
+    }
+
+    if (temp[index].count !== 0) {
+      temp[index].isChecked = true;
+    }
+
+    setContents([...temp]);
   };
 
   return (
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
-      <CartContentsContainer
-        toggleAllHandler={toggleAllHandler}
-        toggleOneHandler={toggleOneHandler}
-        contents={contents}
-        metaData={metaData}
-      />
-      <Receipt metaData={metaData} />
-      <Proceed
-        contents={contents}
-        metaData={metaData}
-        deleteCheckedItem={deleteCheckedItem}
-        likeCheckedItem={likeCheckedItem}
-        orderCheckedItem={orderCheckedItem}
-        orderAllItem={orderAllItem}
-      />
+      <div className="cart-side-container">
+        <CartContentsContainer
+          toggleAllHandler={toggleAllHandler}
+          toggleOneHandler={toggleOneHandler}
+          deleteCheckedItem={deleteCheckedItem}
+          changeItem={changeItem}
+          contents={contents}
+          metaData={metaData}
+        />
+        <div className="cart-receipt-side-container">
+          <Receipt metaData={metaData} />
+        </div>
+      </div>
+      {isOpenForm && (
+        <DeleteModal
+          deleteLists={deleteItem}
+          contents={contents}
+          closeForm={closeForm}
+          confirm={confirm}
+        />
+      )}
     </S.Cart>
   );
 }

@@ -4,7 +4,6 @@ import {
   Column,
   Model,
   Table,
-  DataType,
   ForeignKey,
   AllowNull,
   BelongsTo,

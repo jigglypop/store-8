@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
-import PlusCircle from '@image/plusCircle.png';
-import EqualCircle from '@image/equalCircle.png';
 import { kstFormatter } from '@utils/utils';
+import exMark from '@image/exclamMark.png';
 import {
-  SHIP_HEADER_TEXT,
-  TOTAL_TEXT,
-  TOTAL_AMOUNT_TEXT,
-  KST_AMOUNT_UNIT,
+  PROCEED_GUIDE_TEXT,
+  TOTAL_DISCOUNT_TEXT,
+  TOTAL_PRODUCTS_TEXT,
+  TOTAL_SHIPMENT_TEXT,
+  TOTAL_RESULT_TEXT,
   TOTAL_ADD_TEXT,
 } from '@constants/Cart';
 import * as S from './style';
@@ -18,49 +18,36 @@ interface MetaData {
 
 function Receipt({ metaData }: MetaData): ReactElement {
   return (
-    <S.Receipt>
-      <div className="cart-receipt-container">
-        <div>
-          <div className="cart-receipt-title-layout cart-select-amount-title">
-            <p>{TOTAL_TEXT}</p>
-            <p className="cart-title-text-black-large">
-              {kstFormatter(metaData.checkedCount, false)}
-            </p>
-            <p>{TOTAL_AMOUNT_TEXT}</p>
-          </div>
-          <div className="cart-price-layout">
-            <p className="cart-price-text-black-large">
-              {kstFormatter(metaData.totalPrice, false)}
-            </p>
-            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
-          </div>
+    <S.ReceiptContainer>
+      <S.Receipt>
+        <p className="amount-title">{TOTAL_RESULT_TEXT}</p>
+        <div className="amount-row">
+          <p>{TOTAL_PRODUCTS_TEXT}</p>
+          <p className="amount">
+            {kstFormatter(metaData.totalPrice + Math.abs(metaData.totalDiscount))}
+          </p>
         </div>
-        <img src={PlusCircle} />
-        <div>
-          <div className="cart-receipt-title-layout">
-            <p>{SHIP_HEADER_TEXT}</p>
-          </div>
-          <div className="cart-price-layout">
-            <p className="cart-price-text-black-large">
-              {kstFormatter(metaData.shipmentPrice, false)}
-            </p>
-            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
-          </div>
+        <div className="amount-row">
+          <p>{TOTAL_SHIPMENT_TEXT}</p>
+          <p className="amount">{kstFormatter(metaData.shipmentPrice)}</p>
         </div>
-        <img src={EqualCircle} />
-        <div>
-          <div className="cart-receipt-title-layout">
-            <p>{TOTAL_ADD_TEXT}</p>
-          </div>
-          <div className="cart-price-layout">
-            <p className="cart-price-text-mint-large">
-              {kstFormatter(metaData.totalPrice + metaData.shipmentPrice, false)}
-            </p>
-            <p className="cart-price-text-unit">{KST_AMOUNT_UNIT}</p>
-          </div>
+        <div className="amount-row">
+          <p>{TOTAL_DISCOUNT_TEXT}</p>
+          <p className="amount">{kstFormatter(metaData.totalDiscount)}</p>
         </div>
-      </div>
-    </S.Receipt>
+      </S.Receipt>
+      <S.TotalPrice>
+        <p>{TOTAL_ADD_TEXT}</p>
+        <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
+      </S.TotalPrice>
+      <S.OrderNow>
+        <button>{'주문하기'}</button>
+        <div className="order-info">
+          <img src={exMark} />
+          <p>{PROCEED_GUIDE_TEXT}</p>
+        </div>
+      </S.OrderNow>
+    </S.ReceiptContainer>
   );
 }
 
