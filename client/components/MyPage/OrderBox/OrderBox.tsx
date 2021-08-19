@@ -44,7 +44,6 @@ export default function OrderBox({ result }: Props): ReactElement {
         <div>{result.state}</div>
       </div>
       <div className="column-confirm">
-        <button>취소</button>
         <button>구매확정</button>
         <button>리뷰쓰기</button>
       </div>

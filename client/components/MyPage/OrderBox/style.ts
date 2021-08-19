@@ -61,7 +61,7 @@ export const OrderBox = styled.div`
 
   .column-confirm {
     button {
-      height: 30px;
+      height: 23px;
       width: 70px;
       color: var(--white);
       background-color: var(--black);
