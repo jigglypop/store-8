@@ -57,23 +57,28 @@ export const createReview = async (req: Request, res: Response) => {
   const userId = 1;
   const { productId } = req.params;
 
-  const { title, contents, score } = req.body;
+  const { title, contents, score, imgSrc } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  //TODO 사진 추가
-
+  //TODO transaction 추가
   try {
-    await Review.create({
+    const createResult = await Review.create({
       userId,
       productId: +productId,
       title: title as string,
       contents: contents as string,
       score: +score,
     });
+
+    const reviewId = createResult.getDataValue('id');
+
+    if (!reviewId) throw new HttpError(err.CREATE_ERROR);
+
+    await createReviewSrc(reviewId, JSON.parse(imgSrc));
   } catch (error) {
     throw new HttpError(err.CREATE_ERROR);
   }
@@ -87,7 +92,7 @@ export const updateReview = async (req: Request, res: Response) => {
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
-  const { reviewId, title, contents, score } = req.body;
+  const { reviewId, title, contents, score, imgSrc } = req.body;
 
   const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
 
@@ -115,6 +120,8 @@ export const updateReview = async (req: Request, res: Response) => {
         },
       }
     );
+
+    await createReviewSrc(reviewId, JSON.parse(imgSrc));
   } catch (error) {
     throw new HttpError(err.UPDATE_ERROR);
   }
@@ -173,6 +180,7 @@ const isUserReview = async (userId: number, productId: number, reviewId: number)
   return !!reviewSnapshot;
 };
 
+//리뷰 이미지 조회
 const getReviewImgs = async (reviewId: number): Promise<string[]> => {
   const reviewImgSnapshot = await ReviewImg.findAll({
     attributes: ['img_src'],
@@ -182,4 +190,20 @@ const getReviewImgs = async (reviewId: number): Promise<string[]> => {
   const reviewImgs = reviewImgSnapshot.map((item) => item.img_src);
 
   return reviewImgs;
+};
+
+//리뷰 사진 레코드 생성
+const createReviewSrc = async (reviewId: number, imgSrc: string[]) => {
+  await ReviewImg.destroy({
+    where: {
+      reviewId: +reviewId,
+    },
+  });
+
+  for (const src of imgSrc) {
+    await ReviewImg.create({
+      reviewId,
+      img_src: src,
+    });
+  }
 };

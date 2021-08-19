@@ -15,6 +15,7 @@ import Question from './Question';
 import Review from './Review';
 import ReviewImg from './ReviewImg';
 import Refund from './Refund';
+import { migrate } from '../utils/migrate';
 
 dotenv.config();
 export const sequelize = new Sequelize({

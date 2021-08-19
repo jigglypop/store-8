@@ -13,7 +13,7 @@ import {
 import Review from './Review';
 
 export interface IReview_Img {
-  id: number;
+  id?: number;
   img_src: string;
   reviewId: number;
   createdAt?: Date;
