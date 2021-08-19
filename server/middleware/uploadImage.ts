@@ -3,13 +3,11 @@ import multerS3 from 'multer-s3';
 import path from 'path';
 import aws from 'aws-sdk';
 
-aws.config.update({
+const s3 = new aws.S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: 'ap-northeast-2',
 });
-
-const s3 = new aws.S3();
 
 const fileFilter = (req: any, file: any, cb: any) => {
   if (
@@ -32,7 +30,7 @@ const upload = multer({
     acl: 'public-read-write',
     key: (req, file, cb) => {
       console.log('file', file);
-      cb(null, `review-img/${Date.now()}_${file.originalname}`);
+      cb(null, `review-img/${Date.now()}`);
     },
   }),
 });
