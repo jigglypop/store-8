@@ -14,22 +14,25 @@ import User from './User';
 import Product from './Product';
 
 export interface IQuestion {
-  id: number;
+  id?: number;
   title: string;
   contents: string;
-  reply: string;
+  reply?: string;
   isSecret: boolean;
-  createdAt: Date;
-  updatedAt: Date;
   userId: number;
   productId: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+  replyDate?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Question extends Model<IQuestion> {
-  @Column({ primaryKey: true })
+  @Column({
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataType.BIGINT,
+  })
   id: number;
 
   @AllowNull(false)
@@ -40,7 +43,7 @@ export default class Question extends Model<IQuestion> {
   @Column(DataType.STRING(500))
   contents: string;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column(DataType.STRING(500))
   reply: string;
 
@@ -53,6 +56,9 @@ export default class Question extends Model<IQuestion> {
 
   @UpdatedAt
   updatedAt: Date;
+
+  @Column
+  replyDate: Date;
 
   @AllowNull(false)
   @ForeignKey(() => User)
