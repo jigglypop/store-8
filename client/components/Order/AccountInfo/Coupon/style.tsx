@@ -7,12 +7,23 @@ export const Coupon = styled.div`
   background-color: var(--background-gray);
   display: flex;
   flex-direction: row;
+  position: relative;
 
   .coupon {
     &-yellow {
       height: 60px;
       width: 3px;
       background-color: var(--background-yellow);
+    }
+    &-dark-blue {
+      height: 60px;
+      width: 3px;
+      background-color: var(--background-dark-blue);
+    }
+    &-red {
+      height: 60px;
+      width: 3px;
+      background-color: var(--background-red);
     }
   }
   .coupon-container {
@@ -31,5 +42,12 @@ export const Coupon = styled.div`
       font-size: var(--body-small-font);
       color: var(--text-pastel-black);
     }
+  }
+  .coupon-checked {
+    position: absolute;
+    width: 16px;
+    object-fit: contain;
+    top: calc(50% - 8px);
+    right: 21px;
   }
 `;

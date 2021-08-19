@@ -18,6 +18,7 @@ const PROCEED_GUIDE_TEXT: string = '주문서 작성 단계에서 할인/적립�
 const NOTHING_IN_TEXT: string = '장바구니에 담겨있는 상품이 없습니다.';
 
 const NEXT_DELETE_TEXT: string = '다음 물품들이 장바구니에서 삭제됩니다.';
+const CHOOSE_COUPON_TEXT: string = '사용할 쿠폰을 선택해주세요!';
 
 const CALC_GUIDE_TEXT: string = '쿠폰과 적립금이 포함된 금액입니다';
 
@@ -37,6 +38,7 @@ export {
   TOTAL_ADD_TEXT,
   NOTHING_IN_TEXT,
   NEXT_DELETE_TEXT,
+  CHOOSE_COUPON_TEXT,
   PROCEED_GUIDE_TEXT,
   TOTAL_RESULT_TEXT,
   TOTAL_DISCOUNT_TEXT,

@@ -5,14 +5,19 @@ import OrderReceipt from '@components/Order/OrderReceipt/OrderReceipt';
 import UserInfo from '@components/Order/UserInfo/UserInfo';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
+import type { CouponData } from '@middle/type/Coupon/coupon';
 import { ORDER_START } from '@constants/Cart';
 import { getMileage, getShipmentAmount } from '@utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
+import { useState } from 'react';
+import CouponModal from '@client/components/Order/CouponModal/CouponModal';
 
 const OrderPage = () => {
   const dispatch = useDispatch();
+  const [isOpenForm, setOpenForm] = useState(false);
+  const [selectedCoupon, setCoupon] = useState({ title: '', amount: 0, dDay: '' });
   const { cart } = useSelector((state: RootState) => state.order);
 
   const getTotalPrice = () => {
@@ -52,6 +57,19 @@ const OrderPage = () => {
     };
   };
 
+  const openForm = () => {
+    setOpenForm(true);
+  };
+
+  const closeForm = () => {
+    setOpenForm(false);
+  };
+
+  const confirm = (coupon: CouponData) => {
+    setCoupon(coupon);
+    setOpenForm(false);
+  };
+
   return (
     <S.OrderPage>
       <CartHeader nowStep={ORDER_START}></CartHeader>
@@ -60,7 +78,8 @@ const OrderPage = () => {
           <OrderDetail contents={cart}></OrderDetail>
           <UserInfo></UserInfo>
           <AccountInfo
-            coupon={{ title: '안녕 감사쿠폰', amount: 3000, dDay: '2021.08.21' }}
+            openForm={openForm}
+            coupon={selectedCoupon}
             metaData={calcMetaData()}
           ></AccountInfo>
         </div>
@@ -68,6 +87,7 @@ const OrderPage = () => {
           <OrderReceipt metaData={calcMetaData()}></OrderReceipt>
         </div>
       </div>
+      {isOpenForm && <CouponModal closeForm={closeForm} confirm={confirm} />}
     </S.OrderPage>
   );
 };

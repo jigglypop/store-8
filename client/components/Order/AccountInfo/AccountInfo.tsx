@@ -3,16 +3,17 @@ import { kstFormatter } from '@utils/utils';
 import unchecked from '@image/unchecked.png';
 import Coupon from './Coupon/Coupon';
 
-import type { CouponData } from '@middle/type/Coupon/Coupon';
+import type { CouponData } from '@middle/type/Coupon/coupon';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
 
 interface AccountProps {
-  coupon?: CouponData;
+  openForm: () => void;
+  coupon: CouponData;
   metaData: OrderContentMetaData;
 }
 
-const AccountInfo = ({ metaData, coupon }: AccountProps): ReactElement => {
+const AccountInfo = ({ openForm, metaData, coupon }: AccountProps): ReactElement => {
   return (
     <S.AccountInfo>
       <div className="account-header">
@@ -25,13 +26,15 @@ const AccountInfo = ({ metaData, coupon }: AccountProps): ReactElement => {
       <div className="coupon-section">
         <p className="section-header">{'사용할 쿠폰'}</p>
         <p className="section-infor">{'쿠폰은 주문 한번에 최대 1개씩만 사용 가능합니다.'}</p>
-        {coupon ? (
+        {coupon.title.length !== 0 ? (
           <Coupon title={coupon.title} amount={coupon.amount} dDay={coupon.dDay}></Coupon>
         ) : (
           <></>
         )}
         <div className="coupon-button-section">
-          <button className="submit-coupon">{'쿠폰 적용'}</button>
+          <button onClick={openForm} className="submit-coupon">
+            {'쿠폰 적용'}
+          </button>
           <button className="remove-coupon">{'적용 해제'}</button>
         </div>
       </div>
