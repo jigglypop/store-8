@@ -47,7 +47,7 @@ const OrderPage = () => {
       <CartHeader nowStep={ORDER_START}></CartHeader>
       <div className="cart-side-container">
         <div className="left">
-          <OrderDetail></OrderDetail>
+          <OrderDetail contents={cart}></OrderDetail>
           <UserInfo></UserInfo>
           <AccountInfo></AccountInfo>
         </div>

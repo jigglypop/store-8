@@ -29,6 +29,10 @@ function getShipmentAmount(amount: number) {
   else return SHIPMENT_ZERO;
 }
 
+function getMileage(amount: number) {
+  return Math.floor(amount / 100);
+}
+
 function mediaStringFormatter(pcString: string, tabletString: string, mobileString: string) {
   const width = window.innerWidth;
   if (width > PC_WIDTH_MIN) {
@@ -40,4 +44,4 @@ function mediaStringFormatter(pcString: string, tabletString: string, mobileStri
   }
 }
 
-export { kstFormatter, getShipmentAmount, mediaStringFormatter };
+export { kstFormatter, getShipmentAmount, getMileage, mediaStringFormatter };

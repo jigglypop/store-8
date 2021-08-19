@@ -1,6 +1,7 @@
+import { ReactElement } from 'react';
 import * as S from './style';
 
-const AccountInfo = () => {
+const AccountInfo = (): ReactElement => {
   return (
     <S.AccountInfo>
       <div></div>

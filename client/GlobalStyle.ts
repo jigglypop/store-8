@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
     --mint: #2AC1BC;
     --dark-mint: #219A95;
     --white-mint: #A0E1E0;
+    --dark-blue: #293D7C;
     --white: #FFFFFF;
     --off-white: #E7E7E7;
     --black: #000000;
@@ -43,6 +44,7 @@ export const GlobalStyle = createGlobalStyle`
     /* 선 색상 */
     --line-black: #353535;
     --line-gray: #BDBDBD;
+    --line-gray2: #A1A1A1;
     --border-dark-gray: #717171;
 
     /* 백그라운드 */
@@ -62,6 +64,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-pastel-black: #353535;
     --text-black: #000000;
     --text-mint: #2AC1BC;
+    --text-dark-blue: #293D7C;
     --text-white: #FFFFFF;
     --text-lightgray: #BDBDBD;
     --text-gray: #828282;

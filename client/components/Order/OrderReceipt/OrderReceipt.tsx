@@ -12,7 +12,6 @@ import {
 } from '@constants/Cart';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
-import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface MetaData {
   metaData: OrderContentMetaData;
