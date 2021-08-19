@@ -10,6 +10,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
   const IMG_HEIGHT = 530;
   const MAGNIFIER_HEIGHT = 300;
   const MAGNIFIER_WIDTH = 300;
+  const IMG_SRC = 'http://localhost:8000/' + src;
 
   const [showMagifier, setShowMagifier] = useState(false);
   const [[positionX, positionY], setPosition] = useState([0, 0]);
@@ -55,7 +56,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
     >
-      <img src={src} alt="image" />
+      <img src={IMG_SRC} alt="image" />
       {showMagifier && (
         <S.Magnifier
           width={MAGNIFIER_WIDTH}
@@ -73,7 +74,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
           positionX={positionX}
           positionY={positionY}
         >
-          <img src={src} alt="magnified-image" />
+          <img src={IMG_SRC} alt="magnified-image" />
         </S.MagnifiedImg>
       )}
     </S.ZoomImg>
