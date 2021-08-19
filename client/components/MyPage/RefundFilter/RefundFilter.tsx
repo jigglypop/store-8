@@ -2,22 +2,19 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import * as S from './style';
 
 interface Props {
-  setShownResult: Function;
+  eventHandler: Function;
+  index: number;
 }
 
-export default function RefundFilter({ setShownResult }: Props): ReactElement {
-  const [clickedBtnIdx, setClickedBtnIdx] = useState(0);
-
-  const isButtonClicked = (value: number): boolean => clickedBtnIdx == value;
-
-  const onFilterButtonHandler = (e: React.MouseEvent) => {
-    const { target } = e;
-    if (!(target instanceof HTMLButtonElement)) return;
-    setClickedBtnIdx(+target.value);
-  };
+export default function RefundFilter({ eventHandler, index }: Props): ReactElement {
+  const isButtonClicked = (value: number): boolean => index === value;
 
   return (
-    <S.RefundFilter onClick={onFilterButtonHandler}>
+    <S.RefundFilter
+      onClick={(e) => {
+        eventHandler(e);
+      }}
+    >
       <S.FilterButton value="0" isClicked={isButtonClicked(0)}>
         반품/환불 신청 내역
       </S.FilterButton>
