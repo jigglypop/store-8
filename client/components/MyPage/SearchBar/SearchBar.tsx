@@ -1,11 +1,13 @@
 import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 import { dateStringFormat } from '@utils/date';
+import request from '@client/api/utils/request';
 interface Props {
   title: string;
+  setOriginalResults: Function;
 }
 
-export default function SearchBar({ title }: Props): ReactElement {
+export default function SearchBar({ title, setOriginalResults }: Props): ReactElement {
   const today = new Date();
   const [selectedOffset, setSelectedOffset] = useState(7);
 
@@ -28,9 +30,12 @@ export default function SearchBar({ title }: Props): ReactElement {
     setEndDate(dateStringFormat(today));
   };
 
-  const onSearchButtonClicked = (e: React.MouseEvent) => {
-    // API 요청
+  const onSearchButtonClicked = async (e: React.MouseEvent) => {
     alert(`${startDate} 부터 ${endDate} 까지 조회합니다.\nAPI 개발 중!!`);
+
+    const data = await request.get(`/api/refund?startDate=${startDate}&endDate=${endDate}`);
+
+    setOriginalResults(data.results);
   };
 
   return (

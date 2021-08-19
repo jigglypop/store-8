@@ -4,15 +4,15 @@ import { TextNoData } from '../ResultBox/style';
 import * as S from './style';
 
 interface IResult {
-  date: Date;
-  id: number;
-  orderNumber: string;
-  title: string;
-  option?: string;
+  date: Date; // order day
+  id: number; // refundId : for key
+  orderNumber: string; // order
+  title: string; // productId
+  option?: string; //
   productPrice: number;
   productCount: number;
-  status: string; // 주문상태
-  checkOrReview: string; // 확인/리뷰
+  state: string; // 주문상태
+  isConfirmed: boolean; // 확인/리뷰
   thumbnailSrc: string;
 }
 
