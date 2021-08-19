@@ -2,6 +2,17 @@ import { ReactElement, useState } from 'react';
 import checkBad from '@image/check-bad.png';
 import checkGood from '@image/check-good.png';
 import exclamRed from '@image/exclam-red.png';
+import {
+  INPUT_NAME_PLACEHOLDER,
+  INPUT_CALL_PLACEHOLDER,
+  INPUT_EMAIL_PLACEHOLDER,
+  INPUT_NAME_ALERT,
+  INPUT_CALL_ALERT,
+  INPUT_EMAIL_ALERT,
+  INPUT_NAME_TITLE,
+  INPUT_CALL_TITLE,
+  INPUT_EMAIL_TITLE,
+} from '@constants/Order';
 import * as S from './style';
 
 const UserInfo = (): ReactElement => {
@@ -60,46 +71,46 @@ const UserInfo = (): ReactElement => {
   return (
     <S.UserInfo>
       <div className="input-form-container">
-        <p className="input-form-label">{'주문 하시는 분'}</p>
+        <p className="input-form-label">{INPUT_NAME_TITLE}</p>
         <div className="input-form">
           <input
             className={nameCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder="주문하시는 분의 성함을 입력해주세요."
+            placeholder={INPUT_NAME_PLACEHOLDER}
             onChange={(e) => {
               setNameCheck(checkNameString(e.target.value));
             }}
           />
           {getCheckIcon(nameCheck)}
         </div>
-        {getAlertText(nameCheck, '성함은 필수로 입력해주세요!')}
+        {getAlertText(nameCheck, INPUT_NAME_ALERT)}
       </div>
       <div className="input-form-container">
-        <p className="input-form-label">{'휴대폰 번호'}</p>
+        <p className="input-form-label">{INPUT_CALL_TITLE}</p>
         <div className="input-form">
           <input
             className={callCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder="연락을 받을 번호를 입력해주세요."
+            placeholder={INPUT_CALL_PLACEHOLDER}
             onChange={(e) => {
               setCallCheck(checkCallString(e.target.value));
             }}
           />
           {getCheckIcon(callCheck)}
         </div>
-        {getAlertText(callCheck, '-를 포함한 전화번호의 형태로 입력해 주세요!')}
+        {getAlertText(callCheck, INPUT_CALL_ALERT)}
       </div>
       <div className="input-form-container">
-        <p className="input-form-label">{'이메일'}</p>
+        <p className="input-form-label">{INPUT_EMAIL_TITLE}</p>
         <div className="input-form">
           <input
             className={emailCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder="연락을 받을 이메일을 입력해주세요."
+            placeholder={INPUT_EMAIL_PLACEHOLDER}
             onChange={(e) => {
               setEmailCheck(checkEmailString(e.target.value));
             }}
           />
           {getCheckIcon(emailCheck)}
         </div>
-        {getAlertText(emailCheck, '이메일 형식을 지켜주세요!')}
+        {getAlertText(emailCheck, INPUT_EMAIL_ALERT)}
       </div>
     </S.UserInfo>
   );

@@ -2,6 +2,13 @@ import { ReactElement, useState } from 'react';
 import { kstFormatter } from '@utils/utils';
 import unchecked from '@image/unchecked.png';
 import Coupon from './Coupon/Coupon';
+import {
+  COUPON_INFO_TEXT,
+  NOW_GEN_MILEAGE,
+  USE_COUPON,
+  USE_MILEAGE,
+  TOTAL_USABLE_MILEAGE,
+} from '@constants/Order';
 
 import type { CouponData } from '@middle/type/Coupon/coupon';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
@@ -29,12 +36,12 @@ const AccountInfo = ({
         <p>{'결제 정보'}</p>
       </div>
       <div className="mileage-section">
-        <p className="section-header">{'이번에 생기는 적립금'}</p>
+        <p className="section-header">{NOW_GEN_MILEAGE}</p>
         <p className="mileage-amount">{kstFormatter(metaData.totalMileage)}</p>
       </div>
       <div className="coupon-section">
-        <p className="section-header">{'사용할 쿠폰'}</p>
-        <p className="section-infor">{'쿠폰은 주문 한번에 최대 1개씩만 사용 가능합니다.'}</p>
+        <p className="section-header">{USE_COUPON}</p>
+        <p className="section-infor">{COUPON_INFO_TEXT}</p>
         {coupon.title.length !== 0 ? (
           <Coupon title={coupon.title} amount={coupon.amount} dDay={coupon.dDay}></Coupon>
         ) : (
@@ -50,9 +57,9 @@ const AccountInfo = ({
         </div>
       </div>
       <div className="use-mileage-section">
-        <p className="section-header">{'적립금 사용'}</p>
+        <p className="section-header">{USE_MILEAGE}</p>
         <div className="mileage-usage-title-section">
-          <p className="usable-mileage-title">{'전체 사용 가능 금액 : '}</p>
+          <p className="usable-mileage-title">{TOTAL_USABLE_MILEAGE}</p>
           <p className="mileage-amount">{kstFormatter(metaData.usableMileage)}</p>
         </div>
 
