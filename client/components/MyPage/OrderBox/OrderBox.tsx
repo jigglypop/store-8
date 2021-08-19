@@ -8,7 +8,7 @@ interface IResult {
   orderNumber: string; // order
   title: string; // productId
   option?: string; //
-  productPrice: number;
+  productAmount: number;
   productCount: number;
   state: string; // 주문상태
   isConfirmed: boolean; // 확인/리뷰
@@ -19,9 +19,9 @@ interface Props {
   result: IResult;
 }
 
-export default function ResultBox({ result }: Props): ReactElement {
+export default function OrderBox({ result }: Props): ReactElement {
   return (
-    <S.ResultBox>
+    <S.OrderBox>
       <div className="column-date">
         <div>{dateStringFormat(result.date)}</div>
         <div>{result.orderNumber}</div>
@@ -37,7 +37,7 @@ export default function ResultBox({ result }: Props): ReactElement {
       </div>
       <div className="column-product">
         <div>
-          {result.productPrice}원 / <span>{result.productCount}개</span>
+          {result.productAmount}원 / <span>{result.productCount}개</span>
         </div>
       </div>
       <div className="column-status">
@@ -48,6 +48,6 @@ export default function ResultBox({ result }: Props): ReactElement {
         <button>구매확정</button>
         <button>리뷰쓰기</button>
       </div>
-    </S.ResultBox>
+    </S.OrderBox>
   );
 }

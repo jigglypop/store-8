@@ -1,33 +1,22 @@
 import React, { ReactElement } from 'react';
-import ResultBox from '../ResultBox/ResultBox';
-import { TextNoData } from '../ResultBox/style';
+import OrderBox from '../OrderBox/OrderBox';
+import { TextNoData } from '../OrderBox/style';
 import * as S from './style';
 
-interface IResult {
-  date: Date; // order day
-  id: number; // refundId : for key
-  orderNumber: string; // order
-  title: string; // productId
-  option?: string; //
-  productPrice: number;
-  productCount: number;
-  state: string; // 주문상태
-  isConfirmed: boolean; // 확인/리뷰
-  thumbnailSrc: string;
-}
+import { IResult, _filteredResults, sampleData } from '../dummydata';
 
 interface Props {
   results: IResult[];
   title: string;
 }
 
-export default function ResultContainer({ title, results }: Props): ReactElement {
+export default function OrderResultContainer({ title, results }: Props): ReactElement {
   const resultBoxList = results.map((data, idx) => {
-    return <ResultBox result={data} key={idx} />;
+    return <OrderBox result={data} key={idx} />;
   });
 
   return (
-    <S.ResultContainer>
+    <S.OrderResultContainer>
       <h4>
         {title} <b>{results.length}</b>건
       </h4>
@@ -41,7 +30,7 @@ export default function ResultContainer({ title, results }: Props): ReactElement
       <div className={'container-result-list' + (results.length === 0) ? 'nodata' : ''}>
         {!results.length ? <TextNoData>조회 내역이 없습니다.</TextNoData> : resultBoxList}
       </div>
-    </S.ResultContainer>
+    </S.OrderResultContainer>
   );
 }
 

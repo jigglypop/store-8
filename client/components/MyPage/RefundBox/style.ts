@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ResultBox = styled.div`
+export const RefundBox = styled.div`
   width: 100%;
   height: 100px;
   margin-bottom: 3px;
@@ -49,6 +49,7 @@ export const ResultBox = styled.div`
 
       .text-option {
         color: var(--text-lightgray);
+        text-align: left;
       }
     }
   }
@@ -61,7 +62,7 @@ export const ResultBox = styled.div`
 
   .column-confirm {
     button {
-      height: 30px;
+      height: 23px;
       width: 70px;
       color: var(--white);
       background-color: var(--black);

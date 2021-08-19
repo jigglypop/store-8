@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 
-import Intro from '../Intro/Intro';
-import SearchBar from '../SearchBar/SearchBar';
-import RefundFilter from '../RefundFilter/RefundFilter';
-import ResultContainer from '../ResultContainer/ResultContainer';
-import { IResult, _filteredResults, sampleData } from '../dummydata';
+import Intro from '@components/MyPage/Intro/Intro';
+import SearchBar from '@components/MyPage/SearchBar/SearchBar';
+import RefundFilter from '@components/MyPage/RefundFilter/RefundFilter';
+import RefundResultContainer from '@components/MyPage/RefundResultContainer/RefundResultContainer';
+import { IResult, _filteredResults, sampleData } from '@components/MyPage/dummydata';
 
 interface Props {}
 
@@ -36,7 +36,7 @@ export default function RefundSection({}: Props): ReactElement {
       <Intro {...sampleData} />
       <SearchBar title="반품/환불" setOriginalResults={setOriginalResults} />
       <RefundFilter eventHandler={onFilterButtonHandler} index={filterButtonIndex} />
-      <ResultContainer title="반품/환불 내역 총 " results={filteredResults} />
+      <RefundResultContainer title="반품/환불 내역 총 " results={filteredResults} />
     </S.RefundSection>
   );
 }

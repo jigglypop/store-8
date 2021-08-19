@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ResultContainer = styled.div`
+export const RefundResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 940px;
