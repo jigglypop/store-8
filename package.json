@@ -8,6 +8,7 @@
     "server": "nodemon --watch '*ts' --exec 'ts-node' ./server/index.ts",
     "dev": "webpack serve --config webpack.dev.js --progress",
     "develop": "webpack serve --config webpack.dev.js --progress",
+    "db": "ts-node dbInitializer.ts",
     "build": "webpack --mode production",
     "start:client": "webpack --mode development --progress"
   },
