@@ -36,6 +36,12 @@ export const routes = [
     component: 'CartPage',
   },
   {
+    path: '/order',
+    name: 'order',
+    title: '주문하기',
+    component: 'OrderPage',
+  },
+  {
     path: '/product/:productId',
     name: 'product',
     title: '상품 페이지',
