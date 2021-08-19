@@ -8,6 +8,7 @@ import HttpError from '../utils/HttpError';
 import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
+import ReviewLike from '../models/ReviewLike';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
@@ -65,23 +66,19 @@ export const createReview = async (req: Request, res: Response) => {
   }
 
   //TODO transaction 추가
-  try {
-    const createResult = await Review.create({
-      userId,
-      productId: +productId,
-      title: title as string,
-      contents: contents as string,
-      score: +score,
-    });
+  const createResult = await Review.create({
+    userId,
+    productId: +productId,
+    title: title as string,
+    contents: contents as string,
+    score: +score,
+  });
 
-    const reviewId = createResult.getDataValue('id');
+  const reviewId = createResult.getDataValue('id');
 
-    if (!reviewId) throw new HttpError(err.CREATE_ERROR);
+  if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 
-    await createReviewSrc(reviewId, JSON.parse(imgSrc));
-  } catch (error) {
-    throw new HttpError(err.CREATE_ERROR);
-  }
+  await createReviewSrc(reviewId, JSON.parse(imgSrc));
 
   res.status(200).json({ success: true });
 };
@@ -103,28 +100,24 @@ export const updateReview = async (req: Request, res: Response) => {
 
   //TODO 사진 추가
 
-  try {
-    await Review.update(
-      {
-        title,
-        contents,
-        score: +score,
+  await Review.update(
+    {
+      title,
+      contents,
+      score: +score,
+      userId,
+      productId: +productId,
+    },
+    {
+      where: {
+        id: +reviewId,
         userId,
-        productId: +productId,
+        productId,
       },
-      {
-        where: {
-          id: +reviewId,
-          userId,
-          productId,
-        },
-      }
-    );
+    }
+  );
 
-    await createReviewSrc(reviewId, JSON.parse(imgSrc));
-  } catch (error) {
-    throw new HttpError(err.UPDATE_ERROR);
-  }
+  await createReviewSrc(reviewId, JSON.parse(imgSrc));
 
   res.status(200).json({ success: true });
 };
@@ -144,27 +137,15 @@ export const deleteReview = async (req: Request, res: Response) => {
     throw new HttpError(err.WRONG_ACCESS_REVIEW);
   }
 
-  try {
-    await Review.destroy({
-      where: {
-        id: +reviewId,
-        userId,
-        productId,
-      },
-    });
-  } catch (error) {
-    throw new HttpError(err.DELETE_ERROR);
-  }
+  await Review.destroy({
+    where: {
+      id: +reviewId,
+      userId,
+      productId,
+    },
+  });
 
   res.status(200).json({ success: true });
-};
-
-//리뷰 공감/비공감
-export const likeReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
-  const { productId } = req.params;
 };
 
 //유저가 접근한 리뷰가 유저의 리뷰가 맞는지 체크
@@ -206,4 +187,70 @@ const createReviewSrc = async (reviewId: number, imgSrc: string[]) => {
       img_src: src,
     });
   }
+};
+
+//-------리뷰 공감 비공감 --------------
+interface IReviewLike {
+  userId: number;
+  reviewId: number;
+  isLike: boolean;
+  isDislike: boolean;
+}
+
+//리뷰 공감/비공감
+export const likeReview = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
+  const { reviewId } = req.params;
+
+  const { isLike, isDislike } = req.body;
+
+  const cancelResult = await cancelReviewLike({ isLike, isDislike, userId, reviewId: +reviewId });
+
+  if (cancelResult) {
+    res.status(200).json({ success: true });
+    return;
+  }
+
+  await createReviewLike({ isLike, isDislike, userId, reviewId: +reviewId });
+
+  res.status(200).json({ success: true });
+};
+
+//리뷰 공감 비공감 취소처리
+const cancelReviewLike = async ({ userId, reviewId, isLike, isDislike }: IReviewLike) => {
+  const likeSnapshot = await ReviewLike.findOne({
+    attributes: ['isLike', 'isDislike'],
+    where: { userId, reviewId },
+  });
+
+  const dbIsLike = likeSnapshot?.getDataValue('isLike');
+  const dbIsDislike = likeSnapshot?.getDataValue('isDislike');
+
+  if ((isLike && dbIsLike) || (isDislike && dbIsDislike)) {
+    await ReviewLike.update(
+      { isLike: false, isDislike: false, reviewId, userId },
+      {
+        where: { userId, reviewId },
+      }
+    );
+    return true;
+  }
+
+  return false;
+};
+
+// 리뷰 공감 비공감 생성
+const createReviewLike = async ({ userId, reviewId, isLike, isDislike }: IReviewLike) => {
+  await ReviewLike.destroy({
+    where: { userId, reviewId },
+  });
+
+  await ReviewLike.create({
+    userId,
+    reviewId,
+    isLike,
+    isDislike,
+  });
 };

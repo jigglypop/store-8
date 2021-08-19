@@ -18,6 +18,6 @@ reviewRouter.post('/:productId', wrapAsync(createReview));
 reviewRouter.put('/:productId', wrapAsync(updateReview));
 reviewRouter.delete('/:productId', wrapAsync(deleteReview));
 
-reviewRouter.put('/like/:productId', wrapAsync(likeReview));
+reviewRouter.post('/like/:reviewId', wrapAsync(likeReview));
 
 export default reviewRouter;

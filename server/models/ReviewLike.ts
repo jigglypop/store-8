@@ -16,6 +16,7 @@ import User from './User';
 export interface IReviewLike {
   id?: number;
   isLike: boolean;
+  isDislike: boolean;
   reviewId: number;
   userId: number;
 }
@@ -27,9 +28,11 @@ export default class ReviewLike extends Model<IReviewLike> {
   @Column
   id: number;
 
-  @AllowNull(false)
   @Column
   isLike: boolean;
+
+  @Column
+  isDislike: boolean;
 
   @CreatedAt
   createdAt: Date;
