@@ -11,7 +11,7 @@ import { getMileage, getShipmentAmount } from '@utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CouponModal from '@client/components/Order/CouponModal/CouponModal';
 
 const OrderPage = () => {
@@ -20,6 +20,10 @@ const OrderPage = () => {
   const [selectedCoupon, setCoupon] = useState({ title: '', amount: 0, dDay: '' });
   const [mileage, setMileage] = useState(0);
   const { cart } = useSelector((state: RootState) => state.order);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getTotalPrice = () => {
     let result = 0;
