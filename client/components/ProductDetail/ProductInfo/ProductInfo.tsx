@@ -3,6 +3,15 @@ import * as S from './style';
 
 import PlusIcon from '@image/plusIcon.svg';
 import MinusIcon from '@image/minusIcon.svg';
+import {
+  DELIVERY_INFO_FEE,
+  DELIVERY_INFO_TIMELIMIT,
+  TITLE_ORIGIN_AMOUNT,
+  TITLE_SALE_AMOUNT,
+  TITLE_DELIVERY,
+  TITLE_BUY_AMOUNT,
+  TITLE_TOTAL_AMOUNT,
+} from '@client/constants/productDetail/productDetailInfo/productDetailInfo';
 // import { kstFormatter } from '@utils/utils';
 
 //여기 utils import에서 에러 발생해서 임시로 가져다 놨습니다.
@@ -69,23 +78,23 @@ export default function ProductInfo({
         <h3 className="producto-info__title">{title}</h3>
         {originAmount && (
           <div className="product-info__origin-amount">
-            <S.InfoTitle>정가</S.InfoTitle>
+            <S.InfoTitle>{TITLE_ORIGIN_AMOUNT}</S.InfoTitle>
             <div className="stroke">{kstFormatter(originAmount, true)}</div>
           </div>
         )}
         <div className="producto-info__amount">
-          <S.InfoTitle>판매가격</S.InfoTitle>
+          <S.InfoTitle>{TITLE_SALE_AMOUNT}</S.InfoTitle>
           <div className="price">{kstFormatter(amount, true)}</div>
         </div>
         <div className="producto-info__delivery-info">
-          <S.InfoTitle>배송정보</S.InfoTitle>
+          <S.InfoTitle>{TITLE_DELIVERY}</S.InfoTitle>
           <div>
-            <div className="delivery-info-fee">{delivery_info.fee}</div>
-            <div>{delivery_info.timeLimit}</div>
+            <div className="delivery-info-fee">{DELIVERY_INFO_FEE}</div>
+            <div>{DELIVERY_INFO_TIMELIMIT}</div>
           </div>
         </div>
         <div className="producto-info__count">
-          <S.InfoTitle>구매수량</S.InfoTitle>
+          <S.InfoTitle>{TITLE_BUY_AMOUNT}</S.InfoTitle>
           <form onSubmit={handleCountSumbit}>
             <button type="button" className="count-btn" onClick={handleClickCountMinus}>
               <MinusIcon />
@@ -98,7 +107,7 @@ export default function ProductInfo({
         </div>
       </div>
       <div className="product__total-info">
-        <S.InfoTitle>총 합계금액</S.InfoTitle>
+        <S.InfoTitle>{TITLE_TOTAL_AMOUNT}</S.InfoTitle>
         <div className="total-price">{kstFormatter(amount * count, true)}</div>
       </div>
     </S.ProductInfo>
