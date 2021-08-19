@@ -16,6 +16,7 @@ import {
 import User from './User';
 import Product from './Product';
 import ReviewImg from './ReviewImg';
+import ReviewLike from './ReviewLike';
 
 export interface IReview {
   id?: number;
@@ -71,4 +72,7 @@ export default class Review extends Model<IReview> {
 
   @HasMany(() => ReviewImg)
   reviewImg: ReviewImg[];
+
+  @HasMany(() => ReviewLike)
+  ReviewLike: ReviewLike[];
 }
