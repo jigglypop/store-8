@@ -192,11 +192,12 @@ export const ToastDiv = styled.div`
 
   .toast {
     background-color: #1d1d1d;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     border-radius: 5px;
-    padding: 20px 40px;
+    padding: 20px 50px;
     margin: 0.5rem;
+    border: 2px solid var(--text-picker);
 
     strong {
       color: var(--text-picker);
