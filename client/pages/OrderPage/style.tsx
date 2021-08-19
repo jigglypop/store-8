@@ -13,12 +13,6 @@ export const OrderPage = styled.div`
     justify-content: center;
   }
 
-  .placeHolder {
-    background-color: var(--background-gray);
-    height: 1200px;
-    margin-top: 47px;
-  }
-
   .left {
     flex-grow: 1;
   }
@@ -28,7 +22,6 @@ export const OrderPage = styled.div`
     height: 303px;
     margin-left: 70px;
     margin-top: 47px;
-    background-color: var(--background-gray);
 
     position: sticky;
     top: 60px;

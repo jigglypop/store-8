@@ -11,6 +11,7 @@ import { getShipmentAmount } from '@utils/utils';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
 import { getCart, delCart } from '@store/product/cart';
+import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 
@@ -30,6 +31,7 @@ function Cart(): ReactElement {
 
   useEffect(() => {
     setContents(cartDataChanger(cart));
+    dispatch(setOrderList(makeOrderData()));
   }, [cart]);
 
   const getTotalPrice = () => {
@@ -80,11 +82,30 @@ function Cart(): ReactElement {
     };
   };
 
+  const makeOrderData = (): CartData[] => {
+    const temp: CartData[] = [];
+    contents.forEach((content) => {
+      if (content.isChecked) {
+        temp.push({
+          id: content.id,
+          imgSrc: content.imgLink,
+          title: content.title,
+          count: content.count,
+          originalAmount: content.originalAmount,
+          amount: content.amount,
+          option: content.option,
+        });
+      }
+    });
+    return temp;
+  };
+
   const [metaData, setMetaData] = useState(calcMetaData());
 
   // Contents 가 바뀔 때 마다 toggle, 가격 등의 변화를 주기 위한 useEffect
   useEffect(() => {
     setMetaData(calcMetaData());
+    dispatch(setOrderList(makeOrderData()));
   }, [contents]);
 
   // 전체 toggle이 켜져있다면 모두 끄고, 꺼져있다면 모두 키는 함수
