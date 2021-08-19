@@ -5,6 +5,7 @@ import Address from './Address';
 import Order from './Order';
 import Question from './Question';
 import Review from './Review';
+import Refund from './Refund';
 
 import UserCoupon from './UserCoupon';
 import Wish from './Wish';
@@ -55,4 +56,7 @@ export default class User extends Model<IUser> {
 
   @HasMany(() => Order)
   orders: Order[];
+
+  @HasMany(() => Refund)
+  Refunds: Refund[];
 }

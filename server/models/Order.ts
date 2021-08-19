@@ -26,12 +26,9 @@ export interface IOrder {
   productId: number;
   productCount: number;
   productAmount: number;
-  optionId: number;
+  optionId?: number;
   state: string;
   isConfirmed: boolean;
-  refundId: number;
-  createdAt: Date;
-  updatedOn: Date;
 }
 
 @Table({
@@ -59,7 +56,7 @@ export default class Order extends Model<IOrder> {
   @BelongsTo(() => Product)
   product: Product;
 
-  @AllowNull(false)
+  @AllowNull(true)
   @Column
   @ForeignKey(() => ProductOption)
   optionId: number;
