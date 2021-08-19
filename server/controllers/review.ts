@@ -12,6 +12,9 @@ import ReviewLike from '../models/ReviewLike';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
   const { productId } = req.params;
 
   if (!productId) {
@@ -23,6 +26,12 @@ export const getReview = async (req: Request, res: Response) => {
     where: {
       productId,
     },
+    include: [
+      {
+        model: ReviewLike,
+        attributes: ['isLike', 'isDislike'],
+      },
+    ],
     order: [['createdAt', 'DESC']],
   });
 
@@ -35,6 +44,9 @@ export const getReview = async (req: Request, res: Response) => {
 
       const imgSrc = await getReviewImgs(id);
 
+      const { likeCount, dislikeCount } = await getReviewLikeCount(id);
+      const { isLike, isDislike } = await isUserLikeReview(id, userId);
+
       return {
         id,
         title: item.getDataValue('title'),
@@ -42,6 +54,10 @@ export const getReview = async (req: Request, res: Response) => {
         score: item.getDataValue('score'),
         date: dateStringFormat(date, '.'),
         imgSrc,
+        likeCount,
+        dislikeCount,
+        isLike,
+        isDislike,
       };
     })
   ).catch((e) => {
@@ -197,6 +213,7 @@ interface IReviewLike {
   isDislike: boolean;
 }
 
+//TODO - transaction
 //리뷰 공감/비공감
 export const likeReview = async (req: Request, res: Response) => {
   //   const accessToken = getAccessToken(req.headers.authorization);
@@ -253,4 +270,27 @@ const createReviewLike = async ({ userId, reviewId, isLike, isDislike }: IReview
     isLike,
     isDislike,
   });
+};
+
+//공감 비공감 개수
+const getReviewLikeCount = async (reviewId: number) => {
+  const likeCount = await ReviewLike.count({
+    where: { reviewId, isLike: true },
+  });
+  const dislikeCount = await ReviewLike.count({
+    where: { reviewId, isDislike: true },
+  });
+
+  return { likeCount, dislikeCount };
+};
+//유저의 공감 비공감 상태
+const isUserLikeReview = async (reviewId: number, userId: number) => {
+  const isLike = await ReviewLike.count({
+    where: { reviewId, userId, isLike: true },
+  });
+  const isDislike = await ReviewLike.count({
+    where: { reviewId, userId, isDislike: true },
+  });
+
+  return { isLike: !!isLike, isDislike: !!isDislike };
 };

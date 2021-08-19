@@ -45,7 +45,7 @@ export default class Review extends Model<IReview> {
   contents: string;
 
   @AllowNull(false)
-  @Column(DataType.FLOAT)
+  @Column
   score: number;
 
   @CreatedAt
