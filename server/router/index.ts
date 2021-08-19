@@ -6,6 +6,7 @@ import categoryRouter from './category';
 import productRouter from './product';
 import mainRouter from './main';
 import questionRouter from './question';
+import refundRouter from './refund';
 
 import templateRouter from './template';
 import cartRouter from './cart';
@@ -22,5 +23,6 @@ rootRouter.use('/api/product', productRouter);
 rootRouter.use('/api/main', mainRouter);
 rootRouter.use('/api/question', questionRouter);
 rootRouter.use('/api/cart', cartRouter);
+rootRouter.use('/api/refund', refundRouter);
 
 export default rootRouter;
