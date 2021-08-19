@@ -59,7 +59,10 @@ const OrderPage = () => {
         <div className="left">
           <OrderDetail contents={cart}></OrderDetail>
           <UserInfo></UserInfo>
-          <AccountInfo metaData={calcMetaData()}></AccountInfo>
+          <AccountInfo
+            coupon={{ title: '안녕 감사쿠폰', amount: 3000, dDay: '2021.08.21' }}
+            metaData={calcMetaData()}
+          ></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
           <OrderReceipt metaData={calcMetaData()}></OrderReceipt>

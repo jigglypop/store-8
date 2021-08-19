@@ -3,7 +3,7 @@ import styled from '@lib/styledComponent';
 export const ReceiptContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 100%;
 `;
 
 export const Receipt = styled.div`

@@ -106,7 +106,15 @@ export const AccountInfo = styled.div`
         font-size: var(--body-small-font);
       }
       input {
-        width: 320px;
+        @media only screen and (min-width: 375px) {
+          width: 160px;
+        }
+        @media only screen and (min-width: 768px) {
+          width: 240px;
+        }
+        @media only screen and (min-width: 1300px) {
+          width: 320px;
+        }
         height: 32px;
         padding: 6px;
         display: flex;

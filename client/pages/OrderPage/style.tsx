@@ -19,9 +19,19 @@ export const OrderPage = styled.div`
   }
 
   .cart-receipt-side-container {
-    width: 320px;
+    @media only screen and (min-width: 375px) {
+      width: 160px;
+      margin-left: 20px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 240px;
+      margin-left: 40px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 320px;
+      margin-left: 70px;
+    }
     height: 303px;
-    margin-left: 70px;
     margin-top: 47px;
 
     position: sticky;

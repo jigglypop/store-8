@@ -190,14 +190,16 @@ function Cart(): ReactElement {
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
       <div className="cart-side-container">
-        <CartContentsContainer
-          toggleAllHandler={toggleAllHandler}
-          toggleOneHandler={toggleOneHandler}
-          deleteCheckedItem={deleteCheckedItem}
-          changeItem={changeItem}
-          contents={contents}
-          metaData={metaData}
-        />
+        <div className="cart-contents-left">
+          <CartContentsContainer
+            toggleAllHandler={toggleAllHandler}
+            toggleOneHandler={toggleOneHandler}
+            deleteCheckedItem={deleteCheckedItem}
+            changeItem={changeItem}
+            contents={contents}
+            metaData={metaData}
+          />
+        </div>
         <div className="cart-receipt-side-container">
           <Receipt metaData={metaData} />
         </div>

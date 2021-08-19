@@ -3,14 +3,16 @@ import { kstFormatter } from '@utils/utils';
 import unchecked from '@image/unchecked.png';
 import Coupon from './Coupon/Coupon';
 
+import type { CouponData } from '@middle/type/Coupon/Coupon';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
 
-interface MetaData {
+interface AccountProps {
+  coupon?: CouponData;
   metaData: OrderContentMetaData;
 }
 
-const AccountInfo = ({ metaData }: MetaData): ReactElement => {
+const AccountInfo = ({ metaData, coupon }: AccountProps): ReactElement => {
   return (
     <S.AccountInfo>
       <div className="account-header">
@@ -23,7 +25,11 @@ const AccountInfo = ({ metaData }: MetaData): ReactElement => {
       <div className="coupon-section">
         <p className="section-header">{'사용할 쿠폰'}</p>
         <p className="section-infor">{'쿠폰은 주문 한번에 최대 1개씩만 사용 가능합니다.'}</p>
-        <Coupon title="안녕 감사쿠폰" amount={3000} dDay="2021.08.21"></Coupon>
+        {coupon ? (
+          <Coupon title={coupon.title} amount={coupon.amount} dDay={coupon.dDay}></Coupon>
+        ) : (
+          <></>
+        )}
         <div className="coupon-button-section">
           <button className="submit-coupon">{'쿠폰 적용'}</button>
           <button className="remove-coupon">{'적용 해제'}</button>

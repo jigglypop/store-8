@@ -12,10 +12,33 @@ export const Cart = styled.div`
     justify-content: center;
   }
 
+  .cart-contents-left {
+    @media only screen and (min-width: 375px) {
+      width: calc(100% - 180px);
+    }
+    @media only screen and (min-width: 768px) {
+      width: calc(100% - 280px);
+    }
+    @media only screen and (min-width: 1300px) {
+      width: calc(100% - 390px);
+    }
+  }
+
   .cart-receipt-side-container {
-    width: 320px;
-    height: 303px;
-    margin-left: 70px;
+    @media only screen and (min-width: 375px) {
+      width: 160px;
+      margin-left: 20px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 240px;
+      margin-left: 40px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 320px;
+      margin-left: 70px;
+    }
+
+    height: 330px;
     margin-top: 47px;
 
     position: sticky;
