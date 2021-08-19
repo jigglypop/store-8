@@ -40,7 +40,7 @@ export const getQuestion = async (req: Request, res: Response) => {
     };
   });
 
-  res.status(200).json(questions);
+  res.status(200).json({ data: questions });
 };
 
 //상품 문의 생성
