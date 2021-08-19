@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { kstFormatter } from '@utils/utils';
 import unchecked from '@image/unchecked.png';
 import Coupon from './Coupon/Coupon';
@@ -9,11 +9,20 @@ import * as S from './style';
 
 interface AccountProps {
   openForm: () => void;
+  initCoupon: () => void;
+  useMileage: (amount: number) => void;
   coupon: CouponData;
   metaData: OrderContentMetaData;
 }
 
-const AccountInfo = ({ openForm, metaData, coupon }: AccountProps): ReactElement => {
+const AccountInfo = ({
+  openForm,
+  useMileage,
+  initCoupon,
+  metaData,
+  coupon,
+}: AccountProps): ReactElement => {
+  const [mileageString, setMileageString] = useState('0');
   return (
     <S.AccountInfo>
       <div className="account-header">
@@ -35,7 +44,9 @@ const AccountInfo = ({ openForm, metaData, coupon }: AccountProps): ReactElement
           <button onClick={openForm} className="submit-coupon">
             {'쿠폰 적용'}
           </button>
-          <button className="remove-coupon">{'적용 해제'}</button>
+          <button onClick={initCoupon} className="remove-coupon">
+            {'적용 해제'}
+          </button>
         </div>
       </div>
       <div className="use-mileage-section">
@@ -46,9 +57,35 @@ const AccountInfo = ({ openForm, metaData, coupon }: AccountProps): ReactElement
         </div>
 
         <div className="mileage-input-container">
-          <input></input>
-          <img src={unchecked} />
-          <p>{'전액 사용'}</p>
+          <input
+            value={mileageString}
+            onChange={(e) => {
+              const mileageStr = e.target.value;
+              if (+mileageStr > metaData.usableMileage) {
+                e.target.value = '' + metaData.usableMileage;
+                setMileageString('' + metaData.usableMileage);
+                useMileage(metaData.usableMileage);
+              } else {
+                setMileageString('' + Number(mileageStr));
+                useMileage(+mileageStr);
+              }
+            }}
+          />
+          <img
+            onClick={(e) => {
+              setMileageString('' + metaData.usableMileage);
+              useMileage(metaData.usableMileage);
+            }}
+            src={unchecked}
+          />
+          <p
+            onClick={(e) => {
+              setMileageString('' + metaData.usableMileage);
+              useMileage(metaData.usableMileage);
+            }}
+          >
+            {'전액 사용'}
+          </p>
         </div>
       </div>
     </S.AccountInfo>

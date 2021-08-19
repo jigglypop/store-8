@@ -18,6 +18,7 @@ const OrderPage = () => {
   const dispatch = useDispatch();
   const [isOpenForm, setOpenForm] = useState(false);
   const [selectedCoupon, setCoupon] = useState({ title: '', amount: 0, dDay: '' });
+  const [mileage, setMileage] = useState(0);
   const { cart } = useSelector((state: RootState) => state.order);
 
   const getTotalPrice = () => {
@@ -52,7 +53,7 @@ const OrderPage = () => {
       totalPrice: totalPrice,
       totalMileage: getTotalMileage(),
       shipmentPrice: getShipmentAmount(totalPrice),
-      totalDiscount: getTotalDiscount(),
+      totalDiscount: getTotalDiscount() - mileage - selectedCoupon.amount,
       usableMileage: 1830,
     };
   };
@@ -70,6 +71,14 @@ const OrderPage = () => {
     setOpenForm(false);
   };
 
+  const initCoupon = () => {
+    setCoupon({ title: '', amount: 0, dDay: '' });
+  };
+
+  const useMileage = (amount: number) => {
+    setMileage(amount);
+  };
+
   return (
     <S.OrderPage>
       <CartHeader nowStep={ORDER_START}></CartHeader>
@@ -79,6 +88,8 @@ const OrderPage = () => {
           <UserInfo></UserInfo>
           <AccountInfo
             openForm={openForm}
+            initCoupon={initCoupon}
+            useMileage={useMileage}
             coupon={selectedCoupon}
             metaData={calcMetaData()}
           ></AccountInfo>
