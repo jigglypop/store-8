@@ -43,6 +43,8 @@ export const GlobalStyle = createGlobalStyle`
 
     /* 선 색상 */
     --line-black: #353535;
+    --line-mint: #2AC1BC;
+    --line-red: #F45452;
     --line-gray: #BDBDBD;
     --line-gray2: #A1A1A1;
     --border-dark-gray: #717171;
@@ -63,6 +65,7 @@ export const GlobalStyle = createGlobalStyle`
     /* 텍스트 */
     --text-pastel-black: #353535;
     --text-black: #000000;
+    --text-red: #F45452;
     --text-mint: #2AC1BC;
     --text-dark-blue: #293D7C;
     --text-white: #FFFFFF;

@@ -8,7 +8,6 @@ interface OrderDetailProps {
 }
 
 const OrderDetail = ({ contents }: OrderDetailProps): ReactElement => {
-  console.log(contents);
   return (
     <S.OrderDetail>
       <div className="order-detail-title">
