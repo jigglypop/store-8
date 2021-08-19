@@ -9,6 +9,10 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 
+interface MulterRequest extends Request {
+  file: any;
+}
+
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
@@ -51,13 +55,15 @@ export const getReview = async (req: Request, res: Response) => {
 };
 
 //리뷰 생성
-export const createReview = async (req: Request, res: Response) => {
+export const createReview = async (req: MulterRequest, res: Response) => {
   //   const accessToken = getAccessToken(req.headers.authorization);
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
 
   const { title, contents, score } = req.body;
+  const location = req.file.location;
+  console.log(location);
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {

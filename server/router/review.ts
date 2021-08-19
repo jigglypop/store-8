@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 
 // import jwtMiddleware from '../middleware/jwtMiddleware';
 import wrapAsync from '../utils/wrapAsync';
+import uploadImage from '../middleware/uploadImage';
 
 const reviewRouter: Router = express.Router();
 import {
