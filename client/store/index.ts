@@ -8,6 +8,7 @@ import category from './category/category';
 import mode from './mode/mode';
 import main from './main/main';
 import product from './product/product';
+import question from './product/question';
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -23,6 +24,7 @@ export const store = configureStore({
     mode,
     main,
     product,
+    question,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
