@@ -12,32 +12,14 @@ import {
   TITLE_BUY_AMOUNT,
   TITLE_TOTAL_AMOUNT,
 } from '@client/constants/productDetail/productDetailInfo/productDetailInfo';
-// import { kstFormatter } from '@utils/utils';
 
-//여기 utils import에서 에러 발생해서 임시로 가져다 놨습니다.
-function kstFormatter(amount: number, suffix: boolean = true) {
-  if (suffix) {
-    return amount.toLocaleString() + '원';
-  } else {
-    return amount.toLocaleString();
-  }
-}
 interface Props {
   title: string;
-  originAmount?: number;
+  originalAmount?: number;
   amount: number;
-  delivery_info: {
-    fee: string;
-    timeLimit: string;
-  };
 }
 
-export default function ProductInfo({
-  title,
-  originAmount,
-  amount,
-  delivery_info,
-}: Props): ReactElement {
+export default function ProductInfo({ title, originalAmount, amount }: Props): ReactElement {
   const [count, setCount] = useState(1);
   const [inputValue, setInputValue] = useState<string>(count + '');
 
@@ -76,10 +58,10 @@ export default function ProductInfo({
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
-        {originAmount && (
+        {originalAmount && (
           <div className="product-info__origin-amount">
             <S.InfoTitle>{TITLE_ORIGIN_AMOUNT}</S.InfoTitle>
-            <div className="stroke">{kstFormatter(originAmount, true)}</div>
+            <div className="stroke">{kstFormatter(originalAmount, true)}</div>
           </div>
         )}
         <div className="producto-info__amount">
@@ -112,4 +94,14 @@ export default function ProductInfo({
       </div>
     </S.ProductInfo>
   );
+}
+
+//여기 utils import에서 에러 발생해서 임시로 가져다 놨습니다.
+function kstFormatter(amount: number | void, suffix: boolean = true) {
+  if (!amount) return;
+  if (suffix) {
+    return amount.toLocaleString() + '원';
+  } else {
+    return amount.toLocaleString();
+  }
 }
