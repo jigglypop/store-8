@@ -3,10 +3,11 @@ import * as S from './style';
 
 import Locker from '@image/question/lockerIcon.svg';
 import QuestionDetail from './QuestionDetail/QuestionDetail';
-import { IQuestion } from '@client/type/question/question';
+import { IQuestionRes } from '@middle/type/question/question';
 
-interface Props extends IQuestion {
+interface Props extends IQuestionRes {
   idx: number;
+  userId: string;
 }
 
 export default function QuestionItem({
@@ -17,15 +18,15 @@ export default function QuestionItem({
   userId,
   isSecret,
   date,
-  status,
   answer,
+  answerDate,
 }: Props): ReactElement {
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
   const hideId = (id: string): string => {
     return id.slice(0, 2) + new Array(id.slice(2).length).fill('*').join('');
   };
-  const questionStatus = status === 'done' ? '답변완료' : '접수';
+  const questionStatus = answer ? '답변완료' : '접수';
 
   const handleQuestionClick = () => {
     setIsOpenDetail((isOpenDetail) => !isOpenDetail);
@@ -46,7 +47,7 @@ export default function QuestionItem({
           <div className="question-info status">{questionStatus}</div>
         </div>
       </S.QuestionItem>
-      {isOpenDetail && <QuestionDetail contents={contents} answer={answer} />}
+      {isOpenDetail && <QuestionDetail {...{ contents, answer, answerDate }} />}
     </>
   );
 }
