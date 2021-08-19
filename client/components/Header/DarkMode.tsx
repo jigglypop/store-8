@@ -6,7 +6,10 @@ import { toggleDarkMode } from '@client/utils/setDisplay';
 function DarkMode() {
   const { mode } = useMode();
   return (
-    <S.DarkMode onClick={() => toggleDarkMode()}>{mode ? <SunSVG /> : <MoonSVG />}</S.DarkMode>
+    <S.DarkMode onClick={() => toggleDarkMode()}>
+      <p>{mode ? '다크모드 설정' : '다크모드 해제'}</p>
+      {!mode ? <SunSVG /> : <MoonSVG />}
+    </S.DarkMode>
   );
 }
 

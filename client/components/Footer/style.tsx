@@ -6,7 +6,7 @@ export const Footer = styled.footer`
   bottom: 0;
   width: 100%;
   height: 240px;
-  background: var(--background-gray);
+  background-color: var(--background-gray-dark);
   padding-left: 120px;
   display: flex;
   flex-direction: row;
@@ -32,7 +32,7 @@ export const Footer = styled.footer`
     flex-direction: row;
     p {
       font-size: var(--body-middle-font);
-      color: var(--text-dark-gray);
+      color: var(--text-black-dark);
       font-weight: 700;
       margin-right: 12px;
     }
@@ -47,6 +47,7 @@ export const Footer = styled.footer`
       flex-direction: row;
       margin-top: 12px;
       p {
+        color: var(--text-black-dark);
         font-size: var(--body-middle-font);
       }
       .footerRowTitle {

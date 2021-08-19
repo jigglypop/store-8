@@ -87,6 +87,9 @@ export const GlobalStyle = createGlobalStyle`
     /* 다크모드에서 바뀌는 것들 (-dark 접미어 붙음) */
     --text-pastel-black-dark: #353535;
     --text-black-dark: #000000;
+    --background-gray-dark: #F5F5F7;
+    --shadow-black-dark: rgba(0,0,0, 0.2);
+    --shadow-black-white: rgba(255,255,255, 0.2);
     --text-white-dark: #FFFFFF;
     --body-background-dark: white;
     --header-background-dark: white;
