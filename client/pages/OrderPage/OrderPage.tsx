@@ -4,6 +4,7 @@ import OrderDetail from '@components/Order/OrderDetail/OrderDetail';
 import OrderReceipt from '@components/Order/OrderReceipt/OrderReceipt';
 import UserInfo from '@components/Order/UserInfo/UserInfo';
 
+import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ORDER_START } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,57 +13,34 @@ import * as S from './style';
 
 const OrderPage = () => {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state: RootState) => state.cart);
+  const { cart } = useSelector((state: RootState) => state.order);
 
-  /*
   const getTotalPrice = () => {
     let result = 0;
-    contents.forEach((content) => {
-      if (content.isChecked) result += content.amount * content.count;
+    cart.forEach((item) => {
+      result += item.amount * item.count;
     });
     return result;
   };
 
   const getTotalDiscount = () => {
     let result = 0;
-    contents.forEach((content) => {
-      if (content.isChecked && content.originalAmount !== 0) {
-        result += (content.amount - content.originalAmount) * content.count;
+    cart.forEach((item) => {
+      if (item.originalAmount !== 0) {
+        result += (item.amount - item.originalAmount) * item.count;
       }
     });
     return result;
   };
 
-  const getCheckedNum = () => {
-    let result = 0;
-    contents.forEach((content) => {
-      if (content.isChecked) result += 1;
-    });
-    return result;
-  };
-
-  // 전체 toggle이 켜져있는지 확인하는 함수.
-  const isOff = () => {
-    let result: boolean = true;
-
-    contents.forEach((content) => {
-      if (!content.isChecked) result = false;
-    });
-    return result;
-  };
-
-  const calcMetaData = () => {
+  const calcMetaData = (): OrderContentMetaData => {
     const totalPrice = getTotalPrice();
     return {
-      allToggle: isOff(),
-      maxLength: contents.length,
       totalPrice: totalPrice,
-      checkedCount: getCheckedNum(),
       shipmentPrice: getShipmentAmount(totalPrice),
       totalDiscount: getTotalDiscount(),
     };
   };
-  */
 
   return (
     <S.OrderPage>
@@ -74,7 +52,7 @@ const OrderPage = () => {
           <AccountInfo></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
-          <OrderReceipt></OrderReceipt>
+          <OrderReceipt metaData={calcMetaData()}></OrderReceipt>
         </div>
       </div>
     </S.OrderPage>

@@ -64,6 +64,7 @@ export const OrderNow = styled.div`
     }
   }
   .order-info {
+    margin-top: 11px;
     display: flex;
     flex-direction: row;
 

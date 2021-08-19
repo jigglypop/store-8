@@ -7,4 +7,10 @@ type CartContentMetaData = {
   shipmentPrice: number;
 };
 
-export type { CartContentMetaData };
+type OrderContentMetaData = {
+  totalPrice: number;
+  shipmentPrice: number;
+  totalDiscount: number;
+};
+
+export type { CartContentMetaData, OrderContentMetaData };

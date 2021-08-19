@@ -19,6 +19,8 @@ const NOTHING_IN_TEXT: string = '장바구니에 담겨있는 상품이 없습�
 
 const NEXT_DELETE_TEXT: string = '다음 물품들이 장바구니에서 삭제됩니다.';
 
+const CALC_GUIDE_TEXT: string = '쿠폰과 적립금이 포함된 금액입니다';
+
 const SHIPMENT_BASE: number = 4500;
 const SHIPMENT_HIGH: number = 3500;
 const SHIPMENT_HIGH_BASE: number = 10000;
@@ -41,6 +43,7 @@ export {
   TOTAL_PRODUCTS_TEXT,
   TOTAL_SHIPMENT_TEXT,
   DELETE_SELECT_PRODUCT,
+  CALC_GUIDE_TEXT,
   SHIPMENT_BASE,
   SHIPMENT_HIGH,
   SHIPMENT_HIGH_BASE,
