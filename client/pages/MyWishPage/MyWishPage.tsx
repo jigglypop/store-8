@@ -4,11 +4,11 @@ import NavigationBar from '@client/components/MyPage/NavigationBar/NavigationBar
 
 interface Props {}
 
-export default function OrderPage() {
+export default function MyWishPage() {
   return (
-    <S.OrderPage>
-      <NavigationBar page="ORDER" />
+    <S.MyWishPage>
+      <NavigationBar page="WISH" />
       <OrderSection />
-    </S.OrderPage>
+    </S.MyWishPage>
   );
 }
