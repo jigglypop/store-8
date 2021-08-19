@@ -23,6 +23,7 @@ const loadUser = () => {
 
 loadUser();
 setDarkMode();
+
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(

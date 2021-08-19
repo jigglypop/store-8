@@ -2,8 +2,10 @@ import Product from '../models/Product';
 import { CATEGORIES } from '../constants/migration/CATEGORIES';
 import { PRODUCTS } from '../constants/migration/PRODUCTS';
 import { OPTIONS } from '../constants/migration/OPTIONS';
+import { CARTS } from '../constants/migration/CARTS';
 import Category, { ICategory } from '../models/Category';
 import Option from '../models/Option';
+import Cart from '../models/Cart';
 
 interface IProductQuery {
   [key: string]: string | number;
@@ -20,18 +22,6 @@ const initCategory = () => {
     notInsertedData.forEach((category: ICategory) => Category.create(category));
   });
 };
-// 상품 부분 시작
-// const initProduct = async () => {
-//   return Product.sync().then(async () => {
-//     for (let key of Object.keys(PRODUCTS)) {
-//       const _PRODUCT: any = { ...PRODUCTS[key] };
-//       const _PRODUCT_ORIGIN = PRODUCTS[key];
-//       _PRODUCT.amount = Number(_PRODUCT_ORIGIN.amount.replace(',', ''));
-//       _PRODUCT.originalAmount = Number(_PRODUCT_ORIGIN.originalAmount.replace(',', ''));
-//       await Product.create({ ..._PRODUCT });
-//     }
-//   });
-// };
 
 const initProduct = async () => {
   return Product.sync().then(async () => {
@@ -64,8 +54,14 @@ const initOption = async () => {
   });
 };
 
+// 장바구니 데이터 시작
+const initCart = async () => {
+  Cart.bulkCreate(CARTS);
+};
+
 export const migrate = async () => {
   await initCategory();
   await initProduct();
   await initOption();
+  await initCart();
 };

@@ -39,14 +39,21 @@ export const GlobalStyle = createGlobalStyle`
     --off-white: #E7E7E7;
     --black: #000000;
     --pastel-black: #353535;
+
+    /* 선 색상 */
     --line-black: #353535;
     --line-gray: #BDBDBD;
+    --border-dark-gray: #717171;
 
     /* 백그라운드 */
     --background-white: #FFFFFF;
     --background-pastel-black: #353535;
     --background-black: #000000;
     --background-gray: #F5F5F7;
+    --background-mint: #2AC1BC;
+    --background-dark-mint: #219A95;
+    --background-red: #F45452;
+    --background-dark-red: #D73331;
     --body-background: white;
     --header-background: white;
     --background-button-clicked: #E0E0E0;
@@ -58,6 +65,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-white: #FFFFFF;
     --text-lightgray: #BDBDBD;
     --text-gray: #828282;
+    --text-dark-gray: #525252;
   
     /* 컬러피커용 */
     --text-picker: #000000;
@@ -167,7 +175,7 @@ export const GlobalStyle = createGlobalStyle`
 export const App = styled.div`
   margin-top: 100px;
   position: relative;
-  width: 100%;
+  width: 100vw;
   min-height: 60vh;
 `;
 // 토스트 부분 간단 디자인(수정 가능)

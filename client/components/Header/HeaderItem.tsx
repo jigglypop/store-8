@@ -8,7 +8,9 @@ interface IHeaderItem {
 const HeaderItem = ({ item }: IHeaderItem) => {
   return (
     <S.HeaderItem>
-      <Link to={`/category/${item.id}/?page=1`}>{item.title}</Link>
+      <Link key={`/category/${item.id}/?page=1`} to={`/category/${item.id}/?page=1`}>
+        {item.title}
+      </Link>
     </S.HeaderItem>
   );
 };

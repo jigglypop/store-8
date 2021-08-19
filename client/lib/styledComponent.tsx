@@ -244,7 +244,7 @@ function deleteNamelessPart(scssStrings: string[], prefix: string) {
   let i = 0;
   for (i = 0; i < scssStrings.length; i += 1) {
     if (isStart(scssStrings[i])) {
-      return { result: result + '}\n', index: i - 1 };
+      return { result: result + '}\n', index: i };
     } else if (isEnd(scssStrings[i])) {
       throw new Error(
         '[styledComponent] : Nameless Part에서 } 를 발견했습니다. 문제되는 SCSS 문자열 : ' +

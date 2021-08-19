@@ -5,7 +5,6 @@ import * as S from './style';
 import Hamberger from '@image/hamberger.svg';
 import UserSlider from './UserSlider';
 import { useState } from 'react';
-
 export interface IHeaderNotLoggedIn {
   isUp: boolean;
   onLogout: () => void;
