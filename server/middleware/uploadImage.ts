@@ -1,25 +1,40 @@
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 import path from 'path';
-import AWS from 'aws-sdk';
-import dotenv from 'dotenv';
-dotenv.config({ path: './.env' });
+import aws from 'aws-sdk';
 
-const s3 = new AWS.S3({
+aws.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
+  region: 'ap-northeast-2',
 });
 
-const storageS3 = multerS3({
-  s3,
-  bucket: 'store-8',
-  contentType: multerS3.AUTO_CONTENT_TYPE, //multer-S3가 타입 알아서 찾아줌
-  acl: 'public-read',
-  key: function (req, file, cb) {
-    let extension = path.extname(file.originalname);
-    cb(null, Date.now().toString() + extension);
-  }, //파일이름: 파일이름 + 날짜 + extension
+const s3 = new aws.S3();
+
+const fileFilter = (req: any, file: any, cb: any) => {
+  if (
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg'
+  ) {
+    cb(null, true);
+  } else {
+    cb(new Error('Invalid file type, only JPG,JPEG and PNG is allowed!'), false);
+  }
+};
+
+const upload = multer({
+  fileFilter,
+  storage: multerS3({
+    s3: s3,
+    bucket: 'store-8',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: 'public-read-write',
+    key: (req, file, cb) => {
+      console.log('file', file);
+      cb(null, `review-img/${Date.now()}_${file.originalname}`);
+    },
+  }),
 });
 
-export default multer({ storage: storageS3 });
+export default upload;
