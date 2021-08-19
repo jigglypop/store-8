@@ -6,7 +6,7 @@ import UserInfo from '@components/Order/UserInfo/UserInfo';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ORDER_START } from '@constants/Cart';
-import { getShipmentAmount } from '@utils/utils';
+import { getMileage, getShipmentAmount } from '@utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
@@ -33,12 +33,22 @@ const OrderPage = () => {
     return result;
   };
 
+  const getTotalMileage = () => {
+    let result = 0;
+    cart.forEach((item) => {
+      result += getMileage(item.amount * item.count);
+    });
+    return result;
+  };
+
   const calcMetaData = (): OrderContentMetaData => {
     const totalPrice = getTotalPrice();
     return {
       totalPrice: totalPrice,
+      totalMileage: getTotalMileage(),
       shipmentPrice: getShipmentAmount(totalPrice),
       totalDiscount: getTotalDiscount(),
+      usableMileage: 1830,
     };
   };
 
@@ -49,7 +59,7 @@ const OrderPage = () => {
         <div className="left">
           <OrderDetail contents={cart}></OrderDetail>
           <UserInfo></UserInfo>
-          <AccountInfo></AccountInfo>
+          <AccountInfo metaData={calcMetaData()}></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
           <OrderReceipt metaData={calcMetaData()}></OrderReceipt>

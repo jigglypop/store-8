@@ -32,6 +32,7 @@ export const GlobalStyle = createGlobalStyle`
 
     /* 그 외 색깔 */
     --red: #F45452;
+    --yellow: #FFD142;
     --mint: #2AC1BC;
     --dark-mint: #219A95;
     --white-mint: #A0E1E0;
@@ -58,6 +59,8 @@ export const GlobalStyle = createGlobalStyle`
     --background-dark-mint: #219A95;
     --background-red: #F45452;
     --background-dark-red: #D73331;
+    --background-yellow: #FFD142;
+    --background-dark-blue: #293D7C;
     --body-background: white;
     --header-background: white;
     --background-button-clicked: #E0E0E0;
