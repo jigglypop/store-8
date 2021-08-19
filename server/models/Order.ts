@@ -65,7 +65,7 @@ export default class Order extends Model<IOrder> {
   optionId: number;
 
   @BelongsTo(() => ProductOption)
-  productOptoon: ProductOption;
+  productOption: ProductOption;
 
   @Column
   orderNumber: string;
