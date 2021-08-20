@@ -1,9 +1,9 @@
 import { ICheckRes } from '@middle/type/auth/check';
-import { Link } from '../../utils/router';
-import Avatar from '../common/Avatar/Avatar';
-import * as S from './style';
+import { Link } from '../../../utils/router';
+import Avatar from '../../common/Avatar/Avatar';
+import * as S from '../style';
 import Hamberger from '@image/hamberger.svg';
-import UserSlider from './UserSlider';
+import UserSlider from '../Slider/UserSlider';
 import { useState } from 'react';
 export interface IHeaderNotLoggedIn {
   isUp: boolean;

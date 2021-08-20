@@ -1,13 +1,14 @@
-import { Link } from '../../utils/router';
-import * as S from './style';
+import { Link } from '../../../utils/router';
+import * as S from '../style';
 import { useRef, useState } from 'react';
 import { ICheckRes } from '@middle/type/auth/check';
 import { HeaderLoggedIn, HeaderNotLoggedIn } from './HeaderCheck';
 import main from '@image/main.png';
 import Hamberger from '@image/hamberger.svg';
-import Slider from './Slider';
-import DarkMode from './DarkMode';
-import UserSlider from './UserSlider';
+import Slider from '../Slider/Slider';
+import DarkMode from '../Dark/DarkMode';
+import UserSlider from '../Slider/UserSlider';
+import Search from '../Search/Search';
 
 export interface IHeader {
   check: ICheckRes | null;
@@ -53,6 +54,9 @@ const Header = ({ check, onLogout }: IHeader) => {
 
             <S.HeaderItem>
               <DarkMode />
+            </S.HeaderItem>
+            <S.HeaderItem>
+              <Search />
             </S.HeaderItem>
           </div>
           <div className="right">
