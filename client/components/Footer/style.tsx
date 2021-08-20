@@ -5,62 +5,77 @@ export const Footer = styled.footer`
   position: relative;
   bottom: 0;
   width: 100%;
-  height: 240px;
-  background-color: var(--background-gray-dark);
-  padding-left: 120px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+
+  .footerInner {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    bottom: 0;
+    background: var(--footer-background-dark);
+  }
+  .footerWrap {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+  }
 
   .footerLogo {
+    grid-column: 1/2;
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
     img {
-      width: 160px;
-      object-fit: contain;
-      margin-right: 50px;
+      width: 100px;
     }
   }
-  .footerTextContainer {
+  .footerTextTop {
+    grid-column: 2/3;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 114px;
-  }
+    align-items: center;
+    justify-content: center;
 
-  .footerTextTop {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    p {
-      font-size: var(--body-middle-font);
-      color: var(--text-black-dark);
-      font-weight: 700;
-      margin-right: 12px;
+    div {
+      margin: 5px;
+      font-size: 14px;
+      color: var(--gray2);
+      font-weight: 800;
     }
   }
 
   .footerTextBottom {
+    grid-column: 3/4;
+    margin-top: 20px;
+
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 
-    .footerRow {
+    .footer-text-bottom-item {
       display: flex;
-      flex-direction: row;
-      margin-top: 12px;
-      p {
-        color: var(--text-black-dark);
-        font-size: var(--body-middle-font);
-      }
-      .footerRowTitle {
-        margin-right: 8px;
-      }
-      .footerCopyTitle {
-        margin-right: 8px;
-        font-weight: 600;
-      }
-      .footerEmail {
-        color: var(--text-mint);
-        text-decoration: underline;
-        cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      margin: 3px;
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 3px;
+
+        p {
+          padding: 3px;
+          font-size: 12px;
+          color: var(--text-black-dark);
+          border-right: 2px solid var(--grayC);
+        }
       }
     }
   }

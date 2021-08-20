@@ -3,7 +3,7 @@ import * as S from './style';
 import { useRef, useState } from 'react';
 import { ICheckRes } from '@middle/type/auth/check';
 import { HeaderLoggedIn, HeaderNotLoggedIn } from './HeaderCheck';
-import main from '@image/appIconLine.png';
+import main from '@image/main.png';
 import Hamberger from '@image/hamberger.svg';
 import Slider from './Slider';
 import DarkMode from './DarkMode';

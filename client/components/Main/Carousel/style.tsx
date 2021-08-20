@@ -45,7 +45,7 @@ export const Carousel = styled.div`
     height: 600px;
     overflow: hidden;
     border-radius: 10px;
-    //box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
   }
 
   .carousels {
