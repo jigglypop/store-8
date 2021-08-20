@@ -19,5 +19,9 @@ export const QuestionDetail = styled.div`
     .question-detail__title {
       width: 60px;
     }
+
+    .question-detail__date {
+      color: var(--text-gray);
+    }
   }
 `;
