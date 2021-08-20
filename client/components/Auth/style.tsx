@@ -1,5 +1,4 @@
-import styled from '@lib/styledComponent';
-//import { styled as _styled } from "../../utils/styled-component"
+import styled from 'styled-components';
 
 export const Auth = styled.div`
   display: flex;

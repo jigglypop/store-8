@@ -4,6 +4,5 @@ import styled from 'styled-components';
 export const AuthPage = styled.div`
   position: relative;
   width: var(--app-width);
-  height: 100%;
-  margin: 0px 296px;
+  margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
 `;
