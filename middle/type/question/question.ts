@@ -11,7 +11,7 @@ export interface IQuestionRes {
 export interface IQuestionPostReq {
   title: string;
   contents: string;
-  isSecret: string;
+  isSecret: boolean;
 }
 
 export interface IQuestionPostRes {

@@ -19,8 +19,8 @@ export function useQuestion() {
 
   const createQuestion = async (questionForm: IQuestionPostReq) => {
     const res = await createQuestionApi(productId, questionForm);
-    if (res.error) {
-      dispatch(setError);
+    if (!res.success) {
+      dispatch(setError(res.errorMessage));
       return;
     }
     dispatch(getQuestion(productId));

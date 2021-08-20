@@ -1,4 +1,5 @@
-import { IQuestionPostReq } from '@middle/type/question/question';
+import fetchWrapper from '@client/utils/fetchWrapper';
+import { IQuestionPostReq, IQuestionPostRes } from '@middle/type/question/question';
 import request, { IThunkApi } from './utils/request';
 
 export const getQuestionApi = async (productId: number, thunkApi: IThunkApi) => {
@@ -12,11 +13,12 @@ export const getQuestionApi = async (productId: number, thunkApi: IThunkApi) => 
 
 // requestionFrom 타입 지정
 export const createQuestionApi = async (productId: number, requestForm: IQuestionPostReq) => {
-  const data = await request.post<IQuestionPostReq>(`/api/question/${productId}`, requestForm);
-  if (data.status !== 200) {
-    const error = data.message;
-    return { error, success: false };
-  }
+  const data = await fetchWrapper<IQuestionPostReq, IQuestionPostRes>(
+    `/api/question/${productId}`,
+    'POST',
+    requestForm
+  );
+
   return data;
 };
 
