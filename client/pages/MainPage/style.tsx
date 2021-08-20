@@ -3,9 +3,8 @@ import styled from 'styled-components';
 // 메인
 export const MainPage = styled.div`
   position: relative;
-  overflow-x: hidden;
-  height: 100%;
-  margin: 0px 100px;
+  width: var(--app-width);
+  margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
 
   .title {
     background-color: var(--footer-background-dark);

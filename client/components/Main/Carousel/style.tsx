@@ -41,6 +41,7 @@ export const Carousel = styled.div`
 
   .carouselInner {
     width: var(--carousel-width);
+    margin: 20px;
     height: 600px;
     overflow: hidden;
     border-radius: 10px;

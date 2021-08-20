@@ -9,28 +9,31 @@ import {
   HasMany,
   CreatedAt,
   UpdatedAt,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 
 import User from './User';
 import Product from './Product';
 import ReviewImg from './ReviewImg';
+import ReviewLike from './ReviewLike';
 
 export interface IReview {
-  id: number;
+  id?: number;
   title: string;
   contents: string;
   score: number;
   userId: number;
   productId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Review extends Model<IReview> {
-  @Column({ primaryKey: true })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)
@@ -42,7 +45,7 @@ export default class Review extends Model<IReview> {
   contents: string;
 
   @AllowNull(false)
-  @Column(DataType.FLOAT)
+  @Column
   score: number;
 
   @CreatedAt
@@ -68,5 +71,8 @@ export default class Review extends Model<IReview> {
   product: Product;
 
   @HasMany(() => ReviewImg)
-  reviewimg: ReviewImg[];
+  reviewImg: ReviewImg[];
+
+  @HasMany(() => ReviewLike)
+  ReviewLike: ReviewLike[];
 }

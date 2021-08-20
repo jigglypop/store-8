@@ -113,4 +113,9 @@ export const err: IError = {
     message: '본인의 문의 혹은 존재하는 문의가 아닙니다.',
     serverMessage: 'wrong access to question',
   },
+  WRONG_ACCESS_REVIEW: {
+    status: 409,
+    message: '본인의 후기 혹은 존재하는 후기가 아닙니다.',
+    serverMessage: 'wrong access to review',
+  },
 };

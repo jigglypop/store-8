@@ -6,7 +6,7 @@ import Option from '../models/Option';
 
 export const getProduct = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const product = await Product.findAll({
+  const product = await Product.findOne({
     where: { id: productId },
     include: [
       {

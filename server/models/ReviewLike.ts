@@ -11,25 +11,28 @@ import {
   AutoIncrement,
 } from 'sequelize-typescript';
 import Review from './Review';
+import User from './User';
 
-export interface IReview_Img {
+export interface IReviewLike {
   id?: number;
-  img_src: string;
+  isLike: boolean;
+  isDislike: boolean;
   reviewId: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  userId: number;
 }
 
 @Table
-export default class ReviewImg extends Model<IReview_Img> {
+export default class ReviewLike extends Model<IReviewLike> {
   @PrimaryKey
   @AutoIncrement
   @Column
   id: number;
 
-  @AllowNull(false)
   @Column
-  img_src: string;
+  isLike: boolean;
+
+  @Column
+  isDislike: boolean;
 
   @CreatedAt
   createdAt: Date;
@@ -44,4 +47,12 @@ export default class ReviewImg extends Model<IReview_Img> {
 
   @BelongsTo(() => Review)
   review: Review;
+
+  @AllowNull(false)
+  @ForeignKey(() => User)
+  @Column
+  userId: number;
+
+  @BelongsTo(() => User)
+  user: User;
 }
