@@ -56,17 +56,13 @@ export const createQuestion = async (req: Request, res: Response) => {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  try {
-    await Question.create({
-      userId,
-      productId: +productId,
-      title: title as string,
-      contents: contents as string,
-      isSecret: !!isSecret,
-    });
-  } catch (error) {
-    throw new HttpError(err.CREATE_ERROR);
-  }
+  await Question.create({
+    userId,
+    productId: +productId,
+    title: title as string,
+    contents: contents as string,
+    isSecret: !!isSecret,
+  });
 
   res.status(200).json({ success: true });
 };
@@ -85,26 +81,23 @@ export const updateQuestion = async (req: Request, res: Response) => {
   if (!isUserOwnedQuestion) {
     throw new HttpError(err.WRONG_ACCESS_QUESTION);
   }
-  try {
-    await Question.update(
-      {
-        title,
-        contents,
-        isSecret: !!isSecret,
+
+  await Question.update(
+    {
+      title,
+      contents,
+      isSecret: !!isSecret,
+      userId,
+      productId: +productId,
+    },
+    {
+      where: {
+        id: +questionId,
         userId,
-        productId: +productId,
+        productId,
       },
-      {
-        where: {
-          id: +questionId,
-          userId,
-          productId,
-        },
-      }
-    );
-  } catch (error) {
-    throw new HttpError(err.UPDATE_ERROR);
-  }
+    }
+  );
 
   res.status(200).json({ success: true });
 };
@@ -123,17 +116,14 @@ export const deleteQuestion = async (req: Request, res: Response) => {
   if (!isUserOwnedQuestion) {
     throw new HttpError(err.WRONG_ACCESS_QUESTION);
   }
-  try {
-    await Question.destroy({
-      where: {
-        id: +questionId,
-        userId,
-        productId,
-      },
-    });
-  } catch (error) {
-    throw new HttpError(err.DELETE_ERROR);
-  }
+
+  await Question.destroy({
+    where: {
+      id: +questionId,
+      userId,
+      productId,
+    },
+  });
 
   res.status(200).json({ success: true });
 };
@@ -161,19 +151,15 @@ export const updateQuestionReply = async (req: Request, res: Response) => {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  try {
-    await Question.update(
-      {
-        reply: contents,
-        replyDate: new Date(),
-      },
-      {
-        where: { id: +questionId },
-      }
-    );
-  } catch (error) {
-    throw new HttpError(err.UPDATE_ERROR);
-  }
+  await Question.update(
+    {
+      reply: contents,
+      replyDate: new Date(),
+    },
+    {
+      where: { id: +questionId },
+    }
+  );
 
   res.status(200).json({ success: true });
 };

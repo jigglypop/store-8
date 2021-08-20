@@ -8,6 +8,7 @@ import Review from './Review';
 
 import UserCoupon from './UserCoupon';
 import Wish from './Wish';
+import ReviewLike from './ReviewLike';
 
 export interface IUser {
   id?: string;
@@ -55,4 +56,7 @@ export default class User extends Model<IUser> {
 
   @HasMany(() => Order)
   orders: Order[];
+
+  @HasMany(() => ReviewLike)
+  ReviewLike: ReviewLike[];
 }

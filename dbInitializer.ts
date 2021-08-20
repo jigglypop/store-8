@@ -16,6 +16,7 @@ import Question from './server/models/Question';
 import Review from './server/models/Review';
 import ReviewImg from './server/models/ReviewImg';
 import Refund from './server/models/Refund';
+import ReviewLike from './server/models/ReviewLike';
 
 dotenv.config();
 const sequelize = new Sequelize({
@@ -38,6 +39,7 @@ const sequelize = new Sequelize({
     ReviewImg,
     Refund,
     Cart,
+    ReviewLike,
   ],
 });
 

@@ -15,6 +15,7 @@ import Question from './Question';
 import Review from './Review';
 import ReviewImg from './ReviewImg';
 import Refund from './Refund';
+import ReviewLike from './ReviewLike';
 
 dotenv.config();
 export const sequelize = new Sequelize({
@@ -37,6 +38,7 @@ export const sequelize = new Sequelize({
     ReviewImg,
     Refund,
     Cart,
+    ReviewLike,
   ],
 });
 
