@@ -6,13 +6,16 @@ import XIcon from '@image/question/xIcon.svg';
 import Modal from '@components/common/Modal/Modal';
 import CheckBox from '@components/common/CheckBox/CheckBox';
 
+import { useQuestion } from '@client/hooks/question/question';
+
 interface Props {
   setIsOpenForm: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
+  const { createQuestion, error } = useQuestion();
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [contents, setContents] = useState('');
   const [isSecret, setIsSecret] = useState(false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
@@ -20,17 +23,19 @@ export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
-    setContent(target.value);
+    setContents(target.value);
   };
 
   const handleCancelClick = () => setIsOpenForm(false);
 
-  const handleSubmitClick = () => {
-    //post요청
+  const handleSubmitClick = async () => {
+    const questionFormData = { title, contents, isSecret };
+    const isSuccess = await createQuestion(questionFormData);
+    if (!isSuccess) return;
     handleCancelClick();
   };
 
-  const isAbleSubmit = !!(title && content);
+  const isAbleSubmit = !!(title && contents);
 
   return (
     <Modal>
@@ -57,12 +62,12 @@ export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
               className="question-form__input"
             />
           </div>
-          <div className="question-form__content-input">
+          <div className="question-form__contents-input">
             <div className="title">내용</div>
             <div className="textarea-wrapper">
               <textarea
                 placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
-                value={content}
+                value={contents}
                 onChange={handleTextareaChange}
                 maxLength={5000}
                 className="question-form__input"
@@ -71,6 +76,7 @@ export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
                 <CheckBox isCheck={isSecret} setIsCheck={setIsSecret} className="checkbox-secret" />
                 <div>비밀글로 문의하기</div>
               </div>
+              <div className="question-form__error">{error}</div>
             </div>
           </div>
           <div className="question-form__btns">

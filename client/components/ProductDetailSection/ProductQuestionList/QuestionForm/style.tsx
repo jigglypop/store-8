@@ -39,12 +39,12 @@ export const QuestionForm = styled.div`
     }
   }
 
-  .question-form__content-input {
+  .question-form__contents-input {
     border-bottom: 1px solid var(--line-gray);
   }
 
   .question-form__title-input,
-  .question-form__content-input {
+  .question-form__contents-input {
     font-size: var(--body-middle-font);
 
     .textarea-wrapper {
@@ -85,6 +85,11 @@ export const QuestionForm = styled.div`
     .checkbox-secret {
       margin-right: 16px;
     }
+  }
+
+  .question-form__error {
+    height: 15px;
+    color: var(--text-red);
   }
 
   .question-form__btns {

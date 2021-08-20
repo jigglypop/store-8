@@ -17,13 +17,14 @@ export function useQuestion() {
   const { question, loading, error } = useSelector((state: RootState) => state.question);
   const dispatch = useDispatch();
 
-  const createQuestion = async (questionForm: IQuestionPostReq) => {
+  const createQuestion = async (questionForm: IQuestionPostReq): Promise<boolean> => {
     const res = await createQuestionApi(productId, questionForm);
     if (!res.success) {
       dispatch(setError(res.errorMessage));
-      return;
+      return false;
     }
     dispatch(getQuestion(productId));
+    return true;
   };
 
   // 페이지 시작
