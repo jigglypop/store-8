@@ -1,5 +1,5 @@
 import fetchWrapper from '@client/utils/fetchWrapper';
-import { IQuestionPostReq, IQuestionPostRes } from '@middle/type/question/question';
+import { IQuestionPostRes } from '@middle/type/question/question';
 import request, { IThunkApi } from './utils/request';
 
 export const getQuestionApi = async (productId: number, thunkApi: IThunkApi) => {
@@ -12,8 +12,8 @@ export const getQuestionApi = async (productId: number, thunkApi: IThunkApi) => 
 };
 
 // requestionFrom 타입 지정
-export const createQuestionApi = async (productId: number, requestForm: IQuestionPostReq) => {
-  const data = await fetchWrapper<IQuestionPostReq, IQuestionPostRes>(
+export const createQuestionApi = async <T>(productId: number, requestForm: T) => {
+  const data = await fetchWrapper<T, IQuestionPostRes>(
     `/api/question/${productId}`,
     'POST',
     requestForm
@@ -22,5 +22,22 @@ export const createQuestionApi = async (productId: number, requestForm: IQuestio
   return data;
 };
 
-export const updateQuestionApi = async (productId: number, thunkApi: IThunkApi) => {};
-export const deleteQuestionApi = async (productId: number, thunkApi: IThunkApi) => {};
+export const updateQuestionApi = async <T>(productId: number, requestForm: T) => {
+  const data = await fetchWrapper<T, IQuestionPostRes>(
+    `/api/question/${productId}`,
+    'PUT',
+    requestForm
+  );
+
+  return data;
+};
+
+export const deleteQuestionApi = async <T>(productId: number, requestForm: T) => {
+  const data = await fetchWrapper<T, IQuestionPostRes>(
+    `/api/question/${productId}`,
+    'DELETE',
+    requestForm
+  );
+
+  return data;
+};
