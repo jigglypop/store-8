@@ -32,7 +32,7 @@ export interface IOrder {
 }
 
 @Table({
-  timestamps: false,
+  timestamps: true,
 })
 export default class Order extends Model<IOrder> {
   @PrimaryKey
