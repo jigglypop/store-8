@@ -4,7 +4,7 @@ import styled from '@lib/styledComponent';
 import HeartIcon from '@image/heartIcon.svg';
 
 interface Props {
-  id: string;
+  id: number;
   isLiked: boolean;
 }
 
