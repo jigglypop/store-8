@@ -1,4 +1,5 @@
 import cache from './cache';
+import { SERVER_URL } from '@client/constants/server_url';
 
 type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'HEAD';
 
@@ -18,8 +19,7 @@ async function fetchWrapper<reqType, resType>(
 ): Promise<IResponse<resType> | IErrorResponse> {
   try {
     const token = cache.get('token') ?? '';
-
-    const res = await fetch(url, {
+    const res = await fetch(SERVER_URL + url, {
       method,
       headers: {
         'Content-Type': 'application/json',
