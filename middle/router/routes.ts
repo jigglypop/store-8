@@ -33,7 +33,13 @@ export const routes = [
     path: '/cart',
     name: 'cart',
     title: '장바구니',
-    component: 'Cart',
+    component: 'CartPage',
+  },
+  {
+    path: '/order',
+    name: 'order',
+    title: '주문하기',
+    component: 'OrderPage',
   },
   {
     path: '/product/:productId',

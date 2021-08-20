@@ -14,7 +14,13 @@ export default function Modal({ children, closeModal, animation }: Props): React
   if (!rootModal) return <></>;
   return createPortal(
     <S.Modal className={animation} onClick={closeModal}>
-      {children}
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {children}
+      </div>
     </S.Modal>,
     rootModal
   );

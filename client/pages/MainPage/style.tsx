@@ -3,15 +3,14 @@ import styled from 'styled-components';
 // 메인
 export const MainPage = styled.div`
   position: relative;
-  overflow-x: hidden;
-  height: 100%;
-  margin: 0px 100px;
+  width: var(--app-width);
+  margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
 
   .title {
-    background-color: var(--footer-background-dark);
-    margin: 10px;
-    padding: 30px;
-    grid-row: 1/2;
+    background-color: var(--background-gray-dark);
+    margin: 10px 0px;
+    padding-left: 30px;
+
     display: flex;
     align-items: center;
     font-weight: 600;

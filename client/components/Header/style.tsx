@@ -16,7 +16,6 @@ export const UserSlider = styled.div<IUserSlider>`
   right: 0;
   background-color: rgba(0, 0, 0, 0.9);
   color: var(--text-white);
-  box-shadow: 0 0 20px var(--black);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   padding: 20px;
@@ -75,22 +74,22 @@ export const Picker = styled.div`
 
   #color-1 {
     background: linear-gradient(45deg, #12fff7, #20e3b2, #29ffc6);
-    box-shadow: 0 0 10px #12fff7;
+    // box-shadow: 0 0 10px #12fff7;
   }
 
   #color-2 {
     background: linear-gradient(45deg, #8a2387, #e94057, #f27121);
-    box-shadow: 0 0 10px #e94057;
+    // box-shadow: 0 0 10px #e94057;
   }
 
   #color-3 {
     background: linear-gradient(45deg, #ffe259, #ffa751);
-    box-shadow: 0 0 10px #ffe259;
+    // box-shadow: 0 0 10px #ffe259;
   }
 
   #color-4 {
     background: linear-gradient(45deg, #b2fefa, #0ed2f7);
-    box-shadow: 0 0 10px #b2fefa;
+    // box-shadow: 0 0 10px #b2fefa;
   }
 
   .colorpicker-button:hover {
@@ -103,18 +102,24 @@ export const DarkMode = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 50px;
+  width: 160px;
   height: 50px;
+  padding: 8px;
   border-radius: 50px;
-  background: var(--glass-picker);
-  box-shadow: 0 0 10px var(--text-black-dark);
-  border: 2px solid var(--text-black-dark);
+
+  background-color: var(--background-white);
+  box-shadow: 0 0 4px var(--shadow-black-dark);
   transform: scale(0.8);
   transition: all 0.3s ease-in;
   cursor: pointer;
 
+  p {
+    color: var(--text-black);
+    margin-right: 12px;
+  }
+
   path {
-    fill: var(--text-black-dark);
+    background-color: var(--background-gray);
   }
 
   &:hover {
