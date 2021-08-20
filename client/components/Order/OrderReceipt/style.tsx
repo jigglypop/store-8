@@ -1,6 +1,6 @@
 import styled from '@lib/styledComponent';
 
-export const ReceiptContainer = styled.div`
+export const OrderReceipt = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -64,6 +64,7 @@ export const OrderNow = styled.div`
     }
   }
   .order-info {
+    margin-top: 11px;
     display: flex;
     flex-direction: row;
 

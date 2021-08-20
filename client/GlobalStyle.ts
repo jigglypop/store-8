@@ -32,9 +32,11 @@ export const GlobalStyle = createGlobalStyle`
 
     /* 그 외 색깔 */
     --red: #F45452;
+    --yellow: #FFD142;
     --mint: #2AC1BC;
     --dark-mint: #219A95;
     --white-mint: #A0E1E0;
+    --dark-blue: #293D7C;
     --white: #FFFFFF;
     --off-white: #E7E7E7;
     --black: #000000;
@@ -42,7 +44,10 @@ export const GlobalStyle = createGlobalStyle`
 
     /* 선 색상 */
     --line-black: #353535;
+    --line-mint: #2AC1BC;
+    --line-red: #F45452;
     --line-gray: #BDBDBD;
+    --line-gray2: #A1A1A1;
     --border-dark-gray: #717171;
 
     /* 백그라운드 */
@@ -54,6 +59,8 @@ export const GlobalStyle = createGlobalStyle`
     --background-dark-mint: #219A95;
     --background-red: #F45452;
     --background-dark-red: #D73331;
+    --background-yellow: #FFD142;
+    --background-dark-blue: #293D7C;
     --body-background: white;
     --header-background: white;
     --background-button-clicked: #E0E0E0;
@@ -61,7 +68,9 @@ export const GlobalStyle = createGlobalStyle`
     /* 텍스트 */
     --text-pastel-black: #353535;
     --text-black: #000000;
+    --text-red: #F45452;
     --text-mint: #2AC1BC;
+    --text-dark-blue: #293D7C;
     --text-white: #FFFFFF;
     --text-lightgray: #BDBDBD;
     --text-gray: #828282;

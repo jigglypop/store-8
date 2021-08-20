@@ -3,23 +3,23 @@ import { Link } from '@utils/router';
 import { kstFormatter } from '@utils/utils';
 import exMark from '@image/exclamMark.png';
 import {
-  PROCEED_GUIDE_TEXT,
+  CALC_GUIDE_TEXT,
   TOTAL_DISCOUNT_TEXT,
   TOTAL_PRODUCTS_TEXT,
   TOTAL_SHIPMENT_TEXT,
   TOTAL_RESULT_TEXT,
   TOTAL_ADD_TEXT,
 } from '@constants/Cart';
+import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
-import { CartContentMetaData } from '@client/type/CartContentMetaData';
 
 interface MetaData {
-  metaData: CartContentMetaData;
+  metaData: OrderContentMetaData;
 }
 
-function Receipt({ metaData }: MetaData): ReactElement {
+const OrderReceipt = ({ metaData }: MetaData): ReactElement => {
   return (
-    <S.ReceiptContainer>
+    <S.OrderReceipt>
       <S.Receipt>
         <p className="amount-title">{TOTAL_RESULT_TEXT}</p>
         <div className="amount-row">
@@ -47,11 +47,11 @@ function Receipt({ metaData }: MetaData): ReactElement {
         </Link>
         <div className="order-info">
           <img src={exMark} />
-          <p>{PROCEED_GUIDE_TEXT}</p>
+          <p>{CALC_GUIDE_TEXT}</p>
         </div>
       </S.OrderNow>
-    </S.ReceiptContainer>
+    </S.OrderReceipt>
   );
-}
+};
 
-export default Receipt;
+export default OrderReceipt;

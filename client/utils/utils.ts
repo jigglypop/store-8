@@ -10,6 +10,8 @@ import {
   SHIPMENT_ZERO_BASE,
 } from '@constants/Cart';
 
+import { COUPON_LOW_BASE, COUPON_HIGH_BASE } from '@constants/Order';
+
 import { PC_WIDTH_MIN, TABLET_WIDTH_MIN } from '@constants/Media';
 
 function kstFormatter(amount: number, suffix: boolean = true) {
@@ -29,6 +31,10 @@ function getShipmentAmount(amount: number) {
   else return SHIPMENT_ZERO;
 }
 
+function getMileage(amount: number) {
+  return Math.floor(amount / 100);
+}
+
 function mediaStringFormatter(pcString: string, tabletString: string, mobileString: string) {
   const width = window.innerWidth;
   if (width > PC_WIDTH_MIN) {
@@ -40,4 +46,14 @@ function mediaStringFormatter(pcString: string, tabletString: string, mobileStri
   }
 }
 
-export { kstFormatter, getShipmentAmount, mediaStringFormatter };
+function getCouponColor(amount: number): string {
+  if (amount < COUPON_LOW_BASE) {
+    return 'dark-blue';
+  } else if (amount < COUPON_HIGH_BASE) {
+    return 'yellow';
+  } else {
+    return 'red';
+  }
+}
+
+export { kstFormatter, getShipmentAmount, getMileage, mediaStringFormatter, getCouponColor };

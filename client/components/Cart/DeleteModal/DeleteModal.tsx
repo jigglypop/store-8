@@ -16,7 +16,7 @@ function DeleteModal(props: DeleteModalProps): ReactElement {
     <Modal closeModal={props.closeForm}>
       <S.DeleteModal>
         <div>
-          <p className="delete-modal-title">{NEXT_DELETE_TEXT}.</p>
+          <p className="delete-modal-title">{NEXT_DELETE_TEXT}</p>
           <div>
             {props.deleteLists.map((deleteIndex) => {
               const { option, title, count } = props.contents[deleteIndex];
@@ -24,7 +24,7 @@ function DeleteModal(props: DeleteModalProps): ReactElement {
                 <div className="delete-row" key={deleteIndex}>
                   <p>{title}</p>
                   {option.length !== 0 ? <p>{'(' + option + ')'}</p> : <></>}
-                  <p>{'x' + count}</p>
+                  <p>{'_x ' + count}</p>
                 </div>
               );
             })}
