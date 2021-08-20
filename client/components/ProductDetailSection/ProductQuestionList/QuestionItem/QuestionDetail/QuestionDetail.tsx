@@ -62,6 +62,7 @@ export default function QuestionDetail({
       {isEdit && (
         <QuestionForm
           cancelCbFn={cancelBtnCb('edit')}
+          questionId={id}
           editTitle={title}
           editContents={contents}
           editIsSecret={isSecret}

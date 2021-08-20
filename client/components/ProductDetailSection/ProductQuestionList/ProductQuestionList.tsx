@@ -20,6 +20,8 @@ export default function ProductQuestionList({}: Props): ReactElement {
 
   const handlePostBtnClick = () => setIsOpenForm(true);
 
+  const cancelFormCbFn = () => setIsOpenForm(false);
+
   return (
     <>
       <S.ProductQuestionList>
@@ -37,7 +39,7 @@ export default function ProductQuestionList({}: Props): ReactElement {
           )}
         </CommonS.UserPostingList>
       </S.ProductQuestionList>
-      {isOpenForm && <QuestionForm setIsOpenForm={setIsOpenForm} />}
+      {isOpenForm && <QuestionForm cancelCbFn={cancelFormCbFn} />}
     </>
   );
 }

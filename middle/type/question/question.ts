@@ -19,7 +19,7 @@ export interface IQuestionPostRes {
 }
 
 export interface IQuestionPutReq {
-  questionId: string;
+  questionId: number;
   title: string;
   contents: string;
   isSecret: boolean;

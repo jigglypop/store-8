@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction, useState } from 'react';
+import { Dispatch, MouseEvent, ReactElement, SetStateAction, useState } from 'react';
 import * as S from './style';
 
 import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
@@ -9,20 +9,22 @@ import CheckBox from '@components/common/CheckBox/CheckBox';
 import { useQuestion } from '@client/hooks/question/question';
 
 interface Props {
-  setIsOpenForm: Dispatch<SetStateAction<boolean>>;
+  cancelCbFn: () => void;
+  questionId?: number;
   editTitle?: string;
   editContents?: string;
   editIsSecret?: boolean;
 }
 
 export default function QuestionForm({
-  setIsOpenForm,
+  cancelCbFn,
+  questionId,
   editTitle,
   editContents,
   editIsSecret,
 }: Props): ReactElement {
-  const isEdit = editTitle !== undefined;
-  const { createQuestion, error } = useQuestion();
+  const isEdit = questionId !== undefined;
+  const { createQuestion, updateQuestion, error } = useQuestion();
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
   const [isSecret, setIsSecret] = useState(editIsSecret || false);
@@ -35,13 +37,19 @@ export default function QuestionForm({
     setContents(target.value);
   };
 
-  const handleCancelClick = () => setIsOpenForm(false);
-
-  const handleSubmitClick = async () => {
+  const handleSubmitClick = async (e: MouseEvent) => {
+    e.preventDefault();
     const questionFormData = { title, contents, isSecret };
-    const isSuccess = await createQuestion(questionFormData);
+
+    let isSuccess: boolean = false;
+
+    if (isEdit) {
+      if (!questionId) return;
+      isSuccess = await updateQuestion({ questionId, ...questionFormData });
+    } else isSuccess = await createQuestion(questionFormData);
+
     if (!isSuccess) return;
-    handleCancelClick();
+    cancelCbFn();
   };
 
   const isAbleSubmit = !!(title && contents);
@@ -50,8 +58,8 @@ export default function QuestionForm({
     <Modal>
       <S.QuestionForm>
         <div className="question-form__header">
-          <h2>상품 문의하기</h2>
-          <div className="cancel-btn" onClick={handleCancelClick}>
+          <h2>{isEdit ? '상품문의 수정하기' : '상품 문의하기'}</h2>
+          <div className="cancel-btn" onClick={cancelCbFn}>
             <XIcon />
           </div>
         </div>
@@ -89,11 +97,11 @@ export default function QuestionForm({
             </div>
           </div>
           <div className="question-form__btns">
-            <button className="cancel-btn" onClick={handleCancelClick}>
+            <button className="cancel-btn" onClick={cancelCbFn}>
               취소
             </button>
             <button className="submit-btn" disabled={!isAbleSubmit} onClick={handleSubmitClick}>
-              등록
+              {isEdit ? '수정' : '등록'}
             </button>
           </div>
         </form>
