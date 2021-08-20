@@ -3,19 +3,37 @@ import * as S from './style';
 import EditIcon from '@image/icon/editIcon.svg';
 import DeleteIcon from '@image/icon/deleteIcon.svg';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
+import QuestionForm from '../../QuestionForm/QuestionForm';
+import { useQuestion } from '@client/hooks/question/question';
 
 interface Props {
+  id: number;
+  title: string;
   contents: string;
   answer: string | null;
   answerDate: string | null;
+  isSecret: boolean;
 }
 
-export default function QuestionDetail({ contents, answer, answerDate }: Props): ReactElement {
+export default function QuestionDetail({
+  id,
+  title,
+  contents,
+  answer,
+  answerDate,
+  isSecret,
+}: Props): ReactElement {
+  const { updateQuestion, deleteQuestion } = useQuestion();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
-  const cancelBtnCb = (isEdit: boolean) => () => {
-    isEdit ? setIsEdit(false) : setIsDelete(false);
+  const cancelBtnCb = (type: string) => () => {
+    type === 'edit' ? setIsEdit(false) : setIsDelete(false);
+  };
+
+  const confirmDeleteQuestion = () => {
+    deleteQuestion({ questionId: id });
+    setIsDelete(false);
   };
 
   const handleEditClick = () => setIsEdit(true);
@@ -41,8 +59,16 @@ export default function QuestionDetail({ contents, answer, answerDate }: Props):
           </div>
         </div>
       )}
+      {isEdit && (
+        <QuestionForm
+          cancelCbFn={cancelBtnCb('edit')}
+          editTitle={title}
+          editContents={contents}
+          editIsSecret={isSecret}
+        />
+      )}
       {isDelete && (
-        <DeleteModal cancelCbFn={cancelBtnCb(false)} deleteCbFn={() => console.log('hello')} />
+        <DeleteModal cancelCbFn={cancelBtnCb('delete')} deleteCbFn={confirmDeleteQuestion} />
       )}
     </S.QuestionDetail>
   );

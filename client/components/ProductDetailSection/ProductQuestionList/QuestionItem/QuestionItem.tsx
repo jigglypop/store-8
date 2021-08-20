@@ -21,7 +21,7 @@ export default function QuestionItem({
   answer,
   answerDate,
 }: Props): ReactElement {
-  const [isOpenDetail, setIsOpenDetail] = useState(false);
+  const [isOpenDetail, setIsOpenDetail] = useState(true);
 
   const hideId = (id: string): string => {
     return id.slice(0, 2) + new Array(id.slice(2).length).fill('*').join('');
@@ -47,7 +47,9 @@ export default function QuestionItem({
           <div className="question-info status">{questionStatus}</div>
         </div>
       </S.QuestionItem>
-      {isOpenDetail && <QuestionDetail {...{ contents, answer, answerDate }} />}
+      {isOpenDetail && (
+        <QuestionDetail {...{ id, title, contents, answer, answerDate, isSecret }} />
+      )}
     </>
   );
 }
