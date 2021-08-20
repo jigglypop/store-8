@@ -24,7 +24,7 @@ export const err: IError = {
   INVALID_INPUT_ERROR: {
     status: 400,
     message: '잘못된 입력이 있습니다.',
-    serverMessage: 'Invalid input request error!',
+    serverMessage: 'Invalid input request error',
   },
 
   NO_DATA: {
