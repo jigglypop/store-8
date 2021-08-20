@@ -21,7 +21,6 @@ export const getCategory = async (req: Request, res: Response) => {
   let category = null;
   if (categoryId === '0') {
     category = await Product.findAndCountAll({
-      attributes: [[sequelize.fn('COUNT', 'id'), 'followingCount']],
       order: [['id', 'DESC']],
       // 오프셋(밀 넓이)
       offset: Number(_page) * _limit,

@@ -8,7 +8,11 @@ interface ISliderItem {
 const SliderItem = ({ item }: ISliderItem) => {
   return (
     <S.SliderItem>
-      <Link to={`/category/${item.id}/?page=1`} className="slider-item" id={`link-${item.id}`}>
+      <Link
+        to={`/category/${item.id}/?page=1&order=1`}
+        className="slider-item"
+        id={`link-${item.id}`}
+      >
         {item.title}
       </Link>
     </S.SliderItem>
