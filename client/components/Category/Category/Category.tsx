@@ -3,11 +3,16 @@ import { useRouter } from '@client/hooks/router/router';
 import { IProduct } from '@server/models/Product';
 import { categoryKeyName } from '@middle/category/category';
 import * as S from './style';
+import { categoryOrderItems, ICategoryOrderItem } from '@client/constants/category_order';
+import { Link } from '@client/utils/router';
+
 interface ICategoryComponent {
   cards: IProduct[] | undefined;
 }
+
 function Category({ cards }: ICategoryComponent) {
-  const { router } = useRouter();
+  const { router, query } = useRouter();
+  console.log(query.order);
   return (
     <S.Category>
       <div className="main-inner">
@@ -17,10 +22,13 @@ function Category({ cards }: ICategoryComponent) {
               {router && <h4>{categoryKeyName[Number(router.params)]}</h4>}
             </div>
             <div className="category-items">
-              <div className="category-item">추천순</div>
-              <div className="category-item">인기순</div>
-              <div className="category-item">낮은 가격순</div>
-              <div className="category-item">높은 가격순</div>
+              {categoryOrderItems.map((item: ICategoryOrderItem, index: number) => (
+                <Link to={`/category/${router.params}/?page=1&order=${item.id}`} key={index}>
+                  <div className={`category-item ${item.id === query.order ? 'isSelected' : ''}`}>
+                    {item.title}
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </div>
