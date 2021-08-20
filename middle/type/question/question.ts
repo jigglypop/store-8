@@ -17,3 +17,13 @@ export interface IQuestionPostReq {
 export interface IQuestionPostRes {
   success: boolean;
 }
+
+export interface IQuestionPutReq {
+  questionId: string;
+  title: string;
+  contents: string;
+  isSecret: boolean;
+}
+export interface IQuestionDeleteReq {
+  questionId: number;
+}
