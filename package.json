@@ -10,7 +10,8 @@
     "develop": "webpack serve --config webpack.dev.js --progress",
     "db": "ts-node dbInitializer.ts",
     "build": "webpack --mode production",
-    "start:client": "webpack --mode development --progress"
+    "start:client": "webpack --mode development --progress",
+    "preset": "set NODE_OPTIONS=--max_old_space_size=12000"
   },
   "repository": {
     "type": "git",
