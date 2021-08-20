@@ -34,7 +34,7 @@ export default function RefundSection({}: Props): ReactElement {
   return (
     <S.RefundSection>
       <Intro {...sampleData} />
-      <SearchBar title="반품/환불" setOriginalResults={setOriginalResults} />
+      <SearchBar page="refund" title="반품/환불" setOriginalResults={setOriginalResults} />
       <RefundFilter eventHandler={onFilterButtonHandler} index={filterButtonIndex} />
       <RefundResultContainer title="반품/환불 내역 총 " results={filteredResults} />
     </S.RefundSection>

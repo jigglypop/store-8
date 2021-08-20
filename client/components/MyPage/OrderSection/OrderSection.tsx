@@ -14,7 +14,7 @@ export default function OrderSection({}: Props): ReactElement {
   return (
     <S.OrderSection>
       <Intro {...sampleData} />
-      <SearchBar title="주문목록/배송조회" setOriginalResults={setOriginalResults} />
+      <SearchBar page="order" title="주문목록/배송조회" setOriginalResults={setOriginalResults} />
       <ResultContainer title="주문목록 / 배송조회 내역 " results={originalResults} />
     </S.OrderSection>
   );
