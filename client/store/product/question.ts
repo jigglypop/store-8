@@ -1,7 +1,7 @@
-import { getQuestionApi } from '@client/api/question';
 import { IQuestionRes } from '@middle/type/question/question';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import createExtraGet from '../createExtra/createExtraGet';
+import { createQuestionApi, getQuestionApi } from '@client/api/question';
 
 interface IQuestion {
   question: IQuestionRes[] | null;
@@ -18,6 +18,8 @@ const name = 'question';
 
 export const getQuestion = createAsyncThunk(name, getQuestionApi);
 const questionInfoExtra = createExtraGet<IQuestionRes[] | null>(getQuestion, name);
+
+// export const createQuestion = createAsyncThunk('QUESTION_POST', createQuestionApi);
 
 const initialState: IQuestion = {
   question: null,
