@@ -1,7 +1,7 @@
 import cache from '@client/utils/cache';
 import { setDarkMode } from '@client/utils/setDisplay';
 import { MouseEvent } from 'react';
-import * as S from './style';
+import * as S from '../style';
 function Picker() {
   const onClick = (e: any) => {
     if (e.target.className === 'colorpicker-button') {

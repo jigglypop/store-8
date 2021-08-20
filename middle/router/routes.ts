@@ -36,12 +36,6 @@ export const routes = [
     component: 'CartPage',
   },
   {
-    path: '/order',
-    name: 'order',
-    title: '주문하기',
-    component: 'OrderPage',
-  },
-  {
     path: '/product/:productId',
     name: 'product',
     title: '상품 페이지',
@@ -94,5 +88,11 @@ export const routes = [
     name: 'category',
     title: '카테고리 페이지',
     component: 'CategoryPage',
+  },
+  {
+    path: '/search/:searchId',
+    name: 'search',
+    title: '검색',
+    component: 'SearchPage',
   },
 ];

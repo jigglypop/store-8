@@ -29,7 +29,7 @@ export const UserSlider = styled.div<IUserSlider>`
   transform: translateX(${(props) => (props.isRight ? '0' : '200px')});
   transition: all 0.3s ease-in;
 
-  li {
+  .user-slider-item {
     margin: 10px;
   }
 `;
@@ -191,7 +191,7 @@ export const Header = styled.header<IHeader>`
   .isSmallHeader {
     display: none;
   }
-  @media only screen and (max-width: 900px) {
+  @media only screen and (max-width: 1000px) {
     .isSmallHeader {
       display: flex;
     }
