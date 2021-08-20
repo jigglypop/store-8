@@ -3,17 +3,17 @@ import { MainItem } from '../common/style';
 
 export const MainGift = styled(MainItem)`
   position: relative;
-  width: 100%;
+  width: var(--app-width);
   display: flex;
   justify-content: center;
   align-items: center;
 
   .title {
-    grid-row: 1/2;
+    width: 100%;
   }
 
   .content {
-    grid-row: 2/3;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -24,14 +24,14 @@ export const MainGift = styled(MainItem)`
 
   .gift-item {
     position: relative;
-    width: 100%;
+    width: var(--app-width);
     display: grid;
-    grid-template-columns: 60vw 1fr;
+    grid-template-columns: min(60vw, 960px) 1fr;
 
     .image {
       grid-column: 1/2;
       img {
-        width: 60vw;
+        width: min(60vw, 960px);
       }
     }
 
@@ -46,7 +46,7 @@ export const MainGift = styled(MainItem)`
   }
 
   .large {
-    font-size: 25px;
+    font-size: 24px;
     color: var(--text-black-dark);
     line-height: 45px;
     margin-bottom: 8px;
