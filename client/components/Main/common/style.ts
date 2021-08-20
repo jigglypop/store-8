@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const MainItem = styled.div`
+  margin: 10px;
   position: relative;
-  width: var(--app-width);
+  width: 80vw;
   max-height: 2000vh;
   display: grid;
   grid-template-rows: 200px 1fr;
 
   .main-inner {
     position: relative;
-    width: 100%;
     height: 100%;
     display: grid;
     grid-template-rows: 100px 1fr;

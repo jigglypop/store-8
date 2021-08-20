@@ -7,10 +7,10 @@ export const MainPage = styled.div`
   margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
 
   .title {
-    background-color: var(--background-gray-dark);
-    margin: 10px 0px;
-    padding-left: 30px;
-
+    background-color: var(--footer-background-dark);
+    margin: 10px;
+    padding: 30px;
+    grid-row: 1/2;
     display: flex;
     align-items: center;
     font-weight: 600;

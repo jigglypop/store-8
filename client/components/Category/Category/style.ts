@@ -15,6 +15,7 @@ export const Category = styled(MainItem)`
     background-color: rgb(0, 0, 0, 0.8);
     padding: 15px 20px;
     border-radius: 20px;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.8);
 
     h4 {
       font-size: 16px;
