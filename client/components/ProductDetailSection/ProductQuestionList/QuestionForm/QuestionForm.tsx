@@ -10,13 +10,22 @@ import { useQuestion } from '@client/hooks/question/question';
 
 interface Props {
   setIsOpenForm: Dispatch<SetStateAction<boolean>>;
+  editTitle?: string;
+  editContents?: string;
+  editIsSecret?: boolean;
 }
 
-export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
+export default function QuestionForm({
+  setIsOpenForm,
+  editTitle,
+  editContents,
+  editIsSecret,
+}: Props): ReactElement {
+  const isEdit = editTitle !== undefined;
   const { createQuestion, error } = useQuestion();
-  const [title, setTitle] = useState('');
-  const [contents, setContents] = useState('');
-  const [isSecret, setIsSecret] = useState(false);
+  const [title, setTitle] = useState(editTitle ?? '');
+  const [contents, setContents] = useState(editContents ?? '');
+  const [isSecret, setIsSecret] = useState(editIsSecret || false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     setTitle(target.value);
