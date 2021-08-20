@@ -1,34 +1,23 @@
 import { dateStringFormat } from '@client/utils/date';
 import React, { ReactElement } from 'react';
 import * as S from './style';
-
-interface IResult {
-  date: Date; // order day
-  id: number; // refundId : for key
-  orderNumber: string; // order
-  title: string; // productId
-  option?: string; //
-  productAmount: number;
-  productCount: number;
-  state: string; // 주문상태
-  isConfirmed: boolean; // 확인/리뷰
-  thumbnailSrc: string;
-}
+import { IResult } from '../dummydata';
 
 interface Props {
   result: IResult;
+  key: number;
 }
 
-export default function RefundBox({ result }: Props): ReactElement {
+export default function RefundBox({ result, key }: Props): ReactElement {
   return (
     <S.RefundBox>
       <div className="column-date">
-        <div>{dateStringFormat(result.date)}</div>
+        <div>{dateStringFormat(new Date(result.date))}</div>
         <div>{result.orderNumber}</div>
       </div>
       <div className="column-title">
         <div className="wrapper-thumbnail">
-          <img src={result.thumbnailSrc} />
+          <img src={result.productImgSrc} />
         </div>
         <div className="container-title">
           <div className="text-title">{result.title}</div>
