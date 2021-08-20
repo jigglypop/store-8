@@ -33,6 +33,7 @@ export const _filteredResults: IResult[] = [
     state: '처리완료', // 주문상태
     isConfirmed: false, // 확인/리뷰
     productImgSrc: `public/image/product/big/2.jpg`,
+  },
   {
     date: '2021-08-10',
     id: 3,
