@@ -12,7 +12,7 @@ interface ICurrentPath {
 }
 
 interface IRouter {
-  children: JSX.Element | string;
+  children?: JSX.Element | string;
 }
 
 interface ILink extends IRouter {

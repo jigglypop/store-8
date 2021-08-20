@@ -1,10 +1,10 @@
-import * as S from './style';
+import * as S from '../style';
 import { useEffect, useRef, useState } from 'react';
 import { ICategory } from '@server/models/Category';
 import { $ } from '@client/utils/jQurey';
 import SliderItem from './SliderItem';
-import { categoryset } from './categoryset';
-import Picker from './Picker';
+import { categoryset } from '../categoryset';
+import Picker from '../Dark/Picker';
 
 export interface ISlider {
   isLeft: number;

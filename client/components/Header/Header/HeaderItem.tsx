@@ -1,6 +1,6 @@
 import { ICategory } from '@server/models/Category';
-import { Link } from '../../utils/router';
-import * as S from './style';
+import { Link } from '../../../utils/router';
+import * as S from '../style';
 
 interface IHeaderItem {
   item: ICategory;
