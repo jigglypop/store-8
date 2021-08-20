@@ -31,6 +31,9 @@ export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
         <Link to="/register">회원가입</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
+        <Link to="/mypage-order-list">마이페이지</Link>
+      </S.HeaderItem>
+      <S.HeaderItem className="isBigHeader">
         <Link to="/cart">장바구니</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isSmallHeader">

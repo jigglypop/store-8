@@ -29,7 +29,7 @@ export default function NavigationBar({ page }: Props): ReactElement {
           주문목록/배송조회
         </Link>
         <Link to="/mypage-refund-list" className={checkCurrentPage('REFUND')}>
-          반품 / 환불 내역
+          반품/환불 내역
         </Link>
         <Link to="/mypage-wish-list" className={checkCurrentPage('WISH')}>
           찜리스트

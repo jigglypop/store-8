@@ -1,34 +1,23 @@
 import { dateStringFormat } from '@client/utils/date';
 import React, { ReactElement } from 'react';
 import * as S from './style';
-
-interface IResult {
-  date: Date;
-  id: number;
-  orderNumber: string;
-  title: string;
-  option?: string;
-  productPrice: number;
-  productCount: number;
-  status: string; // 주문상태
-  checkOrReview: string; // 확인/리뷰
-  thumbnailSrc: string;
-}
+import { IResult } from '../dummydata';
 
 interface Props {
   result: IResult;
+  key: number;
 }
 
-export default function ResultBox({ result }: Props): ReactElement {
+export default function RefundBox({ result, key }: Props): ReactElement {
   return (
-    <S.ResultBox>
+    <S.RefundBox>
       <div className="column-date">
-        <div>{dateStringFormat(result.date)}</div>
+        <div>{dateStringFormat(new Date(result.date))}</div>
         <div>{result.orderNumber}</div>
       </div>
       <div className="column-title">
         <div className="wrapper-thumbnail">
-          <img src={result.thumbnailSrc} />
+          <img src={result.productImgSrc} />
         </div>
         <div className="container-title">
           <div className="text-title">{result.title}</div>
@@ -37,17 +26,16 @@ export default function ResultBox({ result }: Props): ReactElement {
       </div>
       <div className="column-product">
         <div>
-          {result.productPrice}원 / <span>{result.productCount}개</span>
+          {result.productAmount}원 / <span>{result.productCount}개</span>
         </div>
       </div>
       <div className="column-status">
-        <div>{result.status}</div>
+        <div>{result.state}</div>
       </div>
       <div className="column-confirm">
         <button>취소</button>
-        <button>구매확정</button>
-        <button>리뷰쓰기</button>
+        <button>환불확정</button>
       </div>
-    </S.ResultBox>
+    </S.RefundBox>
   );
 }
