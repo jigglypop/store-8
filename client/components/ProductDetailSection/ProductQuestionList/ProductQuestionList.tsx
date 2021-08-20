@@ -4,17 +4,12 @@ import * as CommonS from '../style';
 import QuestionItem from './QuestionItem/QuestionItem';
 import QuestionForm from './QuestionForm/QuestionForm';
 
-import { useRouter } from '@client/hooks/router/router';
 import { useQuestion } from '@client/hooks/question/question';
 
 interface Props {}
 
 export default function ProductQuestionList({}: Props): ReactElement {
-  const {
-    router: { params },
-  } = useRouter();
-
-  const { question, loading, error } = useQuestion(+params);
+  const { question, loading, error } = useQuestion();
   const [isOpenForm, setIsOpenForm] = useState(false);
 
   if (!question) return <></>;
