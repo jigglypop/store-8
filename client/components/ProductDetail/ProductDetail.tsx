@@ -1,21 +1,31 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
 
-import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
-
 import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
 
+import { useRouter } from '@client/hooks/router/router';
+import { useProduct } from '@client/hooks/product/product';
+
 interface Props {}
 
 export default function ProductDetail({}: Props): ReactElement {
-  const { id, img, title, originAmount, amount, delivery_info, isLiked } = sampleData;
+  const {
+    router: { params },
+  } = useRouter();
+
+  const { product, loading, error } = useProduct(+params);
+  if (!product) return <></>;
+  //isLiked 속성은 db처리 후 추가
+  const isLiked = false;
+  const { id, productImgSrc, title, originalAmount, amount } = product;
+
   return (
     <StyledProductDetail>
-      <ImgMagifier src={img} />
+      <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
-        <ProductInfo {...{ title, originAmount, amount, delivery_info }} />
+        <ProductInfo {...{ title, originalAmount, amount }} />
         <DetailBtns {...{ id, isLiked }} />
       </div>
     </StyledProductDetail>
@@ -36,16 +46,3 @@ const StyledProductDetail = styled.div`
     justify-content: space-between;
   }
 `;
-
-const sampleData = {
-  id: '1234',
-  img: sampleThumbnail,
-  title: '맥주짠 세트',
-  originAmount: 20000,
-  amount: 10900,
-  delivery_info: {
-    fee: '2,500원 (3만원 이상 구매시 무료)',
-    timeLimit: '오후 2시 당일배송마감',
-  },
-  isLiked: false,
-};

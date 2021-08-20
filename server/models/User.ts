@@ -9,6 +9,7 @@ import Refund from './Refund';
 
 import UserCoupon from './UserCoupon';
 import Wish from './Wish';
+import ReviewLike from './ReviewLike';
 
 export interface IUser {
   id?: string;
@@ -59,4 +60,7 @@ export default class User extends Model<IUser> {
 
   @HasMany(() => Refund)
   Refunds: Refund[];
+
+  @HasMany(() => ReviewLike)
+  ReviewLike: ReviewLike[];
 }

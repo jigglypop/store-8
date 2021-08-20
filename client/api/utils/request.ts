@@ -20,12 +20,14 @@ const requestGet = async (url: string) => {
   const res = await fetch(SERVER_URL + url);
   const data = await res.json();
   const _token = res.headers.get('token');
+
   if (_token) {
     cache.set('token', _token);
   }
-  if (data.status) {
+  if (!data.status) {
     data.status = res.status;
   }
+
   return data;
 };
 
@@ -39,6 +41,7 @@ const requestGetToken = async (url: string, token?: string) => {
   if (!data.status) {
     data.status = res.status;
   }
+
   return data;
 };
 

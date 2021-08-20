@@ -12,7 +12,10 @@ function PaginationItem({ num }: IPaginationItemComponent) {
   const isNow = num === Number(query.page);
   return (
     <S.PaginationItem>
-      <Link to={`/category/${router.params}/?page=${num}`} className="pagination-text">
+      <Link
+        to={`/category/${router.params}/?page=${num}&order=${query.order}`}
+        className="pagination-text"
+      >
         <p className={isNow ? 'now' : ''}>{num.toString()}</p>
       </Link>
     </S.PaginationItem>

@@ -11,6 +11,8 @@ import orderRouter from './order';
 
 import templateRouter from './template';
 import cartRouter from './cart';
+import reviewRouter from './review';
+import uploadRouter from './upload';
 
 const rootRouter = express();
 
@@ -26,5 +28,7 @@ rootRouter.use('/api/question', questionRouter);
 rootRouter.use('/api/cart', cartRouter);
 rootRouter.use('/api/refund', refundRouter);
 rootRouter.use('/api/order', orderRouter);
+rootRouter.use('/api/review', reviewRouter);
+rootRouter.use('/api/upload', uploadRouter);
 
 export default rootRouter;

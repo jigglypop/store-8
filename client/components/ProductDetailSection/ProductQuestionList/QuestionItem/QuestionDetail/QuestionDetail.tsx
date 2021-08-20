@@ -3,10 +3,11 @@ import * as S from './style';
 
 interface Props {
   contents: string;
-  answer: string | void;
+  answer: string | null;
+  answerDate: string | null;
 }
 
-export default function QuestionDetail({ contents, answer }: Props): ReactElement {
+export default function QuestionDetail({ contents, answer, answerDate }: Props): ReactElement {
   return (
     <S.QuestionDetail>
       <div className="question-detail__question">
@@ -17,6 +18,7 @@ export default function QuestionDetail({ contents, answer }: Props): ReactElemen
         <div className="question-detail__answer">
           <div className="question-detail__title">A</div>
           <div className="question-detail__content">{answer}</div>
+          <div className="question-detail__date">{answerDate}</div>
         </div>
       )}
     </S.QuestionDetail>

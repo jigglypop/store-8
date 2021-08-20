@@ -35,6 +35,10 @@ export const Category = styled(MainItem)`
       font-size: 14px;
       font-weight: 600;
       color: var(--text-white);
+      cursor: pointer;
+    }
+    .category-item.isSelected {
+      color: var(--text-picker);
     }
   }
 `;

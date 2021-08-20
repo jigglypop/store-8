@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from '@utils/router';
 import { kstFormatter } from '@utils/utils';
 import exMark from '@image/exclamMark.png';
 import {
@@ -41,7 +42,9 @@ function Receipt({ metaData }: MetaData): ReactElement {
         <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
       </S.TotalPrice>
       <S.OrderNow>
-        <button>{'주문하기'}</button>
+        <Link to={'/order'}>
+          <button>{'주문하기'}</button>
+        </Link>
         <div className="order-info">
           <img src={exMark} />
           <p>{PROCEED_GUIDE_TEXT}</p>

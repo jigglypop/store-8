@@ -7,6 +7,9 @@ import router from './router/router';
 import category from './category/category';
 import mode from './mode/mode';
 import main from './main/main';
+import order from './product/order';
+import product from './product/product';
+import question from './product/question';
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -21,6 +24,9 @@ export const store = configureStore({
     category,
     mode,
     main,
+    order,
+    product,
+    question,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
