@@ -40,6 +40,11 @@ export const RefundBox = styled.div`
       background-color: rgba(0, 0, 0, 0.3);
       width: 40px;
       height: 50px;
+
+      img {
+        width: 40px;
+        height: 50px;
+      }
     }
 
     .container-title {

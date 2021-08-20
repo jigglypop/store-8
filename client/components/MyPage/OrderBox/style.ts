@@ -40,6 +40,11 @@ export const OrderBox = styled.div`
       background-color: rgba(0, 0, 0, 0.3);
       width: 40px;
       height: 50px;
+
+      img {
+        width: 40px;
+        height: 50px;
+      }
     }
 
     .container-title {
@@ -49,6 +54,7 @@ export const OrderBox = styled.div`
 
       .text-option {
         color: var(--text-lightgray);
+        text-align: left;
       }
     }
   }
