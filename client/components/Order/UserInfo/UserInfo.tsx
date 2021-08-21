@@ -2,6 +2,8 @@ import { ReactElement, useState } from 'react';
 import checkBad from '@image/check-bad.png';
 import checkGood from '@image/check-good.png';
 import exclamRed from '@image/exclam-red.png';
+import { getDaumAddress } from '@lib/daumAddress';
+import type { AddressResult } from '@lib/daumAddress';
 import {
   INPUT_NAME_PLACEHOLDER,
   INPUT_CALL_PLACEHOLDER,
@@ -19,6 +21,11 @@ const UserInfo = (): ReactElement => {
   const [nameCheck, setNameCheck] = useState(0);
   const [callCheck, setCallCheck] = useState(0);
   const [emailCheck, setEmailCheck] = useState(0);
+  const [addressInfo, setAddressInfo] = useState({
+    address: '',
+    zoneCode: '',
+    extraEdit: true,
+  });
 
   const checkNameString = (nameString: string): number => {
     if (nameString.length === 0) return 0;
@@ -68,6 +75,13 @@ const UserInfo = (): ReactElement => {
     }
   };
 
+  const getAddress = () => {
+    getDaumAddress(({ address, zoneCode }) => {
+      // 상세주소로 focuse 필요
+      setAddressInfo({ address, zoneCode, extraEdit: false });
+    });
+  };
+
   return (
     <S.UserInfo>
       <div className="input-form-container">
@@ -111,6 +125,15 @@ const UserInfo = (): ReactElement => {
           {getCheckIcon(emailCheck)}
         </div>
         {getAlertText(emailCheck, INPUT_EMAIL_ALERT)}
+      </div>
+      <div className="address-form-container">
+        <p className="input-form-label">{'배송지 선택'}</p>
+        <div className="address-search-container">
+          <input placeholder="우편번호" value={addressInfo.zoneCode} disabled />
+          <button onClick={getAddress}>{'우편번호 찾기'}</button>
+        </div>
+        <input value={addressInfo.address} placeholder="주소" disabled />
+        <input placeholder="상세주소" disabled={addressInfo.extraEdit} />
       </div>
     </S.UserInfo>
   );
