@@ -10,3 +10,23 @@ export interface IReviewRes {
   isLike: boolean;
   isDislike: boolean;
 }
+
+export interface IReviewPostReq {
+  title: string;
+  contents: string;
+  score: number;
+  imgSrc: string[];
+}
+
+export interface IReviewPutReq extends IReviewPostReq {
+  reviewId: number;
+}
+
+export interface IReviewDeleteReq {
+  reviewId: number;
+}
+
+export interface IReviewLikeReq {
+  isLike: boolean;
+  isDislike: boolean;
+}
