@@ -1,7 +1,10 @@
-import { IQuestionRes } from '@middle/type/question/question';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import createExtraGet from '../createExtra/createExtraGet';
-import { createQuestionApi, getQuestionApi } from '@client/api/question';
+
+import { getQuestionApi } from '@client/api/question';
+
+import { IQuestionRes } from '@middle/type/question/question';
+
+import createExtraGet from '@store/createExtra/createExtraGet';
 
 interface IQuestion {
   question: IQuestionRes[] | null;
@@ -11,15 +14,8 @@ interface IQuestion {
 
 const name = 'question';
 
-// const QUESTION_GET = `${name}/get`;
-// const QUESTION_CREATE = `${name}/post`;
-// const QUESTION_UPDATE = `${name}/put`;
-// const QUESTION_DELETE = `${name}/delete`;
-
 export const getQuestion = createAsyncThunk(name, getQuestionApi);
-const questionInfoExtra = createExtraGet<IQuestionRes[] | null>(getQuestion, name);
-
-// export const createQuestion = createAsyncThunk('QUESTION_POST', createQuestionApi);
+const questionGetReducer = createExtraGet<IQuestionRes[] | null>(getQuestion, name);
 
 const initialState: IQuestion = {
   question: null,
@@ -32,9 +28,12 @@ const questionSlice = createSlice({
   initialState,
   reducers: {
     initQuestion: () => initialState,
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
-  extraReducers: questionInfoExtra,
+  extraReducers: questionGetReducer,
 });
 
-export const { initQuestion } = questionSlice.actions;
+export const { initQuestion, setError } = questionSlice.actions;
 export default questionSlice.reducer;

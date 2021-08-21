@@ -7,3 +7,23 @@ export interface IQuestionRes {
   answer: string | null;
   answerDate: string | null;
 }
+
+export interface IQuestionPostReq {
+  title: string;
+  contents: string;
+  isSecret: boolean;
+}
+
+export interface IQuestionPostRes {
+  success: boolean;
+}
+
+export interface IQuestionPutReq {
+  questionId: number;
+  title: string;
+  contents: string;
+  isSecret: boolean;
+}
+export interface IQuestionDeleteReq {
+  questionId: number;
+}

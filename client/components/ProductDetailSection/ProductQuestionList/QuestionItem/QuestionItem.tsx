@@ -47,7 +47,9 @@ export default function QuestionItem({
           <div className="question-info status">{questionStatus}</div>
         </div>
       </S.QuestionItem>
-      {isOpenDetail && <QuestionDetail {...{ contents, answer, answerDate }} />}
+      {isOpenDetail && (
+        <QuestionDetail {...{ id, title, contents, answer, answerDate, isSecret }} />
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Dispatch, ReactElement, SetStateAction, useState } from 'react';
+import { Dispatch, MouseEvent, ReactElement, SetStateAction, useState } from 'react';
 import * as S from './style';
 
 import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
@@ -6,38 +6,60 @@ import XIcon from '@image/question/xIcon.svg';
 import Modal from '@components/common/Modal/Modal';
 import CheckBox from '@components/common/CheckBox/CheckBox';
 
+import { useQuestion } from '@client/hooks/question/question';
+
 interface Props {
-  setIsOpenForm: Dispatch<SetStateAction<boolean>>;
+  cancelCbFn: () => void;
+  questionId?: number;
+  editTitle?: string;
+  editContents?: string;
+  editIsSecret?: boolean;
 }
 
-export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [isSecret, setIsSecret] = useState(false);
+export default function QuestionForm({
+  cancelCbFn,
+  questionId,
+  editTitle,
+  editContents,
+  editIsSecret,
+}: Props): ReactElement {
+  const isEdit = questionId !== undefined;
+  const { createQuestion, updateQuestion, error } = useQuestion();
+  const [title, setTitle] = useState(editTitle ?? '');
+  const [contents, setContents] = useState(editContents ?? '');
+  const [isSecret, setIsSecret] = useState(editIsSecret || false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     setTitle(target.value);
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
-    setContent(target.value);
+    setContents(target.value);
   };
 
-  const handleCancelClick = () => setIsOpenForm(false);
+  const handleSubmitClick = async (e: MouseEvent) => {
+    e.preventDefault();
+    const questionFormData = { title, contents, isSecret };
 
-  const handleSubmitClick = () => {
-    //post요청
-    handleCancelClick();
+    let isSuccess: boolean = false;
+
+    if (isEdit) {
+      if (!questionId) return;
+      isSuccess = await updateQuestion({ questionId, ...questionFormData });
+    } else isSuccess = await createQuestion(questionFormData);
+
+    if (!isSuccess) return;
+    cancelCbFn();
   };
 
-  const isAbleSubmit = !!(title && content);
+  const isAbleSubmit = !!(title && contents);
 
   return (
     <Modal>
       <S.QuestionForm>
         <div className="question-form__header">
-          <h2>상품 문의하기</h2>
-          <div className="cancel-btn" onClick={handleCancelClick}>
+          <h2>{isEdit ? '상품문의 수정하기' : '상품 문의하기'}</h2>
+          <div className="cancel-btn" onClick={cancelCbFn}>
             <XIcon />
           </div>
         </div>
@@ -57,12 +79,12 @@ export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
               className="question-form__input"
             />
           </div>
-          <div className="question-form__content-input">
+          <div className="question-form__contents-input">
             <div className="title">내용</div>
             <div className="textarea-wrapper">
               <textarea
                 placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
-                value={content}
+                value={contents}
                 onChange={handleTextareaChange}
                 maxLength={5000}
                 className="question-form__input"
@@ -71,14 +93,15 @@ export default function QuestionForm({ setIsOpenForm }: Props): ReactElement {
                 <CheckBox isCheck={isSecret} setIsCheck={setIsSecret} className="checkbox-secret" />
                 <div>비밀글로 문의하기</div>
               </div>
+              <div className="question-form__error">{error}</div>
             </div>
           </div>
           <div className="question-form__btns">
-            <button className="cancel-btn" onClick={handleCancelClick}>
+            <button className="cancel-btn" onClick={cancelCbFn}>
               취소
             </button>
             <button className="submit-btn" disabled={!isAbleSubmit} onClick={handleSubmitClick}>
-              등록
+              {isEdit ? '수정' : '등록'}
             </button>
           </div>
         </form>
