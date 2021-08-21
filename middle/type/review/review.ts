@@ -5,4 +5,8 @@ export interface IReviewRes {
   score: number;
   date: string;
   imgSrc: string[];
+  likeCount: number;
+  dislikeCount: number;
+  isLike: boolean;
+  isDislike: boolean;
 }
