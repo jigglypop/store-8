@@ -1,6 +1,7 @@
 import { Link } from '@client/utils/router';
 import { IProduct } from '@server/models/Product';
-import { dot } from '../../../utils/dot';
+import { dot } from '../../utils/dot';
+import Wish from '../Wish/Wish';
 import * as S from './style';
 
 interface ICard {
@@ -19,6 +20,7 @@ const Card = ({ index, item }: ICard) => {
           <Link to={`/product/${item.id}`}>
             <img src={'/' + imgsrc} alt="title" />
           </Link>
+          <Wish productId={item.id.toString()} name={item.title} />
           {/* <div className="underbutton">
             <button className="smallbutton">
               <i className="far fa-heart"></i>

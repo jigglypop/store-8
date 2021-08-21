@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
 export const MyWishPage = styled.div`
-  margin-top: 12px;
-  margin-left: 12px;
+  width: var(--app-width);
+  margin: 0px calc(50vw - var(--app-width) / 2) 0px calc(50vw - var(--app-width) / 2);
+  position: relative;
+
   display: flex;
-  flex-direction: row;
-  gap: 32px;
-  min-height: 602px;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+
+  .mypage-inner {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
 `;

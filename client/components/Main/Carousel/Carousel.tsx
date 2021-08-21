@@ -69,7 +69,7 @@ const Carousel = () => {
       <div className="carouselInner">
         <div ref={carouselRef} className="carousels">
           {imageUrls.map((item: ICarouselItem, index: number) => (
-            <Link to={`/product/${item.id}`}>
+            <Link to={`/product/${item.id}`} key={index}>
               <img key={index} src={item.url} className="carousel" id="imgc1" />
             </Link>
           ))}
