@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@client/store';
 import { useEffect } from 'react';
-import { getCategory } from '@client/store/category/category';
+import { getCategory, initCategory } from '@client/store/category/category';
 
 export function useCategory() {
   const { router } = useSelector((state: RootState) => state.router);
@@ -12,6 +12,9 @@ export function useCategory() {
   // 페이지 시작
   useEffect(() => {
     dispatch(getCategory(`/${router.params}/?${router.query}`));
+    return () => {
+      dispatch(initCategory());
+    };
   }, []);
   return { category };
 }

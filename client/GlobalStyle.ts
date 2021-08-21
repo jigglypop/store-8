@@ -9,7 +9,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   @import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css");
-
+  @font-face {
+    font-family: "BMDOHYEON";
+    src: url("public/font/BMDOHYEON_ttf.ttf"); 
+  }
   body {
     /* 오버플로우 x hidden(아래 스크롤이 잡혀서) */
     overflow-x: hidden;
@@ -78,6 +81,7 @@ export const GlobalStyle = createGlobalStyle`
   
     /* 컬러피커용 */
     --text-picker: #000000;
+    --text-dark-picker: #000000;
 
     /* 글씨 크기 */
     --body-tiny-font: 0.625rem;

@@ -31,9 +31,6 @@ export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
         <Link to="/register">회원가입</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
-        <Link to="/mypage-order-list">마이페이지</Link>
-      </S.HeaderItem>
-      <S.HeaderItem className="isBigHeader">
         <Link to="/cart">장바구니</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isSmallHeader">
@@ -55,14 +52,15 @@ export const HeaderLoggedIn = ({ check, onLogout, isUp }: IHeaderLoggedIn) => {
   return (
     <>
       <S.HeaderItem>
-        <Avatar imageUrl={check.imageUrl} />
-        <div className="isSSmallHeader">{check.username}</div>
+        <Link to="/mypage-order-list">
+          <Avatar imageUrl={check.imageUrl} />
+        </Link>
+        <Link to="/mypage-order-list" className="isSSmallHeader">
+          {check.username}
+        </Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
         <div onClick={() => onLogout()}>로그아웃</div>
-      </S.HeaderItem>
-      <S.HeaderItem className="isBigHeader">
-        <Link to="/mypage-order-list">마이페이지</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
         <Link to="/cart">장바구니</Link>
