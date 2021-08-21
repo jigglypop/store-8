@@ -16,6 +16,9 @@ import uploadRouter from './upload';
 import searchRouter from './search';
 import wishRouter from './wish';
 
+import couponRouter from './coupon';
+import addressRouter from './address';
+
 const rootRouter = express();
 
 rootRouter.use('/api/auth', userRouter);
@@ -34,5 +37,7 @@ rootRouter.use('/api/review', reviewRouter);
 rootRouter.use('/api/upload', uploadRouter);
 rootRouter.use('/api/search', searchRouter);
 rootRouter.use('/api/wish', wishRouter);
+rootRouter.use('/api/coupon', couponRouter);
+rootRouter.use('/api/address', addressRouter);
 
 export default rootRouter;

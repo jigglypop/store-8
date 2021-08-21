@@ -34,4 +34,10 @@ export const USER_COUPONS: IUserCoupon[] = [
     isUsed: false,
     dDay: new Date('2021-09-11'),
   },
+  {
+    userId: 1,
+    couponId: 5,
+    isUsed: false,
+    dDay: new Date('2021-09-11'),
+  },
 ];
