@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 
 import { useRouter } from '../router/router';
+import { getReview } from '@client/store/product/review';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
@@ -13,47 +14,18 @@ export function useReview() {
   } = useRouter();
 
   const productId = +params;
+  const dispatch = useDispatch();
 
-  //   const { question, loading, error } = useSelector((state: RootState) => state.question);
-  //   const dispatch = useDispatch();
+  const { review, error, loading } = useSelector((state: RootState) => state.review);
 
-  //   // 페이지 시작
-  //   useEffect(() => {
-  //     dispatch(getReview(productId));
-  //   }, []);
+  // 페이지 시작
+  useEffect(() => {
+    dispatch(getReview(productId));
+  }, []);
 
   return {
     review: review ?? [],
     loading: false,
     error: '',
   };
-  // loading,
-  // error,
 }
-
-const review = [
-  {
-    id: 1,
-    title: '좋습니다!!',
-    contents: '최고네요! 인생템이에요',
-    score: 5,
-    date: '2021.08.20',
-    imgSrc: ['public/image/product/big/1.jpg', 'public/image/product/big/2.jpg'],
-    likeCount: 0,
-    dislikeCount: 1,
-    isLike: false,
-    isDislike: true,
-  },
-  {
-    id: 2,
-    title: '좋습니다!!',
-    contents: '최고네요! 인생템이에요',
-    score: 2,
-    date: '2021.08.20',
-    imgSrc: ['public/image/product/big/1.jpg', 'public/image/product/big/2.jpg'],
-    likeCount: 0,
-    dislikeCount: 1,
-    isLike: false,
-    isDislike: true,
-  },
-];
