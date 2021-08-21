@@ -54,7 +54,7 @@ export default function Search() {
   const isOutside = (e: any) => {
     if (e.target.className) {
       const classname: string = e.target.className;
-      const classList = classname.split(' ');
+      const classList = classname.length > 0 ? classname.split(' ') : [];
       if (classList.indexOf('search') === -1) {
         $('.search-inner').removeClass('wide');
         setIsWide(false);

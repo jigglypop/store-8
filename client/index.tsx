@@ -10,12 +10,15 @@ import cache from './utils/cache';
 import ResetStyle from './ResetStyle';
 import { HelmetProvider } from 'react-helmet-async';
 import { setDarkMode } from './utils/setDisplay';
+import { getMyWish } from './store/mywish/mywish';
 
-const loadUser = () => {
+const loadUser = async () => {
   try {
-    const token = cache.get('token');
-    if (!token) return;
-    store.dispatch(getCheck(token));
+    const token = await cache.get('token');
+    if (token) {
+      await store.dispatch(getCheck(cache.get('token')));
+      await store.dispatch(getMyWish(cache.get('token')));
+    }
   } catch (e) {
     console.log('로컬 스토리지 오류');
   }

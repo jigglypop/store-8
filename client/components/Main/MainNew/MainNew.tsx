@@ -1,6 +1,6 @@
 import { useMain } from '@client/hooks/main/main';
 import { IProduct } from '@server/models/Product';
-import Card from '../Card/Card';
+import Card from '../../Card/Card';
 import * as S from './style';
 
 const MainNew = () => {

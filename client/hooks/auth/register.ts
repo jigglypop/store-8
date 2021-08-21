@@ -8,6 +8,7 @@ import cache from '@client/utils/cache';
 import { IRegisterReq } from '@middle/type/auth/register';
 import _ from 'lodash';
 import { debounceRedux } from '@client/utils/debounce';
+import { getMyWish } from '@client/store/mywish/mywish';
 
 export function useRegister() {
   const { registerform, register, error, loading } = useSelector(
@@ -29,6 +30,7 @@ export function useRegister() {
     if (register) {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
+      dispatch(getMyWish(cache.get('token')));
       dispatch(initRegister());
     }
   }, [register]);

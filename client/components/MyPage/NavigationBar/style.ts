@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 
 export const NavigationBar = styled.div`
+  margin: 20px;
+  grid-column: 1/2;
   display: flex;
   flex-direction: column;
   width: 200px;
   gap: 30px;
+  color: var(--text-black-dark);
 
   h3 {
     font-size: var(--body-large-font);
@@ -29,10 +32,9 @@ export const NavigatorGroup = styled.div`
   }
 
   .router-link {
-    /* height: 20px; */
     padding: 10px 12px;
-    /* text-decoration: none; */
-    color: var(--background-pastel-black);
+    color: var(--text-black-dark);
+    cursor: pointer;
   }
 
   .router-link:hover {

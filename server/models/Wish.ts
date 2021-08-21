@@ -15,7 +15,7 @@ import User from './User';
 import Product from './Product';
 
 export interface IWish {
-  id: number;
+  id?: number;
   userId: number;
   productId: number;
   productCount: number;
