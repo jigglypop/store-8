@@ -1,9 +1,10 @@
-import React, { ReactElement, Dispatch, SetStateAction } from 'react';
+import React, { ReactElement, Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
 
 import styled from 'styled-components';
 
 import Plus from '@image/icon/plusIcon.svg';
 import ImgItem from './ImgItem';
+import { uploadImg } from '@api/upload';
 
 interface Props {
   imgList: string[];
@@ -12,14 +13,24 @@ interface Props {
 
 export default function ImgListForm({ imgList, setImgList }: Props): ReactElement {
   const MAX_IMG = 8;
+  const [uploadError, setUploadError] = useState('');
 
-  const handleImgSubmit = async () => {
-    setImgList([
-      'http://localhost:8000/public/image/product/big/1.jpg',
-      'http://localhost:8000/public/image/product/big/2.jpg',
-      'http://localhost:8000/public/image/product/big/3.jpg',
-      'http://localhost:8000/public/image/product/big/4.jpg',
-    ]);
+  const handleImgSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
+    const uploadImage = e.target.files;
+    if (!uploadImage) return;
+
+    const imgBlob = Object.values(uploadImage);
+    imgBlob.forEach((blob) => formData.append('image', blob));
+
+    const data = await uploadImg(formData);
+
+    if (!data.success) {
+      setUploadError(data.errorMessage);
+      return;
+    }
+
+    setImgList((imgs) => [...imgs, ...data.imgSrc]);
   };
 
   const handleDeleteClick = async (idx: number) => {
@@ -31,16 +42,19 @@ export default function ImgListForm({ imgList, setImgList }: Props): ReactElemen
   ));
 
   return (
-    <StyledImgListFrom>
-      <label className="img-form__add-btn" htmlFor="input-file">
-        <Plus className="img-form__plus-icon" />
-        <div className="img-form__count">
-          {imgList.length}/{MAX_IMG}
-        </div>
-      </label>
-      <input type="file" id="input-file" onChange={handleImgSubmit} />
-      {uploadedImgList}
-    </StyledImgListFrom>
+    <>
+      <StyledImgListFrom>
+        <label className="img-form__add-btn" htmlFor="input-file">
+          <Plus className="img-form__plus-icon" />
+          <div className="img-form__count">
+            {imgList.length}/{MAX_IMG}
+          </div>
+        </label>
+        <input type="file" id="input-file" onChange={handleImgSubmit} multiple />
+        {uploadedImgList}
+      </StyledImgListFrom>
+      {uploadError && <div>{uploadError}</div>}
+    </>
   );
 }
 
