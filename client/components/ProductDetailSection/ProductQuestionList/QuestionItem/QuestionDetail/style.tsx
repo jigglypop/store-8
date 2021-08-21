@@ -15,6 +15,7 @@ export const QuestionDetail = styled.div`
   .question-detail__content {
     padding: 20px;
     padding-right: 70px;
+    padding-left: 0;
     letter-spacing: 1px;
     line-height: 1.5;
     flex: 1;
