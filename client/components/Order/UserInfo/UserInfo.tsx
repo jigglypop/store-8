@@ -3,7 +3,8 @@ import checkBad from '@image/check-bad.png';
 import checkGood from '@image/check-good.png';
 import exclamRed from '@image/exclam-red.png';
 import { getDaumAddress } from '@lib/daumAddress';
-import type { AddressResult } from '@lib/daumAddress';
+import AlertInput from '@components/common/AlertInput/AlertInput';
+
 import {
   INPUT_NAME_PLACEHOLDER,
   INPUT_CALL_PLACEHOLDER,
@@ -84,48 +85,30 @@ const UserInfo = (): ReactElement => {
 
   return (
     <S.UserInfo>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_NAME_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={nameCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_NAME_PLACEHOLDER}
-            onChange={(e) => {
-              setNameCheck(checkNameString(e.target.value));
-            }}
-          />
-          {getCheckIcon(nameCheck)}
-        </div>
-        {getAlertText(nameCheck, INPUT_NAME_ALERT)}
-      </div>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_CALL_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={callCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_CALL_PLACEHOLDER}
-            onChange={(e) => {
-              setCallCheck(checkCallString(e.target.value));
-            }}
-          />
-          {getCheckIcon(callCheck)}
-        </div>
-        {getAlertText(callCheck, INPUT_CALL_ALERT)}
-      </div>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_EMAIL_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={emailCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_EMAIL_PLACEHOLDER}
-            onChange={(e) => {
-              setEmailCheck(checkEmailString(e.target.value));
-            }}
-          />
-          {getCheckIcon(emailCheck)}
-        </div>
-        {getAlertText(emailCheck, INPUT_EMAIL_ALERT)}
-      </div>
+      <AlertInput
+        labelText={INPUT_NAME_TITLE}
+        placeholder={INPUT_NAME_PLACEHOLDER}
+        alertText={INPUT_NAME_ALERT}
+        alertCheck={setNameCheck}
+        stringChecker={checkNameString}
+        isAlert={nameCheck}
+      />
+      <AlertInput
+        labelText={INPUT_CALL_TITLE}
+        placeholder={INPUT_CALL_PLACEHOLDER}
+        alertText={INPUT_CALL_ALERT}
+        alertCheck={setCallCheck}
+        stringChecker={checkCallString}
+        isAlert={callCheck}
+      />
+      <AlertInput
+        labelText={INPUT_EMAIL_TITLE}
+        placeholder={INPUT_EMAIL_PLACEHOLDER}
+        alertText={INPUT_EMAIL_ALERT}
+        alertCheck={setEmailCheck}
+        stringChecker={checkEmailString}
+        isAlert={emailCheck}
+      />
       <div className="address-form-container">
         <p className="input-form-label">{'배송지 선택'}</p>
         <div className="address-search-container">
