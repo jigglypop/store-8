@@ -9,6 +9,7 @@ export const INPUT_CALL_ALERT: string = '-를 포함한 전화번호의 형태�
 export const INPUT_EMAIL_ALERT: string = '이메일 형식을 지켜주세요!';
 export const INPUT_NAME_TITLE: string = '주문 하시는 분';
 export const INPUT_CALL_TITLE: string = '휴대폰 번호';
+export const USER_ORDER_LIST: string = '주문자 정보';
 export const INPUT_EMAIL_TITLE: string = '이메일';
 export const COUPON_INFO_TEXT: string = '쿠폰은 주문 한번에 최대 1개씩만 사용 가능합니다.';
 export const NOW_GEN_MILEAGE: string = '이번에 생기는 적립금';

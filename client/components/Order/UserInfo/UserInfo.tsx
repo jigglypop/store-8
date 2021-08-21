@@ -15,6 +15,7 @@ import {
   INPUT_NAME_TITLE,
   INPUT_CALL_TITLE,
   INPUT_EMAIL_TITLE,
+  USER_ORDER_LIST,
 } from '@constants/Order';
 import * as S from './style';
 
@@ -85,6 +86,9 @@ const UserInfo = (): ReactElement => {
 
   return (
     <S.UserInfo>
+      <div className="user-info-title">
+        <p>{USER_ORDER_LIST}</p>
+      </div>
       <AlertInput
         labelText={INPUT_NAME_TITLE}
         placeholder={INPUT_NAME_PLACEHOLDER}

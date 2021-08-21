@@ -2,7 +2,20 @@ import styled from '@lib/styledComponent';
 
 // 푸터 부분
 export const UserInfo = styled.div`
+  margin-top: 60px;
   padding-left: 12px;
+
+  .user-info-title {
+    margin-left: -12px;
+    padding-bottom: 11px;
+    padding-left: 11px;
+    border-bottom: 2px solid var(--line-gray2);
+    & > p {
+      font-size: var(--body-large-font);
+      font-weight: 600;
+    }
+  }
+
   .input-form-container {
     padding-top: 25px;
     padding-bottom: 12px;
