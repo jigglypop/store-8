@@ -20,7 +20,9 @@ export default function ReviewItem({ reviewData, userId, idx }: Props): ReactEle
 
   const [isOpenDetail, setIsOpenDetail] = useState(true);
 
-  const stars = new Array(MAX_SCORE).fill(0).map((_, idx) => <Star isSelect={idx < score} />);
+  const stars = new Array(MAX_SCORE)
+    .fill(0)
+    .map((_, idx) => <Star key={idx} isSelect={idx < score} />);
 
   const isContainImg = !!imgSrc.length;
 
