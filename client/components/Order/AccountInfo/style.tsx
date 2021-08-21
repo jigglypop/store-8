@@ -45,8 +45,8 @@ export const AccountInfo = styled.div`
     }
     button {
       font-size: var(--body-small-font);
-      width: 90px;
-      height: 24px;
+      width: 100px;
+      height: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -119,7 +119,7 @@ export const AccountInfo = styled.div`
         padding: 6px;
         display: flex;
         align-items: center;
-        border: 1px solid var(--line-black);
+        border: 1px solid var(--line-gray);
         border-radius: 4px;
         margin-right: 12px;
       }

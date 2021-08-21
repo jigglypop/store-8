@@ -16,3 +16,4 @@ export const NOW_GEN_MILEAGE: string = '이번에 생기는 적립금';
 export const USE_COUPON: string = '사용할 쿠폰';
 export const USE_MILEAGE: string = '적립금 사용';
 export const TOTAL_USABLE_MILEAGE: string = '전체 사용 가능 금액 : ';
+export const CHOOSE_ADRESS_TEXT: string = '배송지를 선택해주세요.';

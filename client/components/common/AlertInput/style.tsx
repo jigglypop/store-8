@@ -15,12 +15,12 @@ export const AlertInput = styled.div`
       align-items: center;
       width: 350px;
       height: 32px;
-      margin: 6px 12px 6px 0px;
+      margin: 12px 12px 6px 0px;
       border-radius: 4px;
       padding: 5px;
       font-size: var(--body-middle-font);
       color: var(--text-black);
-      border: 1px solid var(--line-black);
+      border: 1px solid var(--line-gray);
     }
     .plain-input:focus {
       border: 1px solid var(--line-mint);
@@ -30,6 +30,7 @@ export const AlertInput = styled.div`
     }
     & > input::placeholder {
       font-size: var(--body-middle-font);
+      color: var(--text-lightgray);
     }
     & > img {
       width: 16px;

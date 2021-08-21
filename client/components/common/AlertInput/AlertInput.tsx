@@ -4,6 +4,7 @@ import * as S from './style';
 import checkBad from '@image/check-bad.png';
 import checkGood from '@image/check-good.png';
 import exclamRed from '@image/exclam-red.png';
+import { useEffect } from 'react';
 
 interface AlertInputProps {
   labelText: string;
@@ -11,7 +12,9 @@ interface AlertInputProps {
   alertText: string;
   alertCheck: (alertState: number) => void;
   stringChecker: (inputValue: string) => number;
+  setValue: (inputValue: string) => void;
   isAlert: number; // 0 default, 1 alert, 2 ok
+  value: string;
 }
 
 const AlertInput = (props: AlertInputProps): ReactElement => {
@@ -47,7 +50,9 @@ const AlertInput = (props: AlertInputProps): ReactElement => {
         <input
           className={props.isAlert === 1 ? 'alert-input' : 'plain-input'}
           placeholder={props.placeholder}
+          value={props.value}
           onChange={(e) => {
+            props.setValue(e.target.value);
             props.alertCheck(props.stringChecker(e.target.value));
           }}
         />
