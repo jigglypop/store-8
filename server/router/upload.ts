@@ -9,8 +9,6 @@ import { uploadToS3 } from '../controllers/upload';
 const uploadRouter: Router = express.Router();
 
 //최대 8장
-uploadRouter.post('/', uploadImage.single('image'), (req, res) => {
-  console.log(req.file);
-});
+uploadRouter.post('/', uploadImage.array('image', 8), wrapAsync(uploadToS3));
 
 export default uploadRouter;
