@@ -49,14 +49,20 @@ export const ReviewDetail = styled.div`
       .review__like-btn {
         border: 1px solid var(--tag-picker);
         fill: rgba(0, 0, 0, 0);
-        /* fill: var(--tag-picker); */
         stroke: var(--tag-picker);
         margin-right: 12px;
       }
+      .review__like-btn.selected {
+        fill: var(--tag-picker);
+      }
+
       .review__dislike-btn {
         border: 1px solid var(--red);
         fill: rgba(0, 0, 0, 0);
         stroke: var(--red);
+      }
+      .review__dislike-btn.selected {
+        fill: var(--red);
       }
     }
   }
