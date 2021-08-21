@@ -1,10 +1,11 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import * as S from './style';
 
 import Star from '@components/common/Star/Star';
 import Clip from '@image/icon/clipIcon.svg';
 import { IReviewRes } from '@middle/type/review/review';
 import { hideId } from '@utils/encode';
+import ReviewDetail from './ReviewDetail/ReviewDetail';
 
 interface Props {
   reviewData: IReviewRes;
@@ -14,34 +15,42 @@ interface Props {
 
 export default function ReviewItem({ reviewData, userId, idx }: Props): ReactElement {
   const MAX_SCORE = 5;
-
   const { id, title, contents, score, date, imgSrc, likeCount, dislikeCount, isLike, isDislike } =
     reviewData;
+
+  const [isOpenDetail, setIsOpenDetail] = useState(true);
 
   const stars = new Array(MAX_SCORE).fill(0).map((_, idx) => <Star isSelect={idx < score} />);
 
   const isContainImg = !!imgSrc.length;
 
+  const handleReviewClick = () => {
+    setIsOpenDetail((isOpenDetail) => !isOpenDetail);
+  };
+
   return (
-    <S.ReviewItem>
-      <div>
-        <div className="review-info no">{idx + 1}</div>
-        <div className="review-info score">{stars}</div>
-        <div className="review-info title">
-          {title}
-          {isContainImg && <Clip />}
+    <>
+      <S.ReviewItem onClick={handleReviewClick}>
+        <div>
+          <div className="review-info no">{idx + 1}</div>
+          <div className="review-info score">{stars}</div>
+          <div className="review-info title">
+            {title}
+            {isContainImg && <Clip />}
+          </div>
         </div>
-      </div>
-      <div>
-        <div className="review-info user-id">{hideId(userId)}</div>
-        <div className="review-info date">{date}</div>
-        <div className="review-info status">
-          공감<span>{likeCount}</span>
+        <div>
+          <div className="review-info user-id">{hideId(userId)}</div>
+          <div className="review-info date">{date}</div>
+          <div className="review-info status">
+            공감<span>{likeCount}</span>
+          </div>
+          <div className="review-info status">
+            비공감<span>{dislikeCount}</span>
+          </div>
         </div>
-        <div className="review-info status">
-          비공감<span>{dislikeCount}</span>
-        </div>
-      </div>
-    </S.ReviewItem>
+      </S.ReviewItem>
+      {isOpenDetail && <ReviewDetail reviewData={reviewData} />}
+    </>
   );
 }
