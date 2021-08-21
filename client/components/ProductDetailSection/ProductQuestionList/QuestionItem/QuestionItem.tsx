@@ -4,6 +4,7 @@ import * as S from './style';
 import Locker from '@image/question/lockerIcon.svg';
 import QuestionDetail from './QuestionDetail/QuestionDetail';
 import { IQuestionRes } from '@middle/type/question/question';
+import { hideId } from '@utils/encode';
 
 interface Props extends IQuestionRes {
   idx: number;
@@ -23,9 +24,6 @@ export default function QuestionItem({
 }: Props): ReactElement {
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
-  const hideId = (id: string): string => {
-    return id.slice(0, 2) + new Array(id.slice(2).length).fill('*').join('');
-  };
   const questionStatus = answer ? '답변완료' : '접수';
 
   const handleQuestionClick = () => {
