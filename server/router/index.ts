@@ -14,6 +14,7 @@ import cartRouter from './cart';
 import reviewRouter from './review';
 import uploadRouter from './upload';
 import searchRouter from './search';
+import wishRouter from './wish';
 
 const rootRouter = express();
 
@@ -32,5 +33,6 @@ rootRouter.use('/api/order', orderRouter);
 rootRouter.use('/api/review', reviewRouter);
 rootRouter.use('/api/upload', uploadRouter);
 rootRouter.use('/api/search', searchRouter);
+rootRouter.use('/api/wish', wishRouter);
 
 export default rootRouter;

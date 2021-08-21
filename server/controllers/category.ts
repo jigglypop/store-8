@@ -2,15 +2,26 @@ import { Request, Response } from 'express';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 import Product from '../models/Product';
-import sequelize from 'sequelize';
+import { DEFAULT_PAGE_LIMIT, DEFAULT_PAGE } from '../../middle/constants/default';
 
 export const getCategory = async (req: Request, res: Response) => {
   const { categoryId } = req.params;
-  const { page, limit } = req.query;
+  const { page, limit, order } = req.query;
+  // 어떤 순으로 정렬할지
+  let orders: [string, string] = ['amount', 'DESC'];
   // 페이지 입력 없을시 디폴트값
-  let _page = 1;
-  let _limit = 20;
-  // 페이지나 limit값이 있을 시
+  let _page = DEFAULT_PAGE;
+  let _limit = DEFAULT_PAGE_LIMIT;
+  // 페이지나 limit, 페이지 값이 있을 시(앞의 두개는 장바구니와 좋아요가 업데이트되면 바뀜)
+  if (order === '1') {
+    orders = ['amount', 'ASC'];
+  } else if (order === '2') {
+    orders = ['amount', 'ASC'];
+  } else if (order === '3') {
+    orders = ['amount', 'ASC'];
+  } else if (order === '4') {
+    orders = ['amount', 'DESC'];
+  }
   if (page) {
     _page = Number(page) - 1;
   }
@@ -21,7 +32,7 @@ export const getCategory = async (req: Request, res: Response) => {
   let category = null;
   if (categoryId === '0') {
     category = await Product.findAndCountAll({
-      order: [['id', 'DESC']],
+      order: [orders],
       // 오프셋(밀 넓이)
       offset: Number(_page) * _limit,
       limit: _limit,
@@ -29,7 +40,7 @@ export const getCategory = async (req: Request, res: Response) => {
   } else {
     category = await Product.findAndCountAll({
       where: { categoryId: categoryId },
-      order: [['id', 'DESC']],
+      order: [orders],
       // 오프셋(밀 넓이)
       offset: Number(_page) * _limit,
       limit: _limit,

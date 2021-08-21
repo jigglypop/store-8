@@ -1,4 +1,4 @@
-import Card from '@client/components/Main/Card/Card';
+import Card from '@client/components/Card/Card';
 import { useRouter } from '@client/hooks/router/router';
 import { IProduct } from '@server/models/Product';
 import { categoryKeyName } from '@middle/category/category';
@@ -12,7 +12,6 @@ interface ICategoryComponent {
 
 function Category({ cards }: ICategoryComponent) {
   const { router, query } = useRouter();
-  console.log(query.order);
   return (
     <S.Category>
       <div className="main-inner">

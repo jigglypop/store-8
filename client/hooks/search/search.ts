@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@client/store';
 import { useEffect } from 'react';
-import { getSearch } from '@client/store/search/search';
+import { getSearch, initSearch } from '@client/store/search/search';
 
 export function useSearch() {
   const { router } = useSelector((state: RootState) => state.router);
@@ -11,6 +11,9 @@ export function useSearch() {
   // 페이지 시작
   useEffect(() => {
     dispatch(getSearch(`/0/?${router.query}`));
+    return () => {
+      dispatch(initSearch());
+    };
   }, []);
   return { search };
 }

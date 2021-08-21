@@ -1,4 +1,4 @@
-import Card from '@client/components/Main/Card/Card';
+import Card from '@client/components/Card/Card';
 import { useRouter } from '@client/hooks/router/router';
 import { IProduct } from '@server/models/Product';
 import * as S from './style';

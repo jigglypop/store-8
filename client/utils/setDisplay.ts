@@ -77,6 +77,7 @@ export const SunAttr = () => {
     '--card-dark': '#FFFFFF',
     '--tag-picker': tag,
     '--text-picker': text,
+    '--text-dark-picker': '#000000',
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
   };
@@ -99,6 +100,7 @@ export const MoonAttr = () => {
     '--card-dark': '#424242',
     '--tag-picker': tag,
     '--text-picker': text,
+    '--text-dark-picker': text,
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
   };

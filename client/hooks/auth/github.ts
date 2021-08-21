@@ -5,6 +5,7 @@ import { HistoryPush } from '@client/utils/router';
 import { useEffect } from 'react';
 import cache from '@client/utils/cache';
 import { getGithub, initGithub } from '@client/store/auth/github';
+import { getMyWish } from '@client/store/mywish/mywish';
 
 export function useGithub() {
   const { github } = useSelector((state: RootState) => state.github);

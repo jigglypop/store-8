@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
-import OrderBox from '../OrderBox/OrderBox';
-import { TextNoData } from '../OrderBox/style';
+
 import * as S from './style';
 
-import { IResult, _filteredResults, sampleData } from '../dummydata';
+import { IResult, _filteredResults } from '../dummydata';
+import OrderBox from '../OrderBox/OrderBox';
+import { TextNoData } from '../OrderBox/style';
 
 interface Props {
   results: IResult[];

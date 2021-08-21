@@ -7,6 +7,7 @@ import cache from '@client/utils/cache';
 import { getCheck } from '@client/store/auth/check';
 import { ILoginReq } from '@middle/type/auth/login';
 import { debounceRedux } from '@client/utils/debounce';
+import { getMyWish } from '@client/store/mywish/mywish';
 
 export function useLogin() {
   const { loginform, login, error, loading } = useSelector((state: RootState) => state.login);
@@ -25,6 +26,7 @@ export function useLogin() {
     if (login) {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
+      dispatch(getMyWish(cache.get('token')));
       dispatch(initLogin());
     }
   }, [login]);
