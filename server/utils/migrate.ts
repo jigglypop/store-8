@@ -3,9 +3,14 @@ import { CATEGORIES } from '../constants/migration/CATEGORIES';
 import { PRODUCTS } from '../constants/migration/PRODUCTS';
 import { OPTIONS } from '../constants/migration/OPTIONS';
 import { CARTS } from '../constants/migration/CARTS';
+import { COUPONS, USER_COUPONS } from '../constants/migration/COUPONS';
+import { ADDRESSES } from '../constants/migration/ADDRESSES';
 import Category, { ICategory } from '../models/Category';
 import Option from '../models/Option';
 import Cart from '../models/Cart';
+import Address from '../models/Address';
+import Coupon from '../models/Coupon';
+import UserCoupon from '../models/UserCoupon';
 
 interface IProductQuery {
   [key: string]: string | number;
@@ -59,9 +64,27 @@ const initCart = async () => {
   Cart.bulkCreate(CARTS);
 };
 
+// 주소지 데이터 시작
+const initAddress = async () => {
+  Address.bulkCreate(ADDRESSES);
+};
+
+// Coupon 데이터 시작
+const initCoupon = async () => {
+  Coupon.bulkCreate(COUPONS);
+};
+
+// UseCoupon 데이터 시작
+const initUserCoupon = async () => {
+  UserCoupon.bulkCreate(USER_COUPONS);
+};
+
 export const migrate = async () => {
   await initCategory();
   await initProduct();
   await initOption();
   await initCart();
+  await initAddress();
+  await initCoupon();
+  await initUserCoupon();
 };

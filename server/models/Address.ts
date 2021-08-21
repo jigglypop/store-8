@@ -7,32 +7,45 @@ import {
   Table,
   UpdatedAt,
   BelongsTo,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 
 import User from './User';
 
 export interface IAddress {
-  id: number;
+  id?: number;
   userId: number;
   location: string;
+  extraLocation: string;
+  zonecode: string;
   call: string;
+  email: string;
   title: string;
   receiver: string;
   isBase: boolean;
-  creationAt: Date;
-  updatedAt: Date;
+  creationAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Address extends Model<IAddress> {
-  @Column({ primaryKey: true })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @AllowNull(false)
   @Column
   location: string;
+
+  @AllowNull(false)
+  @Column
+  extraLocation: string;
+
+  @AllowNull(false)
+  @Column
+  zonecode: string;
 
   @AllowNull(false)
   @Column
@@ -45,6 +58,10 @@ export default class Address extends Model<IAddress> {
   @AllowNull(false)
   @Column
   call: string;
+
+  @AllowNull(false)
+  @Column
+  email: string;
 
   @AllowNull(false)
   @Column
