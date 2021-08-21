@@ -48,7 +48,7 @@ const review = [
     id: 2,
     title: '좋습니다!!',
     contents: '최고네요! 인생템이에요',
-    score: 5,
+    score: 2,
     date: '2021.08.20',
     imgSrc: ['public/image/product/big/1.jpg', 'public/image/product/big/2.jpg'],
     likeCount: 0,
