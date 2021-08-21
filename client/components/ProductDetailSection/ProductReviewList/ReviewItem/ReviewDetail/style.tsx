@@ -16,6 +16,22 @@ export const ReviewDetail = styled.div`
     }
   }
 
+  .review-detail__btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 33px;
+    .review-detail__edit-btn {
+      cursor: pointer;
+      stroke: var(--text-black-dark);
+    }
+    .review-detail__delete-btn {
+      cursor: pointer;
+      stroke: var(--text-red);
+      margin-left: 20px;
+    }
+  }
+
   .review-detail__info {
     display: flex;
     justify-content: space-between;
