@@ -12,8 +12,7 @@ interface Props {}
 export default function ProductDetail({}: Props): ReactElement {
   const { product, loading, error } = useProduct();
   if (!product) return <></>;
-  //isLiked 속성은 db처리 후 추가
-  const isLiked = false;
+
   const { id, productImgSrc, title, originalAmount, amount } = product;
 
   return (
@@ -21,7 +20,7 @@ export default function ProductDetail({}: Props): ReactElement {
       <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
         <ProductInfo {...{ title, originalAmount, amount }} />
-        <DetailBtns {...{ id, isLiked }} />
+        <DetailBtns {...{ id, title }} />
       </div>
     </S.ProductDetail>
   );
