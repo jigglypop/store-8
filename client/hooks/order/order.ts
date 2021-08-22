@@ -49,7 +49,9 @@ export function useOrder() {
 
     // TODO : User ID 빼기
     // coupon 사용하기 진행.
-    dispatch(useCoupon({ userId: 1, couponId: useCouponId }));
+    if (useCouponId !== 0) {
+      dispatch(useCoupon({ userId: 1, couponId: useCouponId }));
+    }
 
     // Routing to order finish page.
     console.log('TO FINISH');
