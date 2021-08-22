@@ -7,19 +7,19 @@ import { AddressData, AddressGetReq, AddressRes } from '@middle/type/address/add
 const name = 'address';
 
 interface AddressState {
-  address: AddressRes | null;
+  address: AddressData[];
   error: string | null;
   loading: boolean;
 }
 
 const initialState: AddressState = {
-  address: null,
+  address: [],
   error: null,
   loading: false,
 };
 
 export const getAddress = createAsyncThunk('ADDRESS_GET_API', getAddressApi);
-const addressGetReducer = createExtraPost<AddressGetReq, AddressRes | null>(getAddress, name);
+const addressGetReducer = createExtraPost<AddressGetReq, AddressData[] | null>(getAddress, name);
 
 const addressSlice = createSlice({
   name,

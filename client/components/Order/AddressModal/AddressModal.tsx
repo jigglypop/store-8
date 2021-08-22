@@ -3,7 +3,12 @@ import * as S from './style';
 import { CHOOSE_ADRESS_TEXT } from '@constants/Order';
 import Modal from '@client/components/common/Modal/Modal';
 import type { AddressData } from '@middle/type/address/address';
-import Address from './Address';
+import Address from './Address'; // Address Element
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@client/store';
+import { getAddress } from '@store/address/address';
+import { useEffect } from 'react';
 
 const tempAddresses: AddressData[] = [
   {
@@ -47,13 +52,21 @@ interface AddressModalProps {
 
 function AddressModal(props: AddressModalProps): ReactElement {
   const [selected, setSelected] = useState(-1);
+  const { address } = useSelector((state: RootState) => state.address);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // TODO : User ID 빼기
+    dispatch(getAddress({ userId: 1 }));
+  }, []);
+
   return (
     <Modal closeModal={props.closeForm}>
       <S.AddressModal>
         <div>
           <p className="address-modal-title">{CHOOSE_ADRESS_TEXT}</p>
           <div className="address-container">
-            {tempAddresses.map((element, index) => {
+            {address.map((element, index) => {
               return (
                 <div key={index} className="address-div" onClick={() => setSelected(index)}>
                   <Address selected={index === selected} addressData={element} />
