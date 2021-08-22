@@ -9,6 +9,7 @@ module.exports = merge(common, {
     port: PORT,
     proxy: {
       '/api': 'http://localhost:3000',
+      '/public/image': 'http://localhost:3000',
     },
     historyApiFallback: true,
   },
