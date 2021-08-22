@@ -23,7 +23,7 @@ export default function QuestionDetail({
   answerDate,
   isSecret,
 }: Props): ReactElement {
-  const { updateQuestion, deleteQuestion } = useQuestion();
+  const { deleteQuestion } = useQuestion();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 

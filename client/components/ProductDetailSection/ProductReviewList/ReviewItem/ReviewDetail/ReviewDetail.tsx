@@ -6,20 +6,22 @@ import DeleteIcon from '@image/icon/deleteIcon.svg';
 import LikeBtn from '@image/icon/likeIcon.svg';
 import DislikeBtn from '@image/icon/dislikeIcon.svg';
 import { IReviewRes } from '@middle/type/review/review';
-import ReviewForm from '../../ReviewForm/ReviewForm';
+import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
+import DeleteModal from '@components/common/DeleteModal/DeleteModal';
+import { useReview } from '@client/hooks/review/review';
 
 interface Props {
   reviewData: IReviewRes;
 }
 
 export default function ReviewDetail({ reviewData }: Props): ReactElement {
+  const { deleteReview } = useReview();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
 
-  const { id, title, contents, score, date, imgSrc, likeCount, dislikeCount, isLike, isDislike } =
-    reviewData;
+  const { id, title, contents, score, imgSrc } = reviewData;
 
   //TODO 서버에서 isOwned 반환
   const isOwned = true;
@@ -49,7 +51,14 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
 
   const handleDeleteClick = () => setIsDelete(true);
 
-  const closeEditForm = () => setIsEdit(false);
+  const closeForm = (type: string) => () => {
+    type === 'edit' ? setIsEdit(false) : setIsDelete(false);
+  };
+
+  const confirmDeleteReview = () => {
+    deleteReview({ reviewId: id });
+    setIsDelete(false);
+  };
 
   return (
     <S.ReviewDetail>
@@ -81,13 +90,16 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
       <div className="review-detail__img">{imgList}</div>
       {isEdit && (
         <ReviewForm
-          closeReviewForm={closeEditForm}
+          closeReviewForm={closeForm('edit')}
           reviewId={id}
           editTitle={title}
           editContents={contents}
           editImgList={imgSrc}
           editScore={score}
         />
+      )}
+      {isDelete && (
+        <DeleteModal cancelCbFn={closeForm('delete')} deleteCbFn={confirmDeleteReview} />
       )}
     </S.ReviewDetail>
   );
