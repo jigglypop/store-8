@@ -26,6 +26,7 @@ const findAll = async (userId: number) => {
 
   userCoupons.forEach((element) => {
     result.push({
+      id: element.coupon.id,
       title: element.coupon.title,
       amount: element.coupon.amount,
       dDay: element.dDay.split(' ')[0],

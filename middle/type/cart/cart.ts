@@ -6,6 +6,8 @@ export type CartData = {
   originalAmount: number;
   amount: number;
   option: string;
+  optionId: number;
+  productId: number;
 };
 
 export type ClientCartData = {
@@ -17,6 +19,8 @@ export type ClientCartData = {
   count: number;
   amount: number;
   originalAmount: number;
+  optionId: number;
+  productId: number;
 };
 
 export interface ICartGetReq {

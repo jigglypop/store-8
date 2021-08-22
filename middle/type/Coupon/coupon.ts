@@ -1,4 +1,9 @@
-export type CouponData = { title: string; amount: number; dDay: string };
+export type CouponData = {
+  id: number;
+  title: string;
+  amount: number;
+  dDay: string;
+};
 
 export type CouponGetReq = {
   userId: number;
@@ -6,6 +11,7 @@ export type CouponGetReq = {
 
 export type CouponUseReq = {
   userId: number;
+  couponId: number;
 };
 
 export type CouponRes = {

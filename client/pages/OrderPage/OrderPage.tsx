@@ -1,10 +1,12 @@
+import { useState, useEffect } from 'react';
+
 import CartHeader from '@components/Cart/Header/CartHeader';
 import AccountInfo from '@components/Order/AccountInfo/AccountInfo';
 import OrderDetail from '@components/Order/OrderDetail/OrderDetail';
 import OrderReceipt from '@components/Order/OrderReceipt/OrderReceipt';
 import UserInfo from '@components/Order/UserInfo/UserInfo';
-import CouponModal from '@client/components/Order/CouponModal/CouponModal';
-import AddressModal from '@client/components/Order/AddressModal/AddressModal';
+import CouponModal from '@components/Order/CouponModal/CouponModal';
+import AddressModal from '@components/Order/AddressModal/AddressModal';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import type { CouponData } from '@middle/type/Coupon/coupon';
@@ -14,13 +16,12 @@ import { getMileage, getShipmentAmount } from '@utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
-import { useState, useEffect } from 'react';
 
 const OrderPage = () => {
   const dispatch = useDispatch();
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
-  const [selectedCoupon, setCoupon] = useState({ title: '', amount: 0, dDay: '' });
+  const [selectedCoupon, setCoupon] = useState({ id: 0, title: '', amount: 0, dDay: '' });
   const [selectedAddress, setAddress] = useState({
     address: '',
     extraAddress: '',
@@ -100,7 +101,7 @@ const OrderPage = () => {
   };
 
   const initCoupon = () => {
-    setCoupon({ title: '', amount: 0, dDay: '' });
+    setCoupon({ id: 0, title: '', amount: 0, dDay: '' });
   };
 
   const useMileage = (amount: number) => {
@@ -123,7 +124,7 @@ const OrderPage = () => {
           ></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
-          <OrderReceipt metaData={calcMetaData()}></OrderReceipt>
+          <OrderReceipt selectedCoupon={selectedCoupon} metaData={calcMetaData()}></OrderReceipt>
         </div>
       </div>
       {isCouponOpenForm && <CouponModal closeForm={closeCouponForm} confirm={couponConfirm} />}

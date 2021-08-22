@@ -10,41 +10,6 @@ import { RootState } from '@client/store';
 import { getAddress } from '@store/address/address';
 import { useEffect } from 'react';
 
-const tempAddresses: AddressData[] = [
-  {
-    address: '서울시 동작구 상도1동 804-2',
-    extraAddress: '더브라운 4차 102호',
-    zonecode: '07032',
-    call: '010-7748-1234',
-    name: '최현준',
-    email: 'chj878194@naver.com',
-  },
-  {
-    address: '서울시 동작구 상도1동 804-2',
-    extraAddress: '더브라운 4차 102호',
-    zonecode: '07032',
-    call: '010-7748-1234',
-    name: '최현준',
-    email: 'chj878194@naver.com',
-  },
-  {
-    address: '서울시 동작구 상도1동 804-2',
-    extraAddress: '더브라운 4차 102호',
-    zonecode: '07032',
-    call: '010-7748-1234',
-    name: '최현준',
-    email: 'chj878194@naver.com',
-  },
-  {
-    address: '서울시 동작구 상도1동 804-2',
-    extraAddress: '더브라운 4차 102호',
-    zonecode: '07032',
-    call: '010-7748-1234',
-    name: '최현준',
-    email: 'chj878194@naver.com',
-  },
-];
-
 interface AddressModalProps {
   closeForm: () => void;
   confirm: (addressData: AddressData) => void;
@@ -79,7 +44,7 @@ function AddressModal(props: AddressModalProps): ReactElement {
           <button onClick={props.closeForm} className="cancle-btn">
             {'취소'}
           </button>
-          <button onClick={() => props.confirm(tempAddresses[selected])} className="submit-btn">
+          <button onClick={() => props.confirm(address[selected])} className="submit-btn">
             {'선택'}
           </button>
         </div>

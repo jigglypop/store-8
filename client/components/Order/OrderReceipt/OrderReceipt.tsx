@@ -12,12 +12,16 @@ import {
 } from '@constants/Cart';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
+import { CouponData } from '@middle/type/Coupon/coupon';
 
+import { useOrder } from '@client/hooks/order/order';
 interface MetaData {
   metaData: OrderContentMetaData;
+  selectedCoupon: CouponData;
 }
 
-const OrderReceipt = ({ metaData }: MetaData): ReactElement => {
+const OrderReceipt = ({ selectedCoupon, metaData }: MetaData): ReactElement => {
+  const { proceedOrder } = useOrder();
   return (
     <S.OrderReceipt>
       <S.Receipt>
@@ -42,9 +46,13 @@ const OrderReceipt = ({ metaData }: MetaData): ReactElement => {
         <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
       </S.TotalPrice>
       <S.OrderNow>
-        <Link to={'/order'}>
-          <button>{'주문하기'}</button>
-        </Link>
+        <button
+          onClick={() => {
+            proceedOrder(selectedCoupon.id);
+          }}
+        >
+          {'주문하기'}
+        </button>
         <div className="order-info">
           <img src={exMark} />
           <p>{CALC_GUIDE_TEXT}</p>

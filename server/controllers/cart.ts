@@ -30,6 +30,8 @@ const findAll = async (userId: number) => {
       amount: productData.amount,
       originalAmount: productData.originalAmount,
       option: '',
+      optionId: cartData.productOptionId,
+      productId: cartData.productId,
     };
 
     if (cartData.productOptionId !== null) {

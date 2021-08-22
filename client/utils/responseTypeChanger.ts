@@ -13,6 +13,8 @@ export function cartDataChanger(responseCart: CartData[] | null): ClientCartData
         count: element.count,
         amount: element.amount,
         originalAmount: element.originalAmount,
+        optionId: element.optionId,
+        productId: element.productId,
       });
     });
   }

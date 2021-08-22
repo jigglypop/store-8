@@ -20,7 +20,7 @@ import Refund from './Refund';
 
 // ProductAmount 는 살때 당시의 가격임에 주의!
 export interface IOrder {
-  id: number;
+  id?: number;
   orderNumber: string;
   userId: number;
   productId: number;
