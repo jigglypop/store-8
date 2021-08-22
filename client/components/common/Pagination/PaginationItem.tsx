@@ -4,7 +4,7 @@ import * as S from './style';
 interface Props {
   num: number;
   currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
+  setCurrentPage: (newPage: number) => void;
 }
 
 export default function PaginationItem({ num, currentPage, setCurrentPage }: Props): ReactElement {

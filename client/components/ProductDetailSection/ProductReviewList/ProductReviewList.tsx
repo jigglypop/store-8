@@ -11,12 +11,11 @@ import { DEFAULT_REVIEW_LIMIT } from '@middle/constants/default';
 interface Props {}
 
 export default function ProductReviewList({}: Props): ReactElement {
-  const [currentPage, setCurrentPage] = useState(1);
   const [isOpenForm, setIsOpenForm] = useState(false);
-  const { review, loading, error } = useReview();
+  const { totalCount, reviews, currentPage, setCurrentPage, loading, error } = useReview();
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
-  const reviewList = review.map((data, idx) => {
+  const reviewList = reviews.map((data, idx) => {
     return <ReviewItem key={data.id} reviewData={data} idx={idx} userId="testId" />;
   });
 
@@ -41,7 +40,7 @@ export default function ProductReviewList({}: Props): ReactElement {
       </CommonS.UserPostingList>
       {isOpenForm && <ReviewForm closeReviewForm={closeReviewForm} />}
       <Pagination
-        totalCount={90}
+        totalCount={totalCount}
         defaultLimit={DEFAULT_REVIEW_LIMIT}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

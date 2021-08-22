@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react';
+import React, { ReactElement } from 'react';
 import * as S from './style';
 
 import PaginationItem from './PaginationItem';
@@ -7,7 +7,7 @@ interface Props {
   totalCount: number;
   defaultLimit: number;
   currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
+  setCurrentPage: (newPage: number) => void;
 }
 
 export default function Pagination({
