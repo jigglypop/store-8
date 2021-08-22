@@ -38,6 +38,7 @@ export const DetailBtns = styled.div<StyledProps>`
     border: 1px solid var(--gray4);
     border-radius: 5px;
   }
+
   .like-btn:hover,
   .cart-btn:hover {
     background-color: var(--background-white-dark);
@@ -48,5 +49,9 @@ export const DetailBtns = styled.div<StyledProps>`
     color: var(--text-white);
     background-color: var(--tag-picker);
     border-radius: 5px;
+  }
+
+  .purchase-btn:hover {
+    opacity: 0.9;
   }
 `;

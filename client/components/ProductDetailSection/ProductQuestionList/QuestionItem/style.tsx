@@ -16,7 +16,7 @@ export const QuestionItem = styled.li`
 
   .question-info.title {
     & > svg {
-      fill: var(--gary6);
+      fill: var(--text-pastel-black-dark);
       margin-right: 8px;
     }
   }

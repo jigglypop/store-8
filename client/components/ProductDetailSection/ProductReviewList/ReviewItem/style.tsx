@@ -20,6 +20,7 @@ export const ReviewItem = styled.li`
 
   .review-info.title {
     & > svg {
+      stroke: var(--text-white-dark);
       fill: var(--tag-picker);
       margin-left: 8px;
     }
