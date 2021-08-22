@@ -47,7 +47,9 @@ export default function QuestionForm({
     if (isEdit) {
       if (!questionId) return;
       isSuccess = await updateQuestion({ questionId, ...questionFormData });
-    } else isSuccess = await createQuestion(questionFormData);
+    } else {
+      isSuccess = await createQuestion(questionFormData);
+    }
 
     if (!isSuccess) return;
     cancelCbFn();
@@ -65,7 +67,7 @@ export default function QuestionForm({
           </div>
         </div>
         <div className="question-form__title">
-          <img src={'http://localhost:8000/' + product?.productImgSrc} alt="image" />
+          <img src={'/' + product?.productImgSrc} alt="image" />
           <div className="title">{product?.title}</div>
         </div>
         <form>

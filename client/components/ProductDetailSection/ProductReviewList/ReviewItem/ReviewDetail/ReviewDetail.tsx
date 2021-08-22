@@ -24,9 +24,7 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
   const isOwned = true;
 
   //TODO dev일때만 절대경로 설정
-  const imgList = imgSrc.map((src) => (
-    <img key={id + src} src={'http://localhost:8000/' + src} alt="review-image" />
-  ));
+  const imgList = imgSrc.map((src) => <img key={id + src} src={src} alt="review-image" />);
 
   const handleLikeClick = () => {
     if (like) {
