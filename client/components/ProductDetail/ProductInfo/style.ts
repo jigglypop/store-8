@@ -4,7 +4,8 @@ export const ProductInfo = styled.div`
   height: 440px;
   display: flex;
   flex-direction: column;
-  background-color: var(--white);
+  background-color: var(--body-background-dark);
+  color: var(--text-black-dark);
   justify-content: space-between;
 
   h3 {
@@ -17,7 +18,7 @@ export const ProductInfo = styled.div`
     display: flex;
     flex-direction: column;
     gap: 24px;
-    color: var(--text-pastel-black);
+    color: var(--text-pastel-black-dark);
 
     & > div {
       display: flex;
@@ -51,6 +52,8 @@ export const ProductInfo = styled.div`
         text-align: center;
         padding: 10px;
         width: 30px;
+        padding-top: 12.5px;
+        color: var(--text-black-dark);
       }
       .count-btn {
         width: 30px;
@@ -59,6 +62,7 @@ export const ProductInfo = styled.div`
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        stroke: var(--text-black-dark);
       }
     }
   }
@@ -71,7 +75,7 @@ export const ProductInfo = styled.div`
     .total-price {
       font-size: var(--body-subtitle-font);
       font-weight: bold;
-      color: var(--text-black);
+      color: var(--text-black-dark);
     }
   }
   .stroke {
@@ -81,5 +85,5 @@ export const ProductInfo = styled.div`
 
 export const InfoTitle = styled.div`
   width: 150px;
-  color: var(--text-gray);
+  color: var(--text-gray-dark);
 `;

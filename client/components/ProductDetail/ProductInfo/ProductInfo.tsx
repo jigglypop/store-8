@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 
-import PlusIcon from '@image/plusIcon.svg';
-import MinusIcon from '@image/minusIcon.svg';
+import PlusIcon from '@image/icon/plusIcon.svg';
+import MinusIcon from '@image/icon/minusIcon.svg';
 import {
   DELIVERY_INFO_FEE,
   DELIVERY_INFO_TIMELIMIT,

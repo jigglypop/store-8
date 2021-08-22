@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 
 import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
@@ -17,27 +17,12 @@ export default function ProductDetail({}: Props): ReactElement {
   const { id, productImgSrc, title, originalAmount, amount } = product;
 
   return (
-    <StyledProductDetail>
+    <S.ProductDetail>
       <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
         <ProductInfo {...{ title, originalAmount, amount }} />
         <DetailBtns {...{ id, isLiked }} />
       </div>
-    </StyledProductDetail>
+    </S.ProductDetail>
   );
 }
-
-const StyledProductDetail = styled.div`
-  display: flex;
-  gap: 80px;
-
-  height: 530px;
-  margin-bottom: 48px;
-  .product-detail__info {
-    margin-top: 8px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-`;
