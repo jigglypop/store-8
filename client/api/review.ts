@@ -37,7 +37,7 @@ export const deleteReviewApi = async <T>(productId: number, requestForm: T) => {
 export const likeReviewApi = async (reviewId: number, requestForm: IReviewLikeReq) => {
   const data = await fetchWrapper<IReviewLikeReq, IReviewRes>(
     `/api/review/like/${reviewId}`,
-    'DELETE',
+    'POST',
     requestForm
   );
 
