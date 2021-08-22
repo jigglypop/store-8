@@ -6,22 +6,14 @@ import QuestionDetail from './QuestionDetail/QuestionDetail';
 import { IQuestionRes } from '@middle/type/question/question';
 import { hideId } from '@utils/encode';
 
-interface Props extends IQuestionRes {
+interface Props {
   idx: number;
   userId: string;
+  questionData: IQuestionRes;
 }
 
-export default function QuestionItem({
-  idx,
-  id,
-  title,
-  contents,
-  userId,
-  isSecret,
-  date,
-  answer,
-  answerDate,
-}: Props): ReactElement {
+export default function QuestionItem({ idx, userId, questionData }: Props): ReactElement {
+  const { id, title, contents, isSecret, date, answer, answerDate, isOwned } = questionData;
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
   const questionStatus = answer ? '답변완료' : '접수';
@@ -45,9 +37,7 @@ export default function QuestionItem({
           <div className="question-info status">{questionStatus}</div>
         </div>
       </S.QuestionItem>
-      {isOpenDetail && (
-        <QuestionDetail {...{ id, title, contents, answer, answerDate, isSecret }} />
-      )}
+      {isOpenDetail && <QuestionDetail questionData={questionData} />}
     </>
   );
 }

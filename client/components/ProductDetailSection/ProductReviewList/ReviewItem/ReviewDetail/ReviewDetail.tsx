@@ -19,10 +19,7 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
-  const { id, title, contents, score, imgSrc, isLike, isDislike } = reviewData;
-
-  //TODO 서버에서 isOwned 반환
-  const isOwned = true;
+  const { id, title, contents, score, imgSrc, isLike, isDislike, isOwned } = reviewData;
 
   const imgList = imgSrc.map((src) => <img key={id + src} src={src} alt="review-image" />);
 

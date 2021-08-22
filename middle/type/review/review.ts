@@ -9,6 +9,7 @@ export interface IReviewRes {
   dislikeCount: number;
   isLike: boolean;
   isDislike: boolean;
+  isOwned: boolean;
 }
 
 export interface IReviewPostReq {
