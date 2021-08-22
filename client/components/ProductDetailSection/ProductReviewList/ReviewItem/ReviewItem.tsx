@@ -3,12 +3,12 @@ import * as S from './style';
 
 import Star from '@components/common/Star/Star';
 import Clip from '@image/icon/clipIcon.svg';
-import { IReviewRes } from '@middle/type/review/review';
+import { IReview } from '@middle/type/review/review';
 import { hideId } from '@utils/encode';
 import ReviewDetail from './ReviewDetail/ReviewDetail';
 
 interface Props {
-  reviewData: IReviewRes;
+  reviewData: IReview;
   userId: string;
   idx: number;
 }

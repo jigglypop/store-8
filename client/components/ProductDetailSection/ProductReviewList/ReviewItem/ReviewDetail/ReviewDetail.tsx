@@ -5,13 +5,13 @@ import EditIcon from '@image/icon/editIcon.svg';
 import DeleteIcon from '@image/icon/deleteIcon.svg';
 import LikeBtn from '@image/icon/likeIcon.svg';
 import DislikeBtn from '@image/icon/dislikeIcon.svg';
-import { IReviewRes } from '@middle/type/review/review';
+import { IReview } from '@middle/type/review/review';
 import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 import { useReview } from '@client/hooks/review/review';
 
 interface Props {
-  reviewData: IReviewRes;
+  reviewData: IReview;
 }
 
 export default function ReviewDetail({ reviewData }: Props): ReactElement {
