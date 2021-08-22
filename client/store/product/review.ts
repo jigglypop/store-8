@@ -1,23 +1,25 @@
 import { getReviewApi } from '@client/api/review';
 import { IReviewRes } from '@middle/type/review/review';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import createExtraGet from '../createExtra/createExtraGet';
 
 interface IReview {
-  review: IReviewRes[] | null;
+  review: IReviewRes | null;
   error: null;
   loading: boolean;
+  currentPage: number;
 }
 
 const name = 'review';
 
 export const getReview = createAsyncThunk(name, getReviewApi);
-const reviewGetReducer = createExtraGet<IReviewRes[] | null>(getReview, name);
+const reviewGetReducer = createExtraGet<IReviewRes | null>(getReview, name);
 
 const initialState: IReview = {
   review: null,
   error: null,
   loading: false,
+  currentPage: 1,
 };
 
 const reviewSlice = createSlice({
@@ -28,9 +30,12 @@ const reviewSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: reviewGetReducer,
 });
 
-export const { initReview, setError } = reviewSlice.actions;
+export const { initReview, setError, setPage } = reviewSlice.actions;
 export default reviewSlice.reducer;

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 
 import { useRouter } from '../router/router';
-import { getReview, setError } from '@client/store/product/review';
+import { getReview, setError, setPage } from '@client/store/product/review';
 import {
   createReviewApi,
   updateReviewApi,
@@ -28,7 +28,7 @@ export function useReview() {
   const productId = +params;
   const dispatch = useDispatch();
 
-  const { review, error, loading } = useSelector((state: RootState) => state.review);
+  const { review, currentPage, error, loading } = useSelector((state: RootState) => state.review);
 
   const fetchReview =
     <T>(type: IFetchType) =>
@@ -45,7 +45,7 @@ export function useReview() {
         dispatch(setError(res.errorMessage));
         return false;
       }
-      dispatch(getReview(productId));
+      dispatch(getReview({ productId, query: `page=${currentPage}` }));
       return true;
     };
 
@@ -57,19 +57,27 @@ export function useReview() {
       dispatch(setError(res.errorMessage));
       return false;
     }
-    dispatch(getReview(productId));
+    dispatch(getReview({ productId, query: `page=${currentPage}` }));
     return true;
+  };
+
+  const setCurrentPage = (newPage: number) => {
+    dispatch(setPage(newPage));
+    dispatch(getReview({ productId, query: `page=${newPage}` }));
   };
 
   // 페이지 시작
   useEffect(() => {
-    dispatch(getReview(productId));
+    dispatch(getReview({ productId, query: `page=${currentPage}` }));
   }, []);
 
   return {
-    review: review ?? [],
+    totalCount: review?.totalCount ?? 0,
+    reviews: review?.reviews ?? [],
     loading,
     error,
+    currentPage,
+    setCurrentPage,
     createReview: fetchReview<IReviewPostReq>('create'),
     updateReview: fetchReview<IReviewPutReq>('update'),
     deleteReview: fetchReview<IReviewDeleteReq>('delete'),
