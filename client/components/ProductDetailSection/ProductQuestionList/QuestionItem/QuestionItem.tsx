@@ -3,13 +3,13 @@ import * as S from './style';
 
 import Locker from '@image/question/lockerIcon.svg';
 import QuestionDetail from './QuestionDetail/QuestionDetail';
-import { IQuestionRes } from '@middle/type/question/question';
+import { IQuestion } from '@middle/type/question/question';
 import { hideId } from '@utils/encode';
 
 interface Props {
   idx: number;
   userId: string;
-  questionData: IQuestionRes;
+  questionData: IQuestion;
 }
 
 export default function QuestionItem({ idx, userId, questionData }: Props): ReactElement {
