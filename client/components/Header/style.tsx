@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '@lib/styledComponent';
 
 interface IHeader {
   isLeft?: number;
@@ -107,8 +107,8 @@ export const DarkMode = styled.div`
   height: 50px;
   border-radius: 50px;
   background: var(--glass-picker);
-  box-shadow: 0 0 10px var(--text-black-dark);
-  border: 2px solid var(--text-black-dark);
+  box-shadow: 0 0 10px var(--shadow-black-dark);
+  border: 0.5px solid var(--text-black-dark);
   transform: scale(0.8);
   transition: all 0.3s ease-in;
   cursor: pointer;
@@ -132,11 +132,33 @@ export const HeaderItem = styled.div`
   font-size: var(--body-middle-font);
 
   .main-logo {
+    .mainHorizontal_svg__letter {
+      stroke-dasharray: 0px, 40px;
+      stroke: #000;
+      stroke-width: 0.5px;
+      transition-duration: 0.5s;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      transition-property: stroke-dasharray, fill;
+    }
+
     .mainHorizontal_svg__later-dark {
       fill: var(--text-pastel-black-dark);
     }
   }
+
+  .main-logo:hover {
+    .mainHorizontal_svg__letter {
+      stroke-dasharray: 40px, 0px;
+      fill: #ffffff;
+    }
+
+    .mainHorizontal_svg__later-dark {
+      fill: #ffffff;
+    }
+  }
 `;
+
 // 헤더 바깥
 export const HeaderOuter = styled.div`
   .slider-all {

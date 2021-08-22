@@ -49,7 +49,9 @@ const Header = ({ check, onLogout }: IHeader) => {
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader">
               <Link to="/">
-                <MainSvg className="main-logo" />
+                <div className="main-logo">
+                  <MainSvg />
+                </div>
               </Link>
             </S.HeaderItem>
 
