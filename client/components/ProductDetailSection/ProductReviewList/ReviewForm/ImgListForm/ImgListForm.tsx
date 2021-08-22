@@ -9,11 +9,11 @@ import { uploadImg } from '@api/upload';
 interface Props {
   imgList: string[];
   setImgList: Dispatch<SetStateAction<string[]>>;
+  setFormError: Dispatch<SetStateAction<string>>;
 }
 
-export default function ImgListForm({ imgList, setImgList }: Props): ReactElement {
+export default function ImgListForm({ imgList, setImgList, setFormError }: Props): ReactElement {
   const MAX_IMG = 8;
-  const [uploadError, setUploadError] = useState('');
 
   const handleImgSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
@@ -21,12 +21,18 @@ export default function ImgListForm({ imgList, setImgList }: Props): ReactElemen
     if (!uploadImage) return;
 
     const imgBlob = Object.values(uploadImage);
+
+    if (imgBlob.length > MAX_IMG) {
+      setFormError('이미지는 최대 8장까지 업로드 가능합니다.');
+      return;
+    }
+
     imgBlob.forEach((blob) => formData.append('image', blob));
 
     const data = await uploadImg(formData);
 
     if (!data.success) {
-      setUploadError(data.errorMessage);
+      setFormError(data.errorMessage);
       return;
     }
 
@@ -44,6 +50,7 @@ export default function ImgListForm({ imgList, setImgList }: Props): ReactElemen
   return (
     <>
       <StyledImgListFrom>
+        <h2>hello</h2>
         <label className="img-form__add-btn" htmlFor="input-file">
           <Plus className="img-form__plus-icon" />
           <div className="img-form__count">
@@ -53,7 +60,6 @@ export default function ImgListForm({ imgList, setImgList }: Props): ReactElemen
         <input type="file" id="input-file" onChange={handleImgSubmit} multiple />
         {uploadedImgList}
       </StyledImgListFrom>
-      {uploadError && <div>{uploadError}</div>}
     </>
   );
 }

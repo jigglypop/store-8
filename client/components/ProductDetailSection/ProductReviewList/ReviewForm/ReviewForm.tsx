@@ -28,6 +28,7 @@ export default function ReviewForm({
   const isEdit = reviewId !== undefined;
   const { product } = useProduct();
   const { createReview, updateReview, error } = useReview();
+  const [formError, setFormError] = useState('');
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
   const [score, setScore] = useState(editScore ?? 0);
@@ -101,9 +102,9 @@ export default function ReviewForm({
           </div>
           <div className="review-form__image-input">
             <div className="title">사진등록</div>
-            <ImgListForm {...{ imgList, setImgList }} />
+            <ImgListForm {...{ imgList, setImgList, setFormError }} />
           </div>
-          <div className="review-form__error">{error}</div>
+          <div className="review-form__error">{formError || error}</div>
           <div className="review-form__btns">
             <button className="cancel-btn" onClick={closeReviewForm}>
               취소
