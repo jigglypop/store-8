@@ -1,5 +1,5 @@
 import * as S from './style';
-import FooterSvg from '@image/mainVertical.svg';
+import FooterSvg from '@image/svg/mainVertical.svg';
 
 const Footer = () => {
   return (

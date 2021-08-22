@@ -9,7 +9,7 @@ import Slider from '../Slider/Slider';
 import DarkMode from '../Dark/DarkMode';
 import UserSlider from '../Slider/UserSlider';
 import Search from '../Search/Search';
-import MainSvg from '@image/mainHorizontal.svg';
+import MainSvg from '@image/svg/mainHorizontal.svg';
 
 export interface IHeader {
   check: ICheckRes | null;
