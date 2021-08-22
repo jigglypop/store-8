@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const ReviewForm = styled.div`
   padding: 30px;
-  background-color: var(--background-white);
-  color: var(--text-gray);
+  background-color: var(--background-select-section-dark);
+  color: var(--text-gray-dark);
   min-width: 720px;
   border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+
   & > div,
   form > div {
     display: flex;
@@ -17,7 +19,7 @@ export const ReviewForm = styled.div`
     justify-content: space-between;
     border-bottom: 1px solid var(--line-gray);
     h2 {
-      color: var(--text-black);
+      color: var(--text-black-dark);
       font-size: var(--body-subtitle-font);
     }
     .cancel-btn {
@@ -34,7 +36,7 @@ export const ReviewForm = styled.div`
       margin-right: 28px;
     }
     .title {
-      color: var(--text-black);
+      color: var(--text-black-dark);
       font-weight: bold;
     }
   }
@@ -50,7 +52,7 @@ export const ReviewForm = styled.div`
 
     .title {
       padding-top: 12px;
-      color: var(--text-black);
+      color: var(--text-black-dark);
       width: 100px;
     }
 
@@ -61,14 +63,19 @@ export const ReviewForm = styled.div`
       padding: 10px 15px;
     }
 
+    input {
+      color: var(--text-black-dark);
+    }
     textarea {
+      background-color: var(--background-select-section-dark);
+      color: var(--text-black-dark);
       height: 200px;
       resize: none;
     }
 
     .review-form__input:focus {
       outline: none;
-      border: 1px solid var(--gray2);
+      border: 1px solid var(--line-dark-gray-dark);
     }
   }
 
@@ -89,11 +96,13 @@ export const ReviewForm = styled.div`
       border-radius: 6px;
     }
     .cancel-btn {
-      border: 1px solid var(--line-gray);
+      border: 1px solid var(--line-gray-dark);
+      color: var(--text-pastel-black-dark);
       margin-right: 16px;
     }
     .submit-btn {
-      color: var(--text-white);
+      border: 1px solid var(--line-gray-dark);
+      color: var(--white);
       background-color: var(--background-pastel-black);
     }
     .submit-btn:disabled {

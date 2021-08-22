@@ -27,6 +27,6 @@ interface StyleProps {
 const StyledCheckBox = styled.div<StyleProps>`
   cursor: pointer;
   & > svg {
-    fill: var(${({ isCheck }) => (isCheck ? '--mint' : '--gray3')});
+    fill: var(${({ isCheck }) => (isCheck ? '--tag-picker' : '--gray3')});
   }
 `;
