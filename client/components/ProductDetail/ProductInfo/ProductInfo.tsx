@@ -30,7 +30,7 @@ export default function ProductInfo({ title, originalAmount, amount }: Props): R
   };
 
   const handleClickCountPlus = () => {
-    if (count > 100) return;
+    if (count + 1 > 100) return;
     setCount((count) => count + 1);
     setInputValue((inputValue) => +inputValue + 1 + '');
   };
@@ -54,6 +54,7 @@ export default function ProductInfo({ title, originalAmount, amount }: Props): R
       setCount(+inputValue);
     }
   };
+
   return (
     <S.ProductInfo>
       <div className="product__info">
