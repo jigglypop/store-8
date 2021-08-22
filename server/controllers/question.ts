@@ -47,6 +47,8 @@ export const getQuestion = async (req: Request, res: Response) => {
       productId,
     },
     order: [['createdAt', 'DESC']],
+    offset: _page * _limit,
+    limit: _limit,
   });
 
   const questions: IQuestion[] = questionSnapshot.rows.map((item) => {

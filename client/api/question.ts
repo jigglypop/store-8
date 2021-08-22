@@ -16,7 +16,7 @@ export const getQuestionApi = async (
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
   }
-  return data.data;
+  return data;
 };
 
 // requestionFrom 타입 지정
