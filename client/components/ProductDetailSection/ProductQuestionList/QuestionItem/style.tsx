@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const QuestionItem = styled.li`
-  background-color: var(--footer-background-dark);
+  background-color: var(--body-background-dark);
   color: var(--text-black-dark);
-  font-size: var(--body-small-font);
 
   & > div,
   .question-info {
