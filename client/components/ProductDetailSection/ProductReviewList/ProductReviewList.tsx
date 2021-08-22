@@ -10,7 +10,7 @@ interface Props {}
 
 export default function ProductReviewList({}: Props): ReactElement {
   const { review, loading, error } = useReview();
-  const [isOpenForm, setIsOpenForm] = useState(true);
+  const [isOpenForm, setIsOpenForm] = useState(false);
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
   const reviewList = review.map((data, idx) => {
@@ -18,6 +18,7 @@ export default function ProductReviewList({}: Props): ReactElement {
   });
 
   const openReviewForm = () => setIsOpenForm(true);
+
   const closeReviewForm = () => setIsOpenForm(false);
 
   return (

@@ -18,7 +18,7 @@ export default function ReviewItem({ reviewData, userId, idx }: Props): ReactEle
   const { id, title, contents, score, date, imgSrc, likeCount, dislikeCount, isLike, isDislike } =
     reviewData;
 
-  const [isOpenDetail, setIsOpenDetail] = useState(true);
+  const [isOpenDetail, setIsOpenDetail] = useState(false);
 
   const stars = new Array(MAX_SCORE)
     .fill(0)

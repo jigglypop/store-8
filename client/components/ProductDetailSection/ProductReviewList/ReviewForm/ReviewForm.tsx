@@ -5,30 +5,33 @@ import Modal from '@components/common/Modal/Modal';
 import XIcon from '@image/icon/xIcon.svg';
 import { useProduct } from '@client/hooks/product/product';
 import ImgListForm from './ImgListForm/ImgListForm';
+import ScoreChecker from './ScoreChecker/ScoreChecker';
+import { useReview } from '@client/hooks/review/review';
 
 interface Props {
   closeReviewForm: () => void;
+  reviewId?: number;
   editTitle?: string;
   editContents?: string;
   editImgList?: string[];
+  editScore?: number;
 }
 
 export default function ReviewForm({
   closeReviewForm,
+  reviewId,
   editTitle,
   editContents,
   editImgList,
+  editScore,
 }: Props): ReactElement {
-  const isEdit = false;
-  const error = 'hello';
+  const isEdit = reviewId !== undefined;
   const { product } = useProduct();
+  const { createReview, updateReview, error } = useReview();
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
-  //   const [imgList, setImgList] = useState(editImgList ?? []);
-  const [imgList, setImgList] = useState([
-    'http://localhost:8000/public/image/product/big/1.jpg',
-    'http://localhost:8000/public/image/product/big/2.jpg',
-  ]);
+  const [score, setScore] = useState(editScore ?? 0);
+  const [imgList, setImgList] = useState(editImgList ?? []);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     setTitle(target.value);
@@ -38,10 +41,20 @@ export default function ReviewForm({
     setContents(target.value);
   };
 
+  //리뷰 생성 or 수정
   const handleSubmitClick = async (e: MouseEvent) => {
     e.preventDefault();
-    const reviewFormData = { title, contents };
+    const reviewFormData = { title, contents, score, imgSrc: imgList };
+    let isSuccess: boolean = false;
 
+    if (isEdit) {
+      if (!reviewId) return;
+      isSuccess = await updateReview({ reviewId, ...reviewFormData });
+    } else {
+      isSuccess = await createReview(reviewFormData);
+    }
+
+    if (!isSuccess) return;
     closeReviewForm();
   };
 
@@ -56,8 +69,11 @@ export default function ReviewForm({
           </div>
         </div>
         <div className="review-form__title">
-          <img src={'http://localhost:8000/' + product?.productImgSrc} alt="image" />
-          <div className="title">{product?.title}</div>
+          <img src={'/' + product?.productImgSrc} alt="image" />
+          <div className="title">
+            <div>{product?.title}</div>
+            <ScoreChecker {...{ score, setScore }} />
+          </div>
         </div>
         <form>
           <div className="review-form__title-input">
