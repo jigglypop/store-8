@@ -94,7 +94,7 @@ export const createReview = async (req: Request, res: Response) => {
 
   if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };
@@ -133,7 +133,7 @@ export const updateReview = async (req: Request, res: Response) => {
     }
   );
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };
