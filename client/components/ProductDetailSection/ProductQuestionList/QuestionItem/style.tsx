@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const QuestionItem = styled.li`
+  cursor: pointer;
   background-color: var(--body-background-dark);
   color: var(--text-black-dark);
 

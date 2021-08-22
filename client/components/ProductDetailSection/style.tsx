@@ -24,6 +24,7 @@ export const UserFeedbackTitleContainer = styled.div`
     justify-content: center;
     background-color: var(--black);
     color: var(--white);
+    border: 1px solid var(--text-black-dark);
     border-radius: 3px;
   }
 `;
