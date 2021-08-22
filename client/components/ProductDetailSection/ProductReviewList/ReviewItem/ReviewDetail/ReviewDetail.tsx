@@ -6,6 +6,7 @@ import DeleteIcon from '@image/icon/deleteIcon.svg';
 import LikeBtn from '@image/icon/likeIcon.svg';
 import DislikeBtn from '@image/icon/dislikeIcon.svg';
 import { IReviewRes } from '@middle/type/review/review';
+import ReviewForm from '../../ReviewForm/ReviewForm';
 
 interface Props {
   reviewData: IReviewRes;
@@ -48,6 +49,8 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
 
   const handleDeleteClick = () => setIsDelete(true);
 
+  const closeEditForm = () => setIsEdit(false);
+
   return (
     <S.ReviewDetail>
       {isOwned && (
@@ -76,6 +79,16 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
         </div>
       </div>
       <div className="review-detail__img">{imgList}</div>
+      {isEdit && (
+        <ReviewForm
+          closeReviewForm={closeEditForm}
+          reviewId={id}
+          editTitle={title}
+          editContents={contents}
+          editImgList={imgSrc}
+          editScore={score}
+        />
+      )}
     </S.ReviewDetail>
   );
 }

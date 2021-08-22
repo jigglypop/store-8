@@ -71,8 +71,8 @@ export function useReview() {
     loading,
     error,
     createReview: fetchReview<IReviewPostReq>('create'),
-    updateReview: fetchReview<IReviewPutReq>('create'),
-    deleteReview: fetchReview<IReviewDeleteReq>('create'),
+    updateReview: fetchReview<IReviewPutReq>('update'),
+    deleteReview: fetchReview<IReviewDeleteReq>('delete'),
     likeReview,
   };
 }
