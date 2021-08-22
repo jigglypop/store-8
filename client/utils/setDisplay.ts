@@ -67,6 +67,7 @@ export const SunAttr = () => {
   const text = colorPicker.text;
   const glass = colorPicker.glass;
   return {
+    '--text-pastel-black-dark': '#353535',
     '--text-black-dark': '#000000',
     '--text-white-dark': 'white',
     '--background-black-dark': 'black',
@@ -90,6 +91,7 @@ export const MoonAttr = () => {
   const text = colorPicker.text;
   const glass = colorPicker.glass;
   return {
+    '--text-pastel-black-dark': '#E1E1E1',
     '--text-black-dark': 'white',
     '--text-white-dark': 'black',
     '--background-black-dark': 'white',

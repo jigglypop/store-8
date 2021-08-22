@@ -5,13 +5,16 @@ export const Footer = styled.footer`
   bottom: 0;
   width: 100%;
   height: 240px;
-  background: var(--background-gray);
+  background: var(--footer-background-dark);
   padding-left: 120px;
   display: flex;
   flex-direction: row;
   align-items: center;
 
   .footerLogo {
+    .mainVertical_svg__later-dark {
+      fill: var(--text-pastel-black-dark);
+    }
     transform: scale(0.4);
     transform-origin: center;
     margin-right: -120px;
@@ -30,7 +33,7 @@ export const Footer = styled.footer`
     flex-direction: row;
     p {
       font-size: var(--body-middle-font);
-      color: var(--text-dark-gray);
+      color: var(--text-pastel-black-dark);
       font-weight: 700;
       margin-right: 12px;
     }
@@ -44,6 +47,7 @@ export const Footer = styled.footer`
       flex-direction: row;
       margin-top: 12px;
       p {
+        color: var(--text-black-dark);
         font-size: var(--body-middle-font);
       }
       .footerRowTitle {

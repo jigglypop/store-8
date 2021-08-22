@@ -130,6 +130,12 @@ export const HeaderItem = styled.div`
   align-items: center;
   cursor: pointer;
   font-size: var(--body-middle-font);
+
+  .main-logo {
+    .mainHorizontal_svg__later-dark {
+      fill: var(--text-pastel-black-dark);
+    }
+  }
 `;
 // 헤더 바깥
 export const HeaderOuter = styled.div`
