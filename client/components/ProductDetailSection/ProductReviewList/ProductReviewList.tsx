@@ -16,7 +16,9 @@ export default function ProductReviewList({}: Props): ReactElement {
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
   const reviewList = reviews.map((data, idx) => {
-    return <ReviewItem key={data.id} reviewData={data} idx={idx} userId="testId" />;
+    const reviewNo = totalCount - (currentPage - 1) * DEFAULT_REVIEW_LIMIT - idx;
+
+    return <ReviewItem key={data.id} reviewData={data} reviewNo={reviewNo} userId="testId" />;
   });
 
   const openReviewForm = () => setIsOpenForm(true);

@@ -7,13 +7,13 @@ import { IQuestion } from '@middle/type/question/question';
 import { hideId } from '@utils/encode';
 
 interface Props {
-  idx: number;
+  questionNo: number;
   userId: string;
   questionData: IQuestion;
 }
 
-export default function QuestionItem({ idx, userId, questionData }: Props): ReactElement {
-  const { id, title, contents, isSecret, date, answer, answerDate, isOwned } = questionData;
+export default function QuestionItem({ questionNo, userId, questionData }: Props): ReactElement {
+  const { title, isSecret, date, answer } = questionData;
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
   const questionStatus = answer ? '답변완료' : '접수';
@@ -21,11 +21,12 @@ export default function QuestionItem({ idx, userId, questionData }: Props): Reac
   const handleQuestionClick = () => {
     setIsOpenDetail((isOpenDetail) => !isOpenDetail);
   };
+
   return (
     <>
       <S.QuestionItem onClick={handleQuestionClick}>
         <div>
-          <div className="question-info no">{idx + 1}</div>
+          <div className="question-info no">{questionNo}</div>
           <div className="question-info title">
             {isSecret && <Locker />}
             {title}

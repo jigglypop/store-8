@@ -15,9 +15,12 @@ export default function ProductQuestionList({}: Props): ReactElement {
   const [isOpenForm, setIsOpenForm] = useState(false);
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
-  const questionList = questions.map((data, idx) => (
-    <QuestionItem key={data.id} questionData={data} idx={idx} userId="testId" />
-  ));
+  const questionList = questions.map((data, idx) => {
+    const questionNo = totalCount - (currentPage - 1) * DEFAULT_QUESTION_LIMIT - idx;
+    return (
+      <QuestionItem key={data.id} questionNo={questionNo} questionData={data} userId="testId" />
+    );
+  });
 
   const handlePostBtnClick = () => setIsOpenForm(true);
 
