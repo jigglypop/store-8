@@ -2,8 +2,16 @@ import fetchWrapper from '@client/utils/fetchWrapper';
 import { IQuestionPostRes } from '@middle/type/question/question';
 import request, { IThunkApi } from './utils/request';
 
-export const getQuestionApi = async (productId: number, thunkApi: IThunkApi) => {
-  const data = await request.get(`/api/question/${productId}`);
+interface IQuestionGetReq {
+  productId: number;
+  query: string;
+}
+
+export const getQuestionApi = async (
+  { productId, query }: IQuestionGetReq,
+  thunkApi: IThunkApi
+) => {
+  const data = await request.get(`/api/question/${productId}?${query}`);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
