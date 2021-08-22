@@ -7,6 +7,7 @@ export const Pagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--body-background-dark);
 
   .pagination-inner {
     display: flex;

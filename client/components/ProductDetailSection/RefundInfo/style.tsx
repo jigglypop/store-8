@@ -1,17 +1,16 @@
 import styled from 'styled-components';
 
 export const RefundInfo = styled.section`
-  background-color: var(--white);
   margin-top: 45px;
   font-size: var(--body-small-font);
-  color: var(--text-gray);
-
+  background-color: var(--body-background-dark);
+  color: var(--text-gray-dark);
   & > section {
     margin-top: 60px;
   }
 
   .title {
-    color: var(--text-pastel-black);
+    color: var(--text-pastel-black-dark);
     font-size: var(--body-large-font);
     font-weight: bold;
     margin-left: 12px;

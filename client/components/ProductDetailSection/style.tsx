@@ -4,10 +4,12 @@ export const UserFeedbackTitleContainer = styled.div`
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  border-bottom: 1px solid var(--pastel-black);
+  background-color: var(--body-background-dark);
+  color: var(--text-black-dark);
+  border-bottom: 1px solid var(--text-black-dark);
 
   .title {
-    color: var(--text-pastel-black);
+    color: var(--text-pastel-black-dark);
     font-size: var(--body-large-font);
     font-weight: bold;
     margin-left: 12px;
