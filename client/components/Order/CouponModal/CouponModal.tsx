@@ -31,17 +31,20 @@ function CouponModal(props: CouponModalProps): ReactElement {
           <p className="coupon-modal-title">{CHOOSE_COUPON_TEXT}</p>
           <div className="coupon-container">
             {coupon.map((element, index) => {
-              const { amount, title, dDay } = element;
-              return (
-                <div key={index} className="coupon-div" onClick={() => setSelected(index)}>
-                  <Coupon
-                    title={title}
-                    amount={amount}
-                    dDay={dDay}
-                    selected={selected === index}
-                  ></Coupon>
-                </div>
-              );
+              const { amount, title, dDay, isUsed } = element;
+              if (!isUsed) {
+                return (
+                  <div key={index} className="coupon-div" onClick={() => setSelected(index)}>
+                    <Coupon
+                      title={title}
+                      amount={amount}
+                      dDay={dDay}
+                      selected={selected === index}
+                    ></Coupon>
+                  </div>
+                );
+              }
+              return <></>;
             })}
           </div>
         </div>

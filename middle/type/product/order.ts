@@ -4,6 +4,7 @@ export type OrderCreateReq = {
   productCounts: number[];
   productAmounts: number[];
   optionIds: number[];
+  addressId: number;
 };
 
 export type OrderCreateRes = {

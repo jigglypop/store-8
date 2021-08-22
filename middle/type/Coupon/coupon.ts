@@ -3,6 +3,7 @@ export type CouponData = {
   title: string;
   amount: number;
   dDay: string;
+  isUsed: boolean;
 };
 
 export type CouponGetReq = {

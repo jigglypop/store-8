@@ -13,16 +13,22 @@ import type { CouponData } from '@middle/type/Coupon/coupon';
 import type { AddressData } from '@middle/type/address/address';
 import { ORDER_START } from '@constants/Cart';
 import { getMileage, getShipmentAmount } from '@utils/utils';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
 
 const OrderPage = () => {
-  const dispatch = useDispatch();
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
-  const [selectedCoupon, setCoupon] = useState({ id: 0, title: '', amount: 0, dDay: '' });
-  const [selectedAddress, setAddress] = useState({
+  const [selectedCoupon, setCoupon] = useState<CouponData>({
+    id: 0,
+    title: '',
+    amount: 0,
+    dDay: '',
+    isUsed: false,
+  });
+  const [selectedAddress, setAddress] = useState<AddressData>({
+    addressId: 0,
     address: '',
     extraAddress: '',
     zonecode: '',
@@ -101,7 +107,7 @@ const OrderPage = () => {
   };
 
   const initCoupon = () => {
-    setCoupon({ id: 0, title: '', amount: 0, dDay: '' });
+    setCoupon({ id: 0, title: '', amount: 0, dDay: '', isUsed: false });
   };
 
   const useMileage = (amount: number) => {
@@ -124,7 +130,11 @@ const OrderPage = () => {
           ></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
-          <OrderReceipt selectedCoupon={selectedCoupon} metaData={calcMetaData()}></OrderReceipt>
+          <OrderReceipt
+            selectedAddress={selectedAddress}
+            selectedCoupon={selectedCoupon}
+            metaData={calcMetaData()}
+          ></OrderReceipt>
         </div>
       </div>
       {isCouponOpenForm && <CouponModal closeForm={closeCouponForm} confirm={couponConfirm} />}

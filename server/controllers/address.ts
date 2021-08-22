@@ -20,6 +20,7 @@ const findAll = async (userId: number) => {
 
   addresses.forEach((element) => {
     result.push({
+      addressId: element.id,
       address: element.location,
       extraAddress: element.extraLocation,
       zonecode: element.zonecode,

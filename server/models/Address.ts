@@ -5,11 +5,13 @@ import {
   ForeignKey,
   Model,
   Table,
+  HasMany,
   UpdatedAt,
   BelongsTo,
   PrimaryKey,
   AutoIncrement,
 } from 'sequelize-typescript';
+import Order from './Order';
 
 import User from './User';
 
@@ -80,4 +82,7 @@ export default class Address extends Model<IAddress> {
 
   @BelongsTo(() => User)
   user: User;
+
+  @HasMany(() => Order)
+  orders: Order[];
 }

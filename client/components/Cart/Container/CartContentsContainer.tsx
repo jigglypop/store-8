@@ -29,7 +29,9 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
   if (props.metaData.maxLength === 0) {
     return (
       <S.CartContainer>
-        <p className="nothing-text">{NOTHING_IN_TEXT}</p>
+        <div className="nothing-container">
+          <p className="nothing-text">{NOTHING_IN_TEXT}</p>
+        </div>
       </S.CartContainer>
     );
   }

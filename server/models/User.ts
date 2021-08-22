@@ -40,6 +40,7 @@ export default class User extends Model<IUser> {
 
   @HasMany(() => Cart)
   carts: Cart[];
+
   @HasMany(() => Address)
   addresses: Address[];
 

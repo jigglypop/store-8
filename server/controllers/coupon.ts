@@ -10,7 +10,7 @@ import { CouponData } from '../../middle/type/Coupon/coupon';
 
 const findAll = async (userId: number) => {
   const userCoupons = await UserCoupon.findAll({
-    where: { userId },
+    where: { userId, isUsed: false },
     include: [
       {
         model: Coupon,
@@ -26,10 +26,11 @@ const findAll = async (userId: number) => {
 
   userCoupons.forEach((element) => {
     result.push({
-      id: element.coupon.id,
+      id: element.id,
       title: element.coupon.title,
       amount: element.coupon.amount,
       dDay: element.dDay.split(' ')[0],
+      isUsed: element.isUsed,
     });
   });
 
@@ -87,7 +88,7 @@ export const useCoupon = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
 
-  const valid = await UserCoupon.update({ isUsed: true }, { where: { id: couponId } });
+  const valid = await UserCoupon.update({ isUsed: true }, { where: { id: couponId, userId } });
 
   if (!valid) {
     throw new HttpError({ status: 400, message: '요청한 내역 수정을 진행 할 수 없었습니다.' });

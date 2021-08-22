@@ -60,7 +60,7 @@ export const createOrder = async (req: Request, res: Response) => {
   const orderNumber = makeRandomOrderId();
   const orderState = '처리중'; // 처리중, 배송중, 배송 완료
   const orderConfirm = false;
-  const { userId, productIds, productCounts, productAmounts, optionIds } = req.body;
+  const { userId, productIds, productCounts, productAmounts, optionIds, addressId } = req.body;
   // optionIds 는 없으면 0, 있다면 1 이상의 id 로 결정.
 
   // TODO : Transaction 추가 필요
@@ -68,6 +68,7 @@ export const createOrder = async (req: Request, res: Response) => {
     const valid = Order.create({
       orderNumber,
       userId,
+      addressId,
       productId: productIds[index],
       productCount: productCounts[index],
       productAmount: productAmounts[index],

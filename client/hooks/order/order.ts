@@ -12,7 +12,7 @@ export function useOrder() {
   const { cart } = useSelector((state: RootState) => state.order);
   const dispatch = useDispatch();
 
-  const proceedOrder = async (useCouponId: number) => {
+  const proceedOrder = async (useCouponId: number, addressId: number) => {
     // 주문내역을 만들기 위한 데이터 생성
     const productIds: number[] = [];
     const productCounts: number[] = [];
@@ -36,6 +36,7 @@ export function useOrder() {
       productCounts,
       productAmounts,
       optionIds,
+      addressId,
     });
 
     if (orderApiResult !== 'ok') {

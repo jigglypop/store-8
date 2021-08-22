@@ -13,14 +13,16 @@ import {
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
 import { CouponData } from '@middle/type/Coupon/coupon';
+import { AddressData } from '@middle/type/address/address';
 
 import { useOrder } from '@client/hooks/order/order';
 interface MetaData {
   metaData: OrderContentMetaData;
   selectedCoupon: CouponData;
+  selectedAddress: AddressData;
 }
 
-const OrderReceipt = ({ selectedCoupon, metaData }: MetaData): ReactElement => {
+const OrderReceipt = ({ selectedAddress, selectedCoupon, metaData }: MetaData): ReactElement => {
   const { proceedOrder } = useOrder();
   return (
     <S.OrderReceipt>
@@ -48,7 +50,7 @@ const OrderReceipt = ({ selectedCoupon, metaData }: MetaData): ReactElement => {
       <S.OrderNow>
         <button
           onClick={() => {
-            proceedOrder(selectedCoupon.id);
+            proceedOrder(selectedCoupon.id, selectedAddress.addressId);
           }}
         >
           {'주문하기'}

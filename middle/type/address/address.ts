@@ -1,4 +1,5 @@
 export type AddressData = {
+  addressId: number;
   address: string;
   extraAddress: string;
   zonecode: string;
