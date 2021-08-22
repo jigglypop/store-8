@@ -48,7 +48,7 @@ export function useQuestion() {
   }, []);
 
   return {
-    question,
+    question: question ?? [],
     loading,
     error,
     createQuestion: fetchQuestion<IQuestionPostReq>('create'),
