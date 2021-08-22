@@ -1,4 +1,4 @@
-type AddressData = {
+export type AddressData = {
   address: string;
   extraAddress: string;
   zonecode: string;
@@ -7,4 +7,10 @@ type AddressData = {
   email: string;
 };
 
-export type { AddressData };
+export type AddressGetReq = {
+  userId: number;
+};
+
+export type AddressRes = {
+  data: AddressData[];
+};

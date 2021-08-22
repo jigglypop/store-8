@@ -3,6 +3,8 @@ import login from './auth/login';
 import check from './auth/check';
 import github from './auth/github';
 import cart from './product/cart';
+import coupon from './coupon/coupon';
+import address from './address/address';
 import router from './router/router';
 import category from './category/category';
 import mode from './mode/mode';
@@ -22,6 +24,8 @@ export const store = configureStore({
     check,
     github,
     cart,
+    coupon,
+    address,
     router,
     category,
     mode,
