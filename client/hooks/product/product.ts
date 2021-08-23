@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { RootState } from '@client/store';
-import { getProduct } from '@client/store/product/product';
+import { getProduct, setCountState, setOptionCountState } from '@client/store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from '../router/router';
@@ -15,10 +15,18 @@ export function useProduct() {
   const { product, loading, error } = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
 
+  const setCount = (count: number) => {
+    dispatch(setCountState(count));
+  };
+
+  const setOptionCount = (optionCount: { [key: string]: number }) => {
+    dispatch(setOptionCountState(optionCount));
+  };
+
   // 페이지 시작
   useEffect(() => {
     dispatch(getProduct(productId));
   }, []);
 
-  return { product, loading, error };
+  return { product, loading, error, setCount, setOptionCount };
 }
