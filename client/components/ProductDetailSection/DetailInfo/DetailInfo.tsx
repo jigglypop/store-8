@@ -9,7 +9,7 @@ export default function DetailInfo({}: Props): ReactElement {
   const { product, loading, error } = useProduct();
 
   //TODO 변경 필요 -s3면 문제 없을 듯
-  const IMG_SRC = '/' + product?.detailImgSrc;
+  const IMG_SRC = product?.detailImgSrc;
 
   return (
     <S.DetailInfo>

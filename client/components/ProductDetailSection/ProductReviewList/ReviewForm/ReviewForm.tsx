@@ -70,7 +70,7 @@ export default function ReviewForm({
           </div>
         </div>
         <div className="review-form__title">
-          <img src={'/' + product?.productImgSrc} alt="image" />
+          <img src={product?.productImgSrc} alt="image" />
           <div className="title">
             <div>{product?.title}</div>
             <ScoreChecker {...{ score, setScore }} />

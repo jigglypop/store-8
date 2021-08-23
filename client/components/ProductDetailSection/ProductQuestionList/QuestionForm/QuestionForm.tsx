@@ -67,7 +67,7 @@ export default function QuestionForm({
           </div>
         </div>
         <div className="question-form__title">
-          <img src={'/' + product?.productImgSrc} alt="image" />
+          <img src={product?.productImgSrc} alt="image" />
           <div className="title">{product?.title}</div>
         </div>
         <form>
