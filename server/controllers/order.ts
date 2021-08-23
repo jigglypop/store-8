@@ -6,24 +6,18 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
+import { IOrder } from '@middle/type/myOrder/myOrder';
 
-interface IResult {
-  date: Date; // order day
-  id: number; // orderId : for key
-  orderNumber: string; // order
-  title: string; // productId
-  option?: string; //
-  productAmount: number;
-  productCount: number;
-  state: string; // 주문상태
-  isConfirmed: boolean; // 확인/리뷰
-  productImgSrc: string;
-}
+// interface IUser {
+//   id: number;
+//   email: string;
+// }
 
 //상품 문의 조회
 export const getAllOrders = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const userId = 1; // decode JWT를 통해 가져와야함.
+  // const { id }: IUser = req.user;
 
   let refunds = await Order.findAll({
     where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },
@@ -36,8 +30,8 @@ export const getAllOrders = async (req: Request, res: Response) => {
     ],
   });
 
-  const results: IResult[] = refunds.map((order) => {
-    const result: IResult = {
+  const results: IOrder[] = refunds.map((order) => {
+    const result: IOrder = {
       id: order.id,
       orderNumber: order.orderNumber,
       title: order.product.title,
@@ -46,7 +40,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
       state: order.state,
       isConfirmed: order.isConfirmed,
       productImgSrc: order.product.productImgSrc,
-      date: new Date(order.createdAt),
+      date: order.createdAt.toString(),
     };
 
     return result;
