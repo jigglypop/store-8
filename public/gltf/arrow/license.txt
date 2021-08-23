@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cult Member (Enemy Character)
+* source:	https://sketchfab.com/3d-models/cult-member-enemy-character-0de7496d24ff4bef81a6937005ce34c1
+* author:	DivyeSh PanchAl (https://sketchfab.com/DivyeSh.PanchAl)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cult Member (Enemy Character)" (https://sketchfab.com/3d-models/cult-member-enemy-character-0de7496d24ff4bef81a6937005ce34c1) by DivyeSh PanchAl (https://sketchfab.com/DivyeSh.PanchAl) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

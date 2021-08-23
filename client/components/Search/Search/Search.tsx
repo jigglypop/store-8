@@ -4,6 +4,7 @@ import { IProduct } from '@server/models/Product';
 import * as S from './style';
 import { Link } from '@client/utils/router';
 import { useSearch } from '@client/hooks/search/search';
+import NoData from '@client/components/NoData/NoData';
 
 interface IsearchComponent {
   cards: IProduct[] | undefined;
@@ -32,9 +33,7 @@ function Search({ cards }: IsearchComponent) {
               ))}
           </div>
         ) : (
-          <div className="content isNone">
-            <h1>검색결과가 없습니다</h1>
-          </div>
+          <NoData />
         )}
       </div>
     </S.Search>

@@ -1,3 +1,4 @@
+import { getS3Url } from '@client/utils/getS3Url';
 import { Link } from '@client/utils/router';
 import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
@@ -9,7 +10,8 @@ interface ICard {
   item: IProduct;
 }
 const Card = ({ index, item }: ICard) => {
-  let imgsrc = item.productImgSrc;
+  // 여기 고쳐야 할듯. s3경로 재설정이 필요합니다.
+  let imgsrc = getS3Url(item.productImgSrc);
   if (imgsrc === undefined) {
     imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }
@@ -21,14 +23,6 @@ const Card = ({ index, item }: ICard) => {
             <img src={imgsrc} alt="title" />
           </Link>
           <Wish productId={item.id.toString()} name={item.title} />
-          {/* <div className="underbutton">
-            <button className="smallbutton">
-              <i className="far fa-heart"></i>
-            </button>
-            <button className="smallbutton">
-              <i className="fas fa-cart-plus"></i>
-            </button>
-          </div> */}
         </div>
         <div className="text">
           <p className="red">{Number(item.sale) === 0 ? '' : item.sale + '%'}</p>
@@ -37,29 +31,7 @@ const Card = ({ index, item }: ICard) => {
           <p className="small">{dot(item.amount)} 원</p>
         </div>
 
-        <div className="mark">
-          {/* {item.tagType === 1 ? (
-            <button className="green">
-              <p className="marktext">GREEN</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType <= 1 ? (
-            <button className="new">
-              <p className="marktext">NEW</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType === 0 ? (
-            <button className="sale">
-              <p className="marktext">SALE</p>
-            </button>
-          ) : (
-            ""
-          )} */}
-        </div>
+        <div className="mark"></div>
       </div>
     </S.Card>
   );

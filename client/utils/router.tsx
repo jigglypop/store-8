@@ -75,7 +75,7 @@ export function Router({ children }: IRouter) {
 }
 export function Route({ path, component: Component, title }: IRoute<IQuery>) {
   const { router } = useContext(RouterContext);
-  const { pathname, params, query, notfound } = router;
+  const { pathname, params } = router;
   let RouteResult = null;
   const currentPath = path.split(/\/|\?/g);
   if (currentPath[1] === pathname) {
@@ -99,7 +99,11 @@ export function Link({ children, to, className, id }: ILink) {
     history.pushState({ path: to }, to, to);
   };
   return (
-    <div className={'router-link ' + className} id={id} onClick={() => onClick()}>
+    <div
+      className={'router-link ' + className === undefined ? '' : className}
+      id={id}
+      onClick={() => onClick()}
+    >
       {children}
     </div>
   );

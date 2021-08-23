@@ -1,4 +1,3 @@
-import User from '../models/User';
 import { NextFunction, Request, Response } from 'express';
 import Product from '../models/Product';
 import Wish from '../models/Wish';

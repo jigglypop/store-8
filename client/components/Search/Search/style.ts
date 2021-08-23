@@ -23,14 +23,14 @@ export const Search = styled(MainItem)`
     justify-content: space-between;
     align-items: center;
     background-color: rgb(0, 0, 0, 0.8);
-    padding: 15px 20px;
+    padding: 30px 20px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgb(0, 0, 0, 0.8);
 
     h4 {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 800;
-      color: var(--text-picker);
+      color: var(--text-white);
     }
 
     .search-items {

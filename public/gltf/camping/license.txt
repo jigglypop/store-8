@@ -1,0 +1,11 @@
+Model Information:
+* title:	Camping Scene
+* source:	https://sketchfab.com/3d-models/camping-scene-e84d0015f13b4e0d9045291d9879097a
+* author:	Snackwacko (https://sketchfab.com/snackwacko)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Camping Scene" (https://sketchfab.com/3d-models/camping-scene-e84d0015f13b4e0d9045291d9879097a) by Snackwacko (https://sketchfab.com/snackwacko) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -15,7 +15,9 @@ import question from './product/question';
 import search from './search/search';
 import mywish from './mywish/mywish';
 import review from './product/review';
-
+import storemode from './storemode/storemode';
+import elastic from './elastic/elastic';
+import recommend from './recommend/recommend';
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
@@ -37,6 +39,9 @@ export const store = configureStore({
     search,
     mywish,
     review,
+    storemode,
+    elastic,
+    recommend,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
