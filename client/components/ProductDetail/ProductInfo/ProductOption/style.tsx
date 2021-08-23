@@ -11,7 +11,7 @@ export const ProductOption = styled.div<ProductOptionProps>`
     background-color: var(--body-background-dark);
     position: relative;
     width: 380px;
-
+    margin-bottom: 8px;
     border: 1px solid var(--line-gray-dark);
 
     .option__box-title {
@@ -71,10 +71,13 @@ export const ProductOption = styled.div<ProductOptionProps>`
       }
     }
   }
+
+  .option-item__selected:not(:last-child) {
+    border-bottom: none;
+  }
 `;
 
 export const ProductOptionItem = styled.div`
-  margin-top: 5px;
   color: var(--text-gray-dark);
   padding: 11px 10px 11px 16px;
   border: 1px solid var(--gray5);
