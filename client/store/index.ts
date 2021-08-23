@@ -14,12 +14,9 @@ import product from './product/product';
 import question from './product/question';
 import search from './search/search';
 import mywish from './mywish/mywish';
-<<<<<<< HEAD
 import myOrder from './myOrder/myOrder';
 import myRefund from './myRefund/myRefund';
-=======
 import review from './product/review';
->>>>>>> 4b712077542107efe28303a8807a016d97a968fd
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -41,12 +38,9 @@ export const store = configureStore({
     question,
     search,
     mywish,
-<<<<<<< HEAD
     myOrder,
     myRefund,
-=======
     review,
->>>>>>> 4b712077542107efe28303a8807a016d97a968fd
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
