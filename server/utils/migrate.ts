@@ -70,7 +70,6 @@ const initCart = async () => {
   Cart.bulkCreate(CARTS);
 };
 
-<<<<<<< HEAD
 // 상품 옵션 부분 시작
 const initOrder = async () => {
   Order.bulkCreate(ORDERS);
@@ -79,7 +78,6 @@ const initOrder = async () => {
 // 상품 옵션 부분 시작
 const initRefund = async () => {
   Refund.bulkCreate(REFUNDS);
-=======
 // 주소지 데이터 시작
 const initAddress = async () => {
   Address.bulkCreate(ADDRESSES);
@@ -93,7 +91,6 @@ const initCoupon = async () => {
 // UseCoupon 데이터 시작
 const initUserCoupon = async () => {
   UserCoupon.bulkCreate(USER_COUPONS);
->>>>>>> 4b712077542107efe28303a8807a016d97a968fd
 };
 
 export const migrate = async () => {
@@ -101,13 +98,10 @@ export const migrate = async () => {
   // await initProduct();
   // await initOption();
   // await initUser(); // not yet
-  await initCart();
-<<<<<<< HEAD
-  await initOrder();
-  await initRefund();
-=======
-  await initAddress();
-  await initCoupon();
-  await initUserCoupon();
->>>>>>> 4b712077542107efe28303a8807a016d97a968fd
+  // await initCart();
+  // await initOrder();
+  // await initRefund();
+  // await initAddress();
+  // await initCoupon();
+  // await initUserCoupon();
 };
