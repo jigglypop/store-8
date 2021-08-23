@@ -6,6 +6,7 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
+import User from '../models/User';
 
 interface IResult {
   date: Date; // order day
@@ -60,10 +61,32 @@ export const createOrder = async (req: Request, res: Response) => {
   const orderNumber = makeRandomOrderId();
   const orderState = '처리중'; // 처리중, 배송중, 배송 완료
   const orderConfirm = false;
-  const { userId, productIds, productCounts, productAmounts, optionIds, addressId } = req.body;
+  const {
+    userId,
+    productIds,
+    productCounts,
+    productAmounts,
+    optionIds,
+    addressId,
+    useMileageAmount,
+  } = req.body;
   // optionIds 는 없으면 0, 있다면 1 이상의 id 로 결정.
 
   // TODO : Transaction 추가 필요
+  const userInfo = await User.findAll({ where: { id: userId } });
+  if (userInfo[0].mileage < useMileageAmount) {
+    throw new HttpError({ status: 400, message: 'Mileage를 사용할 수 없습니다.' });
+  }
+
+  const userValid = await User.update(
+    { mileage: userInfo[0].mileage - useMileageAmount },
+    { where: { id: userId } }
+  );
+
+  if (!userValid) {
+    throw new HttpError({ status: 400, message: '주문 내역 추가에 실패하였습니다.' });
+  }
+
   productIds.forEach((element: number, index: number) => {
     const valid = Order.create({
       orderNumber,

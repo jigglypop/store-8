@@ -11,18 +11,19 @@ import {
   TOTAL_ADD_TEXT,
 } from '@constants/Cart';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
+import { ProceedOrderProps } from '@middle/type/product/order';
 import * as S from './style';
 import { CouponData } from '@middle/type/Coupon/coupon';
 import { AddressData } from '@middle/type/address/address';
 
 import { useOrder } from '@client/hooks/order/order';
-interface MetaData {
+interface OrderProps {
   metaData: OrderContentMetaData;
   selectedCoupon: CouponData;
-  selectedAddress: AddressData;
+  totalState: ProceedOrderProps;
 }
 
-const OrderReceipt = ({ selectedAddress, selectedCoupon, metaData }: MetaData): ReactElement => {
+const OrderReceipt = (props: OrderProps): ReactElement => {
   const { proceedOrder } = useOrder();
   return (
     <S.OrderReceipt>
@@ -31,26 +32,31 @@ const OrderReceipt = ({ selectedAddress, selectedCoupon, metaData }: MetaData): 
         <div className="amount-row">
           <p>{TOTAL_PRODUCTS_TEXT}</p>
           <p className="amount">
-            {kstFormatter(metaData.totalPrice + Math.abs(metaData.totalDiscount))}
+            {kstFormatter(props.metaData.totalPrice + Math.abs(props.metaData.totalDiscount))}
           </p>
         </div>
         <div className="amount-row">
           <p>{TOTAL_SHIPMENT_TEXT}</p>
-          <p className="amount">{kstFormatter(metaData.shipmentPrice)}</p>
+          <p className="amount">{kstFormatter(props.metaData.shipmentPrice)}</p>
         </div>
         <div className="amount-row">
           <p>{TOTAL_DISCOUNT_TEXT}</p>
-          <p className="amount">{kstFormatter(metaData.totalDiscount)}</p>
+          <p className="amount">{kstFormatter(props.metaData.totalDiscount)}</p>
         </div>
       </S.Receipt>
       <S.TotalPrice>
         <p>{TOTAL_ADD_TEXT}</p>
-        <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
+        <p className="amount">{kstFormatter(props.metaData.totalPrice)}</p>
       </S.TotalPrice>
       <S.OrderNow>
         <button
           onClick={() => {
-            proceedOrder(selectedCoupon.id, selectedAddress.addressId);
+            proceedOrder({
+              useCouponId: props.selectedCoupon.id,
+              useMileageAmount: props.totalState.useMileageAmount,
+              addressInfo: props.totalState.addressInfo,
+              isBase: props.totalState.isBase,
+            });
           }}
         >
           {'주문하기'}

@@ -2,6 +2,8 @@ import { RootState } from '@store/index';
 import { delCart } from '@store/product/cart';
 import { useCoupon } from '@store/coupon/coupon';
 import { createOrder } from '@api/order';
+import { addAddressApi, setBaseAddressApi } from '@api/address';
+import { ProceedOrderProps } from '@middle/type/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 
 // 주문 대기 내역 ( state.order ) 을 주문 내역으로 변환후 create
@@ -12,13 +14,28 @@ export function useOrder() {
   const { cart } = useSelector((state: RootState) => state.order);
   const dispatch = useDispatch();
 
-  const proceedOrder = async (useCouponId: number, addressId: number) => {
+  const proceedOrder = async (props: ProceedOrderProps) => {
     // 주문내역을 만들기 위한 데이터 생성
     const productIds: number[] = [];
     const productCounts: number[] = [];
     const productAmounts: number[] = [];
     const optionIds: number[] = [];
     const deleteCartIds: number[] = [];
+
+    // 지역 추가 시도.
+    const addressId: number = await addAddressApi({
+      userId: 1,
+      address: props.addressInfo.address,
+      extraAddress: props.addressInfo.extraAddress,
+      zonecode: props.addressInfo.zonecode,
+      call: props.addressInfo.call,
+      name: props.addressInfo.name,
+      email: props.addressInfo.email,
+    });
+
+    if (props.isBase) {
+      await setBaseAddressApi({ userId: 1, addressId });
+    }
 
     cart.forEach((element) => {
       productIds.push(element.productId);
@@ -28,7 +45,7 @@ export function useOrder() {
       deleteCartIds.push(element.id);
     });
 
-    // 주문내역 만드는 API 호출
+    // 주문내역 만드는 API 호출, 사용한 마일리지는 order 를 만들면서 해결한다.
     // TODO : User Id 빼기
     const orderApiResult = await createOrder({
       userId: 1,
@@ -37,6 +54,7 @@ export function useOrder() {
       productAmounts,
       optionIds,
       addressId,
+      useMileageAmount: props.useMileageAmount,
     });
 
     if (orderApiResult !== 'ok') {
@@ -49,8 +67,12 @@ export function useOrder() {
 
     // TODO : User ID 빼기
     // coupon 사용하기 진행.
-    if (useCouponId !== 0) {
-      dispatch(useCoupon({ userId: 1, couponId: useCouponId }));
+    if (props.useCouponId !== 0) {
+      dispatch(useCoupon({ userId: 1, couponId: props.useCouponId }));
+    }
+
+    if (props.useMileageAmount !== 0) {
+      // 마일리지 처리 기능 구현하기
     }
 
     // Routing to order finish page.
