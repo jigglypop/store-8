@@ -7,12 +7,14 @@ import {
   UpdatedAt,
   AllowNull,
   Table,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Order from './Order';
 import User from './User';
 
 export interface IRefund {
-  id: number;
+  id?: number;
   ordersId: number;
   isConfirmed: boolean;
   userId: number;
@@ -23,7 +25,9 @@ export interface IRefund {
   timestamps: true,
 })
 export default class Refund extends Model<IRefund> {
-  @Column({ primaryKey: true })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @CreatedAt

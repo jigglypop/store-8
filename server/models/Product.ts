@@ -1,5 +1,6 @@
 import {
   AllowNull,
+  AutoIncrement,
   BelongsTo,
   Column,
   ForeignKey,
@@ -17,7 +18,7 @@ import Review from './Review';
 import Wish from './Wish';
 
 export interface IProduct {
-  id: number;
+  id?: number;
   title: string;
   productImgSrc: string;
   detailImgSrc: string;
@@ -30,6 +31,7 @@ export interface IProduct {
 @Table
 export default class Product extends Model<IProduct> {
   @AllowNull(false)
+  @AutoIncrement
   @PrimaryKey
   @Column
   id: number;
