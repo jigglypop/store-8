@@ -72,7 +72,6 @@ export const SunAttr = () => {
     '--text-black-dark': '#000000',
     '--shadow-black-dark': 'rgba(0,0,0, 0.4)',
     '--text-white-dark': 'white',
-    '--text-pastel-black-dark': '#353535',
     '--text-gray-dark': '#828282',
     '--background-black-dark': 'black',
     '--background-white-dark': 'white',
@@ -99,12 +98,11 @@ export const MoonAttr = () => {
   const text = colorPicker.text;
   const glass = colorPicker.glass;
   return {
-    '--text-pastel-black-dark': '#E1E1E1',
+    '--text-pastel-black-dark': 'white',
     '--text-pastel-black-reverse-dark': '#353535',
     '--text-black-dark': 'white',
     '--shadow-black-dark': 'rgba(255,255,255, 0.4)',
     '--text-white-dark': 'black',
-    '--text-pastel-black-dark': 'white',
     '--text-gray-dark': 'white',
     '--background-black-dark': 'white',
     '--background-white-dark': 'black',
