@@ -34,12 +34,12 @@ export default function ProductInfo({}: Props): ReactElement {
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
-        {originalAmount && (
+        {originalAmount ? (
           <div className="product-info__origin-amount">
             <S.InfoTitle>{TITLE_ORIGIN_AMOUNT}</S.InfoTitle>
             <div className="stroke">{kstFormatter(originalAmount, true)}</div>
           </div>
-        )}
+        ) : null}
         <div className="producto-info__amount">
           <S.InfoTitle>{TITLE_SALE_AMOUNT}</S.InfoTitle>
           <div className="price">{kstFormatter(amount, true)}</div>

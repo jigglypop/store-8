@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ProductInfo = styled.div`
-  height: 440px;
+  min-height: 440px;
   display: flex;
   flex-direction: column;
   background-color: var(--body-background-dark);
@@ -46,6 +46,7 @@ export const ProductInfo = styled.div`
     display: flex;
     justify-content: space-between;
     padding-top: 24px;
+    margin-top: 30px;
     border-top: 1px solid var(--gray4);
     .total-price {
       font-size: var(--body-subtitle-font);
