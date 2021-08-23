@@ -11,7 +11,7 @@ interface ICard {
 const Card = ({ index, item }: ICard) => {
   let imgsrc = item.productImgSrc;
   if (imgsrc === undefined) {
-    imgsrc = `public/image/product/big/${index + 1}.jpg`;
+    imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }
   return (
     <S.Card>
