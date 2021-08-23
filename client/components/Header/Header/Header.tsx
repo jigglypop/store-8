@@ -9,6 +9,7 @@ import Slider from '../Slider/Slider';
 import DarkMode from '../Dark/DarkMode';
 import UserSlider from '../Slider/UserSlider';
 import Search from '../Search/Search';
+import MainSvg from '@image/svg/mainHorizontal.svg';
 
 export interface IHeader {
   check: ICheckRes | null;
@@ -48,7 +49,9 @@ const Header = ({ check, onLogout }: IHeader) => {
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader">
               <Link to="/">
-                <img src={main} className="main-img" />
+                <div className="main-logo">
+                  <MainSvg />
+                </div>
               </Link>
             </S.HeaderItem>
 

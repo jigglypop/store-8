@@ -1,5 +1,5 @@
-import SunSVG from '@image/sun.svg';
-import MoonSVG from '@image/moon.svg';
+import SunSVG from '@image/svg/sun.svg';
+import MoonSVG from '@image/svg/moon.svg';
 import * as S from '../style';
 import { useMode } from '@client/hooks/mode/router';
 import { toggleDarkMode } from '@client/utils/setDisplay';
