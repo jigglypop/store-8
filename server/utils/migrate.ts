@@ -7,6 +7,7 @@ import { ORDERS } from '../constants/migration/ORDERS';
 import { REFUNDS } from '../constants/migration/REFUNDS';
 import { COUPONS, USER_COUPONS } from '../constants/migration/COUPONS';
 import { ADDRESSES } from '../constants/migration/ADDRESSES';
+import { USERS } from '../constants/migration/USERS';
 
 import Category, { ICategory } from '../models/Category';
 import Option from '../models/Option';
@@ -14,7 +15,7 @@ import Cart from '../models/Cart';
 import Address from '../models/Address';
 import Coupon from '../models/Coupon';
 import UserCoupon from '../models/UserCoupon';
-
+import User from '../models/User';
 import Refund from '../models/Refund';
 import Order from '../models/Order';
 
@@ -70,6 +71,11 @@ const initCart = async () => {
   Cart.bulkCreate(CARTS);
 };
 
+// 장바구니 데이터 시작
+const initUser = async () => {
+  User.bulkCreate(USERS);
+};
+
 // 상품 옵션 부분 시작
 const initOrder = async () => {
   Order.bulkCreate(ORDERS);
@@ -78,6 +84,8 @@ const initOrder = async () => {
 // 상품 옵션 부분 시작
 const initRefund = async () => {
   Refund.bulkCreate(REFUNDS);
+};
+
 // 주소지 데이터 시작
 const initAddress = async () => {
   Address.bulkCreate(ADDRESSES);
@@ -94,14 +102,14 @@ const initUserCoupon = async () => {
 };
 
 export const migrate = async () => {
-  // await initCategory();
-  // await initProduct();
-  // await initOption();
-  // await initUser(); // not yet
-  // await initCart();
-  // await initOrder();
-  // await initRefund();
-  // await initAddress();
-  // await initCoupon();
-  // await initUserCoupon();
+  await initCategory();
+  await initProduct();
+  await initOption();
+  await initUser(); // not yet
+  await initAddress();
+  await initCoupon();
+  await initUserCoupon();
+  await initCart();
+  await initOrder();
+  await initRefund();
 };
