@@ -4,15 +4,15 @@ import * as S from './style';
 import XIcon from '@image/icon/xIcon.svg';
 import ProductCountForm from '../ProductCountForm/ProductCountForm';
 import { useProduct } from '@client/hooks/product/product';
+import { IOption } from '@middle/type/product/options';
 
 interface Props {
   id: number;
-  title: string;
 }
 
-export default function ProductOptionItem({ id, title }: Props): ReactElement {
-  const { optionCount, setOptionCount } = useProduct();
-  const [inputValue, setInputValue] = useState<string>('1');
+export default function ProductOptionItem({ id }: Props): ReactElement {
+  const { product, optionCount, setOptionCount } = useProduct();
+  const [inputValue, setInputValue] = useState<string>(optionCount.id || '1');
 
   const handleClickCountMinus = () => {
     if (optionCount[id] <= 1) return;
@@ -47,10 +47,16 @@ export default function ProductOptionItem({ id, title }: Props): ReactElement {
     }
   };
 
+  const getTitle = (id: number, options: IOption[]) => {
+    for (const option of options) {
+      if (id === option.id) return option.title;
+    }
+  };
+
   return (
     <S.ProductOptionItem className="option-item__selected">
       <div className="option-item__title">
-        <div>{title}</div>
+        <div>{getTitle(id, product?.options)}</div>
         <XIcon className="option-item__delete-btn" />
       </div>
       <div>

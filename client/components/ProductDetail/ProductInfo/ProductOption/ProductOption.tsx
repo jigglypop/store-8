@@ -14,29 +14,37 @@ export interface ISelectOption {
 }
 
 export default function ProductOption({ optionData }: Props): ReactElement {
-  const { product } = useProduct();
-  if (!product) return <></>;
+  const { product, optionCount, setOptionCount } = useProduct();
+  if (!product || !product.options) return <></>;
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selectedOption, setSeletectedOption] = useState<ISelectOption[]>([
-    { id: 59, title: '작은발' },
-    { id: 60, title: '큰발' },
-  ]);
+  const [selectedOption, setSeletectedOption] = useState<{ [key: string]: ISelectOption }>({});
 
   const toggleOpen = () => setIsOpen((isOpen) => !isOpen);
 
-  const selectableOptionList = optionData.map((option) => {
+  const handleOptionClick = (id: number, title: string) => {
+    if (id in selectedOption) {
+      //이미 선택했다는 모달 혹은 토스트
+      return;
+    }
+    setSeletectedOption({ ...selectedOption, [id]: { id, title } });
+    setOptionCount(id, 1);
+  };
+
+  const selectableOptionList = optionData.map(({ id, title }) => {
     return (
-      <li key={option.id} className="selectable-item">
-        [{product.title}] {option.title}
+      <li key={id} onClick={() => handleOptionClick(id, title)} className="selectable-item">
+        [{title}] {title}
       </li>
     );
   });
 
-  const selectedOptionList = selectedOption.map((option) => {
-    return <ProductOptionItem key={option.id} {...option} />;
-  });
+  const selectedOptionList = optionCount
+    ? Object.keys(optionCount).map((id) => {
+        return <ProductOptionItem key={id} id={+id} />;
+      })
+    : null;
 
   return (
     <>
@@ -48,15 +56,9 @@ export default function ProductOption({ optionData }: Props): ReactElement {
               <div>상품선택</div>
               <ArrowDown className="option__down-arrow" />
             </li>
-            {isOpen && (
-              <ul className="option__selectable-wrapper">
-                {selectableOptionList}
-                {selectableOptionList}
-                {selectableOptionList}
-              </ul>
-            )}
+            {isOpen && <ul className="option__selectable-wrapper">{selectableOptionList}</ul>}
           </ul>
-          {selectedOption.length && selectedOptionList}
+          {Object.keys(selectedOption).length ? selectedOptionList : null}
         </div>
       </S.ProductOption>
     </>

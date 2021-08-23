@@ -24,7 +24,12 @@ export default function ProductCountForm({
       <button type="button" className="count-btn" onClick={handleClickCountMinus}>
         <MinusIcon />
       </button>
-      <input type="number" value={inputValue} onChange={handleInputChange} />
+      <input
+        type="number"
+        value={inputValue}
+        onChange={handleInputChange}
+        onBlur={handleCountSumbit}
+      />
       <button type="button" className="count-btn" onClick={handleClickCountPlus}>
         <PlusIcon />
       </button>

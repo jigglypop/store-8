@@ -11,7 +11,7 @@ interface Props {}
 
 export default function ProductDetail({}: Props): ReactElement {
   const { product, loading, error } = useProduct();
-  console.log(product);
+
   if (!product) return <></>;
 
   const { id, productImgSrc, title, originalAmount, amount, options } = product;
