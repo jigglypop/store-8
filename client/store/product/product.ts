@@ -41,9 +41,15 @@ const productSlice = createSlice({
       const { optionId, count } = action.payload;
       state.optionCount = { ...state.optionCount, [optionId]: count };
     },
+    deleteOptionCountState: (state, action: PayloadAction<number>) => {
+      const newOptionCount = { ...state.optionCount };
+      delete newOptionCount[action.payload];
+      state.optionCount = newOptionCount;
+    },
   },
   extraReducers: productInfoExtra,
 });
 
-export const { initProduct, setCountState, setOptionCountState } = productSlice.actions;
+export const { initProduct, setCountState, setOptionCountState, deleteOptionCountState } =
+  productSlice.actions;
 export default productSlice.reducer;

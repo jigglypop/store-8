@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ProductOptionItem({ id }: Props): ReactElement {
-  const { product, optionCount, setOptionCount } = useProduct();
+  const { product, optionCount, setOptionCount, deleteOptionCount } = useProduct();
   const [inputValue, setInputValue] = useState<string>(optionCount.id || '1');
 
   const handleClickCountMinus = () => {
@@ -53,11 +53,15 @@ export default function ProductOptionItem({ id }: Props): ReactElement {
     }
   };
 
+  const handleClickDeleteBtn = () => {
+    deleteOptionCount(id);
+  };
+
   return (
     <S.ProductOptionItem className="option-item__selected">
       <div className="option-item__title">
         <div>{getTitle(id, product?.options)}</div>
-        <XIcon className="option-item__delete-btn" />
+        <XIcon onClick={handleClickDeleteBtn} className="option-item__delete-btn" />
       </div>
       <div>
         <ProductCountForm

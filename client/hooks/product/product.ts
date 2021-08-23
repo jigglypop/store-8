@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { RootState } from '@store/index';
-import { getProduct, setCountState, setOptionCountState } from '@store/product/product';
+import {
+  getProduct,
+  setCountState,
+  setOptionCountState,
+  deleteOptionCountState,
+} from '@store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from '../router/router';
@@ -27,10 +32,23 @@ export function useProduct() {
     dispatch(setOptionCountState({ optionId, count }));
   };
 
+  const deleteOptionCount = (optionId: number) => {
+    dispatch(deleteOptionCountState(optionId));
+  };
+
   // 페이지 시작
   useEffect(() => {
     dispatch(getProduct(productId));
   }, []);
 
-  return { product, loading, error, count, setCount, optionCount, setOptionCount };
+  return {
+    product,
+    loading,
+    error,
+    count,
+    setCount,
+    optionCount,
+    setOptionCount,
+    deleteOptionCount,
+  };
 }
