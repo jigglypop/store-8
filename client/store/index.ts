@@ -3,6 +3,8 @@ import login from './auth/login';
 import check from './auth/check';
 import github from './auth/github';
 import cart from './product/cart';
+import coupon from './coupon/coupon';
+import address from './address/address';
 import router from './router/router';
 import category from './category/category';
 import mode from './mode/mode';
@@ -12,8 +14,12 @@ import product from './product/product';
 import question from './product/question';
 import search from './search/search';
 import mywish from './mywish/mywish';
+<<<<<<< HEAD
 import myOrder from './myOrder/myOrder';
 import myRefund from './myRefund/myRefund';
+=======
+import review from './product/review';
+>>>>>>> 4b712077542107efe28303a8807a016d97a968fd
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -24,6 +30,8 @@ export const store = configureStore({
     check,
     github,
     cart,
+    coupon,
+    address,
     router,
     category,
     mode,
@@ -33,8 +41,12 @@ export const store = configureStore({
     question,
     search,
     mywish,
+<<<<<<< HEAD
     myOrder,
     myRefund,
+=======
+    review,
+>>>>>>> 4b712077542107efe28303a8807a016d97a968fd
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

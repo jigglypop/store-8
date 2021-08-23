@@ -12,7 +12,7 @@ export const OPTIONS: IOptionConstants = {
   '1': {
     id: 1,
     productId: 5,
-    title: '뱃지_남자사람\r\n[품절]',
+    title: '뱃지_남자사람',
   },
   '2': {
     id: 2,
@@ -32,17 +32,17 @@ export const OPTIONS: IOptionConstants = {
   '5': {
     id: 5,
     productId: 5,
-    title: '뱃지_여자사람\r\n[품절]',
+    title: '뱃지_여자사람',
   },
   '6': {
     id: 6,
     productId: 5,
-    title: '뱃지_연결고기\r\n[품절]',
+    title: '뱃지_연결고기',
   },
   '7': {
     id: 7,
     productId: 5,
-    title: '뱃지_월급루팡\r\n[품절]',
+    title: '뱃지_월급루팡',
   },
   '8': {
     id: 8,
@@ -57,7 +57,7 @@ export const OPTIONS: IOptionConstants = {
   '10': {
     id: 10,
     productId: 5,
-    title: '뱃지_폭식주의\r\n[품절]',
+    title: '뱃지_폭식주의',
   },
   '11': {
     id: 11,
@@ -72,22 +72,22 @@ export const OPTIONS: IOptionConstants = {
   '13': {
     id: 13,
     productId: 9,
-    title: 'M\r\n : +2,000원',
+    title: 'M',
   },
   '14': {
     id: 14,
     productId: 9,
-    title: 'L\r\n : +2,000원',
+    title: 'L',
   },
   '15': {
     id: 15,
     productId: 9,
-    title: 'XL\r\n : +2,000원',
+    title: 'XL',
   },
   '16': {
     id: 16,
     productId: 9,
-    title: 'XXL\r\n : +2,000원',
+    title: 'XXL',
   },
   '17': {
     id: 17,
@@ -102,7 +102,7 @@ export const OPTIONS: IOptionConstants = {
   '19': {
     id: 19,
     productId: 35,
-    title: '포스터_낮말은 새가듣고\r\n[품절]',
+    title: '포스터_낮말은 새가듣고',
   },
   '20': {
     id: 20,
@@ -132,7 +132,7 @@ export const OPTIONS: IOptionConstants = {
   '25': {
     id: 25,
     productId: 35,
-    title: '포스터_씻고자자\r\n[품절]',
+    title: '포스터_씻고자자',
   },
   '26': {
     id: 26,
@@ -192,7 +192,7 @@ export const OPTIONS: IOptionConstants = {
   '37': {
     id: 37,
     productId: 84,
-    title: '블랙\r\n[품절]',
+    title: '블랙',
   },
   '38': {
     id: 38,
@@ -217,7 +217,7 @@ export const OPTIONS: IOptionConstants = {
   '42': {
     id: 42,
     productId: 124,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '43': {
     id: 43,
@@ -227,7 +227,7 @@ export const OPTIONS: IOptionConstants = {
   '44': {
     id: 44,
     productId: 128,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '45': {
     id: 45,
@@ -237,7 +237,7 @@ export const OPTIONS: IOptionConstants = {
   '46': {
     id: 46,
     productId: 135,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '47': {
     id: 47,
@@ -247,7 +247,7 @@ export const OPTIONS: IOptionConstants = {
   '48': {
     id: 48,
     productId: 139,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '49': {
     id: 49,
@@ -257,7 +257,7 @@ export const OPTIONS: IOptionConstants = {
   '50': {
     id: 50,
     productId: 145,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '51': {
     id: 51,
@@ -277,7 +277,7 @@ export const OPTIONS: IOptionConstants = {
   '54': {
     id: 54,
     productId: 154,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '55': {
     id: 55,
@@ -287,7 +287,7 @@ export const OPTIONS: IOptionConstants = {
   '56': {
     id: 56,
     productId: 159,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '57': {
     id: 57,
@@ -297,7 +297,7 @@ export const OPTIONS: IOptionConstants = {
   '58': {
     id: 58,
     productId: 161,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '59': {
     id: 59,
@@ -342,7 +342,7 @@ export const OPTIONS: IOptionConstants = {
   '67': {
     id: 67,
     productId: 168,
-    title: '아이폰X.XS\r\n[품절]',
+    title: '아이폰X.XS',
   },
   '68': {
     id: 68,
@@ -377,7 +377,7 @@ export const OPTIONS: IOptionConstants = {
   '74': {
     id: 74,
     productId: 171,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '75': {
     id: 75,
@@ -387,7 +387,7 @@ export const OPTIONS: IOptionConstants = {
   '76': {
     id: 76,
     productId: 174,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '77': {
     id: 77,
@@ -442,7 +442,7 @@ export const OPTIONS: IOptionConstants = {
   '87': {
     id: 87,
     productId: 209,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '88': {
     id: 88,
@@ -482,7 +482,7 @@ export const OPTIONS: IOptionConstants = {
   '95': {
     id: 95,
     productId: 224,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '96': {
     id: 96,
@@ -492,7 +492,7 @@ export const OPTIONS: IOptionConstants = {
   '97': {
     id: 97,
     productId: 231,
-    title: '블랙_라지인 것 같다\r\n[품절]',
+    title: '블랙_라지인 것 같다',
   },
   '98': {
     id: 98,
@@ -502,7 +502,7 @@ export const OPTIONS: IOptionConstants = {
   '99': {
     id: 99,
     productId: 232,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
   '100': {
     id: 100,
@@ -512,7 +512,7 @@ export const OPTIONS: IOptionConstants = {
   '101': {
     id: 101,
     productId: 237,
-    title: '화이트_큰발\r\n[품절]',
+    title: '화이트_큰발',
   },
   '102': {
     id: 102,
@@ -637,52 +637,52 @@ export const OPTIONS: IOptionConstants = {
   '126': {
     id: 126,
     productId: 265,
-    title: '아이폰11\r\n[품절]',
+    title: '아이폰11',
   },
   '127': {
     id: 127,
     productId: 265,
-    title: '아이폰11Pro\r\n[품절]',
+    title: '아이폰11Pro',
   },
   '128': {
     id: 128,
     productId: 265,
-    title: '아이폰11Pro max\r\n[품절]',
+    title: '아이폰11Pro max',
   },
   '129': {
     id: 129,
     productId: 265,
-    title: '아이폰X,XS\r\n[품절]',
+    title: '아이폰X,XS',
   },
   '130': {
     id: 130,
     productId: 265,
-    title: '아이폰XR\r\n[품절]',
+    title: '아이폰XR',
   },
   '131': {
     id: 131,
     productId: 265,
-    title: '노트10\r\n[품절]',
+    title: '노트10',
   },
   '132': {
     id: 132,
     productId: 265,
-    title: '노트10+\r\n[품절]',
+    title: '노트10+',
   },
   '133': {
     id: 133,
     productId: 265,
-    title: '갤럭시S10 5g\r\n[품절]',
+    title: '갤럭시S10 5g',
   },
   '134': {
     id: 134,
     productId: 265,
-    title: '노트9\r\n[품절]',
+    title: '노트9',
   },
   '135': {
     id: 135,
     productId: 266,
-    title: 'Yellow\r\n[품절]',
+    title: 'Yellow',
   },
   '136': {
     id: 136,
@@ -692,7 +692,7 @@ export const OPTIONS: IOptionConstants = {
   '137': {
     id: 137,
     productId: 266,
-    title: 'Red\r\n[품절]',
+    title: 'Red',
   },
   '138': {
     id: 138,
@@ -702,7 +702,7 @@ export const OPTIONS: IOptionConstants = {
   '139': {
     id: 139,
     productId: 269,
-    title: '자투리비누 2개\r\n : +4,000원',
+    title: '자투리비누 2개',
   },
   '140': {
     id: 140,
@@ -757,6 +757,6 @@ export const OPTIONS: IOptionConstants = {
   '150': {
     id: 150,
     productId: 288,
-    title: '영문판(ENG)\r\n : +2,700원',
+    title: '영문판(ENG)',
   },
 };

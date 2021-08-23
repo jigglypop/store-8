@@ -67,10 +67,18 @@ export const SunAttr = () => {
   const text = colorPicker.text;
   const glass = colorPicker.glass;
   return {
+    '--text-pastel-black-dark': '#353535',
+    '--text-pastel-black-reverse-dark': '#E1E1E1',
     '--text-black-dark': '#000000',
+    '--shadow-black-dark': 'rgba(0,0,0, 0.4)',
     '--text-white-dark': 'white',
+    '--text-gray-dark': '#828282',
     '--background-black-dark': 'black',
     '--background-white-dark': 'white',
+    '--background-section-dark': ' #F5F5F7',
+    '--background-select-section-dark': 'white',
+    '--line-gray-dark': '#BDBDBD',
+    '--line-dark-gray-dark': '#4F4F4F',
     '--body-background-dark': 'white',
     '--header-background-dark': 'white',
     '--footer-background-dark': '#E7E7E7',
@@ -90,10 +98,18 @@ export const MoonAttr = () => {
   const text = colorPicker.text;
   const glass = colorPicker.glass;
   return {
+    '--text-pastel-black-dark': 'white',
+    '--text-pastel-black-reverse-dark': '#353535',
     '--text-black-dark': 'white',
+    '--shadow-black-dark': 'rgba(255,255,255, 0.4)',
     '--text-white-dark': 'black',
+    '--text-gray-dark': 'white',
     '--background-black-dark': 'white',
     '--background-white-dark': 'black',
+    '--background-section-dark': ' #4F4F4F',
+    '--background-select-section-dark': '#333333',
+    '--line-gray-dark': 'white',
+    '--line-dark-gray-dark': 'white',
     '--body-background-dark': '#1d1d1d',
     '--header-background-dark': '#212121',
     '--footer-background-dark': '#212121',

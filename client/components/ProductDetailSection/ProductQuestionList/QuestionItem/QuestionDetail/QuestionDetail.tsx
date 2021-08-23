@@ -5,25 +5,15 @@ import DeleteIcon from '@image/icon/deleteIcon.svg';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 import QuestionForm from '../../QuestionForm/QuestionForm';
 import { useQuestion } from '@client/hooks/question/question';
+import { IQuestion } from '@middle/type/question/question';
 
 interface Props {
-  id: number;
-  title: string;
-  contents: string;
-  answer: string | null;
-  answerDate: string | null;
-  isSecret: boolean;
+  questionData: IQuestion;
 }
 
-export default function QuestionDetail({
-  id,
-  title,
-  contents,
-  answer,
-  answerDate,
-  isSecret,
-}: Props): ReactElement {
-  const { updateQuestion, deleteQuestion } = useQuestion();
+export default function QuestionDetail({ questionData }: Props): ReactElement {
+  const { id, title, contents, answer, answerDate, isSecret, isOwned } = questionData;
+  const { deleteQuestion } = useQuestion();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
@@ -45,10 +35,12 @@ export default function QuestionDetail({
       <div className="question-detail__question">
         <div className="question-detail__title">Q</div>
         <div className="question-detail__content">{contents}</div>
-        <div className="question-detail__btns">
-          <EditIcon onClick={handleEditClick} className="question-detail__edit-btn" />
-          <DeleteIcon onClick={handleDeleteClick} className="question-detail__delete-btn" />
-        </div>
+        {isOwned && (
+          <div className="question-detail__btns">
+            <EditIcon onClick={handleEditClick} className="question-detail__edit-btn" />
+            <DeleteIcon onClick={handleDeleteClick} className="question-detail__delete-btn" />
+          </div>
+        )}
       </div>
       {answer && (
         <div className="question-detail__answer">

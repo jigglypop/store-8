@@ -18,12 +18,13 @@ import User from './User';
 import Coupon from './Coupon';
 
 export interface IUserCoupon {
-  id: number;
+  id?: number;
   userId: number;
   couponId: number;
   isUsed: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  dDay: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 @Table({
@@ -39,10 +40,6 @@ export default class UserCoupon extends Model<IUserCoupon> {
   @Default(false)
   @Column
   isUsed: boolean;
-
-  @AllowNull(false)
-  @Column
-  amount: string;
 
   @Column
   dDay: string;

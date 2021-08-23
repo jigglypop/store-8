@@ -4,9 +4,12 @@ export const CartContainer = styled.div`
   width: 100%;
   min-height: 600px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  .nothing-container {
+    justify-content: center;
+  }
 
   .nothing-text {
     font-size: var(--body-title-font);

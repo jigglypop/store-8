@@ -3,39 +3,30 @@ import * as S from './style';
 
 import Locker from '@image/question/lockerIcon.svg';
 import QuestionDetail from './QuestionDetail/QuestionDetail';
-import { IQuestionRes } from '@middle/type/question/question';
+import { IQuestion } from '@middle/type/question/question';
+import { hideId } from '@utils/encode';
 
-interface Props extends IQuestionRes {
-  idx: number;
+interface Props {
+  questionNo: number;
   userId: string;
+  questionData: IQuestion;
 }
 
-export default function QuestionItem({
-  idx,
-  id,
-  title,
-  contents,
-  userId,
-  isSecret,
-  date,
-  answer,
-  answerDate,
-}: Props): ReactElement {
+export default function QuestionItem({ questionNo, userId, questionData }: Props): ReactElement {
+  const { title, isSecret, date, answer } = questionData;
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
-  const hideId = (id: string): string => {
-    return id.slice(0, 2) + new Array(id.slice(2).length).fill('*').join('');
-  };
   const questionStatus = answer ? '답변완료' : '접수';
 
   const handleQuestionClick = () => {
     setIsOpenDetail((isOpenDetail) => !isOpenDetail);
   };
+
   return (
     <>
       <S.QuestionItem onClick={handleQuestionClick}>
         <div>
-          <div className="question-info no">{idx + 1}</div>
+          <div className="question-info no">{questionNo}</div>
           <div className="question-info title">
             {isSecret && <Locker />}
             {title}
@@ -47,9 +38,7 @@ export default function QuestionItem({
           <div className="question-info status">{questionStatus}</div>
         </div>
       </S.QuestionItem>
-      {isOpenDetail && (
-        <QuestionDetail {...{ id, title, contents, answer, answerDate, isSecret }} />
-      )}
+      {isOpenDetail && <QuestionDetail questionData={questionData} />}
     </>
   );
 }

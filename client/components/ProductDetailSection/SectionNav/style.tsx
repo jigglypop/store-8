@@ -4,9 +4,9 @@ export const SectionNav = styled.ul`
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: var(--gray6);
-  color: var(--text-pastel-black);
-  border: 1px solid var(--gray6);
+  background-color: var(--background-section-dark);
+  color: var(--text-pastel-black-dark);
+  border: 1px solid var(--background-section-dark);
   & > li {
     display: flex;
     align-items: center;
@@ -16,10 +16,10 @@ export const SectionNav = styled.ul`
     flex: 1;
     & > span {
       margin-left: 8px;
-      color: var(--text-mint);
+      color: var(--text-picker);
     }
   }
   .selected {
-    background-color: var(--background-white);
+    background-color: var(--background-select-section-dark);
   }
 `;

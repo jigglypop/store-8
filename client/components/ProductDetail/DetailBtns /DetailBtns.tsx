@@ -1,73 +1,31 @@
 import { ReactElement, useState } from 'react';
-import styled from '@lib/styledComponent';
+import * as S from './style';
 
+import { useWish } from '@client/hooks/wish/wish';
 import HeartIcon from '@image/heartIcon.svg';
+import { createToast } from '@client/utils/createToast';
 
 interface Props {
   id: number;
-  isLiked: boolean;
+  title: string;
 }
 
-export default function DetailBtns({ id, isLiked }: Props): ReactElement {
-  const [isHeart, setIsHeart] = useState(isLiked);
+export default function DetailBtns({ id, title }: Props): ReactElement {
+  const { isInMyWish, isLoggedIn, toggleWish } = useWish(id + '', title);
 
-  //임시로 렌더링 테스트 나중에는 서버에서 받아와서 적용
-  const handleLikeClick = () => setIsHeart((isHeart) => !isHeart);
+  //TODO 비로그인 시 처리 필요 - 임시로 toast사용
+  const handleLikeClick = () => {
+    if (isLoggedIn) toggleWish();
+    else createToast('로그인이 필요한 서비스입니다.');
+  };
 
   return (
-    <StyledDetailBtns isHeart={isHeart}>
+    <S.DetailBtns isHeart={isInMyWish}>
       <button className="like-btn" onClick={handleLikeClick}>
         <HeartIcon />
       </button>
-      <button className="chart-btn">장바구니</button>
+      <button className="cart-btn">장바구니</button>
       <button className="purchase-btn">바로 구매</button>
-    </StyledDetailBtns>
+    </S.DetailBtns>
   );
 }
-
-interface StyledProps {
-  isHeart: boolean;
-}
-
-const StyledDetailBtns = styled.div<StyledProps>`
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-
-  background-color: var(--white);
-
-  & > button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    padding: 3px;
-  }
-
-  .like-btn {
-    background-color: var(--white);
-    border: 1px solid var(--gray4);
-    width: 50px;
-    border-radius: 5px;
-
-    & > svg {
-      stroke-width: ${({ isHeart }) => (isHeart ? '0px' : '1px')};
-      fill: var(${({ isHeart }) => (isHeart ? '--red' : '--white')});
-    }
-  }
-
-  .chart-btn {
-    width: 170px;
-    color: var(--black);
-    background-color: var(--white);
-    border: 1px solid var(--gray4);
-    border-radius: 5px;
-  }
-
-  .purchase-btn {
-    width: 230px;
-    color: var(--text-white);
-    background-color: var(--mint);
-    border-radius: 5px;
-  }
-`;

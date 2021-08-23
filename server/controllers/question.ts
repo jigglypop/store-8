@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IQuestionRes } from './../../middle/type/question/question';
+import { IQuestion } from './../../middle/type/question/question';
 
 import { err } from '../constants/error';
 import Question from '../models/Question';
@@ -8,25 +8,54 @@ import HttpError from '../utils/HttpError';
 import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 
+import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/constants/default';
+
 /**
  * API
  * /api/question
  */
 //상품 문의 조회
 export const getQuestion = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
   const { productId } = req.params;
-  const questionSnapshot = await Question.findAll({
-    attributes: ['id', 'title', 'contents', 'isSecret', 'reply', 'createdAt', 'replyDate'],
+  const { page, limit } = req.query;
+
+  let _page: number = DEFAULT_QUESTION_PAGE;
+  let _limit: number = DEFAULT_QUESTION_LIMIT;
+
+  if (page) {
+    _page = +page - 1;
+  }
+  if (limit) {
+    _limit = +limit;
+  }
+
+  const questionSnapshot = await Question.findAndCountAll({
+    attributes: [
+      'id',
+      'title',
+      'contents',
+      'isSecret',
+      'reply',
+      'createdAt',
+      'replyDate',
+      'userId',
+    ],
     where: {
       productId,
     },
     order: [['createdAt', 'DESC']],
+    offset: _page * _limit,
+    limit: _limit,
   });
 
-  const questions: IQuestionRes[] = questionSnapshot.map((item) => {
+  const questions: IQuestion[] = questionSnapshot.rows.map((item) => {
     const id = item.getDataValue('id');
     const date = item.getDataValue('createdAt');
     const answerDate = item.getDataValue('replyDate');
+    const isOwned = item.getDataValue('userId') === userId;
     if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
     return {
@@ -37,10 +66,11 @@ export const getQuestion = async (req: Request, res: Response) => {
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
       answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
+      isOwned,
     };
   });
 
-  res.status(200).json({ data: questions });
+  res.status(200).json({ totalCount: questionSnapshot.count, questions });
 };
 
 //상품 문의 생성

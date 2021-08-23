@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IReviewRes } from './../../middle/type/review/review';
+import { IReview } from './../../middle/type/review/review';
 
 import { err } from '../constants/error';
 import Review from '../models/Review';
@@ -9,6 +9,7 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
+import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
@@ -16,27 +17,34 @@ export const getReview = async (req: Request, res: Response) => {
   //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
+  const { page, limit } = req.query;
+
+  let _page: number = DEFAULT_REVIEW_PAGE;
+  let _limit: number = DEFAULT_REVIEW_LIMIT;
 
   if (!productId) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  const reviewSnapshot = await Review.findAll({
-    attributes: ['id', 'title', 'contents', 'score', 'createdAt'],
+  if (page) {
+    _page = +page - 1;
+  }
+  if (limit) {
+    _limit = +limit;
+  }
+
+  const reviewSnapshot = await Review.findAndCountAll({
+    attributes: ['id', 'title', 'contents', 'score', 'createdAt', 'userId'],
     where: {
       productId,
     },
-    include: [
-      {
-        model: ReviewLike,
-        attributes: ['isLike', 'isDislike'],
-      },
-    ],
     order: [['createdAt', 'DESC']],
+    offset: _page * _limit,
+    limit: _limit,
   });
 
-  const reviews: IReviewRes[] = await Promise.all(
-    reviewSnapshot.map(async (item) => {
+  const reviews: IReview[] = await Promise.all(
+    reviewSnapshot.rows.map(async (item) => {
       const id = item.getDataValue('id');
       const date = item.getDataValue('createdAt');
 
@@ -46,6 +54,8 @@ export const getReview = async (req: Request, res: Response) => {
 
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
       const { isLike, isDislike } = await isUserLikeReview(id, userId);
+
+      const isOwned = item.getDataValue('userId') === userId;
 
       return {
         id,
@@ -58,13 +68,16 @@ export const getReview = async (req: Request, res: Response) => {
         dislikeCount,
         isLike,
         isDislike,
+        isOwned,
       };
     })
   ).catch((e) => {
     throw new Error(e.message);
   });
 
-  res.status(200).json(reviews);
+  const responseData = { totalCount: reviewSnapshot.count, reviews };
+
+  res.status(200).json(responseData);
 };
 
 //리뷰 생성
@@ -94,7 +107,7 @@ export const createReview = async (req: Request, res: Response) => {
 
   if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };
@@ -114,8 +127,6 @@ export const updateReview = async (req: Request, res: Response) => {
     throw new HttpError(err.WRONG_ACCESS_REVIEW);
   }
 
-  //TODO 사진 추가
-
   await Review.update(
     {
       title,
@@ -133,7 +144,7 @@ export const updateReview = async (req: Request, res: Response) => {
     }
   );
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };

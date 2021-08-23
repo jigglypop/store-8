@@ -48,6 +48,12 @@ export const routes = [
     component: 'StorePage',
   },
   {
+    path: '/order',
+    name: 'order',
+    title: '주문하기',
+    component: 'OrderPage',
+  },
+  {
     path: '/mypage-order-list',
     name: 'mypage-order-list',
     title: '마이페이지 - 주문목록/배송조회',

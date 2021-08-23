@@ -29,7 +29,6 @@ const upload = multer({
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read-write',
     key: (req, file, cb) => {
-      console.log('file', file);
       cb(null, `review-img/${Date.now()}`);
     },
   }),

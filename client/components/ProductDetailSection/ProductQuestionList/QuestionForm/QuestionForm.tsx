@@ -1,11 +1,11 @@
 import { Dispatch, MouseEvent, ReactElement, SetStateAction, useState } from 'react';
 import * as S from './style';
 
-import sampleThumbnail from '@image/sample1/sample-thumbnail.jpeg';
-import XIcon from '@image/question/xIcon.svg';
+import XIcon from '@image/icon/xIcon.svg';
 import Modal from '@components/common/Modal/Modal';
 import CheckBox from '@components/common/CheckBox/CheckBox';
 
+import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
 
 interface Props {
@@ -24,6 +24,7 @@ export default function QuestionForm({
   editIsSecret,
 }: Props): ReactElement {
   const isEdit = questionId !== undefined;
+  const { product } = useProduct();
   const { createQuestion, updateQuestion, error } = useQuestion();
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
@@ -46,7 +47,9 @@ export default function QuestionForm({
     if (isEdit) {
       if (!questionId) return;
       isSuccess = await updateQuestion({ questionId, ...questionFormData });
-    } else isSuccess = await createQuestion(questionFormData);
+    } else {
+      isSuccess = await createQuestion(questionFormData);
+    }
 
     if (!isSuccess) return;
     cancelCbFn();
@@ -64,8 +67,8 @@ export default function QuestionForm({
           </div>
         </div>
         <div className="question-form__title">
-          <img src={sampleThumbnail} alt="image" />
-          <div className="title">테스트 제목</div>
+          <img src={product?.productImgSrc} alt="image" />
+          <div className="title">{product?.title}</div>
         </div>
         <form>
           <div className="question-form__title-input">

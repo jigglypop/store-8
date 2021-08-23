@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@client/store';
-import { getQuestion, setError } from '@client/store/product/question';
+import { getQuestion, setError, setPage } from '@client/store/product/question';
 import {
   IQuestionPostReq,
   IQuestionPutReq,
@@ -20,7 +20,9 @@ export function useQuestion() {
 
   const productId = +params;
 
-  const { question, loading, error } = useSelector((state: RootState) => state.question);
+  const { question, loading, error, currentPage } = useSelector(
+    (state: RootState) => state.question
+  );
   const dispatch = useDispatch();
 
   const fetchQuestion =
@@ -38,19 +40,27 @@ export function useQuestion() {
         dispatch(setError(res.errorMessage));
         return false;
       }
-      dispatch(getQuestion(productId));
+      dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
       return true;
     };
 
+  const setCurrentPage = (newPage: number) => {
+    dispatch(setPage(newPage));
+    dispatch(getQuestion({ productId, query: `page=${newPage}` }));
+  };
+
   // 페이지 시작
   useEffect(() => {
-    dispatch(getQuestion(productId));
+    dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
   }, []);
 
   return {
-    question,
+    totalCount: question?.totalCount ?? 0,
+    questions: question?.questions ?? [],
     loading,
     error,
+    currentPage,
+    setCurrentPage,
     createQuestion: fetchQuestion<IQuestionPostReq>('create'),
     updateQuestion: fetchQuestion<IQuestionPutReq>('update'),
     deleteQuestion: fetchQuestion<IQuestionDeleteReq>('delete'),

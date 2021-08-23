@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 export const QuestionItem = styled.li`
-  font-size: var(--body-small-font);
+  cursor: pointer;
+  background-color: var(--body-background-dark);
+  color: var(--text-black-dark);
 
-  & > div {
-    display: flex;
-    align-items: center;
-  }
-
+  & > div,
   .question-info {
     display: flex;
     align-items: center;
-    padding: 18px 13px;
   }
 
   .question-info.no {
@@ -20,7 +17,7 @@ export const QuestionItem = styled.li`
 
   .question-info.title {
     & > svg {
-      fill: var(--gary6);
+      fill: var(--text-pastel-black-dark);
       margin-right: 8px;
     }
   }

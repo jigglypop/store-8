@@ -3,8 +3,15 @@ import { RootState } from '@client/store';
 import { getProduct } from '@client/store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from '../router/router';
 
-export function useProduct(productId: number) {
+export function useProduct() {
+  const {
+    router: { params },
+  } = useRouter();
+
+  const productId = +params;
+
   const { product, loading, error } = useSelector((state: RootState) => state.product);
   const dispatch = useDispatch();
 

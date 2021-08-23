@@ -1,7 +1,8 @@
-import { ReactElement, useState } from 'react';
-import checkBad from '@image/check-bad.png';
-import checkGood from '@image/check-good.png';
-import exclamRed from '@image/exclam-red.png';
+import { ReactElement, useState, useEffect } from 'react';
+import { getDaumAddress } from '@lib/daumAddress';
+import AlertInput from '@components/common/AlertInput/AlertInput';
+import type { AddressData } from '@middle/type/address/address';
+
 import {
   INPUT_NAME_PLACEHOLDER,
   INPUT_CALL_PLACEHOLDER,
@@ -12,13 +13,43 @@ import {
   INPUT_NAME_TITLE,
   INPUT_CALL_TITLE,
   INPUT_EMAIL_TITLE,
+  USER_ORDER_LIST,
 } from '@constants/Order';
 import * as S from './style';
 
-const UserInfo = (): ReactElement => {
+interface UserInfoProps {
+  openForm: () => void;
+  selectedAddress: AddressData;
+}
+
+const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement => {
   const [nameCheck, setNameCheck] = useState(0);
+  const [name, setName] = useState('');
   const [callCheck, setCallCheck] = useState(0);
+  const [call, setCall] = useState('');
   const [emailCheck, setEmailCheck] = useState(0);
+  const [extraAddress, setExtraAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [addressInfo, setAddressInfo] = useState({
+    address: selectedAddress.address,
+    zoneCode: selectedAddress.zonecode,
+    extraEdit: true,
+  });
+
+  useEffect(() => {
+    setAddressInfo({
+      address: selectedAddress.address,
+      zoneCode: selectedAddress.zonecode,
+      extraEdit: false,
+    });
+    setExtraAddress(selectedAddress.extraAddress);
+    setName(selectedAddress.name);
+    setNameCheck(checkNameString(selectedAddress.name));
+    setCall(selectedAddress.call);
+    setCallCheck(checkCallString(selectedAddress.call));
+    setEmail(selectedAddress.email);
+    setEmailCheck(checkEmailString(selectedAddress.email));
+  }, [selectedAddress]);
 
   const checkNameString = (nameString: string): number => {
     if (nameString.length === 0) return 0;
@@ -43,74 +74,66 @@ const UserInfo = (): ReactElement => {
     }
   };
 
-  const getCheckIcon = (checkType: number): ReactElement => {
-    if (checkType === 0) {
-      return <></>;
-    } else if (checkType === 1) {
-      return <img src={checkBad} />;
-    } else {
-      return <img src={checkGood} />;
-    }
-  };
-
-  const getAlertText = (checkType: number, alertString: string): ReactElement => {
-    if (checkType === 0) {
-      return <div className="alert-placeholder"></div>;
-    } else if (checkType === 1) {
-      return (
-        <div className="input-form-alert">
-          <img src={exclamRed} />
-          <p>{alertString}</p>
-        </div>
-      );
-    } else {
-      return <div className="alert-placeholder"></div>;
-    }
+  const getAddress = () => {
+    getDaumAddress(({ address, zoneCode }) => {
+      // 상세주소로 focuse 필요
+      setAddressInfo({ address, zoneCode, extraEdit: false });
+    });
   };
 
   return (
     <S.UserInfo>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_NAME_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={nameCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_NAME_PLACEHOLDER}
-            onChange={(e) => {
-              setNameCheck(checkNameString(e.target.value));
-            }}
-          />
-          {getCheckIcon(nameCheck)}
-        </div>
-        {getAlertText(nameCheck, INPUT_NAME_ALERT)}
+      <div className="user-info-title">
+        <p>{USER_ORDER_LIST}</p>
+        <button onClick={openForm} className="center-align">
+          {'기존 배송지에서 선택'}
+        </button>
       </div>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_CALL_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={callCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_CALL_PLACEHOLDER}
-            onChange={(e) => {
-              setCallCheck(checkCallString(e.target.value));
-            }}
-          />
-          {getCheckIcon(callCheck)}
+      <AlertInput
+        labelText={INPUT_NAME_TITLE}
+        placeholder={INPUT_NAME_PLACEHOLDER}
+        value={name}
+        alertText={INPUT_NAME_ALERT}
+        alertCheck={setNameCheck}
+        stringChecker={checkNameString}
+        setValue={setName}
+        isAlert={nameCheck}
+      />
+      <AlertInput
+        labelText={INPUT_CALL_TITLE}
+        placeholder={INPUT_CALL_PLACEHOLDER}
+        value={call}
+        alertText={INPUT_CALL_ALERT}
+        alertCheck={setCallCheck}
+        stringChecker={checkCallString}
+        setValue={setCall}
+        isAlert={callCheck}
+      />
+      <AlertInput
+        labelText={INPUT_EMAIL_TITLE}
+        placeholder={INPUT_EMAIL_PLACEHOLDER}
+        value={email}
+        alertText={INPUT_EMAIL_ALERT}
+        alertCheck={setEmailCheck}
+        stringChecker={checkEmailString}
+        setValue={setEmail}
+        isAlert={emailCheck}
+      />
+      <div className="address-form-container">
+        <p className="input-form-label">{'배송지 선택'}</p>
+        <div className="address-search-container">
+          <input placeholder="우편번호" value={addressInfo.zoneCode} disabled />
+          <button onClick={getAddress}>{'우편번호 찾기'}</button>
         </div>
-        {getAlertText(callCheck, INPUT_CALL_ALERT)}
-      </div>
-      <div className="input-form-container">
-        <p className="input-form-label">{INPUT_EMAIL_TITLE}</p>
-        <div className="input-form">
-          <input
-            className={emailCheck === 1 ? 'alert-input' : 'plain-input'}
-            placeholder={INPUT_EMAIL_PLACEHOLDER}
-            onChange={(e) => {
-              setEmailCheck(checkEmailString(e.target.value));
-            }}
-          />
-          {getCheckIcon(emailCheck)}
-        </div>
-        {getAlertText(emailCheck, INPUT_EMAIL_ALERT)}
+        <input value={addressInfo.address} placeholder="주소" disabled />
+        <input
+          value={extraAddress}
+          placeholder="상세주소"
+          disabled={addressInfo.extraEdit}
+          onChange={(e) => {
+            setExtraAddress(e.target.value);
+          }}
+        />
       </div>
     </S.UserInfo>
   );

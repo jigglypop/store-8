@@ -11,14 +11,14 @@ interface ICard {
 const Card = ({ index, item }: ICard) => {
   let imgsrc = item.productImgSrc;
   if (imgsrc === undefined) {
-    imgsrc = `public/image/product/big/${index + 1}.jpg`;
+    imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }
   return (
     <S.Card>
       <div className="cardInner">
         <div className="image">
           <Link to={`/product/${item.id}`}>
-            <img src={'/' + imgsrc} alt="title" />
+            <img src={imgsrc} alt="title" />
           </Link>
           <Wish productId={item.id.toString()} name={item.title} />
           {/* <div className="underbutton">

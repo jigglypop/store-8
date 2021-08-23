@@ -94,6 +94,8 @@ function Cart(): ReactElement {
           originalAmount: content.originalAmount,
           amount: content.amount,
           option: content.option,
+          optionId: content.optionId,
+          productId: content.productId,
         });
       }
     });

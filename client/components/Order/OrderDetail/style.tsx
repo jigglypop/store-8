@@ -5,6 +5,7 @@ export const OrderDetail = styled.div`
 
   .order-detail-title {
     padding-bottom: 11px;
+    padding-left: 11px;
     border-bottom: 2px solid var(--line-gray2);
     & > p {
       font-size: var(--body-large-font);

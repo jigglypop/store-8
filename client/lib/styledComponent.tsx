@@ -36,7 +36,8 @@ function styledGenerator<T extends unknown>(
         onMouseEnter: props.onMouseEnter,
         onMouseLeave: props.onMouseLeave,
         onMouseMove: props.onMouseMove,
-        className: randomClass,
+        onClick: props.onClick,
+        className: props.className + ' ' + randomClass,
       },
       [styleElement, props.children]
     );
@@ -53,6 +54,7 @@ function setStyledItem<T extends unknown>(
 const styled = {
   // TODO : Styled Component에 type 을 추가하려면 여기에 추가하기.
   button: setStyledItem.bind({ type: 'button' }),
+  header: setStyledItem.bind({ type: 'header' }),
   footer: setStyledItem.bind({ type: 'footer' }),
   table: setStyledItem.bind({ type: 'table' }),
   tr: setStyledItem.bind({ type: 'tr' }),
