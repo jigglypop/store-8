@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { RootState } from '@client/store';
-import { getProduct, setCountState, setOptionCountState } from '@client/store/product/product';
+import { RootState } from '@store/index';
+import { getProduct, setCountState, setOptionCountState } from '@store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from '../router/router';
@@ -23,16 +23,8 @@ export function useProduct() {
     dispatch(setCountState(count));
   };
 
-  const setOptionCount = (optionCount: { [key: string]: number }) => {
-    for (const count of Object.values(optionCount)) {
-      if (count < 0) return;
-    }
-
-    for (const option in optionCount) {
-      if (optionCount[option] >= 100) optionCount[option] = 100;
-    }
-
-    dispatch(setOptionCountState(optionCount));
+  const setOptionCount = (optionId: number, count: number) => {
+    dispatch(setOptionCountState({ optionId, count }));
   };
 
   // 페이지 시작

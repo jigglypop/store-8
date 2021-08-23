@@ -4,7 +4,8 @@ import { IProductRes } from '../../../middle/type/product/product';
 import createExtraGet from '../createExtra/createExtraGet';
 
 interface IOptionCount {
-  [key: string]: number;
+  optionId: number;
+  count: number;
 }
 
 //TODO: optionCount 타입설정 시 에러발생 why?
@@ -36,8 +37,9 @@ const productSlice = createSlice({
     setCountState: (state, action: PayloadAction<number>) => {
       state.count = action.payload;
     },
-    setOptionCountState: (state, action) => {
-      state.count = action.payload;
+    setOptionCountState: (state, action: PayloadAction<IOptionCount>) => {
+      const { optionId, count } = action.payload;
+      state.optionCount = { ...state.optionCount, [optionId]: count };
     },
   },
   extraReducers: productInfoExtra,

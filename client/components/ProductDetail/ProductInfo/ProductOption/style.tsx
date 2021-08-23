@@ -73,7 +73,26 @@ export const ProductOption = styled.div<ProductOptionProps>`
   }
 `;
 
-export const ProductOptionItem = styled.div``;
+export const ProductOptionItem = styled.div`
+  margin-top: 5px;
+  color: var(--text-gray-dark);
+  padding: 11px 10px 11px 16px;
+  border: 1px solid var(--gray5);
+  .option-item__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    & > div {
+    }
+    .option-item__delete-btn {
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      stroke: var(--text-gray-dark);
+    }
+  }
+`;
 
 export const InfoTitle = styled.div`
   width: 150px;

@@ -25,6 +25,7 @@ export default function ProductInfoCount({}: Props): ReactElement {
   };
   const handleInputChange = ({ target }: { target: HTMLElement | null }) => {
     if (!(target instanceof HTMLInputElement)) return;
+    if (target.value.length > 3) return;
     if (+target.value > 100) setInputValue('99');
     else setInputValue(target.value);
     setInputValue(target.value);
