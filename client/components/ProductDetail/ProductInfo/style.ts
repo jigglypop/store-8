@@ -39,31 +39,6 @@ export const ProductInfo = styled.div`
     }
 
     .producto-info__count {
-      & > form {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 120px;
-        height: 30px;
-        border: 1px solid var(--gray5);
-        border-radius: 3px;
-      }
-      input {
-        text-align: center;
-        padding: 10px;
-        width: 60px;
-        padding-top: 12.5px;
-        color: var(--text-black-dark);
-      }
-      .count-btn {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        stroke: var(--text-black-dark);
-      }
     }
   }
 
@@ -86,4 +61,9 @@ export const ProductInfo = styled.div`
 export const InfoTitle = styled.div`
   width: 150px;
   color: var(--text-gray-dark);
+`;
+
+export const ProductInfoCount = styled.div`
+  display: flex;
+  align-items: center;
 `;
