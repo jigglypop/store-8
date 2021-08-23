@@ -4,24 +4,23 @@ import * as S from './style';
 import ProductCountForm from './ProductCountForm/ProductCountForm';
 
 import { TITLE_BUY_AMOUNT } from '@constants/productDetail/productDetailInfo/productDetailInfo';
+import { useProduct } from '@client/hooks/product/product';
 
-interface Props {
-  count: number;
-  setCount: Dispatch<SetStateAction<number>>;
-}
+interface Props {}
 
-export default function ProductInfoCount({ count, setCount }: Props): ReactElement {
+export default function ProductInfoCount({}: Props): ReactElement {
+  const { count, setCount } = useProduct();
   const [inputValue, setInputValue] = useState<string>(count + '');
 
   const handleClickCountMinus = () => {
     if (count <= 1) return;
-    setCount((count) => count - 1);
+    setCount(count - 1);
     setInputValue((inputValue) => +inputValue - 1 + '');
   };
 
   const handleClickCountPlus = () => {
     if (count + 1 > 100) return;
-    setCount((count) => count + 1);
+    setCount(count + 1);
     setInputValue((inputValue) => +inputValue + 1 + '');
   };
   const handleInputChange = ({ target }: { target: HTMLElement | null }) => {

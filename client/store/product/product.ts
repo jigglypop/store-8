@@ -24,7 +24,7 @@ const initialState: IProduct = {
   product: null,
   error: null,
   loading: false,
-  count: 0,
+  count: 1,
   optionCount: null,
 };
 

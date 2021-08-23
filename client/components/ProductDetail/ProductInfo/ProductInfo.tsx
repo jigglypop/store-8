@@ -11,14 +11,23 @@ import {
 } from '@constants/productDetail/productDetailInfo/productDetailInfo';
 import ProductInfoCount from './ProductInfoCount';
 
-interface Props {
-  title: string;
-  originalAmount?: number;
-  amount: number;
-}
+import { useProduct } from '@client/hooks/product/product';
 
-export default function ProductInfo({ title, originalAmount, amount }: Props): ReactElement {
-  const [count, setCount] = useState(1);
+interface Props {}
+
+export default function ProductInfo({}: Props): ReactElement {
+  const { product, loading, error, count, optionCount } = useProduct();
+  if (!product) return <></>;
+
+  const { title, originalAmount, amount } = product;
+
+  let totalCount = 0;
+
+  if (optionCount) {
+    for (const option in optionCount) totalCount += optionCount[option];
+  } else {
+    totalCount = count;
+  }
 
   return (
     <S.ProductInfo>
@@ -42,12 +51,12 @@ export default function ProductInfo({ title, originalAmount, amount }: Props): R
           </div>
         </div>
         <div className="producto-info__count">
-          <ProductInfoCount {...{ count, setCount }} />
+          <ProductInfoCount />
         </div>
       </div>
       <div className="product__total-info">
         <S.InfoTitle>{TITLE_TOTAL_AMOUNT}</S.InfoTitle>
-        <div className="total-price">{kstFormatter(amount * count, true)}</div>
+        <div className="total-price">{kstFormatter(totalCount * amount, true)}</div>
       </div>
     </S.ProductInfo>
   );

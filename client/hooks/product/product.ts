@@ -12,14 +12,26 @@ export function useProduct() {
 
   const productId = +params;
 
-  const { product, loading, error } = useSelector((state: RootState) => state.product);
+  const { product, loading, error, count, optionCount } = useSelector(
+    (state: RootState) => state.product
+  );
   const dispatch = useDispatch();
 
   const setCount = (count: number) => {
+    if (count < 0) return;
+    if (count >= 100) count = 100;
     dispatch(setCountState(count));
   };
 
   const setOptionCount = (optionCount: { [key: string]: number }) => {
+    for (const count of Object.values(optionCount)) {
+      if (count < 0) return;
+    }
+
+    for (const option in optionCount) {
+      if (optionCount[option] >= 100) optionCount[option] = 100;
+    }
+
     dispatch(setOptionCountState(optionCount));
   };
 
@@ -28,5 +40,5 @@ export function useProduct() {
     dispatch(getProduct(productId));
   }, []);
 
-  return { product, loading, error, setCount, setOptionCount };
+  return { product, loading, error, count, setCount, optionCount, setOptionCount };
 }
