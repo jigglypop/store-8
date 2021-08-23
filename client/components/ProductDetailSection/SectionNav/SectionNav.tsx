@@ -65,5 +65,9 @@ export default function SectionNav({
     setSection(sectionNo);
   };
 
-  return <S.SectionNav onClick={handleSectionNavClick}>{sectionList}</S.SectionNav>;
+  return (
+    <S.SectionNavWrapper>
+      <S.SectionNav onClick={handleSectionNavClick}>{sectionList}</S.SectionNav>
+    </S.SectionNavWrapper>
+  );
 }
