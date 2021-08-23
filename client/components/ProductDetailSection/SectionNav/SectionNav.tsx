@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction, useRef, useState, useEffect } from 'react';
 import * as S from './style';
 
 import {
@@ -11,6 +11,8 @@ import {
   SECTION_REVIEW_NAME,
   SECTION_QUESTION_NAME,
 } from '@constants/productDetail/productDetailSection/ProductDetailSection';
+
+import { throttle } from '@client/utils/performance';
 
 interface Props {
   reviewCount: number;
@@ -31,6 +33,8 @@ export default function SectionNav({
     { name: SECTION_REVIEW_NAME, key: SECTION_REVIEW_KEY },
     { name: SECTION_QUESTION_NAME, key: SECTION_QUESTION_KEY },
   ];
+  const navRef = useRef<HTMLUListElement>(null);
+  const [offsetTop, setOffsetTop] = useState(608);
 
   const sectionList = SECTION.map((item) => {
     const className = item.key === section ? 'detail__section selected' : 'detail__section';
@@ -65,9 +69,29 @@ export default function SectionNav({
     setSection(sectionNo);
   };
 
+  const setNavPosition = throttle(() => {
+    if (!navRef.current) return;
+
+    const OFFSET_TOP = navRef.current.offsetTop;
+    if (OFFSET_TOP > offsetTop) setOffsetTop(OFFSET_TOP);
+
+    if (window.scrollY > offsetTop) {
+      navRef.current.classList.add('fixed');
+    } else {
+      navRef.current.classList.remove('fixed');
+    }
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener('scroll', setNavPosition);
+    return () => window.removeEventListener('scroll', setNavPosition);
+  }, []);
+
   return (
     <S.SectionNavWrapper>
-      <S.SectionNav onClick={handleSectionNavClick}>{sectionList}</S.SectionNav>
+      <S.SectionNav onClick={handleSectionNavClick} ref={navRef}>
+        {sectionList}
+      </S.SectionNav>
     </S.SectionNavWrapper>
   );
 }
