@@ -17,15 +17,17 @@ import User from './User';
 import Product from './Product';
 import ProductOption from './Option';
 import Refund from './Refund';
+import Address from './Address';
 
 // ProductAmount 는 살때 당시의 가격임에 주의!
 export interface IOrder {
-  id: number;
+  id?: number;
   orderNumber: string;
   userId: number;
   productId: number;
   productCount: number;
   productAmount: number;
+  addressId: number;
   optionId?: number;
   state: string;
   isConfirmed: boolean;
@@ -60,6 +62,14 @@ export default class Order extends Model<IOrder> {
   @Column
   @ForeignKey(() => ProductOption)
   optionId: number;
+
+  @AllowNull(true)
+  @Column
+  @ForeignKey(() => Address)
+  addressId: number;
+
+  @BelongsTo(() => Address)
+  address: Address;
 
   @BelongsTo(() => ProductOption)
   productOption: ProductOption;

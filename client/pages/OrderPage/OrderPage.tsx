@@ -1,23 +1,41 @@
+import { useState, useEffect } from 'react';
+
 import CartHeader from '@components/Cart/Header/CartHeader';
 import AccountInfo from '@components/Order/AccountInfo/AccountInfo';
 import OrderDetail from '@components/Order/OrderDetail/OrderDetail';
 import OrderReceipt from '@components/Order/OrderReceipt/OrderReceipt';
 import UserInfo from '@components/Order/UserInfo/UserInfo';
+import CouponModal from '@components/Order/CouponModal/CouponModal';
+import AddressModal from '@components/Order/AddressModal/AddressModal';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { AddressData } from '@middle/type/address/address';
 import { ORDER_START } from '@constants/Cart';
 import { getMileage, getShipmentAmount } from '@utils/utils';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import * as S from './style';
-import { useState, useEffect } from 'react';
-import CouponModal from '@client/components/Order/CouponModal/CouponModal';
 
 const OrderPage = () => {
-  const dispatch = useDispatch();
-  const [isOpenForm, setOpenForm] = useState(false);
-  const [selectedCoupon, setCoupon] = useState({ title: '', amount: 0, dDay: '' });
+  const [isCouponOpenForm, setCouponOpenForm] = useState(false);
+  const [isAddressOpenForm, setAddressOpenForm] = useState(false);
+  const [selectedCoupon, setCoupon] = useState<CouponData>({
+    id: 0,
+    title: '',
+    amount: 0,
+    dDay: '',
+    isUsed: false,
+  });
+  const [selectedAddress, setAddress] = useState<AddressData>({
+    addressId: 0,
+    address: '',
+    extraAddress: '',
+    zonecode: '',
+    call: '',
+    name: '',
+    email: '',
+  });
   const [mileage, setMileage] = useState(0);
   const { cart } = useSelector((state: RootState) => state.order);
 
@@ -62,21 +80,34 @@ const OrderPage = () => {
     };
   };
 
-  const openForm = () => {
-    setOpenForm(true);
+  const openCouponForm = () => {
+    setCouponOpenForm(true);
   };
 
-  const closeForm = () => {
-    setOpenForm(false);
+  const openAddressForm = () => {
+    setAddressOpenForm(true);
   };
 
-  const confirm = (coupon: CouponData) => {
+  const closeCouponForm = () => {
+    setCouponOpenForm(false);
+  };
+
+  const closeAddressForm = () => {
+    setAddressOpenForm(false);
+  };
+
+  const couponConfirm = (coupon: CouponData) => {
     setCoupon(coupon);
-    setOpenForm(false);
+    setCouponOpenForm(false);
+  };
+
+  const addressConfirm = (address: AddressData) => {
+    setAddress(address);
+    setAddressOpenForm(false);
   };
 
   const initCoupon = () => {
-    setCoupon({ title: '', amount: 0, dDay: '' });
+    setCoupon({ id: 0, title: '', amount: 0, dDay: '', isUsed: false });
   };
 
   const useMileage = (amount: number) => {
@@ -89,9 +120,9 @@ const OrderPage = () => {
       <div className="cart-side-container">
         <div className="left">
           <OrderDetail contents={cart}></OrderDetail>
-          <UserInfo></UserInfo>
+          <UserInfo selectedAddress={selectedAddress} openForm={openAddressForm}></UserInfo>
           <AccountInfo
-            openForm={openForm}
+            openForm={openCouponForm}
             initCoupon={initCoupon}
             useMileage={useMileage}
             coupon={selectedCoupon}
@@ -99,10 +130,15 @@ const OrderPage = () => {
           ></AccountInfo>
         </div>
         <div className="cart-receipt-side-container">
-          <OrderReceipt metaData={calcMetaData()}></OrderReceipt>
+          <OrderReceipt
+            selectedAddress={selectedAddress}
+            selectedCoupon={selectedCoupon}
+            metaData={calcMetaData()}
+          ></OrderReceipt>
         </div>
       </div>
-      {isOpenForm && <CouponModal closeForm={closeForm} confirm={confirm} />}
+      {isCouponOpenForm && <CouponModal closeForm={closeCouponForm} confirm={couponConfirm} />}
+      {isAddressOpenForm && <AddressModal closeForm={closeAddressForm} confirm={addressConfirm} />}
     </S.OrderPage>
   );
 };

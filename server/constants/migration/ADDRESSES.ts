@@ -1,0 +1,48 @@
+import { IAddress } from '../../models/Address';
+
+export const ADDRESSES: IAddress[] = [
+  {
+    userId: 1,
+    location: '서울시 동작구 상도1동 804-2',
+    extraLocation: '더브라운 4차 102호',
+    zonecode: '07032',
+    call: '010-7748-1234',
+    receiver: '최현준',
+    email: 'chj878194@naver.com',
+    title: '내배송지 1',
+    isBase: false,
+  },
+  {
+    userId: 1,
+    location: '서울시 동작구 상도4동 704-2',
+    extraLocation: '더브라운 1차 232호',
+    zonecode: '07312',
+    call: '010-2011-1234',
+    receiver: '최현순',
+    email: 'chj878194@naver.com',
+    title: '내배송지 2',
+    isBase: false,
+  },
+  {
+    userId: 1,
+    location: '서울시 동작구 흑석동 203-1',
+    extraLocation: '블루미르홀 1024호',
+    zonecode: '07312',
+    call: '010-4823-1234',
+    receiver: '최현군',
+    email: 'chj878194@naver.com',
+    title: '내배송지 3',
+    isBase: false,
+  },
+  {
+    userId: 1,
+    location: '대전시 서구 둔산3동 우성아파트 503동',
+    extraLocation: '503동 201호',
+    zonecode: '07312',
+    call: '010-7748-2345',
+    receiver: '최현최',
+    email: 'chj878194@naver.com',
+    title: '내 아파트 배송지 4',
+    isBase: false,
+  },
+];

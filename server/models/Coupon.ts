@@ -6,7 +6,6 @@ import {
   Model,
   PrimaryKey,
   Table,
-  Unique,
   CreatedAt,
   UpdatedAt,
   ForeignKey,
@@ -16,15 +15,14 @@ import {
 import UserCoupon from './UserCoupon';
 
 export interface ICoupon {
-  id: number;
+  id?: number;
   title: string;
-  amount: string;
-  dDay: string;
+  amount: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Coupon extends Model<ICoupon> {
   @PrimaryKey
   @AutoIncrement
@@ -37,17 +35,14 @@ export default class Coupon extends Model<ICoupon> {
 
   @AllowNull(false)
   @Column
-  amount: string;
-
-  @Column
-  dDay: string;
+  amount: number;
 
   @HasMany(() => UserCoupon)
   userCoupons: UserCoupon[];
 
   @Column
   @CreatedAt
-  creationDate: Date;
+  createdAt: Date;
 
   @UpdatedAt
   updatedOn: Date;

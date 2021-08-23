@@ -1,4 +1,3 @@
-
 export const createPage = (title: string) => {
   const page = `
   <!DOCTYPE html>
@@ -8,11 +7,9 @@ export const createPage = (title: string) => {
       <link rel="icon" href="./favicon.ico" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
-      <meta
-        name="description"
-        content="Web site created using create-react-app"
-      />
+      <meta name="description" content="DreamD4 - Dream Store" />
       <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
       <title>배민 문방구 | ${title}</title>
     </head>
     <body>
