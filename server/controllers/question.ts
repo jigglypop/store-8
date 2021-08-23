@@ -14,9 +14,21 @@ import { dateStringFormat } from '../utils/date';
  */
 //상품 문의 조회
 export const getQuestion = async (req: Request, res: Response) => {
+  //   const accessToken = getAccessToken(req.headers.authorization);
+  //   const { id: userId } = decodeToken(accessToken);
+  const userId = 1;
   const { productId } = req.params;
   const questionSnapshot = await Question.findAll({
-    attributes: ['id', 'title', 'contents', 'isSecret', 'reply', 'createdAt', 'replyDate'],
+    attributes: [
+      'id',
+      'title',
+      'contents',
+      'isSecret',
+      'reply',
+      'createdAt',
+      'replyDate',
+      'userId',
+    ],
     where: {
       productId,
     },
@@ -27,6 +39,7 @@ export const getQuestion = async (req: Request, res: Response) => {
     const id = item.getDataValue('id');
     const date = item.getDataValue('createdAt');
     const answerDate = item.getDataValue('replyDate');
+    const isOwned = item.getDataValue('userId') === userId;
     if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
     return {
@@ -37,6 +50,7 @@ export const getQuestion = async (req: Request, res: Response) => {
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
       answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
+      isOwned,
     };
   });
 

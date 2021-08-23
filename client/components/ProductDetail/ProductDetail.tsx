@@ -5,17 +5,12 @@ import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
 
-import { useRouter } from '@client/hooks/router/router';
 import { useProduct } from '@client/hooks/product/product';
 
 interface Props {}
 
 export default function ProductDetail({}: Props): ReactElement {
-  const {
-    router: { params },
-  } = useRouter();
-
-  const { product, loading, error } = useProduct(+params);
+  const { product, loading, error } = useProduct();
   if (!product) return <></>;
   //isLiked 속성은 db처리 후 추가
   const isLiked = false;

@@ -6,6 +6,7 @@ export interface IQuestionRes {
   date: string;
   answer: string | null;
   answerDate: string | null;
+  isOwned: boolean;
 }
 
 export interface IQuestionPostReq {

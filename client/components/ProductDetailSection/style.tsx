@@ -33,7 +33,8 @@ export const UserPostingList = styled.ul`
     justify-content: space-between;
     padding: 0 10px;
     border-bottom: 1px solid var(--gray4);
-    padding: 5px 0;
+
+    padding: 18px 13px;
   }
   .empty-msg {
     justify-content: center;

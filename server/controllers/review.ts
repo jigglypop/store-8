@@ -22,16 +22,10 @@ export const getReview = async (req: Request, res: Response) => {
   }
 
   const reviewSnapshot = await Review.findAll({
-    attributes: ['id', 'title', 'contents', 'score', 'createdAt'],
+    attributes: ['id', 'title', 'contents', 'score', 'createdAt', 'userId'],
     where: {
       productId,
     },
-    include: [
-      {
-        model: ReviewLike,
-        attributes: ['isLike', 'isDislike'],
-      },
-    ],
     order: [['createdAt', 'DESC']],
   });
 
@@ -47,6 +41,8 @@ export const getReview = async (req: Request, res: Response) => {
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
       const { isLike, isDislike } = await isUserLikeReview(id, userId);
 
+      const isOwned = item.getDataValue('userId') === userId;
+
       return {
         id,
         title: item.getDataValue('title'),
@@ -58,6 +54,7 @@ export const getReview = async (req: Request, res: Response) => {
         dislikeCount,
         isLike,
         isDislike,
+        isOwned,
       };
     })
   ).catch((e) => {
@@ -94,7 +91,7 @@ export const createReview = async (req: Request, res: Response) => {
 
   if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };
@@ -114,8 +111,6 @@ export const updateReview = async (req: Request, res: Response) => {
     throw new HttpError(err.WRONG_ACCESS_REVIEW);
   }
 
-  //TODO 사진 추가
-
   await Review.update(
     {
       title,
@@ -133,7 +128,7 @@ export const updateReview = async (req: Request, res: Response) => {
     }
   );
 
-  await createReviewSrc(reviewId, JSON.parse(imgSrc));
+  await createReviewSrc(reviewId, imgSrc);
 
   res.status(200).json({ success: true });
 };

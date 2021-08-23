@@ -10,7 +10,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
   const IMG_HEIGHT = 530;
   const MAGNIFIER_HEIGHT = 300;
   const MAGNIFIER_WIDTH = 300;
-  const IMG_SRC = 'http://localhost:8000/' + src;
+  const IMG_SRC = '/' + src;
 
   const [showMagifier, setShowMagifier] = useState(false);
   const [[positionX, positionY], setPosition] = useState([0, 0]);

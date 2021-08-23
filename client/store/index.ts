@@ -12,6 +12,7 @@ import product from './product/product';
 import question from './product/question';
 import search from './search/search';
 import mywish from './mywish/mywish';
+import review from './product/review';
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -31,6 +32,7 @@ export const store = configureStore({
     question,
     search,
     mywish,
+    review,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

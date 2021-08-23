@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 export const QuestionItem = styled.li`
+  background-color: var(--footer-background-dark);
+  color: var(--text-black-dark);
   font-size: var(--body-small-font);
 
-  & > div {
-    display: flex;
-    align-items: center;
-  }
-
+  & > div,
   .question-info {
     display: flex;
     align-items: center;
-    padding: 18px 13px;
   }
 
   .question-info.no {
