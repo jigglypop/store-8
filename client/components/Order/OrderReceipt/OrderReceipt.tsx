@@ -18,8 +18,10 @@ import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import * as S from './style';
 import { CouponData } from '@middle/type/Coupon/coupon';
-
 import { useOrder } from '@client/hooks/order/order';
+import { setFinishState } from '@store/product/finish';
+import { useDispatch } from 'react-redux';
+
 interface OrderProps {
   metaData: OrderContentMetaData;
   selectedCoupon: CouponData;
@@ -29,6 +31,7 @@ interface OrderProps {
 const OrderReceipt = (props: OrderProps): ReactElement => {
   const { proceedOrder } = useOrder();
   const { onChangeRouterAll } = useRouter();
+  const dispatch = useDispatch();
 
   return (
     <S.OrderReceipt>
@@ -46,12 +49,18 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
         </div>
         <div className="amount-row">
           <p>{TOTAL_DISCOUNT_TEXT}</p>
-          <p className="amount">{kstFormatter(props.metaData.totalDiscount)}</p>
+          <p className="amount">
+            {kstFormatter(props.metaData.totalDiscount + props.metaData.mcDiscount)}
+          </p>
         </div>
       </S.Receipt>
       <S.TotalPrice>
         <p>{TOTAL_ADD_TEXT}</p>
-        <p className="amount">{kstFormatter(props.metaData.totalPrice)}</p>
+        <p className="amount">
+          {kstFormatter(
+            props.metaData.totalPrice + props.metaData.shipmentPrice + props.metaData.mcDiscount
+          )}
+        </p>
       </S.TotalPrice>
       <S.OrderNow>
         <button
@@ -77,6 +86,7 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
               createToast('배송지를 입력하세요', true);
             } else {
               await proceedOrder(props.totalState);
+              dispatch(setFinishState(props.totalState));
               const to = '/finish';
               const RouterObj: IRouterReq = getRouterObj(to);
               onChangeRouterAll(RouterObj);

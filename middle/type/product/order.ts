@@ -17,10 +17,9 @@ export type OrderCreateRes = {
 
 export type ProceedOrderProps = {
   useCouponId: number;
+  useCouponAmount: number;
   useMileageAmount: number;
   addMileageAmount: number;
   addressInfo: AddressData;
   isBase: boolean;
-  onReject?: () => void;
-  onSuccess?: () => void;
 };

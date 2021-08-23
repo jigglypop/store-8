@@ -34,6 +34,7 @@ const OrderPage = () => {
 
   const [totalState, setTotalState] = useState<ProceedOrderProps>({
     useCouponId: 0,
+    useCouponAmount: 0,
     useMileageAmount: 0,
     addMileageAmount: getTotalMileage(),
     isBase: false,
@@ -84,7 +85,8 @@ const OrderPage = () => {
       totalPrice: totalPrice,
       totalMileage: getTotalMileage(),
       shipmentPrice: getShipmentAmount(totalPrice),
-      totalDiscount: getTotalDiscount() - totalState.useMileageAmount - selectedCoupon.amount,
+      totalDiscount: getTotalDiscount(),
+      mcDiscount: -1 * (totalState.useMileageAmount + selectedCoupon.amount),
       usableMileage: 1830,
     };
   };
@@ -107,7 +109,7 @@ const OrderPage = () => {
 
   const couponConfirm = (coupon: CouponData) => {
     setCoupon(coupon);
-    setTotalState({ ...totalState, useCouponId: coupon.id });
+    setTotalState({ ...totalState, useCouponId: coupon.id, useCouponAmount: coupon.amount });
     setCouponOpenForm(false);
   };
 
