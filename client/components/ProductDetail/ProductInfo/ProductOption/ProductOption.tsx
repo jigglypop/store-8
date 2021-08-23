@@ -19,22 +19,20 @@ export default function ProductOption({ optionData }: Props): ReactElement {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selectedOption, setSeletectedOption] = useState<{ [key: string]: ISelectOption }>({});
-
   const toggleOpen = () => setIsOpen((isOpen) => !isOpen);
 
-  const handleOptionClick = (id: number, title: string) => {
-    if (id in selectedOption) {
-      //이미 선택했다는 모달 혹은 토스트
+  const handleOptionClick = (id: number) => {
+    if (optionCount && id in optionCount) {
+      //TODO 이미 선택했다는 모달 혹은 토스트
       return;
     }
-    setSeletectedOption({ ...selectedOption, [id]: { id, title } });
+
     setOptionCount(id, 1);
   };
 
   const selectableOptionList = optionData.map(({ id, title }) => {
     return (
-      <li key={id} onClick={() => handleOptionClick(id, title)} className="selectable-item">
+      <li key={id} onClick={() => handleOptionClick(id)} className="selectable-item">
         [{title}] {title}
       </li>
     );
@@ -58,7 +56,7 @@ export default function ProductOption({ optionData }: Props): ReactElement {
             </li>
             {isOpen && <ul className="option__selectable-wrapper">{selectableOptionList}</ul>}
           </ul>
-          {Object.keys(selectedOption).length ? selectedOptionList : null}
+          {optionCount && Object.keys(optionCount).length ? selectedOptionList : null}
         </div>
       </S.ProductOption>
     </>
