@@ -1,12 +1,14 @@
-import React, { ReactElement, useState, MouseEvent } from 'react';
+import { ReactElement, useState, MouseEvent, useEffect } from 'react';
 import * as S from './style';
 
 import Modal from '@components/common/Modal/Modal';
 import XIcon from '@image/icon/xIcon.svg';
-import { useProduct } from '@client/hooks/product/product';
 import ImgListForm from './ImgListForm/ImgListForm';
 import ScoreChecker from './ScoreChecker/ScoreChecker';
+
+import { useProduct } from '@client/hooks/product/product';
 import { useReview } from '@client/hooks/review/review';
+import { bodyScroll } from '@client/utils/utils';
 
 interface Props {
   closeReviewForm: () => void;
@@ -34,6 +36,15 @@ export default function ReviewForm({
   const [score, setScore] = useState(editScore ?? 0);
   const [imgList, setImgList] = useState(editImgList ?? []);
 
+  useEffect(() => {
+    bodyScroll.lock();
+  }, []);
+
+  const closeModal = () => {
+    bodyScroll.unlock();
+    closeReviewForm();
+  };
+
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     setTitle(target.value);
   };
@@ -56,7 +67,7 @@ export default function ReviewForm({
     }
 
     if (!isSuccess) return;
-    closeReviewForm();
+    closeModal();
   };
 
   const isAbleSubmit = !!(title && contents);
@@ -65,7 +76,7 @@ export default function ReviewForm({
       <S.ReviewForm>
         <div className="review-form__header">
           <h2>{isEdit ? '상품후기 수정하기' : '상품후기 작성하기'}</h2>
-          <div className="cancel-btn" onClick={closeReviewForm}>
+          <div className="cancel-btn" onClick={closeModal}>
             <XIcon />
           </div>
         </div>
@@ -106,7 +117,7 @@ export default function ReviewForm({
           </div>
           <div className="review-form__error">{formError || error}</div>
           <div className="review-form__btns">
-            <button className="cancel-btn" onClick={closeReviewForm}>
+            <button className="cancel-btn" onClick={closeModal}>
               취소
             </button>
             <button className="submit-btn" disabled={!isAbleSubmit} onClick={handleSubmitClick}>
