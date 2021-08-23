@@ -15,6 +15,10 @@ export type OrderCreateRes = {
   data: string;
 };
 
+export type MileageReq = {
+  userId: number;
+};
+
 export type ProceedOrderProps = {
   useCouponId: number;
   useCouponAmount: number;

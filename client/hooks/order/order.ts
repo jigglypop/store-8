@@ -2,9 +2,11 @@ import { RootState } from '@store/index';
 import { delCart } from '@store/product/cart';
 import { useCoupon } from '@store/coupon/coupon';
 import { createOrder } from '@api/order';
+import { getMileage } from '@api/order';
 import { addAddressApi, setBaseAddressApi } from '@api/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 // 주문 대기 내역 ( state.order ) 을 주문 내역으로 변환후 create
 // 주문 대기 내역을 장바구니에서 삭제 ( 삭제하면 알아서 API 호출 )
@@ -12,7 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 // 페이지 이동 to order finish page
 export function useOrder() {
   const { cart } = useSelector((state: RootState) => state.order);
+  const [mileage, setMileage] = useState(0);
   const dispatch = useDispatch();
+
+  const getUsableMileage = async () => {
+    const temp = await getMileage({ userId: 1 });
+    setMileage(temp);
+  };
 
   const proceedOrder = async (props: ProceedOrderProps) => {
     // 주문내역을 만들기 위한 데이터 생성
@@ -73,5 +81,5 @@ export function useOrder() {
     }
   };
 
-  return { proceedOrder };
+  return { mileage, getUsableMileage, proceedOrder };
 }

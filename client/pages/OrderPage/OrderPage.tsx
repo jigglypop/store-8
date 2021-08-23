@@ -18,11 +18,13 @@ import { ORDER_START } from '@constants/Cart';
 import { RootState } from '@client/store';
 import { getMileage, getShipmentAmount } from '@utils/utils';
 import * as S from './style';
+import { useOrder } from '@client/hooks/order/order';
 
 const OrderPage = () => {
   const { cart } = useSelector((state: RootState) => state.order);
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
+  const { mileage, getUsableMileage } = useOrder();
 
   const getTotalMileage = () => {
     let result = 0;
@@ -31,6 +33,10 @@ const OrderPage = () => {
     });
     return result;
   };
+
+  useEffect(() => {
+    getUsableMileage();
+  }, []);
 
   const [totalState, setTotalState] = useState<ProceedOrderProps>({
     useCouponId: 0,
@@ -87,7 +93,7 @@ const OrderPage = () => {
       shipmentPrice: getShipmentAmount(totalPrice),
       totalDiscount: getTotalDiscount(),
       mcDiscount: -1 * (totalState.useMileageAmount + selectedCoupon.amount),
-      usableMileage: 1830,
+      usableMileage: mileage,
     };
   };
 

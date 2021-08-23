@@ -56,6 +56,12 @@ export const getAllOrders = async (req: Request, res: Response) => {
   res.status(200).json({ data: results });
 };
 
+export const getMileage = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  const result = await User.findOne({ where: { id: userId } });
+  res.status(200).json({ data: result?.mileage });
+};
+
 // 주문 내역 생성
 export const createOrder = async (req: Request, res: Response) => {
   const orderNumber = makeRandomOrderId();
