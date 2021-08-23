@@ -1,10 +1,9 @@
-import React, { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import * as S from './style';
 
 import Intro from '@components/MyPage/Intro/Intro';
 import SearchBar from '@components/MyPage/SearchBar/SearchBar';
 import OrderResultContainer from '@components/MyPage/OrderResultContainer/OrderResultContainer';
-import { IResult, _filteredResults, sampleData } from '../dummydata';
 
 interface Props {}
 
