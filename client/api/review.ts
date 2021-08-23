@@ -2,8 +2,13 @@ import fetchWrapper from '@client/utils/fetchWrapper';
 import request, { IThunkApi } from './utils/request';
 import { IReviewLikeReq } from '@middle/type/review/review';
 
-export const getReviewApi = async (productId: number, thunkApi: IThunkApi) => {
-  const data = await request.get(`/api/review/${productId}`);
+interface IGetReviewReq {
+  productId: number;
+  query: string;
+}
+
+export const getReviewApi = async ({ productId, query }: IGetReviewReq, thunkApi: IThunkApi) => {
+  const data = await request.get(`/api/review/${productId}?${query}`);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);

@@ -1,4 +1,4 @@
-export interface IReviewRes {
+export interface IReview {
   id: number;
   title: string;
   contents: string;
@@ -10,6 +10,11 @@ export interface IReviewRes {
   isLike: boolean;
   isDislike: boolean;
   isOwned: boolean;
+}
+
+export interface IReviewRes {
+  totalCount: number;
+  reviews: IReview[];
 }
 
 export interface IReviewPostReq {

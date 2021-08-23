@@ -20,9 +20,9 @@ import { useReview } from '@client/hooks/review/review';
 interface Props {}
 
 export default function ProductDetailSection({}: Props): ReactElement {
-  const { question } = useQuestion();
-  const { review } = useReview();
-  const [section, setSection] = useState(SECTION_REVIEW_KEY);
+  const { totalCount: questionCount } = useQuestion();
+  const { totalCount: reviewCount } = useReview();
+  const [section, setSection] = useState(SECTION_DETAIL_KEY);
 
   const detailSection: { [key: string]: ReactElement } = {
     [SECTION_DETAIL_KEY]: <DetailInfo />,
@@ -39,8 +39,8 @@ export default function ProductDetailSection({}: Props): ReactElement {
   return (
     <StyledProductDetailSection>
       <SectionNav
-        reviewCount={review.length}
-        questionCount={question.length}
+        reviewCount={reviewCount}
+        questionCount={questionCount}
         {...{ section, setSection }}
       />
       {detailSection[section]}

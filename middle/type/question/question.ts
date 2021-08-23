@@ -1,4 +1,4 @@
-export interface IQuestionRes {
+export interface IQuestion {
   id: number;
   title: string;
   contents: string;
@@ -7,6 +7,11 @@ export interface IQuestionRes {
   answer: string | null;
   answerDate: string | null;
   isOwned: boolean;
+}
+
+export interface IQuestionRes {
+  totalCount: number;
+  questions: IQuestion[];
 }
 
 export interface IQuestionPostReq {

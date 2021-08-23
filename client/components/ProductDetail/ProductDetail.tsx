@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 
 import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
@@ -12,32 +12,16 @@ interface Props {}
 export default function ProductDetail({}: Props): ReactElement {
   const { product, loading, error } = useProduct();
   if (!product) return <></>;
-  //isLiked 속성은 db처리 후 추가
-  const isLiked = false;
+
   const { id, productImgSrc, title, originalAmount, amount } = product;
 
   return (
-    <StyledProductDetail>
+    <S.ProductDetail>
       <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
         <ProductInfo {...{ title, originalAmount, amount }} />
-        <DetailBtns {...{ id, isLiked }} />
+        <DetailBtns {...{ id, title }} />
       </div>
-    </StyledProductDetail>
+    </S.ProductDetail>
   );
 }
-
-const StyledProductDetail = styled.div`
-  display: flex;
-  gap: 80px;
-
-  height: 530px;
-  margin-bottom: 48px;
-  .product-detail__info {
-    margin-top: 8px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-`;

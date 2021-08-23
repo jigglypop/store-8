@@ -5,10 +5,10 @@ import DeleteIcon from '@image/icon/deleteIcon.svg';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 import QuestionForm from '../../QuestionForm/QuestionForm';
 import { useQuestion } from '@client/hooks/question/question';
-import { IQuestionRes } from '@middle/type/question/question';
+import { IQuestion } from '@middle/type/question/question';
 
 interface Props {
-  questionData: IQuestionRes;
+  questionData: IQuestion;
 }
 
 export default function QuestionDetail({ questionData }: Props): ReactElement {

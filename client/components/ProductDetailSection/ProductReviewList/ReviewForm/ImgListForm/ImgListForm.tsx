@@ -50,7 +50,6 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
   return (
     <>
       <StyledImgListFrom>
-        <h2>hello</h2>
         <label className="img-form__add-btn" htmlFor="input-file">
           <Plus className="img-form__plus-icon" />
           <div className="img-form__count">
@@ -72,7 +71,7 @@ const StyledImgListFrom = styled.div`
   height: 90px;
 
   /* color: var(--text-black-dark); */
-  color: var(--text-dark-gray);
+  color: var(--text-dark-gray-dark);
 
   &::-webkit-scrollbar {
     display: none;

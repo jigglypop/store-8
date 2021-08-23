@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ReviewItem = styled.li`
+  cursor: pointer;
   background-color: var(--body-background-dark);
   color: var(--text-black-dark);
 
@@ -20,6 +21,7 @@ export const ReviewItem = styled.li`
 
   .review-info.title {
     & > svg {
+      stroke: var(--text-white-dark);
       fill: var(--tag-picker);
       margin-left: 8px;
     }

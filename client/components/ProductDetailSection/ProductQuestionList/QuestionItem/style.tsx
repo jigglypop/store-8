@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const QuestionItem = styled.li`
-  background-color: var(--footer-background-dark);
+  cursor: pointer;
+  background-color: var(--body-background-dark);
   color: var(--text-black-dark);
-  font-size: var(--body-small-font);
 
   & > div,
   .question-info {
@@ -17,7 +17,7 @@ export const QuestionItem = styled.li`
 
   .question-info.title {
     & > svg {
-      fill: var(--gary6);
+      fill: var(--text-pastel-black-dark);
       margin-right: 8px;
     }
   }

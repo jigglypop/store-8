@@ -9,7 +9,7 @@ export const ReviewDetail = styled.div`
   .review-detail__img {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 0 30px;
     img {
       max-width: 500px;
       margin-bottom: 30px;

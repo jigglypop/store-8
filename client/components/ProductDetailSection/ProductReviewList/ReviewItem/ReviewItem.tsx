@@ -3,20 +3,19 @@ import * as S from './style';
 
 import Star from '@components/common/Star/Star';
 import Clip from '@image/icon/clipIcon.svg';
-import { IReviewRes } from '@middle/type/review/review';
+import { IReview } from '@middle/type/review/review';
 import { hideId } from '@utils/encode';
 import ReviewDetail from './ReviewDetail/ReviewDetail';
 
 interface Props {
-  reviewData: IReviewRes;
+  reviewData: IReview;
   userId: string;
-  idx: number;
+  reviewNo: number;
 }
 
-export default function ReviewItem({ reviewData, userId, idx }: Props): ReactElement {
+export default function ReviewItem({ reviewData, userId, reviewNo }: Props): ReactElement {
   const MAX_SCORE = 5;
-  const { id, title, contents, score, date, imgSrc, likeCount, dislikeCount, isLike, isDislike } =
-    reviewData;
+  const { title, score, date, imgSrc, likeCount, dislikeCount } = reviewData;
 
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
@@ -34,7 +33,7 @@ export default function ReviewItem({ reviewData, userId, idx }: Props): ReactEle
     <>
       <S.ReviewItem onClick={handleReviewClick}>
         <div>
-          <div className="review-info no">{idx + 1}</div>
+          <div className="review-info no">{reviewNo}</div>
           <div className="review-info score">{stars}</div>
           <div className="review-info title">
             {title}
