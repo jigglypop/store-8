@@ -31,6 +31,7 @@ export const OrderBox = styled.div`
     border-right: 1px dotted var(--line-gray);
   }
 
+  .product-link,
   .column-title {
     flex-direction: row;
     width: 200px;

@@ -5,8 +5,10 @@ export const OrderResultContainer = styled.div`
   flex-direction: column;
   width: 940px;
   margin-top: 32px;
+  color: var(--text-black-dark);
 
   .container-column {
+    color: var(--text-black);
     margin-top: 12px;
     display: flex;
     flex-direction: row;
