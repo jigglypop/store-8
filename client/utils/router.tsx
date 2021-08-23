@@ -105,13 +105,6 @@ export function Link({ children, to, className, id }: ILink) {
   );
 }
 
-export function routeTo(to: string) {
-  const { onChangeRouterAll } = useRouter();
-  const RouterObj: IRouterReq = getRouterObj(to);
-  onChangeRouterAll(RouterObj);
-  history.pushState({ path: to }, to, to);
-}
-
 export function DummyLink({ to, name }: ILinkDummy) {
   const { onChangeRouterAll } = useRouter();
   const onClick = () => {

@@ -59,7 +59,7 @@ export function useOrder() {
     });
 
     if (orderApiResult !== 'ok') {
-      return { result: false, errorMsg: '[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.' };
+      throw new Error('[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.');
     }
 
     // TODO : User ID 빼기
@@ -71,8 +71,6 @@ export function useOrder() {
     if (props.useCouponId !== 0) {
       dispatch(useCoupon({ userId: 1, couponId: props.useCouponId }));
     }
-
-    return { result: true };
   };
 
   return { proceedOrder };

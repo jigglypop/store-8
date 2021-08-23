@@ -7,7 +7,7 @@ const addressRouter: Router = express.Router();
 
 // TODO : jwt middleware 적용하기
 addressRouter.post('/add', wrapAsync(add));
-addressRouter.put('/setBase', wrapAsync(setBase));
+addressRouter.post('/setBase', wrapAsync(setBase));
 addressRouter.post('/remove', wrapAsync(remove));
 addressRouter.post('/', wrapAsync(get));
 

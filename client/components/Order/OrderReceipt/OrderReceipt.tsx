@@ -1,5 +1,7 @@
 import { ReactElement } from 'react';
-import { routeTo } from '@utils/router';
+import { useRouter } from '@client/hooks/router/router';
+import { IRouterReq } from '@client/store/router/router';
+import { getRouterObj } from '@utils/pathname';
 import { kstFormatter } from '@utils/utils';
 import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import { createToast } from '@client/utils/createToast';
@@ -26,6 +28,8 @@ interface OrderProps {
 
 const OrderReceipt = (props: OrderProps): ReactElement => {
   const { proceedOrder } = useOrder();
+  const { onChangeRouterAll } = useRouter();
+
   return (
     <S.OrderReceipt>
       <S.Receipt>
@@ -72,12 +76,11 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
               zoneInput?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
               createToast('배송지를 입력하세요', true);
             } else {
-              const result = await proceedOrder(props.totalState);
-              if (!result.result) {
-                // result.errorMsg 를 쓰기
-              } else {
-                routeTo('/finish');
-              }
+              await proceedOrder(props.totalState);
+              const to = '/finish';
+              const RouterObj: IRouterReq = getRouterObj(to);
+              onChangeRouterAll(RouterObj);
+              history.pushState({ path: to }, to, to);
             }
           }}
         >
