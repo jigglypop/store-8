@@ -3,9 +3,14 @@ import { CATEGORIES } from '../constants/migration/CATEGORIES';
 import { PRODUCTS } from '../constants/migration/PRODUCTS';
 import { OPTIONS } from '../constants/migration/OPTIONS';
 import { CARTS } from '../constants/migration/CARTS';
+import { ORDERS } from '../constants/migration/ORDERS';
+import { REFUNDS } from '../constants/migration/REFUNDS';
 import Category, { ICategory } from '../models/Category';
 import Option from '../models/Option';
 import Cart from '../models/Cart';
+
+import Refund from '../models/Refund';
+import Order from '../models/Order';
 
 interface IProductQuery {
   [key: string]: string | number;
@@ -59,9 +64,22 @@ const initCart = async () => {
   Cart.bulkCreate(CARTS);
 };
 
+// 상품 옵션 부분 시작
+const initOrder = async () => {
+  Order.bulkCreate(ORDERS);
+};
+
+// 상품 옵션 부분 시작
+const initRefund = async () => {
+  Refund.bulkCreate(REFUNDS);
+};
+
 export const migrate = async () => {
-  await initCategory();
-  await initProduct();
-  await initOption();
+  // await initCategory();
+  // await initProduct();
+  // await initOption();
+  // await initUser(); // not yet
   await initCart();
+  await initOrder();
+  await initRefund();
 };

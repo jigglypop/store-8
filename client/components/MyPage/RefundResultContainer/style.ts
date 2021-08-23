@@ -35,12 +35,10 @@ export const RefundResultContainer = styled.div`
 
   .container-result-list {
     width: 100%;
-    height: 140px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
     align-items: center;
-    border-bottom: 1px solid var(--gray5);
 
     .text-no-data {
       margin-top: 65px;
@@ -49,15 +47,17 @@ export const RefundResultContainer = styled.div`
       text-align: center;
       width: 100%;
     }
-  }
 
-  &.no-data {
-    * {
-      display: hidden;
-    }
+    &.no-data {
+      border-bottom: 1px solid var(--gray5);
 
-    .text-no-data {
-      display: block;
+      * {
+        display: hidden;
+      }
+
+      .text-no-data {
+        display: block;
+      }
     }
   }
 `;

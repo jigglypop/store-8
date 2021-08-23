@@ -9,7 +9,8 @@ export const OrderBox = styled.div`
   flex-wrap: wrap;
   border-bottom: 1px solid var(--gray5);
 
-  > * {
+  > *,
+  .column-title {
     flex-grow: 1;
     width: 70px;
     height: 100%;
@@ -57,6 +58,10 @@ export const OrderBox = styled.div`
         text-align: left;
       }
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .column-product {
@@ -85,7 +90,6 @@ export const OrderBox = styled.div`
 `;
 
 export const TextNoData = styled.div`
-  display: hidden;
   text-align: center;
   height: 75px;
   margin-top: 70px;

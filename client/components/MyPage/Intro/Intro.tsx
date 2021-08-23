@@ -3,15 +3,13 @@ import * as S from './style';
 import { useCheck } from '@client/hooks/auth/check';
 import Avatar from '@client/components/common/Avatar/Avatar';
 
-interface Props {
-  couponCount: number;
-  mileage: number;
-  name: string;
-  grade: string;
-}
-
-export default function Intro({ couponCount, mileage, name, grade }: Props): ReactElement {
+export default function Intro(): ReactElement {
   const { check } = useCheck();
+  // { couponCount, mileage, name, grade } 에 해당하는 customHook 을 만들거나,
+  // useEffect로 API 요청
+  // 임시로 둠
+  const { couponCount, mileage, grade } = { couponCount: 1, mileage: 1000, grade: '일반회원' };
+
   return (
     <S.Intro>
       <div className="left">

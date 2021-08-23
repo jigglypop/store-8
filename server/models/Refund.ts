@@ -16,6 +16,7 @@ export interface IRefund {
   ordersId: number;
   isConfirmed: boolean;
   userId: number;
+  state: string;
 }
 
 @Table({
@@ -33,6 +34,9 @@ export default class Refund extends Model<IRefund> {
 
   @Column
   isConfirmed: boolean;
+
+  @Column
+  state: string;
 
   @AllowNull(false)
   @ForeignKey(() => Order)
