@@ -12,9 +12,12 @@ export const cartGetApi = async (requestForm: ICartGetReq, thunkApi: IThunkApi) 
   return await data.data;
 };
 
-export const cartAddApi = async (requestForm: ICartAddReq) => {
+export const cartAddApi = async (requestForm: ICartAddReq, thunkApi: IThunkApi) => {
   const data = await request.post<ICartAddReq>('/api/cart/add', requestForm);
-
+  if (data.status !== 200) {
+    const error = data.message;
+    return await thunkApi.rejectWithValue(error);
+  }
   return await data.data;
 };
 
