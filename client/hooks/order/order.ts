@@ -25,11 +25,11 @@ export function useOrder() {
     // 지역 추가 시도.
     const addressId: number = await addAddressApi({
       userId: 1,
-      address: props.addressInfo.address,
-      extraAddress: props.addressInfo.extraAddress,
+      location: props.addressInfo.address,
+      extraLocation: props.addressInfo.extraAddress,
       zonecode: props.addressInfo.zonecode,
       call: props.addressInfo.call,
-      name: props.addressInfo.name,
+      receiver: props.addressInfo.name,
       email: props.addressInfo.email,
     });
 
@@ -55,10 +55,11 @@ export function useOrder() {
       optionIds,
       addressId,
       useMileageAmount: props.useMileageAmount,
+      addMileageAmount: props.addMileageAmount,
     });
 
     if (orderApiResult !== 'ok') {
-      throw new Error('[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.');
+      return { result: false, errorMsg: '[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.' };
     }
 
     // TODO : User ID 빼기
@@ -71,12 +72,7 @@ export function useOrder() {
       dispatch(useCoupon({ userId: 1, couponId: props.useCouponId }));
     }
 
-    if (props.useMileageAmount !== 0) {
-      // 마일리지 처리 기능 구현하기
-    }
-
-    // Routing to order finish page.
-    console.log('TO FINISH');
+    return { result: true };
   };
 
   return { proceedOrder };

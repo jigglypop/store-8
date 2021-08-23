@@ -27,11 +27,11 @@ export type AddressSetBaseRes = {
 
 export type AddressAddReq = {
   userId: number;
-  address: string;
-  extraAddress: string;
+  location: string;
+  extraLocation: string;
   zonecode: string;
   call: string;
-  name: string;
+  receiver: string;
   email: string;
 };
 

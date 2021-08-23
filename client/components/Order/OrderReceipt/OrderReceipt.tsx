@@ -1,6 +1,8 @@
-import React, { ReactElement } from 'react';
-import { Link } from '@utils/router';
+import { ReactElement } from 'react';
+import { routeTo } from '@utils/router';
 import { kstFormatter } from '@utils/utils';
+import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
+import { createToast } from '@client/utils/createToast';
 import exMark from '@image/exclamMark.png';
 import {
   CALC_GUIDE_TEXT,
@@ -14,7 +16,6 @@ import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import * as S from './style';
 import { CouponData } from '@middle/type/Coupon/coupon';
-import { AddressData } from '@middle/type/address/address';
 
 import { useOrder } from '@client/hooks/order/order';
 interface OrderProps {
@@ -50,13 +51,34 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
       </S.TotalPrice>
       <S.OrderNow>
         <button
-          onClick={() => {
-            proceedOrder({
-              useCouponId: props.selectedCoupon.id,
-              useMileageAmount: props.totalState.useMileageAmount,
-              addressInfo: props.totalState.addressInfo,
-              isBase: props.totalState.isBase,
-            });
+          onClick={async (e) => {
+            if (checkNameString(props.totalState.addressInfo.name) !== 2) {
+              const nameInput = document.querySelector<HTMLInputElement>('.name-input');
+              nameInput?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+              nameInput?.focus();
+              createToast('이름을 입력하세요', true);
+            } else if (checkCallString(props.totalState.addressInfo.call) !== 2) {
+              const callInput = document.querySelector<HTMLInputElement>('.call-input');
+              callInput?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+              callInput?.focus();
+              createToast('전화번호를 입력하세요', true);
+            } else if (checkEmailString(props.totalState.addressInfo.email) !== 2) {
+              const emailInput = document.querySelector<HTMLInputElement>('.email-input');
+              emailInput?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+              emailInput?.focus();
+              createToast('이메일을 입력하세요', true);
+            } else if (props.totalState.addressInfo.zonecode === '') {
+              const zoneInput = document.querySelector<HTMLInputElement>('.zonecode-input');
+              zoneInput?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+              createToast('배송지를 입력하세요', true);
+            } else {
+              const result = await proceedOrder(props.totalState);
+              if (!result.result) {
+                // result.errorMsg 를 쓰기
+              } else {
+                routeTo('/finish');
+              }
+            }
           }}
         >
           {'주문하기'}

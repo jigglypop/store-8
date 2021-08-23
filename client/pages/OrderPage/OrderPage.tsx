@@ -24,9 +24,18 @@ const OrderPage = () => {
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
 
+  const getTotalMileage = () => {
+    let result = 0;
+    cart.forEach((item) => {
+      result += getMileage(item.amount * item.count);
+    });
+    return result;
+  };
+
   const [totalState, setTotalState] = useState<ProceedOrderProps>({
     useCouponId: 0,
     useMileageAmount: 0,
+    addMileageAmount: getTotalMileage(),
     isBase: false,
     addressInfo: {
       addressId: 0,
@@ -65,14 +74,6 @@ const OrderPage = () => {
       if (item.originalAmount !== 0) {
         result += (item.amount - item.originalAmount) * item.count;
       }
-    });
-    return result;
-  };
-
-  const getTotalMileage = () => {
-    let result = 0;
-    cart.forEach((item) => {
-      result += getMileage(item.amount * item.count);
     });
     return result;
   };

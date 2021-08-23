@@ -69,6 +69,7 @@ export const createOrder = async (req: Request, res: Response) => {
     optionIds,
     addressId,
     useMileageAmount,
+    addMileageAmount,
   } = req.body;
   // optionIds 는 없으면 0, 있다면 1 이상의 id 로 결정.
 
@@ -79,12 +80,12 @@ export const createOrder = async (req: Request, res: Response) => {
   }
 
   const userValid = await User.update(
-    { mileage: userInfo[0].mileage - useMileageAmount },
+    { mileage: userInfo[0].mileage - useMileageAmount + addMileageAmount },
     { where: { id: userId } }
   );
 
   if (!userValid) {
-    throw new HttpError({ status: 400, message: '주문 내역 추가에 실패하였습니다.' });
+    throw new HttpError({ status: 400, message: '마일리지 사용에 실패하였습니다.' });
   }
 
   productIds.forEach((element: number, index: number) => {

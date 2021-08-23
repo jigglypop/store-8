@@ -1,5 +1,6 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { getDaumAddress } from '@lib/daumAddress';
+import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import AlertInput from '@components/common/AlertInput/AlertInput';
 import checked from '@image/checked.png';
 import unchecked from '@image/unchecked.png';
@@ -62,29 +63,6 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
     setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, address, zonecode } });
   };
 
-  const checkNameString = (nameString: string): number => {
-    if (nameString.length === 0) return 0;
-    else if (nameString.length > 6) return 1;
-    else return 2;
-  };
-
-  const checkCallString = (callString: string): number => {
-    let checkReg = /^\d{2,3}-\d{3,4}-\d{4}$/;
-    if (callString.length === 0) return 0;
-    else {
-      return checkReg.test(callString) ? 2 : 1;
-    }
-  };
-
-  const checkEmailString = (emailString: string): number => {
-    let checkReg =
-      /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
-    if (emailString.length === 0) return 0;
-    else {
-      return checkReg.test(emailString) ? 2 : 1;
-    }
-  };
-
   const getAddress = () => {
     getDaumAddress(({ address, zoneCode }) => {
       // 상세주소로 focuse 필요
@@ -102,6 +80,7 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
         </button>
       </div>
       <AlertInput
+        name="name-input"
         labelText={INPUT_NAME_TITLE}
         placeholder={INPUT_NAME_PLACEHOLDER}
         value={totalState.addressInfo.name}
@@ -112,6 +91,7 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
         isAlert={nameCheck}
       />
       <AlertInput
+        name="call-input"
         labelText={INPUT_CALL_TITLE}
         placeholder={INPUT_CALL_PLACEHOLDER}
         value={totalState.addressInfo.call}
@@ -122,6 +102,7 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
         isAlert={callCheck}
       />
       <AlertInput
+        name="email-input"
         labelText={INPUT_EMAIL_TITLE}
         placeholder={INPUT_EMAIL_PLACEHOLDER}
         value={totalState.addressInfo.email}
@@ -134,7 +115,12 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
       <div className="address-form-container">
         <p className="input-form-label">{'배송지 선택'}</p>
         <div className="address-search-container">
-          <input placeholder="우편번호" value={totalState.addressInfo.zonecode} disabled />
+          <input
+            className="zonecode-input"
+            placeholder="우편번호"
+            value={totalState.addressInfo.zonecode}
+            disabled
+          />
           <button onClick={getAddress}>{'우편번호 찾기'}</button>
         </div>
         <input value={totalState.addressInfo.address} placeholder="주소" disabled />
