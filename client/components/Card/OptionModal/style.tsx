@@ -16,6 +16,34 @@ export const OptionModal = styled.div`
     margin-bottom: 28px;
   }
 
+  .product-count-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .product-count-container {
+    display: flex;
+    flex-direction: row;
+    width: 100px;
+    height: 22px;
+    align-items: center;
+    justify-content: space-between;
+
+    & > p {
+      margin-top: 3px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .num-scaler {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  }
+
   .option-container {
     max-height: 240px;
     overflow: auto;

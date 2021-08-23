@@ -8,6 +8,13 @@ export const Card = styled.div`
     grid-column: 1/2;
 
     .image {
+      .wc-container {
+        display: flex;
+        flex-direction: row;
+        svg {
+          margin-right: 12px;
+        }
+      }
       img {
         position: relative;
         width: 292.5px;

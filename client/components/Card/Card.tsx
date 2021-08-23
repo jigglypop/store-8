@@ -25,8 +25,9 @@ const Card = ({ index, item }: ICard) => {
     setModalOpen(false);
   };
 
-  const confirm = () => {
-    // product id 에 따라서 어쩌구 저쩌구
+  const confirm = (productOptionId: number | null, productCount: number) => {
+    addToCart({ productId: item.id, productOptionId, productCount });
+    setModalOpen(false);
   };
 
   return (
@@ -36,8 +37,10 @@ const Card = ({ index, item }: ICard) => {
           <Link to={`/product/${item.id}`}>
             <img src={imgsrc} alt="title" />
           </Link>
-          <Wish productId={item.id.toString()} name={item.title} />
-          <Cart onClick={() => setModalOpen(true)} />
+          <div className="wc-container">
+            <Wish productId={item.id.toString()} name={item.title} />
+            <Cart onClick={() => setModalOpen(true)} />
+          </div>
           {/* <div className="underbutton">
             <button className="smallbutton">
               <i className="far fa-heart"></i>
@@ -78,7 +81,7 @@ const Card = ({ index, item }: ICard) => {
           )} */}
         </div>
       </div>
-      {isModalOpen && <OptionModal closeForm={closeForm} confirm={confirm} />}
+      {isModalOpen && <OptionModal productId={item.id} closeForm={closeForm} confirm={confirm} />}
     </S.Card>
   );
 };

@@ -4,17 +4,16 @@ import * as S from './style';
 import checked from '@image/check-good.png';
 import type { AddressData } from '@middle/type/address/address';
 
-interface AddressProps {
-  addressData: AddressData;
+interface OptionProps {
+  title: string;
   selected: boolean;
 }
 
-function Option({ addressData, selected }: AddressProps): ReactElement {
+function Option({ title, selected }: OptionProps): ReactElement {
   return (
     <S.Option>
       <div className="option-container">
-        <p className="option-title">{addressData.address + ' ( ' + addressData.name + ' )'}</p>
-        <p className="option-dDay">{addressData.extraAddress}</p>
+        <p className="option-title">{title}</p>
       </div>
       {selected ? <img className="option-checked" src={checked} /> : <></>}
     </S.Option>
