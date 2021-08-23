@@ -10,6 +10,7 @@ import {
   TITLE_TOTAL_AMOUNT,
 } from '@constants/productDetail/productDetailInfo/productDetailInfo';
 import ProductInfoCount from './ProductInfoCount';
+import ProductOption from './ProductOption/ProductOption';
 
 import { useProduct } from '@client/hooks/product/product';
 
@@ -51,7 +52,11 @@ export default function ProductInfo({}: Props): ReactElement {
           </div>
         </div>
         <div className="producto-info__count">
-          <ProductInfoCount />
+          {product.options.length ? (
+            <ProductOption optionData={product.options} />
+          ) : (
+            <ProductInfoCount />
+          )}
         </div>
       </div>
       <div className="product__total-info">
