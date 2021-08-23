@@ -1,6 +1,8 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { getDaumAddress } from '@lib/daumAddress';
 import AlertInput from '@components/common/AlertInput/AlertInput';
+import checked from '@image/checked.png';
+import unchecked from '@image/unchecked.png';
 import type { AddressData } from '@middle/type/address/address';
 
 import {
@@ -30,6 +32,7 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
   const [emailCheck, setEmailCheck] = useState(0);
   const [extraAddress, setExtraAddress] = useState('');
   const [email, setEmail] = useState('');
+  const [isBase, setIsBase] = useState(false);
   const [addressInfo, setAddressInfo] = useState({
     address: selectedAddress.address,
     zoneCode: selectedAddress.zonecode,
@@ -40,7 +43,7 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
     setAddressInfo({
       address: selectedAddress.address,
       zoneCode: selectedAddress.zonecode,
-      extraEdit: false,
+      extraEdit: selectedAddress.zonecode === '',
     });
     setExtraAddress(selectedAddress.extraAddress);
     setName(selectedAddress.name);
@@ -126,14 +129,29 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
           <button onClick={getAddress}>{'우편번호 찾기'}</button>
         </div>
         <input value={addressInfo.address} placeholder="주소" disabled />
-        <input
-          value={extraAddress}
-          placeholder="상세주소"
-          disabled={addressInfo.extraEdit}
-          onChange={(e) => {
-            setExtraAddress(e.target.value);
-          }}
-        />
+        <div className="detail-address-page">
+          {addressInfo.extraEdit ? (
+            <input
+              value={extraAddress}
+              placeholder="상세주소"
+              disabled
+              onChange={(e) => setExtraAddress(e.target.value)}
+            />
+          ) : (
+            <input
+              value={extraAddress}
+              placeholder="상세주소"
+              onChange={(e) => setExtraAddress(e.target.value)}
+            />
+          )}
+
+          <div className="set-base-section">
+            <img onClick={() => setIsBase(!isBase)} src={isBase ? checked : unchecked} />
+            <div>
+              <p>{'기본 배송지로 설정'}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </S.UserInfo>
   );

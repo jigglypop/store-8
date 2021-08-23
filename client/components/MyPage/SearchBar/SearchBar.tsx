@@ -34,7 +34,6 @@ export default function SearchBar({ title, setOriginalResults, page }: Props): R
 
   const onSearchButtonClicked = async (e: React.MouseEvent) => {
     const data = await request.get(`/api/${page}?startDate=${startDate}&endDate=${endDate}`);
-    console.log(data.data);
     setOriginalResults(data.data);
 
     // alert(`

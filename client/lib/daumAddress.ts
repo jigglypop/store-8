@@ -25,7 +25,6 @@ export const getDaumAddress = (cb: (addressResult: AddressResult) => void) => {
   new window.daum.Postcode({
     theme: themeObj,
     oncomplete: function (data: any) {
-      console.log(data);
       let address = '';
       let extraAddress = '';
       let zoneCode = data.zonecode;
