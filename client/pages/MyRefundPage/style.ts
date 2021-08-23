@@ -5,6 +5,7 @@ export const MyRefundPage = styled.div`
   margin-left: 12px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 32px;
   min-height: 650px;
 `;
