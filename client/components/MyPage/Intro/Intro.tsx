@@ -26,12 +26,12 @@ export default function Intro(): ReactElement {
     // TODO : User ID 빼기
     dispatch(getCoupon({ userId: 1 }));
     getUsableMileage();
+    // TODO : 이 부분도 페이지가 바뀔 때 마다 쿠폰을 로딩하는데, 어떤 페이지로 들어와도 쿠폰을 한번은 로딩을 해야해서 고민입니다.
     getAllCoupon();
   }, []);
 
   useEffect(() => {
     let temp = 0;
-    console.log(coupon);
     coupon.forEach((element) => {
       if (!element.isUsed) temp += 1;
     });

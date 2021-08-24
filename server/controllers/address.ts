@@ -27,6 +27,8 @@ const findAll = async (userId: number) => {
       call: element.call,
       name: element.receiver,
       email: element.email,
+      isBase: element.isBase,
+      title: element.title,
     });
   });
 

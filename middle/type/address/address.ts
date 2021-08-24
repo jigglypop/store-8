@@ -6,6 +6,8 @@ export type AddressData = {
   call: string;
   name: string;
   email: string;
+  isBase: boolean;
+  title: string;
 };
 
 export type AddressGetReq = {

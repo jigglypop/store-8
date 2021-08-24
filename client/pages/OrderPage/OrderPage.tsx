@@ -46,12 +46,14 @@ const OrderPage = () => {
     isBase: false,
     addressInfo: {
       addressId: 0,
+      title: '',
       address: '',
       extraAddress: '',
       zonecode: '',
       name: '',
       email: '',
       call: '',
+      isBase: false,
     },
   });
 
