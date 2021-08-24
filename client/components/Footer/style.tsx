@@ -11,6 +11,10 @@ export const Footer = styled.footer`
   flex-direction: row;
   align-items: center;
 
+  .link-to {
+    cursor: pointer;
+  }
+
   .footerLogo {
     .mainVertical_svg__later-dark {
       fill: var(--text-pastel-black-dark);

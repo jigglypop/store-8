@@ -9,10 +9,10 @@ const Footer = () => {
       <div className="footerTextContainer">
         <div className="footerTextTop">
           <Link to="usage">
-            <p>{'이용약관'}</p>
+            <p className="link-to">{'이용약관'}</p>
           </Link>
           <Link to="private">
-            <p>{'개인정보 처리방침'}</p>
+            <p className="link-to">{'개인정보 처리방침'}</p>
           </Link>
         </div>
         <div className="footerTextBottom">
