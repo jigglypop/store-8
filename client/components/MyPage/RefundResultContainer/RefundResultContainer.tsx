@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function RefundResultContainer({ filterIndex }: Props): ReactElement {
-  ('데이터 조회 결과 리스트 다시 그리기');
   const { myRefund } = useMyRefund();
 
   const resultBoxList = myRefund
