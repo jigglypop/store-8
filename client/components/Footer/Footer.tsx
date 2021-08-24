@@ -17,7 +17,14 @@ const Footer = () => {
           </div>
           <div className="footerRow">
             <p className="footerRowTitle">{'메일 : '}</p>
-            <p className="footerEmail">{'dream_d4@woowa.store'}</p>
+            <p
+              className="footerEmail"
+              onClick={() => {
+                window.location.href = 'mailto:dream_d4@woowa.store';
+              }}
+            >
+              {'dream_d4@woowa.store'}
+            </p>
           </div>
           <div className="footerRow">
             <p className="footerRowTitle">{'Copyright'}</p>
