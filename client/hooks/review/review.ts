@@ -17,6 +17,7 @@ import {
   IReviewDeleteReq,
   IReviewLikeReq,
 } from '@middle/type/review/review';
+import cache from '@client/utils/cache';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
@@ -45,7 +46,7 @@ export function useReview() {
         dispatch(setError(res.errorMessage));
         return false;
       }
-      dispatch(getReview({ productId, query: `page=${currentPage}` }));
+      dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
       return true;
     };
 
@@ -57,18 +58,18 @@ export function useReview() {
       dispatch(setError(res.errorMessage));
       return false;
     }
-    dispatch(getReview({ productId, query: `page=${currentPage}` }));
+    dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
     return true;
   };
 
   const setCurrentPage = (newPage: number) => {
     dispatch(setPage(newPage));
-    dispatch(getReview({ productId, query: `page=${newPage}` }));
+    dispatch(getReview({ productId, query: `page=${newPage}`, token: cache.get('token') }));
   };
 
   // 페이지 시작
   useEffect(() => {
-    dispatch(getReview({ productId, query: `page=${currentPage}` }));
+    dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
   }, []);
 
   return {

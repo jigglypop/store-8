@@ -5,10 +5,14 @@ import { IReviewLikeReq } from '@middle/type/review/review';
 interface IGetReviewReq {
   productId: number;
   query: string;
+  token: string;
 }
 
-export const getReviewApi = async ({ productId, query }: IGetReviewReq, thunkApi: IThunkApi) => {
-  const data = await request.get(`/api/review/${productId}?${query}`);
+export const getReviewApi = async (
+  { productId, query, token }: IGetReviewReq,
+  thunkApi: IThunkApi
+) => {
+  const data = await request.getToken(`/api/review/${productId}?${query}`, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
