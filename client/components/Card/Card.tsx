@@ -7,6 +7,7 @@ import Cart from './Cart/Cart';
 import OptionModal from './OptionModal/OptionModal';
 import { useCart } from '@client/hooks/product/cart';
 import { useState } from 'react';
+import { createToast } from '@client/utils/createToast';
 
 interface ICard {
   index: number;
@@ -28,6 +29,7 @@ const Card = ({ index, item }: ICard) => {
   const confirm = (productOptionId: number | null, productCount: number) => {
     addToCart({ productId: item.id, productOptionId, productCount });
     setModalOpen(false);
+    createToast('장바구니 추가');
   };
 
   return (

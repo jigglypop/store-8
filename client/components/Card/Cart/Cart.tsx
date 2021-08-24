@@ -1,12 +1,13 @@
 import * as S from './style';
 import CartSvg from '@image/svg/cart.svg';
+import cache from '@utils/cache';
 
 type ICart = {
   onClick: () => void;
 };
 
 export default function Cart({ onClick }: ICart) {
-  const isLoggedIn = true; // TODO : check 를 통해 login 검사.
+  const isLoggedIn = cache.get('token');
   return (
     <>
       {isLoggedIn && (
