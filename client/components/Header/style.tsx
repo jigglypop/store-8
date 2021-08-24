@@ -219,8 +219,15 @@ export const Header = styled.header<IHeader>`
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     height: 70px;
-    svg {
+
+    .mainHorizontal_svg__later-dark {
       fill: var(--text-white);
+    }
+
+    .hamberger {
+      svg {
+        fill: var(--text-white);
+      }
     }
   }
 

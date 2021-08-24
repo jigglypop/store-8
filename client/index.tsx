@@ -11,6 +11,7 @@ import ResetStyle from './ResetStyle';
 import { HelmetProvider } from 'react-helmet-async';
 import { setDarkMode } from './utils/setDisplay';
 import { getMyWish } from './store/mywish/mywish';
+import { getRecommend } from './store/recommend/recommend';
 
 const loadUser = async () => {
   try {
@@ -18,6 +19,7 @@ const loadUser = async () => {
     if (token) {
       await store.dispatch(getCheck(cache.get('token')));
       await store.dispatch(getMyWish(cache.get('token')));
+      store.dispatch(getRecommend(cache.get('token')));
     }
   } catch (e) {
     console.log('로컬 스토리지 오류');
