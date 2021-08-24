@@ -14,6 +14,8 @@ import product from './product/product';
 import question from './product/question';
 import search from './search/search';
 import mywish from './mywish/mywish';
+import myOrder from './myOrder/myOrder';
+import myRefund from './myRefund/myRefund';
 import review from './product/review';
 import finish from './product/finish';
 
@@ -37,6 +39,8 @@ export const store = configureStore({
     question,
     search,
     mywish,
+    myOrder,
+    myRefund,
     review,
     finish,
   },

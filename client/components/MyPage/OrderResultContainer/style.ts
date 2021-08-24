@@ -5,7 +5,10 @@ export const OrderResultContainer = styled.div`
   flex-direction: column;
   width: 940px;
   margin-top: 32px;
+  color: var(--text-black-dark);
+
   .container-column {
+    color: var(--text-black);
     margin-top: 12px;
     display: flex;
     flex-direction: row;
@@ -35,12 +38,10 @@ export const OrderResultContainer = styled.div`
 
   .container-result-list {
     width: 100%;
-    height: 140px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
     align-items: center;
-    border-bottom: 1px solid var(--gray5);
 
     .text-no-data {
       margin-top: 65px;
@@ -49,15 +50,17 @@ export const OrderResultContainer = styled.div`
       text-align: center;
       width: 100%;
     }
-  }
 
-  &.no-data {
-    * {
-      display: hidden;
-    }
+    &.no-data {
+      border-bottom: 1px solid var(--gray5);
 
-    .text-no-data {
-      display: block;
+      * {
+        display: hidden;
+      }
+
+      .text-no-data {
+        display: block;
+      }
     }
   }
 `;

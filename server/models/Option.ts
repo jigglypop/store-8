@@ -8,19 +8,21 @@ import {
   Table,
   Unique,
   HasMany,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Product from './Product';
 import Order from './Order';
 import Cart from './Cart';
 
 export interface IOption {
-  id: number;
+  id?: number;
   title: string;
 }
 
 @Table
 export default class Option extends Model<IOption> {
   @AllowNull(false)
+  @AutoIncrement
   @PrimaryKey
   @Column
   id: number;

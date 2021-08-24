@@ -9,7 +9,8 @@ export const OrderBox = styled.div`
   flex-wrap: wrap;
   border-bottom: 1px solid var(--gray5);
 
-  > * {
+  > *,
+  .column-title {
     flex-grow: 1;
     width: 70px;
     height: 100%;
@@ -30,6 +31,7 @@ export const OrderBox = styled.div`
     border-right: 1px dotted var(--line-gray);
   }
 
+  .product-link,
   .column-title {
     flex-direction: row;
     width: 200px;
@@ -56,6 +58,10 @@ export const OrderBox = styled.div`
         color: var(--text-lightgray);
         text-align: left;
       }
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -85,7 +91,6 @@ export const OrderBox = styled.div`
 `;
 
 export const TextNoData = styled.div`
-  display: hidden;
   text-align: center;
   height: 75px;
   margin-top: 70px;

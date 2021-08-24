@@ -17,3 +17,4 @@ export const USE_COUPON: string = '사용할 쿠폰';
 export const USE_MILEAGE: string = '적립금 사용';
 export const TOTAL_USABLE_MILEAGE: string = '전체 사용 가능 금액 : ';
 export const CHOOSE_ADRESS_TEXT: string = '배송지를 선택해주세요.';
+export const CHOOSE_OPTION_TEXT: string = '옵션과 수량을 선택해주세요.';

@@ -1,11 +1,11 @@
 import { dateStringFormat } from '@client/utils/date';
 import React, { ReactElement } from 'react';
 import * as S from './style';
-
-import { IResult } from '../dummydata';
+import { Link } from '@client/utils/router';
+import { IOrder } from '@middle/type/myOrder/myOrder';
 
 interface Props {
-  result: IResult;
+  result: IOrder;
 }
 
 export default function OrderBox({ result }: Props): ReactElement {
@@ -15,15 +15,17 @@ export default function OrderBox({ result }: Props): ReactElement {
         <div>{dateStringFormat(new Date(result.date))}</div>
         <div>{result.orderNumber}</div>
       </div>
-      <div className="column-title">
-        <div className="wrapper-thumbnail">
-          <img src={result.productImgSrc} />
+      <Link to={`/product/${result.id}`} className="product-link">
+        <div className="column-title">
+          <div className="wrapper-thumbnail">
+            <img src={result.productImgSrc} />
+          </div>
+          <div className="container-title">
+            <div className="text-title">{result.title}</div>
+            {result.option ? <div className="text-option">{result.option}</div> : ''}
+          </div>
         </div>
-        <div className="container-title">
-          <div className="text-title">{result.title}</div>
-          {result.option ? <div className="text-option">{result.option}</div> : ''}
-        </div>
-      </div>
+      </Link>
       <div className="column-product">
         <div>
           {result.productAmount}원 / <span>{result.productCount}개</span>

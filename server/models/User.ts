@@ -7,6 +7,8 @@ import {
   Unique,
   HasMany,
   Default,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Cart from './Cart';
 
@@ -21,7 +23,7 @@ import Wish from './Wish';
 import ReviewLike from './ReviewLike';
 
 export interface IUser {
-  id?: string;
+  id?: number;
   username: string;
   hashedPassword: string;
   mileage: number;
@@ -32,9 +34,13 @@ export interface IUser {
 @Table
 export default class User extends Model<IUser> {
   @AllowNull(false)
-  @Unique
   @Column
   username: string;
+
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id: number;
 
   @AllowNull
   @Unique

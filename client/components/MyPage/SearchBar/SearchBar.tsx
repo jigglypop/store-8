@@ -2,14 +2,19 @@ import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 import { dateStringFormat } from '@utils/date';
 import request from '@client/api/utils/request';
-import { _filteredResults } from '../dummydata';
+import { useMyOrder } from '@client/hooks/myOrder/myOrder';
+import { useMyRefund } from '@client/hooks/myRefund/myRefund';
+import { createToast } from '@client/utils/createToast';
+
 interface Props {
   title: string;
-  setOriginalResults: Function;
   page: string;
 }
 
-export default function SearchBar({ title, setOriginalResults, page }: Props): ReactElement {
+export default function SearchBar({ title, page }: Props): ReactElement {
+  const setMyOrder = page == 'order' ? useMyOrder().setMyOrder : () => null;
+  const setMyRefund = page == 'refund' ? useMyRefund().setMyRefund : () => null;
+
   const today = new Date();
   const [selectedOffset, setSelectedOffset] = useState(7);
 
@@ -33,19 +38,10 @@ export default function SearchBar({ title, setOriginalResults, page }: Props): R
   };
 
   const onSearchButtonClicked = async (e: React.MouseEvent) => {
-    const data = await request.get(`/api/${page}?startDate=${startDate}&endDate=${endDate}`);
-    setOriginalResults(data.data);
+    if (page === 'order') await setMyOrder(startDate, endDate);
+    else if (page === 'refund') await setMyRefund(startDate, endDate);
 
-    // alert(`
-    // ${startDate} 부터 ${endDate} 까지 조회합니다.
-    // API 개발 중!! 데이터가 바뀌는지 확인하기 위해
-    // 더미데이터에서 인덱스가 홀수인 값들만 state 를 변경`);
-
-    // setOriginalResults(
-    //   _filteredResults.filter((result, idx) => {
-    //     return idx % 2;
-    //   })
-    // );
+    createToast(`${page.toUpperCase()} 데이터 조회`);
   };
 
   return (

@@ -9,3 +9,9 @@ export const getProductApi = async (productId: number, thunkApi: IThunkApi) => {
 
   return data.data;
 };
+
+export const getOptionApi = async (productId: number) => {
+  const data = await request.get(`/api/product/options/${productId}`);
+
+  return data.data;
+};

@@ -6,5 +6,6 @@ export const MyGoodsQAPage = styled.div`
   display: flex;
   flex-direction: row;
   gap: 32px;
-  min-height: 602px;
+  justify-content: center;
+  min-height: 650px;
 `;

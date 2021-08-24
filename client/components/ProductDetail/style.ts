@@ -4,7 +4,6 @@ export const ProductDetail = styled.div`
   display: flex;
   background-color: var(--body-background-dark);
   color: var(--text-gray-dark);
-  height: 530px;
   margin-bottom: 48px;
   .product-detail__info {
     margin-left: 80px;

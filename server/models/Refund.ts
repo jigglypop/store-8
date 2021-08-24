@@ -7,22 +7,27 @@ import {
   UpdatedAt,
   AllowNull,
   Table,
+  PrimaryKey,
+  AutoIncrement,
 } from 'sequelize-typescript';
 import Order from './Order';
 import User from './User';
 
 export interface IRefund {
-  id: number;
+  id?: number;
   ordersId: number;
   isConfirmed: boolean;
   userId: number;
+  state: string;
 }
 
 @Table({
   timestamps: true,
 })
 export default class Refund extends Model<IRefund> {
-  @Column({ primaryKey: true })
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id: number;
 
   @CreatedAt
@@ -33,6 +38,9 @@ export default class Refund extends Model<IRefund> {
 
   @Column
   isConfirmed: boolean;
+
+  @Column
+  state: string;
 
   @AllowNull(false)
   @ForeignKey(() => Order)

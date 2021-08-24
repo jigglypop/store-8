@@ -96,6 +96,12 @@ export const routes = [
     component: 'MyGoodsReviewPage',
   },
   {
+    path: '/mypage-info-edit',
+    name: 'mypage-info-edit',
+    title: '마이페이지 - 나의 정보수정',
+    component: 'MyInfoEditPage',
+  },
+  {
     path: '/category/:categoryId',
     name: 'category',
     title: '카테고리 페이지',

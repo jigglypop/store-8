@@ -8,19 +8,7 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import Product from '../models/Product';
-
-interface IResult {
-  date: Date; // order day
-  id: number; // refundId : for key
-  orderNumber: string; // order
-  title: string; // productId
-  option?: string; //
-  productAmount: number;
-  productCount: number;
-  state: string; // 주문상태
-  isConfirmed: boolean; // 확인/리뷰
-  productImgSrc: string;
-}
+import { IRefund } from '@middle/type/myRefund/myRefund';
 
 //상품 문의 조회
 export const getAllRefunds = async (req: Request, res: Response) => {
@@ -46,8 +34,8 @@ export const getAllRefunds = async (req: Request, res: Response) => {
     ],
   });
 
-  const results: IResult[] = refunds.map((refund) => {
-    const result: IResult = {
+  const results: IRefund[] = refunds.map((refund) => {
+    const result: IRefund = {
       id: refund.id,
       orderNumber: refund.order.orderNumber,
       title: refund.order.product.title,
@@ -56,7 +44,7 @@ export const getAllRefunds = async (req: Request, res: Response) => {
       state: refund.order.state,
       isConfirmed: refund.isConfirmed,
       productImgSrc: refund.order.product.productImgSrc,
-      date: new Date(refund.createdAt),
+      date: refund.createdAt.toString(),
     };
 
     console.log('만든 result', result);
