@@ -43,9 +43,10 @@ export interface IMyQuestion {
   answer: string | null;
   answerDate: string | null;
   productInfo: {
-    title: string;
-    productImgSrc: string;
-  } | void;
+    id: number;
+    title: string | void;
+    productImgSrc: string | void;
+  };
 }
 
 export interface IMyQuestionRes {

@@ -55,9 +55,10 @@ export const getProductTitleInfo = async (productId: number) => {
     attributes: ['title', 'productImgSrc'],
     where: { id: productId },
   });
-  if (!productSnapshot) return;
+
   return {
-    title: productSnapshot.getDataValue('title'),
-    productImgSrc: productSnapshot.getDataValue('productImgSrc'),
+    id: productId,
+    title: productSnapshot?.getDataValue('title'),
+    productImgSrc: productSnapshot?.getDataValue('productImgSrc'),
   };
 };

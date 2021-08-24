@@ -45,9 +45,10 @@ export interface IMyReview {
   date: string;
   imgSrc: string[];
   productInfo: {
-    title: string;
-    productImgSrc: string;
-  } | void;
+    id: number;
+    title: string | void;
+    productImgSrc: string | void;
+  };
 }
 
 export interface IMyReviewRes {
