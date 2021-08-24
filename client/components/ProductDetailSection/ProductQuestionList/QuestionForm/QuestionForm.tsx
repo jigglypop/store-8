@@ -1,4 +1,4 @@
-import { useEffect, MouseEvent, ReactElement, useState } from 'react';
+import { MouseEvent, ReactElement, useState } from 'react';
 import * as S from './style';
 
 import XIcon from '@image/icon/xIcon.svg';
@@ -7,7 +7,6 @@ import CheckBox from '@components/common/CheckBox/CheckBox';
 
 import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
-import { bodyScroll } from '@client/utils/utils';
 
 interface Props {
   cancelCbFn: () => void;
@@ -31,15 +30,6 @@ export default function QuestionForm({
   const [contents, setContents] = useState(editContents ?? '');
   const [isSecret, setIsSecret] = useState(editIsSecret || false);
 
-  useEffect(() => {
-    bodyScroll.lock();
-  }, []);
-
-  const closeModal = () => {
-    bodyScroll.unlock();
-    cancelCbFn();
-  };
-
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     setTitle(target.value);
   };
@@ -62,7 +52,7 @@ export default function QuestionForm({
     }
 
     if (!isSuccess) return;
-    closeModal();
+    cancelCbFn();
   };
 
   const isAbleSubmit = !!(title && contents);
@@ -72,7 +62,7 @@ export default function QuestionForm({
       <S.QuestionForm>
         <div className="question-form__header">
           <h2>{isEdit ? '상품문의 수정하기' : '상품 문의하기'}</h2>
-          <div className="cancel-btn" onClick={closeModal}>
+          <div className="cancel-btn" onClick={cancelCbFn}>
             <XIcon />
           </div>
         </div>
@@ -110,7 +100,7 @@ export default function QuestionForm({
             </div>
           </div>
           <div className="question-form__btns">
-            <button className="cancel-btn" onClick={closeModal}>
+            <button className="cancel-btn" onClick={cancelCbFn}>
               취소
             </button>
             <button className="submit-btn" disabled={!isAbleSubmit} onClick={handleSubmitClick}>
