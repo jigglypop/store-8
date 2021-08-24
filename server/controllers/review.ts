@@ -5,7 +5,6 @@ import { IReview } from './../../middle/type/review/review';
 import { err } from '../constants/error';
 import Review from '../models/Review';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
@@ -13,8 +12,6 @@ import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/consta
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
   const { page, limit } = req.query;
@@ -55,8 +52,6 @@ export const getReview = async (req: Request, res: Response) => {
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
       const { isLike, isDislike } = await isUserLikeReview(id, userId);
 
-      const isOwned = item.getDataValue('userId') === userId;
-
       return {
         id,
         title: item.getDataValue('title'),
@@ -68,7 +63,7 @@ export const getReview = async (req: Request, res: Response) => {
         dislikeCount,
         isLike,
         isDislike,
-        isOwned,
+        userId: item.getDataValue('userId'),
       };
     })
   ).catch((e) => {
@@ -82,8 +77,6 @@ export const getReview = async (req: Request, res: Response) => {
 
 //리뷰 생성
 export const createReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
 
@@ -114,8 +107,6 @@ export const createReview = async (req: Request, res: Response) => {
 
 //리뷰 수정
 export const updateReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
   const { reviewId, title, contents, score, imgSrc } = req.body;
@@ -151,8 +142,6 @@ export const updateReview = async (req: Request, res: Response) => {
 
 //리뷰 삭제
 export const deleteReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { productId } = req.params;
   const { reviewId } = req.body;
@@ -227,8 +216,6 @@ interface IReviewLike {
 //TODO - transaction
 //리뷰 공감/비공감
 export const likeReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
   const userId = 1;
   const { reviewId } = req.params;
 

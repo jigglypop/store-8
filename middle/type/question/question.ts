@@ -6,7 +6,7 @@ export interface IQuestion {
   date: string;
   answer: string | null;
   answerDate: string | null;
-  isOwned: boolean;
+  userId: number;
 }
 
 export interface IQuestionRes {

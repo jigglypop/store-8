@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { err } from '../constants/error';
 import Order from '../models/Order';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
