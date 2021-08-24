@@ -5,11 +5,14 @@ import { TextNoData } from '../ProductBox/style';
 import { useMyQuestion } from '@client/hooks/my/useMyQuestion';
 import { IMyQuestion } from '@middle/type/question/question';
 import MyQuestionBox from '../MyQuestionBox/MyQuestionBox';
+import Pagination from '@components/common/Pagination/Pagination';
+
+import { DEFAULT_MYQUESTION_LIMIT } from '@middle/constants/default';
 
 interface Props {}
 
 export default function MyQuestionResultContainer({}: Props): ReactElement {
-  const { myQuestions, totalCount } = useMyQuestion();
+  const { myQuestions, totalCount, currentPage, setCurrentPage } = useMyQuestion();
 
   const myQuestionList = !myQuestions ? (
     <TextNoData>조회 내역이 없습니다.</TextNoData>
@@ -30,6 +33,12 @@ export default function MyQuestionResultContainer({}: Props): ReactElement {
         <div className="column-date">날짜</div>
       </div>
       <ul className="container-result-list">{myQuestionList}</ul>
+      <Pagination
+        totalCount={totalCount}
+        defaultLimit={DEFAULT_MYQUESTION_LIMIT}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </S.MyQuestionResultContainer>
   );
 }

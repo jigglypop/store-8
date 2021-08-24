@@ -4,7 +4,6 @@ export const MyReviewResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 940px;
-  height: 50px;
   margin-top: 32px;
   color: var(--text-black-dark);
 
@@ -36,5 +35,9 @@ export const MyReviewResultContainer = styled.div`
       width: 70px;
       flex-grow: 0.5;
     }
+  }
+
+  .container-result-list {
+    height: 455px;
   }
 `;

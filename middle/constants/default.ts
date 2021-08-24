@@ -8,3 +8,6 @@ export const DEFAULT_REVIEW_LIMIT = 10;
 
 export const DEFAULT_QUESTION_PAGE = 1;
 export const DEFAULT_QUESTION_LIMIT = 10;
+
+export const DEFAULT_MYREVIEW_LIMIT = 5;
+export const DEFAULT_MYQUESTION_LIMIT = 5;

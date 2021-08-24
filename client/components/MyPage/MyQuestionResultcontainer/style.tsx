@@ -4,7 +4,6 @@ export const MyQuestionResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 940px;
-  height: 50px;
   margin-top: 32px;
   color: var(--text-black-dark);
 
@@ -31,5 +30,8 @@ export const MyQuestionResultContainer = styled.div`
       text-align: center;
       width: 70px;
     }
+  }
+  .container-result-list {
+    height: 455px;
   }
 `;

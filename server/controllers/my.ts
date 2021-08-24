@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import { IMyReview } from './../../middle/type/review/review';
 import { IMyQuestion } from './../../middle/type/question/question';
-import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
-import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/constants/default';
+import { DEFAULT_MYREVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
+import { DEFAULT_MYQUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/constants/default';
 
 import Review from '../models/Review';
 import Question from '../models/Question';
@@ -21,7 +21,7 @@ export const getMyReview = async (req: Request, res: Response) => {
   const { userId } = req.body;
 
   let _page: number = DEFAULT_REVIEW_PAGE;
-  let _limit: number = DEFAULT_REVIEW_LIMIT;
+  let _limit: number = DEFAULT_MYREVIEW_LIMIT;
   if (page) _page = +page - 1;
   if (limit) _limit = +limit;
 
@@ -69,7 +69,7 @@ export const getMyQuestion = async (req: Request, res: Response) => {
   const { userId } = req.body;
 
   let _page: number = DEFAULT_QUESTION_PAGE;
-  let _limit: number = DEFAULT_QUESTION_LIMIT;
+  let _limit: number = DEFAULT_MYQUESTION_LIMIT;
 
   if (page) _page = +page - 1;
   if (limit) _limit = +limit;
