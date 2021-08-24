@@ -1,14 +1,13 @@
 import { dateStringFormat } from '@client/utils/date';
 import React, { ReactElement } from 'react';
 import * as S from './style';
-import { IResult } from '../dummydata';
+import { IRefund } from '@middle/type/myRefund/myRefund';
 
 interface Props {
-  result: IResult;
-  key: number;
+  result: IRefund;
 }
 
-export default function RefundBox({ result, key }: Props): ReactElement {
+export default function RefundBox({ result }: Props): ReactElement {
   return (
     <S.RefundBox>
       <div className="column-date">

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Link } from '@utils/router';
-import { kstFormatter } from '@utils/utils';
+import { getShipmentAmount, kstFormatter } from '@utils/utils';
 import exMark from '@image/exclamMark.png';
 import {
   PROCEED_GUIDE_TEXT,
@@ -39,7 +39,9 @@ function Receipt({ metaData }: MetaData): ReactElement {
       </S.Receipt>
       <S.TotalPrice>
         <p>{TOTAL_ADD_TEXT}</p>
-        <p className="amount">{kstFormatter(metaData.totalPrice)}</p>
+        <p className="amount">
+          {kstFormatter(metaData.totalPrice + getShipmentAmount(metaData.totalPrice))}
+        </p>
       </S.TotalPrice>
       <S.OrderNow>
         <Link to={'/order'}>

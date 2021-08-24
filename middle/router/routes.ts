@@ -48,6 +48,12 @@ export const routes = [
     component: 'OrderPage',
   },
   {
+    path: '/finish',
+    name: 'finish',
+    title: '주문하기',
+    component: 'OrderFinishPage',
+  },
+  {
     path: '/mypage-order-list',
     name: 'mypage-order-list',
     title: '마이페이지 - 주문목록/배송조회',
@@ -82,6 +88,12 @@ export const routes = [
     name: 'mypage-goods-review',
     title: '마이페이지 - 나의 상품후기',
     component: 'MyGoodsReviewPage',
+  },
+  {
+    path: '/mypage-info-edit',
+    name: 'mypage-info-edit',
+    title: '마이페이지 - 나의 정보수정',
+    component: 'MyInfoEditPage',
   },
   {
     path: '/category/:categoryId',

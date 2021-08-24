@@ -108,6 +108,7 @@ export function Link({ children, to, className, id }: ILink) {
     </div>
   );
 }
+
 export function DummyLink({ to, name }: ILinkDummy) {
   const { onChangeRouterAll } = useRouter();
   const onClick = () => {

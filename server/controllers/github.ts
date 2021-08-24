@@ -58,7 +58,7 @@ export const githubtoken = async (req: any, res: Response) => {
   const imageUrl = data.avatar_url;
   if (!user) {
     const hashedPassword = await bcrypt.hash(password.toString(), 10);
-    user = await User.create({ username, hashedPassword, imageUrl });
+    user = await User.create({ username, hashedPassword, imageUrl, mileage: 0 });
   } else {
     const hashedPassword = user.getDataValue('hashedPassword');
     const valid = await bcrypt.compare(password, hashedPassword);

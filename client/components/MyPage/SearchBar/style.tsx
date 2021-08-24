@@ -5,6 +5,7 @@ export const SearchBar = styled.div`
   display: flex;
   flex-direction: column;
   font-size: var(--body-small-font);
+  color: var(--text-black-dark);
 
   h3 {
     font-size: var(--body-middle-font);
@@ -47,6 +48,7 @@ export const SearchBar = styled.div`
       height: 30px;
       text-align: center;
       border: 1px solid var(--gray5);
+      color: var(--text-black-dark);
     }
 
     .button-search {

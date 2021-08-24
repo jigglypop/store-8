@@ -1,18 +1,28 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import * as S from './style';
+import { useMyRefund } from '@client/hooks/myRefund/myRefund';
 
 interface Props {
+  filterIndex: number;
   eventHandler: Function;
-  index: number;
 }
 
-export default function RefundFilter({ eventHandler, index }: Props): ReactElement {
-  const isButtonClicked = (value: number): boolean => index === value;
+export default function RefundFilter({ filterIndex, eventHandler }: Props): ReactElement {
+  useEffect(() => console.log(filterIndex), [filterIndex]);
+
+  const isButtonClicked = (value: number): boolean => filterIndex === value;
+
+  const onFilterButtonHandler = (e: React.MouseEvent) => {
+    const { target } = e;
+    if (!(target instanceof HTMLButtonElement)) return;
+    console.log(`${target.value} click 했습니다`);
+    eventHandler(+target.value);
+  };
 
   return (
     <S.RefundFilter
       onClick={(e) => {
-        eventHandler(e);
+        onFilterButtonHandler(e);
       }}
     >
       <S.FilterButton value="0" isClicked={isButtonClicked(0)}>

@@ -1,10 +1,14 @@
 import { ICheckRes } from '@middle/type/auth/check';
-import { Link } from '../../../utils/router';
-import Avatar from '../../common/Avatar/Avatar';
+import { getCart } from '@store/product/cart';
+import { RootState } from '@store/index';
+import { Link } from '@utils/router';
 import * as S from '../style';
-import Hamberger from '@image/hamberger.svg';
+import Avatar from '@components/common/Avatar/Avatar';
 import UserSlider from '../Slider/UserSlider';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Hamberger from '@image/hamberger.svg';
 export interface IHeaderNotLoggedIn {
   isUp: boolean;
   onLogout: () => void;
@@ -45,10 +49,24 @@ export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
 
 export const HeaderLoggedIn = ({ check, onLogout, isUp }: IHeaderLoggedIn) => {
   const [isRight, setIsRight] = useState(false);
+  const [cartLength, setCartLength] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
+    dispatch(getCart({ userId: 1 }));
+  }, []);
+
+  const { cart } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    setCartLength(cart ? cart.length : 0);
+  }, [cart]);
 
   const onToggleUser = () => {
     setIsRight(!isRight);
   };
+
   return (
     <>
       <S.HeaderItem>
@@ -63,7 +81,12 @@ export const HeaderLoggedIn = ({ check, onLogout, isUp }: IHeaderLoggedIn) => {
         <div onClick={() => onLogout()}>로그아웃</div>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
-        <Link to="/cart">장바구니</Link>
+        <Link to="/cart">
+          <div className="cart-text">
+            <p>장바구니</p>
+            <p>{cart?.length}</p>
+          </div>
+        </Link>
       </S.HeaderItem>
       <S.HeaderItem className="isSmallHeader">
         <div className="hamberger" onClick={() => onToggleUser()}>

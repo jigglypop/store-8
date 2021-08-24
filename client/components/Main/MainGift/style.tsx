@@ -18,6 +18,10 @@ export const MainGift = styled(MainItem)`
     flex-direction: column;
   }
 
+  .gift-inner {
+    width: 100%;
+  }
+
   .gift-link {
     cursor: pointer;
   }
@@ -26,12 +30,12 @@ export const MainGift = styled(MainItem)`
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: 60vw 1fr;
+    grid-template-columns: 78% 1fr;
 
     .image {
       grid-column: 1/2;
       img {
-        width: 60vw;
+        width: 100%;
       }
     }
 
@@ -68,7 +72,7 @@ export const MainGift = styled(MainItem)`
         grid-column: 1/3;
         grid-row: 2/3;
         img {
-          width: 90vw;
+          width: 100%;
         }
       }
     }

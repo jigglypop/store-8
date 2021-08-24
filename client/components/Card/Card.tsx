@@ -4,17 +4,35 @@ import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
 import Wish from '../Wish/Wish';
 import * as S from './style';
+import Cart from './Cart/Cart';
+import OptionModal from './OptionModal/OptionModal';
+import { useCart } from '@client/hooks/product/cart';
+import { useState } from 'react';
+import { createToast } from '@client/utils/createToast';
 
 interface ICard {
   index: number;
   item: IProduct;
 }
 const Card = ({ index, item }: ICard) => {
-  // 여기 고쳐야 할듯. s3경로 재설정이 필요합니다.
-  let imgsrc = getS3Url(item.productImgSrc);
+let imgsrc = item.productImgSrc;
+const { addToCart } = useCart();
   if (imgsrc === undefined) {
     imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const closeForm = () => {
+    setModalOpen(false);
+  };
+
+  const confirm = (productOptionId: number | null, productCount: number) => {
+    addToCart({ productId: item.id, productOptionId, productCount });
+    setModalOpen(false);
+    createToast('장바구니 추가');
+  };
+
   return (
     <S.Card>
       <div className="cardInner">
@@ -22,7 +40,18 @@ const Card = ({ index, item }: ICard) => {
           <Link to={`/product/${item.id}`}>
             <img src={imgsrc} alt="title" />
           </Link>
-          <Wish productId={item.id.toString()} name={item.title} />
+          <div className="wc-container">
+            <Wish productId={item.id.toString()} name={item.title} />
+            <Cart onClick={() => setModalOpen(true)} />
+          </div>
+          {/* <div className="underbutton">
+            <button className="smallbutton">
+              <i className="far fa-heart"></i>
+            </button>
+            <button className="smallbutton">
+              <i className="fas fa-cart-plus"></i>
+            </button>
+          </div> */}
         </div>
         <div className="text">
           <p className="red">{Number(item.sale) === 0 ? '' : item.sale + '%'}</p>
@@ -33,6 +62,7 @@ const Card = ({ index, item }: ICard) => {
 
         <div className="mark"></div>
       </div>
+      {isModalOpen && <OptionModal productId={item.id} closeForm={closeForm} confirm={confirm} />}
     </S.Card>
   );
 };

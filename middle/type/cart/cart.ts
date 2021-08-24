@@ -43,3 +43,9 @@ export interface ICartAddReq {
 }
 
 export type ICartAddRes = CartData[];
+
+export type ICartAddData = {
+  productId: number;
+  productOptionId: number | null;
+  productCount: number;
+};
