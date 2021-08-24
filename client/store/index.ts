@@ -18,6 +18,8 @@ import myOrder from './myOrder/myOrder';
 import myRefund from './myRefund/myRefund';
 import review from './product/review';
 import finish from './product/finish';
+import myQuestion from './my/myQuestion';
+import myReview from './my/myReview';
 
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
@@ -43,6 +45,8 @@ export const store = configureStore({
     myRefund,
     review,
     finish,
+    myQuestion,
+    myReview,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
