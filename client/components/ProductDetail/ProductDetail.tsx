@@ -11,15 +11,16 @@ interface Props {}
 
 export default function ProductDetail({}: Props): ReactElement {
   const { product, loading, error } = useProduct();
+
   if (!product) return <></>;
 
-  const { id, productImgSrc, title, originalAmount, amount } = product;
+  const { id, productImgSrc, title, originalAmount, amount, options } = product;
 
   return (
     <S.ProductDetail>
       <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
-        <ProductInfo {...{ title, originalAmount, amount }} />
+        <ProductInfo />
         <DetailBtns {...{ id, title }} />
       </div>
     </S.ProductDetail>

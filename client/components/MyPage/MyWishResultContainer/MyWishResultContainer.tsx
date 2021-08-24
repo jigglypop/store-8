@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
 import * as S from './style';
 
-import { _filteredResults } from '../dummydata';
 import ProductBox from '../ProductBox/ProductBox';
-import { IProduct } from '@middle/type/product/product';
 import { TextNoData } from '../ProductBox/style';
 import { useMyWish } from '@client/hooks/mywish/category';
 

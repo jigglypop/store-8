@@ -51,6 +51,7 @@ export const MagnifiedImg = styled.div<IMagnifiedImg>`
   height: ${(props) => props.imgHeight}px;
   top: 0;
   left: ${(props) => props.imgWidth + 80}px;
+  z-index: 9999;
 
   img {
     width: ${(props) => props.imgWidth}px;
