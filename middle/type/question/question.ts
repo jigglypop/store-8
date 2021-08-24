@@ -33,3 +33,17 @@ export interface IQuestionPutReq {
 export interface IQuestionDeleteReq {
   questionId: number;
 }
+
+export interface IMyQuestion {
+  id: number;
+  title: string;
+  contents: string;
+  isSecret: boolean;
+  date: string;
+  answer: string | null;
+  answerDate: string | null;
+  productInfo: {
+    title: string;
+    productImgSrc: string;
+  } | void;
+}
