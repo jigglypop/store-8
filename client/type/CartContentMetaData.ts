@@ -13,6 +13,7 @@ type OrderContentMetaData = {
   shipmentPrice: number;
   totalDiscount: number;
   usableMileage: number;
+  mcDiscount: number;
 };
 
 export type { CartContentMetaData, OrderContentMetaData };

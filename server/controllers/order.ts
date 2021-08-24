@@ -6,24 +6,14 @@ import { decodeToken, getAccessToken } from '../utils/jwt';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
-
-interface IResult {
-  date: Date; // order day
-  id: number; // orderId : for key
-  orderNumber: string; // order
-  title: string; // productId
-  option?: string; //
-  productAmount: number;
-  productCount: number;
-  state: string; // 주문상태
-  isConfirmed: boolean; // 확인/리뷰
-  productImgSrc: string;
-}
+import User from '../models/User';
+import { IOrder } from '@middle/type/myOrder/myOrder';
 
 //상품 문의 조회
 export const getAllOrders = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const userId = 1; // decode JWT를 통해 가져와야함.
+  // const { id }: IUser = req.user;
 
   let refunds = await Order.findAll({
     where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },
@@ -36,8 +26,8 @@ export const getAllOrders = async (req: Request, res: Response) => {
     ],
   });
 
-  const results: IResult[] = refunds.map((order) => {
-    const result: IResult = {
+  const results: IOrder[] = refunds.map((order) => {
+    const result: IOrder = {
       id: order.id,
       orderNumber: order.orderNumber,
       title: order.product.title,
@@ -46,7 +36,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
       state: order.state,
       isConfirmed: order.isConfirmed,
       productImgSrc: order.product.productImgSrc,
-      date: new Date(order.createdAt),
+      date: order.createdAt.toString(),
     };
 
     return result;
@@ -55,15 +45,44 @@ export const getAllOrders = async (req: Request, res: Response) => {
   res.status(200).json({ data: results });
 };
 
+export const getMileage = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  const result = await User.findOne({ where: { id: userId } });
+  res.status(200).json({ data: result?.mileage });
+};
+
 // 주문 내역 생성
 export const createOrder = async (req: Request, res: Response) => {
   const orderNumber = makeRandomOrderId();
   const orderState = '처리중'; // 처리중, 배송중, 배송 완료
   const orderConfirm = false;
-  const { userId, productIds, productCounts, productAmounts, optionIds, addressId } = req.body;
+  const {
+    userId,
+    productIds,
+    productCounts,
+    productAmounts,
+    optionIds,
+    addressId,
+    useMileageAmount,
+    addMileageAmount,
+  } = req.body;
   // optionIds 는 없으면 0, 있다면 1 이상의 id 로 결정.
 
   // TODO : Transaction 추가 필요
+  const userInfo = await User.findAll({ where: { id: userId } });
+  if (userInfo[0].mileage < useMileageAmount) {
+    throw new HttpError({ status: 400, message: 'Mileage를 사용할 수 없습니다.' });
+  }
+
+  const userValid = await User.update(
+    { mileage: userInfo[0].mileage - useMileageAmount + addMileageAmount },
+    { where: { id: userId } }
+  );
+
+  if (!userValid) {
+    throw new HttpError({ status: 400, message: '마일리지 사용에 실패하였습니다.' });
+  }
+
   productIds.forEach((element: number, index: number) => {
     const valid = Order.create({
       orderNumber,

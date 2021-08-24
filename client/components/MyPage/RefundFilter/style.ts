@@ -15,7 +15,8 @@ interface IButtonIndex {
 }
 
 export const FilterButton = styled.button<IButtonIndex>`
-  background-color: white;
+  background-color: var(--body-background-dark);
+  color: var(--text-black-dark);
   ${({ isClicked }) =>
     isClicked
       ? `

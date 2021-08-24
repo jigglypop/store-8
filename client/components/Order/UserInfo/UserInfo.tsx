@@ -1,7 +1,10 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { getDaumAddress } from '@lib/daumAddress';
+import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import AlertInput from '@components/common/AlertInput/AlertInput';
-import type { AddressData } from '@middle/type/address/address';
+import checked from '@image/checked.png';
+import unchecked from '@image/unchecked.png';
+import { ProceedOrderProps } from '@middle/type/product/order';
 
 import {
   INPUT_NAME_PLACEHOLDER,
@@ -18,66 +21,53 @@ import {
 import * as S from './style';
 
 interface UserInfoProps {
+  totalState: ProceedOrderProps;
+  setTotalState: (props: ProceedOrderProps) => void;
   openForm: () => void;
-  selectedAddress: AddressData;
 }
 
-const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement => {
+const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): ReactElement => {
   const [nameCheck, setNameCheck] = useState(0);
-  const [name, setName] = useState('');
   const [callCheck, setCallCheck] = useState(0);
-  const [call, setCall] = useState('');
   const [emailCheck, setEmailCheck] = useState(0);
-  const [extraAddress, setExtraAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [addressInfo, setAddressInfo] = useState({
-    address: selectedAddress.address,
-    zoneCode: selectedAddress.zonecode,
-    extraEdit: true,
-  });
+  const [extraEdit, setExtraEdit] = useState(false);
 
   useEffect(() => {
-    setAddressInfo({
-      address: selectedAddress.address,
-      zoneCode: selectedAddress.zonecode,
-      extraEdit: false,
-    });
-    setExtraAddress(selectedAddress.extraAddress);
-    setName(selectedAddress.name);
-    setNameCheck(checkNameString(selectedAddress.name));
-    setCall(selectedAddress.call);
-    setCallCheck(checkCallString(selectedAddress.call));
-    setEmail(selectedAddress.email);
-    setEmailCheck(checkEmailString(selectedAddress.email));
-  }, [selectedAddress]);
+    setExtraEdit(totalState.addressInfo.zonecode === '');
+    setNameCheck(checkNameString(totalState.addressInfo.name));
+    setCallCheck(checkCallString(totalState.addressInfo.call));
+    setEmailCheck(checkEmailString(totalState.addressInfo.email));
+  }, [totalState.addressInfo]);
 
-  const checkNameString = (nameString: string): number => {
-    if (nameString.length === 0) return 0;
-    else if (nameString.length > 6) return 1;
-    else return 2;
+  const setName = (name: string) => {
+    setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, name } });
   };
 
-  const checkCallString = (callString: string): number => {
-    let checkReg = /^\d{2,3}-\d{3,4}-\d{4}$/;
-    if (callString.length === 0) return 0;
-    else {
-      return checkReg.test(callString) ? 2 : 1;
-    }
+  const setEmail = (email: string) => {
+    setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, email } });
   };
 
-  const checkEmailString = (emailString: string): number => {
-    let checkReg =
-      /^[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[@]{1}[-A-Za-z0-9_]+[-A-Za-z0-9_.]*[.]{1}[A-Za-z]{1,5}$/;
-    if (emailString.length === 0) return 0;
-    else {
-      return checkReg.test(emailString) ? 2 : 1;
-    }
+  const setCall = (call: string) => {
+    setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, call } });
+  };
+
+  const setExtraAddress = (extraAddress: string) => {
+    setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, extraAddress } });
+  };
+
+  const setIsBase = (isBase: boolean) => {
+    setTotalState({ ...totalState, isBase });
+  };
+
+  const setAddressInfo = (address: string, zonecode: string) => {
+    setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, address, zonecode } });
   };
 
   const getAddress = () => {
     getDaumAddress(({ address, zoneCode }) => {
       // 상세주소로 focuse 필요
-      setAddressInfo({ address, zoneCode, extraEdit: false });
+      setAddressInfo(address, zoneCode);
+      setExtraEdit(false);
     });
   };
 
@@ -90,9 +80,10 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
         </button>
       </div>
       <AlertInput
+        name="name-input"
         labelText={INPUT_NAME_TITLE}
         placeholder={INPUT_NAME_PLACEHOLDER}
-        value={name}
+        value={totalState.addressInfo.name}
         alertText={INPUT_NAME_ALERT}
         alertCheck={setNameCheck}
         stringChecker={checkNameString}
@@ -100,9 +91,10 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
         isAlert={nameCheck}
       />
       <AlertInput
+        name="call-input"
         labelText={INPUT_CALL_TITLE}
         placeholder={INPUT_CALL_PLACEHOLDER}
-        value={call}
+        value={totalState.addressInfo.call}
         alertText={INPUT_CALL_ALERT}
         alertCheck={setCallCheck}
         stringChecker={checkCallString}
@@ -110,9 +102,10 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
         isAlert={callCheck}
       />
       <AlertInput
+        name="email-input"
         labelText={INPUT_EMAIL_TITLE}
         placeholder={INPUT_EMAIL_PLACEHOLDER}
-        value={email}
+        value={totalState.addressInfo.email}
         alertText={INPUT_EMAIL_ALERT}
         alertCheck={setEmailCheck}
         stringChecker={checkEmailString}
@@ -122,18 +115,38 @@ const UserInfo = ({ openForm, selectedAddress }: UserInfoProps): ReactElement =>
       <div className="address-form-container">
         <p className="input-form-label">{'배송지 선택'}</p>
         <div className="address-search-container">
-          <input placeholder="우편번호" value={addressInfo.zoneCode} disabled />
+          <input
+            className="zonecode-input"
+            placeholder="우편번호"
+            value={totalState.addressInfo.zonecode}
+            disabled
+          />
           <button onClick={getAddress}>{'우편번호 찾기'}</button>
         </div>
-        <input value={addressInfo.address} placeholder="주소" disabled />
-        <input
-          value={extraAddress}
-          placeholder="상세주소"
-          disabled={addressInfo.extraEdit}
-          onChange={(e) => {
-            setExtraAddress(e.target.value);
-          }}
-        />
+        <input value={totalState.addressInfo.address} placeholder="주소" disabled />
+        <div className="detail-address-page">
+          {extraEdit ? (
+            <input
+              value={totalState.addressInfo.extraAddress}
+              placeholder="상세주소"
+              disabled
+              onChange={(e) => setExtraAddress(e.target.value)}
+            />
+          ) : (
+            <input
+              value={totalState.addressInfo.extraAddress}
+              placeholder="상세주소"
+              onChange={(e) => setExtraAddress(e.target.value)}
+            />
+          )}
+
+          <div className="set-base-section" onClick={() => setIsBase(!totalState.isBase)}>
+            <img src={totalState.isBase ? checked : unchecked} />
+            <div>
+              <p>{'기본 배송지로 설정'}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </S.UserInfo>
   );

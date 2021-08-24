@@ -1,70 +1,45 @@
 import React, { ReactElement, useState } from 'react';
 import * as S from './style';
 
-import PlusIcon from '@image/icon/plusIcon.svg';
-import MinusIcon from '@image/icon/minusIcon.svg';
 import {
   DELIVERY_INFO_FEE,
   DELIVERY_INFO_TIMELIMIT,
   TITLE_ORIGIN_AMOUNT,
   TITLE_SALE_AMOUNT,
   TITLE_DELIVERY,
-  TITLE_BUY_AMOUNT,
   TITLE_TOTAL_AMOUNT,
-} from '@client/constants/productDetail/productDetailInfo/productDetailInfo';
+} from '@constants/productDetail/productDetailInfo/productDetailInfo';
+import ProductInfoCount from './ProductInfoCount';
+import ProductOption from './ProductOption/ProductOption';
 
-interface Props {
-  title: string;
-  originalAmount?: number;
-  amount: number;
-}
+import { useProduct } from '@client/hooks/product/product';
 
-export default function ProductInfo({ title, originalAmount, amount }: Props): ReactElement {
-  const [count, setCount] = useState(1);
-  const [inputValue, setInputValue] = useState<string>(count + '');
+interface Props {}
 
-  const handleClickCountMinus = () => {
-    if (count <= 1) return;
-    setCount((count) => count - 1);
-    setInputValue((inputValue) => +inputValue - 1 + '');
-  };
+export default function ProductInfo({}: Props): ReactElement {
+  const { product, loading, error, count, optionCount } = useProduct();
+  if (!product) return <></>;
 
-  const handleClickCountPlus = () => {
-    if (count + 1 > 100) return;
-    setCount((count) => count + 1);
-    setInputValue((inputValue) => +inputValue + 1 + '');
-  };
-  const handleInputChange = ({ target }: { target: HTMLElement | null }) => {
-    if (!(target instanceof HTMLInputElement)) return;
-    if (+target.value > 100) setInputValue('99');
-    else setInputValue(target.value);
-    setInputValue(target.value);
-  };
+  const { title, originalAmount, amount } = product;
 
-  const handleCountSumbit = (e: React.FormEvent) => {
-    e.preventDefault();
+  let totalCount = 0;
 
-    if (+inputValue <= 0) {
-      setCount(1);
-      setInputValue('1');
-    } else if (+inputValue > 100) {
-      setCount(100);
-      setInputValue('100');
-    } else {
-      setCount(+inputValue);
-    }
-  };
+  if (optionCount) {
+    for (const option in optionCount) totalCount += optionCount[option];
+  } else {
+    totalCount = count;
+  }
 
   return (
     <S.ProductInfo>
       <div className="product__info">
         <h3 className="producto-info__title">{title}</h3>
-        {originalAmount && (
+        {originalAmount ? (
           <div className="product-info__origin-amount">
             <S.InfoTitle>{TITLE_ORIGIN_AMOUNT}</S.InfoTitle>
             <div className="stroke">{kstFormatter(originalAmount, true)}</div>
           </div>
-        )}
+        ) : null}
         <div className="producto-info__amount">
           <S.InfoTitle>{TITLE_SALE_AMOUNT}</S.InfoTitle>
           <div className="price">{kstFormatter(amount, true)}</div>
@@ -77,21 +52,16 @@ export default function ProductInfo({ title, originalAmount, amount }: Props): R
           </div>
         </div>
         <div className="producto-info__count">
-          <S.InfoTitle>{TITLE_BUY_AMOUNT}</S.InfoTitle>
-          <form onSubmit={handleCountSumbit}>
-            <button type="button" className="count-btn" onClick={handleClickCountMinus}>
-              <MinusIcon />
-            </button>
-            <input type="number" value={inputValue} onChange={handleInputChange} />
-            <button type="button" className="count-btn" onClick={handleClickCountPlus}>
-              <PlusIcon />
-            </button>
-          </form>
+          {product.options.length ? (
+            <ProductOption optionData={product.options} />
+          ) : (
+            <ProductInfoCount />
+          )}
         </div>
       </div>
       <div className="product__total-info">
         <S.InfoTitle>{TITLE_TOTAL_AMOUNT}</S.InfoTitle>
-        <div className="total-price">{kstFormatter(amount * count, true)}</div>
+        <div className="total-price">{kstFormatter(totalCount * amount, true)}</div>
       </div>
     </S.ProductInfo>
   );

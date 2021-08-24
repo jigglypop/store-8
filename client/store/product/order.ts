@@ -1,6 +1,5 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import createExtraPost from '@store/createExtra/createExtraPost';
 import { CartData } from '@middle/type/cart/cart';
 
 const name = 'order';

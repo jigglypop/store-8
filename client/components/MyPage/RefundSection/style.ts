@@ -5,4 +5,5 @@ export const RefundSection = styled.div`
   flex-direction: column;
   gap: 30px;
   padding-top: 12px;
+  margin-bottom: 30px;
 `;

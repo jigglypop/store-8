@@ -8,6 +8,7 @@ export const DetailBtns = styled.div<StyledProps>`
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+  margin-top: 30px;
 
   background-color: var(--body-background-dark);
 

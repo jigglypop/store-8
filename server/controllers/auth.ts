@@ -52,7 +52,7 @@ export const register = async (req: Request, res: Response) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await User.create({ username, email, hashedPassword });
+  const user = await User.create({ username, email, hashedPassword, mileage: 0 });
   const serialized = await serialize(user);
   const token = await generateToken(user);
   res.set('token', token);

@@ -1,5 +1,6 @@
 import {
   AllowNull,
+  AutoIncrement,
   BelongsTo,
   Column,
   ForeignKey,
@@ -30,6 +31,7 @@ export interface IProduct {
 @Table
 export default class Product extends Model<IProduct> {
   @AllowNull(false)
+  @AutoIncrement
   @PrimaryKey
   @Column
   id: number;
