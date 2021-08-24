@@ -1,4 +1,5 @@
 import * as S from './style';
+import { Link } from '@utils/router';
 import FooterSvg from '@image/svg/mainVertical.svg';
 
 const Footer = () => {
@@ -7,8 +8,12 @@ const Footer = () => {
       <FooterSvg className="footerLogo" />
       <div className="footerTextContainer">
         <div className="footerTextTop">
-          <p>{'이용약관'}</p>
-          <p>{'개인정보 처리방침'}</p>
+          <Link to="usage">
+            <p>{'이용약관'}</p>
+          </Link>
+          <Link to="private">
+            <p>{'개인정보 처리방침'}</p>
+          </Link>
         </div>
         <div className="footerTextBottom">
           <div className="footerRow">
