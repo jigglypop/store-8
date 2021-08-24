@@ -42,16 +42,16 @@ export const routes = [
     component: 'ProductDetailPage',
   },
   {
-    path: '/store',
-    name: 'store',
-    title: '스토어',
-    component: 'StorePage',
-  },
-  {
     path: '/order',
     name: 'order',
     title: '주문하기',
     component: 'OrderPage',
+  },
+  {
+    path: '/finish',
+    name: 'finish',
+    title: '주문하기',
+    component: 'OrderFinishPage',
   },
   {
     path: '/mypage-order-list',

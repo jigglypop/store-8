@@ -157,6 +157,14 @@ export const HeaderItem = styled.div`
       fill: #ffffff;
     }
   }
+
+  .cart-text {
+    display: flex;
+    flex-direction: row;
+    p {
+      margin-right: 10px;
+    }
+  }
 `;
 
 // 헤더 바깥
@@ -211,8 +219,15 @@ export const Header = styled.header<IHeader>`
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     height: 70px;
-    svg {
+
+    .mainHorizontal_svg__later-dark {
       fill: var(--text-white);
+    }
+
+    .hamberger {
+      svg {
+        fill: var(--text-white);
+      }
     }
   }
 

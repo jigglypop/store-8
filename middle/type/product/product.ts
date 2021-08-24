@@ -21,3 +21,9 @@ export interface IProductRes {
   categoryId: number;
   options: any;
 }
+
+export interface IProductInfo {
+  id: number;
+  title: string | void;
+  productImgSrc: string | void;
+}

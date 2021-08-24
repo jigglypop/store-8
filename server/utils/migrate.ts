@@ -105,11 +105,11 @@ export const migrate = async () => {
   await initCategory();
   await initProduct();
   await initOption();
-  await initUser(); // not yet
-  await initAddress();
-  await initCoupon();
-  await initUserCoupon();
-  await initCart();
-  await initOrder();
-  await initRefund();
+  // await initUser(); // not yet
+  // await initAddress();
+  // await initCoupon();
+  // await initUserCoupon();
+  // await initCart();
+  // await initOrder();
+  // await initRefund();
 };

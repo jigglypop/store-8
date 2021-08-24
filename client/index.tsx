@@ -11,6 +11,8 @@ import ResetStyle from './ResetStyle';
 import { HelmetProvider } from 'react-helmet-async';
 import { setDarkMode } from './utils/setDisplay';
 import { getMyWish } from './store/mywish/mywish';
+import { getRecommend } from './store/recommend/recommend';
+import { getCart } from './store/product/cart';
 
 const loadUser = async () => {
   try {
@@ -18,6 +20,9 @@ const loadUser = async () => {
     if (token) {
       await store.dispatch(getCheck(cache.get('token')));
       await store.dispatch(getMyWish(cache.get('token')));
+      // 여기 추가(추후 토큰 방식 연동시 변경 요망)
+      await store.dispatch(getCart({ userId: 1 }));
+      store.dispatch(getRecommend(cache.get('token')));
     }
   } catch (e) {
     console.log('로컬 스토리지 오류');

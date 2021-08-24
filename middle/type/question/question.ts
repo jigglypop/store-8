@@ -6,7 +6,7 @@ export interface IQuestion {
   date: string;
   answer: string | null;
   answerDate: string | null;
-  isOwned: boolean;
+  userId: number;
 }
 
 export interface IQuestionRes {
@@ -32,4 +32,17 @@ export interface IQuestionPutReq {
 }
 export interface IQuestionDeleteReq {
   questionId: number;
+}
+
+export interface IMyQuestion extends IQuestion {
+  productInfo: {
+    id: number;
+    title: string | void;
+    productImgSrc: string | void;
+  };
+}
+
+export interface IMyQuestionRes {
+  totalCount: number;
+  questions: IMyQuestion[];
 }

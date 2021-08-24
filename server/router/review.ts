@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 
-// import jwtMiddleware from '../middleware/jwtMiddleware';
+import jwtMiddleware from '../middleware/jwtMiddleware';
 import wrapAsync from '../utils/wrapAsync';
 import uploadImage from '../middleware/uploadImage';
 
@@ -13,11 +13,11 @@ import {
   likeReview,
 } from './../controllers/review';
 
-reviewRouter.get('/:productId', wrapAsync(getReview));
-reviewRouter.post('/:productId', wrapAsync(createReview));
-reviewRouter.put('/:productId', wrapAsync(updateReview));
-reviewRouter.delete('/:productId', wrapAsync(deleteReview));
+reviewRouter.get('/:productId', jwtMiddleware, wrapAsync(getReview));
+reviewRouter.post('/:productId', jwtMiddleware, wrapAsync(createReview));
+reviewRouter.put('/', jwtMiddleware, wrapAsync(updateReview));
+reviewRouter.delete('/', jwtMiddleware, wrapAsync(deleteReview));
 
-reviewRouter.post('/like/:reviewId', wrapAsync(likeReview));
+reviewRouter.post('/like/:reviewId', jwtMiddleware, wrapAsync(likeReview));
 
 export default reviewRouter;

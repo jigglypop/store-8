@@ -3,6 +3,11 @@ import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
 import Wish from '../Wish/Wish';
 import * as S from './style';
+import Cart from './Cart/Cart';
+import OptionModal from './OptionModal/OptionModal';
+import { useCart } from '@client/hooks/product/cart';
+import { useState } from 'react';
+import { createToast } from '@client/utils/createToast';
 
 interface ICard {
   index: number;
@@ -10,9 +15,19 @@ interface ICard {
 }
 const Card = ({ index, item }: ICard) => {
   let imgsrc = item.productImgSrc;
-  if (imgsrc === undefined) {
-    imgsrc = `/public/image/product/big/${index + 1}.jpg`;
-  }
+  const { addToCart } = useCart();
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const closeForm = () => {
+    setModalOpen(false);
+  };
+
+  const confirm = (productOptionId: number | null, productCount: number) => {
+    addToCart({ productId: item.id, productOptionId, productCount });
+    setModalOpen(false);
+    createToast('장바구니 추가');
+  };
+
   return (
     <S.Card>
       <div className="cardInner">
@@ -20,7 +35,10 @@ const Card = ({ index, item }: ICard) => {
           <Link to={`/product/${item.id}`}>
             <img src={imgsrc} alt="title" />
           </Link>
-          <Wish productId={item.id ? item.id.toString() : ''} name={item.title} />
+          <div className="wc-container">
+            <Wish productId={item.id.toString()} name={item.title} />
+            <Cart onClick={() => setModalOpen(true)} />
+          </div>
           {/* <div className="underbutton">
             <button className="smallbutton">
               <i className="far fa-heart"></i>
@@ -37,30 +55,9 @@ const Card = ({ index, item }: ICard) => {
           <p className="small">{dot(item.amount)} 원</p>
         </div>
 
-        <div className="mark">
-          {/* {item.tagType === 1 ? (
-            <button className="green">
-              <p className="marktext">GREEN</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType <= 1 ? (
-            <button className="new">
-              <p className="marktext">NEW</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType === 0 ? (
-            <button className="sale">
-              <p className="marktext">SALE</p>
-            </button>
-          ) : (
-            ""
-          )} */}
-        </div>
+        <div className="mark"></div>
       </div>
+      {isModalOpen && <OptionModal productId={item.id} closeForm={closeForm} confirm={confirm} />}
     </S.Card>
   );
 };

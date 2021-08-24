@@ -1,12 +1,14 @@
-import React, { ReactElement, useState, MouseEvent } from 'react';
+import { ReactElement, useState, MouseEvent } from 'react';
 import * as S from './style';
 
 import Modal from '@components/common/Modal/Modal';
 import XIcon from '@image/icon/xIcon.svg';
-import { useProduct } from '@client/hooks/product/product';
 import ImgListForm from './ImgListForm/ImgListForm';
 import ScoreChecker from './ScoreChecker/ScoreChecker';
+
+import { useProduct } from '@client/hooks/product/product';
 import { useReview } from '@client/hooks/review/review';
+import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
   closeReviewForm: () => void;
@@ -15,6 +17,7 @@ interface Props {
   editContents?: string;
   editImgList?: string[];
   editScore?: number;
+  productInfo?: IProductInfo;
 }
 
 export default function ReviewForm({
@@ -24,6 +27,7 @@ export default function ReviewForm({
   editContents,
   editImgList,
   editScore,
+  productInfo,
 }: Props): ReactElement {
   const isEdit = reviewId !== undefined;
   const { product } = useProduct();
@@ -70,9 +74,9 @@ export default function ReviewForm({
           </div>
         </div>
         <div className="review-form__title">
-          <img src={product?.productImgSrc} alt="image" />
+          <img src={productInfo?.productImgSrc || product?.productImgSrc} alt="image" />
           <div className="title">
-            <div>{product?.title}</div>
+            <div>{productInfo?.title || product?.title}</div>
             <ScoreChecker {...{ score, setScore }} />
           </div>
         </div>

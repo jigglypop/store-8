@@ -7,10 +7,10 @@ interface IQuestionGetReq {
   query: string;
 }
 
-export const getQuestionApi = async (
-  { productId, query }: IQuestionGetReq,
-  thunkApi: IThunkApi
-) => {
+export const getQuestionApi = async (info: IQuestionGetReq, thunkApi: IThunkApi) => {
+  if (!info) return;
+  const { productId, query } = info;
+
   const data = await request.get(`/api/question/${productId}?${query}`);
   if (data.status !== 200) {
     const error = data.message;
@@ -21,6 +21,8 @@ export const getQuestionApi = async (
 
 // requestionFrom 타입 지정
 export const createQuestionApi = async <T>(productId: number, requestForm: T) => {
+  if (!productId || !requestForm) return;
+
   const data = await fetchWrapper<T, IQuestionPostRes>(
     `/api/question/${productId}`,
     'POST',
@@ -30,22 +32,18 @@ export const createQuestionApi = async <T>(productId: number, requestForm: T) =>
   return data;
 };
 
-export const updateQuestionApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IQuestionPostRes>(
-    `/api/question/${productId}`,
-    'PUT',
-    requestForm
-  );
+export const updateQuestionApi = async <T>(requestForm: T) => {
+  if (!requestForm) return;
+
+  const data = await fetchWrapper<T, IQuestionPostRes>(`/api/question`, 'PUT', requestForm);
 
   return data;
 };
 
-export const deleteQuestionApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IQuestionPostRes>(
-    `/api/question/${productId}`,
-    'DELETE',
-    requestForm
-  );
+export const deleteQuestionApi = async <T>(requestForm: T) => {
+  if (!requestForm) return;
+
+  const data = await fetchWrapper<T, IQuestionPostRes>(`/api/question`, 'DELETE', requestForm);
 
   return data;
 };

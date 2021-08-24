@@ -6,6 +6,7 @@ import {
   Table,
   Unique,
   HasMany,
+  Default,
   PrimaryKey,
   AutoIncrement,
 } from 'sequelize-typescript';
@@ -25,6 +26,7 @@ export interface IUser {
   id?: number;
   username: string;
   hashedPassword: string;
+  mileage: number;
   email?: string;
   imageUrl?: string;
 }
@@ -51,6 +53,10 @@ export default class User extends Model<IUser> {
   @AllowNull
   @Column
   imageUrl: string;
+
+  @Default(0)
+  @Column
+  mileage: number;
 
   @HasMany(() => Cart)
   carts: Cart[];

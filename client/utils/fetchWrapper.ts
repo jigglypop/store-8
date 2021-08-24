@@ -22,7 +22,7 @@ async function fetchWrapper<reqType, resType>(
       method,
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
       credentials: 'include', //refresh 토큰 때 cookie사용하기 위해서 미리 설정
       body: JSON.stringify(body),

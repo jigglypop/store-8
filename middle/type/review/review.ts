@@ -9,7 +9,7 @@ export interface IReview {
   dislikeCount: number;
   isLike: boolean;
   isDislike: boolean;
-  isOwned: boolean;
+  userId: number;
 }
 
 export interface IReviewRes {
@@ -35,4 +35,17 @@ export interface IReviewDeleteReq {
 export interface IReviewLikeReq {
   isLike: boolean;
   isDislike: boolean;
+}
+
+export interface IMyReview extends IReview {
+  productInfo: {
+    id: number;
+    title: string | void;
+    productImgSrc: string | void;
+  };
+}
+
+export interface IMyReviewRes {
+  totalCount: number;
+  reviews: IMyReview[];
 }

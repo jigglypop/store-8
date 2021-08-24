@@ -5,7 +5,6 @@ import { IReview } from './../../middle/type/review/review';
 import { err } from '../constants/error';
 import Review from '../models/Review';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
@@ -13,25 +12,18 @@ import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/consta
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
   const { productId } = req.params;
   const { page, limit } = req.query;
-
-  let _page: number = DEFAULT_REVIEW_PAGE;
-  let _limit: number = DEFAULT_REVIEW_LIMIT;
+  const { userId } = req.body;
 
   if (!productId) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  if (page) {
-    _page = +page - 1;
-  }
-  if (limit) {
-    _limit = +limit;
-  }
+  let _page: number = DEFAULT_REVIEW_PAGE;
+  let _limit: number = DEFAULT_REVIEW_LIMIT;
+  if (page) _page = +page - 1;
+  if (limit) _limit = +limit;
 
   const reviewSnapshot = await Review.findAndCountAll({
     attributes: ['id', 'title', 'contents', 'score', 'createdAt', 'userId'],
@@ -55,8 +47,6 @@ export const getReview = async (req: Request, res: Response) => {
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
       const { isLike, isDislike } = await isUserLikeReview(id, userId);
 
-      const isOwned = item.getDataValue('userId') === userId;
-
       return {
         id,
         title: item.getDataValue('title'),
@@ -68,7 +58,7 @@ export const getReview = async (req: Request, res: Response) => {
         dislikeCount,
         isLike,
         isDislike,
-        isOwned,
+        userId: item.getDataValue('userId'),
       };
     })
   ).catch((e) => {
@@ -82,12 +72,9 @@ export const getReview = async (req: Request, res: Response) => {
 
 //리뷰 생성
 export const createReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
   const { productId } = req.params;
 
-  const { title, contents, score, imgSrc } = req.body;
+  const { title, contents, score, imgSrc, userId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {
@@ -98,8 +85,8 @@ export const createReview = async (req: Request, res: Response) => {
   const createResult = await Review.create({
     userId,
     productId: +productId,
-    title: title as string,
-    contents: contents as string,
+    title: title,
+    contents: contents,
     score: +score,
   });
 
@@ -114,13 +101,9 @@ export const createReview = async (req: Request, res: Response) => {
 
 //리뷰 수정
 export const updateReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
-  const { productId } = req.params;
-  const { reviewId, title, contents, score, imgSrc } = req.body;
+  const { reviewId, title, contents, score, imgSrc, userId } = req.body;
 
-  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+  const isUserOwnedReview = await isUserReview(userId, +reviewId);
 
   //TODO - title,contents validation
   if (!isUserOwnedReview) {
@@ -133,13 +116,11 @@ export const updateReview = async (req: Request, res: Response) => {
       contents,
       score: +score,
       userId,
-      productId: +productId,
     },
     {
       where: {
         id: +reviewId,
         userId,
-        productId,
       },
     }
   );
@@ -151,13 +132,9 @@ export const updateReview = async (req: Request, res: Response) => {
 
 //리뷰 삭제
 export const deleteReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
-  const { productId } = req.params;
-  const { reviewId } = req.body;
+  const { reviewId, userId } = req.body;
 
-  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+  const isUserOwnedReview = await isUserReview(userId, +reviewId);
 
   //TODO - title,contents validation
   if (!isUserOwnedReview) {
@@ -168,7 +145,6 @@ export const deleteReview = async (req: Request, res: Response) => {
     where: {
       id: +reviewId,
       userId,
-      productId,
     },
   });
 
@@ -176,20 +152,19 @@ export const deleteReview = async (req: Request, res: Response) => {
 };
 
 //유저가 접근한 리뷰가 유저의 리뷰가 맞는지 체크
-const isUserReview = async (userId: number, productId: number, reviewId: number) => {
+const isUserReview = async (userId: number, reviewId: number) => {
   const reviewSnapshot = await Review.findOne({
     attributes: ['id'],
     where: {
       id: reviewId,
       userId,
-      productId,
     },
   });
   return !!reviewSnapshot;
 };
 
 //리뷰 이미지 조회
-const getReviewImgs = async (reviewId: number): Promise<string[]> => {
+export const getReviewImgs = async (reviewId: number): Promise<string[]> => {
   const reviewImgSnapshot = await ReviewImg.findAll({
     attributes: ['img_src'],
     where: { reviewId: +reviewId },
@@ -227,12 +202,9 @@ interface IReviewLike {
 //TODO - transaction
 //리뷰 공감/비공감
 export const likeReview = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
   const { reviewId } = req.params;
 
-  const { isLike, isDislike } = req.body;
+  const { isLike, isDislike, userId } = req.body;
 
   const cancelResult = await cancelReviewLike({ isLike, isDislike, userId, reviewId: +reviewId });
 
@@ -284,7 +256,7 @@ const createReviewLike = async ({ userId, reviewId, isLike, isDislike }: IReview
 };
 
 //공감 비공감 개수
-const getReviewLikeCount = async (reviewId: number) => {
+export const getReviewLikeCount = async (reviewId: number) => {
   const likeCount = await ReviewLike.count({
     where: { reviewId, isLike: true },
   });
@@ -295,7 +267,7 @@ const getReviewLikeCount = async (reviewId: number) => {
   return { likeCount, dislikeCount };
 };
 //유저의 공감 비공감 상태
-const isUserLikeReview = async (reviewId: number, userId: number) => {
+export const isUserLikeReview = async (reviewId: number, userId: number) => {
   const isLike = await ReviewLike.count({
     where: { reviewId, userId, isLike: true },
   });

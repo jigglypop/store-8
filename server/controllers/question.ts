@@ -1,14 +1,12 @@
 import { Request, Response } from 'express';
 
 import { IQuestion } from './../../middle/type/question/question';
+import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/constants/default';
 
 import { err } from '../constants/error';
 import Question from '../models/Question';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
-
-import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/constants/default';
 
 /**
  * API
@@ -16,21 +14,17 @@ import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/co
  */
 //상품 문의 조회
 export const getQuestion = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
   const { productId } = req.params;
   const { page, limit } = req.query;
 
+  if (!productId) {
+    throw new HttpError(err.INVALID_INPUT_ERROR);
+  }
+
   let _page: number = DEFAULT_QUESTION_PAGE;
   let _limit: number = DEFAULT_QUESTION_LIMIT;
-
-  if (page) {
-    _page = +page - 1;
-  }
-  if (limit) {
-    _limit = +limit;
-  }
+  if (page) _page = +page - 1;
+  if (limit) _limit = +limit;
 
   const questionSnapshot = await Question.findAndCountAll({
     attributes: [
@@ -55,7 +49,7 @@ export const getQuestion = async (req: Request, res: Response) => {
     const id = item.getDataValue('id');
     const date = item.getDataValue('createdAt');
     const answerDate = item.getDataValue('replyDate');
-    const isOwned = item.getDataValue('userId') === userId;
+
     if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
     return {
@@ -66,7 +60,7 @@ export const getQuestion = async (req: Request, res: Response) => {
       isSecret: item.getDataValue('isSecret'),
       answer: item.getDataValue('reply') ?? null,
       answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
-      isOwned,
+      userId: item.getDataValue('userId'),
     };
   });
 
@@ -75,11 +69,8 @@ export const getQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 생성
 export const createQuestion = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
   const { productId } = req.params;
-  const { title, contents, isSecret } = req.body;
+  const { title, contents, isSecret, userId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents) {
@@ -99,13 +90,9 @@ export const createQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 수정
 export const updateQuestion = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
-  const { productId } = req.params;
-  const { questionId, title, contents, isSecret } = req.body;
+  const { questionId, title, contents, isSecret, userId } = req.body;
 
-  const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
+  const isUserOwnedQuestion = await isUserQuestion(userId, +questionId);
 
   //TODO - title,contents validation
   if (!isUserOwnedQuestion) {
@@ -118,13 +105,11 @@ export const updateQuestion = async (req: Request, res: Response) => {
       contents,
       isSecret: !!isSecret,
       userId,
-      productId: +productId,
     },
     {
       where: {
         id: +questionId,
         userId,
-        productId,
       },
     }
   );
@@ -134,13 +119,9 @@ export const updateQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 삭제
 export const deleteQuestion = async (req: Request, res: Response) => {
-  //   const accessToken = getAccessToken(req.headers.authorization);
-  //   const { id: userId } = decodeToken(accessToken);
-  const userId = 1;
-  const { productId } = req.params;
-  const { questionId } = req.body;
+  const { questionId, userId } = req.body;
 
-  const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
+  const isUserOwnedQuestion = await isUserQuestion(userId, +questionId);
 
   //TODO - title,contents validation
   if (!isUserOwnedQuestion) {
@@ -151,7 +132,6 @@ export const deleteQuestion = async (req: Request, res: Response) => {
     where: {
       id: +questionId,
       userId,
-      productId,
     },
   });
 
@@ -159,13 +139,12 @@ export const deleteQuestion = async (req: Request, res: Response) => {
 };
 
 //유저가 접근한 문의가 유저의 문의가 맞는지 체크
-const isUserQuestion = async (userId: number, productId: number, questionId: number) => {
+const isUserQuestion = async (userId: number, questionId: number) => {
   const questionSnapshot = await Question.findOne({
     attributes: ['id'],
     where: {
       id: questionId,
       userId,
-      productId,
     },
   });
   return !!questionSnapshot;

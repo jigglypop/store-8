@@ -4,15 +4,20 @@ import EditIcon from '@image/icon/editIcon.svg';
 import DeleteIcon from '@image/icon/deleteIcon.svg';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 import QuestionForm from '../../QuestionForm/QuestionForm';
+import { IQuestion, IMyQuestion } from '@middle/type/question/question';
+
 import { useQuestion } from '@client/hooks/question/question';
-import { IQuestion } from '@middle/type/question/question';
+import { useCheck } from '@client/hooks/auth/check';
+import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
-  questionData: IQuestion;
+  questionData: IQuestion | IMyQuestion;
+  productInfo?: IProductInfo;
 }
 
-export default function QuestionDetail({ questionData }: Props): ReactElement {
-  const { id, title, contents, answer, answerDate, isSecret, isOwned } = questionData;
+export default function QuestionDetail({ questionData, productInfo }: Props): ReactElement {
+  const { id, title, contents, answer, answerDate, isSecret, userId } = questionData;
+  const { check } = useCheck();
   const { deleteQuestion } = useQuestion();
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
@@ -35,7 +40,7 @@ export default function QuestionDetail({ questionData }: Props): ReactElement {
       <div className="question-detail__question">
         <div className="question-detail__title">Q</div>
         <div className="question-detail__content">{contents}</div>
-        {isOwned && (
+        {userId === check?.id && (
           <div className="question-detail__btns">
             <EditIcon onClick={handleEditClick} className="question-detail__edit-btn" />
             <DeleteIcon onClick={handleDeleteClick} className="question-detail__delete-btn" />
@@ -58,6 +63,7 @@ export default function QuestionDetail({ questionData }: Props): ReactElement {
           editTitle={title}
           editContents={contents}
           editIsSecret={isSecret}
+          productInfo={productInfo}
         />
       )}
       {isDelete && (

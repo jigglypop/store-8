@@ -14,10 +14,14 @@ export const categoryOrderItems: ICategoryOrderItem[] = [
   },
   {
     id: '3',
-    title: '낮은 가격순',
+    title: '등록순',
   },
   {
     id: '4',
+    title: '낮은 가격순',
+  },
+  {
+    id: '5',
     title: '높은 가격순',
   },
 ];

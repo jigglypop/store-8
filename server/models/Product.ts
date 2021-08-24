@@ -18,7 +18,7 @@ import Review from './Review';
 import Wish from './Wish';
 
 export interface IProduct {
-  id?: number;
+  id: number;
   title: string;
   productImgSrc: string;
   detailImgSrc: string;

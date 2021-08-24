@@ -15,6 +15,8 @@ export const MainItem = styled.div`
     grid-template-rows: 100px 1fr;
   }
   .title {
+    position: relative;
+    width: 100%;
     grid-row: 1/2;
   }
   .content {

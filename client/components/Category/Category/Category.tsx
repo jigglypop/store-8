@@ -5,12 +5,10 @@ import { categoryKeyName } from '@middle/category/category';
 import * as S from './style';
 import { categoryOrderItems, ICategoryOrderItem } from '@client/constants/category_order';
 import { Link } from '@client/utils/router';
+import { useCategory } from '@client/hooks/category/category';
 
-interface ICategoryComponent {
-  cards: IProduct[] | undefined;
-}
-
-function Category({ cards }: ICategoryComponent) {
+export default function Category() {
+  const { category } = useCategory();
   const { router, query } = useRouter();
   return (
     <S.Category>
@@ -32,8 +30,9 @@ function Category({ cards }: ICategoryComponent) {
           </div>
         </div>
         <div className="content">
-          {cards &&
-            cards.map((item: IProduct, index: number) => (
+          {category &&
+            category.rows &&
+            category.rows.map((item: IProduct, index: number) => (
               <Card key={index} index={index} item={item} />
             ))}
         </div>
@@ -41,4 +40,3 @@ function Category({ cards }: ICategoryComponent) {
     </S.Category>
   );
 }
-export default Category;

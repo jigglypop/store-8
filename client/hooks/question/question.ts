@@ -10,6 +10,8 @@ import {
 } from '@middle/type/question/question';
 import { useRouter } from '../router/router';
 import { createQuestionApi, updateQuestionApi, deleteQuestionApi } from '@client/api/question';
+import { getMyQuestion } from '@client/store/my/myQuestion';
+import cache from '@client/utils/cache';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
@@ -23,6 +25,7 @@ export function useQuestion() {
   const { question, loading, error, currentPage } = useSelector(
     (state: RootState) => state.question
   );
+  const { currentPage: myQuestionPage } = useSelector((state: RootState) => state.myQuestion);
   const dispatch = useDispatch();
 
   const fetchQuestion =
@@ -31,8 +34,8 @@ export function useQuestion() {
       let res;
 
       if (type === 'create') res = await createQuestionApi<T>(productId, questionForm);
-      if (type === 'update') res = await updateQuestionApi<T>(productId, questionForm);
-      if (type === 'delete') res = await deleteQuestionApi<T>(productId, questionForm);
+      if (type === 'update') res = await updateQuestionApi<T>(questionForm);
+      if (type === 'delete') res = await deleteQuestionApi<T>(questionForm);
 
       if (!res) return false;
 
@@ -40,7 +43,10 @@ export function useQuestion() {
         dispatch(setError(res.errorMessage));
         return false;
       }
+
       dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
+      dispatch(getMyQuestion({ query: `page=${myQuestionPage}`, token: cache.get('token') }));
+
       return true;
     };
 

@@ -25,7 +25,7 @@ export const Intro = styled.div`
   }
 
   h2 {
-    font-family: 'BMDOHYEON';
+    font-family: 'Do Hyeon', sans-serif;
     font-size: 60px;
     font-weight: bold;
     color: var(--text-dark-picker);
@@ -44,6 +44,26 @@ export const Intro = styled.div`
     & > div:first-child {
       color: var(--text-black-dark);
       margin-bottom: 10px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    .user-grade {
+      font-size: 15px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    h2 {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .user-grade {
+      font-size: 10px;
     }
   }
 `;

@@ -2,16 +2,11 @@ import { Request, Response } from 'express';
 import { err } from '../constants/error';
 import Order from '../models/Order';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
+import User from '../models/User';
 import { IOrder } from '@middle/type/myOrder/myOrder';
-
-// interface IUser {
-//   id: number;
-//   email: string;
-// }
 
 //상품 문의 조회
 export const getAllOrders = async (req: Request, res: Response) => {
@@ -49,15 +44,44 @@ export const getAllOrders = async (req: Request, res: Response) => {
   res.status(200).json({ data: results });
 };
 
+export const getMileage = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  const result = await User.findOne({ where: { id: userId } });
+  res.status(200).json({ data: result?.mileage });
+};
+
 // 주문 내역 생성
 export const createOrder = async (req: Request, res: Response) => {
   const orderNumber = makeRandomOrderId();
   const orderState = '처리중'; // 처리중, 배송중, 배송 완료
   const orderConfirm = false;
-  const { userId, productIds, productCounts, productAmounts, optionIds, addressId } = req.body;
+  const {
+    userId,
+    productIds,
+    productCounts,
+    productAmounts,
+    optionIds,
+    addressId,
+    useMileageAmount,
+    addMileageAmount,
+  } = req.body;
   // optionIds 는 없으면 0, 있다면 1 이상의 id 로 결정.
 
   // TODO : Transaction 추가 필요
+  const userInfo = await User.findAll({ where: { id: userId } });
+  if (userInfo[0].mileage < useMileageAmount) {
+    throw new HttpError({ status: 400, message: 'Mileage를 사용할 수 없습니다.' });
+  }
+
+  const userValid = await User.update(
+    { mileage: userInfo[0].mileage - useMileageAmount + addMileageAmount },
+    { where: { id: userId } }
+  );
+
+  if (!userValid) {
+    throw new HttpError({ status: 400, message: '마일리지 사용에 실패하였습니다.' });
+  }
+
   productIds.forEach((element: number, index: number) => {
     const valid = Order.create({
       orderNumber,

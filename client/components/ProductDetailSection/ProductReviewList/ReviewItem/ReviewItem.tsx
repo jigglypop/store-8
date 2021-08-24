@@ -9,13 +9,12 @@ import ReviewDetail from './ReviewDetail/ReviewDetail';
 
 interface Props {
   reviewData: IReview;
-  userId: string;
   reviewNo: number;
 }
 
-export default function ReviewItem({ reviewData, userId, reviewNo }: Props): ReactElement {
+export default function ReviewItem({ reviewData, reviewNo }: Props): ReactElement {
   const MAX_SCORE = 5;
-  const { title, score, date, imgSrc, likeCount, dislikeCount } = reviewData;
+  const { title, score, date, imgSrc, likeCount, dislikeCount, userId } = reviewData;
 
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
@@ -41,7 +40,7 @@ export default function ReviewItem({ reviewData, userId, reviewNo }: Props): Rea
           </div>
         </div>
         <div>
-          <div className="review-info user-id">{hideId(userId)}</div>
+          <div className="review-info user-id">{hideId('testId')}</div>
           <div className="review-info date">{date}</div>
           <div className="review-info status">
             공감<span>{likeCount}</span>

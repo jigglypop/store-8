@@ -56,4 +56,12 @@ function getCouponColor(amount: number): string {
   }
 }
 
+export const bodyScroll = {
+  lock: () => (document.body.style.overflow = 'hidden'),
+  unlock: () => {
+    document.body.style.overflow = 'unset';
+    document.body.style.overflowX = 'hidden';
+  },
+};
+
 export { kstFormatter, getShipmentAmount, getMileage, mediaStringFormatter, getCouponColor };

@@ -12,5 +12,6 @@ export const USERS: IUser[] = [
     hashedPassword: 'qwer223',
     email: '0woodev',
     imageUrl: '',
+    mileage: 0,
   },
 ];

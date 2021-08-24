@@ -26,7 +26,7 @@ export const check = async (req: IAuthRequest, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new HttpError({ status: 400, message: '이름과 비밀번호를 모두 입력해 주세요' });
+    throw new HttpError({ ...err.INVALID_INPUT_ERROR });
   }
   const user = await User.findOne({ where: { username } });
   if (!user) {
@@ -52,7 +52,7 @@ export const register = async (req: Request, res: Response) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await User.create({ username, email, hashedPassword });
+  const user = await User.create({ username, email, hashedPassword, mileage: 0 });
   const serialized = await serialize(user);
   const token = await generateToken(user);
   res.set('token', token);

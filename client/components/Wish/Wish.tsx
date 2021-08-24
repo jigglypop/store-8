@@ -1,6 +1,8 @@
 import * as S from './style';
 import Heart from '@image/svg/Heart.svg';
 import { useWish } from '@client/hooks/wish/wish';
+import { useCheck } from '@client/hooks/auth/check';
+import cache from '@utils/cache';
 
 type IWish = {
   productId: string;
@@ -8,10 +10,11 @@ type IWish = {
 };
 
 export default function Wish({ productId, name }: IWish) {
-  const { isInMyWish, isLoggedIn, toggleWish } = useWish(productId, name);
+  const { isInMyWish, toggleWish } = useWish(productId, name);
+  const { check } = useCheck();
   return (
     <>
-      {isLoggedIn && (
+      {check && (
         <S.Wish isInMyWish={isInMyWish} onClick={() => toggleWish()}>
           <Heart />
         </S.Wish>

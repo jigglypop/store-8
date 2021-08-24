@@ -25,6 +25,19 @@ export const NavigatorGroup = styled.div`
   /* padding: 12px; */
   font-size: var(--body-small-font);
 
+  div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+    transition: all 0.3s ease-in;
+  }
+
+  div:hover {
+    cursor: pointer;
+    background-color: var(--gray3);
+  }
+
   h4 {
     font-size: var(--body-middle-font);
     font-weight: 600;

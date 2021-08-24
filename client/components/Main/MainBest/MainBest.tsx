@@ -1,10 +1,10 @@
 import { useMain } from '@client/hooks/main/main';
 import { IProduct } from '@server/models/Product';
 import Card from '../../Card/Card';
+import { IMain } from '../common/type';
 import * as S from './style';
 
-const MainBest = () => {
-  const { main } = useMain();
+const MainBest = ({ main }: IMain) => {
   return (
     <S.MainBest>
       <div className="main-inner">

@@ -8,7 +8,7 @@ export const uploadImg = async (formData: any) => {
     const res = await fetch('http://localhost:3000/api/upload', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
       body: formData,
     });

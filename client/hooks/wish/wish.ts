@@ -30,12 +30,16 @@ export function useWish(productId: string, name?: string) {
   useEffect(() => {
     if (mywish) {
       setIsLoggedIn(true);
-      for (let item of mywish.rows) {
-        if (productId === (item.id ? item.id.toString() : '')) {
-          setIsInMyWish(true);
-          break;
-        } else {
-          setIsInMyWish(false);
+      if (mywish.rows.length === 0) {
+        setIsInMyWish(false);
+      } else {
+        for (let item of mywish.rows) {
+          if (productId === item.id.toString()) {
+            setIsInMyWish(true);
+            break;
+          } else {
+            setIsInMyWish(false);
+          }
         }
       }
     }

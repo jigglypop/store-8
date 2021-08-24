@@ -8,14 +8,30 @@ export const MainGift = styled(MainItem)`
   justify-content: center;
   align-items: center;
 
+  .main-inner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .title {
     grid-row: 1/2;
+    position: relative;
+    width: 100%;
+    display: flex;
   }
 
   .content {
+    position: relative;
+    width: 100%;
     grid-row: 2/3;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
   }
 
   .gift-link {
@@ -26,18 +42,23 @@ export const MainGift = styled(MainItem)`
     position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: 60vw 1fr;
+    grid-template-columns: 2fr 1fr;
 
     .image {
+      position: relative;
+      width: 100%;
       grid-column: 1/2;
+      grid-row: 1/3;
       img {
-        width: 60vw;
+        position: relative;
+        width: 100%;
       }
     }
 
     .text {
       margin: 10px;
-      grid-column: 3/4;
+      grid-row: 1/3;
+      grid-column: 2/3;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -56,21 +77,33 @@ export const MainGift = styled(MainItem)`
     font-size: 14px;
     color: var(--text-black-dark);
   }
+
   @media only screen and (max-width: 1200px) {
-    .gift-item {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 2fr;
-      .text {
-        grid-row: 1/2;
-        grid-column: 1/3;
-      }
-      .image {
-        grid-column: 1/3;
-        grid-row: 2/3;
-        img {
-          width: 90vw;
-        }
-      }
+    .large {
+      font-size: 20px;
+    }
+
+    .small {
+      font-size: 10px;
+    }
+  }
+  @media only screen and (max-width: 900px) {
+    .large {
+      font-size: 15px;
+    }
+
+    .small {
+      font-size: 12px;
+      font-size: 10px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .large {
+      font-size: 12px;
+    }
+
+    .small {
+      font-size: 10px;
     }
   }
 `;

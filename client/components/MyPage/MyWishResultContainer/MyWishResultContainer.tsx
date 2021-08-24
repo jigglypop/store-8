@@ -18,15 +18,9 @@ export default function ResultContainer({ title }: Props): ReactElement {
         {title} <b>{mywish?.rows.length}</b>건
       </h4>
       <div className="container-column">
-        <div className="column-button">
-          <h4>찜하기</h4>
-        </div>
-        <div className="column-title">
-          <h4>상품명/옵션</h4>
-        </div>
-        <div className="column-price">
-          <h4>상품금액/수량</h4>
-        </div>
+        <div className="column-date">찜하기</div>
+        <div className="column-title">상품명/옵션</div>
+        <div className="column-price">상품금액/수량</div>
       </div>
       {!mywish?.rows.length ? (
         <div className={'container-result-list no-data'}>

@@ -4,7 +4,6 @@ import Refund from '../models/Refund';
 import Order from '../models/Order';
 import Option from '../models/Option';
 import HttpError from '../utils/HttpError';
-import { decodeToken, getAccessToken } from '../utils/jwt';
 import { dateStringFormat } from '../utils/date';
 import { makeWhereQueryWithDate } from '../utils/make-query';
 import Product from '../models/Product';
