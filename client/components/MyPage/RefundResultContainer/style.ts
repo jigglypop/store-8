@@ -4,7 +4,9 @@ export const RefundResultContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 940px;
-  margin-top: 32px;
+  margin-bottom: 12px;
+  color: var(--text-black-dark);
+
   .container-column {
     margin-top: 12px;
     display: flex;
@@ -13,6 +15,7 @@ export const RefundResultContainer = styled.div`
     background-color: var(--gray6);
     border-top: 1px solid var(--gray4);
     border-bottom: 1px solid var(--gray5);
+    color: var(--text-black);
 
     > * {
       width: 70px;
@@ -35,12 +38,10 @@ export const RefundResultContainer = styled.div`
 
   .container-result-list {
     width: 100%;
-    height: 140px;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
     align-items: center;
-    border-bottom: 1px solid var(--gray5);
 
     .text-no-data {
       margin-top: 65px;
@@ -49,15 +50,17 @@ export const RefundResultContainer = styled.div`
       text-align: center;
       width: 100%;
     }
-  }
 
-  &.no-data {
-    * {
-      display: hidden;
-    }
+    &.no-data {
+      border-bottom: 1px solid var(--gray5);
 
-    .text-no-data {
-      display: block;
+      * {
+        display: hidden;
+      }
+
+      .text-no-data {
+        display: block;
+      }
     }
   }
 `;
