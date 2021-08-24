@@ -5,7 +5,7 @@ import { RootState } from '@client/store';
 import { getMyQuestion, setPage } from '@client/store/my/myQuestion';
 import cache from '@client/utils/cache';
 
-export function useQuestion() {
+export function useMyQuestion() {
   const { myQuestion, loading, error, currentPage } = useSelector(
     (state: RootState) => state.myQuestion
   );

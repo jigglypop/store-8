@@ -21,7 +21,7 @@ import cache from '@client/utils/cache';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
-export function useReview() {
+export function useMyReview() {
   const {
     router: { params },
   } = useRouter();
