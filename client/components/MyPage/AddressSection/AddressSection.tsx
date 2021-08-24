@@ -3,20 +3,51 @@ import * as S from './style';
 
 import Intro from '@components/MyPage/Intro/Intro';
 import AddressResult from './AddressResult/AddressResult';
+import AddressAddModal from './AddressAddModal/AddressAddModal';
+import AddressDeleteModal from './AddressDeleteModal/AddressDeleteModal';
+import AddressModifyModal from './AddressModifyModal/AddressModifyModal';
 import numUp from '@image/numUp.png';
 
 import { getAddress } from '@client/store/address/address';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 export default function AddressSection(): ReactElement {
   const dispatch = useDispatch();
   const address = useSelector((state: RootState) => state.address.address);
+  const [isDeleteModalFocused, setDeleteModalFocused] = useState(false);
+  const [isModifyModalFocused, setModifyModalFocused] = useState(false);
+  const [isAddModalFocused, setAddModalFocused] = useState(false);
 
   useEffect(() => {
     dispatch(getAddress({ userId: 1 }));
   }, []);
+
+  const closeDeleteModal = () => {
+    setDeleteModalFocused(false);
+  };
+
+  const openDeleteModal = () => {
+    setDeleteModalFocused(true);
+  };
+
+  const closeModifyModal = () => {
+    setModifyModalFocused(false);
+  };
+
+  const openModifyModal = () => {
+    setModifyModalFocused(true);
+  };
+
+  const closeAddModal = () => {
+    setAddModalFocused(false);
+  };
+
+  const openAddModal = () => {
+    setAddModalFocused(true);
+  };
 
   return (
     <S.AddressSection>
@@ -43,13 +74,23 @@ export default function AddressSection(): ReactElement {
       </div>
       <div>
         {address.map((element, index) => {
-          return <AddressResult key={index} address={element} />;
+          return (
+            <AddressResult
+              openModifyModal={openModifyModal}
+              openDeleteModal={openDeleteModal}
+              key={index}
+              address={element}
+            />
+          );
         })}
       </div>
       <div className="add-address">
-        <img src={numUp} />
-        <p>{'배송지 추가하기'}</p>
+        <img src={numUp} onClick={openAddModal} />
+        <p onClick={openAddModal}>{'배송지 추가하기'}</p>
       </div>
+      {isDeleteModalFocused && <AddressDeleteModal closeForm={closeDeleteModal} addressId={0} />}
+      {isModifyModalFocused && <AddressModifyModal closeForm={closeModifyModal} addressId={0} />}
+      {isAddModalFocused && <AddressAddModal closeForm={closeAddModal} />}
     </S.AddressSection>
   );
 }

@@ -6,9 +6,15 @@ import * as S from './style';
 
 interface AddressInfo {
   address: AddressData;
+  openDeleteModal: () => void;
+  openModifyModal: () => void;
 }
 
-export default function AddressResult({ address }: AddressInfo): ReactElement {
+export default function AddressResult({
+  address,
+  openDeleteModal,
+  openModifyModal,
+}: AddressInfo): ReactElement {
   return (
     <S.AddressResult>
       <div className="base-check-section center-align">
@@ -29,8 +35,12 @@ export default function AddressResult({ address }: AddressInfo): ReactElement {
         <p className="content-text">{address.email}</p>
       </div>
       <div className="address-modify-section center-align">
-        <button className="content-text modify-button">{'수정'}</button>
-        <button className="content-text remove-button">{'삭제'}</button>
+        <button onClick={openModifyModal} className="content-text modify-button">
+          {'수정'}
+        </button>
+        <button onClick={openDeleteModal} className="content-text remove-button">
+          {'삭제'}
+        </button>
       </div>
     </S.AddressResult>
   );
