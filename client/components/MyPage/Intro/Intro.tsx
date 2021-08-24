@@ -1,14 +1,21 @@
 import React, { ReactElement } from 'react';
 import * as S from './style';
 import { useCheck } from '@client/hooks/auth/check';
+import { useOrder } from '@client/hooks/order/order';
 import Avatar from '@client/components/common/Avatar/Avatar';
+import { useEffect } from 'react';
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
   // { couponCount, mileage, name, grade } 에 해당하는 customHook 을 만들거나,
   // useEffect로 API 요청
   // 임시로 둠
-  const { couponCount, mileage, grade } = { couponCount: 1, mileage: 1000, grade: '일반회원' };
+  const { couponCount, grade } = { couponCount: 1, grade: '일반회원' };
+  const { mileage, getUsableMileage } = useOrder();
+
+  useEffect(() => {
+    getUsableMileage();
+  }, []);
 
   return (
     <S.Intro>
