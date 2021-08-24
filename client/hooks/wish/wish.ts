@@ -31,7 +31,7 @@ export function useWish(productId: string, name?: string) {
     if (mywish) {
       setIsLoggedIn(true);
       for (let item of mywish.rows) {
-        if (productId === item.id.toString()) {
+        if (productId === (item.id ? item.id.toString() : '')) {
           setIsInMyWish(true);
           break;
         } else {

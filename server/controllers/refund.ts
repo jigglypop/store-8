@@ -15,8 +15,6 @@ export const getAllRefunds = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const userId = 1; // decode JWT를 통해 가져와야함.
 
-  console.log('getAllRefunds 호출');
-
   let refunds = await Refund.findAll({
     where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },
     include: [
@@ -47,7 +45,6 @@ export const getAllRefunds = async (req: Request, res: Response) => {
       date: refund.createdAt.toString(),
     };
 
-    console.log('만든 result', result);
     return result;
   });
 

@@ -20,7 +20,7 @@ const Card = ({ index, item }: ICard) => {
           <Link to={`/product/${item.id}`}>
             <img src={imgsrc} alt="title" />
           </Link>
-          <Wish productId={item.id.toString()} name={item.title} />
+          <Wish productId={item.id ? item.id.toString() : ''} name={item.title} />
           {/* <div className="underbutton">
             <button className="smallbutton">
               <i className="far fa-heart"></i>

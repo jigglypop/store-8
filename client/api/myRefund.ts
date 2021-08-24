@@ -9,7 +9,6 @@ interface IDateReq {
 // 찜 목록
 export const myRefundApi = async ({ startDate, endDate }: IDateReq, thunkApi: IThunkApi) => {
   const token = cache.get('token');
-  console.log('token: ', token);
   const data = await request.getToken(
     `/api/refund?startDate=${startDate}&endDate=${endDate}`,
     token
@@ -19,6 +18,5 @@ export const myRefundApi = async ({ startDate, endDate }: IDateReq, thunkApi: IT
     return await thunkApi.rejectWithValue(error);
   }
 
-  console.log(data.data);
   return data.data;
 };

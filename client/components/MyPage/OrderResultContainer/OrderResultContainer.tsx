@@ -11,16 +11,6 @@ interface Props {}
 export default function OrderResultContainer({}: Props): ReactElement {
   const { myOrder } = useMyOrder();
 
-  console.log(`myOrder: ${myOrder}`);
-
-  console.log(
-    !myOrder.length ? (
-      <TextNoData>조회 내역이 없습니다.</TextNoData>
-    ) : (
-      myOrder.map((data, idx) => <OrderBox result={data} key={idx} />)
-    )
-  );
-
   return (
     <S.OrderResultContainer>
       <h4>
@@ -33,15 +23,17 @@ export default function OrderResultContainer({}: Props): ReactElement {
         <div className="column-status">주문상태</div>
         <div className="column-check">확인/리뷰</div>
       </div>
-      {!myOrder.length ? 
-        (<div className={'container-result-list no-data'}>
+      {!myOrder.length ? (
+        <div className={'container-result-list no-data'}>
           <TextNoData>조회 내역이 없습니다.</TextNoData>
-        </div>)
-       : 
-        (<div className={'container-result-list'}>
-          {myOrder.map((data, idx) => <OrderBox result={data} key={idx} />)}
-        </div>)
-      }
+        </div>
+      ) : (
+        <div className={'container-result-list'}>
+          {myOrder.map((data, idx) => (
+            <OrderBox result={data} key={idx} />
+          ))}
+        </div>
+      )}
     </S.OrderResultContainer>
   );
 }
