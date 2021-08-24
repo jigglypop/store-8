@@ -19,7 +19,7 @@ export default function ProductDetail({}: Props): ReactElement {
 
   return (
     <S.ProductDetail>
-      <ImgMagifier src={getS3Url(productImgSrc)} />
+      <ImgMagifier src={productImgSrc} />
       <div className="product-detail__info">
         <ProductInfo />
         <DetailBtns {...{ id, title }} />

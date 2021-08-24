@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const MainItem = styled.div`
   margin: 10px;
   position: relative;
+  width: 80vw;
   max-height: 2000vh;
   display: grid;
   grid-template-rows: 200px 1fr;
@@ -14,6 +15,8 @@ export const MainItem = styled.div`
     grid-template-rows: 100px 1fr;
   }
   .title {
+    position: relative;
+    width: 100%;
     grid-row: 1/2;
   }
   .content {

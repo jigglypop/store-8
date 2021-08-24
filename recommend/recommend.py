@@ -10,18 +10,21 @@ def cos_sim(X,Y):
 
 
 #추천 함수 
-def recommend_five(data, Y):
+def recommend_three(data, Y):
     result = []
     result_dict = {}
     for j in range(len(Y)):
         y = Y[j]
+        ratio = 1 - 0.1 * j
         for x in range(len(data)):
-            if y == x: continue
+            if x in Y: 
+                print(x, Y)
+                continue
             sim = cos_sim(data[x], data[y])
             if x in result_dict:
-                result_dict[x] += sim
+                result_dict[x] += sim * ratio
             else:
-                result_dict[x] = sim
+                result_dict[x] = sim * ratio
         if y == len(Y):
             result.append((result_dict[x], x))
     for key, value in result_dict.items():
@@ -31,13 +34,12 @@ def recommend_five(data, Y):
 # 최근 추천 id들의 array를 받아 제목이 비슷한 것 위주로 추천
 def get_recommend(dataArray):
     data = pd.read_csv("./data/products.csv",encoding="UTF-8")
-    print(dataArray)
     # tfidf 행렬 생성 
-    tfidf = TfidfVectorizer(stop_words = 'english')
+    tfidf = TfidfVectorizer(encoding="UTF-8")
     # 목표로 할 피쳐
     tfidf_mat = tfidf.fit_transform(data['title']).toarray()
     movieList = [] 
-    for similarity, i in recommend_five(tfidf_mat, dataArray):
+    for similarity, i in recommend_three(tfidf_mat, dataArray):
         movieList.append({
             'id': i,
             'sims': similarity,

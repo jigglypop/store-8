@@ -1,8 +1,7 @@
+import { IProduct } from '../product/product';
+
 export interface IElastic {
-  _source: {
-    title: string;
-    id: number;
-  };
+  _source: IProduct;
 }
 
 export type IElasticRes = IElastic[];

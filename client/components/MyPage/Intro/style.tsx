@@ -25,7 +25,7 @@ export const Intro = styled.div`
   }
 
   h2 {
-    font-family: 'BMDOHYEON';
+    font-family: 'Do Hyeon', sans-serif;
     font-size: 60px;
     font-weight: bold;
     color: var(--text-dark-picker);

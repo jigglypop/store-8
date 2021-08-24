@@ -9,14 +9,26 @@ const name = 'search';
 export const getSearch = createAsyncThunk(name, getSearchApi);
 const categoryExtra = createExtraGet<ISearchRes | null>(getSearch, name);
 
+interface ISearchInput {
+  payload: {
+    search: ISearchRes;
+  };
+}
+interface ISearchTitle {
+  payload: {
+    title: string;
+  };
+}
 interface ISearchState {
   search: ISearchRes | null;
+  title: string;
   error: string | null;
   loading: boolean;
 }
 
 const initialState: ISearchState = {
   search: null,
+  title: '',
   error: null,
   loading: false,
 };
@@ -26,9 +38,15 @@ const categorySlice = createSlice({
   initialState,
   reducers: {
     initSearch: () => initialState,
+    changeSearchItem: (state, { payload }: ISearchInput) => {
+      state.search = payload.search;
+    },
+    setSearchTitle: (state, { payload }: ISearchTitle) => {
+      state.title = payload.title;
+    },
   },
   extraReducers: categoryExtra,
 });
 
-export const { initSearch } = categorySlice.actions;
+export const { initSearch, changeSearchItem, setSearchTitle } = categorySlice.actions;
 export default categorySlice.reducer;

@@ -8,7 +8,7 @@ export const MainPage = styled.div`
 
   .title {
     background-color: var(--footer-background-dark);
-    margin: 10px 0px;
+    margin: 10px;
     padding: 30px;
     grid-row: 1/2;
     display: flex;
