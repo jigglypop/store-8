@@ -3,7 +3,7 @@ import { delCart } from '@store/product/cart';
 import { useCoupon } from '@store/coupon/coupon';
 import { createOrder } from '@api/order';
 import { getMileage } from '@api/order';
-import { addAddressApi, setBaseAddressApi, updateAddressApi } from '@api/address';
+import { addAddressApi, setBaseAddressApi, updateAddressApi, removeAddressApi } from '@api/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -42,7 +42,7 @@ export function useOrder() {
   };
 
   const updateAddress = async (props: AddressData) => {
-    // 지역 추가 시도.
+    // TODO : userId 지우기
     await updateAddressApi({
       userId: 1,
       id: props.addressId,
@@ -58,6 +58,14 @@ export function useOrder() {
     if (props.isBase) {
       await setBaseAddressApi({ userId: 1, addressId: props.addressId });
     }
+  };
+
+  const removeAddress = async (addressId: number) => {
+    // TODO: UserId 지우기
+    await removeAddressApi({
+      userId: 1,
+      addressId,
+    });
   };
 
   const proceedOrder = async (props: ProceedOrderProps) => {
@@ -119,5 +127,5 @@ export function useOrder() {
     }
   };
 
-  return { mileage, getUsableMileage, proceedOrder, makeAddress, updateAddress };
+  return { mileage, getUsableMileage, proceedOrder, makeAddress, updateAddress, removeAddress };
 }

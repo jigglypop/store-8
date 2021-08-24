@@ -53,3 +53,8 @@ export type AddressUpdateReq = {
   email: string;
   title: string;
 };
+
+export type AddressRemoveReq = {
+  userId: number;
+  addressId: number;
+};

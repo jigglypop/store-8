@@ -1,7 +1,7 @@
 import styled from '@lib/styledComponent';
 
 export const AddressDeleteModal = styled.div`
-  min-height: 350px;
+  min-height: 1 50px;
   width: 650px;
   border-radius: 20px;
   padding: 40px;
@@ -11,24 +11,13 @@ export const AddressDeleteModal = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
-  .coupon-modal-title {
+  .address-modal-title {
     font-size: var(--body-huge-font);
-    margin-bottom: 12px;
-  }
-  .coupon-modal-info {
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   }
 
-  .coupon-container {
-    max-height: 240px;
-    overflow: auto;
-  }
-  .coupon-div {
-    margin: 5px 0px;
-  }
-
-  .used-coupon {
-    opacity: 0.5;
+  .address-modal-info {
+    margin-bottom: 16px;
   }
 
   .button-space {
@@ -50,11 +39,11 @@ export const AddressDeleteModal = styled.div`
       }
     }
 
-    .submit-btn {
-      background-color: var(--background-mint);
+    .remove-btn {
+      background-color: var(--background-red);
       color: var(--text-white);
       &:hover {
-        background-color: var(--background-dark-mint);
+        background-color: var(--background-dark-red);
       }
     }
   }

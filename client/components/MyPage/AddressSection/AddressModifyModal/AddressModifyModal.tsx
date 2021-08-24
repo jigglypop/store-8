@@ -24,7 +24,7 @@ import { AddressData } from '@middle/type/address/address';
 interface AddressModifyModalProps {
   addressData: AddressData;
   closeForm: () => void;
-  onAddConfirm: () => void;
+  onConfirm: () => void;
 }
 
 function AddressModifyModal(props: AddressModifyModalProps): ReactElement {
@@ -79,7 +79,7 @@ function AddressModifyModal(props: AddressModifyModalProps): ReactElement {
       getAddress();
     } else {
       await updateAddress(addressData);
-      props.onAddConfirm();
+      props.onConfirm();
       props.closeForm();
     }
   };

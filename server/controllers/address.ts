@@ -159,7 +159,5 @@ export const remove = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 내역 삭제를 진행 할 수 없었습니다.' });
   }
 
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
+  res.status(200).json({ data: 'ok' });
 };

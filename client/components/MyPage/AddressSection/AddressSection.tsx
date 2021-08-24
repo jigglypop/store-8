@@ -50,7 +50,7 @@ export default function AddressSection(): ReactElement {
     setAddModalFocused(true);
   };
 
-  const onAddConfirm = () => {
+  const onConfirm = () => {
     dispatch(getAddress({ userId: 1 }));
   };
 
@@ -95,17 +95,21 @@ export default function AddressSection(): ReactElement {
         <img src={numUp} onClick={openAddModal} />
         <p onClick={openAddModal}>{'배송지 추가하기'}</p>
       </div>
-      {isDeleteModalFocused && <AddressDeleteModal closeForm={closeDeleteModal} addressId={0} />}
+      {isDeleteModalFocused && (
+        <AddressDeleteModal
+          onConfirm={onConfirm}
+          closeForm={closeDeleteModal}
+          addressData={address[modifyAddressIndex]}
+        />
+      )}
       {isModifyModalFocused && (
         <AddressModifyModal
-          onAddConfirm={onAddConfirm}
+          onConfirm={onConfirm}
           closeForm={closeModifyModal}
           addressData={address[modifyAddressIndex]}
         />
       )}
-      {isAddModalFocused && (
-        <AddressAddModal onAddConfirm={onAddConfirm} closeForm={closeAddModal} />
-      )}
+      {isAddModalFocused && <AddressAddModal onConfirm={onConfirm} closeForm={closeAddModal} />}
     </S.AddressSection>
   );
 }

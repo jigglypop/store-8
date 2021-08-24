@@ -22,7 +22,7 @@ import { useOrder } from '@client/hooks/order/order';
 
 interface AddressAddModalProps {
   closeForm: () => void;
-  onAddConfirm: () => void;
+  onConfirm: () => void;
 }
 
 function AddressAddModal(props: AddressAddModalProps): ReactElement {
@@ -96,7 +96,7 @@ function AddressAddModal(props: AddressAddModalProps): ReactElement {
         },
         addressData.isBase
       );
-      props.onAddConfirm();
+      props.onConfirm();
       props.closeForm();
     }
   };

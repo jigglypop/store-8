@@ -3,6 +3,7 @@ import {
   AddressAddReq,
   AddressSetBaseReq,
   AddressUpdateReq,
+  AddressRemoveReq,
 } from '@middle/type/address/address';
 import request, { IThunkApi } from './utils/request';
 
@@ -27,6 +28,14 @@ export const addAddressApi = async (requestForm: AddressAddReq) => {
 
 export const updateAddressApi = async (requestForm: AddressUpdateReq) => {
   const data = await request.post<AddressUpdateReq>('/api/address/update', requestForm);
+  if (data.status !== 200) {
+    return data.message;
+  }
+  return data.data;
+};
+
+export const removeAddressApi = async (requestForm: AddressRemoveReq) => {
+  const data = await request.post<AddressRemoveReq>('/api/address/remove', requestForm);
   if (data.status !== 200) {
     return data.message;
   }

@@ -42,7 +42,13 @@ export default function AddressResult(props: AddressInfo): ReactElement {
         >
           {'수정'}
         </button>
-        <button onClick={props.openDeleteModal} className="content-text remove-button">
+        <button
+          onClick={() => {
+            props.setModifyAddressIndex(props.index);
+            props.openDeleteModal();
+          }}
+          className="content-text remove-button"
+        >
           {'삭제'}
         </button>
       </div>
