@@ -49,3 +49,8 @@ export interface IMyReview {
     productImgSrc: string;
   } | void;
 }
+
+export interface IMyReviewRes {
+  totalCount: number;
+  reviews: IMyReview[];
+}

@@ -47,3 +47,8 @@ export interface IMyQuestion {
     productImgSrc: string;
   } | void;
 }
+
+export interface IMyQuestionRes {
+  totalCount: number;
+  questions: IMyQuestion[];
+}
