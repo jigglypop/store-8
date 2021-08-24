@@ -12,9 +12,9 @@ import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/consta
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
   const { page, limit } = req.query;
+  const { userId } = req.body;
 
   let _page: number = DEFAULT_REVIEW_PAGE;
   let _limit: number = DEFAULT_REVIEW_LIMIT;
@@ -77,10 +77,9 @@ export const getReview = async (req: Request, res: Response) => {
 
 //리뷰 생성
 export const createReview = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
 
-  const { title, contents, score, imgSrc } = req.body;
+  const { title, contents, score, imgSrc, userId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {
@@ -107,9 +106,8 @@ export const createReview = async (req: Request, res: Response) => {
 
 //리뷰 수정
 export const updateReview = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
-  const { reviewId, title, contents, score, imgSrc } = req.body;
+  const { reviewId, title, contents, score, imgSrc, userId } = req.body;
 
   const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
 
@@ -142,9 +140,8 @@ export const updateReview = async (req: Request, res: Response) => {
 
 //리뷰 삭제
 export const deleteReview = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
-  const { reviewId } = req.body;
+  const { reviewId, userId } = req.body;
 
   const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
 
@@ -216,10 +213,9 @@ interface IReviewLike {
 //TODO - transaction
 //리뷰 공감/비공감
 export const likeReview = async (req: Request, res: Response) => {
-  const userId = 1;
   const { reviewId } = req.params;
 
-  const { isLike, isDislike } = req.body;
+  const { isLike, isDislike, userId } = req.body;
 
   const cancelResult = await cancelReviewLike({ isLike, isDislike, userId, reviewId: +reviewId });
 

@@ -15,7 +15,6 @@ import { DEFAULT_QUESTION_LIMIT, DEFAULT_QUESTION_PAGE } from './../../middle/co
  */
 //상품 문의 조회
 export const getQuestion = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
   const { page, limit } = req.query;
 
@@ -72,9 +71,8 @@ export const getQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 생성
 export const createQuestion = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
-  const { title, contents, isSecret } = req.body;
+  const { title, contents, isSecret, userId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents) {
@@ -94,9 +92,8 @@ export const createQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 수정
 export const updateQuestion = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
-  const { questionId, title, contents, isSecret } = req.body;
+  const { questionId, title, contents, isSecret, userId } = req.body;
 
   const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
 
@@ -127,9 +124,8 @@ export const updateQuestion = async (req: Request, res: Response) => {
 
 //상품 문의 삭제
 export const deleteQuestion = async (req: Request, res: Response) => {
-  const userId = 1;
   const { productId } = req.params;
-  const { questionId } = req.body;
+  const { questionId, userId } = req.body;
 
   const isUserOwnedQuestion = await isUserQuestion(userId, +productId, +questionId);
 
