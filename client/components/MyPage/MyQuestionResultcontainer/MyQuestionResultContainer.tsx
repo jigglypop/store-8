@@ -31,6 +31,7 @@ export default function MyQuestionResultContainer({}: Props): ReactElement {
         <div className="column-title">상품</div>
         <div className="column-title">문의 제목</div>
         <div className="column-date">날짜</div>
+        <div className="column-status">답변상태</div>
       </div>
       <ul className="container-result-list">{myQuestionList}</ul>
       <Pagination

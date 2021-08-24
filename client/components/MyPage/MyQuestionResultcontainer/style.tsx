@@ -26,9 +26,11 @@ export const MyQuestionResultContainer = styled.div`
       padding: 10px 0px;
     }
 
-    .column-date {
+    .column-date,
+    .column-status {
       text-align: center;
       width: 70px;
+      flex-grow: 0.3;
     }
   }
   .container-result-list {
