@@ -31,14 +31,14 @@ export const createReviewApi = async <T>(productId: number, requestForm: T) => {
   return data;
 };
 
-export const updateReviewApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IReviewRes>(`/api/review/${productId}`, 'PUT', requestForm);
+export const updateReviewApi = async <T>(requestForm: T) => {
+  const data = await fetchWrapper<T, IReviewRes>(`/api/review`, 'PUT', requestForm);
 
   return data;
 };
 
-export const deleteReviewApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IReviewRes>(`/api/review/${productId}`, 'DELETE', requestForm);
+export const deleteReviewApi = async <T>(requestForm: T) => {
+  const data = await fetchWrapper<T, IReviewRes>(`/api/review`, 'DELETE', requestForm);
 
   return data;
 };

@@ -30,22 +30,14 @@ export const createQuestionApi = async <T>(productId: number, requestForm: T) =>
   return data;
 };
 
-export const updateQuestionApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IQuestionPostRes>(
-    `/api/question/${productId}`,
-    'PUT',
-    requestForm
-  );
+export const updateQuestionApi = async <T>(requestForm: T) => {
+  const data = await fetchWrapper<T, IQuestionPostRes>(`/api/question`, 'PUT', requestForm);
 
   return data;
 };
 
-export const deleteQuestionApi = async <T>(productId: number, requestForm: T) => {
-  const data = await fetchWrapper<T, IQuestionPostRes>(
-    `/api/question/${productId}`,
-    'DELETE',
-    requestForm
-  );
+export const deleteQuestionApi = async <T>(requestForm: T) => {
+  const data = await fetchWrapper<T, IQuestionPostRes>(`/api/question`, 'DELETE', requestForm);
 
   return data;
 };

@@ -31,8 +31,8 @@ export function useQuestion() {
       let res;
 
       if (type === 'create') res = await createQuestionApi<T>(productId, questionForm);
-      if (type === 'update') res = await updateQuestionApi<T>(productId, questionForm);
-      if (type === 'delete') res = await deleteQuestionApi<T>(productId, questionForm);
+      if (type === 'update') res = await updateQuestionApi<T>(questionForm);
+      if (type === 'delete') res = await deleteQuestionApi<T>(questionForm);
 
       if (!res) return false;
 

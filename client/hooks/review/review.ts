@@ -37,8 +37,8 @@ export function useReview() {
       let res;
 
       if (type === 'create') res = await createReviewApi<T>(productId, reviewForm);
-      if (type === 'update') res = await updateReviewApi<T>(productId, reviewForm);
-      if (type === 'delete') res = await deleteReviewApi<T>(productId, reviewForm);
+      if (type === 'update') res = await updateReviewApi<T>(reviewForm);
+      if (type === 'delete') res = await deleteReviewApi<T>(reviewForm);
 
       if (!res) return false;
 
