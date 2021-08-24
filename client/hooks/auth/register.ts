@@ -9,6 +9,7 @@ import { IRegisterReq } from '@middle/type/auth/register';
 import _ from 'lodash';
 import { debounceRedux } from '@client/utils/debounce';
 import { getMyWish } from '@client/store/mywish/mywish';
+import { getCart } from '@client/store/product/cart';
 
 export function useRegister() {
   const { registerform, register, error, loading } = useSelector(
@@ -31,6 +32,8 @@ export function useRegister() {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
+      // 여기 추가(추후 토큰 방식 연동시 변경 요망)
+      dispatch(getCart({ userId: 1 }));
       dispatch(initRegister());
     }
   }, [register]);

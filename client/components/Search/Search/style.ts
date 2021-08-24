@@ -28,8 +28,7 @@ export const Search = styled(MainItem)`
     box-shadow: 0 0 20px rgb(0, 0, 0, 0.8);
 
     h4 {
-      font-size: 20px;
-      font-weight: 800;
+      font-size: 16px;
       color: var(--text-white);
     }
 

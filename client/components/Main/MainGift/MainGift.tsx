@@ -4,7 +4,7 @@ import * as S from './style';
 const MainGift = () => {
   return (
     <S.MainGift>
-      <div className="main-inner gift-inner">
+      <div className="main-inner">
         <div className="title">
           <h3>선물하기 딱 좋아요!</h3>
         </div>

@@ -8,6 +8,7 @@ import { getCheck } from '@client/store/auth/check';
 import { ILoginReq } from '@middle/type/auth/login';
 import { debounceRedux } from '@client/utils/debounce';
 import { getMyWish } from '@client/store/mywish/mywish';
+import { getCart } from '@client/store/product/cart';
 
 export function useLogin() {
   const { loginform, login, error, loading } = useSelector((state: RootState) => state.login);
@@ -27,6 +28,8 @@ export function useLogin() {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
+      // 여기 추가(추후 토큰 방식 연동시 변경 요망)
+      dispatch(getCart({ userId: 1 }));
       dispatch(initLogin());
     }
   }, [login]);

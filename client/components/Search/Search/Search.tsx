@@ -8,9 +8,10 @@ import NoData from '@client/components/NoData/NoData';
 
 interface IsearchComponent {
   cards: IProduct[] | undefined;
+  title: string;
 }
 
-function Search({ cards }: IsearchComponent) {
+function Search({ cards, title }: IsearchComponent) {
   const { router, query } = useRouter();
   const { search } = useSearch();
 
@@ -20,7 +21,7 @@ function Search({ cards }: IsearchComponent) {
         <div className="title">
           <div className="search-inner">
             <div className="search-name">
-              <h4>검색: {decodeURI(query.title)}</h4>
+              <h4>검색: {title === '' ? decodeURI(query.title) : title}</h4>
             </div>
             <div className="search-name">{router && <h4>검색 결과 : {search?.count}개</h4>}</div>
           </div>
