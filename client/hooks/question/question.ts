@@ -25,6 +25,7 @@ export function useQuestion() {
   const { question, loading, error, currentPage } = useSelector(
     (state: RootState) => state.question
   );
+  const { currentPage: myQuestionPage } = useSelector((state: RootState) => state.myQuestion);
   const dispatch = useDispatch();
 
   const fetchQuestion =
@@ -42,11 +43,9 @@ export function useQuestion() {
         dispatch(setError(res.errorMessage));
         return false;
       }
-      dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
 
-      if (type === 'update' || type === 'delete') {
-        dispatch(getMyQuestion({ query: `page=${currentPage}`, token: cache.get('token') }));
-      }
+      dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
+      dispatch(getMyQuestion({ query: `page=${myQuestionPage}`, token: cache.get('token') }));
 
       return true;
     };

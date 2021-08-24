@@ -6,7 +6,7 @@ export const MyQuestionBox = styled.li`
   font-size: var(--body-middle-font);
   padding: 10px 0;
   border-bottom: 1px solid var(--line-gray-dark);
-
+  cursor: pointer;
   .product-link {
     display: flex;
     align-items: center;

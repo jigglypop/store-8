@@ -18,6 +18,7 @@ import {
   IReviewLikeReq,
 } from '@middle/type/review/review';
 import cache from '@client/utils/cache';
+import { getMyReview } from '@client/store/my/myReview';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
@@ -30,6 +31,7 @@ export function useReview() {
   const dispatch = useDispatch();
 
   const { review, currentPage, error, loading } = useSelector((state: RootState) => state.review);
+  const { currentPage: myReviewpage } = useSelector((state: RootState) => state.myReview);
 
   const fetchReview =
     <T>(type: IFetchType) =>
@@ -46,7 +48,10 @@ export function useReview() {
         dispatch(setError(res.errorMessage));
         return false;
       }
+
+      dispatch(getMyReview({ query: `page=${myReviewpage}`, token: cache.get('token') }));
       dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
+
       return true;
     };
 
@@ -58,7 +63,10 @@ export function useReview() {
       dispatch(setError(res.errorMessage));
       return false;
     }
+
+    dispatch(getMyReview({ query: `page=${myReviewpage}`, token: cache.get('token') }));
     dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
+
     return true;
   };
 

@@ -38,6 +38,6 @@ export const MyReviewResultContainer = styled.div`
   }
 
   .container-result-list {
-    height: 455px;
+    min-height: 455px;
   }
 `;

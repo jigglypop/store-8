@@ -11,12 +11,14 @@ import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 
 import { useReview } from '@client/hooks/review/review';
 import { useCheck } from '@client/hooks/auth/check';
+import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
   reviewData: IReview | IMyReview;
+  productInfo?: IProductInfo;
 }
 
-export default function ReviewDetail({ reviewData }: Props): ReactElement {
+export default function ReviewDetail({ reviewData, productInfo }: Props): ReactElement {
   const { deleteReview, likeReview } = useReview();
   const { check } = useCheck();
 
@@ -81,6 +83,7 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
           editContents={contents}
           editImgList={imgSrc}
           editScore={score}
+          productInfo={productInfo}
         />
       )}
       {isDelete && (

@@ -4,7 +4,7 @@ export const MyReviewBox = styled.li`
   display: flex;
   align-items: center;
   font-size: var(--body-middle-font);
-
+  cursor: pointer;
   padding: 10px 0;
   border-bottom: 1px solid var(--line-gray-dark);
 
