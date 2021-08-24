@@ -1,60 +1,35 @@
 import styled from 'styled-components';
-import { ContainerItem } from '../common/style';
 
-export const MyQuestionResultContainer = styled(ContainerItem)`
-  .container-result-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: hidden;
-    align-items: center;
-    border-bottom: 1px solid var(--gray5);
-
-    .text-no-data {
-      margin-top: 65px;
-      font-size: var(--body-small-font);
-      color: var(--gray2);
-      text-align: center;
-      width: 100%;
-    }
-  }
+export const MyQuestionResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 940px;
+  height: 50px;
+  margin-top: 32px;
+  color: var(--text-black-dark);
 
   .container-column {
-    grid-template-columns: 1fr 2fr 1fr;
+    color: var(--text-black);
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: var(--gray6);
+    border-top: 1px solid var(--gray4);
+    border-bottom: 1px solid var(--gray5);
 
-    .common-button {
-      grid-column: 1/2;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .common-title {
-      grid-column: 2/3;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .common-price {
-      grid-column: 3/4;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
-  &.no-data {
-    * {
-      display: hidden;
+    > * {
+      width: 70px;
+      flex-grow: 1;
+      text-align: center;
+      font-size: var(--body-small-font);
+      font-weight: 600;
+      padding: 10px 0px;
     }
 
-    .text-no-data {
-      display: block;
+    .column-date {
+      text-align: center;
+      width: 70px;
     }
   }
 `;

@@ -11,23 +11,29 @@ interface Props {
 export default function MyQuestionBox({ questionData }: Props): ReactElement {
   const {
     id,
-    productInfo: { id: productId, title, productImgSrc },
+    title,
+    date,
+    productInfo: { id: productId, title: productTitle, productImgSrc },
   } = questionData;
 
-  if (!title || !productImgSrc) return <></>;
+  if (!productTitle || !productImgSrc) return <></>;
   return (
     <S.MyQuestionBox>
       <div className="column-title">
         <Link to={`/product/${productId}`} className="product-link">
-          <>
-            <div className="wrapper-thumbnail">
-              <img src={productImgSrc} />
-            </div>
-            <div className="container-title">
-              <div className="text-title">{title}</div>
-            </div>
-          </>
+          <div className="wrapper-thumbnail">
+            <img src={productImgSrc} />
+          </div>
+          <div className="wrapper-title-thumbnail">
+            <div>{productTitle}</div>
+          </div>
         </Link>
+      </div>
+      <div className="column-title">
+        <div>{title}</div>
+      </div>
+      <div className="column-date">
+        <div>{date}</div>
       </div>
     </S.MyQuestionBox>
   );

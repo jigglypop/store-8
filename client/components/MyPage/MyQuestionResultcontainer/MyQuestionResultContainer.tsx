@@ -25,17 +25,11 @@ export default function MyQuestionResultContainer({}: Props): ReactElement {
         나의 상품문의 <b>{totalCount}</b>건
       </h4>
       <div className="container-column">
-        <div className="column-button">
-          <h4>찜하기</h4>
-        </div>
-        <div className="column-title">
-          <h4>상품명</h4>
-        </div>
-        <div className="column-price">
-          <h4>test</h4>
-        </div>
+        <div className="column-title">상품</div>
+        <div className="column-title">문의 제목</div>
+        <div className="column-date">날짜</div>
       </div>
-      <div className="container-result-list">{myQuestionList}</div>
+      <ul className="container-result-list">{myQuestionList}</ul>
     </S.MyQuestionResultContainer>
   );
 }
