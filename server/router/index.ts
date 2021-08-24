@@ -18,6 +18,7 @@ import wishRouter from './wish';
 
 import couponRouter from './coupon';
 import addressRouter from './address';
+import myRouter from './my';
 
 const rootRouter = express();
 
@@ -39,5 +40,6 @@ rootRouter.use('/api/search', searchRouter);
 rootRouter.use('/api/wish', wishRouter);
 rootRouter.use('/api/coupon', couponRouter);
 rootRouter.use('/api/address', addressRouter);
+rootRouter.use('/api/my', myRouter);
 
 export default rootRouter;

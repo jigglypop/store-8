@@ -49,3 +49,15 @@ export const getOptions = async (req: Request, res: Response) => {
       .json({ status: 200, data: { title: product?.title, amount: product?.amount, options: [] } });
   }
 };
+
+export const getProductTitleInfo = async (productId: number) => {
+  const productSnapshot = await Product.findOne({
+    attributes: ['title', 'productImgSrc'],
+    where: { id: productId },
+  });
+  if (!productSnapshot) return;
+  return {
+    title: productSnapshot.getDataValue('title'),
+    productImgSrc: productSnapshot.getDataValue('productImgSrc'),
+  };
+};

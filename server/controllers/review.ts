@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { IReview } from './../../middle/type/review/review';
+import { IReview, IMyReview } from './../../middle/type/review/review';
 
 import { err } from '../constants/error';
 import Review from '../models/Review';
@@ -9,6 +9,7 @@ import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
 import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
+import { getProductTitleInfo } from './product';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
@@ -90,8 +91,8 @@ export const createReview = async (req: Request, res: Response) => {
   const createResult = await Review.create({
     userId,
     productId: +productId,
-    title: title as string,
-    contents: contents as string,
+    title: title,
+    contents: contents,
     score: +score,
   });
 
@@ -287,4 +288,52 @@ const isUserLikeReview = async (reviewId: number, userId: number) => {
   });
 
   return { isLike: !!isLike, isDislike: !!isDislike };
+};
+
+//나의 리뷰 조회
+export const getMyReview = async (req: Request, res: Response) => {
+  const { page, limit } = req.query;
+  const { userId } = req.body;
+  console.log(userId);
+  let _page: number = DEFAULT_REVIEW_PAGE;
+  let _limit: number = DEFAULT_REVIEW_LIMIT;
+  if (page) _page = +page - 1;
+  if (limit) _limit = +limit;
+
+  const reviewSnapshot = await Review.findAndCountAll({
+    attributes: ['id', 'title', 'contents', 'score', 'createdAt', 'productId', 'userId'],
+    order: [['createdAt', 'DESC']],
+    offset: _page * _limit,
+    limit: _limit,
+  });
+
+  console.log(reviewSnapshot);
+  const reviews: IMyReview[] = await Promise.all(
+    reviewSnapshot.rows.map(async (item) => {
+      const id = item.getDataValue('id');
+      const productId = item.getDataValue('productId');
+      const date = item.getDataValue('createdAt');
+
+      if (!id || !date) throw new HttpError(err.CREATE_ERROR);
+
+      const imgSrc = await getReviewImgs(id);
+      const productInfo = await getProductTitleInfo(productId);
+
+      return {
+        id,
+        title: item.getDataValue('title'),
+        contents: item.getDataValue('contents'),
+        score: item.getDataValue('score'),
+        date: dateStringFormat(date, '.'),
+        imgSrc,
+        productInfo,
+      };
+    })
+  ).catch((e) => {
+    throw new Error(e.message);
+  });
+
+  const responseData = { totalCount: reviewSnapshot.count, reviews };
+  console.log(responseData);
+  res.status(200).json(responseData);
 };

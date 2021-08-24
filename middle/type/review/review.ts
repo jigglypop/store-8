@@ -36,3 +36,16 @@ export interface IReviewLikeReq {
   isLike: boolean;
   isDislike: boolean;
 }
+
+export interface IMyReview {
+  id: number;
+  title: string;
+  contents: string;
+  score: number;
+  date: string;
+  imgSrc: string[];
+  productInfo: {
+    title: string;
+    productImgSrc: string;
+  } | void;
+}
