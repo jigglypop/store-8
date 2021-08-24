@@ -15,8 +15,8 @@ import {
 
 reviewRouter.get('/:productId', jwtMiddleware, wrapAsync(getReview));
 reviewRouter.post('/:productId', jwtMiddleware, wrapAsync(createReview));
-reviewRouter.put('/:productId', jwtMiddleware, wrapAsync(updateReview));
-reviewRouter.delete('/:productId', jwtMiddleware, wrapAsync(deleteReview));
+reviewRouter.put('/', jwtMiddleware, wrapAsync(updateReview));
+reviewRouter.delete('/', jwtMiddleware, wrapAsync(deleteReview));
 
 reviewRouter.post('/like/:reviewId', jwtMiddleware, wrapAsync(likeReview));
 

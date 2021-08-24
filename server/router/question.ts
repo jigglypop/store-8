@@ -14,8 +14,8 @@ const questionRouter: Router = express.Router();
 
 questionRouter.get('/:productId', wrapAsync(getQuestion));
 questionRouter.post('/:productId', jwtMiddleware, wrapAsync(createQuestion));
-questionRouter.put('/:productId', jwtMiddleware, wrapAsync(updateQuestion));
-questionRouter.delete('/:productId', jwtMiddleware, wrapAsync(deleteQuestion));
+questionRouter.put('/', jwtMiddleware, wrapAsync(updateQuestion));
+questionRouter.delete('/', jwtMiddleware, wrapAsync(deleteQuestion));
 
 //관리자 전용 - 관리자 체크 middleware 추가 필요
 questionRouter.put('/admin/:questionId', wrapAsync(updateQuestionReply));

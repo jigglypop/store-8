@@ -106,10 +106,9 @@ export const createReview = async (req: Request, res: Response) => {
 
 //리뷰 수정
 export const updateReview = async (req: Request, res: Response) => {
-  const { productId } = req.params;
   const { reviewId, title, contents, score, imgSrc, userId } = req.body;
 
-  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+  const isUserOwnedReview = await isUserReview(userId, +reviewId);
 
   //TODO - title,contents validation
   if (!isUserOwnedReview) {
@@ -122,13 +121,11 @@ export const updateReview = async (req: Request, res: Response) => {
       contents,
       score: +score,
       userId,
-      productId: +productId,
     },
     {
       where: {
         id: +reviewId,
         userId,
-        productId,
       },
     }
   );
@@ -140,10 +137,9 @@ export const updateReview = async (req: Request, res: Response) => {
 
 //리뷰 삭제
 export const deleteReview = async (req: Request, res: Response) => {
-  const { productId } = req.params;
   const { reviewId, userId } = req.body;
 
-  const isUserOwnedReview = await isUserReview(userId, +productId, +reviewId);
+  const isUserOwnedReview = await isUserReview(userId, +reviewId);
 
   //TODO - title,contents validation
   if (!isUserOwnedReview) {
@@ -154,7 +150,6 @@ export const deleteReview = async (req: Request, res: Response) => {
     where: {
       id: +reviewId,
       userId,
-      productId,
     },
   });
 
@@ -162,13 +157,12 @@ export const deleteReview = async (req: Request, res: Response) => {
 };
 
 //유저가 접근한 리뷰가 유저의 리뷰가 맞는지 체크
-const isUserReview = async (userId: number, productId: number, reviewId: number) => {
+const isUserReview = async (userId: number, reviewId: number) => {
   const reviewSnapshot = await Review.findOne({
     attributes: ['id'],
     where: {
       id: reviewId,
       userId,
-      productId,
     },
   });
   return !!reviewSnapshot;
