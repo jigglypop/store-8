@@ -1,4 +1,3 @@
-import { getS3Url } from '@client/utils/getS3Url';
 import { Link } from '@client/utils/router';
 import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
@@ -15,8 +14,8 @@ interface ICard {
   item: IProduct;
 }
 const Card = ({ index, item }: ICard) => {
-let imgsrc = item.productImgSrc;
-const { addToCart } = useCart();
+  let imgsrc = item.productImgSrc;
+  const { addToCart } = useCart();
   if (imgsrc === undefined) {
     imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }

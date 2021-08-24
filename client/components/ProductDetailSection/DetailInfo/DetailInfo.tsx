@@ -2,7 +2,6 @@ import { ReactElement } from 'react';
 import * as S from './style';
 
 import { useProduct } from '@client/hooks/product/product';
-import { getS3Url } from '@client/utils/getS3Url';
 
 interface Props {}
 
@@ -16,7 +15,7 @@ export default function DetailInfo({}: Props): ReactElement {
     <S.DetailInfo>
       <div className="title">상품상세정보</div>
       <div className="detail-imgs">
-        <img src={getS3Url(IMG_SRC)} alt="detail-image" />
+        <img src={IMG_SRC} alt="detail-image" />
       </div>
     </S.DetailInfo>
   );
