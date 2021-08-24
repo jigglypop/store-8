@@ -5,7 +5,10 @@ interface IQuestionGetReq {
   token: string;
 }
 
-export const getMyQuestionApi = async ({ query, token }: IQuestionGetReq, thunkApi: IThunkApi) => {
+export const getMyQuestionApi = async (info: IQuestionGetReq, thunkApi: IThunkApi) => {
+  if (!info) return;
+  const { query, token } = info;
+
   const data = await request.getToken(`/api/my/question?${query}`, token);
   if (data.status !== 200) {
     const error = data.message;
@@ -14,7 +17,10 @@ export const getMyQuestionApi = async ({ query, token }: IQuestionGetReq, thunkA
   return data;
 };
 
-export const getMyReviewApi = async ({ query, token }: IQuestionGetReq, thunkApi: IThunkApi) => {
+export const getMyReviewApi = async (info: IQuestionGetReq, thunkApi: IThunkApi) => {
+  if (!info) return;
+  const { query, token } = info;
+
   const data = await request.getToken(`/api/my/review?${query}`, token);
   if (data.status !== 200) {
     const error = data.message;
