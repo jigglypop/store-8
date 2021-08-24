@@ -7,4 +7,5 @@ export const MainNew = styled(MainItem)`
   display: flex;
   justify-content: center;
   align-items: center;
+
 `;

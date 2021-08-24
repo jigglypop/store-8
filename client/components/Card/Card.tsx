@@ -16,10 +16,6 @@ interface ICard {
 const Card = ({ index, item }: ICard) => {
   let imgsrc = item.productImgSrc;
   const { addToCart } = useCart();
-  if (imgsrc === undefined) {
-    imgsrc = `/public/image/product/big/${index + 1}.jpg`;
-  }
-
   const [isModalOpen, setModalOpen] = useState(false);
 
   const closeForm = () => {
