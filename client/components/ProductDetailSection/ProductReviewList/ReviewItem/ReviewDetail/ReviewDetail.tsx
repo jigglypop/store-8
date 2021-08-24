@@ -8,7 +8,9 @@ import DislikeBtn from '@image/icon/dislikeIcon.svg';
 import { IReview } from '@middle/type/review/review';
 import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
+
 import { useReview } from '@client/hooks/review/review';
+import { useCheck } from '@client/hooks/auth/check';
 
 interface Props {
   reviewData: IReview;
@@ -16,10 +18,12 @@ interface Props {
 
 export default function ReviewDetail({ reviewData }: Props): ReactElement {
   const { deleteReview, likeReview } = useReview();
+  const { check } = useCheck();
+
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
 
-  const { id, title, contents, score, imgSrc, isLike, isDislike, isOwned } = reviewData;
+  const { id, title, contents, score, imgSrc, isLike, isDislike, userId } = reviewData;
 
   const imgList = imgSrc.map((src) => <img key={id + src} src={src} alt="review-image" />);
 
@@ -43,7 +47,7 @@ export default function ReviewDetail({ reviewData }: Props): ReactElement {
 
   return (
     <S.ReviewDetail>
-      {isOwned && (
+      {userId === check?.id && (
         <div className="review-detail__btns">
           <EditIcon onClick={handleEditClick} className="review-detail__edit-btn" />
           <DeleteIcon onClick={handleDeleteClick} className="review-detail__delete-btn" />
