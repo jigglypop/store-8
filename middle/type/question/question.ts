@@ -34,14 +34,7 @@ export interface IQuestionDeleteReq {
   questionId: number;
 }
 
-export interface IMyQuestion {
-  id: number;
-  title: string;
-  contents: string;
-  isSecret: boolean;
-  date: string;
-  answer: string | null;
-  answerDate: string | null;
+export interface IMyQuestion extends IQuestion {
   productInfo: {
     id: number;
     title: string | void;

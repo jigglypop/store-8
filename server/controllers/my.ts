@@ -13,7 +13,7 @@ import HttpError from '../utils/HttpError';
 import { dateStringFormat } from '../utils/date';
 
 import { getProductTitleInfo } from './product';
-import { getReviewImgs } from './review';
+import { getReviewImgs, getReviewLikeCount, isUserLikeReview } from './review';
 
 //나의 후기 조회
 export const getMyReview = async (req: Request, res: Response) => {
@@ -43,6 +43,8 @@ export const getMyReview = async (req: Request, res: Response) => {
 
       const imgSrc = await getReviewImgs(id);
       const productInfo = await getProductTitleInfo(productId);
+      const { likeCount, dislikeCount } = await getReviewLikeCount(id);
+      const { isLike, isDislike } = await isUserLikeReview(id, userId);
 
       return {
         id,
@@ -52,6 +54,11 @@ export const getMyReview = async (req: Request, res: Response) => {
         date: dateStringFormat(date, '.'),
         imgSrc,
         productInfo,
+        likeCount,
+        dislikeCount,
+        isLike,
+        isDislike,
+        userId: item.getDataValue('userId'),
       };
     })
   ).catch((e) => {
@@ -84,6 +91,7 @@ export const getMyQuestion = async (req: Request, res: Response) => {
       'createdAt',
       'productId',
       'replyDate',
+      'userId',
     ],
     where: {
       userId,
@@ -112,6 +120,7 @@ export const getMyQuestion = async (req: Request, res: Response) => {
         isSecret: item.getDataValue('isSecret'),
         answer: item.getDataValue('reply') ?? null,
         answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
+        userId: item.getDataValue('userId'),
         productInfo,
       };
     })

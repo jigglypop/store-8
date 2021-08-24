@@ -17,15 +17,14 @@ export const getQuestion = async (req: Request, res: Response) => {
   const { productId } = req.params;
   const { page, limit } = req.query;
 
+  if (!productId) {
+    throw new HttpError(err.INVALID_INPUT_ERROR);
+  }
+
   let _page: number = DEFAULT_QUESTION_PAGE;
   let _limit: number = DEFAULT_QUESTION_LIMIT;
-
-  if (page) {
-    _page = +page - 1;
-  }
-  if (limit) {
-    _limit = +limit;
-  }
+  if (page) _page = +page - 1;
+  if (limit) _limit = +limit;
 
   const questionSnapshot = await Question.findAndCountAll({
     attributes: [

@@ -37,13 +37,7 @@ export interface IReviewLikeReq {
   isDislike: boolean;
 }
 
-export interface IMyReview {
-  id: number;
-  title: string;
-  contents: string;
-  score: number;
-  date: string;
-  imgSrc: string[];
+export interface IMyReview extends IReview {
   productInfo: {
     id: number;
     title: string | void;

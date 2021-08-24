@@ -18,7 +18,7 @@ export default function ProductReviewList({}: Props): ReactElement {
   const reviewList = reviews.map((data, idx) => {
     const reviewNo = totalCount - (currentPage - 1) * DEFAULT_REVIEW_LIMIT - idx;
 
-    return <ReviewItem key={data.id} reviewData={data} reviewNo={reviewNo} userId="testId" />;
+    return <ReviewItem key={data.id} reviewData={data} reviewNo={reviewNo} />;
   });
 
   const openReviewForm = () => setIsOpenForm(true);

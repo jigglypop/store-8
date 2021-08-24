@@ -16,19 +16,14 @@ export const getReview = async (req: Request, res: Response) => {
   const { page, limit } = req.query;
   const { userId } = req.body;
 
-  let _page: number = DEFAULT_REVIEW_PAGE;
-  let _limit: number = DEFAULT_REVIEW_LIMIT;
-
   if (!productId) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
-  if (page) {
-    _page = +page - 1;
-  }
-  if (limit) {
-    _limit = +limit;
-  }
+  let _page: number = DEFAULT_REVIEW_PAGE;
+  let _limit: number = DEFAULT_REVIEW_LIMIT;
+  if (page) _page = +page - 1;
+  if (limit) _limit = +limit;
 
   const reviewSnapshot = await Review.findAndCountAll({
     attributes: ['id', 'title', 'contents', 'score', 'createdAt', 'userId'],
@@ -261,7 +256,7 @@ const createReviewLike = async ({ userId, reviewId, isLike, isDislike }: IReview
 };
 
 //공감 비공감 개수
-const getReviewLikeCount = async (reviewId: number) => {
+export const getReviewLikeCount = async (reviewId: number) => {
   const likeCount = await ReviewLike.count({
     where: { reviewId, isLike: true },
   });
@@ -272,7 +267,7 @@ const getReviewLikeCount = async (reviewId: number) => {
   return { likeCount, dislikeCount };
 };
 //유저의 공감 비공감 상태
-const isUserLikeReview = async (reviewId: number, userId: number) => {
+export const isUserLikeReview = async (reviewId: number, userId: number) => {
   const isLike = await ReviewLike.count({
     where: { reviewId, userId, isLike: true },
   });
