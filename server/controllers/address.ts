@@ -114,6 +114,28 @@ export const add = async (req: Request, res: Response) => {
   }
 };
 
+export const update = async (req: Request, res: Response) => {
+  const { id, userId, location, extraLocation, zonecode, call, email, receiver, title } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  await Address.update(
+    {
+      location,
+      extraLocation,
+      zonecode,
+      call,
+      email,
+      receiver,
+      title,
+    },
+    { where: { userId: userId, id: id } }
+  );
+
+  res.status(200).json({ data: 'ok' });
+};
+
 export const setBase = async (req: Request, res: Response) => {
   const { userId, addressId } = req.body;
 

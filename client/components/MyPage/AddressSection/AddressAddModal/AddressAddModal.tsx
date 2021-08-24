@@ -1,7 +1,6 @@
 import { ReactElement, useState } from 'react';
 import * as S from './style';
 import Modal from '@client/components/common/Modal/Modal';
-import UserInfo from '@client/components/Order/UserInfo/UserInfo';
 import { getDaumAddress } from '@lib/daumAddress';
 import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import AlertInput from '@components/common/AlertInput/AlertInput';

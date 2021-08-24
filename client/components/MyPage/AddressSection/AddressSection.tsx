@@ -20,6 +20,7 @@ export default function AddressSection(): ReactElement {
   const [isDeleteModalFocused, setDeleteModalFocused] = useState(false);
   const [isModifyModalFocused, setModifyModalFocused] = useState(false);
   const [isAddModalFocused, setAddModalFocused] = useState(false);
+  const [modifyAddressIndex, setModifyAddressIndex] = useState(-1);
 
   useEffect(() => {
     dispatch(getAddress({ userId: 1 }));
@@ -81,8 +82,10 @@ export default function AddressSection(): ReactElement {
           return (
             <AddressResult
               openModifyModal={openModifyModal}
+              setModifyAddressIndex={setModifyAddressIndex}
               openDeleteModal={openDeleteModal}
               key={index}
+              index={index}
               address={element}
             />
           );
@@ -93,7 +96,13 @@ export default function AddressSection(): ReactElement {
         <p onClick={openAddModal}>{'배송지 추가하기'}</p>
       </div>
       {isDeleteModalFocused && <AddressDeleteModal closeForm={closeDeleteModal} addressId={0} />}
-      {isModifyModalFocused && <AddressModifyModal closeForm={closeModifyModal} addressId={0} />}
+      {isModifyModalFocused && (
+        <AddressModifyModal
+          onAddConfirm={onAddConfirm}
+          closeForm={closeModifyModal}
+          addressData={address[modifyAddressIndex]}
+        />
+      )}
       {isAddModalFocused && (
         <AddressAddModal onAddConfirm={onAddConfirm} closeForm={closeAddModal} />
       )}

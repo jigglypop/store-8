@@ -11,24 +11,34 @@ export const AddressModifyModal = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
-  .coupon-modal-title {
+  .address-modal-title {
     font-size: var(--body-huge-font);
     margin-bottom: 12px;
   }
-  .coupon-modal-info {
-    margin-bottom: 28px;
-  }
-
-  .coupon-container {
+  .address-container {
     max-height: 240px;
     overflow: auto;
   }
-  .coupon-div {
-    margin: 5px 0px;
-  }
 
-  .used-coupon {
-    opacity: 0.5;
+  .title-section {
+    margin: 8px 0px 24px 0px;
+    display: flex;
+    flex-direction: column;
+    p {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 360px;
+      height: 32px;
+      border: 1px solid var(--line-gray);
+      border-radius: 4px;
+      padding: 6px;
+      &::placeholder {
+        font-size: var(--body-middle-font);
+        color: var(--text-lightgray);
+      }
+    }
   }
 
   .button-space {
@@ -55,6 +65,79 @@ export const AddressModifyModal = styled.div`
       color: var(--text-white);
       &:hover {
         background-color: var(--background-dark-mint);
+      }
+    }
+  }
+
+  .address-form-container {
+    display: flex;
+    flex-direction: column;
+
+    .input-form-label {
+      font-weight: 600;
+    }
+
+    input {
+      width: 360px;
+      height: 32px;
+      padding: 6px;
+      &::placeholder {
+        font-size: var(--body-middle-font);
+        color: var(--text-lightgray);
+      }
+    }
+    .address-search-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      input {
+        width: 150px;
+      }
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 32px;
+        margin-left: 12px;
+        padding: 6px;
+        border: 1px solid var(--line-black);
+        border-radius: 4px;
+        font-size: var(--body-small-font);
+        &:hover {
+          background-color: var(--background-gray);
+        }
+      }
+    }
+    & input {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      border: 1px solid var(--line-gray);
+      border-radius: 4px;
+    }
+
+    .detail-address-page {
+      display: flex;
+      flex-direction: row;
+
+      .set-base-section {
+        margin-left: 18px;
+        display: flex;
+        flex-direction: row;
+
+        img {
+          width: 12px;
+          object-fit: contain;
+        }
+        div {
+          p {
+            margin-top: 2px;
+            font-size: var(--body-small-font);
+          }
+          margin-left: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }
