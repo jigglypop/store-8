@@ -17,10 +17,13 @@ import mywish from './mywish/mywish';
 import myOrder from './myOrder/myOrder';
 import myRefund from './myRefund/myRefund';
 import review from './product/review';
-import finish from './product/finish';
 import myQuestion from './my/myQuestion';
 import myReview from './my/myReview';
 
+import finish from './product/finish';
+import storemode from './storemode/storemode';
+import elastic from './elastic/elastic';
+import recommend from './recommend/recommend';
 import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
@@ -44,6 +47,9 @@ export const store = configureStore({
     myOrder,
     myRefund,
     review,
+    storemode,
+    elastic,
+    recommend,
     finish,
     myQuestion,
     myReview,

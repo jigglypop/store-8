@@ -15,7 +15,8 @@ import reviewRouter from './review';
 import uploadRouter from './upload';
 import searchRouter from './search';
 import wishRouter from './wish';
-
+import elasticRouter from './elastic';
+import recommendRouter from './recommend';
 import couponRouter from './coupon';
 import addressRouter from './address';
 import myRouter from './my';
@@ -38,6 +39,8 @@ rootRouter.use('/api/review', reviewRouter);
 rootRouter.use('/api/upload', uploadRouter);
 rootRouter.use('/api/search', searchRouter);
 rootRouter.use('/api/wish', wishRouter);
+rootRouter.use('/api/elastic', elasticRouter);
+rootRouter.use('/api/recommend', recommendRouter);
 rootRouter.use('/api/coupon', couponRouter);
 rootRouter.use('/api/address', addressRouter);
 rootRouter.use('/api/my', myRouter);

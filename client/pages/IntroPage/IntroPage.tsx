@@ -1,10 +1,10 @@
-import Intro from '../../components/Intro/Intro';
+import IntroTwo from '@client/components/IntroTwo/Intro';
 import * as S from './style';
 
 const IntroPage = () => {
   return (
     <S.IntroPage>
-      <Intro />
+      <IntroTwo />
     </S.IntroPage>
   );
 };

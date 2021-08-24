@@ -3,10 +3,16 @@ import { $ } from '@client/utils/jQurey';
 import { HistoryPush, Link } from '@client/utils/router';
 import { ChangeEvent, FormEvent, useState, useEffect, useRef } from 'react';
 import * as S from './style';
+import _ from 'lodash';
+import { useElastic } from '@client/hooks/elastic/elastic';
+import { IElastic } from '@middle/type/elastic/elastic';
 
 const setTagFilter = (tag: string) => {
   let tags = cache.get('search');
   if (tags && tags.length) {
+    if (tags.length >= 5) {
+      tags.shift();
+    }
     tags.push(tag);
   } else {
     tags = [tag];
@@ -23,13 +29,18 @@ const removeTagFilter = (tag: string) => {
 };
 
 export default function Search() {
+  const { elastic, onElastic } = useElastic();
   const [search, setSearch] = useState('');
   const [isWide, setIsWide] = useState(false);
   const [tags, setTags] = useState([]);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  const onChange = _.throttle((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== '') {
+      setSearch(e.target.value);
+      onElastic(e.target.value);
+    }
+  }, 100);
+
   const onClick = () => {
     if (search.length !== 0) {
       document.getElementById('search-route')?.click();
@@ -58,6 +69,9 @@ export default function Search() {
       if (classList.indexOf('search') === -1) {
         $('.search-inner').removeClass('wide');
         setIsWide(false);
+        const inputs: any = $('#search-input').get();
+        inputs.value = '';
+        setSearch('');
       }
     }
   };
@@ -82,13 +96,24 @@ export default function Search() {
       <S.SearchInner className="search-inner search">
         <input
           name="search"
-          placeholder="상품명 검색"
+          placeholder="검색 입력"
           onKeyPress={onKeyPress}
           onChange={(e) => onChange(e)}
           id="search-input"
           autoComplete="off"
           className="search"
         />
+        <div className="elastic">
+          {isWide &&
+            elastic &&
+            elastic.slice(0, 5).map((item: IElastic, index: number) => (
+              <div className="elastic-item" key={index}>
+                <Link to={`/search/0/?title=${item._source.title}&page=1`} className="search">
+                  <>{item._source.title.slice(0, 15)}...</>
+                </Link>
+              </div>
+            ))}
+        </div>
         <div className="tags search">
           {isWide &&
             tags.map((tag: string, index: number) => (

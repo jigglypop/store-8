@@ -1,3 +1,4 @@
+import { getS3Url } from '@client/utils/getS3Url';
 import { Link } from '@client/utils/router';
 import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
@@ -14,8 +15,8 @@ interface ICard {
   item: IProduct;
 }
 const Card = ({ index, item }: ICard) => {
-  let imgsrc = item.productImgSrc;
-  const { addToCart } = useCart();
+let imgsrc = item.productImgSrc;
+const { addToCart } = useCart();
   if (imgsrc === undefined) {
     imgsrc = `/public/image/product/big/${index + 1}.jpg`;
   }
@@ -59,29 +60,7 @@ const Card = ({ index, item }: ICard) => {
           <p className="small">{dot(item.amount)} 원</p>
         </div>
 
-        <div className="mark">
-          {/* {item.tagType === 1 ? (
-            <button className="green">
-              <p className="marktext">GREEN</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType <= 1 ? (
-            <button className="new">
-              <p className="marktext">NEW</p>
-            </button>
-          ) : (
-            ""
-          )}
-          {item.tagType === 0 ? (
-            <button className="sale">
-              <p className="marktext">SALE</p>
-            </button>
-          ) : (
-            ""
-          )} */}
-        </div>
+        <div className="mark"></div>
       </div>
       {isModalOpen && <OptionModal productId={item.id} closeForm={closeForm} confirm={confirm} />}
     </S.Card>

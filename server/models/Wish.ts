@@ -21,9 +21,7 @@ export interface IWish {
   productCount: number;
 }
 
-@Table({
-  timestamps: false,
-})
+@Table
 export default class Wish extends Model<IWish> {
   @PrimaryKey
   @AutoIncrement
@@ -53,5 +51,5 @@ export default class Wish extends Model<IWish> {
   createdAt: Date;
 
   @UpdatedAt
-  updatedOn: Date;
+  updatedAt: Date;
 }
