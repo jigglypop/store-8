@@ -30,6 +30,7 @@ export const UserFeedbackTitleContainer = styled.div`
 `;
 
 export const UserPostingList = styled.ul`
+  min-height: 300px;
   & > li {
     display: flex;
     align-items: center;
