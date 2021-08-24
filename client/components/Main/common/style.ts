@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const MainItem = styled.div`
   margin: 10px;
   position: relative;
-  width: 80vw;
   max-height: 2000vh;
   display: grid;
   grid-template-rows: 200px 1fr;

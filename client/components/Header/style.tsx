@@ -157,6 +157,14 @@ export const HeaderItem = styled.div`
       fill: #ffffff;
     }
   }
+
+  .cart-text {
+    display: flex;
+    flex-direction: row;
+    p {
+      margin-right: 10px;
+    }
+  }
 `;
 
 // 헤더 바깥
