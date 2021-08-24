@@ -1,4 +1,4 @@
-import { Dispatch, MouseEvent, ReactElement, SetStateAction, useState } from 'react';
+import { MouseEvent, ReactElement, useState } from 'react';
 import * as S from './style';
 
 import XIcon from '@image/icon/xIcon.svg';
