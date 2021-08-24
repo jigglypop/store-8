@@ -35,6 +35,7 @@ export type AddressAddReq = {
   call: string;
   receiver: string;
   email: string;
+  title?: string;
 };
 
 export type AddressAddRes = {

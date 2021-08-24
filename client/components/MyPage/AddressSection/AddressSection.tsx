@@ -49,6 +49,10 @@ export default function AddressSection(): ReactElement {
     setAddModalFocused(true);
   };
 
+  const onAddConfirm = () => {
+    dispatch(getAddress({ userId: 1 }));
+  };
+
   return (
     <S.AddressSection>
       <Intro />
@@ -90,7 +94,9 @@ export default function AddressSection(): ReactElement {
       </div>
       {isDeleteModalFocused && <AddressDeleteModal closeForm={closeDeleteModal} addressId={0} />}
       {isModifyModalFocused && <AddressModifyModal closeForm={closeModifyModal} addressId={0} />}
-      {isAddModalFocused && <AddressAddModal closeForm={closeAddModal} />}
+      {isAddModalFocused && (
+        <AddressAddModal onAddConfirm={onAddConfirm} closeForm={closeAddModal} />
+      )}
     </S.AddressSection>
   );
 }

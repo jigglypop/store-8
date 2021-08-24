@@ -49,6 +49,7 @@ export const AddressSection = styled.div`
     flex-direction: row;
     align-items: center;
     margin-top: 8px;
+    margin-bottom: 60px;
     cursor: pointer;
     img {
       width: 24px;
