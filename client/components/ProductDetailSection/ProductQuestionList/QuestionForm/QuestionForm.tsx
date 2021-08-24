@@ -7,6 +7,8 @@ import CheckBox from '@components/common/CheckBox/CheckBox';
 
 import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
+import { useMyQuestion } from '@client/hooks/my/useMyQuestion';
+import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
   cancelCbFn: () => void;
@@ -14,6 +16,7 @@ interface Props {
   editTitle?: string;
   editContents?: string;
   editIsSecret?: boolean;
+  productInfo?: IProductInfo;
 }
 
 export default function QuestionForm({
@@ -22,6 +25,7 @@ export default function QuestionForm({
   editTitle,
   editContents,
   editIsSecret,
+  productInfo,
 }: Props): ReactElement {
   const isEdit = questionId !== undefined;
   const { product } = useProduct();
@@ -67,8 +71,8 @@ export default function QuestionForm({
           </div>
         </div>
         <div className="question-form__title">
-          <img src={product?.productImgSrc} alt="image" />
-          <div className="title">{product?.title}</div>
+          <img src={productInfo?.productImgSrc || product?.productImgSrc} alt="image" />
+          <div className="title">{productInfo?.title || product?.title}</div>
         </div>
         <form>
           <div className="question-form__title-input">

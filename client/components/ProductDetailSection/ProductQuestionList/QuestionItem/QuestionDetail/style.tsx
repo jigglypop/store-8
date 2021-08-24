@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const QuestionDetail = styled.div`
   background-color: var(--footer-background-dark);
-  padding: 0 13px;
   color: var(--text-black-dark);
+  font-size: var(--body-middle-font);
+  padding: 0 13px;
   .question-detail__question,
   .question-detail__answer {
     display: flex;

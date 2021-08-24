@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const ReviewDetail = styled.div`
   background-color: var(--footer-background-dark);
   color: var(--text-black-dark);
-
+  font-size: var(--body-middle-font);
   padding: 50px;
   .review-detail__img {
     display: flex;

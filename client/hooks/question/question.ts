@@ -10,6 +10,8 @@ import {
 } from '@middle/type/question/question';
 import { useRouter } from '../router/router';
 import { createQuestionApi, updateQuestionApi, deleteQuestionApi } from '@client/api/question';
+import { getMyQuestion } from '@client/store/my/myQuestion';
+import cache from '@client/utils/cache';
 
 type IFetchType = 'create' | 'update' | 'delete';
 
@@ -41,6 +43,11 @@ export function useQuestion() {
         return false;
       }
       dispatch(getQuestion({ productId, query: `page=${currentPage}` }));
+
+      if (type === 'update' || type === 'delete') {
+        dispatch(getMyQuestion({ query: `page=${currentPage}`, token: cache.get('token') }));
+      }
+
       return true;
     };
 
