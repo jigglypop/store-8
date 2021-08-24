@@ -1,24 +1,23 @@
 import React, { ReactElement } from 'react';
 import * as S from './style';
 import { Link } from '@client/utils/router';
-
-import { IMyQuestion } from '@middle/type/question/question';
+import { IMyReview } from '@middle/type/review/review';
 
 interface Props {
-  questionData: IMyQuestion;
+  reviewData: IMyReview;
 }
 
-export default function MyQuestionBox({ questionData }: Props): ReactElement {
+export default function MyReviewBox({ reviewData }: Props): ReactElement {
   const {
     id,
     title,
     date,
     productInfo: { id: productId, title: productTitle, productImgSrc },
-  } = questionData;
+  } = reviewData;
 
   if (!productTitle || !productImgSrc) return <></>;
   return (
-    <S.MyQuestionBox>
+    <S.MyReviewBox>
       <div className="column-title">
         <Link to={`/product/${productId}`} className="product-link">
           <>
@@ -37,6 +36,6 @@ export default function MyQuestionBox({ questionData }: Props): ReactElement {
       <div className="column-date">
         <div>{date}</div>
       </div>
-    </S.MyQuestionBox>
+    </S.MyReviewBox>
   );
 }

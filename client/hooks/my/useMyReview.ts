@@ -8,7 +8,9 @@ import cache from '@client/utils/cache';
 export function useMyReview() {
   const dispatch = useDispatch();
 
-  const { review, currentPage, error, loading } = useSelector((state: RootState) => state.review);
+  const { myReview, currentPage, error, loading } = useSelector(
+    (state: RootState) => state.myReview
+  );
 
   const setCurrentPage = (newPage: number) => {
     dispatch(setPage(newPage));
@@ -21,8 +23,8 @@ export function useMyReview() {
   }, []);
 
   return {
-    totalCount: review?.totalCount ?? 0,
-    myReviews: review?.reviews ?? [],
+    totalCount: myReview?.totalCount ?? 0,
+    myReviews: myReview?.reviews ?? [],
     loading,
     error,
     currentPage,
