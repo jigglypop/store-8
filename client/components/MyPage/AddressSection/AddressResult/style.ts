@@ -6,9 +6,11 @@ export const AddressResult = styled.div`
   display: flex;
   flex-direction: row;
   .content-text {
+    color: var(--text-black-dark);
     font-size: var(--body-small-font);
   }
   .content-main-text {
+    color: var(--text-black-dark);
     font-size: var(--body-small-font);
     font-weight: 600;
     margin-bottom: 8px;
@@ -32,13 +34,12 @@ export const AddressResult = styled.div`
     .modify-button {
       padding: 4px 8px;
       cursor: pointer;
-      background-color: var(--background-white);
-      border: 1px solid var(--border-dark-gray);
-      color: var(--text-pastel-black);
+      border: 1px solid var(--line-dark-gray-dark);
+      color: var(--text-black-dark);
       margin-right: 3px;
       border-radius: 2px;
       &:hover {
-        background-color: var(--background-gray);
+        background-color: var(--background-white-darken-dark);
       }
     }
 

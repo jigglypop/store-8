@@ -57,6 +57,7 @@ export const AddressSection = styled.div`
       margin-right: 8px;
     }
     p {
+      color: var(--text-black-dark);
     }
   }
 `;
