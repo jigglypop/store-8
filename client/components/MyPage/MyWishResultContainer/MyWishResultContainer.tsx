@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import * as S from './style';
 
 import ProductBox from '../ProductBox/ProductBox';
-import { TextNoData } from '../ProductBox/style';
+import { TextNoData } from '@components/MyPage/common/style';
 import { useMyWish } from '@client/hooks/mywish/category';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 
 export default function ResultContainer({ title }: Props): ReactElement {
   const { mywish } = useMyWish();
+
   return (
     <S.MyWishResultContainer>
       <h4>
@@ -27,13 +28,17 @@ export default function ResultContainer({ title }: Props): ReactElement {
           <h4>상품금액/수량</h4>
         </div>
       </div>
-      <div className={'container-result-list'}>
-        {!mywish ? (
+      {!mywish?.rows.length ? (
+        <div className={'container-result-list no-data'}>
           <TextNoData>조회 내역이 없습니다.</TextNoData>
-        ) : (
-          mywish.rows.map((data, idx) => <ProductBox result={data} key={idx} />)
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className={'container-result-list'}>
+          {mywish.rows.map((data, idx) => (
+            <ProductBox result={data} key={idx} />
+          ))}
+        </div>
+      )}
     </S.MyWishResultContainer>
   );
 }

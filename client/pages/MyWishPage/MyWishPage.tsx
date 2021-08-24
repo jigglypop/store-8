@@ -7,10 +7,8 @@ interface Props {}
 export default function MyWishPage() {
   return (
     <S.MyWishPage>
-      <div className="mypage-inner">
-        <NavigationBar page="WISH" />
-        <MyWishSection />
-      </div>
+      <NavigationBar page="WISH" />
+      <MyWishSection />
     </S.MyWishPage>
   );
 }

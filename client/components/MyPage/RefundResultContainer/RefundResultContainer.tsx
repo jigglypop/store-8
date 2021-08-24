@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import RefundBox from '../RefundBox/RefundBox';
-import { TextNoData } from '../RefundBox/style';
+import { TextNoData } from '@components/MyPage/common/style';
 import * as S from './style';
 import { useMyRefund } from '@client/hooks/myRefund/myRefund';
 import { IRefund } from '@middle/type/myRefund/myRefund';

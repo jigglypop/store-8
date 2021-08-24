@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import * as S from './style';
 
 import OrderBox from '../OrderBox/OrderBox';
-import { TextNoData } from '../OrderBox/style';
+import { TextNoData } from '@components/MyPage/common/style';
 import { useMyOrder } from '@client/hooks/myOrder/myOrder';
 
 interface Props {}
