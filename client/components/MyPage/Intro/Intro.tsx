@@ -1,21 +1,37 @@
-import React, { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as S from './style';
+
+import Avatar from '@components/common/Avatar/Avatar';
 import { useCheck } from '@client/hooks/auth/check';
 import { useOrder } from '@client/hooks/order/order';
-import Avatar from '@client/components/common/Avatar/Avatar';
-import { useEffect } from 'react';
+import { RootState } from '@store/index';
+import { getCoupon } from '@store/coupon/coupon';
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
   // { couponCount, mileage, name, grade } 에 해당하는 customHook 을 만들거나,
   // useEffect로 API 요청
   // 임시로 둠
-  const { couponCount, grade } = { couponCount: 1, grade: '일반회원' };
+  const { grade } = { grade: '일반회원' };
+  const { coupon } = useSelector((state: RootState) => state.coupon);
+  const [couponCount, setCouponCount] = useState(0);
   const { mileage, getUsableMileage } = useOrder();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    // TODO : User ID 빼기
+    dispatch(getCoupon({ userId: 1 }));
     getUsableMileage();
   }, []);
+
+  useEffect(() => {
+    let temp = 0;
+    coupon.forEach((element) => {
+      if (!element.isUsed) temp += 1;
+    });
+    setCouponCount(temp);
+  }, [coupon]);
 
   return (
     <S.Intro>
