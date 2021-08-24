@@ -26,7 +26,7 @@ export const check = async (req: IAuthRequest, res: Response) => {
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    throw new HttpError({ status: 400, message: '이름과 비밀번호를 모두 입력해 주세요' });
+    throw new HttpError({ ...err.INVALID_INPUT_ERROR });
   }
   const user = await User.findOne({ where: { username } });
   if (!user) {

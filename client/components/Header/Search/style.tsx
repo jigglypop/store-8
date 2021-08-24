@@ -11,7 +11,7 @@ export const SearchInner = styled.div`
   position: sticky;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   text-align: center;
   transition: all 0.3s ease-in-out;
@@ -27,11 +27,21 @@ export const SearchInner = styled.div`
   .tags {
     display: flex;
     flex-wrap: wrap;
-    height: 140px;
   }
+  .elastic {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: flex-start;
 
+    .elastic-item {
+      margin: 5px;
+      font-size: 12px;
+    }
+  }
   input {
-    font-size: var(--body-small-font);
+    font-size: 16px;
     outline: none;
     padding: 20px;
     height: 40px;
@@ -43,9 +53,11 @@ export const SearchInner = styled.div`
 
   &.wide {
     transform: translateY(40%);
-    height: 200px;
+    height: 300px;
     width: 200px;
-
+    .elastic {
+      min-width: 100px;
+    }
     input {
       margin: 10px;
       width: 180px;

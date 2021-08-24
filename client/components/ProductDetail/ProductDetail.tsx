@@ -6,6 +6,7 @@ import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
 
 import { useProduct } from '@client/hooks/product/product';
+import { getS3Url } from '@client/utils/getS3Url';
 
 interface Props {}
 
@@ -18,7 +19,7 @@ export default function ProductDetail({}: Props): ReactElement {
 
   return (
     <S.ProductDetail>
-      <ImgMagifier src={productImgSrc} />
+      <ImgMagifier src={getS3Url(productImgSrc)} />
       <div className="product-detail__info">
         <ProductInfo />
         <DetailBtns {...{ id, title }} />
