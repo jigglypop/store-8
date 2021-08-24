@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react';
 import * as S from './style';
+
+import Star from '@components/common/Star/Star';
 import { Link } from '@client/utils/router';
 import { IMyReview } from '@middle/type/review/review';
 
@@ -8,16 +10,23 @@ interface Props {
 }
 
 export default function MyReviewBox({ reviewData }: Props): ReactElement {
+  const MAX_SCORE = 5;
   const {
     id,
     title,
     date,
+    score,
     productInfo: { id: productId, title: productTitle, productImgSrc },
   } = reviewData;
+
+  const stars = new Array(MAX_SCORE)
+    .fill(0)
+    .map((_, idx) => <Star key={idx} isSelect={idx < score} />);
 
   if (!productTitle || !productImgSrc) return <></>;
   return (
     <S.MyReviewBox>
+      <div className="column-score">{stars}</div>
       <div className="column-title">
         <Link to={`/product/${productId}`} className="product-link">
           <>

@@ -17,9 +17,6 @@ export default function MyReviewResultContainer({}: Props): ReactElement {
     myReviews.map((reviewData: IMyReview) => (
       <MyReviewBox key={reviewData.id} reviewData={reviewData} />
     ))
-    // myReviews.map((reviewData: IMyReview) => (
-    //   <MyReviewBox key={reviewData.id} reviewData={reviewData} />
-    // ))
   );
 
   return (
@@ -28,8 +25,8 @@ export default function MyReviewResultContainer({}: Props): ReactElement {
         나의 상품후기 <b>{totalCount}</b>건
       </h4>
       <div className="container-column">
-        <div className="column-title">평가점수</div>
-        <div className="column-title">상품</div>
+        <div className="column-score">평가점수</div>
+        <div className="column-product-title">상품</div>
         <div className="column-title">문의 제목</div>
         <div className="column-date">날짜</div>
       </div>

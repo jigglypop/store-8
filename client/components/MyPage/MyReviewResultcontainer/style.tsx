@@ -27,9 +27,14 @@ export const MyReviewResultContainer = styled.div`
       padding: 10px 0px;
     }
 
+    .column-score {
+      width: 120px;
+      flex-grow: unset;
+    }
     .column-date {
       text-align: center;
       width: 70px;
+      flex-grow: 0.5;
     }
   }
 `;

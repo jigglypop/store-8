@@ -20,9 +20,19 @@ export const MyReviewBox = styled.li`
     padding: 10px 0px;
   }
 
+  .column-score {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    flex-grow: unset;
+    width: 120px;
+    margin-right: 20px;
+  }
+
   .column-date {
     text-align: center;
     width: 70px;
+    flex-grow: 0.5;
   }
 
   .wrapper-thumbnail {
