@@ -4,12 +4,12 @@ import { useSearch } from '@client/hooks/search/search';
 import * as S from './style';
 
 const SearchPage = () => {
-  const { search } = useSearch();
+  const { search, title } = useSearch();
   return (
     <S.SearchPage>
       {search && (
         <>
-          <Search cards={search.rows} />
+          <Search cards={search.rows} title={title} />
           <SearchPagination page={search.count} />
         </>
       )}

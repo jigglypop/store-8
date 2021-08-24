@@ -20,7 +20,7 @@ export default function NavigationBar({ page }: Props): ReactElement {
     page === pageConstant ? 'clicked' : '';
 
   return (
-    <S.NavigationBar>
+    <S.NavigationBar id="navigation-big">
       <h3>마이페이지</h3>
 
       <S.NavigatorGroup onClick={handleClickButton}>

@@ -3,6 +3,7 @@ import MainBest from '../../components/Main/MainBest/MainBest';
 import MainGift from '../../components/Main/MainGift/MainGift';
 import MainNew from '../../components/Main/MainNew/MainNew';
 import MainSale from '../../components/Main/MainSale/MainSale';
+// import MainStore from '../../components/MainStore/MainStore';
 import { useMain } from '../../hooks/main/main';
 import { useStoreMode } from '../../hooks/storemode/storemode';
 import * as S from './style';
@@ -17,13 +18,11 @@ const MainPage = () => {
           <Carousel />
           <MainBest main={main} />
           <MainNew main={main} />
-          <MainGift />
           <MainSale main={main} />
+          <MainGift />
         </S.MainPage>
       ) : (
-        <>
-          <h1>메인</h1>
-        </>
+        <>{/* <MainStore /> */}</>
       )}
     </>
   );

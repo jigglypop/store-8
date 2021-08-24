@@ -1,14 +1,48 @@
 import styled from 'styled-components';
 import { ContainerItem } from '../common/style';
 
-export const MyWishResultContainer = styled(ContainerItem)`
+export const MyWishResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 940px;
+  margin-bottom: 12px;
+  color: var(--text-black-dark);
+
+  .container-column {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: var(--gray6);
+    border-top: 1px solid var(--gray4);
+    border-bottom: 1px solid var(--gray5);
+    color: var(--text-black);
+
+    > * {
+      width: 70px;
+      flex-grow: 1;
+      text-align: center;
+      font-size: var(--body-small-font);
+      font-weight: 600;
+      padding: 10px 0px;
+    }
+
+    .column-date {
+      text-align: center;
+      width: 70px;
+    }
+
+    .column-title {
+      width: 200px;
+    }
+  }
+
   .container-result-list {
     width: 100%;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
     align-items: center;
-    border-bottom: 1px solid var(--gray5);
 
     .text-no-data {
       margin-top: 65px;
@@ -17,44 +51,17 @@ export const MyWishResultContainer = styled(ContainerItem)`
       text-align: center;
       width: 100%;
     }
-  }
 
-  .container-column {
-    grid-template-columns: 1fr 2fr 1fr;
+    &.no-data {
+      border-bottom: 1px solid var(--gray5);
 
-    .common-button {
-      grid-column: 1/2;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .common-title {
-      grid-column: 2/3;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .common-price {
-      grid-column: 3/4;
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+      * {
+        display: hidden;
+      }
 
-  &.no-data {
-    * {
-      display: hidden;
-    }
-
-    .text-no-data {
-      display: block;
+      .text-no-data {
+        display: block;
+      }
     }
   }
 `;

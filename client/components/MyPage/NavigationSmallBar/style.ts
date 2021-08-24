@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const NavigationBar = styled.div`
+export const NavigationSmallBar = styled.div`
   margin: 20px;
-  grid-column: 1/2;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  width: 200px;
-  gap: 30px;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
   color: var(--text-black-dark);
 
   h3 {
@@ -16,19 +16,22 @@ export const NavigationBar = styled.div`
     border-bottom: 1.5px solid var(--gray5-button-hover);
     padding-left: 12px;
   }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const NavigatorGroup = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
-  /* padding: 12px; */
   font-size: var(--body-small-font);
 
   div {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin: 10px;
     height: 30px;
     transition: all 0.3s ease-in;
   }

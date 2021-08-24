@@ -1,15 +1,27 @@
 import styled from 'styled-components';
 
 export const MyWishPage = styled.div`
-  width: var(--app-width);
-  margin: 0px calc(50vw - var(--app-width) / 2) 0px calc(50vw - var(--app-width) / 2);
-  position: relative;
-
+  margin-top: 12px;
+  margin-left: 12px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  gap: 32px;
+  min-height: 650px;
 
-  .mypage-inner {
-    display: grid;
-    grid-template-columns: 200px 1fr;
+  @media only screen and (min-width: 1200px) {
+    flex-direction: row;
+
+    #navigation-small {
+      display: none;
+    }
+  }
+  /* 캐러셀  width만 조정 */
+  @media only screen and (max-width: 1200px) {
+    flex-direction: column;
+
+    #navigation-big {
+      display: none;
+    }
   }
 `;
