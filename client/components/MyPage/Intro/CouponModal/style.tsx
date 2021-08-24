@@ -13,6 +13,9 @@ export const CouponModal = styled.div`
 
   .coupon-modal-title {
     font-size: var(--body-huge-font);
+    margin-bottom: 12px;
+  }
+  .coupon-modal-info {
     margin-bottom: 28px;
   }
 
@@ -22,6 +25,10 @@ export const CouponModal = styled.div`
   }
   .coupon-div {
     margin: 5px 0px;
+  }
+
+  .used-coupon {
+    opacity: 0.5;
   }
 
   .button-space {

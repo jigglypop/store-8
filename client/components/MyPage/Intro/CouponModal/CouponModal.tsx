@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import * as S from './style';
-import { CHOOSE_COUPON_TEXT } from '@constants/Cart';
+import { SHOW_COUPON_TEXT, SHOW_COUPON_DETAIL } from '@constants/Cart';
 import Modal from '@client/components/common/Modal/Modal';
 import type { CouponData } from '@middle/type/Coupon/coupon';
 import Coupon from '@components/Order/AccountInfo/Coupon/Coupon'; // Coupon Element
@@ -15,24 +15,23 @@ function CouponModal(props: CouponModalProps): ReactElement {
     <Modal closeModal={props.closeForm}>
       <S.CouponModal>
         <div>
-          <p className="coupon-modal-title">{CHOOSE_COUPON_TEXT}</p>
+          <p className="coupon-modal-title">{SHOW_COUPON_TEXT}</p>
+          <p className="coupon-modal-info">{SHOW_COUPON_DETAIL}</p>
           <div className="coupon-container">
             {props.coupon.map((element, index) => {
               const { amount, title, dDay, isUsed } = element;
-              if (!isUsed) {
-                return (
-                  <div key={index} className="coupon-div">
-                    <Coupon title={title} amount={amount} dDay={dDay} selected={false}></Coupon>
-                  </div>
-                );
-              }
-              return <></>;
+              const isUsedCoupon = isUsed ? 'used-coupon' : '';
+              return (
+                <div key={index} className={'coupon-div ' + isUsedCoupon}>
+                  <Coupon title={title} amount={amount} dDay={dDay} selected={false}></Coupon>
+                </div>
+              );
             })}
           </div>
         </div>
         <div className="button-space">
           <button onClick={props.closeForm} className="cancle-btn">
-            {'취소'}
+            {'뒤로가기'}
           </button>
         </div>
       </S.CouponModal>
