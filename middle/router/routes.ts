@@ -54,6 +54,12 @@ export const routes = [
     component: 'OrderPage',
   },
   {
+    path: '/finish',
+    name: 'finish',
+    title: '주문하기',
+    component: 'OrderFinishPage',
+  },
+  {
     path: '/mypage-order-list',
     name: 'mypage-order-list',
     title: '마이페이지 - 주문목록/배송조회',

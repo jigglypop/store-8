@@ -33,6 +33,24 @@ const findAll = async (userId: number) => {
   return result;
 };
 
+interface ExistProps {
+  userId: number;
+  location: string;
+  extraLocation: string;
+  zonecode: string;
+  call: string;
+  email: string;
+  receiver: string;
+}
+
+const isExist = async (props: ExistProps) => {
+  const addresses = await Address.findAll({
+    where: { ...props },
+  });
+
+  return addresses;
+};
+
 export const get = async (req: Request, res: Response) => {
   const { userId } = req.body;
   if (!userId) {
@@ -45,40 +63,60 @@ export const get = async (req: Request, res: Response) => {
 };
 
 export const add = async (req: Request, res: Response) => {
-  const { userId, location, extraLocation, zonecode, call, email, title, receiver } = req.body;
+  const { userId, location, extraLocation, zonecode, call, email, receiver } = req.body;
   if (!userId) {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
 
-  const valid = await Address.create({
+  const existData = await isExist({
     userId,
     location,
     extraLocation,
     zonecode,
     call,
     email,
-    title,
     receiver,
-    isBase: false,
   });
+  if (existData.length !== 0) {
+    res.status(200).json({ data: existData[0].id });
+  } else {
+    // 임시로 title을 만들어줍니다. 이후 사용자가 변경 할 수 있게 해 줄 계획.
+    const title: string = `[ ${receiver} ] ${extraLocation}`;
+    const valid = await Address.create({
+      userId,
+      location,
+      extraLocation,
+      zonecode,
+      call,
+      email,
+      title,
+      receiver,
+      isBase: false,
+    });
 
-  if (!valid) {
-    throw new HttpError({ status: 400, message: '요청한 내역 추가를 진행 할 수 없었습니다.' });
+    if (!valid) {
+      throw new HttpError({ status: 400, message: '요청한 내역 추가를 진행 할 수 없었습니다.' });
+    }
+
+    const insertedResult = await isExist({
+      userId,
+      location,
+      extraLocation,
+      zonecode,
+      call,
+      email,
+      receiver,
+    });
+
+    res.status(200).json({ data: insertedResult[0].id });
   }
-
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
 };
 
 export const setBase = async (req: Request, res: Response) => {
   const { userId, addressId } = req.body;
 
-  const valid = await Address.update({ isBase: true }, { where: { id: addressId } });
-
-  if (!valid) {
-    throw new HttpError({ status: 400, message: '요청한 내역 업데이트를 진행 할 수 없었습니다.' });
-  }
+  await Address.update({ isBase: false }, { where: { userId: userId } });
+  await Address.update({ isBase: true }, { where: { id: addressId } });
 
   let result = await findAll(userId);
 

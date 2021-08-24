@@ -81,5 +81,31 @@ export const UserInfo = styled.div`
       border: 1px solid var(--line-gray);
       border-radius: 4px;
     }
+
+    .detail-address-page {
+      display: flex;
+      flex-direction: row;
+
+      .set-base-section {
+        margin-left: 18px;
+        display: flex;
+        flex-direction: row;
+
+        img {
+          width: 12px;
+          object-fit: contain;
+        }
+        div {
+          p {
+            margin-top: 2px;
+            font-size: var(--body-small-font);
+          }
+          margin-left: 12px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
   }
 `;
