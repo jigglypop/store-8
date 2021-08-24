@@ -32,7 +32,7 @@ export default function Intro(): ReactElement {
           </S.UserPoint>
         </div>
         <div className="text-user-info">
-          <div>
+          <div className="user-grade">
             {check?.username}님의 회원등급은 {grade}그룹 입니다.
           </div>
         </div>
