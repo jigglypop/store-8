@@ -11,7 +11,6 @@ export function useCoupon() {
   const [coupon, setCoupon] = useState<CouponData[]>([]);
 
   const getAllCoupon = async () => {
-    // TODO: userId 없애기
     const result = await couponGetAllApi(cache.get('token'));
     setCoupon(result);
   };

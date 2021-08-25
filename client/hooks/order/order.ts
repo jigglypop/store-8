@@ -65,7 +65,6 @@ export function useOrder() {
   };
 
   const removeAddress = async (addressId: number) => {
-    // TODO: UserId 지우기
     await removeAddressApi({ addressId }, cache.get('token'));
   };
 

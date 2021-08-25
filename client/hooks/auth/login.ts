@@ -7,7 +7,7 @@ import cache from '@client/utils/cache';
 import { getCheck } from '@client/store/auth/check';
 import { debounceRedux } from '@client/utils/debounce';
 import { getMyWish } from '@client/store/mywish/mywish';
-import { getCart, addCart } from '@client/store/product/cart';
+import { getCart, localAddCart } from '@client/store/product/cart';
 import localCart from '@utils/cart';
 import { ICartAddReq } from '@middle/type/cart/cart';
 
@@ -30,18 +30,13 @@ export function useLogin() {
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
 
-      // TODO : 한번에 모두 올리기
       // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
       const localCartData = localCart.get();
-      if (localCartData.length !== 0) {
-        localCartData.forEach((cartData: ICartAddReq) => {
-          dispatch(addCart(cartData));
-        });
-        localCart.init(); // 모두 서버와 동기화 후 초기화하기.
-      }
-
       // 서버와 Cart 데이터 동기화
-      dispatch(getCart(cache.get('token')));
+      dispatch(localAddCart({ data: localCartData }));
+      localCart.init(); // 모두 서버와 동기화 후 초기화하기.
+
+      // dispatch(getCart(cache.get('token')));
       dispatch(initLogin());
     }
   }, [login]);

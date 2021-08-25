@@ -4,7 +4,7 @@ import ProductOption from '../models/Option';
 import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
-import { CartData } from '../../middle/type/cart/cart';
+import { CartData, ICartAddReq } from '../../middle/type/cart/cart';
 
 const findAll = async (userId: number) => {
   const carts = await Cart.findAll({ where: { userId } });
@@ -90,7 +90,26 @@ export const getLocal = async (req: Request, res: Response) => {
 };
 
 export const addLocal = async (req: Request, res: Response) => {
-  const { userId, productIds, optionIds, counts } = req.body;
+  const { userId, data } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  data.forEach(async (element: ICartAddReq) => {
+    const valid = await Cart.create({
+      userId,
+      productId: element.productId,
+      productOptionId: element.productOptionId,
+      productCount: element.productCount,
+    });
+
+    if (!valid) {
+      throw new HttpError({
+        status: 400,
+        message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.',
+      });
+    }
+  });
 
   let result = await findAll(userId);
 

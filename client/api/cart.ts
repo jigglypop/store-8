@@ -49,7 +49,7 @@ export const cartLocalGetApi = async (requestForm: ICartLocalGetData, thunkApi: 
 
 export const cartLocalAddApi = async (requestForm: ICartLocalAddData, thunkApi: IThunkApi) => {
   const token = cache.get('token');
-  const data = await request.post<ICartLocalAddData>('/api/cart/addLcoal', requestForm, token);
+  const data = await request.post<ICartLocalAddData>('/api/cart/addLocal', requestForm, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);

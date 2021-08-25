@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@client/store';
-import { getCheck, logout } from '@client/store/auth/check';
-import { HistoryPush } from '@client/utils/router';
+import { getCheck, logout } from '@store/auth/check';
+import { HistoryPush } from '@utils/router';
 import { useEffect } from 'react';
-import cache from '@client/utils/cache';
-import { getGithub, initGithub } from '@client/store/auth/github';
+import cache from '@utils/cache';
+import { getGithub, initGithub } from '@store/auth/github';
+import localCart from '@utils/cart';
+import { localAddCart } from '@store/product/cart';
 
 export function useGithub() {
   const { github } = useSelector((state: RootState) => state.github);
@@ -19,6 +21,15 @@ export function useGithub() {
     if (github) {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
+
+      // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
+      const localCartData = localCart.get();
+      // 서버와 Cart 데이터 동기화
+      dispatch(localAddCart({ data: localCartData }));
+      localCart.init(); // 모두 서버와 동기화 후 초기화하기.
+
+      // dispatch(getCart(cache.get('token')));
+
       dispatch(initGithub());
     }
   }, [github]);

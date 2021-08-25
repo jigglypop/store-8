@@ -12,9 +12,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { setDarkMode } from './utils/setDisplay';
 import { getMyWish } from './store/mywish/mywish';
 import { getRecommend } from './store/recommend/recommend';
-import { getCart, addCart } from '@client/store/product/cart';
+import { getCart, localAddCart } from '@client/store/product/cart';
 import localCart from '@utils/cart';
-import { ICartAddReq } from '@middle/type/cart/cart';
 
 const loadUser = async () => {
   try {
@@ -23,17 +22,13 @@ const loadUser = async () => {
       await store.dispatch(getCheck(cache.get('token')));
       await store.dispatch(getMyWish(cache.get('token')));
 
-      // TODO : 한번에 모두 올리기
       // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
       const localCartData = localCart.get();
-      if (localCartData.length !== 0) {
-        localCartData.forEach((cartData: ICartAddReq) => {
-          store.dispatch(addCart(cartData));
-        });
-        localCart.init(); // 모두 서버와 동기화 후 초기화하기.
-      }
+      // 서버와 Cart 데이터 동기화
+      store.dispatch(localAddCart({ data: localCartData }));
+      localCart.init(); // 모두 서버와 동기화 후 초기화하기.
 
-      store.dispatch(getCart(cache.get('token')));
+      // dispatch(getCart(cache.get('token')));
       store.dispatch(getRecommend(cache.get('token')));
     }
   } catch (e) {
