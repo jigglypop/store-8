@@ -80,7 +80,7 @@ export default function SectionNav({
     } else {
       navRef.current.classList.remove('fixed');
     }
-  }, 100);
+  }, 50);
 
   useEffect(() => {
     window.addEventListener('scroll', setNavPosition);
