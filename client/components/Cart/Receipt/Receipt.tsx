@@ -12,12 +12,25 @@ import {
 } from '@constants/Cart';
 import * as S from './style';
 import { CartContentMetaData } from '@client/type/CartContentMetaData';
+import cache from '@client/utils/cache';
+import { useRouter } from '@client/hooks/router/router';
+import { IRouterReq } from '@client/store/router/router';
+import { getRouterObj } from '@client/utils/pathname';
+import { useState } from 'react';
+import LoginNeedModal from '@components/common/LoginNeedModal/LoginNeedModal';
 
 interface MetaData {
   metaData: CartContentMetaData;
 }
 
 function Receipt({ metaData }: MetaData): ReactElement {
+  const { onChangeRouterAll } = useRouter();
+  const [isLoginFocused, setIsLoginFocused] = useState(false);
+
+  const closeForm = () => {
+    setIsLoginFocused(false);
+  };
+
   return (
     <S.ReceiptContainer>
       <S.Receipt>
@@ -44,14 +57,27 @@ function Receipt({ metaData }: MetaData): ReactElement {
         </p>
       </S.TotalPrice>
       <S.OrderNow>
-        <Link to={'/order'}>
-          <button>{'주문하기'}</button>
-        </Link>
+        <button
+          onClick={() => {
+            const isLoggedIn = cache.get('token');
+            if (isLoggedIn) {
+              const to = '/finish';
+              const RouterObj: IRouterReq = getRouterObj(to);
+              onChangeRouterAll(RouterObj);
+              history.pushState({ path: to }, to, to);
+            } else {
+              setIsLoginFocused(true);
+            }
+          }}
+        >
+          {'주문하기'}
+        </button>
         <div className="order-info">
           <img src={exMark} />
           <p>{PROCEED_GUIDE_TEXT}</p>
         </div>
       </S.OrderNow>
+      {isLoginFocused && <LoginNeedModal cancelCbFn={closeForm} />}
     </S.ReceiptContainer>
   );
 }
