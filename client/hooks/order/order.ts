@@ -20,7 +20,7 @@ export function useOrder() {
   const dispatch = useDispatch();
 
   const getUsableMileage = async () => {
-    const temp = await getMileage({ userId: 1 });
+    const temp = await getMileage(cache.get('token'));
     setMileage(temp);
   };
 
@@ -105,7 +105,6 @@ export function useOrder() {
     // 주문내역 만드는 API 호출, 사용한 마일리지는 order 를 만들면서 해결한다.
     // TODO : User Id 빼기
     const orderApiResult = await createOrder({
-      userId: 1,
       productIds,
       productCounts,
       productAmounts,
