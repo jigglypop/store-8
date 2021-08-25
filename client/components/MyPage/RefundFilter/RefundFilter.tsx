@@ -8,14 +8,11 @@ interface Props {
 }
 
 export default function RefundFilter({ filterIndex, eventHandler }: Props): ReactElement {
-  useEffect(() => console.log(filterIndex), [filterIndex]);
-
   const isButtonClicked = (value: number): boolean => filterIndex === value;
 
   const onFilterButtonHandler = (e: React.MouseEvent) => {
     const { target } = e;
     if (!(target instanceof HTMLButtonElement)) return;
-    console.log(`${target.value} click 했습니다`);
     eventHandler(+target.value);
   };
 

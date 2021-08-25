@@ -27,6 +27,8 @@ const findAll = async (userId: number) => {
       call: element.call,
       name: element.receiver,
       email: element.email,
+      isBase: element.isBase,
+      title: element.title,
     });
   });
 
@@ -63,7 +65,7 @@ export const get = async (req: Request, res: Response) => {
 };
 
 export const add = async (req: Request, res: Response) => {
-  const { userId, location, extraLocation, zonecode, call, email, receiver } = req.body;
+  const { userId, location, extraLocation, zonecode, call, email, receiver, title } = req.body;
   if (!userId) {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
@@ -81,7 +83,7 @@ export const add = async (req: Request, res: Response) => {
     res.status(200).json({ data: existData[0].id });
   } else {
     // 임시로 title을 만들어줍니다. 이후 사용자가 변경 할 수 있게 해 줄 계획.
-    const title: string = `[ ${receiver} ] ${extraLocation}`;
+    const tempTitle: string = `[ ${receiver} ] ${extraLocation}`;
     const valid = await Address.create({
       userId,
       location,
@@ -89,7 +91,7 @@ export const add = async (req: Request, res: Response) => {
       zonecode,
       call,
       email,
-      title,
+      title: title ? title : tempTitle,
       receiver,
       isBase: false,
     });
@@ -110,6 +112,28 @@ export const add = async (req: Request, res: Response) => {
 
     res.status(200).json({ data: insertedResult[0].id });
   }
+};
+
+export const update = async (req: Request, res: Response) => {
+  const { id, userId, location, extraLocation, zonecode, call, email, receiver, title } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  await Address.update(
+    {
+      location,
+      extraLocation,
+      zonecode,
+      call,
+      email,
+      receiver,
+      title,
+    },
+    { where: { userId: userId, id: id } }
+  );
+
+  res.status(200).json({ data: 'ok' });
 };
 
 export const setBase = async (req: Request, res: Response) => {
@@ -135,7 +159,5 @@ export const remove = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 내역 삭제를 진행 할 수 없었습니다.' });
   }
 
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
+  res.status(200).json({ data: 'ok' });
 };

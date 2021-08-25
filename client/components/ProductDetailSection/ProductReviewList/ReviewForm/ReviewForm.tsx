@@ -39,16 +39,35 @@ export default function ReviewForm({
   const [imgList, setImgList] = useState(editImgList ?? []);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
+    if (target.value.length > 60) {
+      setFormError('제목은 최대 60자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setTitle(target.value);
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
+    if (target.value.length > 500) {
+      setFormError('내용은 최대 500자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setContents(target.value);
   };
 
   //리뷰 생성 or 수정
   const handleSubmitClick = async (e: MouseEvent) => {
     e.preventDefault();
+    if (!score) {
+      setFormError('별점를 입력해주세요!');
+      return;
+    }
+
     const reviewFormData = { title, contents, score, imgSrc: imgList };
     let isSuccess: boolean = false;
 
@@ -89,7 +108,7 @@ export default function ReviewForm({
               area-label="title-input"
               onChange={handleInputChange}
               placeholder="제목을 입력해주세요"
-              maxLength={50}
+              maxLength={60}
               className="review-form__input"
             />
           </div>
@@ -101,14 +120,14 @@ export default function ReviewForm({
                 value={contents}
                 area-label="contents-input"
                 onChange={handleTextareaChange}
-                maxLength={5000}
+                maxLength={500}
                 className="review-form__input"
               ></textarea>
             </div>
           </div>
           <div className="review-form__image-input">
             <div className="title">사진등록</div>
-            <ImgListForm {...{ imgList, setImgList, setFormError }} />
+            <ImgListForm {...{ imgList, setImgList, formError, setFormError }} />
           </div>
           <div className="review-form__error">{formError || error}</div>
           <div className="review-form__btns">

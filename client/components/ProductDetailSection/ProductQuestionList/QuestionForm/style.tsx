@@ -18,6 +18,7 @@ export const QuestionForm = styled.div`
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--line-gray-dark);
+    stroke: var(--line-gray-dark);
     h2 {
       color: var(--text-black-dark);
       font-size: var(--body-subtitle-font);

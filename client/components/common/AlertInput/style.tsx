@@ -3,6 +3,9 @@ import styled from '@lib/styledComponent';
 export const AlertInput = styled.div`
   padding-top: 25px;
   padding-bottom: 12px;
+  .dense-input {
+    margin-bottom: -29px;
+  }
   .input-form-label {
     font-weight: 600;
   }
