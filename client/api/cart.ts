@@ -1,4 +1,5 @@
 import { ICartDeleteReq, ICartAddReq } from '@middle/type/cart/cart';
+import cache from '@utils/cache';
 import request, { IThunkApi } from './utils/request';
 
 // 장바구니 데이터 가져오기
@@ -13,7 +14,8 @@ export const cartGetApi = async (token: string, thunkApi: IThunkApi) => {
 };
 
 export const cartAddApi = async (requestForm: ICartAddReq, thunkApi: IThunkApi) => {
-  const data = await request.post<ICartAddReq>('/api/cart/add', requestForm);
+  const token = cache.get('token');
+  const data = await request.post<ICartAddReq>('/api/cart/add', requestForm, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
@@ -22,7 +24,8 @@ export const cartAddApi = async (requestForm: ICartAddReq, thunkApi: IThunkApi) 
 };
 
 export const cartDeleteApi = async (requestForm: ICartDeleteReq, thunkApi: IThunkApi) => {
-  const data = await request.post<ICartDeleteReq>('/api/cart/remove', requestForm);
+  const token = cache.get('token');
+  const data = await request.post<ICartDeleteReq>('/api/cart/remove', requestForm, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);

@@ -164,7 +164,7 @@ function Cart(): ReactElement {
       }
     });
 
-    dispatch(delCart({ userId: 1, cartIds: deletedItem }));
+    dispatch(delCart({ cartIds: deletedItem }));
     setOpenForm(false);
   };
 

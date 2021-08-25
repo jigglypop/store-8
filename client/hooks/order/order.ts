@@ -119,9 +119,8 @@ export function useOrder() {
       throw new Error('[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.');
     }
 
-    // TODO : User ID 빼기
     // cart 삭제 진행.
-    dispatch(delCart({ userId: 1, cartIds: deleteCartIds }));
+    dispatch(delCart({ cartIds: deleteCartIds }));
 
     // TODO : User ID 빼기
     // coupon 사용하기 진행.

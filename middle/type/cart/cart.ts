@@ -26,13 +26,11 @@ export type ClientCartData = {
 export type ICartGetRes = CartData[];
 
 export interface ICartDeleteReq {
-  userId: number;
   cartIds: number[];
 }
 
 export type ICartDeleteRes = CartData[];
 export interface ICartAddReq {
-  userId: number;
   productId: number;
   productOptionId: number | null;
   productCount: number;
