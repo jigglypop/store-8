@@ -22,7 +22,6 @@ function AddressModal(props: AddressModalProps): ReactElement {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO : User ID 빼기
     dispatch(getAddress(cache.get('token')));
   }, []);
 
