@@ -29,7 +29,7 @@ const AccountInfo = ({
   metaData,
   coupon,
 }: AccountProps): ReactElement => {
-  const [mileageString, setMileageString] = useState('0');
+  const [mileageString, setMileageString] = useState('0원');
   return (
     <S.AccountInfo>
       <div className="account-header">
