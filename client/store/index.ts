@@ -24,7 +24,35 @@ import finish from './product/finish';
 import storemode from './storemode/storemode';
 import elastic from './elastic/elastic';
 import recommend from './recommend/recommend';
-import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
+import { ThunkAction, Action, configureStore, combineReducers } from '@reduxjs/toolkit';
+
+const rootReducer = combineReducers({
+  register,
+  login,
+  check,
+  github,
+  cart,
+  coupon,
+  address,
+  router,
+  category,
+  mode,
+  main,
+  order,
+  product,
+  question,
+  search,
+  mywish,
+  myOrder,
+  myRefund,
+  review,
+  storemode,
+  elastic,
+  recommend,
+  finish,
+  myQuestion,
+  myReview,
+});
 
 export const store = configureStore({
   reducer: {
@@ -66,3 +94,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export default rootReducer;
