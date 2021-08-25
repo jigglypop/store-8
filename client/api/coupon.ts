@@ -12,6 +12,11 @@ export const couponGetApi = async (requestForm: CouponGetReq, thunkApi: IThunkAp
   return await data.data;
 };
 
+export const couponGetAllApi = async (requestForm: CouponGetReq) => {
+  const data = await request.post<CouponGetReq>('/api/coupon/all', requestForm);
+  return await data.data;
+};
+
 export const couponUseApi = async (requestForm: CouponUseReq, thunkApi: IThunkApi) => {
   const data = await request.post<CouponUseReq>('/api/coupon/useCoupon', requestForm);
   if (data.status !== 200) {

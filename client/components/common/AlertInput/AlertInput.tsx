@@ -15,6 +15,7 @@ interface AlertInputProps {
   setValue: (inputValue: string) => void;
   isAlert: number; // 0 default, 1 alert, 2 ok
   value: string;
+  denseInput?: boolean;
 }
 
 const AlertInput = (props: AlertInputProps): ReactElement => {
@@ -45,6 +46,7 @@ const AlertInput = (props: AlertInputProps): ReactElement => {
 
   return (
     <S.AlertInput>
+      {props.denseInput ? <div className="dense-input" /> : <></>}
       <p className="input-form-label">{props.labelText}</p>
       <div className="input-form">
         <input

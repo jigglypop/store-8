@@ -6,6 +6,8 @@ export type AddressData = {
   call: string;
   name: string;
   email: string;
+  isBase: boolean;
+  title: string;
 };
 
 export type AddressGetReq = {
@@ -33,8 +35,26 @@ export type AddressAddReq = {
   call: string;
   receiver: string;
   email: string;
+  title?: string;
 };
 
 export type AddressAddRes = {
+  addressId: number;
+};
+
+export type AddressUpdateReq = {
+  userId: number;
+  id: number;
+  location: string;
+  extraLocation: string;
+  zonecode: string;
+  call: string;
+  receiver: string;
+  email: string;
+  title: string;
+};
+
+export type AddressRemoveReq = {
+  userId: number;
   addressId: number;
 };

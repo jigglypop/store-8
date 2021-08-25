@@ -3,10 +3,11 @@ import { delCart } from '@store/product/cart';
 import { useCoupon } from '@store/coupon/coupon';
 import { createOrder } from '@api/order';
 import { getMileage } from '@api/order';
-import { addAddressApi, setBaseAddressApi } from '@api/address';
+import { addAddressApi, setBaseAddressApi, updateAddressApi, removeAddressApi } from '@api/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { AddressAddReq, AddressData } from '@middle/type/address/address';
 
 // 주문 대기 내역 ( state.order ) 을 주문 내역으로 변환후 create
 // 주문 대기 내역을 장바구니에서 삭제 ( 삭제하면 알아서 API 호출 )
@@ -20,6 +21,51 @@ export function useOrder() {
   const getUsableMileage = async () => {
     const temp = await getMileage({ userId: 1 });
     setMileage(temp);
+  };
+
+  const makeAddress = async (props: AddressAddReq, isBase: boolean) => {
+    // 지역 추가 시도.
+    const addressId: number = await addAddressApi({
+      userId: 1,
+      location: props.location,
+      extraLocation: props.extraLocation,
+      zonecode: props.zonecode,
+      call: props.call,
+      receiver: props.receiver,
+      email: props.email,
+      title: props.title ? props.title : '',
+    });
+
+    if (isBase) {
+      await setBaseAddressApi({ userId: 1, addressId });
+    }
+  };
+
+  const updateAddress = async (props: AddressData) => {
+    // TODO : userId 지우기
+    await updateAddressApi({
+      userId: 1,
+      id: props.addressId,
+      location: props.address,
+      extraLocation: props.extraAddress,
+      zonecode: props.zonecode,
+      call: props.call,
+      receiver: props.name,
+      email: props.email,
+      title: props.title ? props.title : '',
+    });
+
+    if (props.isBase) {
+      await setBaseAddressApi({ userId: 1, addressId: props.addressId });
+    }
+  };
+
+  const removeAddress = async (addressId: number) => {
+    // TODO: UserId 지우기
+    await removeAddressApi({
+      userId: 1,
+      addressId,
+    });
   };
 
   const proceedOrder = async (props: ProceedOrderProps) => {
@@ -81,5 +127,5 @@ export function useOrder() {
     }
   };
 
-  return { mileage, getUsableMileage, proceedOrder };
+  return { mileage, getUsableMileage, proceedOrder, makeAddress, updateAddress, removeAddress };
 }

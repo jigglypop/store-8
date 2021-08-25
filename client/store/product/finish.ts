@@ -21,6 +21,7 @@ const initialState: IFinishState = {
     useMileageAmount: 0,
     addMileageAmount: 0,
     addressInfo: {
+      title: '',
       addressId: 0,
       address: '',
       extraAddress: '',
@@ -28,6 +29,7 @@ const initialState: IFinishState = {
       name: '',
       email: '',
       call: '',
+      isBase: false,
     },
     isBase: false,
   },
