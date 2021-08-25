@@ -10,10 +10,6 @@ export type AddressData = {
   title: string;
 };
 
-export type AddressGetReq = {
-  userId: number;
-};
-
 export type AddressRes = {
   data: AddressData[];
 };

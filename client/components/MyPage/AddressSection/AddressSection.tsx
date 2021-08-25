@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import cache from '@client/utils/cache';
 
 export default function AddressSection(): ReactElement {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function AddressSection(): ReactElement {
   const [modifyAddressIndex, setModifyAddressIndex] = useState(-1);
 
   useEffect(() => {
-    dispatch(getAddress({ userId: 1 }));
+    dispatch(getAddress(cache.get('token')));
   }, []);
 
   const closeDeleteModal = () => {
@@ -51,7 +52,7 @@ export default function AddressSection(): ReactElement {
   };
 
   const onConfirm = () => {
-    dispatch(getAddress({ userId: 1 }));
+    dispatch(getAddress(cache.get('token')));
   };
 
   return (

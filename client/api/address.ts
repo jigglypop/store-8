@@ -1,5 +1,4 @@
 import {
-  AddressGetReq,
   AddressAddReq,
   AddressSetBaseReq,
   AddressUpdateReq,
@@ -9,8 +8,8 @@ import request, { IThunkApi } from './utils/request';
 
 // 사용자 거주지 데이터 가져오기
 
-export const getAddressApi = async (requestForm: AddressGetReq, thunkApi: IThunkApi) => {
-  const data = await request.post<AddressGetReq>('/api/address', requestForm);
+export const getAddressApi = async (token: string, thunkApi: IThunkApi) => {
+  const data = await request.getToken('/api/address', token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
