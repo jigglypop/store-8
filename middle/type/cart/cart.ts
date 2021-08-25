@@ -43,3 +43,15 @@ export type ICartAddData = {
   productOptionId: number | null;
   productCount: number;
 };
+
+export type ICartLocalGetData = {
+  productIds: number[];
+  optionIds: (number | null)[];
+  productCounts: number[];
+};
+
+export type ICartLocalAddData = {
+  productIds: number[];
+  optionIds: (number | null)[];
+  productCounts: number[];
+};

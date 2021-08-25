@@ -61,6 +61,53 @@ export const check = async (req: Request, res: Response) => {
   res.status(200).json({ data: result });
 };
 
+export const getLocal = async (req: Request, res: Response) => {
+  const { productIds, optionIds, productCounts } = req.body;
+
+  const productResult = await Product.findAll({ where: { id: productIds } });
+  const result: CartData[] = [];
+
+  for (let i = 0; i < productResult.length; i++) {
+    const optionId = optionIds[i] === 0 ? null : optionIds[i];
+    let optionResult = await ProductOption.findOne({ where: { id: optionId } });
+    if (optionResult) {
+      result.push({
+        id: 0,
+        imgSrc: productResult[i].productImgSrc,
+        title: productResult[i].title,
+        count: productCounts[i],
+        originalAmount: productResult[i].originalAmount,
+        amount: productResult[i].amount,
+        option: optionResult.title,
+        optionId,
+        productId: productResult[i].id,
+      });
+    } else {
+      result.push({
+        id: 0,
+        imgSrc: productResult[i].productImgSrc,
+        title: productResult[i].title,
+        count: productCounts[i],
+        originalAmount: productResult[i].originalAmount,
+        amount: productResult[i].amount,
+        option: '',
+        optionId,
+        productId: productResult[i].id,
+      });
+    }
+  }
+
+  res.status(200).json({ data: result });
+};
+
+export const addLocal = async (req: Request, res: Response) => {
+  const { userId, productIds, optionIds, counts } = req.body;
+
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
+};
+
 export const add = async (req: Request, res: Response) => {
   const { userId, productId, productOptionId, productCount } = req.body;
   if (!userId) {

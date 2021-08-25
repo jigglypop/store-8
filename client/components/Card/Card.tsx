@@ -8,6 +8,8 @@ import OptionModal from './OptionModal/OptionModal';
 import { useCart } from '@client/hooks/product/cart';
 import { useState } from 'react';
 import { createToast } from '@client/utils/createToast';
+import cache from '@utils/cache';
+import localCart from '@utils/cart';
 
 interface ICard {
   index: number;
@@ -23,7 +25,12 @@ const Card = ({ index, item }: ICard) => {
   };
 
   const confirm = (productOptionId: number | null, productCount: number) => {
-    addToCart({ productId: item.id, productOptionId, productCount });
+    const isLoggedIn = cache.get('token');
+    if (isLoggedIn) {
+      addToCart({ productId: item.id, productOptionId, productCount });
+    } else {
+      localCart.add({ productId: item.id, productOptionId, productCount });
+    }
     setModalOpen(false);
     createToast('장바구니 추가');
   };

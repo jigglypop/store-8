@@ -4,14 +4,15 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
-import { CartData } from '@middle/type/cart/cart';
+import { CartData, ICartAddData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
 import cache from '@utils/cache';
+import localCart from '@utils/cart';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, delCart } from '@store/product/cart';
+import { getCart, delCart, localGetCart, localAddCart } from '@store/product/cart';
 import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
@@ -24,9 +25,26 @@ function Cart(): ReactElement {
   const [contents, setContents] = useState(cartDataChanger(cart));
   const [deleteItem, setDeleteLists] = useState([0]);
   const [isOpenForm, setOpenForm] = useState(false);
+  const token = cache.get('token');
 
   useEffect(() => {
-    dispatch(getCart(cache.get('token')));
+    if (token) {
+      dispatch(getCart(token));
+    } else {
+      // 만약 로그인하지 않았다면 로컬 Storage의 데이터를 cart store에 등록.
+      const localCartData = localCart.get();
+      const productIds: number[] = [];
+      const optionIds: number[] = [];
+      const productCounts: number[] = [];
+
+      localCartData.forEach((element: ICartAddData) => {
+        productIds.push(element.productId);
+        optionIds.push(element.productOptionId ? element.productOptionId : 0);
+        productCounts.push(element.productCount);
+      });
+
+      dispatch(localGetCart({ productIds, optionIds, productCounts }));
+    }
   }, []);
 
   useEffect(() => {
