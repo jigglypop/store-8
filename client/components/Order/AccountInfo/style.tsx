@@ -6,17 +6,19 @@ export const AccountInfo = styled.div`
     padding: 11px;
     border-bottom: 2px solid var(--line-gray2);
     & > p {
+      color: var(--text-black-dark);
       font-size: var(--body-large-font);
       font-weight: 600;
     }
   }
   .section-header {
     font-weight: 600;
+    color: var(--text-black-dark);
   }
   .mileage-section {
     padding: 12px;
     height: 74px;
-    width: calc(100% - 24px);
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,12 +26,12 @@ export const AccountInfo = styled.div`
     border-bottom: 1px solid var(--line-gray);
     .mileage-amount {
       font-weight: 700;
-      color: var(--text-dark-blue);
+      color: var(--text-blue-dark);
     }
   }
   .coupon-section {
     padding: 27px 12px;
-    width: calc(100% - 24px);
+    width: 100%;
     border-bottom: 1px solid var(--line-gray);
     .section-infor {
       font-size: var(--body-small-font);
@@ -51,14 +53,15 @@ export const AccountInfo = styled.div`
       justify-content: center;
       align-items: center;
       border-radius: 3px;
+      color: var(--text-black-dark);
     }
     .submit-coupon {
-      border: 1px solid var(--line-black);
-      color: var(--text-black);
+      border: 1px solid var(--text-gray-dark);
+      color: var(--text-black-dark);
       margin-right: 10px;
     }
     .submit-coupon:hover {
-      background-color: var(--background-gray);
+      background-color: var(--background-button-select);
     }
     .remove-coupon {
       background-color: var(--background-red);
@@ -83,13 +86,14 @@ export const AccountInfo = styled.div`
 
       .usable-mileage-title {
         font-size: var(--body-small-font);
+        color: var(--text-black-dark);
       }
 
       .mileage-amount {
         margin-left: 8px;
         font-weight: 700;
         font-size: var(--body-small-font);
-        color: var(--text-dark-blue);
+        color: var(--text-blue-dark);
       }
     }
     .mileage-input-container {
@@ -104,6 +108,7 @@ export const AccountInfo = styled.div`
       p {
         margin-top: 11px;
         font-size: var(--body-small-font);
+        color: var(--text-black-dark);
       }
       input {
         @media only screen and (min-width: 375px) {
@@ -122,6 +127,7 @@ export const AccountInfo = styled.div`
         border: 1px solid var(--line-gray);
         border-radius: 4px;
         margin-right: 12px;
+        color: var(--text-black-dark);
       }
       input:focus {
         border: 1px solid var(--line-mint);

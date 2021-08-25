@@ -9,6 +9,7 @@ export const OrderDetail = styled.div`
     border-bottom: 2px solid var(--line-gray2);
     & > p {
       font-size: var(--body-large-font);
+      color: var(--text-black-dark);
       font-weight: 600;
     }
   }

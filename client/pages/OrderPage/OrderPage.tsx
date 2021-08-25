@@ -19,11 +19,16 @@ import { RootState } from '@client/store';
 import { getMileage, getShipmentAmount } from '@utils/utils';
 import * as S from './style';
 import { useOrder } from '@client/hooks/order/order';
+import { useRouter } from '@client/hooks/router/router';
+import { IRouterReq } from '@client/store/router/router';
+import { getRouterObj } from '@client/utils/pathname';
+import cache from '@client/utils/cache';
 
 const OrderPage = () => {
   const { cart } = useSelector((state: RootState) => state.order);
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
+  const { onChangeRouterAll } = useRouter();
   const { mileage, getUsableMileage } = useOrder();
 
   const getTotalMileage = () => {
@@ -35,8 +40,16 @@ const OrderPage = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    getUsableMileage();
+    const isLoggedIn = cache.get('token');
+    if (!isLoggedIn) {
+      const to = '/main';
+      const RouterObj: IRouterReq = getRouterObj(to);
+      onChangeRouterAll(RouterObj);
+      history.pushState({ path: to }, to, to);
+    } else {
+      window.scrollTo(0, 0);
+      getUsableMileage();
+    }
   }, []);
 
   const [totalState, setTotalState] = useState<ProceedOrderProps>({

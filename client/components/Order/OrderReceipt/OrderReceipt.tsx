@@ -5,7 +5,7 @@ import { getRouterObj } from '@utils/pathname';
 import { kstFormatter } from '@utils/utils';
 import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import { createToast } from '@client/utils/createToast';
-import exMark from '@image/exclamMark.png';
+import ExMark from '@image/svg/exMark.svg';
 import {
   CALC_GUIDE_TEXT,
   TOTAL_DISCOUNT_TEXT,
@@ -97,7 +97,7 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
           {'주문하기'}
         </button>
         <div className="order-info">
-          <img src={exMark} />
+          <ExMark className="ex-mark-icon" />
           <p>{CALC_GUIDE_TEXT}</p>
         </div>
       </S.OrderNow>

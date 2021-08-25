@@ -60,7 +60,7 @@ function Receipt({ metaData }: MetaData): ReactElement {
           onClick={() => {
             const isLoggedIn = cache.get('token');
             if (isLoggedIn) {
-              const to = '/finish';
+              const to = '/order';
               const RouterObj: IRouterReq = getRouterObj(to);
               onChangeRouterAll(RouterObj);
               history.pushState({ path: to }, to, to);
