@@ -22,6 +22,11 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
 
     const imgBlob = Object.values(uploadImage);
 
+    if (!checkUploableImg(imgBlob)) {
+      setFormError('이미지는 jpg, jpeg, png 파일만 업로드 가능합니다.');
+      return;
+    }
+
     if (imgBlob.length > MAX_IMG || imgList.length + imgBlob.length > MAX_IMG) {
       setFormError('이미지는 최대 8장까지 업로드 가능합니다.');
       return;
@@ -37,6 +42,17 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
     }
 
     setImgList((imgs) => [...imgs, ...data.imgSrc]);
+  };
+
+  const checkUploableImg = (imgBlob: File[]) => {
+    for (const file of imgBlob) {
+      if (!isImgFile(file.type)) return false;
+    }
+    return true;
+  };
+
+  const isImgFile = (type: string) => {
+    return type === 'image/jpeg' || type === 'image/png' || type === 'image/jpg';
   };
 
   const handleDeleteClick = async (idx: number) => {
@@ -65,7 +81,7 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
 
 const StyledImgListFrom = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   overflow-x: scroll;
   width: 100%;
   height: 90px;
