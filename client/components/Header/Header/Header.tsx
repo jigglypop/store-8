@@ -55,9 +55,6 @@ const Header = ({ check, onLogout }: IHeader) => {
             </S.HeaderItem>
 
             <S.HeaderItem>
-              <DarkMode />
-            </S.HeaderItem>
-            <S.HeaderItem>
               <Search />
             </S.HeaderItem>
           </div>
@@ -72,6 +69,7 @@ const Header = ({ check, onLogout }: IHeader) => {
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
       <Recommend />
+      <DarkMode />
     </S.HeaderOuter>
   );
 };
