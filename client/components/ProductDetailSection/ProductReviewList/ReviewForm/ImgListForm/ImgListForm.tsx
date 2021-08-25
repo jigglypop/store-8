@@ -22,7 +22,7 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
 
     const imgBlob = Object.values(uploadImage);
 
-    if (imgBlob.length > MAX_IMG) {
+    if (imgBlob.length > MAX_IMG || imgList.length + imgBlob.length > MAX_IMG) {
       setFormError('이미지는 최대 8장까지 업로드 가능합니다.');
       return;
     }

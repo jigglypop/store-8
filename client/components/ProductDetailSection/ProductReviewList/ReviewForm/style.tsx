@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ReviewForm = styled.div`
   padding: 30px;
+  max-width: 660px;
   background-color: var(--background-select-section-dark);
   color: var(--text-gray-dark);
   min-width: 720px;
