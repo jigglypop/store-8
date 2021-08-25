@@ -89,9 +89,3 @@ export const OrderBox = styled.div`
     }
   }
 `;
-
-export const TextNoData = styled.div`
-  text-align: center;
-  height: 75px;
-  margin-top: 70px;
-`;
