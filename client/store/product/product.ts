@@ -8,6 +8,10 @@ interface IOptionCount {
   count: number;
 }
 
+interface IOptionCountState {
+  [key: string]: number;
+}
+
 //TODO: optionCount 타입설정 시 에러발생 why?
 interface IProduct {
   product: IProductRes | null;
@@ -16,6 +20,7 @@ interface IProduct {
   count: number;
   optionCount: any;
 }
+
 const name = 'product';
 
 export const getProduct = createAsyncThunk(name, getProductApi);
