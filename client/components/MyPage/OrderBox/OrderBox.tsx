@@ -1,14 +1,44 @@
 import { dateStringFormat } from '@client/utils/date';
-import React, { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import * as S from './style';
 import { Link } from '@client/utils/router';
 import { IOrder } from '@middle/type/myOrder/myOrder';
-
+import request from '@client/api/utils/request';
+import ConfirmOrderModal from '@components/MyPage/ConfirmOrderModal/ConfirmOrderModal';
 interface Props {
   result: IOrder;
 }
 
 export default function OrderBox({ result }: Props): ReactElement {
+  const [isConfirmOrderOpenForm, setConfirmOrderOpenForm] = useState(false);
+  const [isReviewOpenForm, setReviewOpenForm] = useState(false);
+
+  const openConfirmOrderForm = () => {
+    setConfirmOrderOpenForm(true);
+  };
+
+  const closeConfirmOrderForm = () => {
+    setConfirmOrderOpenForm(false);
+  };
+
+  const openReviewForm = () => {
+    setReviewOpenForm(true);
+  };
+
+  const closeReviewForm = () => {
+    setReviewOpenForm(false);
+  };
+
+  const confirmOrderConfirm = () => {
+    console.log('모달 닫기');
+    setConfirmOrderOpenForm(false);
+  };
+
+  // const addressConfirm = (address: AddressData) => {
+  //   setTotalState({ ...totalState, addressInfo: address });
+  //   setAddressOpenForm(false);
+  // };
+
   return (
     <S.OrderBox>
       <div className="column-date">
@@ -35,9 +65,16 @@ export default function OrderBox({ result }: Props): ReactElement {
         <div>{result.state}</div>
       </div>
       <div className="column-confirm">
-        <button>구매확정</button>
-        <button>리뷰쓰기</button>
+        {!result.isConfirmed ? (
+          <button onClick={openConfirmOrderForm}>구매확정</button>
+        ) : (
+          <button onClick={openReviewForm}>리뷰쓰기</button>
+        )}
       </div>
+      {isConfirmOrderOpenForm && (
+        <ConfirmOrderModal closeForm={closeConfirmOrderForm} confirm={confirmOrderConfirm} />
+      )}
+      {/* {isReviewOpenForm && <ReviewModal closeForm={closeReviewForm} confirm={closeReviewForm} />} */}
     </S.OrderBox>
   );
 }
