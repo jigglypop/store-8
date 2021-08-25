@@ -166,14 +166,22 @@ function Cart(): ReactElement {
 
   const confirm = () => {
     const deletedItem: number[] = [];
+    const deletedIndex: number[] = [];
 
-    contents.forEach((content) => {
+    contents.forEach((content, index) => {
       if (content.isChecked) {
         deletedItem.push(content.id);
+        deletedIndex.push(index);
       }
     });
-
-    dispatch(delCart({ cartIds: deletedItem }));
+    const isLoggedIn = cache.get('token');
+    if (isLoggedIn) {
+      dispatch(delCart({ cartIds: deletedItem }));
+    } else {
+      localCart.remove(deletedIndex);
+      const recartedItem = localCart.get();
+      dispatch(localGetCart({ data: recartedItem }));
+    }
     setOpenForm(false);
   };
 

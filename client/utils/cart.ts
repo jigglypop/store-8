@@ -18,6 +18,18 @@ const localCart = {
   init: () => {
     cache.set(CART_KEY, { data: [] });
   },
+  remove: (indexes: number[]) => {
+    try {
+      const localCartData = cache.get(CART_KEY).data;
+      const result: LocalCartData[] = [];
+      localCartData.forEach((element: LocalCartData, index: number) => {
+        if (!indexes.includes(index)) result.push(element);
+      });
+      cache.set(CART_KEY, { data: result });
+    } catch {
+      cache.set(CART_KEY, { data: [] });
+    }
+  },
   add: (addCartData: LocalCartData) => {
     try {
       const localCartData = cache.get(CART_KEY).data;
