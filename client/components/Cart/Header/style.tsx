@@ -10,6 +10,7 @@ export const CartHeader = styled.div`
   }
   .cart-header-title {
     font-size: var(--head-small-font);
+    color: var(--text-black-dark);
     font-weight: bold;
   }
   .cart-progress-container {

@@ -33,6 +33,7 @@ export const CartContent = styled.div`
     transition-duration: 0.3s;
 
     .product-title {
+      color: var(--text-black-dark);
       font-weight: bold;
     }
     .product-subtitle {
@@ -65,6 +66,9 @@ export const CartContent = styled.div`
     margin-bottom: 8px;
     font-size: var(--body-middle-font);
   }
+  .real-amount {
+    color: var(--text-black-dark);
+  }
   .product-count-container {
     display: flex;
     flex-direction: row;
@@ -77,6 +81,9 @@ export const CartContent = styled.div`
       margin-top: 3px;
       font-size: 22px;
       font-weight: bold;
+    }
+    .product-count {
+      color: var(--text-black-dark);
     }
   }
 

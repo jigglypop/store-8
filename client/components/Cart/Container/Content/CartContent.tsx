@@ -54,11 +54,11 @@ function CartContent({ content, index, toggleHandler, changeItem }: Contents): R
             ) : (
               <></>
             )}
-            <p>{kstFormatter(content.amount)}</p>
+            <p className="real-amount">{kstFormatter(content.amount)}</p>
           </div>
           <div className="product-count-container">
             <img onClick={decrease} className="num-scaler" src={numDown} />
-            <p>{content.count}</p>
+            <p className="product-count">{content.count}</p>
             <img onClick={increament} className="num-scaler" src={numUp} />
           </div>
         </div>

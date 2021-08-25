@@ -9,9 +9,11 @@ export const CartContainer = styled.div`
 
   .nothing-container {
     justify-content: center;
+    margin-top: 240px;
   }
 
   .nothing-text {
+    color: var(--text-black-dark);
     font-size: var(--body-title-font);
   }
 
