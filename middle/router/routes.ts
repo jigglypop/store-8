@@ -107,4 +107,16 @@ export const routes = [
     title: '검색',
     component: 'SearchPage',
   },
+  {
+    path: '/usage',
+    name: 'usage',
+    title: '이용약관',
+    component: 'UsagePage',
+  },
+  {
+    path: '/private',
+    name: 'private',
+    title: '개인정보 처리방침',
+    component: 'PrivatePage',
+  },
 ];

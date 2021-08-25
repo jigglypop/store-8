@@ -1,4 +1,5 @@
 import * as S from './style';
+import { Link } from '@utils/router';
 import FooterSvg from '@image/svg/mainVertical.svg';
 
 const Footer = () => {
@@ -7,8 +8,12 @@ const Footer = () => {
       <FooterSvg className="footerLogo" />
       <div className="footerTextContainer">
         <div className="footerTextTop">
-          <p>{'이용약관'}</p>
-          <p>{'개인정보 처리방침'}</p>
+          <Link to="usage">
+            <p className="link-to">{'이용약관'}</p>
+          </Link>
+          <Link to="private">
+            <p className="link-to">{'개인정보 처리방침'}</p>
+          </Link>
         </div>
         <div className="footerTextBottom">
           <div className="footerRow">
@@ -17,7 +22,14 @@ const Footer = () => {
           </div>
           <div className="footerRow">
             <p className="footerRowTitle">{'메일 : '}</p>
-            <p className="footerEmail">{'dream_d4@woowa.store'}</p>
+            <p
+              className="footerEmail"
+              onClick={() => {
+                window.location.href = 'mailto:dream_d4@woowa.store';
+              }}
+            >
+              {'dream_d4@woowa.store'}
+            </p>
           </div>
           <div className="footerRow">
             <p className="footerRowTitle">{'Copyright'}</p>
