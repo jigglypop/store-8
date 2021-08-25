@@ -40,8 +40,9 @@ export const Cart = styled.div`
 
     height: 330px;
     margin-top: 47px;
+    margin-bottom: 50px;
 
     position: sticky;
-    top: 60px;
+    top: 100px;
   }
 `;
