@@ -15,7 +15,7 @@ export const CategoryPagination = styled.div`
     background-color: rgb(0, 0, 0, 0.4);
     padding: 10px;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgb(0, 0, 0, 0.4);
+    // box-shadow: 0 0 20px rgb(0, 0, 0, 0.4);
   }
 `;
 
