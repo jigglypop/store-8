@@ -19,6 +19,7 @@ export const ReviewForm = styled.div`
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--line-gray);
+    stroke: var(--line-gray-dark);
     h2 {
       color: var(--text-black-dark);
       font-size: var(--body-subtitle-font);
