@@ -28,12 +28,12 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
   };
 
   const addProductToCart = async () => {
-    if (product?.options.length) {
+    if (product?.options.length && optionCount) {
       for (const [optionId, count] of Object.entries(optionCount)) {
         await addToCart({
           productId: product.id,
           productOptionId: +optionId,
-          productCount: count as number,
+          productCount: count,
         });
       }
     } else {

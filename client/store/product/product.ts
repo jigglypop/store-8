@@ -1,7 +1,6 @@
 import { createAsyncThunk, AsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getProductApi } from '@api/product';
 import { IProductRes } from '../../../middle/type/product/product';
-import createExtraGet from '../createExtra/createExtraGet';
 
 interface IOptionCount {
   optionId: number;
@@ -18,13 +17,12 @@ interface IProduct {
   error: string | null;
   loading: boolean;
   count: number;
-  optionCount: any;
+  optionCount: IOptionCountState | null;
 }
 
 const name = 'product';
 
 export const getProduct = createAsyncThunk(name, getProductApi);
-const productInfoExtra = createExtraGet<IProductRes | null>(getProduct, name);
 
 const initialState: IProduct = {
   product: null,
@@ -52,7 +50,20 @@ const productSlice = createSlice({
       state.optionCount = newOptionCount;
     },
   },
-  extraReducers: productInfoExtra,
+  extraReducers: {
+    [getProduct.pending.type]: (state) => {
+      state.loading = true;
+    },
+    [getProduct.fulfilled.type]: (state, action) => {
+      state.loading = false;
+      state[name] = action.payload;
+      state.error = '';
+    },
+    [getProduct.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
 });
 
 export const { initProduct, setCountState, setOptionCountState, deleteOptionCountState } =
