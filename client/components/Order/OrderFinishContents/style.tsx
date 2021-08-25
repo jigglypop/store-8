@@ -9,6 +9,7 @@ export const OrderFinishContents = styled.div`
     justify-content: center;
     align-items: center;
     p {
+      color: var(--text-black-dark);
       font-size: var(--body-huge-font);
     }
   }
