@@ -81,6 +81,13 @@ export const ReviewForm = styled.div`
     }
   }
 
+  .review-form__image-input {
+    padding-top: 0;
+    .title {
+      padding-top: 24px;
+    }
+  }
+
   .review-form__error {
     height: 15px;
     color: var(--text-red);
