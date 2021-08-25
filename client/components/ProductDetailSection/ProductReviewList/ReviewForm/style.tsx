@@ -87,6 +87,7 @@ export const ReviewForm = styled.div`
     padding-left: 100px;
     padding-bottom: 32px;
     border-bottom: 1px solid var(--line-gray);
+    padding-top: 0;
   }
 
   .review-form__btns {
