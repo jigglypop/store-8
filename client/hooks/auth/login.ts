@@ -30,6 +30,7 @@ export function useLogin() {
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
 
+      // TODO : 한번에 모두 올리기
       // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
       const localCartData = localCart.get();
       if (localCartData.length !== 0) {
