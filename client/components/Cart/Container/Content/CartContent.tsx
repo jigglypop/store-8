@@ -3,6 +3,8 @@ import { kstFormatter } from '@utils/utils';
 import * as S from './style';
 import checked from '@image/checked.png';
 import unchecked from '@image/unchecked.png';
+import NumAdd from '@image/svg/numAdd.svg';
+import NumMinus from '@image/svg/numMinus.svg';
 import numUp from '@image/numUp.png';
 import numDown from '@image/numDown.png';
 
@@ -57,9 +59,9 @@ function CartContent({ content, index, toggleHandler, changeItem }: Contents): R
             <p className="real-amount">{kstFormatter(content.amount)}</p>
           </div>
           <div className="product-count-container">
-            <img onClick={decrease} className="num-scaler" src={numDown} />
+            <NumAdd onClick={decrease} className="num-scaler" />
             <p className="product-count">{content.count}</p>
-            <img onClick={increament} className="num-scaler" src={numUp} />
+            <NumMinus onClick={increament} className="num-scaler" />
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
-import React, { ReactElement } from 'react';
-import { Link } from '@utils/router';
+import { ReactElement } from 'react';
 import { getShipmentAmount, kstFormatter } from '@utils/utils';
-import exMark from '@image/exclamMark.png';
+import ExMark from '@image/svg/exMark.svg';
 import {
   PROCEED_GUIDE_TEXT,
   TOTAL_DISCOUNT_TEXT,
@@ -73,7 +72,7 @@ function Receipt({ metaData }: MetaData): ReactElement {
           {'주문하기'}
         </button>
         <div className="order-info">
-          <img src={exMark} />
+          <ExMark className="ex-mark-icon" />
           <p>{PROCEED_GUIDE_TEXT}</p>
         </div>
       </S.OrderNow>

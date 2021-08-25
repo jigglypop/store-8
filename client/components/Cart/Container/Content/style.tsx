@@ -88,8 +88,12 @@ export const CartContent = styled.div`
   }
 
   .num-scaler {
-    width: 18px;
-    height: 18px;
     cursor: pointer;
+    circle {
+      stroke: var(--text-black-dark);
+    }
+    path {
+      stroke: var(--text-black-dark);
+    }
   }
 `;
