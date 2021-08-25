@@ -7,7 +7,7 @@ export default function MyWishPage() {
   return (
     <S.MyWishPage>
       <NavigationSmallBar page="WISH" />
-      <NavigationBar page="WISH" />
+      {/* <NavigationBar page="WISH" /> */}
       <MyWishSection />
     </S.MyWishPage>
   );

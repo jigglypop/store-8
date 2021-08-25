@@ -1,14 +1,7 @@
+import { MyPage } from '@components/MyPage/common/style';
 import styled from 'styled-components';
 
-export const MyWishPage = styled.div`
-  margin-top: 12px;
-  margin-left: 12px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 32px;
-  min-height: 650px;
-
+export const MyWishPage = styled(MyPage)`
   @media only screen and (min-width: 1200px) {
     flex-direction: row;
 

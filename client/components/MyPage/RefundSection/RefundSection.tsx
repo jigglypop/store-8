@@ -13,9 +13,7 @@ export default function RefundSection({}: Props): ReactElement {
   const [filterButtonIndex, setFilterButtonIndex] = useState(0);
 
   const toggleFilterButton = (value: number) => {
-    console.log(filterButtonIndex, '에서');
     setFilterButtonIndex(value);
-    console.log(filterButtonIndex, '로 변경되었습니다.');
   };
 
   return (
