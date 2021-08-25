@@ -15,7 +15,6 @@ export type AddressRes = {
 };
 
 export type AddressSetBaseReq = {
-  userId: number;
   addressId: number;
 };
 
@@ -24,7 +23,6 @@ export type AddressSetBaseRes = {
 };
 
 export type AddressAddReq = {
-  userId: number;
   location: string;
   extraLocation: string;
   zonecode: string;
@@ -39,7 +37,6 @@ export type AddressAddRes = {
 };
 
 export type AddressUpdateReq = {
-  userId: number;
   id: number;
   location: string;
   extraLocation: string;
@@ -51,6 +48,5 @@ export type AddressUpdateReq = {
 };
 
 export type AddressRemoveReq = {
-  userId: number;
   addressId: number;
 };

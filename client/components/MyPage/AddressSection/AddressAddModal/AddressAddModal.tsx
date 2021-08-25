@@ -85,7 +85,6 @@ function AddressAddModal(props: AddressAddModalProps): ReactElement {
     } else {
       await makeAddress(
         {
-          userId: 1,
           location: addressData.address,
           zonecode: addressData.zonecode,
           extraLocation: addressData.extraAddress,

@@ -17,32 +17,32 @@ export const getAddressApi = async (token: string, thunkApi: IThunkApi) => {
   return await data.data;
 };
 
-export const addAddressApi = async (requestForm: AddressAddReq) => {
-  const data = await request.post<AddressAddReq>('/api/address/add', requestForm);
+export const addAddressApi = async (requestForm: AddressAddReq, token: string) => {
+  const data = await request.post<AddressAddReq>('/api/address/add', requestForm, token);
   if (data.status !== 200) {
     return data.message;
   }
   return data.data;
 };
 
-export const updateAddressApi = async (requestForm: AddressUpdateReq) => {
-  const data = await request.post<AddressUpdateReq>('/api/address/update', requestForm);
+export const updateAddressApi = async (requestForm: AddressUpdateReq, token: string) => {
+  const data = await request.post<AddressUpdateReq>('/api/address/update', requestForm, token);
   if (data.status !== 200) {
     return data.message;
   }
   return data.data;
 };
 
-export const removeAddressApi = async (requestForm: AddressRemoveReq) => {
-  const data = await request.post<AddressRemoveReq>('/api/address/remove', requestForm);
+export const removeAddressApi = async (requestForm: AddressRemoveReq, token: string) => {
+  const data = await request.post<AddressRemoveReq>('/api/address/remove', requestForm, token);
   if (data.status !== 200) {
     return data.message;
   }
   return data.data;
 };
 
-export const setBaseAddressApi = async (requestForm: AddressSetBaseReq) => {
-  const data = await request.post<AddressSetBaseReq>('/api/address/setBase', requestForm);
+export const setBaseAddressApi = async (requestForm: AddressSetBaseReq, token: string) => {
+  const data = await request.post<AddressSetBaseReq>('/api/address/setBase', requestForm, token);
   if (data.status !== 200) {
     return data.message;
   }

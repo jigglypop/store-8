@@ -5,10 +5,10 @@ import wrapAsync from '../utils/wrapAsync';
 
 const addressRouter: Router = express.Router();
 
-addressRouter.post('/add', wrapAsync(add));
-addressRouter.post('/update', wrapAsync(update));
-addressRouter.post('/setBase', wrapAsync(setBase));
-addressRouter.post('/remove', wrapAsync(remove));
+addressRouter.post('/add', jwtMiddleware, wrapAsync(add));
+addressRouter.post('/update', jwtMiddleware, wrapAsync(update));
+addressRouter.post('/setBase', jwtMiddleware, wrapAsync(setBase));
+addressRouter.post('/remove', jwtMiddleware, wrapAsync(remove));
 addressRouter.get('/', jwtMiddleware, wrapAsync(get));
 
 export default addressRouter;

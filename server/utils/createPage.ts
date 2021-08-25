@@ -15,6 +15,7 @@ export const createPage = (title: string) => {
     </head>
     <body>
       <div id="root"></div>
+      <div id="root-modal"></div>
       <script type="module" src="/main.js"></script>
     </body>
   </html>`;
