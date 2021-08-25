@@ -28,8 +28,7 @@ export function useLogin() {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
-      // 여기 추가(추후 토큰 방식 연동시 변경 요망)
-      dispatch(getCart({ userId: 1 }));
+      dispatch(getCart(cache.get('token')));
       dispatch(initLogin());
     }
   }, [login]);

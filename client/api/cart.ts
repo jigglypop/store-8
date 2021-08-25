@@ -1,10 +1,10 @@
-import { ICartGetReq, ICartDeleteReq, ICartAddReq } from '@middle/type/cart/cart';
+import { ICartDeleteReq, ICartAddReq } from '@middle/type/cart/cart';
 import request, { IThunkApi } from './utils/request';
 
 // 장바구니 데이터 가져오기
 
-export const cartGetApi = async (requestForm: ICartGetReq, thunkApi: IThunkApi) => {
-  const data = await request.post<ICartGetReq>('/api/cart', requestForm);
+export const cartGetApi = async (token: string, thunkApi: IThunkApi) => {
+  const data = await request.getToken('/api/cart', token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);

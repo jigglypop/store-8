@@ -8,6 +8,7 @@ import { CartData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
+import cache from '@utils/cache';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
 import { getCart, delCart } from '@store/product/cart';
@@ -25,8 +26,7 @@ function Cart(): ReactElement {
   const [isOpenForm, setOpenForm] = useState(false);
 
   useEffect(() => {
-    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
-    dispatch(getCart({ userId: 1 }));
+    dispatch(getCart(cache.get('token')));
   }, []);
 
   useEffect(() => {
