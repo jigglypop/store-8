@@ -62,37 +62,26 @@ export const check = async (req: Request, res: Response) => {
 };
 
 export const getLocal = async (req: Request, res: Response) => {
-  const { productIds, optionIds, productCounts } = req.body;
-
-  const productResult = await Product.findAll({ where: { id: productIds } });
+  const { data } = req.body;
   const result: CartData[] = [];
 
-  for (let i = 0; i < productResult.length; i++) {
-    const optionId = optionIds[i] === 0 ? null : optionIds[i];
+  for (let i = 0; i < data.length; i++) {
+    const productResult = await Product.findOne({ where: { id: data[i].productId } });
+
+    const optionId = data[i].productOptionId === 0 ? null : data[i].productOptionId;
     let optionResult = await ProductOption.findOne({ where: { id: optionId } });
-    if (optionResult) {
+
+    if (productResult) {
       result.push({
         id: 0,
-        imgSrc: productResult[i].productImgSrc,
-        title: productResult[i].title,
-        count: productCounts[i],
-        originalAmount: productResult[i].originalAmount,
-        amount: productResult[i].amount,
-        option: optionResult.title,
+        imgSrc: productResult.productImgSrc,
+        title: productResult.title,
+        count: data[i].productCount,
+        originalAmount: productResult.originalAmount,
+        amount: productResult.amount,
+        option: optionResult ? optionResult.title : '',
         optionId,
-        productId: productResult[i].id,
-      });
-    } else {
-      result.push({
-        id: 0,
-        imgSrc: productResult[i].productImgSrc,
-        title: productResult[i].title,
-        count: productCounts[i],
-        originalAmount: productResult[i].originalAmount,
-        amount: productResult[i].amount,
-        option: '',
-        optionId,
-        productId: productResult[i].id,
+        productId: productResult.id,
       });
     }
   }

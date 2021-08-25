@@ -28,22 +28,13 @@ function Cart(): ReactElement {
   const token = cache.get('token');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (token) {
       dispatch(getCart(token));
     } else {
       // 만약 로그인하지 않았다면 로컬 Storage의 데이터를 cart store에 등록.
       const localCartData = localCart.get();
-      const productIds: number[] = [];
-      const optionIds: number[] = [];
-      const productCounts: number[] = [];
-
-      localCartData.forEach((element: ICartAddData) => {
-        productIds.push(element.productId);
-        optionIds.push(element.productOptionId ? element.productOptionId : 0);
-        productCounts.push(element.productCount);
-      });
-
-      dispatch(localGetCart({ productIds, optionIds, productCounts }));
+      dispatch(localGetCart({ data: localCartData }));
     }
   }, []);
 

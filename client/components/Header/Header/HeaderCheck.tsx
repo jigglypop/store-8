@@ -1,5 +1,5 @@
 import { ICheckRes } from '@middle/type/auth/check';
-import { getCart } from '@store/product/cart';
+import { getCart, localGetCart } from '@store/product/cart';
 import cache from '@utils/cache';
 import { RootState } from '@store/index';
 import { Link } from '@utils/router';
@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Hamberger from '@image/hamberger.svg';
+import localCart from '@client/utils/cart';
 export interface IHeaderNotLoggedIn {
   isUp: boolean;
   onLogout: () => void;
@@ -21,6 +22,15 @@ export interface IHeaderLoggedIn {
   onLogout: () => void;
 }
 export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const localCartData = localCart.get();
+    dispatch(localGetCart({ data: localCartData }));
+  }, []);
+
+  const { cart } = useSelector((state: RootState) => state.cart);
+
   const [isRight, setIsRight] = useState(false);
 
   const onToggleUser = () => {
@@ -36,7 +46,12 @@ export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
         <Link to="/register">회원가입</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
-        <Link to="/cart">장바구니</Link>
+        <Link to="/cart">
+          <div className="cart-text">
+            <p>장바구니</p>
+            <p>{cart?.length}</p>
+          </div>
+        </Link>
       </S.HeaderItem>
       <S.HeaderItem className="isSmallHeader">
         <div className="hamberger" onClick={() => onToggleUser()}>

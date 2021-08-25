@@ -35,6 +35,7 @@ const OrderPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getUsableMileage();
   }, []);
 
@@ -64,10 +65,6 @@ const OrderPage = () => {
     dDay: '',
     isUsed: false,
   });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const getTotalPrice = () => {
     let result = 0;

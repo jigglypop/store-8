@@ -45,13 +45,9 @@ export type ICartAddData = {
 };
 
 export type ICartLocalGetData = {
-  productIds: number[];
-  optionIds: (number | null)[];
-  productCounts: number[];
+  data: ICartAddData[];
 };
 
 export type ICartLocalAddData = {
-  productIds: number[];
-  optionIds: (number | null)[];
-  productCounts: number[];
+  data: ICartAddData[];
 };

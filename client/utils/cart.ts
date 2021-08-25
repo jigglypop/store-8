@@ -9,7 +9,11 @@ interface LocalCartData {
 const CART_KEY = 'LOCALSTORAGE_CART';
 const localCart = {
   get: () => {
-    return cache.get(CART_KEY).data;
+    try {
+      return cache.get(CART_KEY).data;
+    } catch {
+      return [];
+    }
   },
   init: () => {
     cache.set(CART_KEY, { data: [] });
