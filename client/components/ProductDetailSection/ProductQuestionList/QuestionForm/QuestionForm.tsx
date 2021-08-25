@@ -30,15 +30,30 @@ export default function QuestionForm({
   const isEdit = questionId !== undefined;
   const { product } = useProduct();
   const { createQuestion, updateQuestion, error } = useQuestion();
+  const [formError, setFormError] = useState('');
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
   const [isSecret, setIsSecret] = useState(editIsSecret || false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
+    if (target.value.length > 60) {
+      setFormError('제목은 최대 60자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setTitle(target.value);
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
+    if (target.value.length > 500) {
+      setFormError('내용은 최대 500자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setContents(target.value);
   };
 
@@ -82,7 +97,6 @@ export default function QuestionForm({
               value={title}
               onChange={handleInputChange}
               placeholder="제목을 입력해주세요"
-              maxLength={50}
               className="question-form__input"
             />
           </div>
@@ -100,7 +114,7 @@ export default function QuestionForm({
                 <CheckBox isCheck={isSecret} setIsCheck={setIsSecret} className="checkbox-secret" />
                 <div>비밀글로 문의하기</div>
               </div>
-              <div className="question-form__error">{error}</div>
+              <div className="question-form__error">{formError || error}</div>
             </div>
           </div>
           <div className="question-form__btns">
