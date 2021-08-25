@@ -17,7 +17,7 @@ import {
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import * as S from './style';
-import { CouponData } from '@middle/type/Coupon/coupon';
+import { CouponData } from '@middle/type/coupon/coupon';
 import { useOrder } from '@client/hooks/order/order';
 import { setFinishState } from '@store/product/finish';
 import { useDispatch } from 'react-redux';

@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CHOOSE_COUPON_TEXT } from '@constants/Cart';
 import { RootState } from '@client/store';
 import Modal from '@client/components/common/Modal/Modal';
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import Coupon from '../AccountInfo/Coupon/Coupon'; // Coupon Element
 import { getCoupon } from '@store/coupon/coupon';
+import cache from '@utils/cache';
 import { useEffect } from 'react';
 
 interface CouponModalProps {
@@ -20,8 +21,7 @@ function CouponModal(props: CouponModalProps): ReactElement {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO : User ID 빼기
-    dispatch(getCoupon({ userId: 1 }));
+    dispatch(getCoupon(cache.get('token')));
   }, []);
 
   return (

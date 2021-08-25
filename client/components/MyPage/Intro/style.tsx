@@ -72,6 +72,9 @@ export const UserPoint = styled.div`
   display: flex;
   gap: 16px;
   color: var(--text-gray);
+  .coupon-cursor {
+    cursor: pointer;
+  }
   b {
     color: var(--text-dark-picker);
     margin-right: 5px;

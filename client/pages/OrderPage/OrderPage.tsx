@@ -10,7 +10,7 @@ import CouponModal from '@components/Order/CouponModal/CouponModal';
 import AddressModal from '@components/Order/AddressModal/AddressModal';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import type { AddressData } from '@middle/type/address/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 

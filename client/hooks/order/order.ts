@@ -122,10 +122,9 @@ export function useOrder() {
     // cart 삭제 진행.
     dispatch(delCart({ cartIds: deleteCartIds }));
 
-    // TODO : User ID 빼기
     // coupon 사용하기 진행.
     if (props.useCouponId !== 0) {
-      dispatch(useCoupon({ userId: 1, couponId: props.useCouponId }));
+      dispatch(useCoupon({ couponId: props.useCouponId }));
     }
   };
 

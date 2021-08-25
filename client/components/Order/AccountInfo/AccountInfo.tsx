@@ -10,7 +10,7 @@ import {
   TOTAL_USABLE_MILEAGE,
 } from '@constants/Order';
 
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
 
