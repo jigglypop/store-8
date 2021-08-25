@@ -125,7 +125,7 @@ export default function ReviewForm({
           </div>
           <div className="review-form__image-input">
             <div className="title">사진등록</div>
-            <ImgListForm {...{ imgList, setImgList, setFormError }} />
+            <ImgListForm {...{ imgList, setImgList, formError, setFormError }} />
           </div>
           <div className="review-form__error">{formError || error}</div>
           <div className="review-form__btns">

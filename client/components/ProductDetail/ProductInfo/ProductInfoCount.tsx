@@ -1,4 +1,4 @@
-import { useState, Dispatch, ReactElement, SetStateAction, FormEvent } from 'react';
+import { useState, ReactElement, FormEvent } from 'react';
 import * as S from './style';
 
 import ProductCountForm from './ProductCountForm/ProductCountForm';

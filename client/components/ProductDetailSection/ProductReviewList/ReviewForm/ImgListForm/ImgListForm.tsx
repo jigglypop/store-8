@@ -8,11 +8,17 @@ import { uploadImg } from '@api/upload';
 
 interface Props {
   imgList: string[];
+  formError: string;
   setImgList: Dispatch<SetStateAction<string[]>>;
   setFormError: Dispatch<SetStateAction<string>>;
 }
 
-export default function ImgListForm({ imgList, setImgList, setFormError }: Props): ReactElement {
+export default function ImgListForm({
+  imgList,
+  setImgList,
+  formError,
+  setFormError,
+}: Props): ReactElement {
   const MAX_IMG = 8;
 
   const handleImgSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +44,8 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
     }
 
     imgBlob.forEach((blob) => formData.append('image', blob));
+
+    if (formError) setFormError('');
 
     const data = await uploadImg(formData);
 

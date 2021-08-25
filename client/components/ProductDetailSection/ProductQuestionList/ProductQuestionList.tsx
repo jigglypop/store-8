@@ -11,7 +11,7 @@ import { DEFAULT_QUESTION_LIMIT } from '@middle/constants/default';
 interface Props {}
 
 export default function ProductQuestionList({}: Props): ReactElement {
-  const { totalCount, questions, currentPage, setCurrentPage, loading, error } = useQuestion();
+  const { totalCount, questions, currentPage, setCurrentPage } = useQuestion();
   const [isOpenForm, setIsOpenForm] = useState(false);
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정

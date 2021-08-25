@@ -7,7 +7,6 @@ import CheckBox from '@components/common/CheckBox/CheckBox';
 
 import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
-import { useMyQuestion } from '@client/hooks/my/useMyQuestion';
 import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
@@ -96,6 +95,7 @@ export default function QuestionForm({
               type="text"
               value={title}
               onChange={handleInputChange}
+              maxLength={60}
               placeholder="제목을 입력해주세요"
               className="question-form__input"
             />
@@ -104,10 +104,10 @@ export default function QuestionForm({
             <div className="title">내용</div>
             <div className="textarea-wrapper">
               <textarea
-                placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
+                placeholder="내용을 입력해주세요 (최대 500자까지 입력가능)"
                 value={contents}
                 onChange={handleTextareaChange}
-                maxLength={5000}
+                maxLength={500}
                 className="question-form__input"
               ></textarea>
               <div className="question-form__secret">

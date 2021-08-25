@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import * as S from './style';
 
 import { useWish } from '@client/hooks/wish/wish';

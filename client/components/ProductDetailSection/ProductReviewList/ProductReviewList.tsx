@@ -11,7 +11,7 @@ import { DEFAULT_REVIEW_LIMIT } from '@middle/constants/default';
 interface Props {}
 
 export default function ProductReviewList({}: Props): ReactElement {
-  const { totalCount, reviews, currentPage, setCurrentPage, loading, error } = useReview();
+  const { totalCount, reviews, currentPage, setCurrentPage } = useReview();
   const [isOpenForm, setIsOpenForm] = useState(false);
 
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
