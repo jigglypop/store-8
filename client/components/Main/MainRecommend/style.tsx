@@ -34,11 +34,11 @@ export const MainRecommend = styled(MainItem)`
     grid-gap: 10px;
   }
 
-  .gift-link {
+  .rec-link {
     cursor: pointer;
   }
 
-  .gift-item {
+  .rec-item {
     position: relative;
     width: 100%;
     display: grid;
@@ -52,7 +52,7 @@ export const MainRecommend = styled(MainItem)`
       img {
         position: relative;
         width: 100%;
-        height: 260px;
+        height: 290px;
         object-fit: cover;
       }
     }

@@ -1,4 +1,3 @@
-import cache from '@client/utils/cache';
 import { Link } from '@client/utils/router';
 import * as S from './style';
 import { useRecommend } from '@client/hooks/recommend/recommend';
@@ -18,8 +17,8 @@ const MainRecommend = () => {
           <div className="content">
             {recommend.map((element, index) => {
               return (
-                <Link to={`/product/${element.id + 1}`} className="gift-link">
-                  <div className="gift-item">
+                <Link to={`/product/${element.id + 1}`} className="rec-link">
+                  <div className="rec-item">
                     <div className="text">
                       <p className="large">{element.title}</p>
                       <p className="small">{'이상품, 궁금하시죠?'}</p>
