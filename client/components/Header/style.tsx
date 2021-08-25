@@ -201,9 +201,10 @@ export const Header = styled.header<IHeader>`
     .right {
       position: relative;
       display: flex;
-      .hamberger {
-        transform: scale(0.8);
-      }
+    }
+
+    .hamberger {
+      transform: scale(0.8);
     }
 
     .main-img {
@@ -212,6 +213,7 @@ export const Header = styled.header<IHeader>`
       cursor: pointer;
     }
   }
+
   .headerInner.up {
     background-color: rgba(0, 0, 0, 0.6);
     color: var(--text-white);
@@ -234,6 +236,7 @@ export const Header = styled.header<IHeader>`
   .isSmallHeader {
     display: none;
   }
+
   @media only screen and (max-width: 1000px) {
     .isSmallHeader {
       display: flex;
@@ -251,6 +254,7 @@ export const Header = styled.header<IHeader>`
     }
   }
 `;
+
 // 슬라이더 아이템 부분
 export const SliderItem = styled.div`
   display: flex;
