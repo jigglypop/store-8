@@ -106,9 +106,6 @@ export const ProductOptionItem = styled.div`
       stroke: var(--text-gray-dark);
     }
   }
-  .count-form__option-item {
-    color: red;
-  }
 `;
 
 export const InfoTitle = styled.div`

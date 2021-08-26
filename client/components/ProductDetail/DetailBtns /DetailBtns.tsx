@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { MouseEvent, ReactElement } from 'react';
 import * as S from './style';
 
 import { useWish } from '@client/hooks/wish/wish';
@@ -50,8 +50,12 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
     return product?.options.length && (!optionCount || !Object.keys(optionCount).length);
   };
 
-  const handleClickPurchase = () => {
-    if (isOptionNotSelected()) return renderNotOptionAlert();
+  const handleClickPurchase = (e: MouseEvent) => {
+    if (isOptionNotSelected()) {
+      e.stopPropagation();
+      renderNotOptionAlert();
+      return;
+    }
     addProductToCart();
   };
   const handleClickCart = () => {
@@ -79,11 +83,11 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
       <button className="cart-btn" onClick={handleClickCart}>
         장바구니
       </button>
-      <Link className="purchase-btn" to="/cart">
-        <button className="purchase-btn" onClick={handleClickPurchase}>
+      <button className="purchase-btn" onClickCapture={handleClickPurchase}>
+        <Link className="purchase-btn" to="/cart">
           바로 구매
-        </button>
-      </Link>
+        </Link>
+      </button>
       {isOpenAlertModal && <AlertModal msg={alertMsg} cancelCbFn={closeAlertModal} />}
     </S.DetailBtns>
   );
