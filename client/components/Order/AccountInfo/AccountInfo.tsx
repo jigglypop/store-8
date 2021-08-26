@@ -82,21 +82,23 @@ const AccountInfo = ({
               }
             }}
           />
-          <img
-            onClick={(e) => {
-              setMileageString(kstFormatter(metaData.usableMileage));
-              useMileage(metaData.usableMileage);
-            }}
-            src={unchecked}
-          />
-          <p
-            onClick={(e) => {
-              setMileageString(kstFormatter(metaData.usableMileage));
-              useMileage(metaData.usableMileage);
-            }}
-          >
-            {'전액 사용'}
-          </p>
+          <div className="use-all-container">
+            <img
+              onClick={(e) => {
+                setMileageString(kstFormatter(metaData.usableMileage));
+                useMileage(metaData.usableMileage);
+              }}
+              src={unchecked}
+            />
+            <p
+              onClick={(e) => {
+                setMileageString(kstFormatter(metaData.usableMileage));
+                useMileage(metaData.usableMileage);
+              }}
+            >
+              {'전액 사용'}
+            </p>
+          </div>
         </div>
       </div>
     </S.AccountInfo>

@@ -61,7 +61,7 @@ export const AccountInfo = styled.div`
       margin-right: 10px;
     }
     .submit-coupon:hover {
-      background-color: var(--background-button-select);
+      background-color: var(--background-section-dark);
     }
     .remove-coupon {
       background-color: var(--background-red);
@@ -75,7 +75,7 @@ export const AccountInfo = styled.div`
     padding: 12px;
     height: 120px;
     margin-top: 12px;
-    margin-bottom: 240px;
+    margin-bottom: 24px;
     width: calc(100% - 24px);
 
     .mileage-usage-title-section {
@@ -98,7 +98,20 @@ export const AccountInfo = styled.div`
     }
     .mileage-input-container {
       display: flex;
-      flex-direction: row;
+
+      @media only screen and (min-width: 0px) {
+        flex-direction: row;
+      }
+      @media only screen and (min-width: 375px) {
+        flex-direction: row;
+      }
+      @media only screen and (min-width: 768px) {
+        flex-direction: column;
+      }
+      @media only screen and (min-width: 1300px) {
+        flex-direction: row;
+      }
+
       img {
         width: 12px;
         height: 12px;
@@ -110,9 +123,16 @@ export const AccountInfo = styled.div`
         font-size: var(--body-small-font);
         color: var(--text-black-dark);
       }
+      .use-all-container {
+        display: flex;
+        flex-direction: row;
+      }
       input {
+        @media only screen and (min-width: 0px) {
+          width: 240px;
+        }
         @media only screen and (min-width: 375px) {
-          width: 160px;
+          width: 240px;
         }
         @media only screen and (min-width: 768px) {
           width: 240px;

@@ -70,10 +70,10 @@ function Receipt({ metaData }: MetaData): ReactElement {
       <S.OrderNow>
         {metaData.checkedCount === 0 ? (
           <button className="disabled-button" disabled>
-            {'주문하기'}
+            {'제품을 선택해주세요'}
           </button>
         ) : (
-          <button onClick={() => onClick}>{'주문하기'}</button>
+          <button onClick={() => onClick()}>{'주문하기'}</button>
         )}
         <div className="order-info">
           <ExMark className="ex-mark-icon" />

@@ -55,19 +55,15 @@ export const Cart = styled.div`
     }
     @media only screen and (min-width: 768px) {
       width: 320px;
-      margin-left: 40px;
+      margin-left: 47px 0px 50px 70px;
       position: sticky;
       top: 100px;
-      margin-top: 47px;
-      margin-bottom: 50px;
     }
     @media only screen and (min-width: 1300px) {
       width: 320px;
-      margin-left: 70px;
+      margin-left: 47px 0px 50px 70px;
       position: sticky;
       top: 100px;
-      margin-top: 47px;
-      margin-bottom: 50px;
     }
 
     height: 330px;
