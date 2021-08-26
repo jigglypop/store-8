@@ -1,9 +1,16 @@
 import cache from '@client/utils/cache';
+import { IOrder } from '@middle/type/myOrder/myOrder';
 import request, { IThunkApi } from './utils/request';
 
 interface IDateReq {
   startDate: string;
   endDate: string;
+}
+
+interface IMyProductOrderApiRes {
+  status: number;
+  error?: string;
+  data?: IOrder[];
 }
 
 // 나의 주문 목록 get
@@ -22,7 +29,10 @@ export const myOrderApi = async ({ startDate, endDate }: IDateReq, thunkApi: ITh
 };
 
 // 나의 상품 주문 목록 get
-export const myProductOrderApi = async (productId: number, token: string) => {
+export const myProductOrderApi = async (
+  productId: number,
+  token: string
+): Promise<IMyProductOrderApiRes> => {
   const data = await request.getToken(`/api/order/${productId}`, token);
 
   if (data.status !== 200) {

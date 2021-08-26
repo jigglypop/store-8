@@ -7,8 +7,6 @@ const orderRouter: Router = express.Router();
 
 orderRouter.get('/', wrapAsync(getAllOrders));
 orderRouter.get('/:productId', wrapAsync(getAllOrders));
-orderRouter.post('/mileage', wrapAsync(getMileage));
-orderRouter.post('/create', wrapAsync(createOrder));
 orderRouter.post('/confirm/:id', wrapAsync(updateOrderState));
 orderRouter.get('/mileage', jwtMiddleware, wrapAsync(getMileage));
 orderRouter.post('/create', jwtMiddleware, wrapAsync(createOrder));

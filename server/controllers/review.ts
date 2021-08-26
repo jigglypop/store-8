@@ -75,7 +75,7 @@ export const getReview = async (req: Request, res: Response) => {
 export const createReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
 
-  const { title, contents, score, imgSrc, userId, orderNumber } = req.body;
+  const { title, contents, score, imgSrc, userId, orderId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {
@@ -91,22 +91,11 @@ export const createReview = async (req: Request, res: Response) => {
     score: +score,
   });
 
-  //Order에 update까지
-  // const createOrderResult = await Review.create({
-  //   userId,
-  //   productId: +productId,
-  //   title: title,
-  //   contents: contents,
-  //   score: +score,
-  // });
-
   const reviewId = createResult.getDataValue('id');
 
   const updateOrder = await Order.update({ reviewId }, { where: { id: orderId } });
 
-  console.log(updateOrder);
-
-  if (!reviewId) throw new HttpError(err.CREATE_ERROR);
+  if (!reviewId || !updateOrder) throw new HttpError(err.CREATE_ERROR);
 
   await createReviewSrc(reviewId, imgSrc);
 
