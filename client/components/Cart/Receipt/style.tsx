@@ -10,10 +10,11 @@ export const Receipt = styled.div`
   padding: 19px;
   width: 100%;
   border-radius: 8px;
-  background-color: var(--background-gray);
+  background-color: var(--background-white-darken-dark);
   margin-bottom: 11px;
 
   .amount-title {
+    color: var(--text-black-dark);
     font-size: var(--body-large-font);
     font-weight: bold;
   }
@@ -24,8 +25,10 @@ export const Receipt = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: var(--text-black-dark);
 
     & > .amount {
+      color: var(--text-black-dark);
       font-weight: bold;
     }
   }
@@ -37,13 +40,15 @@ export const TotalPrice = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-gray);
+  background-color: var(--background-white-darken-dark);
 
   & > p {
+    color: var(--text-black-dark);
     font-weight: bold;
   }
   & > .amount {
     margin-top: 12px;
+    color: var(--text-black-dark);
     font-size: var(--body-large-font);
   }
 `;
