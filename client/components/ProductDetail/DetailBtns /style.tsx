@@ -58,4 +58,17 @@ export const DetailBtns = styled.div<StyledProps>`
   .purchase-btn:hover {
     opacity: 0.9;
   }
+
+  @media only screen and (max-width: 1300px) {
+    .like-btn {
+    }
+    .cart-btn {
+      width: 130px;
+    }
+    .purchase-btn {
+      width: 150px;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+  }
 `;

@@ -13,4 +13,13 @@ export const ProductDetail = styled.div`
     flex-direction: column;
     justify-content: space-between;
   }
+  @media only screen and (max-width: 1300px) {
+    .product-detail__info {
+      margin-left: 20px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+  }
+  @media only screen and (max-width: 375px) {
+  }
 `;

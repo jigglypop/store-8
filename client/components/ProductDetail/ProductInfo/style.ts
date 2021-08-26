@@ -49,19 +49,51 @@ export const ProductInfo = styled.div`
     margin-top: 30px;
     border-top: 1px solid var(--gray4);
     .total-price {
-      font-size: var(--body-subtitle-font);
       font-weight: bold;
+      font-size: var(--body-subtitle-font);
       color: var(--text-black-dark);
     }
   }
   .stroke {
     text-decoration: line-through;
   }
+  @media only screen and (max-width: 1300px) {
+    font-size: var(--body-middle-font);
+    width: 348px;
+    min-height: 240px;
+    .product__info {
+      h3 {
+        font-size: var(--body-huge-font);
+      }
+      .producto-info__amount {
+        .price {
+          color: red;
+          font-size: var(--body-large-font);
+        }
+      }
+    }
+    .product__total-info {
+      .total-price {
+        font-size: var(--body-huge-font);
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    font-size: var(--body-small-font);
+  }
 `;
 
 export const InfoTitle = styled.div`
   width: 150px;
   color: var(--text-gray-dark);
+  @media only screen and (max-width: 375px) {
+  }
+  @media only screen and (max-width: 768px) {
+    width: 80px;
+  }
+  @media only screen and (max-width: 1300px) {
+    width: 80px;
+  }
 `;
 
 export const ProductInfoCount = styled.div`
