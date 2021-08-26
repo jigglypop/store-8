@@ -131,10 +131,7 @@ export const SunAttr = () => {
 // 밤모드
 export const MoonAttr = () => {
   const colorPicker = colorPickerSelector();
-  const tag = colorPicker.tag;
-  const headerColor = colorPicker.headerColor;
-  const text = colorPicker.text;
-  const glass = colorPicker.glass;
+  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass } = colorPicker;
   return {
     '--text-pastel-black-dark': 'white',
     '--text-pastel-black-nonwhite-dark': '#424242',
@@ -162,9 +159,13 @@ export const MoonAttr = () => {
     '--card-dark': '#424242',
     '--tag-picker': tag,
     '--text-picker': text,
-    '--text-dark-picker': text,
+    '--text-dark-picker': '#000000',
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
+    '--prime-picker': prime,
+    '--prime-hover-picker': primeHover,
+    '--sub-picker': sub,
+    '--sub-hover-picker': subHover,
   };
 };
 // val값 한번에 세팅
