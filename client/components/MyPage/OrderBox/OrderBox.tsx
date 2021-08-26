@@ -18,6 +18,12 @@ export default function OrderBox({ result }: Props): ReactElement {
   const [isConfirmOrderOpenForm, setConfirmOrderOpenForm] = useState(false);
   const [isReviewOpenForm, setReviewOpenForm] = useState(false);
 
+  const getStateByDate = (date: string): string => {
+    return '';
+  };
+
+  const stateByDate = getStateByDate(state.date);
+
   const openConfirmOrderForm = () => {
     setConfirmOrderOpenForm(true);
   };
@@ -76,9 +82,17 @@ export default function OrderBox({ result }: Props): ReactElement {
       </div>
       <div className="column-confirm">
         {!state.isConfirmed ? (
-          <button onClick={openConfirmOrderForm}>구매확정</button>
+          <button onClick={openConfirmOrderForm} className="button-confirm-order">
+            구매확정
+          </button>
+        ) : state.reviewId ? (
+          <button onClick={openReviewForm} disabled className="button-disabled">
+            리뷰완료
+          </button>
         ) : (
-          <button onClick={openReviewForm}>리뷰쓰기</button>
+          <button onClick={openReviewForm} className="button-write-review">
+            리뷰쓰기
+          </button>
         )}
       </div>
       {isConfirmOrderOpenForm && (

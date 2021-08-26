@@ -10,8 +10,8 @@ import { useMyReview } from '@client/hooks/my/useMyReview';
 interface Props {}
 
 export default function OrderResultContainer({}: Props): ReactElement {
-  const { myOrder } = useMyOrder();
   const { myReviews } = useMyReview();
+  const { myOrder } = useMyOrder();
 
   console.log(myReviews);
   return (
