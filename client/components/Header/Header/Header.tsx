@@ -77,7 +77,11 @@ const Header = ({ check, onLogout }: IHeader) => {
         </div>
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
-      <DarkMode />
+      <div className="left-down-button-space">
+        <DarkMode />
+        <DarkMode />
+        <DarkMode />
+      </div>
     </S.HeaderOuter>
   );
 };

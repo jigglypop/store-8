@@ -99,11 +99,8 @@ export const Picker = styled.div`
 `;
 
 export const DarkMode = styled.div`
-  position: fixed;
-  bottom: 50px;
-  left: 50px;
-  z-index: 20;
   padding-left: 8px;
+  margin-right: 8px;
 
   display: flex;
   flex-direction: row;
@@ -204,6 +201,15 @@ export const HeaderItem = styled.div`
 export const HeaderOuter = styled.div`
   .slider-all {
     display: flex;
+  }
+  .left-down-button-space {
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 20;
   }
 `;
 // 헤더 부분
