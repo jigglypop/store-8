@@ -83,12 +83,14 @@ export default function ProductReviewList({}: Props): ReactElement {
             <li className="empty-msg">등록된 상품문의가 없습니다.</li>
           )}
         </CommonS.UserPostingList>
-        <Pagination
-          totalCount={totalCount}
-          defaultLimit={DEFAULT_REVIEW_LIMIT}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {totalCount !== 0 && (
+          <Pagination
+            totalCount={totalCount}
+            defaultLimit={DEFAULT_REVIEW_LIMIT}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </S.ProductReviewList>
       {isOpenForm && <ReviewForm closeReviewForm={closeReviewForm} orderId={orderInfo?.orderId} />}
       {isOpenLoginModal && <LoginNeedModal cancelCbFn={closeLoginModal} />}

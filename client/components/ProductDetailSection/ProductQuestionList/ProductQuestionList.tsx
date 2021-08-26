@@ -42,12 +42,14 @@ export default function ProductQuestionList({}: Props): ReactElement {
             <li className="empty-msg">등록된 상품문의가 없습니다.</li>
           )}
         </CommonS.UserPostingList>
-        <Pagination
-          totalCount={totalCount}
-          defaultLimit={DEFAULT_QUESTION_LIMIT}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {totalCount !== 0 && (
+          <Pagination
+            totalCount={totalCount}
+            defaultLimit={DEFAULT_QUESTION_LIMIT}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
       </S.ProductQuestionList>
       {isOpenForm && <QuestionForm cancelCbFn={cancelFormCbFn} />}
     </>
