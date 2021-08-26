@@ -4,6 +4,7 @@ import { IOption } from '@middle/type/product/options';
 import ArrowDown from '@image/icon/arrowDownIcon.svg';
 import { useProduct } from '@client/hooks/product/product';
 import ProductOptionItem from './ProductOptionItem';
+import AlertModal from '@client/components/common/AlertModal/AlertModal';
 
 interface Props {
   optionData: IOption[];
@@ -18,12 +19,14 @@ export default function ProductOption({ optionData }: Props): ReactElement {
   if (!product || !product.options) return <></>;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAlertModal, setIsOpenAlertModal] = useState(false);
 
   const toggleOpen = () => setIsOpen((isOpen) => !isOpen);
+  const closeAlertModal = () => setIsOpenAlertModal(false);
 
   const handleOptionClick = (id: number) => {
     if (optionCount && id in optionCount) {
-      //TODO 이미 선택했다는 모달 혹은 토스트
+      setIsOpenAlertModal(true);
       return;
     }
 
@@ -58,6 +61,9 @@ export default function ProductOption({ optionData }: Props): ReactElement {
           </ul>
           {optionCount && Object.keys(optionCount).length ? selectedOptionList : null}
         </div>
+        {isOpenAlertModal && (
+          <AlertModal msg="이미 선택한 옵션입니다." cancelCbFn={closeAlertModal} />
+        )}
       </S.ProductOption>
     </>
   );
