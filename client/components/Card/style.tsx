@@ -6,48 +6,51 @@ export const Card = styled.div`
     display: grid;
     height: 500px;
     grid-column: 1/2;
+    overflow: hidden;
 
     .image {
-      .wc-container {
-        display: flex;
-        flex-direction: row;
-        svg {
-          margin-right: 12px;
-        }
-      }
       img {
         position: relative;
         width: 292.5px;
         object-fit: cover;
         cursor: pointer;
       }
-      .underbutton {
-        position: absolute;
-        transition: all 0.3s ease-in;
+    }
 
-        width: 280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .wc-container {
+      position: absolute;
+      top: -36px;
 
-        .smallbutton {
-          width: 30px;
-          height: 30px;
-          line-height: 28px;
-          color: var(--text-white-dark);
-          background: var(--background-white-dark);
-        }
+      display: flex;
+      flex-direction: flex-end;
+
+      margin-left: 8px;
+      width: calc(100% - 8px);
+      transition: top 0.3s;
+
+      div:first-child {
+        margin-right: 4px;
       }
     }
+
+    &:hover {
+      .wc-container {
+        top: 8px;
+      }
+    }
+
     .text {
-      z-index: 1;
+      .non-red {
+        margin-top: -22px;
+      }
       .red {
         position: relative;
-        margin: 0;
+        margin: 4px 0px;
         font-size: 20px;
         color: #ff6350;
         font-weight: 600;
       }
+
       .large {
         margin: 0;
         padding: 3px 0 0 0;
@@ -55,43 +58,21 @@ export const Card = styled.div`
         color: var(--text-black-dark);
         font-size: 16px;
       }
+
       .line {
         color: var(--gray3);
         text-decoration: line-through;
         margin: 0;
-        padding: 10px 0 0 0;
+        padding: 6px 0 2px 0;
         text-align: left;
         font-size: 12px;
       }
+
       .small {
         margin: 0;
         font-weight: 600;
         font-size: 18px;
         color: var(--text-black-dark);
-      }
-    }
-    .mark {
-      position: absolute;
-      button {
-        border: none;
-        border-radius: 2px;
-        margin-left: 3px;
-      }
-
-      .green {
-        background: #38ef7d;
-      }
-      .new {
-        background: #6dd5ed;
-      }
-      .sale {
-        background: #ed213a;
-      }
-      .marktext {
-        margin: 0;
-        padding: 2px 0;
-        color: white;
-        font-weight: 600;
       }
     }
   }

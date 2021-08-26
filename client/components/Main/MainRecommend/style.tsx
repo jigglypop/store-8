@@ -69,7 +69,7 @@ export const MainRecommend = styled(MainItem)`
   }
 
   .large {
-    font-size: 25px;
+    font-size: 22px;
     color: var(--text-black-dark);
     line-height: 45px;
     margin-bottom: 8px;

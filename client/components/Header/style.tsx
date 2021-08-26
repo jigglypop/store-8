@@ -115,7 +115,7 @@ export const DarkMode = styled.div`
   border-radius: 40px;
 
   background: var(--text-pastel-black-nonwhite-dark);
-  box-shadow: 0 0 4px var(--shadow-black-dark);
+  box-shadow: 0 0 2px var(--shadow-black-dark);
 
   transition: all 0.3s ease-in;
   cursor: pointer;
