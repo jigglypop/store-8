@@ -2,10 +2,11 @@ import styled from '@lib/styledComponent';
 
 export const CartContainer = styled.div`
   width: 100%;
-  min-height: 600px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 24px;
 
   .nothing-container {
     justify-content: center;

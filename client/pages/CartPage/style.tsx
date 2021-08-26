@@ -12,9 +12,29 @@ export const Cart = styled.div`
     justify-content: center;
   }
 
-  .cart-contents-left {
+  .cart-side-container {
+    @media only screen and (min-width: 0px) {
+      flex-direction: column;
+    }
     @media only screen and (min-width: 375px) {
-      width: calc(100% - 180px);
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+    @media only screen and (min-width: 1300px) {
+      flex-direction: row;
+    }
+  }
+
+  .cart-contents-left {
+    @media only screen and (min-width: 0px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
     }
     @media only screen and (min-width: 768px) {
       width: calc(100% - 280px);
@@ -25,24 +45,31 @@ export const Cart = styled.div`
   }
 
   .cart-receipt-side-container {
+    @media only screen and (min-width: 0px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
+    }
     @media only screen and (min-width: 375px) {
-      width: 160px;
-      margin-left: 20px;
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
     }
     @media only screen and (min-width: 768px) {
       width: 240px;
       margin-left: 40px;
+      position: sticky;
+      top: 100px;
+      margin-top: 47px;
+      margin-bottom: 50px;
     }
     @media only screen and (min-width: 1300px) {
       width: 320px;
       margin-left: 70px;
+      position: sticky;
+      top: 100px;
+      margin-top: 47px;
+      margin-bottom: 50px;
     }
 
     height: 330px;
-    margin-top: 47px;
-    margin-bottom: 50px;
-
-    position: sticky;
-    top: 100px;
   }
 `;

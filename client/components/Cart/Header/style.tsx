@@ -5,18 +5,53 @@ export const CartHeader = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 50px 5px 30px 5px;
     border-bottom: 1px solid var(--line-gray);
+
+    @media only screen and (min-width: 0px) {
+      padding: 30px 15px 20px 15px;
+    }
+    @media only screen and (min-width: 375px) {
+      padding: 30px 15px 20px 15px;
+    }
+    @media only screen and (min-width: 768px) {
+      padding: 50px 5px 30px 5px;
+    }
+    @media only screen and (min-width: 1300px) {
+      padding: 50px 5px 30px 5px;
+    }
   }
   .cart-header-title {
-    font-size: var(--head-small-font);
     color: var(--text-black-dark);
     font-weight: bold;
+
+    @media only screen and (min-width: 0px) {
+      font-size: var(--head-small-font);
+    }
+    @media only screen and (min-width: 375px) {
+      font-size: var(--head-small-font);
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: var(--head-small-font);
+    }
+    @media only screen and (min-width: 1300px) {
+      font-size: var(--head-small-font);
+    }
   }
   .cart-progress-container {
-    display: flex;
     flex-direction: row;
     align-items: center;
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: flex;
+    }
+    @media only screen and (min-width: 1300px) {
+      display: flex;
+    }
   }
   .cart-progress-container > p {
     font-size: var(--body-middle-font);

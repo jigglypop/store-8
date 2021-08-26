@@ -87,6 +87,29 @@ export const CartContent = styled.div`
     }
   }
 
+  .product-count-container {
+    @media only screen and (min-width: 0px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 100px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 100px;
+    }
+  }
+  .product-count-container > svg {
+    @media only screen and (min-width: 0px) {
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 375px) {
+      transform: scale(0.8);
+    }
+  }
+
   .num-scaler {
     cursor: pointer;
     circle {
