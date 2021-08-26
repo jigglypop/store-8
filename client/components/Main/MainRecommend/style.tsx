@@ -88,7 +88,7 @@ export const MainRecommend = styled(MainItem)`
     display: flex;
     flex-direction: row;
     & > p {
-      margin: 0px 3px;
+      margin: 0px 6px 0px 0px;
     }
   }
 
