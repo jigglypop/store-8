@@ -10,6 +10,7 @@ const idOver = (id: number) => {
 export default function Recommend() {
   const { recommend } = useRecommend();
   const { check } = useCheck();
+
   return (
     <S.Recommend>
       {check && recommend && recommend.length !== 0 && (

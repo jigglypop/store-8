@@ -99,26 +99,59 @@ export const Picker = styled.div`
 `;
 
 export const DarkMode = styled.div`
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  z-index: 20;
+  padding-left: 8px;
+
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  background: var(--glass-picker);
-  box-shadow: 0 0 10px var(--shadow-black-dark);
-  border: 0.5px solid var(--text-black-dark);
-  transform: scale(0.8);
+  overflow: hidden;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 40px;
+
+  background: var(--text-pastel-black-nonwhite-dark);
+  box-shadow: 0 0 4px var(--shadow-black-dark);
+
   transition: all 0.3s ease-in;
   cursor: pointer;
 
-  path {
-    fill: var(--text-black-dark);
+  &:hover {
+    width: 140px;
+    height: 42px;
+    & > p {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+  }
+  & > p {
+    font-size: 14px;
+    color: var(--glass-picker);
+    margin-left: 8px;
+    display: none;
   }
 
-  &:hover {
-    transform: scale(1);
+  path {
+    fill: var(--glass-picker);
+    stroke: var(--glass-picker);
+  }
+
+  svg {
+    path:first-child {
+      fill: var(--glass-picker);
+      stroke: none;
+    }
+    circle {
+      stroke: var(--glass-picker);
+    }
+    rect {
+      fill: var(--glass-picker);
+    }
   }
 `;
 
@@ -201,9 +234,10 @@ export const Header = styled.header<IHeader>`
     .right {
       position: relative;
       display: flex;
-      .hamberger {
-        transform: scale(0.8);
-      }
+    }
+
+    .hamberger {
+      transform: scale(0.8);
     }
 
     .main-img {
@@ -212,6 +246,7 @@ export const Header = styled.header<IHeader>`
       cursor: pointer;
     }
   }
+
   .headerInner.up {
     background-color: rgba(0, 0, 0, 0.6);
     color: var(--text-white);
@@ -234,6 +269,7 @@ export const Header = styled.header<IHeader>`
   .isSmallHeader {
     display: none;
   }
+
   @media only screen and (max-width: 1000px) {
     .isSmallHeader {
       display: flex;
@@ -251,6 +287,7 @@ export const Header = styled.header<IHeader>`
     }
   }
 `;
+
 // 슬라이더 아이템 부분
 export const SliderItem = styled.div`
   display: flex;
