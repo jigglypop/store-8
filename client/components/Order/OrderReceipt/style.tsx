@@ -55,7 +55,6 @@ export const TotalPrice = styled.div`
 
 export const OrderNow = styled.div`
   button {
-    background-color: var(--background-mint);
     color: var(--text-white);
     width: 100%;
     height: 48px;
@@ -64,8 +63,9 @@ export const OrderNow = styled.div`
     justify-content: center;
     align-items: center;
     margin: 11px 0px 8px 0px;
+    background-color: var(--prime-picker);
     &:hover {
-      background-color: var(--background-dark-mint);
+      background-color: var(--prime-hover-picker);
     }
   }
   .order-info {

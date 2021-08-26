@@ -73,10 +73,10 @@ export const OptionModal = styled.div`
     }
 
     .submit-btn {
-      background-color: var(--background-mint);
+      background-color: var(--prime-picker);
       color: var(--text-white);
       &:hover {
-        background-color: var(--background-dark-mint);
+        background-color: var(--prime-hover-picker);
       }
     }
   }

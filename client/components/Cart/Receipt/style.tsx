@@ -65,9 +65,9 @@ export const OrderNow = styled.div`
     margin: 11px 0px 8px 0px;
     transition: all 0.3s;
 
-    background-color: var(--background-mint);
+    background-color: var(--prime-picker);
     &:hover {
-      background-color: var(--background-dark-mint);
+      background-color: var(---prime-hover-picker);
     }
   }
 
