@@ -287,7 +287,7 @@ export const Header = styled.header<IHeader>`
       padding-left: 0 !important;
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .isSSmallHeader {
       display: none;
     }
