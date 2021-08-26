@@ -6,11 +6,40 @@ import Coupon from '../models/Coupon';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 
-import { CouponData } from '../../middle/type/Coupon/coupon';
+import { CouponData } from '../../middle/type/coupon/coupon';
 
 const findAll = async (userId: number) => {
   const userCoupons = await UserCoupon.findAll({
     where: { userId, isUsed: false },
+    include: [
+      {
+        model: Coupon,
+        as: 'coupon',
+      },
+    ],
+  });
+  if (!userCoupons) {
+    throw new HttpError({ ...err.NO_DATA });
+  }
+
+  const result: CouponData[] = [];
+
+  userCoupons.forEach((element) => {
+    result.push({
+      id: element.id,
+      title: element.coupon.title,
+      amount: element.coupon.amount,
+      dDay: element.dDay.split(' ')[0],
+      isUsed: element.isUsed,
+    });
+  });
+
+  return result;
+};
+
+const findTotal = async (userId: number) => {
+  const userCoupons = await UserCoupon.findAll({
+    where: { userId },
     include: [
       {
         model: Coupon,
@@ -45,6 +74,16 @@ export const get = async (req: Request, res: Response) => {
 
   let result = await findAll(userId);
 
+  res.status(200).json({ data: result });
+};
+
+export const getAll = async (req: Request, res: Response) => {
+  const { userId } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  let result = await findTotal(userId);
   res.status(200).json({ data: result });
 };
 

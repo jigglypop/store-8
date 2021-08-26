@@ -76,6 +76,15 @@ export const OrderNow = styled.div`
       margin-top: 1px;
       margin-left: 6px;
       font-size: var(--body-small-font);
+      color: var(--text-black-dark);
+    }
+  }
+  .ex-mark-icon {
+    .exMark_svg__outline {
+      stroke: var(--text-pastel-black-dark);
+    }
+    .exMark_svg__innerMark {
+      fill: var(--text-pastel-black-dark);
     }
   }
 `;

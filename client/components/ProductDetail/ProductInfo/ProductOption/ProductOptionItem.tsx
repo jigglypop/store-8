@@ -12,7 +12,7 @@ interface Props {
 
 export default function ProductOptionItem({ id }: Props): ReactElement {
   const { product, optionCount, setOptionCount, deleteOptionCount } = useProduct();
-  const [inputValue, setInputValue] = useState<string>(optionCount.id || '1');
+  const [inputValue, setInputValue] = useState<string>(optionCount.id + '' || '1');
 
   const handleClickCountMinus = () => {
     if (optionCount[id] <= 1) return;

@@ -4,13 +4,15 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
-import { CartData } from '@middle/type/cart/cart';
+import { CartData, ICartAddData } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
+import cache from '@utils/cache';
+import localCart from '@utils/cart';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, delCart } from '@store/product/cart';
+import { getCart, delCart, localGetCart, localAddCart } from '@store/product/cart';
 import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
@@ -23,10 +25,17 @@ function Cart(): ReactElement {
   const [contents, setContents] = useState(cartDataChanger(cart));
   const [deleteItem, setDeleteLists] = useState([0]);
   const [isOpenForm, setOpenForm] = useState(false);
+  const token = cache.get('token');
 
   useEffect(() => {
-    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
-    dispatch(getCart({ userId: 1 }));
+    window.scrollTo(0, 0);
+    if (token) {
+      dispatch(getCart(token));
+    } else {
+      // 만약 로그인하지 않았다면 로컬 Storage의 데이터를 cart store에 등록.
+      const localCartData = localCart.get();
+      dispatch(localGetCart({ data: localCartData }));
+    }
   }, []);
 
   useEffect(() => {
@@ -157,14 +166,22 @@ function Cart(): ReactElement {
 
   const confirm = () => {
     const deletedItem: number[] = [];
+    const deletedIndex: number[] = [];
 
-    contents.forEach((content) => {
+    contents.forEach((content, index) => {
       if (content.isChecked) {
         deletedItem.push(content.id);
+        deletedIndex.push(index);
       }
     });
-
-    dispatch(delCart({ userId: 1, cartIds: deletedItem }));
+    const isLoggedIn = cache.get('token');
+    if (isLoggedIn) {
+      dispatch(delCart({ cartIds: deletedItem }));
+    } else {
+      localCart.remove(deletedIndex);
+      const recartedItem = localCart.get();
+      dispatch(localGetCart({ data: recartedItem }));
+    }
     setOpenForm(false);
   };
 

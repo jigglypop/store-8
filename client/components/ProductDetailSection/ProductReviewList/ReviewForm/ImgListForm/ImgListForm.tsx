@@ -8,11 +8,17 @@ import { uploadImg } from '@api/upload';
 
 interface Props {
   imgList: string[];
+  formError: string;
   setImgList: Dispatch<SetStateAction<string[]>>;
   setFormError: Dispatch<SetStateAction<string>>;
 }
 
-export default function ImgListForm({ imgList, setImgList, setFormError }: Props): ReactElement {
+export default function ImgListForm({
+  imgList,
+  setImgList,
+  formError,
+  setFormError,
+}: Props): ReactElement {
   const MAX_IMG = 8;
 
   const handleImgSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,12 +28,24 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
 
     const imgBlob = Object.values(uploadImage);
 
-    if (imgBlob.length > MAX_IMG) {
+    if (!checkImgExtension(imgBlob)) {
+      setFormError('이미지는 jpg, jpeg, png 파일만 업로드 가능합니다.');
+      return;
+    }
+
+    if (!checkImgSize(imgBlob)) {
+      setFormError('0MB 이하 이미지만 업로드 가능합니다.');
+      return;
+    }
+
+    if (imgBlob.length > MAX_IMG || imgList.length + imgBlob.length > MAX_IMG) {
       setFormError('이미지는 최대 8장까지 업로드 가능합니다.');
       return;
     }
 
     imgBlob.forEach((blob) => formData.append('image', blob));
+
+    if (formError) setFormError('');
 
     const data = await uploadImg(formData);
 
@@ -37,6 +55,24 @@ export default function ImgListForm({ imgList, setImgList, setFormError }: Props
     }
 
     setImgList((imgs) => [...imgs, ...data.imgSrc]);
+  };
+
+  const checkImgSize = (imgBlob: File[]) => {
+    for (const file of imgBlob) {
+      if (file.size > 10000000) return false;
+    }
+    return true;
+  };
+
+  const checkImgExtension = (imgBlob: File[]) => {
+    for (const file of imgBlob) {
+      if (!isImgFile(file.type)) return false;
+    }
+    return true;
+  };
+
+  const isImgFile = (type: string) => {
+    return type === 'image/jpeg' || type === 'image/png' || type === 'image/jpg';
   };
 
   const handleDeleteClick = async (idx: number) => {

@@ -24,9 +24,7 @@ function AddressModal(props: OptionModalProps): ReactElement {
     getOptions(props.productId);
   }, []);
 
-  useEffect(() => {
-    console.log(options);
-  }, [options]);
+  useEffect(() => {}, [options]);
 
   const increase = () => {
     setCount(count + 1);

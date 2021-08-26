@@ -3,10 +3,12 @@ import { delCart } from '@store/product/cart';
 import { useCoupon } from '@store/coupon/coupon';
 import { createOrder } from '@api/order';
 import { getMileage } from '@api/order';
-import { addAddressApi, setBaseAddressApi } from '@api/address';
+import { addAddressApi, setBaseAddressApi, updateAddressApi, removeAddressApi } from '@api/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import { AddressAddReq, AddressData } from '@middle/type/address/address';
+import cache from '@client/utils/cache';
 
 // 주문 대기 내역 ( state.order ) 을 주문 내역으로 변환후 create
 // 주문 대기 내역을 장바구니에서 삭제 ( 삭제하면 알아서 API 호출 )
@@ -18,8 +20,52 @@ export function useOrder() {
   const dispatch = useDispatch();
 
   const getUsableMileage = async () => {
-    const temp = await getMileage({ userId: 1 });
+    const temp = await getMileage(cache.get('token'));
     setMileage(temp);
+  };
+
+  const makeAddress = async (props: AddressAddReq, isBase: boolean) => {
+    // 지역 추가.
+    const addressId: number = await addAddressApi(
+      {
+        location: props.location,
+        extraLocation: props.extraLocation,
+        zonecode: props.zonecode,
+        call: props.call,
+        receiver: props.receiver,
+        email: props.email,
+        title: props.title ? props.title : '',
+      },
+      cache.get('token')
+    );
+
+    if (isBase) {
+      await setBaseAddressApi({ addressId }, cache.get('token'));
+    }
+  };
+
+  const updateAddress = async (props: AddressData) => {
+    await updateAddressApi(
+      {
+        id: props.addressId,
+        location: props.address,
+        extraLocation: props.extraAddress,
+        zonecode: props.zonecode,
+        call: props.call,
+        receiver: props.name,
+        email: props.email,
+        title: props.title ? props.title : '',
+      },
+      cache.get('token')
+    );
+
+    if (props.isBase) {
+      await setBaseAddressApi({ addressId: props.addressId }, cache.get('token'));
+    }
+  };
+
+  const removeAddress = async (addressId: number) => {
+    await removeAddressApi({ addressId }, cache.get('token'));
   };
 
   const proceedOrder = async (props: ProceedOrderProps) => {
@@ -31,18 +77,20 @@ export function useOrder() {
     const deleteCartIds: number[] = [];
 
     // 지역 추가 시도.
-    const addressId: number = await addAddressApi({
-      userId: 1,
-      location: props.addressInfo.address,
-      extraLocation: props.addressInfo.extraAddress,
-      zonecode: props.addressInfo.zonecode,
-      call: props.addressInfo.call,
-      receiver: props.addressInfo.name,
-      email: props.addressInfo.email,
-    });
+    const addressId: number = await addAddressApi(
+      {
+        location: props.addressInfo.address,
+        extraLocation: props.addressInfo.extraAddress,
+        zonecode: props.addressInfo.zonecode,
+        call: props.addressInfo.call,
+        receiver: props.addressInfo.name,
+        email: props.addressInfo.email,
+      },
+      cache.get('token')
+    );
 
     if (props.isBase) {
-      await setBaseAddressApi({ userId: 1, addressId });
+      await setBaseAddressApi({ addressId }, cache.get('token'));
     }
 
     cart.forEach((element) => {
@@ -56,7 +104,6 @@ export function useOrder() {
     // 주문내역 만드는 API 호출, 사용한 마일리지는 order 를 만들면서 해결한다.
     // TODO : User Id 빼기
     const orderApiResult = await createOrder({
-      userId: 1,
       productIds,
       productCounts,
       productAmounts,
@@ -70,16 +117,14 @@ export function useOrder() {
       throw new Error('[PROCEED_ORDER] : 주문내역 생성이 실패했습니다.');
     }
 
-    // TODO : User ID 빼기
     // cart 삭제 진행.
-    dispatch(delCart({ userId: 1, cartIds: deleteCartIds }));
+    dispatch(delCart({ cartIds: deleteCartIds }));
 
-    // TODO : User ID 빼기
     // coupon 사용하기 진행.
     if (props.useCouponId !== 0) {
-      dispatch(useCoupon({ userId: 1, couponId: props.useCouponId }));
+      dispatch(useCoupon({ couponId: props.useCouponId }));
     }
   };
 
-  return { mileage, getUsableMileage, proceedOrder };
+  return { mileage, getUsableMileage, proceedOrder, makeAddress, updateAddress, removeAddress };
 }

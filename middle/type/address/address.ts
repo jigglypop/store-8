@@ -6,10 +6,8 @@ export type AddressData = {
   call: string;
   name: string;
   email: string;
-};
-
-export type AddressGetReq = {
-  userId: number;
+  isBase: boolean;
+  title: string;
 };
 
 export type AddressRes = {
@@ -17,7 +15,6 @@ export type AddressRes = {
 };
 
 export type AddressSetBaseReq = {
-  userId: number;
   addressId: number;
 };
 
@@ -26,15 +23,30 @@ export type AddressSetBaseRes = {
 };
 
 export type AddressAddReq = {
-  userId: number;
   location: string;
   extraLocation: string;
   zonecode: string;
   call: string;
   receiver: string;
   email: string;
+  title?: string;
 };
 
 export type AddressAddRes = {
+  addressId: number;
+};
+
+export type AddressUpdateReq = {
+  id: number;
+  location: string;
+  extraLocation: string;
+  zonecode: string;
+  call: string;
+  receiver: string;
+  email: string;
+  title: string;
+};
+
+export type AddressRemoveReq = {
   addressId: number;
 };

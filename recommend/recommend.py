@@ -38,12 +38,13 @@ def get_recommend(dataArray):
     tfidf = TfidfVectorizer(encoding="UTF-8")
     # 목표로 할 피쳐
     tfidf_mat = tfidf.fit_transform(data['title']).toarray()
-    movieList = [] 
+    recommendList = [] 
     for similarity, i in recommend_three(tfidf_mat, dataArray):
-        movieList.append({
-            'id': i,
+        recommendList.append({
+            'id': i + 1,
             'sims': similarity,
-            'title': data.loc[i, 'title']
-        })
+            'title': data.loc[i, 'title'],
+            'productImgSrc': data.loc[i, 'productImgSrc']
+        })  
 
-    return movieList
+    return recommendList

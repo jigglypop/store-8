@@ -23,20 +23,14 @@ export type ClientCartData = {
   productId: number;
 };
 
-export interface ICartGetReq {
-  userId: number;
-}
-
 export type ICartGetRes = CartData[];
 
 export interface ICartDeleteReq {
-  userId: number;
   cartIds: number[];
 }
 
 export type ICartDeleteRes = CartData[];
 export interface ICartAddReq {
-  userId: number;
   productId: number;
   productOptionId: number | null;
   productCount: number;
@@ -48,4 +42,12 @@ export type ICartAddData = {
   productId: number;
   productOptionId: number | null;
   productCount: number;
+};
+
+export type ICartLocalGetData = {
+  data: ICartAddData[];
+};
+
+export type ICartLocalAddData = {
+  data: ICartAddData[];
 };

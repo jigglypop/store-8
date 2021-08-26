@@ -4,7 +4,7 @@ import ProductOption from '../models/Option';
 import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
-import { CartData } from '../../middle/type/cart/cart';
+import { CartData, ICartAddReq } from '../../middle/type/cart/cart';
 
 const findAll = async (userId: number) => {
   const carts = await Cart.findAll({ where: { userId } });
@@ -55,6 +55,61 @@ export const check = async (req: Request, res: Response) => {
   if (!userId) {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
+
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
+};
+
+export const getLocal = async (req: Request, res: Response) => {
+  const { data } = req.body;
+  const result: CartData[] = [];
+
+  for (let i = 0; i < data.length; i++) {
+    const productResult = await Product.findOne({ where: { id: data[i].productId } });
+
+    const optionId = data[i].productOptionId === 0 ? null : data[i].productOptionId;
+    let optionResult = await ProductOption.findOne({ where: { id: optionId } });
+
+    if (productResult) {
+      result.push({
+        id: 0,
+        imgSrc: productResult.productImgSrc,
+        title: productResult.title,
+        count: data[i].productCount,
+        originalAmount: productResult.originalAmount,
+        amount: productResult.amount,
+        option: optionResult ? optionResult.title : '',
+        optionId,
+        productId: productResult.id,
+      });
+    }
+  }
+
+  res.status(200).json({ data: result });
+};
+
+export const addLocal = async (req: Request, res: Response) => {
+  const { userId, data } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  data.forEach(async (element: ICartAddReq) => {
+    const valid = await Cart.create({
+      userId,
+      productId: element.productId,
+      productOptionId: element.productOptionId,
+      productCount: element.productCount,
+    });
+
+    if (!valid) {
+      throw new HttpError({
+        status: 400,
+        message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.',
+      });
+    }
+  });
 
   let result = await findAll(userId);
 

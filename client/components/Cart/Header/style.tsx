@@ -10,6 +10,7 @@ export const CartHeader = styled.div`
   }
   .cart-header-title {
     font-size: var(--head-small-font);
+    color: var(--text-black-dark);
     font-weight: bold;
   }
   .cart-progress-container {
@@ -21,13 +22,21 @@ export const CartHeader = styled.div`
     font-size: var(--body-middle-font);
     font-weight: bold;
   }
-  .cart-progress-container > img {
-    height: 10px;
-    width: 10px;
+  .cart-progress-container > svg {
     margin: 0rem 1rem 0rem 0.75rem;
   }
+  .now-step {
+    path {
+      fill: var(--text-black-dark);
+    }
+  }
+  .not-step {
+    path {
+      fill: var(--text-lightgray);
+    }
+  }
   .cart-progress {
-    color: var(--text-black);
+    color: var(--text-black-dark);
   }
   .cart-wait {
     color: var(--text-lightgray);

@@ -47,7 +47,7 @@ export function useProduct() {
     error,
     count,
     setCount,
-    optionCount,
+    optionCount: optionCount ?? {},
     setOptionCount,
     deleteOptionCount,
   };

@@ -26,8 +26,6 @@ export const uploadImg = async (formData: any) => {
     const imgSrc = await res.json();
     return { success: true, imgSrc: imgSrc.src };
   } catch (err) {
-    console.log(err);
-    console.log(err.message);
     return { success: false, errorMessage: err.message };
   }
 };

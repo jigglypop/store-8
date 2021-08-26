@@ -1,7 +1,6 @@
 import type { AddressData } from '../address/address';
 
 export type OrderCreateReq = {
-  userId?: number;
   productIds: number[];
   productCounts: number[];
   productAmounts: number[];
@@ -13,10 +12,6 @@ export type OrderCreateReq = {
 
 export type OrderCreateRes = {
   data: string;
-};
-
-export type MileageReq = {
-  userId: number;
 };
 
 export type ProceedOrderProps = {

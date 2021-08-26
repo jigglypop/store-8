@@ -10,11 +10,11 @@ import { useProduct } from '@client/hooks/product/product';
 interface Props {}
 
 export default function ProductDetail({}: Props): ReactElement {
-  const { product, loading, error } = useProduct();
+  const { product } = useProduct();
 
   if (!product) return <></>;
 
-  const { id, productImgSrc, title, originalAmount, amount, options } = product;
+  const { id, productImgSrc, title } = product;
 
   return (
     <S.ProductDetail>

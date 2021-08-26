@@ -50,6 +50,9 @@ export const DetailBtns = styled.div<StyledProps>`
     color: var(--text-white);
     background-color: var(--tag-picker);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .purchase-btn:hover {

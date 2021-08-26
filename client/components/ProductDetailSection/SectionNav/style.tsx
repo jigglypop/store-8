@@ -1,30 +1,8 @@
 import styled from 'styled-components';
 
-export const SectionNavWrapper = styled.div`
-  .fixed {
-    position: fixed;
-    top: 70px;
-    width: 1200px;
-    border: none;
-  }
-  @media only screen and (max-width: 1200px) {
-    .fixed {
-      width: 100%;
-    }
-  }
-  @media only screen and (max-width: 900px) {
-    .fixed {
-      width: 100%;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    .fixed {
-      width: 100%;
-    }
-  }
-`;
-
 export const SectionNav = styled.ul`
+  position: sticky;
+  top: 70px;
   height: 60px;
   display: flex;
   justify-content: space-between;

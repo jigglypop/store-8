@@ -1,11 +1,15 @@
-import cache from '@client/utils/cache';
-import { $ } from '@client/utils/jQurey';
-import { HistoryPush, Link } from '@client/utils/router';
 import { ChangeEvent, FormEvent, useState, useEffect, useRef } from 'react';
-import * as S from './style';
 import _ from 'lodash';
+
+import cache from '@utils/cache';
+import { $ } from '@utils/jQurey';
+import { Link } from '@utils/router';
 import { useElastic } from '@client/hooks/elastic/elastic';
+
 import { IElastic } from '@middle/type/elastic/elastic';
+
+import SearchIcon from '@image/svg/searchIcon.svg';
+import * as S from './style';
 
 const setTagFilter = (tag: string) => {
   let tags = cache.get('search');
@@ -62,11 +66,22 @@ export default function Search() {
       onClick();
     }
   };
+
+  const isSvg = (e: any) => {
+    // SVG 를 누른 경우 circle, rect가 눌린걸로 처리되는데, 이를 처리하기 위함.
+    const myClassName: string = e.target.className.baseVal;
+    const parentClassName: string = e.path[1] ? e.path[1].className.baseVal : '';
+    const myClassList = myClassName?.length > 0 ? myClassName.split(' ') : [];
+    const parentClassList = parentClassName?.length > 0 ? parentClassName.split(' ') : [];
+
+    return myClassList.indexOf('search') !== -1 || parentClassList.indexOf('search') !== -1;
+  };
+
   const isOutside = (e: any) => {
     if (e.target.className) {
       const classname: string = e.target.className;
       const classList = classname.length > 0 ? classname.split(' ') : [];
-      if (classList.indexOf('search') === -1) {
+      if (classList.indexOf('search') === -1 && !isSvg(e)) {
         $('.search-inner').removeClass('wide');
         setIsWide(false);
         const inputs: any = $('#search-input').get();
@@ -75,6 +90,7 @@ export default function Search() {
       }
     }
   };
+
   useEffect(() => {
     const tags = cache.get('search');
     if (tags && tags.length) {
@@ -93,42 +109,47 @@ export default function Search() {
   }, []);
   return (
     <S.Search>
-      <S.SearchInner className="search-inner search">
-        <input
-          name="search"
-          placeholder="검색 입력"
-          onKeyPress={onKeyPress}
-          onChange={(e) => onChange(e)}
-          id="search-input"
-          autoComplete="off"
-          className="search"
-        />
-        <div className="elastic">
-          {isWide &&
-            elastic &&
-            elastic.slice(0, 5).map((item: IElastic, index: number) => (
-              <div className="elastic-item" key={index}>
-                <Link to={`/search/0/?title=${item._source.title}&page=1`} className="search">
-                  <>{item._source.title.slice(0, 15)}...</>
-                </Link>
-              </div>
-            ))}
-        </div>
-        <div className="tags search">
-          {isWide &&
-            tags.map((tag: string, index: number) => (
-              <div className="tag-item search" key={index}>
-                <Link to={`/search/0/?title=${tag}&page=1`} className="search">
-                  {tag}
-                </Link>
-                <span onClick={() => onRemove(tag)} className="search">
-                  x
-                </span>
-              </div>
-            ))}
-        </div>
-      </S.SearchInner>
-      <Link to={`/search/0/?title=${search}&page=1`} id="search-route"></Link>
+      <div className="search-fixer search">
+        <S.SearchInner className="search-inner search">
+          <div className="search-inner-input search" id="search-inner-input">
+            <input
+              name="search"
+              placeholder="검색 입력"
+              onKeyPress={onKeyPress}
+              onChange={(e) => onChange(e)}
+              id="search-input"
+              autoComplete="off"
+              className="search"
+            />
+            <SearchIcon onClick={onClick} className="search-icon search" />
+          </div>
+          <div className="elastic">
+            {isWide &&
+              elastic &&
+              elastic.slice(0, 5).map((item: IElastic, index: number) => (
+                <div className="elastic-item" key={index}>
+                  <Link to={`/search/0/?title=${item._source.title}&page=1`} className="search">
+                    <>{item._source.title.slice(0, 15)}...</>
+                  </Link>
+                </div>
+              ))}
+          </div>
+          <div className="tags search">
+            {isWide &&
+              tags.map((tag: string, index: number) => (
+                <div className="tag-item search" key={index}>
+                  <Link to={`/search/0/?title=${tag}&page=1`} className="search">
+                    {tag}
+                  </Link>
+                  <span onClick={() => onRemove(tag)} className="search">
+                    x
+                  </span>
+                </div>
+              ))}
+          </div>
+        </S.SearchInner>
+        <Link to={`/search/0/?title=${search}&page=1`} id="search-route"></Link>
+      </div>
     </S.Search>
   );
 }

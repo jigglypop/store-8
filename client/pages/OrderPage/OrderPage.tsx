@@ -10,7 +10,7 @@ import CouponModal from '@components/Order/CouponModal/CouponModal';
 import AddressModal from '@components/Order/AddressModal/AddressModal';
 
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import type { AddressData } from '@middle/type/address/address';
 import { ProceedOrderProps } from '@middle/type/product/order';
 
@@ -19,11 +19,16 @@ import { RootState } from '@client/store';
 import { getMileage, getShipmentAmount } from '@utils/utils';
 import * as S from './style';
 import { useOrder } from '@client/hooks/order/order';
+import { useRouter } from '@client/hooks/router/router';
+import { IRouterReq } from '@client/store/router/router';
+import { getRouterObj } from '@client/utils/pathname';
+import cache from '@client/utils/cache';
 
 const OrderPage = () => {
   const { cart } = useSelector((state: RootState) => state.order);
   const [isCouponOpenForm, setCouponOpenForm] = useState(false);
   const [isAddressOpenForm, setAddressOpenForm] = useState(false);
+  const { onChangeRouterAll } = useRouter();
   const { mileage, getUsableMileage } = useOrder();
 
   const getTotalMileage = () => {
@@ -35,7 +40,16 @@ const OrderPage = () => {
   };
 
   useEffect(() => {
-    getUsableMileage();
+    const isLoggedIn = cache.get('token');
+    if (!isLoggedIn) {
+      const to = '/main';
+      const RouterObj: IRouterReq = getRouterObj(to);
+      onChangeRouterAll(RouterObj);
+      history.pushState({ path: to }, to, to);
+    } else {
+      window.scrollTo(0, 0);
+      getUsableMileage();
+    }
   }, []);
 
   const [totalState, setTotalState] = useState<ProceedOrderProps>({
@@ -46,12 +60,14 @@ const OrderPage = () => {
     isBase: false,
     addressInfo: {
       addressId: 0,
+      title: '',
       address: '',
       extraAddress: '',
       zonecode: '',
       name: '',
       email: '',
       call: '',
+      isBase: false,
     },
   });
 
@@ -62,10 +78,6 @@ const OrderPage = () => {
     dDay: '',
     isUsed: false,
   });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const getTotalPrice = () => {
     let result = 0;

@@ -1,15 +1,15 @@
 import express, { Router } from 'express';
-import { get, add, remove, newCoupon, useCoupon } from '../controllers/coupon';
+import { get, getAll, add, remove, newCoupon, useCoupon } from '../controllers/coupon';
 import jwtMiddleware from '../middleware/jwtMiddleware';
 import wrapAsync from '../utils/wrapAsync';
 
 const couponRouter: Router = express.Router();
 
-// TODO : jwt middleware 적용하기
-couponRouter.post('/add', wrapAsync(add));
-couponRouter.post('/newType', wrapAsync(newCoupon));
-couponRouter.post('/useCoupon', wrapAsync(useCoupon));
-couponRouter.post('/remove', wrapAsync(remove));
-couponRouter.post('/', wrapAsync(get));
+couponRouter.post('/add', jwtMiddleware, wrapAsync(add));
+couponRouter.post('/newType', jwtMiddleware, wrapAsync(newCoupon));
+couponRouter.post('/useCoupon', jwtMiddleware, wrapAsync(useCoupon));
+couponRouter.post('/remove', jwtMiddleware, wrapAsync(remove));
+couponRouter.get('/', jwtMiddleware, wrapAsync(get));
+couponRouter.get('/all', jwtMiddleware, wrapAsync(getAll));
 
 export default couponRouter;

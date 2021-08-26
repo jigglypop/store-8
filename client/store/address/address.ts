@@ -1,8 +1,8 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import createExtraPost from '@store/createExtra/createExtraPost';
+import createExtraGet from '@store/createExtra/createExtraGet';
 import { getAddressApi } from '@api/address';
-import { AddressData, AddressGetReq, AddressRes } from '@middle/type/address/address';
+import { AddressData } from '@middle/type/address/address';
 
 const name = 'address';
 
@@ -19,7 +19,7 @@ const initialState: AddressState = {
 };
 
 export const getAddress = createAsyncThunk('ADDRESS_GET_API', getAddressApi);
-const addressGetReducer = createExtraPost<AddressGetReq, AddressData[] | null>(getAddress, name);
+const addressGetReducer = createExtraGet<AddressData[] | null>(getAddress, name);
 
 const addressSlice = createSlice({
   name,

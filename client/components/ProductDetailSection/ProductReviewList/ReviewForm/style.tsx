@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ReviewForm = styled.div`
   padding: 30px;
+  max-width: 660px;
   background-color: var(--background-select-section-dark);
   color: var(--text-gray-dark);
   min-width: 720px;
@@ -18,6 +19,7 @@ export const ReviewForm = styled.div`
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--line-gray);
+    stroke: var(--line-gray-dark);
     h2 {
       color: var(--text-black-dark);
       font-size: var(--body-subtitle-font);
@@ -79,12 +81,20 @@ export const ReviewForm = styled.div`
     }
   }
 
+  .review-form__image-input {
+    padding-top: 0;
+    .title {
+      padding-top: 24px;
+    }
+  }
+
   .review-form__error {
     height: 15px;
     color: var(--text-red);
     padding-left: 100px;
     padding-bottom: 32px;
     border-bottom: 1px solid var(--line-gray);
+    padding-top: 0;
   }
 
   .review-form__btns {

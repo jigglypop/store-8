@@ -3,8 +3,12 @@ import styled from '@lib/styledComponent';
 export const AlertInput = styled.div`
   padding-top: 25px;
   padding-bottom: 12px;
+  .dense-input {
+    margin-bottom: -29px;
+  }
   .input-form-label {
     font-weight: 600;
+    color: var(--text-black-dark);
   }
   .input-form {
     display: flex;
@@ -19,7 +23,7 @@ export const AlertInput = styled.div`
       border-radius: 4px;
       padding: 5px;
       font-size: var(--body-middle-font);
-      color: var(--text-black);
+      color: var(--text-black-dark);
       border: 1px solid var(--line-gray);
     }
     .plain-input:focus {

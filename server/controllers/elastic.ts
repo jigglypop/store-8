@@ -28,17 +28,6 @@ export const createElastic = async (req: Request, res: Response) => {
           },
         },
       },
-      mappings: {
-        products: {
-          properties: {
-            title: {
-              type: 'string',
-              term_vector: 'yes',
-              analyzer: 'my_ngram_analyzer',
-            },
-          },
-        },
-      },
     },
   });
   res.status(200).json(result);
