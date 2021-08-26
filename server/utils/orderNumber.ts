@@ -1,4 +1,4 @@
-const MAX_ORDER_NAME_LENGTH = 32;
+const MAX_ORDER_NAME_LENGTH = 16;
 const MIN_ORDER_NAME_LENGTH = 8;
 
 export function makeRandomOrderId() {
