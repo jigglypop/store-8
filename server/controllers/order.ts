@@ -51,6 +51,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
 
 export const getMileage = async (req: Request, res: Response) => {
   const { userId } = req.body;
+  console.log(userId, ' is input');
   const result = await User.findOne({ where: { id: userId } });
   res.status(200).json({ data: result?.mileage });
 };
@@ -113,11 +114,6 @@ export const updateOrderState = async (req: IAuthRequest, res: Response) => {
   // const user = req.user;
   const user = { id: 1, username: '0woodev' };
   const orderId = req.params.id;
-
-  console.log('------------------------');
-  console.log('user:', user);
-  console.log('orderId:', orderId);
-  console.log('------------------------');
 
   // 유저 검증 ( 논의 필요 )
   const _user = await User.findOne({ where: { id: user?.id } });

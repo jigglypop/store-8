@@ -5,7 +5,7 @@ export const AddressAddModal = styled.div`
   width: 650px;
   border-radius: 20px;
   padding: 40px;
-  background-color: var(--background-white);
+  background-color: var(--background-select-section-dark);
 
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,7 @@ export const AddressAddModal = styled.div`
 
   .address-modal-title {
     font-size: var(--body-huge-font);
+    color: var(--text-black-dark);
     margin-bottom: 12px;
   }
   .address-container {
@@ -25,15 +26,17 @@ export const AddressAddModal = styled.div`
     display: flex;
     flex-direction: column;
     p {
+      color: var(--text-black-dark);
       font-weight: 600;
       margin-bottom: 8px;
     }
     input {
       width: 360px;
       height: 32px;
-      border: 1px solid var(--line-gray);
       border-radius: 4px;
       padding: 6px;
+      border: 1px solid var(--line-gray);
+      color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
@@ -54,9 +57,10 @@ export const AddressAddModal = styled.div`
     }
 
     .cancle-btn {
-      border: 1px solid black;
+      color: var(--text-black-dark);
+      border: 1px solid var(--line-black-dark);
       &:hover {
-        background-color: var(--background-gray);
+        background-color: var(--background-section-dark);
       }
     }
 
@@ -75,12 +79,14 @@ export const AddressAddModal = styled.div`
 
     .input-form-label {
       font-weight: 600;
+      color: var(--text-black-dark);
     }
 
     input {
       width: 360px;
       height: 32px;
       padding: 6px;
+      color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
@@ -100,11 +106,12 @@ export const AddressAddModal = styled.div`
         height: 32px;
         margin-left: 12px;
         padding: 6px;
-        border: 1px solid var(--line-black);
+        border: 1px solid var(--line-black-dark);
         border-radius: 4px;
         font-size: var(--body-small-font);
+        color: var(--text-black-dark);
         &:hover {
-          background-color: var(--background-gray);
+          background-color: var(--background-section-dark);
         }
       }
     }
@@ -112,6 +119,7 @@ export const AddressAddModal = styled.div`
       margin-top: 8px;
       margin-bottom: 8px;
       border: 1px solid var(--line-gray);
+      color: var(--text-black-dark);
       border-radius: 4px;
     }
 
@@ -132,6 +140,7 @@ export const AddressAddModal = styled.div`
           p {
             margin-top: 2px;
             font-size: var(--body-small-font);
+            color: var(--text-black-dark);
           }
           margin-left: 12px;
           display: flex;

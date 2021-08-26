@@ -14,7 +14,22 @@ import cache from '@client/utils/cache';
 
 import PenSvg from '@image/svg/pen.svg';
 import { EditProfileModal } from '@components/MyPage/EditProfileModal/EditProfileModal';
-import { kstFormatter } from '@utils/utils';
+
+// TODO : 저도 에러가 나네요... 이게 왜이러지
+function kstFormatter(amount?: number, suffix: boolean = true): string {
+  if (!amount) {
+    if (suffix) {
+      return '0원';
+    } else {
+      return '0';
+    }
+  }
+  if (suffix) {
+    return amount.toLocaleString() + '원';
+  } else {
+    return amount.toLocaleString();
+  }
+}
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
@@ -30,7 +45,6 @@ export default function Intro(): ReactElement {
   const [isCouponOpenForm, setIsCouponOpenForm] = useState(false);
   const dispatch = useDispatch();
 
-  // TODO : 이 부분도 페이지가 바뀔 때 마다 쿠폰을 로딩하는데, 어떤 페이지로 들어와도 쿠폰을 한번은 로딩을 해야해서 그대로 둡니다.
   useEffect(() => {
     dispatch(getCoupon(cache.get('token')));
     getUsableMileage();
@@ -54,12 +68,10 @@ export default function Intro(): ReactElement {
   };
 
   const closeEditProfileModal = () => {
-    console.log('취소');
     setIsEditProfileModalOpen(false);
   };
 
   const confirmEditProfile = () => {
-    console.log('확인');
     setIsEditProfileModalOpen(false);
   };
 
@@ -76,7 +88,6 @@ export default function Intro(): ReactElement {
             fill="var(--text-picker)"
             className="button-edit-profile"
             onClick={() => {
-              console.log('click!');
               openEditProfileModal();
             }}
             refs="프로필 이미지와 유저닉네임을 수정할 수 있습니다."
@@ -92,7 +103,7 @@ export default function Intro(): ReactElement {
           <S.UserPoint>
             <div>적립금</div>
             <div className="text-bold">
-              <b>{kstFormatter(mileage)}</b>원
+              <b>{kstFormatter(mileage)}</b>
             </div>
           </S.UserPoint>
         </div>
