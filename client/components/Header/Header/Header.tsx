@@ -79,8 +79,6 @@ const Header = ({ check, onLogout }: IHeader) => {
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
       <div className="left-down-button-space">
         <DarkMode />
-        <DarkMode />
-        <DarkMode />
       </div>
     </S.HeaderOuter>
   );

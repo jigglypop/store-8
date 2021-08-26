@@ -118,14 +118,41 @@ export const DarkMode = styled.div`
   cursor: pointer;
 
   &:hover {
-    width: 140px;
     height: 42px;
-    & > p {
+
+    @media only screen and (min-width: 0px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 140px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 140px;
+    }
+  }
+
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
       display: inherit;
       white-space: nowrap;
       text-overflow: clip;
     }
   }
+
   & > p {
     font-size: 14px;
     color: var(--glass-picker);
