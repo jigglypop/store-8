@@ -18,7 +18,7 @@ export const MainPage = styled.div`
     color: var(--text-black-dark);
 
     h3 {
-      font-size: 24px;
+      font-size: 36px;
     }
   }
 `;

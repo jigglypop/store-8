@@ -22,20 +22,8 @@ export const CartHeader = styled.div`
   }
   .cart-header-title {
     color: var(--text-black-dark);
-    font-weight: bold;
-
-    @media only screen and (min-width: 0px) {
-      font-size: var(--head-small-font);
-    }
-    @media only screen and (min-width: 375px) {
-      font-size: var(--head-small-font);
-    }
-    @media only screen and (min-width: 768px) {
-      font-size: var(--head-small-font);
-    }
-    @media only screen and (min-width: 1300px) {
-      font-size: var(--head-small-font);
-    }
+    font-family: 'Do Hyeon';
+    font-size: var(--body-title-font);
   }
   .cart-progress-container {
     flex-direction: row;

@@ -1,6 +1,7 @@
 import styled from '@lib/styledComponent';
 
 export const ReceiptContainer = styled.div`
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   width: 100%;
