@@ -17,7 +17,7 @@ import { useProduct } from '@client/hooks/product/product';
 interface Props {}
 
 export default function ProductInfo({}: Props): ReactElement {
-  const { product, loading, error, count, optionCount } = useProduct();
+  const { product, count, optionCount } = useProduct();
   if (!product) return <></>;
 
   const { title, originalAmount, amount } = product;

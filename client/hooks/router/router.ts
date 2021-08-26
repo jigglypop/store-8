@@ -8,6 +8,7 @@ export function useRouter() {
 
   const onChangeRouterAll = (payload: IRouterReq) => {
     dispatch(changeRouterAll(payload));
+    window.scrollTo(0, 0);
   };
   return { router, query, onChangeRouterAll };
 }
