@@ -90,6 +90,12 @@ export const MainRecommend = styled(MainItem)`
     & > p {
       margin: 0px 6px 0px 0px;
     }
+    & > h3 {
+      margin: 0px 8px 0px 0px;
+    }
+    & > .number {
+      margin: 0px;
+    }
   }
 
   @media only screen and (max-width: 1200px) {
