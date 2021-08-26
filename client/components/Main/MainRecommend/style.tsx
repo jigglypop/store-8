@@ -84,6 +84,14 @@ export const MainRecommend = styled(MainItem)`
     color: var(--glass-picker);
   }
 
+  .text-wrapper {
+    display: flex;
+    flex-direction: row;
+    & > p {
+      margin: 0px 3px;
+    }
+  }
+
   @media only screen and (max-width: 1200px) {
     .large {
       font-size: 20px;

@@ -22,7 +22,7 @@ const MainRecommend = () => {
                     <div className="text">
                       <p className="large">{element.title}</p>
                       <p className="small">{'이상품, 궁금하시죠?'}</p>
-                      <div>
+                      <div className="text-wrapper">
                         <p className="small">{'당신은'}</p>
                         <p className="small number">{Math.floor(element.sims * 3000)}</p>
                         <p className="small">{'만큼 이걸 좋아할거에요!'}</p>
