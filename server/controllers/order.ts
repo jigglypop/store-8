@@ -51,7 +51,6 @@ export const getAllOrders = async (req: Request, res: Response) => {
 
 export const getMileage = async (req: Request, res: Response) => {
   const { userId } = req.body;
-  console.log(userId, ' is input');
   const result = await User.findOne({ where: { id: userId } });
   res.status(200).json({ data: result?.mileage });
 };
