@@ -7,6 +7,7 @@ import { err } from '../constants/error';
 import Question from '../models/Question';
 import HttpError from '../utils/HttpError';
 import { dateStringFormat } from '../utils/date';
+import { getUsername } from './auth';
 
 /**
  * API
@@ -45,23 +46,31 @@ export const getQuestion = async (req: Request, res: Response) => {
     limit: _limit,
   });
 
-  const questions: IQuestion[] = questionSnapshot.rows.map((item) => {
-    const id = item.getDataValue('id');
-    const date = item.getDataValue('createdAt');
-    const answerDate = item.getDataValue('replyDate');
+  const questions: IQuestion[] = await Promise.all(
+    questionSnapshot.rows.map(async (item) => {
+      const id = item.getDataValue('id');
+      const date = item.getDataValue('createdAt');
+      const answerDate = item.getDataValue('replyDate');
+      const questionOwnerId = item.getDataValue('userId');
 
-    if (!id || !date) throw new HttpError(err.CREATE_ERROR);
+      if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
-    return {
-      id,
-      title: item.getDataValue('title'),
-      contents: item.getDataValue('contents'),
-      date: dateStringFormat(date, '.'),
-      isSecret: item.getDataValue('isSecret'),
-      answer: item.getDataValue('reply') ?? null,
-      answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
-      userId: item.getDataValue('userId'),
-    };
+      const questionAuthor = await getUsername(questionOwnerId);
+
+      return {
+        id,
+        title: item.getDataValue('title'),
+        contents: item.getDataValue('contents'),
+        date: dateStringFormat(date, '.'),
+        isSecret: item.getDataValue('isSecret'),
+        answer: item.getDataValue('reply') ?? null,
+        answerDate: answerDate ? dateStringFormat(answerDate, '.') : null,
+        userId: questionOwnerId,
+        questionAuthor,
+      };
+    })
+  ).catch((e) => {
+    throw new Error(e.message);
   });
 
   res.status(200).json({ totalCount: questionSnapshot.count, questions });
