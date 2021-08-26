@@ -1,25 +1,20 @@
-<<<<<<< Updated upstream
 import { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-=======
-import React, { ReactElement, useState } from 'react';
->>>>>>> Stashed changes
+
 import * as S from './style';
 
 import CouponModal from './CouponModal/CouponModal';
 import Avatar from '@components/common/Avatar/Avatar';
 import { useCheck } from '@client/hooks/auth/check';
-<<<<<<< Updated upstream
+
 import { useOrder } from '@client/hooks/order/order';
 import { RootState } from '@store/index';
 import { getCoupon } from '@store/coupon/coupon';
 import { useCoupon } from '@client/hooks/order/coupon';
 import cache from '@client/utils/cache';
-=======
-import Avatar from '@client/components/common/Avatar/Avatar';
+
 import PenSvg from '@image/svg/pen.svg';
 import { EditProfileModal } from '@components/MyPage/EditProfileModal/EditProfileModal';
->>>>>>> Stashed changes
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
@@ -107,13 +102,12 @@ export default function Intro(): ReactElement {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
+
       {isCouponOpenForm && <CouponModal coupon={coupon} closeForm={closeCouponForm} />}
-=======
+
       {isEditProfileModalOpen && (
         <EditProfileModal closeForm={closeEditProfileModal} confirm={confirmEditProfile} />
       )}
->>>>>>> Stashed changes
     </S.Intro>
   );
 }
