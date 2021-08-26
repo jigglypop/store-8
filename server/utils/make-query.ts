@@ -24,6 +24,8 @@ const makeWhereQueryWithDate = (key: string, startDate?: string, endDate?: strin
     where[key] = {
       [Op.lte]: new Date(endDate),
     };
+  } else {
+    return {};
   }
   return where;
 };

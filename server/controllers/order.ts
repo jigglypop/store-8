@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { err } from '../constants/error';
 import Order from '../models/Order';
 import HttpError from '../utils/HttpError';
-import { makeWhereQueryWithDate } from '../utils/make-query';
+import { makeWhereQueryWithDate, makeWhereQueryWithObj } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
 import User from '../models/User';
@@ -11,11 +11,15 @@ import { IOrder } from '@middle/type/myOrder/myOrder';
 //상품 문의 조회
 export const getAllOrders = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
+  const { productId } = req.params;
   const userId = 1; // decode JWT를 통해 가져와야함.
   // const { id }: IUser = req.user;
 
   let refunds = await Order.findAll({
-    where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },
+    where: {
+      ...makeWhereQueryWithDate('createdAt', startDate, endDate),
+      ...makeWhereQueryWithObj({ userId, productId }),
+    },
     include: [
       {
         model: Product,

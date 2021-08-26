@@ -7,6 +7,7 @@ import { getAllOrders, createOrder, getMileage } from '../controllers/order';
 const orderRouter: Router = express.Router();
 
 orderRouter.get('/', wrapAsync(getAllOrders));
+orderRouter.get('/:productId', wrapAsync(getAllOrders));
 orderRouter.post('/mileage', wrapAsync(getMileage));
 orderRouter.post('/create', wrapAsync(createOrder));
 

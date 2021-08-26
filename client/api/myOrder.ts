@@ -6,7 +6,7 @@ interface IDateReq {
   endDate: string;
 }
 
-// 찜 목록
+// 나의 주문 목록 get
 export const myOrderApi = async ({ startDate, endDate }: IDateReq, thunkApi: IThunkApi) => {
   const token = cache.get('token');
   const data = await request.getToken(
@@ -19,4 +19,16 @@ export const myOrderApi = async ({ startDate, endDate }: IDateReq, thunkApi: ITh
   }
 
   return data.data;
+};
+
+// 나의 상품 주문 목록 get
+export const myProductOrderApi = async (productId: number, token: string) => {
+  const data = await request.getToken(`/api/order/${productId}`, token);
+
+  if (data.status !== 200) {
+    const error = data.message;
+    return { status: data.status, error };
+  }
+
+  return data;
 };
