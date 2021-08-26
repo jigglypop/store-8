@@ -48,9 +48,19 @@ export const AddressSection = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 8px;
+    margin-top: 12px;
     margin-bottom: 60px;
     cursor: pointer;
+
+    .add-image {
+      path {
+        stroke: var(--text-black-dark);
+      }
+      circle {
+        stroke: var(--text-black-dark);
+      }
+      margin-right: 12px;
+    }
     img {
       width: 24px;
       height: 24px;
