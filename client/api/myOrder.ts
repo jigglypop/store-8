@@ -20,13 +20,13 @@ export const myOrderApi = async ({ startDate, endDate }: IDateReq, thunkApi: ITh
   return data.data;
 };
 
-export const myOrderConfirmApi = async (orderId: Number, thunkApi: IThunkApi) => {
+export const myOrderConfirmApi = async (orderId: Number) => {
   const token = cache.get('token');
   const data = await request.post(`/api/order/confirm/${orderId}`, token);
 
   if (data.status !== 200) {
     const error = data.message;
-    return await thunkApi.rejectWithValue(error);
+    return false;
   }
 
   return data.data;

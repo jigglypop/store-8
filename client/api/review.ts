@@ -25,10 +25,17 @@ interface IReviewRes {
 }
 
 // requestionFrom 타입 지정
-export const createReviewApi = async <T>(productId: number, requestForm: T) => {
-  if (!productId || !requestForm) return;
+export const createReviewApi = async <T>(
+  productId: number,
+  orderId: number | void,
+  requestForm: T
+) => {
+  if (!productId || !requestForm || !orderId) return;
 
-  const data = await fetchWrapper<T, IReviewRes>(`/api/review/${productId}`, 'POST', requestForm);
+  const data = await fetchWrapper<T, IReviewRes>(`/api/review/${productId}`, 'POST', {
+    ...requestForm,
+    orderId,
+  });
 
   return data;
 };
