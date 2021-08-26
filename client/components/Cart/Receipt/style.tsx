@@ -10,7 +10,7 @@ export const Receipt = styled.div`
   padding: 19px;
   width: 100%;
   border-radius: 8px;
-  background-color: var(--background-white-darken-dark);
+  background-color: var(--background-section-dark);
   margin-bottom: 11px;
 
   .amount-title {
@@ -40,7 +40,7 @@ export const TotalPrice = styled.div`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-white-darken-dark);
+  background-color: var(--background-section-dark);
 
   & > p {
     color: var(--text-black-dark);
