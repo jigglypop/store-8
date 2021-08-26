@@ -80,6 +80,10 @@ export const MainRecommend = styled(MainItem)`
     color: var(--text-black-dark);
   }
 
+  .number {
+    color: var(--glass-picker);
+  }
+
   @media only screen and (max-width: 1200px) {
     .large {
       font-size: 20px;

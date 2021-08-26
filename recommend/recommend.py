@@ -41,7 +41,7 @@ def get_recommend(dataArray):
     recommendList = [] 
     for similarity, i in recommend_three(tfidf_mat, dataArray):
         recommendList.append({
-            'id': i,
+            'id': i + 1,
             'sims': similarity,
             'title': data.loc[i, 'title'],
             'productImgSrc': data.loc[i, 'productImgSrc']

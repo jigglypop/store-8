@@ -17,14 +17,16 @@ const MainRecommend = () => {
           <div className="content">
             {recommend.map((element, index) => {
               return (
-                <Link to={`/product/${element.id + 1}`} className="rec-link">
+                <Link to={`/product/${element.id}`} className="rec-link">
                   <div className="rec-item">
                     <div className="text">
                       <p className="large">{element.title}</p>
                       <p className="small">{'이상품, 궁금하시죠?'}</p>
-                      <p className="small">{`당신은 ${(element.sims * 100).toFixed(
-                        1
-                      )}% 만큼 이걸 좋아할거에요!`}</p>
+                      <div>
+                        <p className="small">{'당신은'}</p>
+                        <p className="small number">{Math.floor(element.sims * 3000)}</p>
+                        <p className="small">{'만큼 이걸 좋아할거에요!'}</p>
+                      </div>
                     </div>
                     <div className="image">
                       <img src={element.productImgSrc} alt={`recommend${index}`} />
