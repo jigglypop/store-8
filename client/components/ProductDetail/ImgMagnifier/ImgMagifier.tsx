@@ -6,10 +6,14 @@ interface Props {
 }
 
 export default function ImgMagifier({ src }: Props): ReactElement {
-  const IMG_WIDTH = 480;
-  const IMG_HEIGHT = 530;
-  const MAGNIFIER_HEIGHT = 300;
-  const MAGNIFIER_WIDTH = 300;
+  // let IMG_WIDTH: number = 480;
+  // let IMG_HEIGHT: number = 530;
+  // let MAGNIFIER_HEIGHT: number = 300;
+  // let MAGNIFIER_WIDTH: number = 300;
+  let IMG_WIDTH: number = 300;
+  let IMG_HEIGHT: number = 295;
+  let MAGNIFIER_HEIGHT: number = 100;
+  let MAGNIFIER_WIDTH: number = 100;
   const IMG_SRC = src;
 
   const [showMagifier, setShowMagifier] = useState(false);
