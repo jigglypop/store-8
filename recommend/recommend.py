@@ -18,7 +18,6 @@ def recommend_three(data, Y):
         ratio = 1 - 0.1 * j
         for x in range(len(data)):
             if x in Y: 
-                print(x, Y)
                 continue
             sim = cos_sim(data[x], data[y])
             if x in result_dict:
