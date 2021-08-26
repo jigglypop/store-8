@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import * as S from './style';
 import { SHOW_COUPON_TEXT, SHOW_COUPON_DETAIL } from '@constants/Cart';
 import Modal from '@client/components/common/Modal/Modal';
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import Coupon from '@components/Order/AccountInfo/Coupon/Coupon'; // Coupon Element
 
 interface CouponModalProps {

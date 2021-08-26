@@ -9,9 +9,11 @@ export const CartContainer = styled.div`
 
   .nothing-container {
     justify-content: center;
+    margin-top: 240px;
   }
 
   .nothing-text {
+    color: var(--text-black-dark);
     font-size: var(--body-title-font);
   }
 
@@ -37,12 +39,11 @@ export const CartContainer = styled.div`
       width: 100px;
       border-radius: 3px;
       font-size: var(--body-small-font);
-      color: var(--text-gray);
-      background-color: var(--background-white);
+      color: var(--line-gray-dark);
+      background-color: var(--body-background-dark);
 
       &:hover {
-        background-color: var(--background-gray);
-        color: var(--text-dark-gray);
+        background-color: var(--background-button-select);
       }
     }
   }

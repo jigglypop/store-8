@@ -7,7 +7,6 @@ import CheckBox from '@components/common/CheckBox/CheckBox';
 
 import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
-import { useMyQuestion } from '@client/hooks/my/useMyQuestion';
 import { IProductInfo } from '@middle/type/product/product';
 
 interface Props {
@@ -30,15 +29,30 @@ export default function QuestionForm({
   const isEdit = questionId !== undefined;
   const { product } = useProduct();
   const { createQuestion, updateQuestion, error } = useQuestion();
+  const [formError, setFormError] = useState('');
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
   const [isSecret, setIsSecret] = useState(editIsSecret || false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
+    if (target.value.length > 60) {
+      setFormError('제목은 최대 60자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setTitle(target.value);
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
+    if (target.value.length > 500) {
+      setFormError('내용은 최대 500자까지만 입력 가능합니다.');
+      return;
+    }
+
+    if (formError) setFormError('');
+
     setContents(target.value);
   };
 
@@ -81,8 +95,8 @@ export default function QuestionForm({
               type="text"
               value={title}
               onChange={handleInputChange}
+              maxLength={60}
               placeholder="제목을 입력해주세요"
-              maxLength={50}
               className="question-form__input"
             />
           </div>
@@ -90,17 +104,17 @@ export default function QuestionForm({
             <div className="title">내용</div>
             <div className="textarea-wrapper">
               <textarea
-                placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
+                placeholder="내용을 입력해주세요 (최대 500자까지 입력가능)"
                 value={contents}
                 onChange={handleTextareaChange}
-                maxLength={5000}
+                maxLength={500}
                 className="question-form__input"
               ></textarea>
               <div className="question-form__secret">
                 <CheckBox isCheck={isSecret} setIsCheck={setIsSecret} className="checkbox-secret" />
                 <div>비밀글로 문의하기</div>
               </div>
-              <div className="question-form__error">{error}</div>
+              <div className="question-form__error">{formError || error}</div>
             </div>
           </div>
           <div className="question-form__btns">

@@ -9,6 +9,7 @@ import { useOrder } from '@client/hooks/order/order';
 import { RootState } from '@store/index';
 import { getCoupon } from '@store/coupon/coupon';
 import { useCoupon } from '@client/hooks/order/coupon';
+import cache from '@client/utils/cache';
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
@@ -22,11 +23,10 @@ export default function Intro(): ReactElement {
   const [isCouponOpenForm, setIsCouponOpenForm] = useState(false);
   const dispatch = useDispatch();
 
+  // TODO : 이 부분도 페이지가 바뀔 때 마다 쿠폰을 로딩하는데, 어떤 페이지로 들어와도 쿠폰을 한번은 로딩을 해야해서 그대로 둡니다.
   useEffect(() => {
-    // TODO : User ID 빼기
-    dispatch(getCoupon({ userId: 1 }));
+    dispatch(getCoupon(cache.get('token')));
     getUsableMileage();
-    // TODO : 이 부분도 페이지가 바뀔 때 마다 쿠폰을 로딩하는데, 어떤 페이지로 들어와도 쿠폰을 한번은 로딩을 해야해서 고민입니다.
     getAllCoupon();
   }, []);
 
@@ -51,8 +51,8 @@ export default function Intro(): ReactElement {
         <h2>반가워요, {check?.username}님</h2>
         <div className="container-user-point">
           <S.UserPoint onClick={() => setIsCouponOpenForm(true)} className="container-user-coupon">
-            <div>쿠폰</div>
-            <div className="text-bold">
+            <div className="coupon-cursor">쿠폰</div>
+            <div className="text-bold coupon-cursor">
               <b>{couponCount}</b>장
             </div>
           </S.UserPoint>

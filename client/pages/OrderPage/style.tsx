@@ -33,8 +33,9 @@ export const OrderPage = styled.div`
     }
     height: 303px;
     margin-top: 47px;
+    margin-bottom: 50px;
 
     position: sticky;
-    top: 60px;
+    top: 100px;
   }
 `;

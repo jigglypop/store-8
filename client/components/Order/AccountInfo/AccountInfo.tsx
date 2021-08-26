@@ -10,7 +10,7 @@ import {
   TOTAL_USABLE_MILEAGE,
 } from '@constants/Order';
 
-import type { CouponData } from '@middle/type/Coupon/coupon';
+import type { CouponData } from '@middle/type/coupon/coupon';
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import * as S from './style';
 
@@ -29,7 +29,7 @@ const AccountInfo = ({
   metaData,
   coupon,
 }: AccountProps): ReactElement => {
-  const [mileageString, setMileageString] = useState('0');
+  const [mileageString, setMileageString] = useState('0원');
   return (
     <S.AccountInfo>
       <div className="account-header">
@@ -68,26 +68,30 @@ const AccountInfo = ({
             value={mileageString}
             onChange={(e) => {
               const mileageStr = e.target.value;
-              if (+mileageStr > metaData.usableMileage) {
-                e.target.value = '' + metaData.usableMileage;
-                setMileageString('' + metaData.usableMileage);
+              // 입력을 숫자만 받게 함
+              let regex = /[^0-9]/g;
+              let result: string = mileageStr.replace(regex, '');
+              let numResult: number = Number(result);
+
+              if (numResult > metaData.usableMileage) {
+                setMileageString(kstFormatter(metaData.usableMileage));
                 useMileage(metaData.usableMileage);
               } else {
-                setMileageString('' + Number(mileageStr));
-                useMileage(+mileageStr);
+                setMileageString(kstFormatter(numResult));
+                useMileage(numResult);
               }
             }}
           />
           <img
             onClick={(e) => {
-              setMileageString('' + metaData.usableMileage);
+              setMileageString(kstFormatter(metaData.usableMileage));
               useMileage(metaData.usableMileage);
             }}
             src={unchecked}
           />
           <p
             onClick={(e) => {
-              setMileageString('' + metaData.usableMileage);
+              setMileageString(kstFormatter(metaData.usableMileage));
               useMileage(metaData.usableMileage);
             }}
           >

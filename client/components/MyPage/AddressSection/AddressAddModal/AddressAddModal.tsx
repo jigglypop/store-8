@@ -73,7 +73,6 @@ function AddressAddModal(props: AddressAddModalProps): ReactElement {
   };
 
   const createAddress = async () => {
-    // TODO: userId 1 지우기
     if (checkNameString(addressData.name) !== 2) {
       setNameCheck(1);
     } else if (checkCallString(addressData.call) !== 2) {
@@ -85,7 +84,6 @@ function AddressAddModal(props: AddressAddModalProps): ReactElement {
     } else {
       await makeAddress(
         {
-          userId: 1,
           location: addressData.address,
           zonecode: addressData.zonecode,
           extraLocation: addressData.extraAddress,

@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction, useRef, useState, useEffect } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction, useRef } from 'react';
 import * as S from './style';
 
 import {
@@ -34,8 +34,6 @@ export default function SectionNav({
     { name: SECTION_QUESTION_NAME, key: SECTION_QUESTION_KEY },
   ];
   const navRef = useRef<HTMLUListElement>(null);
-  const [offsetTop, setOffsetTop] = useState(608);
-
   const sectionList = SECTION.map((item) => {
     const className = item.key === section ? 'detail__section selected' : 'detail__section';
     if (item.key === SECTION_REVIEW_KEY) {
@@ -62,36 +60,19 @@ export default function SectionNav({
   const handleSectionNavClick = (e: React.MouseEvent) => {
     const target = e.target;
     if (!target || !(target instanceof HTMLElement)) return;
+
     const detailSection = target.closest('.detail__section');
     if (!(detailSection instanceof HTMLLIElement)) return;
+
     const sectionNo = detailSection.dataset.id;
     if (!sectionNo) return;
+
     setSection(sectionNo);
   };
 
-  const setNavPosition = throttle(() => {
-    if (!navRef.current) return;
-
-    const OFFSET_TOP = navRef.current.offsetTop;
-    if (OFFSET_TOP > offsetTop) setOffsetTop(OFFSET_TOP);
-
-    if (window.scrollY > offsetTop) {
-      navRef.current.classList.add('fixed');
-    } else {
-      navRef.current.classList.remove('fixed');
-    }
-  }, 100);
-
-  useEffect(() => {
-    window.addEventListener('scroll', setNavPosition);
-    return () => window.removeEventListener('scroll', setNavPosition);
-  }, []);
-
   return (
-    <S.SectionNavWrapper>
-      <S.SectionNav onClick={handleSectionNavClick} ref={navRef}>
-        {sectionList}
-      </S.SectionNav>
-    </S.SectionNavWrapper>
+    <S.SectionNav onClick={handleSectionNavClick} ref={navRef}>
+      {sectionList}
+    </S.SectionNav>
   );
 }

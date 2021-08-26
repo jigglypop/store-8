@@ -14,7 +14,7 @@ interface Props {
 
 export default function ReviewItem({ reviewData, reviewNo }: Props): ReactElement {
   const MAX_SCORE = 5;
-  const { title, score, date, imgSrc, likeCount, dislikeCount, userId } = reviewData;
+  const { title, score, date, imgSrc, likeCount, dislikeCount } = reviewData;
 
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 

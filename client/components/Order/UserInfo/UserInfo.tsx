@@ -19,6 +19,10 @@ import {
   USER_ORDER_LIST,
 } from '@constants/Order';
 import * as S from './style';
+import cache from '@client/utils/cache';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@client/store';
+import * as addressStore from '@store/address/address';
 
 interface UserInfoProps {
   totalState: ProceedOrderProps;
@@ -27,6 +31,16 @@ interface UserInfoProps {
 }
 
 const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): ReactElement => {
+  const { address } = useSelector((state: RootState) => state.address);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!cache.get('token')) {
+      // TODO: Redirect to main. 혹은 메인으로 가는 모달을 띄워주기
+    }
+    dispatch(addressStore.getAddress(cache.get('token')));
+  }, []);
+
   const [nameCheck, setNameCheck] = useState(0);
   const [callCheck, setCallCheck] = useState(0);
   const [emailCheck, setEmailCheck] = useState(0);
@@ -38,6 +52,15 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
     setCallCheck(checkCallString(totalState.addressInfo.call));
     setEmailCheck(checkEmailString(totalState.addressInfo.email));
   }, [totalState.addressInfo]);
+
+  // 만약 isBase 된 것이 있다면 원래 데이터를 넣어주기
+  useEffect(() => {
+    address.forEach((element) => {
+      if (element.isBase) {
+        setTotalState({ ...totalState, addressInfo: element, isBase: element.isBase });
+      }
+    });
+  }, [address]);
 
   const setName = (name: string) => {
     setTotalState({ ...totalState, addressInfo: { ...totalState.addressInfo, name } });
