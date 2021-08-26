@@ -5,12 +5,15 @@ import * as S from './style';
 import OrderBox from '../OrderBox/OrderBox';
 import { TextNoData } from '@components/MyPage/common/style';
 import { useMyOrder } from '@client/hooks/myOrder/myOrder';
+import { useMyReview } from '@client/hooks/my/useMyReview';
 
 interface Props {}
 
 export default function OrderResultContainer({}: Props): ReactElement {
   const { myOrder } = useMyOrder();
+  const { myReviews } = useMyReview();
 
+  console.log(myReviews);
   return (
     <S.OrderResultContainer>
       <h4>

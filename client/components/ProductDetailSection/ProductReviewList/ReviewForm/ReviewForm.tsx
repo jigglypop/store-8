@@ -18,6 +18,7 @@ interface Props {
   editImgList?: string[];
   editScore?: number;
   productInfo?: IProductInfo;
+  orderId?: number;
 }
 
 export default function ReviewForm({
@@ -28,10 +29,11 @@ export default function ReviewForm({
   editImgList,
   editScore,
   productInfo,
+  orderId,
 }: Props): ReactElement {
   const isEdit = reviewId !== undefined;
   const { product } = useProduct();
-  const { createReview, updateReview, error } = useReview();
+  const { createReview, updateReview, error, myPageCreateReview } = useReview();
   const [formError, setFormError] = useState('');
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
@@ -55,6 +57,11 @@ export default function ReviewForm({
     if (isEdit) {
       if (!reviewId) return;
       isSuccess = await updateReview({ reviewId, ...reviewFormData });
+    }
+    if (!isEdit && productInfo) {
+      console.log(reviewFormData, orderId, productInfo.id);
+      isSuccess = await myPageCreateReview(reviewFormData, orderId, productInfo.id);
+      console.log('만들었어? ', isSuccess);
     } else {
       isSuccess = await createReview(reviewFormData);
     }
@@ -65,7 +72,7 @@ export default function ReviewForm({
 
   const isAbleSubmit = !!(title && contents);
   return (
-    <Modal>
+    <Modal closeModal={closeReviewForm}>
       <S.ReviewForm>
         <div className="review-form__header">
           <h2>{isEdit ? '상품후기 수정하기' : '상품후기 작성하기'}</h2>
