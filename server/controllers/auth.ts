@@ -4,7 +4,7 @@ import User from '../models/User';
 import HttpError from '../utils/HttpError';
 import { generateToken } from '../utils/generateToken';
 import { serialize } from '../utils/serialize';
-import { IAuthRequest } from '../middleware/jwtMiddleware';
+import { IAuthRequest } from '@middle/type/request';
 import { err } from '../constants/error';
 
 interface IUpdateUserImgRequest extends IAuthRequest {
