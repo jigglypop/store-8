@@ -1,5 +1,5 @@
 import { ReactElement, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import * as S from './style';
 
@@ -8,13 +8,13 @@ import Avatar from '@components/common/Avatar/Avatar';
 import { useCheck } from '@client/hooks/auth/check';
 
 import { useOrder } from '@client/hooks/order/order';
-import { RootState } from '@store/index';
 import { getCoupon } from '@store/coupon/coupon';
 import { useCoupon } from '@client/hooks/order/coupon';
 import cache from '@client/utils/cache';
 
 import PenSvg from '@image/svg/pen.svg';
 import { EditProfileModal } from '@components/MyPage/EditProfileModal/EditProfileModal';
+import { kstFormatter } from '@utils/utils';
 
 export default function Intro(): ReactElement {
   const { check } = useCheck();
@@ -92,7 +92,7 @@ export default function Intro(): ReactElement {
           <S.UserPoint>
             <div>적립금</div>
             <div className="text-bold">
-              <b>{mileage}</b>원
+              <b>{kstFormatter(mileage)}</b>원
             </div>
           </S.UserPoint>
         </div>
