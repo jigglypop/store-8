@@ -64,3 +64,12 @@ export const updateImg = async (req: IUpdateUserImgRequest, res: Response) => {
   const user = await User.update({ imageUrl }, { where: { id: userId } });
   res.status(200).json({ status: 200, data: user });
 };
+
+export const getUsername = async (userId: number): Promise<string> => {
+  const user = await User.findByPk(userId);
+  if (!user) {
+    throw new HttpError({ ...err.TEST_ERROR });
+  }
+  const userSerialized = await serialize(user);
+  return userSerialized.username;
+};

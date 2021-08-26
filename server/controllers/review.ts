@@ -10,6 +10,7 @@ import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
 import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
 import Order from '../models/Order';
+import { getUsername } from './auth';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
@@ -40,11 +41,11 @@ export const getReview = async (req: Request, res: Response) => {
     reviewSnapshot.rows.map(async (item) => {
       const id = item.getDataValue('id');
       const date = item.getDataValue('createdAt');
-
+      const reviewOwnerId = item.getDataValue('userId');
       if (!id || !date) throw new HttpError(err.CREATE_ERROR);
 
       const imgSrc = await getReviewImgs(id);
-
+      const reviewAuthor = await getUsername(reviewOwnerId);
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
       const { isLike, isDislike } = await isUserLikeReview(id, userId);
 
@@ -59,7 +60,8 @@ export const getReview = async (req: Request, res: Response) => {
         dislikeCount,
         isLike,
         isDislike,
-        userId: item.getDataValue('userId'),
+        userId: reviewOwnerId,
+        reviewAuthor,
       };
     })
   ).catch((e) => {
