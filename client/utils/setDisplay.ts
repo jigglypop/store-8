@@ -159,7 +159,7 @@ export const MoonAttr = () => {
     '--card-dark': '#424242',
     '--tag-picker': tag,
     '--text-picker': text,
-    '--text-dark-picker': '#000000',
+    '--text-dark-picker': text,
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
     '--prime-picker': prime,
