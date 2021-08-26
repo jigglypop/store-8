@@ -22,6 +22,16 @@ export const Intro = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+
+    .container-greeting {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      .button-edit-profile:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   h2 {
