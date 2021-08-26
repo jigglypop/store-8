@@ -14,6 +14,7 @@ export const UserInfo = styled.div`
     border-bottom: 2px solid var(--line-gray2);
     & > p {
       font-size: var(--body-large-font);
+      color: var(--text-black-dark);
       font-weight: 600;
     }
     & > button {
@@ -36,6 +37,7 @@ export const UserInfo = styled.div`
 
   .input-form-label {
     font-weight: 600;
+    color: var(--text-black-dark);
   }
 
   .address-form-container {
@@ -47,6 +49,7 @@ export const UserInfo = styled.div`
       width: 360px;
       height: 32px;
       padding: 6px;
+      color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
@@ -70,8 +73,9 @@ export const UserInfo = styled.div`
         border: 1px solid var(--line-black);
         border-radius: 4px;
         font-size: var(--body-small-font);
+        color: var(--text-black-dark);
         &:hover {
-          background-color: var(--background-gray);
+          background-color: var(--background-button-select);
         }
       }
     }
@@ -99,6 +103,7 @@ export const UserInfo = styled.div`
           p {
             margin-top: 2px;
             font-size: var(--body-small-font);
+            color: var(--text-black-dark);
           }
           margin-left: 12px;
           display: flex;

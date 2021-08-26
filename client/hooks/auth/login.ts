@@ -5,10 +5,11 @@ import { RootState } from '@client/store';
 import { HistoryPush } from '@client/utils/router';
 import cache from '@client/utils/cache';
 import { getCheck } from '@client/store/auth/check';
-import { ILoginReq } from '@middle/type/auth/login';
 import { debounceRedux } from '@client/utils/debounce';
 import { getMyWish } from '@client/store/mywish/mywish';
-import { getCart } from '@client/store/product/cart';
+import { getCart, localAddCart } from '@client/store/product/cart';
+import localCart from '@utils/cart';
+import { ICartAddReq } from '@middle/type/cart/cart';
 
 export function useLogin() {
   const { loginform, login, error, loading } = useSelector((state: RootState) => state.login);
@@ -28,8 +29,14 @@ export function useLogin() {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
-      // 여기 추가(추후 토큰 방식 연동시 변경 요망)
-      dispatch(getCart({ userId: 1 }));
+
+      // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
+      const localCartData = localCart.get();
+      // 서버와 Cart 데이터 동기화
+      dispatch(localAddCart({ data: localCartData }));
+      localCart.init(); // 모두 서버와 동기화 후 초기화하기.
+
+      // dispatch(getCart(cache.get('token')));
       dispatch(initLogin());
     }
   }, [login]);

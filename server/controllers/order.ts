@@ -12,7 +12,6 @@ import { IOrder } from '@middle/type/myOrder/myOrder';
 export const getAllOrders = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const userId = 1; // decode JWT를 통해 가져와야함.
-  // const { id }: IUser = req.user;
 
   let refunds = await Order.findAll({
     where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },

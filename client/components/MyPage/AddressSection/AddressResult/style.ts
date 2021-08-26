@@ -19,7 +19,6 @@ export const AddressResult = styled.div`
     img {
       width: 18px;
       height: 18px;
-      cursor: pointer;
     }
   }
   .address-location-section {

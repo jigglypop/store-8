@@ -1,8 +1,9 @@
 import 'regenerator-runtime/runtime';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import createExtraPost from '@store/createExtra/createExtraPost';
+import createExtraGet from '../createExtra/createExtraGet';
 import { couponGetApi, couponUseApi } from '@api/coupon';
-import { CouponData, CouponGetReq, CouponRes, CouponUseReq } from '@middle/type/Coupon/coupon';
+import { CouponData, CouponUseReq } from '@middle/type/coupon/coupon';
 
 const name = 'coupon';
 
@@ -19,7 +20,7 @@ const initialState: ICouponState = {
 };
 
 export const getCoupon = createAsyncThunk('COUPON_GET_API', couponGetApi);
-const couponGetReducer = createExtraPost<CouponGetReq, CouponData[] | null>(getCoupon, name);
+const couponGetReducer = createExtraGet<CouponData[] | null>(getCoupon, name);
 export const useCoupon = createAsyncThunk('COUPON_USE_API', couponUseApi);
 const couponUsePostReducer = createExtraPost<CouponUseReq, CouponData[] | null>(useCoupon, name);
 

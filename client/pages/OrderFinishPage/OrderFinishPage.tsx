@@ -18,7 +18,6 @@ const OrderFinishPage = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(initOrderStatus());
-      console.log(window.location.href);
       if (window.location.href.includes('finish')) {
         const to = '/main';
         const RouterObj: IRouterReq = getRouterObj(to);
