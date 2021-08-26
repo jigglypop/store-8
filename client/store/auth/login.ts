@@ -25,7 +25,7 @@ const loginExtra = createExtraPost<ILoginReq, ILoginRes | null>(postLogin, name)
 
 const initialState: ILoginState = {
   loginform: {
-    username: '',
+    email: '', // TODOFIX
     password: '',
   },
   [name]: null,
