@@ -24,7 +24,7 @@ export default function ProductInfo({}: Props): ReactElement {
 
   let totalCount = 0;
 
-  if (optionCount) {
+  if (Object.keys(optionCount).length) {
     for (const option in optionCount) totalCount += optionCount[option];
   } else {
     totalCount = count;
