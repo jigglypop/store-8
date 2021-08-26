@@ -53,7 +53,7 @@ const colorPickerSelector = () => {
       glass = 'rgba(233, 64, 87, 0.8)';
     } else if (color === '3') {
       /* 노란색 Color Picker */
-      text = '#FFE259';
+      text = '#FFA751';
       prime = '#FFE259';
       primeHover = '#E8CF51';
       tag = '#FFA751';
@@ -64,7 +64,7 @@ const colorPickerSelector = () => {
       glass = 'rgba(255, 226, 89, 0.8)';
     } else if (color === '4') {
       /* 초록색 Color Picker */
-      text = '#B6FF8B';
+      text = '#2EB3DB';
       prime = '#B6FF8B';
       primeHover = '#A6E880';
       tag = '#2EB3DB';
