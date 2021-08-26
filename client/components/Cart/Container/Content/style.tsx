@@ -48,7 +48,6 @@ export const CartContent = styled.div`
     height: 100%;
     object-fit: contain;
     margin-right: 13px;
-    transition-duration: 0.3s;
   }
 
   .cart-detail-container {
@@ -79,7 +78,7 @@ export const CartContent = styled.div`
 
     & > p {
       margin-top: 3px;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
     }
     .product-count {
@@ -95,7 +94,7 @@ export const CartContent = styled.div`
       width: 60px;
     }
     @media only screen and (min-width: 768px) {
-      width: 100px;
+      width: 60px;
     }
     @media only screen and (min-width: 1300px) {
       width: 100px;

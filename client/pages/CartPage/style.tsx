@@ -37,7 +37,7 @@ export const Cart = styled.div`
       margin: 0px 20px 0px 20px;
     }
     @media only screen and (min-width: 768px) {
-      width: calc(100% - 280px);
+      width: calc(100% - 360px);
     }
     @media only screen and (min-width: 1300px) {
       width: calc(100% - 390px);
@@ -54,7 +54,7 @@ export const Cart = styled.div`
       margin: 0px 20px 0px 20px;
     }
     @media only screen and (min-width: 768px) {
-      width: 240px;
+      width: 320px;
       margin-left: 40px;
       position: sticky;
       top: 100px;
