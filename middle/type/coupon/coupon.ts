@@ -6,12 +6,7 @@ export type CouponData = {
   isUsed: boolean;
 };
 
-export type CouponGetReq = {
-  userId: number;
-};
-
 export type CouponUseReq = {
-  userId: number;
   couponId: number;
 };
 

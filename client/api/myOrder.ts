@@ -32,3 +32,15 @@ export const myProductOrderApi = async (productId: number, token: string) => {
 
   return data;
 };
+
+export const myOrderConfirmApi = async (orderId: Number) => {
+  const token = cache.get('token');
+  const data = await request.post(`/api/order/confirm/${orderId}`, token);
+
+  if (data.status !== 200) {
+    const error = data.message;
+    return false;
+  }
+
+  return data.data;
+};

@@ -6,7 +6,7 @@ import Coupon from '../models/Coupon';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 
-import { CouponData } from '../../middle/type/Coupon/coupon';
+import { CouponData } from '../../middle/type/coupon/coupon';
 
 const findAll = async (userId: number) => {
   const userCoupons = await UserCoupon.findAll({

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
 import { getAddress } from '@store/address/address';
 import { useEffect } from 'react';
+import cache from '@client/utils/cache';
 
 interface AddressModalProps {
   closeForm: () => void;
@@ -21,8 +22,7 @@ function AddressModal(props: AddressModalProps): ReactElement {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO : User ID 빼기
-    dispatch(getAddress({ userId: 1 }));
+    dispatch(getAddress(cache.get('token')));
   }, []);
 
   return (

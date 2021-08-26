@@ -5,7 +5,7 @@ import { getRouterObj } from '@utils/pathname';
 import { kstFormatter } from '@utils/utils';
 import { checkCallString, checkEmailString, checkNameString } from '@utils/inputTypeChecker';
 import { createToast } from '@client/utils/createToast';
-import exMark from '@image/exclamMark.png';
+import ExMark from '@image/svg/exMark.svg';
 import {
   CALC_GUIDE_TEXT,
   TOTAL_DISCOUNT_TEXT,
@@ -17,7 +17,7 @@ import {
 import type { OrderContentMetaData } from '@client/type/CartContentMetaData';
 import { ProceedOrderProps } from '@middle/type/product/order';
 import * as S from './style';
-import { CouponData } from '@middle/type/Coupon/coupon';
+import { CouponData } from '@middle/type/coupon/coupon';
 import { useOrder } from '@client/hooks/order/order';
 import { setFinishState } from '@store/product/finish';
 import { useDispatch } from 'react-redux';
@@ -97,7 +97,7 @@ const OrderReceipt = (props: OrderProps): ReactElement => {
           {'주문하기'}
         </button>
         <div className="order-info">
-          <img src={exMark} />
+          <ExMark className="ex-mark-icon" />
           <p>{CALC_GUIDE_TEXT}</p>
         </div>
       </S.OrderNow>

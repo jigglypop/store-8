@@ -19,12 +19,13 @@ export const OrderDetailContents = styled.div`
     .contents-detail-title {
       margin-top: 8px;
       font-weight: 600;
+      color: var(--text-black-dark);
     }
 
     .contents-detail-subtitle {
       margin-top: 3px;
       font-size: var(--body-middle-font);
-      color: var(--text-gray);
+      color: var(--text-gray-dark);
     }
   }
 
@@ -35,19 +36,22 @@ export const OrderDetailContents = styled.div`
 
     .contents-detail-amount {
       margin-right: 3px;
+      color: var(--text-black-dark);
     }
     .contents-detail-count {
       margin-top: 3px;
       font-size: var(--body-small-font);
+      color: var(--text-black-dark);
     }
     .contents-detail-mileage-title {
       font-weight: 700;
       font-size: var(--body-small-font);
-      color: var(--text-dark-blue);
+      color: var(--text-blue-dark);
       margin-right: 3px;
     }
     .contents-detail-mileage-amount {
       font-size: var(--body-small-font);
+      color: var(--text-black-dark);
     }
   }
 `;

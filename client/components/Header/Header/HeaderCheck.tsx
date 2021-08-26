@@ -1,5 +1,6 @@
 import { ICheckRes } from '@middle/type/auth/check';
-import { getCart } from '@store/product/cart';
+import { getCart, localGetCart } from '@store/product/cart';
+import cache from '@utils/cache';
 import { RootState } from '@store/index';
 import { Link } from '@utils/router';
 import * as S from '../style';
@@ -9,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Hamberger from '@image/hamberger.svg';
+import localCart from '@client/utils/cart';
 export interface IHeaderNotLoggedIn {
   isUp: boolean;
   onLogout: () => void;
@@ -20,6 +22,15 @@ export interface IHeaderLoggedIn {
   onLogout: () => void;
 }
 export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const localCartData = localCart.get();
+    dispatch(localGetCart({ data: localCartData }));
+  }, []);
+
+  const { cart } = useSelector((state: RootState) => state.cart);
+
   const [isRight, setIsRight] = useState(false);
 
   const onToggleUser = () => {
@@ -35,7 +46,12 @@ export const HeaderNotLoggedIn = ({ isUp, onLogout }: IHeaderNotLoggedIn) => {
         <Link to="/register">회원가입</Link>
       </S.HeaderItem>
       <S.HeaderItem className="isBigHeader">
-        <Link to="/cart">장바구니</Link>
+        <Link to="/cart">
+          <div className="cart-text">
+            <p>장바구니</p>
+            <p>{cart?.length}</p>
+          </div>
+        </Link>
       </S.HeaderItem>
       <S.HeaderItem className="isSmallHeader">
         <div className="hamberger" onClick={() => onToggleUser()}>
@@ -53,8 +69,7 @@ export const HeaderLoggedIn = ({ check, onLogout, isUp }: IHeaderLoggedIn) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO: 현재 로그인한 사용자를 위한 userId 값도 받아와서 설정해줘야합니다. 현재는 테스트를 위해 이렇게 둡니다.
-    dispatch(getCart({ userId: 1 }));
+    dispatch(getCart(cache.get('token')));
   }, []);
 
   const { cart } = useSelector((state: RootState) => state.cart);
