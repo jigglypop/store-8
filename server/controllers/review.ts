@@ -9,6 +9,7 @@ import { dateStringFormat } from '../utils/date';
 import ReviewImg from '../models/ReviewImg';
 import ReviewLike from '../models/ReviewLike';
 import { DEFAULT_REVIEW_LIMIT, DEFAULT_REVIEW_PAGE } from './../../middle/constants/default';
+import Order from '../models/Order';
 
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
@@ -74,7 +75,7 @@ export const getReview = async (req: Request, res: Response) => {
 export const createReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
 
-  const { title, contents, score, imgSrc, userId } = req.body;
+  const { title, contents, score, imgSrc, userId, orderId } = req.body;
 
   //TODO - title,contents validation
   if (!productId || !title || !contents || score === undefined) {
@@ -91,6 +92,10 @@ export const createReview = async (req: Request, res: Response) => {
   });
 
   const reviewId = createResult.getDataValue('id');
+
+  const updateOrder = await Order.update({ reviewId }, { where: { id: orderId } });
+
+  console.log(updateOrder);
 
   if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 

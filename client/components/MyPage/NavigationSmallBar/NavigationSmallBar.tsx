@@ -47,9 +47,6 @@ export default function NavigationSmallBar({ page }: Props): ReactElement {
           <Link to="/mypage-goods-review" className={checkCurrentPage('GOODS_REVIEW')}>
             나의 상품후기
           </Link>
-          <Link to="/mypage-info-edit" className={checkCurrentPage('INFO_EDIT')}>
-            나의 정보수정
-          </Link>
         </S.NavigatorGroup>
       </div>
     </S.NavigationSmallBar>

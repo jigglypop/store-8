@@ -20,7 +20,7 @@ import {
 import cache from '@client/utils/cache';
 import { getMyReview } from '@client/store/my/myReview';
 
-type IFetchType = 'create' | 'update' | 'delete';
+type IFetchType = 'create' | 'update' | 'delete' | 'myPage-create';
 
 export function useReview() {
   const {
@@ -35,12 +35,19 @@ export function useReview() {
 
   const fetchReview =
     <T>(type: IFetchType) =>
-    async (reviewForm: T): Promise<boolean> => {
+    async (reviewForm: T, orderId?: number, myPageProductId?: number): Promise<boolean> => {
       let res;
 
-      if (type === 'create') res = await createReviewApi<T>(productId, reviewForm);
+      if (type === 'create') {
+        if (!productId) return false;
+        res = await createReviewApi<T>(productId, orderId, reviewForm);
+      }
       if (type === 'update') res = await updateReviewApi<T>(reviewForm);
       if (type === 'delete') res = await deleteReviewApi<T>(reviewForm);
+      if (type === 'myPage-create') {
+        if (!myPageProductId) return false;
+        res = await createReviewApi<T>(myPageProductId, orderId, reviewForm);
+      }
 
       if (!res) return false;
 
@@ -88,6 +95,7 @@ export function useReview() {
     currentPage,
     setCurrentPage,
     createReview: fetchReview<IReviewPostReq>('create'),
+    myPageCreateReview: fetchReview<IReviewPostReq>('myPage-create'),
     updateReview: fetchReview<IReviewPutReq>('update'),
     deleteReview: fetchReview<IReviewDeleteReq>('delete'),
     likeReview,
