@@ -1,4 +1,5 @@
 import styled from '@lib/styledComponent';
+// import styled from 'styled-components';
 
 interface IZoomImg {
   imgWitdh: number;
@@ -46,12 +47,21 @@ interface IMagnifiedImg {
 export const MagnifiedImg = styled.div<IMagnifiedImg>`
   position: absolute;
   overflow: hidden;
-
   width: ${(props) => props.imgWidth}px;
   height: ${(props) => props.imgHeight}px;
   top: 0;
   left: ${(props) => props.imgWidth + 80}px;
   z-index: 9999;
+  animation: slowShow 1s;
+
+  @keyframes slowShow {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 
   img {
     width: ${(props) => props.imgWidth}px;
