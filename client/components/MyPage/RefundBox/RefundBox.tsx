@@ -1,5 +1,5 @@
 import { dateStringFormat } from '@client/utils/date';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import * as S from './style';
 import { IRefund } from '@middle/type/myRefund/myRefund';
 

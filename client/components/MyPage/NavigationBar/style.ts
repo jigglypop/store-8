@@ -6,6 +6,7 @@ export const NavigationBar = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
+  min-width: 120px;
   gap: 30px;
   color: var(--text-black-dark);
 

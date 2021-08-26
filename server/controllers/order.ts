@@ -2,19 +2,23 @@ import { Request, Response } from 'express';
 import { err } from '../constants/error';
 import Order from '../models/Order';
 import HttpError from '../utils/HttpError';
-import { makeWhereQueryWithDate } from '../utils/make-query';
+import { makeWhereQueryWithDate, makeWhereQueryWithObj } from '../utils/make-query';
 import { makeRandomOrderId } from '../utils/orderNumber';
 import Product from '../models/Product';
 import User from '../models/User';
 import { IOrder } from '@middle/type/myOrder/myOrder';
-
+import { IAuthRequest, JWTPayload } from '@middle/type/request';
 //상품 문의 조회
 export const getAllOrders = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
+  const { productId } = req.params;
   const userId = 1; // decode JWT를 통해 가져와야함.
 
   let refunds = await Order.findAll({
-    where: { userId, ...makeWhereQueryWithDate('createdAt', startDate, endDate) },
+    where: {
+      ...makeWhereQueryWithDate('createdAt', startDate, endDate),
+      ...makeWhereQueryWithObj({ userId, productId }),
+    },
     include: [
       {
         model: Product,
@@ -32,9 +36,11 @@ export const getAllOrders = async (req: Request, res: Response) => {
       productAmount: order.productAmount,
       productCount: order.productCount,
       state: order.state,
+      productId: order.productId,
       isConfirmed: order.isConfirmed,
       productImgSrc: order.product.productImgSrc,
       date: order.createdAt.toString(),
+      reviewId: order.reviewId,
     };
 
     return result;
@@ -101,4 +107,33 @@ export const createOrder = async (req: Request, res: Response) => {
   });
 
   res.status(200).json({ data: 'ok' });
+};
+
+export const updateOrderState = async (req: IAuthRequest, res: Response) => {
+  // const user = req.user;
+  const user = { id: 1, username: '0woodev' };
+  const orderId = req.params.id;
+
+  console.log('------------------------');
+  console.log('user:', user);
+  console.log('orderId:', orderId);
+  console.log('------------------------');
+
+  // 유저 검증 ( 논의 필요 )
+  const _user = await User.findOne({ where: { id: user?.id } });
+
+  if (!_user) {
+    throw new HttpError({ ...err.NO_DATA });
+  }
+
+  // 찾고자 하는 orderId 의 order 체크
+  const order = await Order.findOne({ where: { id: orderId } });
+
+  if (!order) {
+    throw new HttpError({ ...err.NO_DATA });
+  }
+
+  const updatedOrder = await order.update({ state: '구매확정', isConfirmed: true });
+
+  res.status(200).json({ data: updatedOrder });
 };

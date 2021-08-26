@@ -43,6 +43,7 @@ export interface IMyReview extends IReview {
     title: string | void;
     productImgSrc: string | void;
   };
+  orderNumber?: string; // 이게 필요했나요..? 확인해봐야 할것 같습니다.
 }
 
 export interface IMyReviewRes {

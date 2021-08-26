@@ -31,6 +31,7 @@ export interface IOrder {
   optionId?: number;
   state: string;
   isConfirmed: boolean;
+  reviewId?: number;
 }
 
 @Table({
@@ -49,6 +50,9 @@ export default class Order extends Model<IOrder> {
 
   @BelongsTo(() => User)
   user: User;
+
+  @Column
+  reviewId: number;
 
   @AllowNull(false)
   @Column

@@ -1,7 +1,8 @@
-import jwt from "jsonwebtoken";
-import HttpError from "./HttpError";
-import User from "../models/User";
-import { err } from "../constants/error";
+import jwt from 'jsonwebtoken';
+import HttpError from './HttpError';
+import User from '../models/User';
+import { err } from '../constants/error';
+import { JWTPayload } from '@middle/type/request';
 
 // 토큰 발급
 export const generateToken = (user: User): string => {
@@ -9,14 +10,13 @@ export const generateToken = (user: User): string => {
   if (!jwt_secret) {
     throw new HttpError({ ...err.JWT_FAIL });
   }
-  return jwt.sign(
-    {
-      id: user.id,
-      username: user.username,
-    },
-    jwt_secret,
-    {
-      expiresIn: process.env.JWT_EXPIRED,
-    }
-  );
+
+  const payload: JWTPayload = {
+    id: user.id,
+    username: user.username,
+  };
+
+  return jwt.sign(payload, jwt_secret, {
+    expiresIn: process.env.JWT_EXPIRED,
+  });
 };
