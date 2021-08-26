@@ -55,7 +55,6 @@ export const TotalPrice = styled.div`
 
 export const OrderNow = styled.div`
   button {
-    background-color: var(--background-mint);
     color: var(--text-white);
     width: 100%;
     height: 48px;
@@ -64,27 +63,36 @@ export const OrderNow = styled.div`
     justify-content: center;
     align-items: center;
     margin: 11px 0px 8px 0px;
+    transition: all 0.3s;
+
+    background-color: var(--background-mint);
     &:hover {
       background-color: var(--background-dark-mint);
     }
   }
+
+  .disabled-button {
+    background-color: var(--border-dark-gray);
+    cursor: default;
+    &:hover {
+      background-color: var(--border-dark-gray);
+    }
+  }
+
   .order-info {
     display: flex;
     flex-direction: row;
 
-    & > img {
-      width: var(--body-small-font);
-      height: var(--body-small-font);
-    }
-
     & > p {
       margin-top: 1px;
-      margin-left: 6px;
+      width: calc(100% - 14px);
       font-size: var(--body-small-font);
       color: var(--text-black-dark);
     }
   }
+
   .ex-mark-icon {
+    margin-right: 6px;
     .exMark_svg__outline {
       stroke: var(--text-pastel-black-dark);
     }

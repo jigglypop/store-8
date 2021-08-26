@@ -30,6 +30,20 @@ function Receipt({ metaData }: MetaData): ReactElement {
     setIsLoginFocused(false);
   };
 
+  const onClick = () => {
+    const isLoggedIn = cache.get('token');
+    if (isLoggedIn) {
+      const to = '/order';
+      const RouterObj: IRouterReq = getRouterObj(to);
+      onChangeRouterAll(RouterObj);
+      history.pushState({ path: to }, to, to);
+    } else {
+      setIsLoginFocused(true);
+    }
+  };
+
+  console.log(metaData);
+
   return (
     <S.ReceiptContainer>
       <S.Receipt>
@@ -56,21 +70,13 @@ function Receipt({ metaData }: MetaData): ReactElement {
         </p>
       </S.TotalPrice>
       <S.OrderNow>
-        <button
-          onClick={() => {
-            const isLoggedIn = cache.get('token');
-            if (isLoggedIn) {
-              const to = '/order';
-              const RouterObj: IRouterReq = getRouterObj(to);
-              onChangeRouterAll(RouterObj);
-              history.pushState({ path: to }, to, to);
-            } else {
-              setIsLoginFocused(true);
-            }
-          }}
-        >
-          {'주문하기'}
-        </button>
+        {metaData.checkedCount === 0 ? (
+          <button className="disabled-button" disabled>
+            {'주문하기'}
+          </button>
+        ) : (
+          <button onClick={() => onClick}>{'주문하기'}</button>
+        )}
         <div className="order-info">
           <ExMark className="ex-mark-icon" />
           <p>{PROCEED_GUIDE_TEXT}</p>
