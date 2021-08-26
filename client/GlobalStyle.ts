@@ -108,6 +108,9 @@ export const GlobalStyle = createGlobalStyle`
     --header-gradient-picker:linear-gradient(45deg, #0cebeb, #20e3b2, #219A95);
     --glass-picker: rgba(18, 255, 247, 0.8);
 
+    @media only screen and (min-width: 0px) {
+      --app-width: 100vw;
+    }
     @media only screen and (min-width: 375px) {
       --app-width: 100vw;
     }
