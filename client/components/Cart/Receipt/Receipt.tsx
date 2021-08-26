@@ -42,8 +42,6 @@ function Receipt({ metaData }: MetaData): ReactElement {
     }
   };
 
-  console.log(metaData);
-
   return (
     <S.ReceiptContainer>
       <S.Receipt>
