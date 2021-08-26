@@ -1,5 +1,5 @@
 import ReviewForm from './ReviewForm';
-import { render } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { mockReduxWrapper, prepareReduxWrapper } from '@client/utils/testUtils';
 
 const mockCreateFormProps = {
@@ -11,24 +11,35 @@ const mockCreateFormProps = {
   },
 };
 
-const initRouterState = {
-  pathname: '/product/305',
-  params: '',
-  query: '',
-  notfound: '',
-};
 describe('<ReviewForm />', () => {
-  it('title, contents가 들어와있을 때 버튼 able', () => {
+  it('ReviewForm 렌더링', () => {
     const [Wrapper, routerStore] = prepareReduxWrapper();
-    const { getByText, getByLabelText } = render(
+    const { getByText, getByLabelText, container } = render(
       <Wrapper>
         <ReviewForm {...mockCreateFormProps} />
       </Wrapper>
     );
+    expect(container).toBeInTheDocument();
+    screen.debug();
+  });
+
+  it('title, contents가 들어와있을 때 버튼 able', () => {
+    const [Wrapper, routerStore] = prepareReduxWrapper();
+    const { getByText, getByLabelText, container } = render(
+      <Wrapper>
+        <ReviewForm {...mockCreateFormProps} />
+      </Wrapper>
+    );
+    expect(container).toBeInTheDocument();
     const button = getByText('등록');
     const titleInput = getByLabelText('title-input');
     const contentsInput = getByLabelText('contents-input');
 
     expect(button).toBeDisabled();
+
+    fireEvent.change(titleInput, { target: { value: '정말 좋아요!' } });
+    fireEvent.change(contentsInput, { target: { value: '굿굿굿!' } });
+
+    expect(button).toBeEnabled();
   });
 });

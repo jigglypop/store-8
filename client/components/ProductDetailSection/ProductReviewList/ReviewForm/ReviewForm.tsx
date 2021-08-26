@@ -105,7 +105,7 @@ export default function ReviewForm({
             <input
               type="text"
               value={title}
-              area-label="title-input"
+              aria-label="title-input"
               onChange={handleInputChange}
               placeholder="제목을 입력해주세요"
               maxLength={60}
@@ -118,7 +118,7 @@ export default function ReviewForm({
               <textarea
                 placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
                 value={contents}
-                area-label="contents-input"
+                aria-label="contents-input"
                 onChange={handleTextareaChange}
                 maxLength={500}
                 className="review-form__input"
