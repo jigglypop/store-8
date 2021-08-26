@@ -74,23 +74,23 @@ export const Picker = styled.div`
   }
 
   #color-1 {
-    background: linear-gradient(45deg, #12fff7, #20e3b2, #29ffc6);
-    box-shadow: 0 0 10px #12fff7;
+    background: linear-gradient(45deg, #5dbebb, #219a95);
+    box-shadow: 0 0 4px #5dbebb88;
   }
 
   #color-2 {
-    background: linear-gradient(45deg, #8a2387, #e94057, #f27121);
-    box-shadow: 0 0 10px #e94057;
+    background: linear-gradient(45deg, #e94057, #b53143);
+    box-shadow: 0 0 4px #e9405788;
   }
 
   #color-3 {
-    background: linear-gradient(45deg, #ffe259, #ffa751);
-    box-shadow: 0 0 10px #ffe259;
+    background: linear-gradient(45deg, #ffe259, #e8cf51);
+    box-shadow: 0 0 4px #ffe25988;
   }
 
   #color-4 {
-    background: linear-gradient(45deg, #b2fefa, #0ed2f7);
-    box-shadow: 0 0 10px #b2fefa;
+    background: linear-gradient(45deg, #b6ff8b, #a6e880);
+    box-shadow: 0 0 4px #b6ff8b88;
   }
 
   .colorpicker-button:hover {

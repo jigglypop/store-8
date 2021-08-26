@@ -18,40 +18,69 @@ export const isDark = () => {
 };
 const colorPickerSelector = () => {
   const color = cache.get('color');
-  let text = '#12fff7';
-  let headerColor = 'linear-gradient(45deg, #0cebeb, #20e3b2, #219A95)';
+  let text = '#5DBEBB';
+  let prime = '#5DBEBB';
+  let primeHover = '#219A95';
   let tag = '#219A95';
+  let sub = '#3FF2C2';
+  let subHover = '#49DEB6';
+  let headerColor = 'linear-gradient(45deg, #5DBEBB, #3FF2C2, #219A95)';
   let header = '#1d1d1d';
-  let glass = 'rgba(18, 255, 247, 0.8)';
+  let glass = 'rgba(93, 190, 187, 0.8)';
+
   if (color) {
     if (color === '1') {
-      text = '#12fff7';
-      headerColor = 'linear-gradient(45deg, #0cebeb, #20e3b2, #219A95)';
-      header = '#1d1d1d';
+      /* Mint 색 Color Picker */
+      text = '#5DBEBB';
+      prime = '#5DBEBB';
+      primeHover = '#219A95';
       tag = '#219A95';
-      glass = 'rgba(18, 255, 247, 0.8)';
+      sub = '#3FF2C2';
+      subHover = '#49DEB6';
+      headerColor = 'linear-gradient(45deg, #5DBEBB, #3FF2C2, #219A95)';
+      header = '#1d1d1d';
+      glass = 'rgba(93, 190, 187, 0.8)';
     } else if (color === '2') {
-      text = '#e94057';
-      headerColor = 'linear-gradient(45deg, #8a2387, #e94057, #f27121)';
+      /* 빨간색 Color Picker */
+      text = '#E94057';
+      prime = '#E94057';
+      primeHover = '#B53143';
+      tag = '#B53143';
+      sub = '#F27121';
+      subHover = '#B55519';
+      headerColor = 'linear-gradient(45deg, #E94057, #F27121, #B53143)';
       header = 'white';
-      tag = '#f27121';
       glass = 'rgba(233, 64, 87, 0.8)';
     } else if (color === '3') {
-      text = '#ffe259';
-      headerColor = 'linear-gradient(45deg, #ffe259, #ffa751)';
+      /* 노란색 Color Picker */
+      text = '#FFA751';
+      prime = '#FFE259';
+      primeHover = '#E8CF51';
+      tag = '#FFA751';
+      sub = '#FFA751';
+      subHover = '#E8994A';
+      headerColor = 'linear-gradient(45deg, #FFE259, #FFA751, #E8CF51)';
       header = '#1d1d1d';
-      tag = '#ffa751';
       glass = 'rgba(255, 226, 89, 0.8)';
     } else if (color === '4') {
-      text = '#b2fefa';
-      headerColor = 'linear-gradient(45deg, #b2fefa, #0ed2f7)';
+      /* 초록색 Color Picker */
+      text = '#2EB3DB';
+      prime = '#B6FF8B';
+      primeHover = '#A6E880';
+      tag = '#2EB3DB';
+      sub = '#2EB3DB';
+      subHover = '#2694B5';
+      headerColor = 'linear-gradient(45deg, #B6FF8B, #2EB3DB, #A6E880)';
       header = '#1d1d1d';
-      tag = '#0ed2f7';
-      glass = 'rgba(178, 254, 250, 0.8)';
+      glass = 'rgba(182, 255, 139, 0.8)';
     }
   }
   return {
     text,
+    prime,
+    primeHover,
+    sub,
+    subHover,
     headerColor,
     header,
     tag,
@@ -62,10 +91,7 @@ const colorPickerSelector = () => {
 export const SunAttr = () => {
   // 컬러 피커 셀렉터에서 가져온 값 세팅
   const colorPicker = colorPickerSelector();
-  const tag = colorPicker.tag;
-  const headerColor = colorPicker.headerColor;
-  const text = colorPicker.text;
-  const glass = colorPicker.glass;
+  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass } = colorPicker;
   return {
     '--text-pastel-black-dark': '#353535',
     '--text-pastel-black-nonwhite-dark': '#353535',
@@ -96,15 +122,16 @@ export const SunAttr = () => {
     '--text-dark-picker': '#000000',
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
+    '--prime-picker': prime,
+    '--prime-hover-picker': primeHover,
+    '--sub-picker': sub,
+    '--sub-hover-picker': subHover,
   };
 };
 // 밤모드
 export const MoonAttr = () => {
   const colorPicker = colorPickerSelector();
-  const tag = colorPicker.tag;
-  const headerColor = colorPicker.headerColor;
-  const text = colorPicker.text;
-  const glass = colorPicker.glass;
+  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass } = colorPicker;
   return {
     '--text-pastel-black-dark': 'white',
     '--text-pastel-black-nonwhite-dark': '#424242',
@@ -135,6 +162,10 @@ export const MoonAttr = () => {
     '--text-dark-picker': text,
     '--header-gradient-picker': headerColor,
     '--glass-picker': glass,
+    '--prime-picker': prime,
+    '--prime-hover-picker': primeHover,
+    '--sub-picker': sub,
+    '--sub-hover-picker': subHover,
   };
 };
 // val값 한번에 세팅
