@@ -17,7 +17,7 @@ export const useOrderProduct = () => {
 
     const { status, data, error } = await myProductOrderApi(+params, token);
     if (status !== 200) return setError(error);
-    setOrderdProduct(data[0]);
+    setOrderdProduct(data);
   };
 
   useEffect(() => {

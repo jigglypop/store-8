@@ -7,13 +7,16 @@ import ReviewForm from './ReviewForm/ReviewForm';
 import ReviewItem from './ReviewItem/ReviewItem';
 import Pagination from '@components/common/Pagination/Pagination';
 import { DEFAULT_REVIEW_LIMIT } from '@middle/constants/default';
+import { useOrderProduct } from '@client/hooks/order/orderProduct';
 
 interface Props {}
 
 export default function ProductReviewList({}: Props): ReactElement {
   const { totalCount, reviews, currentPage, setCurrentPage } = useReview();
+  const { orderedProduct, error } = useOrderProduct();
   const [isOpenForm, setIsOpenForm] = useState(false);
 
+  console.log(orderedProduct);
   //TODO USERID 목데이터 사용 중 로그인 적용 시 수정 예정
   const reviewList = reviews.map((data, idx) => {
     const reviewNo = totalCount - (currentPage - 1) * DEFAULT_REVIEW_LIMIT - idx;
