@@ -8,6 +8,8 @@ import { useCheck } from '@client/hooks/auth/check';
 import { useProduct } from '@client/hooks/product/product';
 import { useCart } from '@client/hooks/product/cart';
 import { Link } from '@utils/router';
+import { useState } from 'react';
+import AlertModal from '@client/components/common/AlertModal/AlertModal';
 
 interface Props {
   id: number;
@@ -19,6 +21,9 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
   const { addToCart } = useCart();
   const { isInMyWish, isLoggedIn, toggleWish } = useWish(id + '', title);
   const { check } = useCheck();
+  const [isOpenAlertModal, setIsOpenAlertModal] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+
   if (!product) return <></>;
 
   //TODO 비로그인 시 처리 필요 - 임시로 toast사용
@@ -46,14 +51,22 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
   };
 
   const handleClickPurchase = () => {
-    if (isOptionNotSelected()) return;
+    if (isOptionNotSelected()) return renderNotOptionAlert();
     addProductToCart();
   };
   const handleClickCart = () => {
-    if (isOptionNotSelected()) return;
+    if (isOptionNotSelected()) return renderNotOptionAlert();
 
     addProductToCart();
     createToast(`${product.title} 장바구니 추가`);
+  };
+
+  const closeAlertModal = () => setIsOpenAlertModal(false);
+
+  //옵션 선택 안했을 시 나오는 경고창
+  const renderNotOptionAlert = () => {
+    setIsOpenAlertModal(true);
+    setAlertMsg('제품을 선택해주세요.');
   };
 
   return (
@@ -71,6 +84,7 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
           바로 구매
         </button>
       </Link>
+      {isOpenAlertModal && <AlertModal msg={alertMsg} cancelCbFn={closeAlertModal} />}
     </S.DetailBtns>
   );
 }
