@@ -5,6 +5,8 @@
 
 ![dflogo coffee](https://user-images.githubusercontent.com/20200204/128799295-5f74841b-c0da-4372-ad24-81791e979fea.png)
 
+![FireShot Capture 006 - 드림 문방구 - 메인 - woowa store](https://user-images.githubusercontent.com/52653682/131096394-3f2163ea-121f-4d5a-86ea-e1d7e5d872e9.png)
+
 # 우리팀 마스코트
 ---
 
