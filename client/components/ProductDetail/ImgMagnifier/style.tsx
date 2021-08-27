@@ -15,12 +15,13 @@ export const ZoomImg = styled.div<IZoomImg>`
     height: ${(props) => props.imgHeight}px;
   }
 
-  @media only screen and (max-width: 1300px) {
-  }
   @media only screen and (max-width: 768px) {
-    margin-bottom: 2rem;
-  }
-  @media only screen and (max-width: 375px) {
+    width: 100%;
+    & > img {
+      width: 100%;
+      object-fit: contain;
+    }
+    margin-bottom: 20px;
   }
 `;
 

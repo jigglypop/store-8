@@ -29,7 +29,7 @@ export default function ProductDetail({}: Props): ReactElement {
         </div>
       </Desktop>
       <Tablet>
-        <ImgMagifier src={productImgSrc} />
+        <ImgMagifier src={productImgSrc} isTablet={true} />
         <div className="product-detail__info">
           <ProductInfoTitle />
           <ProductInfo />
@@ -39,7 +39,7 @@ export default function ProductDetail({}: Props): ReactElement {
       <Mobile>
         <div className="product-detail__info">
           <ProductInfoTitle />
-          <ImgMagifier src={productImgSrc} />
+          <ImgMagifier src={productImgSrc} isMobile={true} />
           <ProductInfo />
           <DetailBtns {...{ id, title }} />
         </div>
