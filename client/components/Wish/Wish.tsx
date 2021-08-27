@@ -7,18 +7,33 @@ import cache from '@utils/cache';
 type IWish = {
   productId: string;
   name: string;
+  isContainer?: boolean;
 };
 
-export default function Wish({ productId, name }: IWish) {
+export default function Wish({ productId, name, isContainer }: IWish) {
   const { isInMyWish, toggleWish } = useWish(productId, name);
   const { check } = useCheck();
-  return (
-    <>
-      {check && (
-        <S.Wish isInMyWish={isInMyWish} onClick={() => toggleWish()}>
-          <Heart />
-        </S.Wish>
-      )}
-    </>
-  );
+  if (isContainer) {
+    return (
+      <>
+        {check && (
+          <S.Wish isInMyWish={isInMyWish} onClick={() => toggleWish()}>
+            <div className="svg-container">
+              <Heart />
+            </div>
+          </S.Wish>
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {check && (
+          <S.Wish isInMyWish={isInMyWish} onClick={() => toggleWish()}>
+            <Heart />
+          </S.Wish>
+        )}
+      </>
+    );
+  }
 }

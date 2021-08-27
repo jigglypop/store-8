@@ -69,7 +69,7 @@ export const MainRecommend = styled(MainItem)`
   }
 
   .large {
-    font-size: 25px;
+    font-size: 22px;
     color: var(--text-black-dark);
     line-height: 45px;
     margin-bottom: 8px;
@@ -89,6 +89,12 @@ export const MainRecommend = styled(MainItem)`
     flex-direction: row;
     & > p {
       margin: 0px 6px 0px 0px;
+    }
+    & > h3 {
+      margin: 0px 8px 0px 0px;
+    }
+    & > .number {
+      margin: 0px;
     }
   }
 

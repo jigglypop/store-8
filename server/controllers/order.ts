@@ -114,11 +114,6 @@ export const updateOrderState = async (req: IAuthRequest, res: Response) => {
   const user = { id: 1, username: '0woodev' };
   const orderId = req.params.id;
 
-  console.log('------------------------');
-  console.log('user:', user);
-  console.log('orderId:', orderId);
-  console.log('------------------------');
-
   // 유저 검증 ( 논의 필요 )
   const _user = await User.findOne({ where: { id: user?.id } });
 

@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState, useEffect, useRef } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import _ from 'lodash';
 
 import cache from '@utils/cache';
@@ -9,6 +9,9 @@ import { useElastic } from '@client/hooks/elastic/elastic';
 import { IElastic } from '@middle/type/elastic/elastic';
 
 import SearchIcon from '@image/svg/searchIcon.svg';
+import TagItem from './TagItem';
+import ElaItem from './ElaItem';
+
 import * as S from './style';
 
 const setTagFilter = (tag: string) => {
@@ -102,6 +105,10 @@ export default function Search() {
       $('.search-inner').addClass('wide');
       setIsWide(true);
     });
+    $('#search-icon').on('click', () => {
+      $('.search-inner').addClass('wide');
+      setIsWide(true);
+    });
     document.addEventListener('mousedown', isOutside);
     return () => {
       document.addEventListener('mousedown', isOutside);
@@ -121,31 +128,25 @@ export default function Search() {
               autoComplete="off"
               className="search"
             />
-            <SearchIcon onClick={onClick} className="search-icon search" />
+            <SearchIcon onClick={onClick} id="search-icon" className="search-icon search" />
           </div>
           <div className="elastic">
+            {isWide && elastic && elastic.length !== 0 && <p>{'연관 검색어'}</p>}
             {isWide &&
               elastic &&
-              elastic.slice(0, 5).map((item: IElastic, index: number) => (
-                <div className="elastic-item" key={index}>
-                  <Link to={`/search/0/?title=${item._source.title}&page=1`} className="search">
-                    <>{item._source.title.slice(0, 15)}...</>
-                  </Link>
-                </div>
-              ))}
+              elastic
+                .slice(0, 5)
+                .map((item: IElastic, index: number) => <ElaItem item={item} key={index} />)}
           </div>
           <div className="tags search">
+            {isWide && tags && <p>{'최근 검색어'}</p>}
             {isWide &&
-              tags.map((tag: string, index: number) => (
-                <div className="tag-item search" key={index}>
-                  <Link to={`/search/0/?title=${tag}&page=1`} className="search">
-                    {tag}
-                  </Link>
-                  <span onClick={() => onRemove(tag)} className="search">
-                    x
-                  </span>
-                </div>
-              ))}
+              tags
+                .slice(0)
+                .reverse()
+                .map((tag: string, index: number) =>
+                  index < 3 ? <TagItem tag={tag} key={index} onRemove={onRemove} /> : <></>
+                )}
           </div>
         </S.SearchInner>
         <Link to={`/search/0/?title=${search}&page=1`} id="search-route"></Link>

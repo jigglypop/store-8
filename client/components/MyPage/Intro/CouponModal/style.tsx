@@ -5,18 +5,20 @@ export const CouponModal = styled.div`
   width: 650px;
   border-radius: 20px;
   padding: 40px;
-  background-color: var(--background-white);
+  background-color: var(--background-select-section-dark);
 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
   .coupon-modal-title {
+    color: var(--text-black-dark);
     font-size: var(--body-huge-font);
     margin-bottom: 12px;
   }
   .coupon-modal-info {
     margin-bottom: 28px;
+    color: var(--text-black-dark);
   }
 
   .coupon-container {
@@ -44,17 +46,10 @@ export const CouponModal = styled.div`
     }
 
     .cancle-btn {
-      border: 1px solid black;
+      border: 1px solid var(--line-black-dark);
+      color: var(--text-black-dark);
       &:hover {
-        background-color: var(--background-gray);
-      }
-    }
-
-    .submit-btn {
-      background-color: var(--background-mint);
-      color: var(--text-white);
-      &:hover {
-        background-color: var(--background-dark-mint);
+        background-color: var(--background-section-dark);
       }
     }
   }

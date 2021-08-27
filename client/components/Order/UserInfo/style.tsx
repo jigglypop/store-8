@@ -46,13 +46,25 @@ export const UserInfo = styled.div`
     margin-top: 12px;
 
     input {
-      width: 360px;
       height: 32px;
       padding: 6px;
       color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
+      }
+
+      @media only screen and (min-width: 0px) {
+        width: 180px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 240px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 300px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 360px;
       }
     }
 
@@ -88,10 +100,34 @@ export const UserInfo = styled.div`
 
     .detail-address-page {
       display: flex;
-      flex-direction: row;
+      @media only screen and (min-width: 0px) {
+        flex-direction: row;
+      }
+      @media only screen and (min-width: 375px) {
+        flex-direction: row;
+      }
+      @media only screen and (min-width: 768px) {
+        flex-direction: column;
+      }
+      @media only screen and (min-width: 1300px) {
+        flex-direction: row;
+      }
 
       .set-base-section {
-        margin-left: 18px;
+        @media only screen and (min-width: 0px) {
+          margin-left: 18px;
+        }
+        @media only screen and (min-width: 375px) {
+          margin-left: 18px;
+        }
+        @media only screen and (min-width: 768px) {
+          margin-left: 0px;
+        }
+        @media only screen and (min-width: 1300px) {
+          margin-left: 18px;
+        }
+      }
+      .set-base-section {
         display: flex;
         flex-direction: row;
 

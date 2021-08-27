@@ -2,10 +2,11 @@ import styled from '@lib/styledComponent';
 
 export const CartContainer = styled.div`
   width: 100%;
-  min-height: 600px;
+  min-height: 400px;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 24px;
 
   .nothing-container {
     justify-content: center;
@@ -33,17 +34,15 @@ export const CartContainer = styled.div`
       cursor: pointer;
     }
     & > button {
-      border: 1px solid var(--border-dark-gray);
+      border: 1px solid var(--line-black-dark);
       padding: 9px 13px;
       height: 30px;
       width: 100px;
       border-radius: 3px;
       font-size: var(--body-small-font);
-      color: var(--line-gray-dark);
-      background-color: var(--body-background-dark);
-
+      color: var(--text-black-dark);
       &:hover {
-        background-color: var(--background-button-select);
+        background-color: var(--background-section-dark);
       }
     }
   }

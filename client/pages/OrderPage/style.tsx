@@ -7,35 +7,64 @@ export const OrderPage = styled.div`
 
   .cart-side-container {
     width: 100%;
-    min-height: 800px;
-    flex-direction: row;
     display: flex;
     justify-content: center;
     position: relative;
   }
 
+  .cart-side-container {
+    @media only screen and (min-width: 0px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 375px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+    @media only screen and (min-width: 1300px) {
+      flex-direction: row;
+    }
+  }
+
   .left {
-    flex-grow: 1;
+    @media only screen and (min-width: 0px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 0px 20px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: calc(100% - 360px);
+    }
+    @media only screen and (min-width: 1300px) {
+      width: calc(100% - 390px);
+    }
   }
 
   .cart-receipt-side-container {
+    @media only screen and (min-width: 0px) {
+      width: calc(100% - 50px);
+      margin: 0px 20px 30px 20px;
+    }
     @media only screen and (min-width: 375px) {
-      width: 160px;
-      margin-left: 20px;
+      width: calc(100% - 50px);
+      margin: 0px 20px 30px 20px;
     }
     @media only screen and (min-width: 768px) {
-      width: 240px;
-      margin-left: 40px;
+      width: 320px;
+      margin-left: 47px 0px 50px 70px;
+      position: sticky;
+      top: 100px;
     }
     @media only screen and (min-width: 1300px) {
       width: 320px;
-      margin-left: 70px;
+      margin-left: 47px 0px 50px 70px;
+      position: sticky;
+      top: 100px;
     }
     height: 303px;
-    margin-top: 47px;
-    margin-bottom: 50px;
-
-    position: sticky;
-    top: 100px;
   }
 `;
