@@ -25,11 +25,11 @@ export const check = async (req: IAuthRequest, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     throw new HttpError({ ...err.INVALID_INPUT_ERROR });
   }
-  const user = await User.findOne({ where: { username } });
+  const user = await User.findOne({ where: { email } });
   if (!user) {
     throw new HttpError({ ...err.NO_DATA });
   }

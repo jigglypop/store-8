@@ -11,6 +11,7 @@ export interface IOrder {
   isConfirmed: boolean; // 확인/리뷰
   productImgSrc: string;
   reviewId?: number;
+  refundId?: number;
 }
 
 export type IMyOrderRes = IOrder[];

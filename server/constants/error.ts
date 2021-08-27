@@ -62,6 +62,12 @@ export const err: IError = {
     serverMessage: 'Already exist ID',
   },
 
+  EXIST_REFUND_ERROR: {
+    status: 401,
+    message: '이미 환불요청된 주문입니다.',
+    serverMessage: 'Already exist REFUND',
+  },
+
   CREATE_ERROR: {
     status: 400,
     message: '비정상적으로 생성이 취소되었습니다.',

@@ -23,6 +23,7 @@ export const sequelize = new Sequelize({
   dialect: 'mysql',
   username: process.env.DB_USERNAME || 'root',
   password: process.env.DB_PASSWORD,
+  timezone: '+09:00',
   models: [
     User,
     Product,

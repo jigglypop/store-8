@@ -46,16 +46,19 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
         </S.LogoText>
         <h1>{text.logo}</h1>
         <Input>
-          <input name="username" placeholder="아이디" onChange={(e) => onChange(e)} />
+          {/*TODOFIX*/}
+          <input
+            autoComplete="email"
+            name="email"
+            placeholder="이메일"
+            onChange={(e) => onChange(e)}
+          />
         </Input>
+
         {types === 'register' && (
           <Input>
-            <input
-              autoComplete="email"
-              name="email"
-              placeholder="이메일"
-              onChange={(e) => onChange(e)}
-            />
+            <input name="username" placeholder="닉네임" onChange={(e) => onChange(e)} />{' '}
+            {/*TODOFIX*/}
           </Input>
         )}
         <Input>
