@@ -48,7 +48,7 @@ export const DetailBtns = styled.div<StyledProps>`
   .purchase-btn {
     width: 230px;
     color: var(--text-white);
-    background-color: var(--tag-picker);
+    background-color: var(--background-mint);
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -56,7 +56,7 @@ export const DetailBtns = styled.div<StyledProps>`
   }
 
   .purchase-btn:hover {
-    opacity: 0.9;
+    background-color: var(--background-dark-mint);
   }
 
   @media only screen and (max-width: 1300px) {

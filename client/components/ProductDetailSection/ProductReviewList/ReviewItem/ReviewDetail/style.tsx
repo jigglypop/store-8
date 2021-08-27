@@ -63,13 +63,13 @@ export const ReviewDetail = styled.div`
         }
       }
       .review__like-btn {
-        border: 1px solid var(--tag-picker);
+        border: 1px solid var(--background-dark-mint);
         fill: rgba(0, 0, 0, 0);
-        stroke: var(--tag-picker);
+        stroke: var(--background-mint);
         margin-right: 12px;
       }
       .review__like-btn.selected {
-        fill: var(--tag-picker);
+        fill: var(--background-mint);
       }
 
       .review__dislike-btn {

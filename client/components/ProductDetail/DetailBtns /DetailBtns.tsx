@@ -104,9 +104,7 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
         장바구니
       </button>
       <button className="purchase-btn" onClickCapture={handleClickPurchase}>
-        <Link className="purchase-btn" to="/cart">
-          바로 구매
-        </Link>
+        <Link to="/cart">바로 구매</Link>
       </button>
       {isOpenAlertModal && <AlertModal msg={alertMsg} cancelCbFn={closeAlertModal} />}
     </S.DetailBtns>
