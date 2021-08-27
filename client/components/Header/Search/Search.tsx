@@ -135,9 +135,12 @@ export default function Search() {
           </div>
           <div className="tags search">
             {isWide &&
-              tags.map((tag: string, index: number) =>
-                index < 3 ? <TagItem tag={tag} key={index} onRemove={onRemove} /> : <></>
-              )}
+              tags
+                .slice(0)
+                .reverse()
+                .map((tag: string, index: number) =>
+                  index < 3 ? <TagItem tag={tag} key={index} onRemove={onRemove} /> : <></>
+                )}
           </div>
         </S.SearchInner>
         <Link to={`/search/0/?title=${search}&page=1`} id="search-route"></Link>
