@@ -40,13 +40,13 @@ export default function QuestionDetail({ questionData, productInfo }: Props): Re
       <div className="question-detail__question">
         <div className="question-detail__title">Q</div>
         <div className="question-detail__content">{contents}</div>
-        {userId === check?.id && (
-          <div className="question-detail__btns">
-            <EditIcon onClick={handleEditClick} className="question-detail__edit-btn" />
-            <DeleteIcon onClick={handleDeleteClick} className="question-detail__delete-btn" />
-          </div>
-        )}
       </div>
+      {userId === check?.id && (
+        <div className="question-detail__btns">
+          <EditIcon onClick={handleEditClick} className="question-detail__edit-btn" />
+          <DeleteIcon onClick={handleDeleteClick} className="question-detail__delete-btn" />
+        </div>
+      )}
       {answer && (
         <div className="question-detail__answer">
           <div className="question-detail__title">A</div>

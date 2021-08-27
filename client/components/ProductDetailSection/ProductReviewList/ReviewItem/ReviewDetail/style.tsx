@@ -82,4 +82,24 @@ export const ReviewDetail = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 1300px) {
+    .review-detail__info {
+      .review-detail__contents {
+        padding-right: 30px;
+      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: var(--body-tiny-font);
+    .review-detail__info {
+      .review-detail__contents {
+        margin-bottom: 20px;
+      }
+      flex-direction: column;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    font-size: var(--body-tiny-font);
+  }
 `;

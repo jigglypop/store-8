@@ -2,12 +2,17 @@ import styled from 'styled-components';
 
 export const ProductDetailSection = styled.div`
   margin-bottom: 3rem;
+  width: 100%;
+
   @media only screen and (max-width: 1300px) {
-    width: 668px;
+    font-size: var(--body-middle-font);
   }
   @media only screen and (max-width: 768px) {
+    line-height: 1.3;
+    font-size: var(--body-small-font);
   }
   @media only screen and (max-width: 375px) {
+    font-size: var(--body-tiny-font);
   }
 `;
 

@@ -68,6 +68,9 @@ export const ProductInfo = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
   @media only screen and (max-width: 375px) {
     font-size: var(--body-small-font);
   }
@@ -99,6 +102,9 @@ export const ProductInfoTitle = styled.h3`
   margin-bottom: 32px;
   @media only screen and (max-width: 1300px) {
     font-size: var(--body-huge-font);
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
   }
   @media only screen and (max-width: 375px) {
     font-size: var(--body-huge-font);

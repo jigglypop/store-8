@@ -42,4 +42,17 @@ export const ReviewItem = styled.li`
       color: var(--tag-picker);
     }
   }
+
+  @media only screen and (max-width: 1300px) {
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: var(--body-small-font);
+    .review-info.no {
+      width: 20px;
+    }
+    .review-info.user-id,
+    .review-info.date {
+      display: none;
+    }
+  }
 `;
