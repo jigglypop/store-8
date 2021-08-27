@@ -151,7 +151,7 @@ export default function OrderBox({ result }: Props): ReactElement {
         <div>{dateStringFormat(new Date(state.date))}</div>
         <div>{state.orderNumber}</div>
       </div>
-      <Link to={`/product/${state.id}`} className="product-link">
+      <Link to={`/product/${state.productId}`} className="product-link">
         <div className="column-title">
           <div className="wrapper-thumbnail">
             <img src={state.productImgSrc} />
