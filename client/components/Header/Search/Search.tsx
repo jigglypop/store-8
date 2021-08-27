@@ -131,6 +131,7 @@ export default function Search() {
             <SearchIcon onClick={onClick} id="search-icon" className="search-icon search" />
           </div>
           <div className="elastic">
+            {isWide && elastic && elastic.length !== 0 && <p>{'연관 검색어'}</p>}
             {isWide &&
               elastic &&
               elastic
@@ -138,6 +139,7 @@ export default function Search() {
                 .map((item: IElastic, index: number) => <ElaItem item={item} key={index} />)}
           </div>
           <div className="tags search">
+            {isWide && tags && <p>{'최근 검색어'}</p>}
             {isWide &&
               tags
                 .slice(0)

@@ -32,12 +32,25 @@ export const SearchInner = styled.div`
     display: flex;
     flex-direction: column;
     width: 210px;
+
+    & > p {
+      width: 202px;
+      text-align: start;
+      margin: 6px 0px 6px 8px;
+    }
   }
 
   .elastic {
     display: flex;
     flex-direction: column;
     width: 210px;
+    margin-bottom: 6px;
+
+    & > p {
+      width: 202px;
+      text-align: start;
+      margin: 6px 0px 6px 8px;
+    }
   }
 
   .search-inner-input {
@@ -79,7 +92,7 @@ export const SearchInner = styled.div`
   }
 
   &.wide {
-    height: 300px;
+    height: 332px;
     width: 210px;
     overflow: scroll;
 
