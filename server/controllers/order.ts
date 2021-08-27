@@ -9,10 +9,10 @@ import User from '../models/User';
 import { IOrder } from '@middle/type/myOrder/myOrder';
 import { IAuthRequest, JWTPayload } from '@middle/type/request';
 //상품 문의 조회
-export const getAllOrders = async (req: Request, res: Response) => {
+export const getAllOrders = async (req: IAuthRequest, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const { productId } = req.params;
-  const userId = 1; // decode JWT를 통해 가져와야함.
+  const userId = req.user?.id;
 
   let refunds = await Order.findAll({
     where: {
@@ -41,8 +41,8 @@ export const getAllOrders = async (req: Request, res: Response) => {
       productImgSrc: order.product.productImgSrc,
       date: order.createdAt.toString(),
       reviewId: order.reviewId,
+      refundId: order.refundId,
     };
-
     return result;
   });
 
@@ -110,17 +110,12 @@ export const createOrder = async (req: Request, res: Response) => {
 };
 
 export const updateOrderState = async (req: IAuthRequest, res: Response) => {
-  // const user = req.user;
-  const user = { id: 1, username: '0woodev' };
+  const userId = req.user?.id;
+  // const user = { id: 1, username: '0woodev' };
   const orderId = req.params.id;
 
-  console.log('------------------------');
-  console.log('user:', user);
-  console.log('orderId:', orderId);
-  console.log('------------------------');
-
   // 유저 검증 ( 논의 필요 )
-  const _user = await User.findOne({ where: { id: user?.id } });
+  const _user = await User.findOne({ where: { id: userId } });
 
   if (!_user) {
     throw new HttpError({ ...err.NO_DATA });

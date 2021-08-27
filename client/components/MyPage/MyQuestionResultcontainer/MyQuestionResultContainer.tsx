@@ -34,12 +34,14 @@ export default function MyQuestionResultContainer({}: Props): ReactElement {
         <div className="column-status">답변상태</div>
       </div>
       <ul className="container-result-list">{myQuestionList}</ul>
-      <Pagination
-        totalCount={totalCount}
-        defaultLimit={DEFAULT_MYQUESTION_LIMIT}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {totalCount !== 0 && (
+        <Pagination
+          totalCount={totalCount}
+          defaultLimit={DEFAULT_MYQUESTION_LIMIT}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </S.MyQuestionResultContainer>
   );
 }

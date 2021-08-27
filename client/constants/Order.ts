@@ -18,3 +18,10 @@ export const USE_MILEAGE: string = '적립금 사용';
 export const TOTAL_USABLE_MILEAGE: string = '전체 사용 가능 금액 : ';
 export const CHOOSE_ADRESS_TEXT: string = '배송지를 선택해주세요.';
 export const CHOOSE_OPTION_TEXT: string = '옵션과 수량을 선택해주세요.';
+
+export const BEFORE_DELIVERY: string = '처리중';
+export const IN_DELIVERY: string = '배송중';
+export const FINISH_DELIVERY: string = '배송완료';
+export const AFTER_CONFIRM: string = '구매확정';
+export const REQUEST_REFUND: string = '환불요청';
+export const FINISH_REVIEW: string = '리뷰완료';

@@ -5,7 +5,7 @@ export const AddressDeleteModal = styled.div`
   width: 650px;
   border-radius: 20px;
   padding: 40px;
-  background-color: var(--background-white);
+  background-color: var(--background-select-section-dark);
 
   display: flex;
   justify-content: space-between;
@@ -13,10 +13,12 @@ export const AddressDeleteModal = styled.div`
 
   .address-modal-title {
     font-size: var(--body-huge-font);
+    color: var(--text-black-dark);
     margin-bottom: 16px;
   }
 
   .address-modal-info {
+    color: var(--text-black-dark);
     margin-bottom: 16px;
   }
 
@@ -33,9 +35,10 @@ export const AddressDeleteModal = styled.div`
     }
 
     .cancle-btn {
-      border: 1px solid black;
+      color: var(--text-black-dark);
+      border: 1px solid var(--line-black-dark);
       &:hover {
-        background-color: var(--background-gray);
+        background-color: var(--background-section-dark);
       }
     }
 

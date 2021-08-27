@@ -5,6 +5,7 @@ import {
   setCountState,
   setOptionCountState,
   deleteOptionCountState,
+  initProduct,
 } from '@store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';

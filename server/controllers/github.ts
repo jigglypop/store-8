@@ -52,13 +52,16 @@ export const githubtoken = async (req: any, res: Response) => {
   if (!data) {
     throw new HttpError({ ...err.NO_SESSION });
   }
-  let user = await User.findOne({ where: { username: data.login } });
+
+  let user = await User.findOne({ where: { username: data.login } }); //TODOFIX
   const username = data.login;
+  const email = `github-login-${data.login}`; //TODOFIX
   const password = data.id.toString();
   const imageUrl = data.avatar_url;
   if (!user) {
     const hashedPassword = await bcrypt.hash(password.toString(), 10);
-    user = await User.create({ username, hashedPassword, imageUrl, mileage: 0 });
+
+    user = await User.create({ username, hashedPassword, email, imageUrl, mileage: 0 }); //TODOFIX
   } else {
     const hashedPassword = user.getDataValue('hashedPassword');
     const valid = await bcrypt.compare(password, hashedPassword);

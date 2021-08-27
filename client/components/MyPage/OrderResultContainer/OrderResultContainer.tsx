@@ -13,7 +13,6 @@ export default function OrderResultContainer({}: Props): ReactElement {
   const { myReviews } = useMyReview();
   const { myOrder } = useMyOrder();
 
-  console.log(myReviews);
   return (
     <S.OrderResultContainer>
       <h4>

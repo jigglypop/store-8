@@ -122,5 +122,11 @@ export const QuestionForm = styled.div`
       opacity: 0.5;
       cursor: default;
     }
+
+    .cancel-btn:hover,
+    .submit-btn:hover:enabled {
+      background-color: var(--background-section-dark);
+      color: var(--text-black-dark);
+    }
   }
 `;

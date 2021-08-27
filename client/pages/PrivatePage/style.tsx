@@ -28,9 +28,13 @@ export const PrivatePage = styled.div`
     color: var(--text-black-dark);
     margin: 8px 0px;
   }
+  .plain-textfield {
+    margin-left: 12px;
+  }
   .usage-plain {
     font-size: var(--body-middle-font);
     color: var(--text-black-dark);
-    margin: 6px 0px 6px 18px;
+    margin: 6px 0px 6px 0px;
+    line-height: 20px;
   }
 `;

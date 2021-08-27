@@ -49,20 +49,16 @@ const Card = ({ index, item }: ICard) => {
             <img src={imgsrc} alt="title" />
           </Link>
           <div className="wc-container">
-            <Wish productId={item.id.toString()} name={item.title} />
+            <Wish productId={item.id.toString()} name={item.title} isContainer={true} />
             <Cart onClick={() => setModalOpen(true)} />
           </div>
-          {/* <div className="underbutton">
-            <button className="smallbutton">
-              <i className="far fa-heart"></i>
-            </button>
-            <button className="smallbutton">
-              <i className="fas fa-cart-plus"></i>
-            </button>
-          </div> */}
         </div>
         <div className="text">
-          <p className="red">{Number(item.sale) === 0 ? '' : item.sale + '%'}</p>
+          {item.sale === 0 ? (
+            <div className="non-red"></div>
+          ) : (
+            <p className="red">{item.sale + '%'}</p>
+          )}
           <p className="large">{item.title}</p>
           <p className="line">{item.originalAmount !== 0 ? dot(item.originalAmount) + '원' : ''}</p>
           <p className="small">{dot(item.amount)} 원</p>

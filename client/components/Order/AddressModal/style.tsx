@@ -1,19 +1,50 @@
 import styled from '@lib/styledComponent';
 
 export const AddressModal = styled.div`
-  min-height: 350px;
-  width: 650px;
   border-radius: 20px;
-  padding: 40px;
-  background-color: var(--background-white);
+  min-height: 350px;
+  background-color: var(--background-select-section-dark);
 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
+  @media only screen and (min-width: 0px) {
+    width: 300px;
+    padding: 20px;
+  }
+  @media only screen and (min-width: 375px) {
+    width: 450px;
+    padding: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 650px;
+    padding: 40px;
+  }
+  @media only screen and (min-width: 1300px) {
+    width: 650px;
+    padding: 40px;
+  }
+
   .address-modal-title {
-    font-size: var(--body-huge-font);
-    margin-bottom: 28px;
+    color: var(--text-black-dark);
+
+    @media only screen and (min-width: 0px) {
+      font-size: var(--body-large-font);
+      margin-bottom: 18px;
+    }
+    @media only screen and (min-width: 375px) {
+      font-size: var(--body-large-font);
+      margin-bottom: 18px;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: var(--body-huge-font);
+      margin-bottom: 28px;
+    }
+    @media only screen and (min-width: 1300px) {
+      font-size: var(--body-huge-font);
+      margin-bottom: 28px;
+    }
   }
 
   .address-container {
@@ -31,15 +62,42 @@ export const AddressModal = styled.div`
     justify-content: space-between;
 
     & > button {
-      width: 100px;
-      height: 36px;
-      border-radius: 4px;
+      @media only screen and (min-width: 0px) {
+        width: 80px;
+        height: 24px;
+        border-radius: 3px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 80px;
+        height: 24px;
+        border-radius: 3px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 100px;
+        height: 36px;
+        border-radius: 4px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 100px;
+        height: 36px;
+        border-radius: 4px;
+      }
     }
 
     .cancle-btn {
-      border: 1px solid black;
+      color: var(--text-black-dark);
+      border: 1px solid var(--line-black-dark);
       &:hover {
-        background-color: var(--background-gray);
+        background-color: var(--background-section-dark);
+      }
+    }
+
+    .non-submit-btn {
+      background-color: var(--border-dark-gray);
+      cursor: default;
+      color: white;
+      &:hover {
+        background-color: var(--border-dark-gray);
       }
     }
 
@@ -56,7 +114,7 @@ export const AddressModal = styled.div`
 export const Address = styled.div`
   height: 60px;
   width: 100%;
-  background-color: var(--background-gray);
+  background-color: var(--background-section-dark);
   display: flex;
   flex-direction: row;
   position: relative;
@@ -66,16 +124,29 @@ export const Address = styled.div`
     justify-content: center;
     flex-direction: column;
     padding-left: 12px;
+    padding-right: 48px;
 
     .address-title {
-      font-size: var(--body-middle-font);
       font-weight: 700;
-      color: var(--text-pastel-black);
+      color: var(--text-pastel-black-dark);
+
+      @media only screen and (min-width: 0px) {
+        font-size: var(--body-small-font);
+      }
+      @media only screen and (min-width: 375px) {
+        font-size: var(--body-small-font);
+      }
+      @media only screen and (min-width: 768px) {
+        font-size: var(--body-middle-font);
+      }
+      @media only screen and (min-width: 1300px) {
+        font-size: var(--body-middle-font);
+      }
     }
     .address-dDay {
       margin-top: 5px;
       font-size: var(--body-small-font);
-      color: var(--text-pastel-black);
+      color: var(--text-pastel-black-dark);
     }
   }
   .address-checked {

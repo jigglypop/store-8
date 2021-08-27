@@ -2,7 +2,7 @@ import styled from '@lib/styledComponent';
 
 export const OptionModal = styled.div`
   min-height: 350px;
-  width: 650px;
+  width: 700px;
   border-radius: 20px;
   padding: 40px;
   background-color: var(--background-white);
@@ -21,6 +21,7 @@ export const OptionModal = styled.div`
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    margin-bottom: 16px;
   }
 
   .product-count-container {

@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0px;
     box-sizing: border-box;
   }
-  @import url("https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css");
 
   body {
     /* 오버플로우 x hidden(아래 스크롤이 잡혀서) */
@@ -19,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
     /* 폰트 */
-    font-family: "NanumBarunGothic", sans-serif;
+    font-family: "NanumBarunGothic", "Do Hyeon", sans-serif;
 
     /* 그레이 */
     --gray1: #333333;
@@ -55,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     --background-pastel-black: #353535;
     --background-black: #000000;
     --background-gray: #F5F5F7;
+    --background-dark-gray: #4F4F4F;
     --background-mint: #2AC1BC;
     --background-dark-mint: #219A95;
     --background-red: #F45452;
@@ -87,7 +87,7 @@ export const GlobalStyle = createGlobalStyle`
     --body-large-font: 1.125rem;
     --body-huge-font: 1.5rem;
     --body-title-font: 2.5rem;
-    --body-subtitle-font:2rem;
+    --body-subtitle-font: 2rem;
     --head-small-font: 1.75rem;
     --carousel-width: 1520px;
   
@@ -110,6 +110,9 @@ export const GlobalStyle = createGlobalStyle`
     --glass-picker: rgba(18, 255, 247, 0.8);
     --shadow-picker: 0 0 20px #219A95;
 
+    @media only screen and (min-width: 0px) {
+      --app-width: 100vw;
+    }
     @media only screen and (min-width: 375px) {
       --app-width: 100vw;
     }
@@ -160,10 +163,6 @@ export const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-corner {
       background-color: transparent;
     }
-  }
-
-  p, h1, h2, h3, h4, h5, h6, div, span, input, input::placeholder, button {
-    font-family: "NanumBarunGothic", sans-serif;
   }
 
   button {

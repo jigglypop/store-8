@@ -15,7 +15,7 @@ import User from './User';
 
 export interface IRefund {
   id?: number;
-  ordersId: number;
+  orderId: number;
   isConfirmed: boolean;
   userId: number;
   state: string;
@@ -45,7 +45,7 @@ export default class Refund extends Model<IRefund> {
   @AllowNull(false)
   @ForeignKey(() => Order)
   @Column
-  ordersId: number;
+  orderId: number;
 
   @BelongsTo(() => Order)
   order: Order;

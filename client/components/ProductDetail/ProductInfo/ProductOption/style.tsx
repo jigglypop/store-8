@@ -75,6 +75,17 @@ export const ProductOption = styled.div<ProductOptionProps>`
   .option-item__selected:not(:last-child) {
     border-bottom: none;
   }
+
+  @media only screen and (max-width: 1300px) {
+    .option__box {
+      width: 268px;
+      .option__selectable-wrapper {
+        width: 268px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+  }
 `;
 
 export const ProductOptionItem = styled.div`
@@ -101,4 +112,7 @@ export const InfoTitle = styled.div`
   width: 150px;
   color: var(--text-gray-dark);
   padding-top: 14px;
+  @media only screen and (max-width: 1300px) {
+    width: 80px;
+  }
 `;

@@ -117,9 +117,7 @@ export const DarkMode = styled.div`
   box-shadow: 0 0 20px var(--black);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-
   box-shadow: 0 0 10px var(--text-black);
-
   transition: all 0.3s ease-in;
   cursor: pointer;
 
@@ -127,11 +125,41 @@ export const DarkMode = styled.div`
     width: 150px;
     height: 50px;
     & > p {
+    height: 42px;
+
+    @media only screen and (min-width: 0px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 140px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 140px;
+    }
+  }
+
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
       display: inherit;
       white-space: nowrap;
       text-overflow: clip;
     }
   }
+
   & > p {
     font-size: 14px;
     color: var(--text-picker);
@@ -213,6 +241,15 @@ export const HeaderOuter = styled.div`
   .slider-all {
     display: flex;
   }
+  .left-down-button-space {
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 20;
+  }
 `;
 // 헤더 부분
 export const Header = styled.header<IHeader>`
@@ -289,7 +326,7 @@ export const Header = styled.header<IHeader>`
       padding-left: 0 !important;
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .isSSmallHeader {
       display: none;
     }

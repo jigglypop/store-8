@@ -22,11 +22,11 @@ const handleDBError = (error: BaseError, res: Response) => {
   if (error instanceof UniqueConstraintError) {
     status = 400;
     message =
-      DBkeyName(
-        Object.keys(error.fields)
-          .map((field) => field.split('.')[1])
-          .join(', ')
-      ) + '이(가) 중복됩니다.';
+      'DB Unique Error: ' +
+      Object.keys(error.fields)
+        .map((field) => field.split('.')[1])
+        .join(', ') +
+      '이(가) 중복됩니다.';
   }
   res.status(status).json({ status, message });
 };

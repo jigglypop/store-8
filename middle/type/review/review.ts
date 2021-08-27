@@ -1,4 +1,4 @@
-export interface IReview {
+interface ICommonReview {
   id: number;
   title: string;
   contents: string;
@@ -10,6 +10,9 @@ export interface IReview {
   isLike: boolean;
   isDislike: boolean;
   userId: number;
+}
+export interface IReview extends ICommonReview {
+  reviewAuthor: string;
 }
 
 export interface IReviewRes {
@@ -37,13 +40,12 @@ export interface IReviewLikeReq {
   isDislike: boolean;
 }
 
-export interface IMyReview extends IReview {
+export interface IMyReview extends ICommonReview {
   productInfo: {
     id: number;
     title: string | void;
     productImgSrc: string | void;
   };
-  orderNumber?: string; // 이게 필요했나요..? 확인해봐야 할것 같습니다.
 }
 
 export interface IMyReviewRes {

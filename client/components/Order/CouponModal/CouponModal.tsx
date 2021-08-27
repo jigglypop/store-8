@@ -52,9 +52,15 @@ function CouponModal(props: CouponModalProps): ReactElement {
           <button onClick={props.closeForm} className="cancle-btn">
             {'취소'}
           </button>
-          <button onClick={() => props.confirm(coupon[selected])} className="submit-btn">
-            {'선택'}
-          </button>
+          {selected === -1 ? (
+            <button disabled className="non-submit-btn">
+              {'선택'}
+            </button>
+          ) : (
+            <button onClick={() => props.confirm(coupon[selected])} className="submit-btn">
+              {'선택'}
+            </button>
+          )}
         </div>
       </S.CouponModal>
     </Modal>

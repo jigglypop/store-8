@@ -32,6 +32,7 @@ export interface IOrder {
   state: string;
   isConfirmed: boolean;
   reviewId?: number;
+  refundId?: number;
 }
 
 @Table({
@@ -53,6 +54,9 @@ export default class Order extends Model<IOrder> {
 
   @Column
   reviewId: number;
+
+  @Column
+  refundId: number;
 
   @AllowNull(false)
   @Column
