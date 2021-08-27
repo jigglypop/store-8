@@ -5,6 +5,11 @@
 
 ![dflogo coffee](https://user-images.githubusercontent.com/20200204/128799295-5f74841b-c0da-4372-ad24-81791e979fea.png)
 
+# 우리팀 마스코트
+---
+
+![스크린샷 2021-08-27 오후 5 05 37](https://user-images.githubusercontent.com/52653682/131096022-81051134-8136-4977-99bb-d17baf187d54.png)
+
 ![스크린샷 2021-08-27 오후 5 04 07](https://user-images.githubusercontent.com/52653682/131095880-161cbe50-35e9-4c67-bb68-b6223e641a76.png)
 
 
