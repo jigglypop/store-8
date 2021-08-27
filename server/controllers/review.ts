@@ -15,10 +15,9 @@ import { getUsername } from './auth';
 //리뷰 조회
 export const getReview = async (req: Request, res: Response) => {
   const { productId } = req.params;
-  const { page, limit } = req.query;
-  const { userId } = req.body;
+  const { page, limit, userId } = req.query;
 
-  if (!productId) {
+  if (!productId || userId === undefined) {
     throw new HttpError(err.INVALID_INPUT_ERROR);
   }
 
@@ -47,7 +46,7 @@ export const getReview = async (req: Request, res: Response) => {
       const imgSrc = await getReviewImgs(id);
       const reviewAuthor = await getUsername(reviewOwnerId);
       const { likeCount, dislikeCount } = await getReviewLikeCount(id);
-      const { isLike, isDislike } = await isUserLikeReview(id, userId);
+      const { isLike, isDislike } = await isUserLikeReview(id, +userId);
 
       return {
         id,
@@ -273,6 +272,8 @@ export const getReviewLikeCount = async (reviewId: number) => {
 };
 //유저의 공감 비공감 상태
 export const isUserLikeReview = async (reviewId: number, userId: number) => {
+  if (userId === 0) return { isLike: false, isDislike: false };
+
   const isLike = await ReviewLike.count({
     where: { reviewId, userId, isLike: true },
   });

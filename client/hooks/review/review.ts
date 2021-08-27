@@ -1,3 +1,4 @@
+import { check } from './../../../server/controllers/auth';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,6 +31,7 @@ export function useReview() {
   const productId = +params;
   const dispatch = useDispatch();
 
+  const { check } = useSelector((state: RootState) => state.check);
   const { review, currentPage, error, loading } = useSelector((state: RootState) => state.review);
   const { currentPage: myReviewpage } = useSelector((state: RootState) => state.myReview);
 
@@ -57,7 +59,13 @@ export function useReview() {
       }
 
       dispatch(getMyReview({ query: `page=${myReviewpage}`, token: cache.get('token') }));
-      dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
+      dispatch(
+        getReview({
+          productId,
+          query: `page=${currentPage}&userId=${check ? check.id : 0}`,
+          token: cache.get('token'),
+        })
+      );
 
       return true;
     };
@@ -72,19 +80,37 @@ export function useReview() {
     }
 
     dispatch(getMyReview({ query: `page=${myReviewpage}`, token: cache.get('token') }));
-    dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
+    dispatch(
+      getReview({
+        productId,
+        query: `page=${currentPage}&userId=${check ? check.id : 0}`,
+        token: cache.get('token'),
+      })
+    );
 
     return true;
   };
 
   const setCurrentPage = (newPage: number) => {
     dispatch(setPage(newPage));
-    dispatch(getReview({ productId, query: `page=${newPage}`, token: cache.get('token') }));
+    dispatch(
+      getReview({
+        productId,
+        query: `page=${newPage}&userId=${check ? check.id : 0}`,
+        token: cache.get('token'),
+      })
+    );
   };
 
   // 페이지 시작
   useEffect(() => {
-    dispatch(getReview({ productId, query: `page=${currentPage}`, token: cache.get('token') }));
+    dispatch(
+      getReview({
+        productId,
+        query: `page=${currentPage}&userId=${check ? check.id : 0}`,
+        token: cache.get('token'),
+      })
+    );
   }, []);
 
   return {
