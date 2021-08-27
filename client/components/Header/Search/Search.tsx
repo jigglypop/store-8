@@ -105,6 +105,10 @@ export default function Search() {
       $('.search-inner').addClass('wide');
       setIsWide(true);
     });
+    $('#search-icon').on('click', () => {
+      $('.search-inner').addClass('wide');
+      setIsWide(true);
+    });
     document.addEventListener('mousedown', isOutside);
     return () => {
       document.addEventListener('mousedown', isOutside);
@@ -124,7 +128,7 @@ export default function Search() {
               autoComplete="off"
               className="search"
             />
-            <SearchIcon onClick={onClick} className="search-icon search" />
+            <SearchIcon onClick={onClick} id="search-icon" className="search-icon search" />
           </div>
           <div className="elastic">
             {isWide &&

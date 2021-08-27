@@ -22,8 +22,8 @@ export const SearchInner = styled.div`
   transition: all 0.3s ease-in-out;
 
   height: 42px;
-  width: 250px;
-  border-radius: 20px;
+  width: 42px;
+  border-radius: 21px;
   background: var(--background-pastel-black);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -31,13 +31,13 @@ export const SearchInner = styled.div`
   .tags {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 210px;
   }
 
   .elastic {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 210px;
   }
 
   .search-inner-input {
@@ -48,12 +48,13 @@ export const SearchInner = styled.div`
   }
 
   input {
-    font-size: 16px;
+    display: none;
+    font-size: 14px;
     outline: none;
     margin: 0px 10px;
     padding: 0px 12px;
     height: 42px;
-    width: 230px;
+    width: 42px;
     box-sizing: border-box;
     color: var(--text-white);
     transition: all 0.3s ease-in-out;
@@ -64,8 +65,10 @@ export const SearchInner = styled.div`
   }
 
   .search-icon {
+    transition: all 0.3s ease-in-out;
     position: absolute;
-    right: 18px;
+    top: 8px;
+    left: 8px;
     circle {
       stroke: white;
       fill: var(--background-pastel-black);
@@ -77,15 +80,21 @@ export const SearchInner = styled.div`
 
   &.wide {
     height: 300px;
-    width: 250px;
+    width: 210px;
     overflow: scroll;
 
     input {
+      display: inherit;
+      width: 190px;
       margin: 8px 10px;
       padding: 0px 12px;
       border-bottom: 2px solid var(--gray3);
     }
-
+    .search-icon {
+      position: absolute;
+      left: 170px;
+      top: 11px;
+    }
     .tag-item {
       display: flex;
       justify-content: center;
