@@ -125,38 +125,39 @@ export const DarkMode = styled.div`
     width: 150px;
     height: 50px;
     & > p {
-    height: 42px;
+      height: 42px;
 
-    @media only screen and (min-width: 0px) {
-      width: 42px;
+      @media only screen and (min-width: 0px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 140px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 140px;
+      }
     }
-    @media only screen and (min-width: 375px) {
-      width: 42px;
-    }
-    @media only screen and (min-width: 768px) {
-      width: 140px;
-    }
-    @media only screen and (min-width: 1300px) {
-      width: 140px;
-    }
-  }
 
-  &:hover > p {
-    @media only screen and (min-width: 0px) {
-      display: none;
-    }
-    @media only screen and (min-width: 375px) {
-      display: none;
-    }
-    @media only screen and (min-width: 768px) {
-      display: inherit;
-      white-space: nowrap;
-      text-overflow: clip;
-    }
-    @media only screen and (min-width: 1300px) {
-      display: inherit;
-      white-space: nowrap;
-      text-overflow: clip;
+    &:hover > p {
+      @media only screen and (min-width: 0px) {
+        display: none;
+      }
+      @media only screen and (min-width: 375px) {
+        display: none;
+      }
+      @media only screen and (min-width: 768px) {
+        display: inherit;
+        white-space: nowrap;
+        text-overflow: clip;
+      }
+      @media only screen and (min-width: 1300px) {
+        display: inherit;
+        white-space: nowrap;
+        text-overflow: clip;
+      }
     }
   }
 
@@ -194,13 +195,20 @@ export const HeaderItem = styled.div`
   align-items: center;
   cursor: pointer;
   font-size: var(--body-middle-font);
+
+  .isSSmallHeader {
+    margin: 0;
+  }
+
   .hamberger-outer {
     position: absolute;
     width: 10%;
     height: 100%;
     z-index: 5;
   }
+
   .main-logo {
+    transform: scale(0.75);
     .mainHorizontal_svg__letter {
       stroke-dasharray: 0px, 40px;
       stroke: #000;
@@ -314,7 +322,12 @@ export const Header = styled.header<IHeader>`
   .isSmallHeader {
     display: none;
   }
-
+  .mainHorizontal_svg__letter {
+    fill: var(--text-picker);
+  }
+  .mainHorizontal_svg__letter.mainHorizontal_svg__later-dark {
+    fill: var(--text-black-dark);
+  }
   @media only screen and (max-width: 1000px) {
     .isSmallHeader {
       display: flex;

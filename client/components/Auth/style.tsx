@@ -97,9 +97,7 @@ export const Error = styled.div`
 export const LogoText = styled.div`
   transform: scale(1.4);
   margin-bottom: 20px;
-  /* img {
-    width: 300px;
-  } */
+
   svg {
     .mainHorizontal_svg__letter {
       fill: var(--text-picker);
