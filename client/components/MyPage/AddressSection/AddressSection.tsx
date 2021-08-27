@@ -6,7 +6,7 @@ import AddressResult from './AddressResult/AddressResult';
 import AddressAddModal from './AddressAddModal/AddressAddModal';
 import AddressDeleteModal from './AddressDeleteModal/AddressDeleteModal';
 import AddressModifyModal from './AddressModifyModal/AddressModifyModal';
-import numUp from '@image/numUp.png';
+import NumAdd from '@image/svg/numAdd.svg';
 
 import { getAddress } from '@client/store/address/address';
 import { useDispatch, useSelector } from 'react-redux';
@@ -93,7 +93,7 @@ export default function AddressSection(): ReactElement {
         })}
       </div>
       <div className="add-address">
-        <img src={numUp} onClick={openAddModal} />
+        <NumAdd className="add-image" />
         <p onClick={openAddModal}>{'배송지 추가하기'}</p>
       </div>
       {isDeleteModalFocused && (

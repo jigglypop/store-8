@@ -3,8 +3,8 @@ import { IProduct } from '@server/models/Product';
 import { dot } from '../../utils/dot';
 import Wish from '../Wish/Wish';
 import * as S from './style';
-import Cart from './Cart/Cart';
-import OptionModal from './OptionModal/OptionModal';
+import Cart from '@components/Card/Cart/Cart';
+import OptionModal from '@components/Card/OptionModal/OptionModal';
 import { useCart } from '@client/hooks/product/cart';
 import { useState } from 'react';
 import { createToast } from '@client/utils/createToast';
@@ -17,7 +17,7 @@ interface ICard {
   index: number;
   item: IProduct;
 }
-const Card = ({ index, item }: ICard) => {
+const InnerCard = ({ index, item }: ICard) => {
   let imgsrc = item.productImgSrc;
   const { addToCart } = useCart();
   const [isModalOpen, setModalOpen] = useState(false);
@@ -42,7 +42,7 @@ const Card = ({ index, item }: ICard) => {
   };
 
   return (
-    <S.Card>
+    <S.InnerCard>
       <div className="cardInner">
         <div className="image">
           <Link to={`/product/${item.id}`}>
@@ -52,23 +52,25 @@ const Card = ({ index, item }: ICard) => {
             <Wish productId={item.id.toString()} name={item.title} isContainer={true} />
             <Cart onClick={() => setModalOpen(true)} />
           </div>
+          <div className="card-inner-text-container">
+            <div className="text">
+              <p className="large">{item.title}</p>
+              <div className="text-wrapper">
+                {item.sale === 0 ? <></> : <p className="red">{item.sale + '%'}</p>}
+                {item.originalAmount === 0 ? (
+                  <></>
+                ) : (
+                  <p className="line">{dot(item.originalAmount) + '원'}</p>
+                )}
+                <p className="small">{dot(item.amount)} 원</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="text">
-          {item.sale === 0 ? (
-            <div className="non-red"></div>
-          ) : (
-            <p className="red">{item.sale + '%'}</p>
-          )}
-          <p className="large">{item.title}</p>
-          <p className="line">{item.originalAmount !== 0 ? dot(item.originalAmount) + '원' : ''}</p>
-          <p className="small">{dot(item.amount)} 원</p>
-        </div>
-
-        <div className="mark"></div>
       </div>
       {isModalOpen && <OptionModal productId={item.id} closeForm={closeForm} confirm={confirm} />}
-    </S.Card>
+    </S.InnerCard>
   );
 };
 
-export default Card;
+export default InnerCard;

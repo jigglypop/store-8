@@ -48,7 +48,6 @@ export const CartContent = styled.div`
     height: 100%;
     object-fit: contain;
     margin-right: 13px;
-    transition-duration: 0.3s;
   }
 
   .cart-detail-container {
@@ -79,11 +78,34 @@ export const CartContent = styled.div`
 
     & > p {
       margin-top: 3px;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
     }
     .product-count {
       color: var(--text-black-dark);
+    }
+  }
+
+  .product-count-container {
+    @media only screen and (min-width: 0px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 100px;
+    }
+  }
+  .product-count-container > svg {
+    @media only screen and (min-width: 0px) {
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 375px) {
+      transform: scale(0.8);
     }
   }
 

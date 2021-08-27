@@ -7,12 +7,10 @@ type ICart = {
 
 export default function Cart({ onClick }: ICart) {
   return (
-    <>
-      {
-        <S.Cart onClick={onClick}>
-          <CartSvg />
-        </S.Cart>
-      }
-    </>
+    <S.Cart onClick={onClick}>
+      <div className="svg-container">
+        <CartSvg />
+      </div>
+    </S.Cart>
   );
 }

@@ -56,7 +56,7 @@ const Header = ({ check, onLogout }: IHeader) => {
               </div>
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader">
-              <Link to="/">
+              <Link to="/main">
                 <div className="main-logo">
                   <MainSvg />
                 </div>
@@ -77,7 +77,9 @@ const Header = ({ check, onLogout }: IHeader) => {
         </div>
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
-      <DarkMode />
+      <div className="left-down-button-space">
+        <DarkMode />
+      </div>
     </S.HeaderOuter>
   );
 };

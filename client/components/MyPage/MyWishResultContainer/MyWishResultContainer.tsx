@@ -36,5 +36,3 @@ export default function ResultContainer({ title }: Props): ReactElement {
     </S.MyWishResultContainer>
   );
 }
-
-//<div className="text-no-data">조회 내역이 없습니다.</div>

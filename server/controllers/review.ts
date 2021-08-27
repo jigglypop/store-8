@@ -95,8 +95,6 @@ export const createReview = async (req: Request, res: Response) => {
 
   const updateOrder = await Order.update({ reviewId }, { where: { id: orderId } });
 
-  console.log(updateOrder);
-
   if (!reviewId) throw new HttpError(err.CREATE_ERROR);
 
   await createReviewSrc(reviewId, imgSrc);
