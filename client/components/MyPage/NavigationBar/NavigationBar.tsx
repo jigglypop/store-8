@@ -25,26 +25,29 @@ export default function NavigationBar({ page }: Props): ReactElement {
 
       <S.NavigatorGroup onClick={handleClickButton}>
         <h4>쇼핑정보</h4>
-        <Link to="/mypage-order-list" className={checkCurrentPage('ORDER')}>
+        <Link to="/mypage-order-list" className={`${checkCurrentPage('ORDER')} router-link`}>
           주문목록/배송조회
         </Link>
-        <Link to="/mypage-refund-list" className={checkCurrentPage('REFUND')}>
+        <Link to="/mypage-refund-list" className={`${checkCurrentPage('REFUND')} router-link`}>
           반품/환불 내역
         </Link>
-        <Link to="/mypage-wish-list" className={checkCurrentPage('WISH')}>
+        <Link to="/mypage-wish-list" className={`${checkCurrentPage('WISH')} router-link`}>
           찜리스트
         </Link>
       </S.NavigatorGroup>
 
       <S.NavigatorGroup>
         <h4>회원정보</h4>
-        <Link to="/mypage-address" className={checkCurrentPage('ADDRESS')}>
+        <Link to="/mypage-address" className={`${checkCurrentPage('ADDRESS')} router-link`}>
           배송지 관리
         </Link>
-        <Link to="/mypage-goods-qa" className={checkCurrentPage('GOODS_QA')}>
+        <Link to="/mypage-goods-qa" className={`${checkCurrentPage('GOODS_QA')} router-link`}>
           나의 상품문의
         </Link>
-        <Link to="/mypage-goods-review" className={checkCurrentPage('GOODS_REVIEW')}>
+        <Link
+          to="/mypage-goods-review"
+          className={`${checkCurrentPage('GOODS_REVIEW')} router-link`}
+        >
           나의 상품후기
         </Link>
       </S.NavigatorGroup>
