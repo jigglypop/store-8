@@ -5,6 +5,9 @@
 
 ![dflogo coffee](https://user-images.githubusercontent.com/20200204/128799295-5f74841b-c0da-4372-ad24-81791e979fea.png)
 
+![스크린샷 2021-08-27 오후 5 04 07](https://user-images.githubusercontent.com/52653682/131095880-161cbe50-35e9-4c67-bb68-b6223e641a76.png)
+
+
 ## 팀원
 ### 남영우
 > 더 나은 팀 경험과 개발을 위해 노력하겠습니다.
