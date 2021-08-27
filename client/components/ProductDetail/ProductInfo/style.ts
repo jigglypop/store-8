@@ -8,12 +8,6 @@ export const ProductInfo = styled.div`
   color: var(--text-black-dark);
   justify-content: space-between;
 
-  h3 {
-    width: fit-content;
-    font-size: var(--body-subtitle-font);
-    font-weight: bold;
-    margin-bottom: 32px;
-  }
   .product__info {
     display: flex;
     flex-direction: column;
@@ -62,9 +56,6 @@ export const ProductInfo = styled.div`
     width: 348px;
     min-height: 240px;
     .product__info {
-      h3 {
-        font-size: var(--body-huge-font);
-      }
       .producto-info__amount {
         .price {
           font-size: var(--body-large-font);
@@ -101,31 +92,15 @@ export const ProductInfoCount = styled.div`
 `;
 
 export const ProductInfoTitle = styled.h3`
+  color: var(--text-black-dark);
   width: fit-content;
   font-size: var(--body-subtitle-font);
   font-weight: bold;
   margin-bottom: 32px;
   @media only screen and (max-width: 1300px) {
-    font-size: var(--body-middle-font);
-    width: 348px;
-    min-height: 240px;
-    .product__info {
-      h3 {
-        font-size: var(--body-huge-font);
-      }
-      .producto-info__amount {
-        .price {
-          font-size: var(--body-large-font);
-        }
-      }
-    }
-    .product__total-info {
-      .total-price {
-        font-size: var(--body-huge-font);
-      }
-    }
+    font-size: var(--body-huge-font);
   }
   @media only screen and (max-width: 375px) {
-    font-size: var(--body-small-font);
+    font-size: var(--body-huge-font);
   }
 `;

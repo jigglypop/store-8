@@ -12,7 +12,7 @@ export const useResponse = ({ minWidth, maxWidth }: IArgs) => {
 
   const handleWindowSize = debounce(() => {
     setWindowWidth(window.innerWidth);
-  }, 50);
+  }, 0);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowSize);

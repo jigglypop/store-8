@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import * as S from './style';
 
 import {
@@ -9,6 +9,7 @@ import {
   TITLE_DELIVERY,
   TITLE_TOTAL_AMOUNT,
 } from '@constants/productDetail/productDetailInfo/productDetailInfo';
+
 import ProductInfoCount from './ProductInfoCount';
 import ProductOption from './ProductOption/ProductOption';
 
@@ -33,7 +34,6 @@ export default function ProductInfo({}: Props): ReactElement {
   return (
     <S.ProductInfo>
       <div className="product__info">
-        <h3 className="producto-info__title">{title}</h3>
         {originalAmount ? (
           <div className="product-info__origin-amount">
             <S.InfoTitle>{TITLE_ORIGIN_AMOUNT}</S.InfoTitle>
