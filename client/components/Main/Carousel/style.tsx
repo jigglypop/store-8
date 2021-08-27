@@ -35,6 +35,7 @@ export const CarouselDot = styled.li`
 
 export const Carousel = styled.div`
   position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

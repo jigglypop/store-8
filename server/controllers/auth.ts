@@ -4,9 +4,10 @@ import User from '../models/User';
 import HttpError from '../utils/HttpError';
 import { generateToken } from '../utils/generateToken';
 import { serialize } from '../utils/serialize';
-import { IAuthRequest } from '@middle/type/request';
 import { err } from '../constants/error';
 import UserCoupon from '../models/UserCoupon';
+import { IAuthRequest } from '@middle/type/request';
+
 
 interface IUpdateUserImgRequest extends IAuthRequest {
   body: IAuthRequest['body'] & {

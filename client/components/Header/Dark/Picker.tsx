@@ -11,7 +11,7 @@ function Picker() {
     }
   };
   return (
-    <S.Picker>
+    <S.Picker className="colorpicker-outer">
       <div className="colorpicker-outer" onClick={(e) => onClick(e)}>
         <div className="colorpicker-button" id="color-1">
           <h4></h4>

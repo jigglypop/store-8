@@ -82,7 +82,7 @@ export function Route({ path, component: Component, title }: IRoute<IQuery>) {
     RouteResult = (
       <>
         <Helmet>
-          <title>배민 문방구 | {title}</title>
+          <title>드림 문방구 | {title}</title>
         </Helmet>
         <Component params={Number(params)} query={{}} />
       </>
@@ -121,7 +121,6 @@ export function DummyLink({ to, name }: ILinkDummy) {
   );
 }
 
-// 더미셋. 이 이름으로 HistoryPush에 넣어주면 라우팅됩니다. ex) HistoryPush('main') -> 메인으로
 export function RouterSet() {
   return (
     <div>

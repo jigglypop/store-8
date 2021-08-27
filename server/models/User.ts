@@ -33,14 +33,15 @@ export interface IUser {
 
 @Table
 export default class User extends Model<IUser> {
-  @AllowNull(false)
-  @Column
-  username: string;
-
   @PrimaryKey
   @AutoIncrement
   @Column
   id: number;
+
+  @AllowNull(false)
+  @Unique
+  @Column
+  username: string;
 
   @AllowNull
   @Unique

@@ -10,6 +10,8 @@ import Search from '../Search/Search';
 import MainSvg from '@image/svg/mainHorizontal.svg';
 import Recommend from '../Recommend/Recommend';
 import { throttle } from '@client/utils/performance';
+import StoreMode from '../Store/StoreMode';
+import GoIntro from '../GoIntro/GoIntro';
 
 export interface IHeader {
   check: ICheckRes | null;
@@ -54,6 +56,7 @@ const Header = ({ check, onLogout }: IHeader) => {
               <div className="hamberger" onClick={() => onToggle()}>
                 <Hamberger />
               </div>
+              <div className="hamberger-outer" onClick={() => onToggle()}></div>
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader">
               <Link to="/main">
@@ -62,7 +65,6 @@ const Header = ({ check, onLogout }: IHeader) => {
                 </div>
               </Link>
             </S.HeaderItem>
-
             <S.HeaderItem>
               <Search />
             </S.HeaderItem>
@@ -77,12 +79,12 @@ const Header = ({ check, onLogout }: IHeader) => {
         </div>
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
-      <div className="left-down-button-space">
-        <DarkMode />
-      </div>
+      <DarkMode />
+      <Recommend />
+      <StoreMode />
+      <GoIntro />
     </S.HeaderOuter>
   );
 };
-// <Recommend /> 를 뻄.
 
 export default Header;

@@ -1,18 +1,23 @@
 import { RootState } from '@client/store';
-import { setNotStoreMode, setStoreMode, toggleStoreMode } from '@client/store/storemode/storemode';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  toggleStoreModeToken,
+  changeStoreModeToken,
+  changeNotStoreModeToken,
+} from '@client/utils/setStoreMode';
+import { useSelector } from 'react-redux';
 
 export function useStoreMode() {
   const { storemode } = useSelector((state: RootState) => state.storemode);
-  const dispatch = useDispatch();
+  const { router } = useSelector((state: RootState) => state.router);
+
   const onToggleStoreMode = () => {
-    dispatch(toggleStoreMode());
+    toggleStoreModeToken();
   };
   const onSetStoreMode = () => {
-    dispatch(setStoreMode());
+    changeStoreModeToken();
   };
   const onSetNotStoreMode = () => {
-    dispatch(setNotStoreMode());
+    changeNotStoreModeToken();
   };
-  return { storemode, onToggleStoreMode, onSetNotStoreMode, onSetStoreMode };
+  return { storemode, onToggleStoreMode, onSetNotStoreMode, onSetStoreMode, router };
 }

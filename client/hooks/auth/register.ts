@@ -19,7 +19,7 @@ export function useRegister() {
 
   // 인풋 박스 디바운싱
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    debounceRedux(changeRegister, dispatch, e, 500)();
+    debounceRedux(changeRegister, dispatch, e, 10)();
 
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

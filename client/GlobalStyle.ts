@@ -108,6 +108,7 @@ export const GlobalStyle = createGlobalStyle`
     --text-picker: #12fff7;
     --header-gradient-picker:linear-gradient(45deg, #0cebeb, #20e3b2, #219A95);
     --glass-picker: rgba(18, 255, 247, 0.8);
+    --shadow-picker: 0 0 20px #219A95;
 
     @media only screen and (min-width: 0px) {
       --app-width: 100vw;
@@ -154,7 +155,9 @@ export const GlobalStyle = createGlobalStyle`
     }
     /* 스크롤 트랙 */
     ::-webkit-scrollbar-track {
-      background-color: transparent;
+      background-color: rgba(0, 0, 0, 0.6);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
     /* 스크롤 코너 */
     ::-webkit-scrollbar-corner {

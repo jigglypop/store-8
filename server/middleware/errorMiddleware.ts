@@ -2,9 +2,22 @@ import { NextFunction, Request, Response } from 'express';
 import HttpError from '../utils/HttpError';
 import { BaseError, UniqueConstraintError } from 'sequelize';
 
+interface IObj {
+  [key: string]: string;
+}
+
+const DBkeyName = (key: string) => {
+  const obj: IObj = {
+    username: '유저 이름',
+    email: '이메일',
+  };
+  let msg = obj[key] ?? key;
+  return msg;
+};
+
 const handleDBError = (error: BaseError, res: Response) => {
   let status = 500;
-  let message = 'DB Error: ' + error.message;
+  let message = error.message;
 
   if (error instanceof UniqueConstraintError) {
     status = 400;

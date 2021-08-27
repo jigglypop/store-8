@@ -12,7 +12,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { setDarkMode } from './utils/setDisplay';
 import { getMyWish } from './store/mywish/mywish';
 import { getRecommend } from './store/recommend/recommend';
-import { getCart, localAddCart } from '@client/store/product/cart';
+import { getCart, localAddCart } from './store/product/cart';
+import { initStoreModeToken } from './utils/setStoreMode';
 import localCart from '@utils/cart';
 
 const loadUser = async () => {
@@ -21,7 +22,6 @@ const loadUser = async () => {
     if (token) {
       await store.dispatch(getCheck(cache.get('token')));
       await store.dispatch(getMyWish(cache.get('token')));
-
       // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
       const localCartData = localCart.get();
       // 서버와 Cart 데이터 동기화
@@ -29,16 +29,16 @@ const loadUser = async () => {
       localCart.init(); // 모두 서버와 동기화 후 초기화하기.
 
       // dispatch(getCart(cache.get('token')));
-      store.dispatch(getRecommend(cache.get('token')));
+      await store.dispatch(getRecommend(cache.get('token')));
     }
   } catch (e) {
-    // TODO : Modal 로 인터넷 오류 혹은 e.message 띄우기
     console.log('로컬 스토리지 오류');
   }
 };
 
 loadUser();
 setDarkMode();
+initStoreModeToken();
 
 const rootEl = document.getElementById('root');
 

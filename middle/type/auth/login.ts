@@ -1,5 +1,4 @@
 export interface ILoginReq {
-  // username: string; // TODOFIX
   email: string;
   password: string;
   [key: string]: string;
