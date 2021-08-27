@@ -9,7 +9,7 @@ function DarkMode() {
 
   return (
     <S.DarkMode onClick={() => toggleDarkMode()}>
-      {mode ? <MoonSVG /> : <SunSVG />}
+      {mode ? <SunSVG /> : <MoonSVG />}
       <p>{mode ? '다크모드로 보기' : '일반모드로 보기'}</p>
     </S.DarkMode>
   );

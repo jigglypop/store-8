@@ -27,6 +27,7 @@ const colorPickerSelector = () => {
   let headerColor = 'linear-gradient(45deg, #5DBEBB, #3FF2C2, #219A95)';
   let header = '#1d1d1d';
   let glass = 'rgba(93, 190, 187, 0.8)';
+  let textShadow = '0 0 20px #219A95';
 
   if (color) {
     if (color === '1') {
@@ -40,6 +41,7 @@ const colorPickerSelector = () => {
       headerColor = 'linear-gradient(45deg, #5DBEBB, #3FF2C2, #219A95)';
       header = '#1d1d1d';
       glass = 'rgba(93, 190, 187, 0.8)';
+      textShadow = '0 0 20px #219A95';
     } else if (color === '2') {
       /* 빨간색 Color Picker */
       text = '#E94057';
@@ -51,6 +53,7 @@ const colorPickerSelector = () => {
       headerColor = 'linear-gradient(45deg, #E94057, #F27121, #B53143)';
       header = 'white';
       glass = 'rgba(233, 64, 87, 0.8)';
+      textShadow = '0 0 20px #B53143';
     } else if (color === '3') {
       /* 노란색 Color Picker */
       text = '#FFA751';
@@ -62,6 +65,7 @@ const colorPickerSelector = () => {
       headerColor = 'linear-gradient(45deg, #FFE259, #FFA751, #E8CF51)';
       header = '#1d1d1d';
       glass = 'rgba(255, 226, 89, 0.8)';
+      textShadow = '0 0 20px #E8994A';
     } else if (color === '4') {
       /* 초록색 Color Picker */
       text = '#2EB3DB';
@@ -73,6 +77,7 @@ const colorPickerSelector = () => {
       headerColor = 'linear-gradient(45deg, #B6FF8B, #2EB3DB, #A6E880)';
       header = '#1d1d1d';
       glass = 'rgba(182, 255, 139, 0.8)';
+      textShadow = '0 0 20px #A6E880';
     }
   }
   return {
@@ -85,13 +90,15 @@ const colorPickerSelector = () => {
     header,
     tag,
     glass,
+    textShadow,
   };
 };
 // 낮모드
 export const SunAttr = () => {
   // 컬러 피커 셀렉터에서 가져온 값 세팅
   const colorPicker = colorPickerSelector();
-  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass } = colorPicker;
+  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass, textShadow } =
+    colorPicker;
   return {
     '--text-pastel-black-dark': '#353535',
     '--text-pastel-black-nonwhite-dark': '#353535',
@@ -126,12 +133,14 @@ export const SunAttr = () => {
     '--prime-hover-picker': primeHover,
     '--sub-picker': sub,
     '--sub-hover-picker': subHover,
+    '--shadow-picker': 'none',
   };
 };
 // 밤모드
 export const MoonAttr = () => {
   const colorPicker = colorPickerSelector();
-  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass } = colorPicker;
+  const { text, prime, primeHover, sub, subHover, headerColor, header, tag, glass, textShadow } =
+    colorPicker;
   return {
     '--text-pastel-black-dark': 'white',
     '--text-pastel-black-nonwhite-dark': '#424242',
@@ -166,6 +175,7 @@ export const MoonAttr = () => {
     '--prime-hover-picker': primeHover,
     '--sub-picker': sub,
     '--sub-hover-picker': subHover,
+    '--shadow-picker': textShadow,
   };
 };
 // val값 한번에 세팅

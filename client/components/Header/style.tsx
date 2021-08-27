@@ -103,26 +103,29 @@ export const DarkMode = styled.div`
   bottom: 50px;
   left: 50px;
   z-index: 20;
-  padding-left: 8px;
+  padding-left: 12px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: hidden;
 
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   border-radius: 40px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px var(--black);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 
-  background: var(--text-pastel-black-nonwhite-dark);
-  box-shadow: 0 0 4px var(--shadow-black-dark);
+  box-shadow: 0 0 10px var(--text-black);
 
   transition: all 0.3s ease-in;
   cursor: pointer;
 
   &:hover {
-    width: 140px;
-    height: 42px;
+    width: 150px;
+    height: 50px;
     & > p {
       display: inherit;
       white-space: nowrap;
@@ -131,26 +134,26 @@ export const DarkMode = styled.div`
   }
   & > p {
     font-size: 14px;
-    color: var(--glass-picker);
+    color: var(--text-picker);
     margin-left: 8px;
     display: none;
   }
 
   path {
-    fill: var(--glass-picker);
-    stroke: var(--glass-picker);
+    fill: var(--text-picker);
+    stroke: var(--text-picker);
   }
 
   svg {
     path:first-child {
-      fill: var(--glass-picker);
+      fill: var(--text-picker);
       stroke: none;
     }
     circle {
-      stroke: var(--glass-picker);
+      stroke: var(--text-picker);
     }
     rect {
-      fill: var(--glass-picker);
+      fill: var(--text-picker);
     }
   }
 `;
@@ -163,7 +166,12 @@ export const HeaderItem = styled.div`
   align-items: center;
   cursor: pointer;
   font-size: var(--body-middle-font);
-
+  .hamberger-outer {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    z-index: 5;
+  }
   .main-logo {
     .mainHorizontal_svg__letter {
       stroke-dasharray: 0px, 40px;

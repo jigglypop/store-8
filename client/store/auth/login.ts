@@ -18,6 +18,7 @@ export interface ILoginState {
   error: string;
   [name]: ILoginRes | null;
   loading: boolean;
+  disable: boolean;
 }
 // thunk부분
 export const postLogin = createAsyncThunk(name, loginApi);
@@ -25,12 +26,13 @@ const loginExtra = createExtraPost<ILoginReq, ILoginRes | null>(postLogin, name)
 
 const initialState: ILoginState = {
   loginform: {
-    username: '',
+    email: '',
     password: '',
   },
   [name]: null,
   error: '',
   loading: false,
+  disable: false,
 };
 
 const loginSlice = createSlice({

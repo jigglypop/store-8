@@ -15,7 +15,10 @@ export const getCategory = async (req: Request, res: Response) => {
   let _limit = DEFAULT_PAGE_LIMIT;
   // 페이지나 limit, 페이지 값이 있을 시(앞의 두개는 장바구니와 좋아요가 업데이트되면 바뀜)
   if (order === '1') {
-    orders = ['amount', 'ASC'];
+    orders = [
+      Sequelize.literal('(SELECT COUNT(*) FROM Carts WHERE Carts.productId = Product.id)'),
+      'DESC',
+    ];
   } else if (order === '2') {
     orders = [
       Sequelize.literal('(SELECT COUNT(*) FROM Wishes WHERE Wishes.productId = Product.id)'),

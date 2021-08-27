@@ -3,6 +3,7 @@ import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 import Product from '../models/Product';
 import { Op } from 'sequelize';
+import { Sequelize } from 'sequelize';
 
 export const getMain = async (req: Request, res: Response) => {
   // 새로나왔어요
@@ -22,7 +23,12 @@ export const getMain = async (req: Request, res: Response) => {
   });
   // 잘나가요
   const bestProduct = await Product.findAll({
-    order: [['id', 'DESC']],
+    order: [
+      [
+        Sequelize.literal('(SELECT COUNT(*) FROM Carts WHERE Carts.productId = Product.id)'),
+        'DESC',
+      ],
+    ],
     limit: 4,
   });
   if (!newProduct || !bestProduct || !saleProduct) {

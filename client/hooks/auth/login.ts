@@ -16,7 +16,7 @@ export function useLogin() {
   const dispatch = useDispatch();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    debounceRedux(changeLogin, dispatch, e, 500)();
+    debounceRedux(changeLogin, dispatch, e, 10)();
 
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

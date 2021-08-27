@@ -28,6 +28,7 @@ def recommend_three(data, Y):
         if y == len(Y):
             result.append((result_dict[x], x))
     for key, value in result_dict.items():
+        if key >= 307:continue
         result.append((value, key))
     return sorted(result)[::-1][:3]
 
