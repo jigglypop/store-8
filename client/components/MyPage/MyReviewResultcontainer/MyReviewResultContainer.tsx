@@ -34,12 +34,14 @@ export default function MyReviewResultContainer({}: Props): ReactElement {
         <div className="column-date">날짜</div>
       </div>
       <ul className="container-result-list">{myReviewList}</ul>
-      <Pagination
-        totalCount={totalCount}
-        defaultLimit={DEFAULT_MYREVIEW_LIMIT}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {totalCount !== 0 && (
+        <Pagination
+          totalCount={totalCount}
+          defaultLimit={DEFAULT_MYREVIEW_LIMIT}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </S.MyReviewResultContainer>
   );
 }

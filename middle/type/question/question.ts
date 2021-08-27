@@ -1,4 +1,4 @@
-export interface IQuestion {
+interface ICommonQuestion {
   id: number;
   title: string;
   contents: string;
@@ -7,6 +7,9 @@ export interface IQuestion {
   answer: string | null;
   answerDate: string | null;
   userId: number;
+}
+export interface IQuestion extends ICommonQuestion {
+  questionAuthor: string;
 }
 
 export interface IQuestionRes {
@@ -34,7 +37,7 @@ export interface IQuestionDeleteReq {
   questionId: number;
 }
 
-export interface IMyQuestion extends IQuestion {
+export interface IMyQuestion extends ICommonQuestion {
   productInfo: {
     id: number;
     title: string | void;

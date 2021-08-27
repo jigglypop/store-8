@@ -73,14 +73,13 @@ export default function ReviewForm({
     const reviewFormData = { title, contents, score, imgSrc: imgList };
     let isSuccess: boolean = false;
 
-    if (isEdit) {
-      if (!reviewId) return;
+    if (isEdit && reviewId) {
       isSuccess = await updateReview({ reviewId, ...reviewFormData });
-    }
-    if (!isEdit && productInfo) {
+    } else if (!isEdit && productInfo) {
       isSuccess = await myPageCreateReview(reviewFormData, orderId, productInfo.id);
     } else {
-      isSuccess = await createReview(reviewFormData);
+      if (!orderId) return;
+      isSuccess = await createReview(reviewFormData, orderId);
     }
 
     if (!isSuccess) return;
@@ -110,6 +109,7 @@ export default function ReviewForm({
             <input
               type="text"
               value={title}
+              aria-label="title-input"
               onChange={handleInputChange}
               placeholder="제목을 입력해주세요"
               maxLength={60}
@@ -122,6 +122,7 @@ export default function ReviewForm({
               <textarea
                 placeholder="내용을 입력해주세요 (최대 5000자까지 입력가능)"
                 value={contents}
+                aria-label="contents-input"
                 onChange={handleTextareaChange}
                 maxLength={500}
                 className="review-form__input"

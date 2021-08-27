@@ -5,6 +5,7 @@ import {
   setCountState,
   setOptionCountState,
   deleteOptionCountState,
+  initProduct,
 } from '@store/product/product';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,6 +40,9 @@ export function useProduct() {
   // 페이지 시작
   useEffect(() => {
     dispatch(getProduct(productId));
+    return () => {
+      dispatch(initProduct());
+    };
   }, []);
 
   return {

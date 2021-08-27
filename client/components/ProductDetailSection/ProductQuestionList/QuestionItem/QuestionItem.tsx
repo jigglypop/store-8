@@ -8,12 +8,11 @@ import { hideId } from '@utils/encode';
 
 interface Props {
   questionNo: number;
-  userId: string;
   questionData: IQuestion;
 }
 
-export default function QuestionItem({ questionNo, userId, questionData }: Props): ReactElement {
-  const { title, isSecret, date, answer } = questionData;
+export default function QuestionItem({ questionNo, questionData }: Props): ReactElement {
+  const { title, isSecret, date, answer, questionAuthor } = questionData;
   const [isOpenDetail, setIsOpenDetail] = useState(false);
 
   const questionStatus = answer ? '답변완료' : '접수';
@@ -33,7 +32,7 @@ export default function QuestionItem({ questionNo, userId, questionData }: Props
           </div>
         </div>
         <div>
-          <div className="question-info user-id">{hideId(userId)}</div>
+          <div className="question-info user-id">{hideId(questionAuthor)}</div>
           <div className="question-info date">{date}</div>
           <div className="question-info status">{questionStatus}</div>
         </div>
