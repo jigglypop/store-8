@@ -67,7 +67,6 @@ export const ProductInfo = styled.div`
       }
       .producto-info__amount {
         .price {
-          color: red;
           font-size: var(--body-large-font);
         }
       }

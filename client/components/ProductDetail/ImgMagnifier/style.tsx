@@ -33,6 +33,7 @@ export const Magnifier = styled.div<IMagnifier>`
 
   border: none;
   background-color: rgba(255, 255, 255, 0.7);
+  cursor: zoom-in;
 `;
 
 interface IMagnifiedImg {

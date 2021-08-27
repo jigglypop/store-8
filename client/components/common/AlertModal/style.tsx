@@ -26,7 +26,7 @@ export const AlertModal = styled.div`
     border-radius: 5px;
     color: var(--text-black-dark);
     border: 1px solid var(--background-black-dark);
-    background-color: var(--background-white-dark);
+    background-color: var(--background-select-section-dark);
     &:hover {
       background-color: var(--background-section-dark);
       color: var(--text-black-dark);

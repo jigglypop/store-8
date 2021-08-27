@@ -73,16 +73,12 @@ export default function ReviewForm({
     const reviewFormData = { title, contents, score, imgSrc: imgList };
     let isSuccess: boolean = false;
 
-    if (isEdit) {
-      if (!reviewId) return;
+    if (isEdit && reviewId) {
       isSuccess = await updateReview({ reviewId, ...reviewFormData });
-    }
-
-    if (!orderId) return;
-
-    if (!isEdit && productInfo) {
+    } else if (!isEdit && productInfo) {
       isSuccess = await myPageCreateReview(reviewFormData, orderId, productInfo.id);
     } else {
+      if (!orderId) return;
       isSuccess = await createReview(reviewFormData, orderId);
     }
 
