@@ -85,17 +85,47 @@ export const ProductInfo = styled.div`
 export const InfoTitle = styled.div`
   width: 150px;
   color: var(--text-gray-dark);
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 1300px) {
+    width: 80px;
   }
   @media only screen and (max-width: 768px) {
     width: 80px;
   }
-  @media only screen and (max-width: 1300px) {
-    width: 80px;
+  @media only screen and (max-width: 375px) {
   }
 `;
 
 export const ProductInfoCount = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const ProductInfoTitle = styled.h3`
+  width: fit-content;
+  font-size: var(--body-subtitle-font);
+  font-weight: bold;
+  margin-bottom: 32px;
+  @media only screen and (max-width: 1300px) {
+    font-size: var(--body-middle-font);
+    width: 348px;
+    min-height: 240px;
+    .product__info {
+      h3 {
+        font-size: var(--body-huge-font);
+      }
+      .producto-info__amount {
+        .price {
+          font-size: var(--body-large-font);
+        }
+      }
+    }
+    .product__total-info {
+      .total-price {
+        font-size: var(--body-huge-font);
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    font-size: var(--body-small-font);
+  }
 `;

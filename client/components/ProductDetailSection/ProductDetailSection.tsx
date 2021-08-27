@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import * as S from './style';
 
 import SectionNav from './SectionNav/SectionNav';
 import DetailInfo from './DetailInfo/DetailInfo';
@@ -37,17 +38,13 @@ export default function ProductDetailSection({}: Props): ReactElement {
   };
 
   return (
-    <StyledProductDetailSection>
+    <S.ProductDetailSection>
       <SectionNav
         reviewCount={reviewCount}
         questionCount={questionCount}
         {...{ section, setSection }}
       />
       {detailSection[section]}
-    </StyledProductDetailSection>
+    </S.ProductDetailSection>
   );
 }
-
-const StyledProductDetailSection = styled.div`
-  margin-bottom: 3rem;
-`;

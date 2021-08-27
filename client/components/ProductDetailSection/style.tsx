@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export const ProductDetailSection = styled.div`
+  margin-bottom: 3rem;
+  @media only screen and (max-width: 1300px) {
+    width: 668px;
+  }
+  @media only screen and (max-width: 768px) {
+  }
+  @media only screen and (max-width: 375px) {
+  }
+`;
+
 export const UserFeedbackTitleContainer = styled.div`
   display: flex;
   align-items: baseline;
