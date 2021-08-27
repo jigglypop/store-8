@@ -9,9 +9,8 @@ const makeWhereQueryWithDate = (key: string, startDate?: string, endDate?: strin
   if (startDate && endDate) {
     const _endDate = new Date(endDate);
     _endDate.setDate(_endDate.getDate() + 1);
-
     where[key] = {
-      [Op.between]: [new Date(startDate), new Date(endDate)],
+      [Op.between]: [new Date(startDate), _endDate],
     };
   } else if (startDate) {
     where[key] = {

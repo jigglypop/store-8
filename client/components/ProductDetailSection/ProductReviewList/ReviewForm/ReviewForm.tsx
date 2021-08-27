@@ -78,9 +78,7 @@ export default function ReviewForm({
       isSuccess = await updateReview({ reviewId, ...reviewFormData });
     }
     if (!isEdit && productInfo) {
-      console.log(reviewFormData, orderId, productInfo.id);
       isSuccess = await myPageCreateReview(reviewFormData, orderId, productInfo.id);
-      console.log('만들었어? ', isSuccess);
     } else {
       isSuccess = await createReview(reviewFormData);
     }

@@ -3,10 +3,20 @@ import { ReactElement, useState } from 'react';
 import * as S from './style';
 import { Link } from '@client/utils/router';
 import { IOrder } from '@middle/type/myOrder/myOrder';
-import ConfirmOrderModal from '@components/MyPage/ConfirmOrderModal/ConfirmOrderModal';
+import ConfirmCheckModal from '@components/MyPage/ConfirmOrderModal/ConfirmOrderModal';
 import { myOrderConfirmApi } from '@client/api/myOrder';
+import { myRefundRequestApi } from '@client/api/myRefund';
 import { createToast } from '@client/utils/createToast';
 import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
+import {
+  AFTER_CONFIRM,
+  BEFORE_DELIVERY,
+  FINISH_DELIVERY,
+  FINISH_REVIEW,
+  IN_DELIVERY,
+  REQUEST_REFUND,
+} from '@client/constants/Order';
+import cache from '@client/utils/cache';
 
 interface Props {
   result: IOrder;
@@ -16,13 +26,25 @@ export default function OrderBox({ result }: Props): ReactElement {
   // 과연 result가 바뀌는 것을 감지하는 방법이 없을까? 내부 state 로 관리하지 않고
   const [state, setState] = useState(result);
   const [isConfirmOrderOpenForm, setConfirmOrderOpenForm] = useState(false);
+  const [isConfirmRefundOpenForm, setConfirmRefundOpenForm] = useState(false);
   const [isReviewOpenForm, setReviewOpenForm] = useState(false);
 
-  const getStateByDate = (date: string): string => {
-    return '';
+  const getStateByDate = (_state: IOrder): string => {
+    const now = new Date();
+    const delta = (now.getTime() - new Date(_state.date).getTime()) / 1000;
+    if (!_state.isConfirmed) {
+      if (!_state.refundId) {
+        if (delta >= 0 && delta < 20) return BEFORE_DELIVERY;
+        else if (delta >= 20 && delta < 40) return IN_DELIVERY;
+        return FINISH_DELIVERY;
+      } else {
+        return REQUEST_REFUND;
+      }
+    } else {
+      if (!_state.reviewId) return AFTER_CONFIRM;
+      else return FINISH_REVIEW;
+    }
   };
-
-  const stateByDate = getStateByDate(state.date);
 
   const openConfirmOrderForm = () => {
     setConfirmOrderOpenForm(true);
@@ -30,6 +52,14 @@ export default function OrderBox({ result }: Props): ReactElement {
 
   const closeConfirmOrderForm = () => {
     setConfirmOrderOpenForm(false);
+  };
+
+  const openConfirmRefundForm = () => {
+    setConfirmRefundOpenForm(true);
+  };
+
+  const closeConfirmRefundForm = () => {
+    setConfirmRefundOpenForm(false);
   };
 
   const openReviewForm = () => {
@@ -41,19 +71,79 @@ export default function OrderBox({ result }: Props): ReactElement {
   };
 
   const confirmOrderConfirm = async () => {
-    if (state.isConfirmed || state.state !== '배송완료') {
+    if (state.isConfirmed || getStateByDate(state) !== FINISH_DELIVERY) {
+      //state.state -> stateByDate
       createToast('배송이 완료된 이후 구매확정을 할 수 있습니다!!', true);
     } else {
-      setState({ ...state, ...(await myOrderConfirmApi(result.id)) });
-      createToast('구매를 확정했습니다. 리뷰를 작성해주세요!!', false);
+      console.log(cache.get('token'));
+      const order = await myOrderConfirmApi({ token: cache.get('token'), orderId: result.id });
+
+      if (order.isConfirmed) {
+        setState({
+          ...state,
+          ...order,
+        });
+        createToast('구매를 확정했습니다. 리뷰를 작성해주세요!!', false);
+      } else {
+        createToast('구매확정에 실패했습니다!', true);
+      }
     }
     setConfirmOrderOpenForm(false);
   };
 
-  // const addressConfirm = (address: AddressData) => {
-  //   setTotalState({ ...totalState, addressInfo: address });
-  //   setAddressOpenForm(false);
-  // };
+  const requestRefundConfirm = async () => {
+    if (state.isConfirmed || getStateByDate(state) !== FINISH_DELIVERY) {
+      createToast('배송이 완료된 이후 환불요청을 할 수 있습니다!!', true);
+    } else {
+      const { refund, order } = await myRefundRequestApi({
+        token: cache.get('token'),
+        orderId: result.id,
+      });
+
+      if (order.refundId) {
+        setState({ ...state, ...order });
+        createToast('환불을 요청했습니다.', false);
+      } else {
+        createToast('이미 환불 요청된 주문입니다.', true);
+      }
+    }
+    setConfirmRefundOpenForm(false);
+  };
+
+  const buttonByState = (_state: IOrder) => {
+    console.log('buttonByState');
+    console.log(_state);
+    if (!_state.isConfirmed) {
+      if (!_state.refundId) {
+        return (
+          <>
+            <button onClick={openConfirmOrderForm} className="button-confirm-order">
+              구매확정
+            </button>
+            <button onClick={openConfirmRefundForm} className="button-confirm-order">
+              환불요청
+            </button>
+          </>
+        );
+      } else {
+        return <button className="button-disabled">환불요청완료</button>;
+      }
+    } else {
+      if (!_state.reviewId) {
+        return (
+          <button onClick={openReviewForm} className="button-write-review">
+            리뷰쓰기
+          </button>
+        );
+      } else {
+        return (
+          <button disabled className="button-disabled">
+            리뷰완료
+          </button>
+        );
+      }
+    }
+  };
 
   return (
     <S.OrderBox>
@@ -78,25 +168,22 @@ export default function OrderBox({ result }: Props): ReactElement {
         </div>
       </div>
       <div className="column-status">
-        <div>{state.state}</div>
+        <div>{getStateByDate(state)}</div>
       </div>
-      <div className="column-confirm">
-        {!state.isConfirmed ? (
-          <button onClick={openConfirmOrderForm} className="button-confirm-order">
-            구매확정
-          </button>
-        ) : state.reviewId ? (
-          <button onClick={openReviewForm} disabled className="button-disabled">
-            리뷰완료
-          </button>
-        ) : (
-          <button onClick={openReviewForm} className="button-write-review">
-            리뷰쓰기
-          </button>
-        )}
-      </div>
+      <div className="column-confirm">{buttonByState(state)}</div>
       {isConfirmOrderOpenForm && (
-        <ConfirmOrderModal closeForm={closeConfirmOrderForm} confirm={confirmOrderConfirm} />
+        <ConfirmCheckModal
+          text="구매를 확정하시겠습니까?"
+          closeForm={closeConfirmOrderForm}
+          confirm={confirmOrderConfirm}
+        />
+      )}
+      {isConfirmRefundOpenForm && (
+        <ConfirmCheckModal
+          text="반품/환불 요청하시겠습니까?"
+          closeForm={closeConfirmRefundForm}
+          confirm={requestRefundConfirm}
+        />
       )}
       {isReviewOpenForm && (
         <ReviewForm

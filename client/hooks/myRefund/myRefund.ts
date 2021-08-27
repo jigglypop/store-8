@@ -6,8 +6,8 @@ export function useMyRefund() {
   const { myRefund } = useSelector((state: RootState) => state.myRefund);
   const dispatch = useDispatch();
 
-  const setMyRefund = (startDate: string, endDate: string) => {
-    dispatch(getMyRefund({ startDate, endDate }));
+  const setMyRefund = (token: string, startDate: string, endDate: string) => {
+    dispatch(getMyRefund({ token, startDate, endDate }));
   };
 
   return { myRefund: myRefund ?? [], setMyRefund };

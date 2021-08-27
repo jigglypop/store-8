@@ -83,9 +83,11 @@ export const OrderBox = styled.div`
       margin-bottom: 2px;
     }
 
-    .button-disabled {
+    .button-disabled,
+    .button-disabled:hover {
       background-color: var(--pastel-black);
-      cursor: none;
+      font-weight: 500;
+      cursor: default;
     }
 
     button:hover {

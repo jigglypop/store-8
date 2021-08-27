@@ -8,6 +8,7 @@ import OrderResultContainer from '@components/MyPage/OrderResultContainer/OrderR
 interface Props {}
 
 export default function OrderSection({}: Props): ReactElement {
+  // 페이지가 불려질 때, myOrder 를 초기화 해줘야한다. TODO
   return (
     <S.OrderSection>
       <Intro />

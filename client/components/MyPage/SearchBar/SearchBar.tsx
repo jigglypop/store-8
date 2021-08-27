@@ -5,6 +5,7 @@ import request from '@client/api/utils/request';
 import { useMyOrder } from '@client/hooks/myOrder/myOrder';
 import { useMyRefund } from '@client/hooks/myRefund/myRefund';
 import { createToast } from '@client/utils/createToast';
+import cache from '@client/utils/cache';
 
 interface Props {
   title: string;
@@ -38,8 +39,8 @@ export default function SearchBar({ title, page }: Props): ReactElement {
   };
 
   const onSearchButtonClicked = async (e: React.MouseEvent) => {
-    if (page === 'order') await setMyOrder(startDate, endDate);
-    else if (page === 'refund') await setMyRefund(startDate, endDate);
+    if (page === 'order') await setMyOrder(cache.get('token'), startDate, endDate);
+    else if (page === 'refund') await setMyRefund(cache.get('token'), startDate, endDate);
 
     createToast(`${page.toUpperCase()} 데이터 조회`);
   };

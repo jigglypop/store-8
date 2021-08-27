@@ -1,6 +1,6 @@
 import styled from '@lib/styledComponent';
 
-export const ConfirmOrderModal = styled.div`
+export const ConfirmCheckModal = styled.div`
   min-height: 150px;
   width: 400px;
   border-radius: 20px;
