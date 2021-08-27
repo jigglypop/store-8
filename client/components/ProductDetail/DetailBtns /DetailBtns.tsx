@@ -10,6 +10,9 @@ import { useCart } from '@client/hooks/product/cart';
 import { Link } from '@utils/router';
 import { useState } from 'react';
 import AlertModal from '@client/components/common/AlertModal/AlertModal';
+import { useDispatch } from 'react-redux';
+import localCart from '@utils/cart';
+import { localGetCart } from '@client/store/product/cart';
 
 interface Props {
   id: number;
@@ -24,6 +27,8 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
   const [isOpenAlertModal, setIsOpenAlertModal] = useState(false);
   const [alertMsg, setAlertMsg] = useState('');
 
+  const dispatch = useDispatch();
+
   if (!product) return <></>;
 
   //TODO 비로그인 시 처리 필요 - 임시로 toast사용
@@ -32,9 +37,20 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
     else createToast('로그인이 필요한 서비스입니다.');
   };
 
+  const unLoginedAddCart = (productId: number, productOptionId: number | null, count: number) => {
+    localCart.add({ productId, productOptionId, productCount: count });
+    const localCartData = localCart.get();
+    dispatch(localGetCart({ data: localCartData }));
+  };
+
   const addProductToCart = async () => {
     if (product?.options.length && optionCount) {
       for (const [optionId, count] of Object.entries(optionCount)) {
+        if (!check) {
+          unLoginedAddCart(product.id, +optionId, count);
+          return;
+        }
+
         await addToCart({
           productId: product.id,
           productOptionId: +optionId,
@@ -42,6 +58,10 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
         });
       }
     } else {
+      if (!check) {
+        unLoginedAddCart(product.id, null, count);
+        return;
+      }
       await addToCart({ productId: product.id, productOptionId: null, productCount: count });
     }
   };
