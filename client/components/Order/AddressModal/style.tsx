@@ -92,6 +92,15 @@ export const AddressModal = styled.div`
       }
     }
 
+    .non-submit-btn {
+      background-color: var(--border-dark-gray);
+      cursor: default;
+      color: white;
+      &:hover {
+        background-color: var(--border-dark-gray);
+      }
+    }
+
     .submit-btn {
       background-color: var(--background-mint);
       color: var(--text-white);
