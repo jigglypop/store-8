@@ -9,7 +9,7 @@
     "moduleResolution": "node" /* Specify module resolution strategy: "node" (Node.js) or "classic" (TypeScript pre-1.6). */,
 
     "strict": true,
-    "noImplicitThis": false, 
+    "noImplicitThis": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -17,10 +17,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
-    "typeRoots": [
-      "./node_modules/@types",
-      "./client/type"
-    ],
+    "typeRoots": ["./node_modules/@types", "./client/type"],
     "baseUrl": ".",
     "paths": {
       "@client/*": ["client/*"],
@@ -36,7 +33,6 @@
       "@image/*": ["public/image/*"],
       "@font/*": ["public/font/*"]
     }
-    
   },
   "include": ["public", "server", "client", "custom.d.ts"],
   "exclude": ["node_modules", "build", "webpack.common.js", "webpack.dev.js", "webpack.prod.js"]

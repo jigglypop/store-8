@@ -32,7 +32,7 @@ export const LoginNeedModal = styled.div`
     }
     .cancle-btn {
       border: 1px solid var(--background-black-dark);
-      background-color: var(--background-white-dark);
+      background-color: var(--background-select-section-dark);
       &:hover {
         background-color: var(--background-section-dark);
         color: var(--text-black-dark);

@@ -25,6 +25,7 @@ const StyledImgItem = styled.div`
   padding: 0;
   margin-right: 16px;
   img {
+    object-fit: cover;
     width: 76px;
     height: 76px;
     border-radius: 8px;

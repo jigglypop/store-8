@@ -24,7 +24,7 @@ import finish from './product/finish';
 import storemode from './storemode/storemode';
 import elastic from './elastic/elastic';
 import recommend from './recommend/recommend';
-import { ThunkAction, Action, configureStore } from '@reduxjs/toolkit';
+import { ThunkAction, Action, configureStore, combineReducers } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {

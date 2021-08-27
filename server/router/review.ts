@@ -13,7 +13,7 @@ import {
   likeReview,
 } from './../controllers/review';
 
-reviewRouter.get('/:productId', jwtMiddleware, wrapAsync(getReview));
+reviewRouter.get('/:productId', wrapAsync(getReview));
 reviewRouter.post('/:productId', jwtMiddleware, wrapAsync(createReview));
 reviewRouter.put('/', jwtMiddleware, wrapAsync(updateReview));
 reviewRouter.delete('/', jwtMiddleware, wrapAsync(deleteReview));
