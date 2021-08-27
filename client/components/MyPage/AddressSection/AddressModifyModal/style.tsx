@@ -5,7 +5,7 @@ export const AddressModifyModal = styled.div`
   width: 650px;
   border-radius: 20px;
   padding: 40px;
-  background-color: var(--background-white);
+  background-color: var(--background-select-section-dark);
 
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,7 @@ export const AddressModifyModal = styled.div`
 
   .address-modal-title {
     font-size: var(--body-huge-font);
+    color: var(--text-black-dark);
     margin-bottom: 12px;
   }
   .address-container {
@@ -25,6 +26,7 @@ export const AddressModifyModal = styled.div`
     display: flex;
     flex-direction: column;
     p {
+      color: var(--text-black-dark);
       font-weight: 600;
       margin-bottom: 8px;
     }
@@ -32,6 +34,7 @@ export const AddressModifyModal = styled.div`
       width: 360px;
       height: 32px;
       border: 1px solid var(--line-gray);
+      color: var(--text-black-dark);
       border-radius: 4px;
       padding: 6px;
       &::placeholder {
@@ -54,9 +57,10 @@ export const AddressModifyModal = styled.div`
     }
 
     .cancle-btn {
-      border: 1px solid black;
+      color: var(--text-black-dark);
+      border: 1px solid var(--line-black-dark);
       &:hover {
-        background-color: var(--background-gray);
+        background-color: var(--background-section-dark);
       }
     }
 
@@ -64,7 +68,7 @@ export const AddressModifyModal = styled.div`
       background-color: var(--background-mint);
       color: var(--text-white);
       &:hover {
-        background-color: var(--background-dark-mint);
+        background-color: var(--background-dakr-mint);
       }
     }
   }
@@ -74,6 +78,7 @@ export const AddressModifyModal = styled.div`
     flex-direction: column;
 
     .input-form-label {
+      color: var(--text-black-dark);
       font-weight: 600;
     }
 
@@ -81,6 +86,7 @@ export const AddressModifyModal = styled.div`
       width: 360px;
       height: 32px;
       padding: 6px;
+      color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
@@ -100,15 +106,17 @@ export const AddressModifyModal = styled.div`
         height: 32px;
         margin-left: 12px;
         padding: 6px;
-        border: 1px solid var(--line-black);
+        border: 1px solid var(--line-black-dark);
         border-radius: 4px;
         font-size: var(--body-small-font);
+        color: var(--text-black-dark);
         &:hover {
-          background-color: var(--background-gray);
+          background-color: var(--background-section-dark);
         }
       }
     }
     & input {
+      color: var(--text-black-dark);
       margin-top: 8px;
       margin-bottom: 8px;
       border: 1px solid var(--line-gray);
@@ -132,6 +140,7 @@ export const AddressModifyModal = styled.div`
           p {
             margin-top: 2px;
             font-size: var(--body-small-font);
+            color: var(--text-black-dark);
           }
           margin-left: 12px;
           display: flex;

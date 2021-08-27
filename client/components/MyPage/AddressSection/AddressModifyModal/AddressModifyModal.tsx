@@ -87,11 +87,11 @@ function AddressModifyModal(props: AddressModifyModalProps): ReactElement {
     <Modal closeModal={props.closeForm}>
       <S.AddressModifyModal>
         <div>
-          <p className="address-modal-title">{'추가할 배송지 정보를 입력하세요.'}</p>
+          <p className="address-modal-title">{'수정할 배송지 정보를 입력하세요.'}</p>
           <div className="address-container"></div>
         </div>
         <div className="title-section">
-          <p>{'추가할 배송지의 이름을 적어주세요.'}</p>
+          <p>{'수정할 배송지의 이름을 적어주세요.'}</p>
           <input
             onChange={(e) => setTitle(e.target.value)}
             value={addressData.title}

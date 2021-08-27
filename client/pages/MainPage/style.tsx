@@ -7,14 +7,18 @@ export const MainPage = styled.div`
   margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
 
   .title {
-    background-color: var(--footer-background-dark);
-    margin: 10px 0px;
-    padding: 30px;
     grid-row: 1/2;
     display: flex;
     align-items: center;
-    font-weight: 600;
-    font-size: 20px;
+
+    background-color: var(--footer-background-dark);
+    font-family: 'Do Hyeon', sans-serif;
+    margin: 10px 0px;
+    padding: 30px;
     color: var(--text-black-dark);
+
+    h3 {
+      font-size: 36px;
+    }
   }
 `;

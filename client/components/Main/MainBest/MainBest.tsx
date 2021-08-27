@@ -1,6 +1,6 @@
-import { useMain } from '@client/hooks/main/main';
 import { IProduct } from '@server/models/Product';
-import Card from '../../Card/Card';
+import Card from '@components/Card/Card';
+import InnerCard from '@components/InnerCard/InnerCard';
 import { IMain } from '../common/type';
 import * as S from './style';
 

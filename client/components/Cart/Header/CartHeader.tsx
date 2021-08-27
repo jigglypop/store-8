@@ -1,8 +1,7 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import * as S from './style';
 import NextIcon from '@image/svg/next.svg';
-import cartNextBlack from '@image/cartNextBlack.png';
-import cartNextGrey from '@image/cartNextGrey.png';
+
 import { ORDER_FINISH, ORDER_READY, ORDER_START } from '@constants/Cart';
 
 interface CartHeaderProps {
@@ -21,11 +20,11 @@ function CartHeader({ nowStep }: CartHeaderProps): ReactElement {
       <div className="cart-header-container">
         <h2 className="cart-header-title">장바구니</h2>
         <div className="cart-progress-container">
-          <p className={getTextColorStep(ORDER_READY)}>01 장바구니</p>
+          <p className={getTextColorStep(ORDER_READY)}>장바구니</p>
           <NextIcon className={getImgSourceStep(ORDER_READY)} />
-          <p className={getTextColorStep(ORDER_START)}>02 주문서작성/결제</p>
+          <p className={getTextColorStep(ORDER_START)}>주문서작성</p>
           <NextIcon className={getImgSourceStep(ORDER_START)} />
-          <p className={getTextColorStep(ORDER_FINISH)}>03 주문완료</p>
+          <p className={getTextColorStep(ORDER_FINISH)}>주문완료</p>
         </div>
       </div>
     </S.CartHeader>

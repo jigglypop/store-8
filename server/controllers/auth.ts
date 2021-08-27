@@ -6,6 +6,7 @@ import { generateToken } from '../utils/generateToken';
 import { serialize } from '../utils/serialize';
 import { IAuthRequest } from '@middle/type/request';
 import { err } from '../constants/error';
+import UserCoupon from '../models/UserCoupon';
 
 interface IUpdateUserImgRequest extends IAuthRequest {
   body: IAuthRequest['body'] & {
@@ -56,6 +57,41 @@ export const register = async (req: Request, res: Response) => {
   const serialized = await serialize(user);
   const token = await generateToken(user);
   res.set('token', token);
+
+  // 로그인시 쿠폰 지급
+  UserCoupon.bulkCreate([
+    {
+      userId: user.id,
+      couponId: 1,
+      isUsed: false,
+      dDay: new Date('2021-08-31'),
+    },
+    {
+      userId: user.id,
+      couponId: 2,
+      isUsed: false,
+      dDay: new Date('2021-09-10'),
+    },
+    {
+      userId: user.id,
+      couponId: 3,
+      isUsed: false,
+      dDay: new Date('2021-08-30'),
+    },
+    {
+      userId: user.id,
+      couponId: 4,
+      isUsed: false,
+      dDay: new Date('2021-09-11'),
+    },
+    {
+      userId: user.id,
+      couponId: 5,
+      isUsed: false,
+      dDay: new Date('2021-09-11'),
+    },
+  ]);
+
   res.status(200).json({ status: 200, data: serialized });
 };
 

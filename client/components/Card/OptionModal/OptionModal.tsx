@@ -31,7 +31,7 @@ function AddressModal(props: OptionModalProps): ReactElement {
   };
 
   const decrease = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
@@ -50,7 +50,7 @@ function AddressModal(props: OptionModalProps): ReactElement {
         <div>
           <p className="option-modal-title">{`${options.title} ( ${kstFormatter(
             options.amount
-          )} ) 를 장바구니에 추가합니다.`}</p>
+          )} )`}</p>
           <div className="product-count-header">
             <p className="option-subtitle">{CHOOSE_OPTION_TEXT}</p>
             <div className="product-count-container">

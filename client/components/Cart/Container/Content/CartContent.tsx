@@ -59,9 +59,9 @@ function CartContent({ content, index, toggleHandler, changeItem }: Contents): R
             <p className="real-amount">{kstFormatter(content.amount)}</p>
           </div>
           <div className="product-count-container">
-            <NumAdd onClick={decrease} className="num-scaler" />
+            <NumMinus onClick={decrease} className="num-scaler" />
             <p className="product-count">{content.count}</p>
-            <NumMinus onClick={increament} className="num-scaler" />
+            <NumAdd onClick={increament} className="num-scaler" />
           </div>
         </div>
       </div>

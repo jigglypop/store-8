@@ -99,11 +99,8 @@ export const Picker = styled.div`
 `;
 
 export const DarkMode = styled.div`
-  position: fixed;
-  bottom: 50px;
-  left: 50px;
-  z-index: 20;
   padding-left: 8px;
+  margin-right: 8px;
 
   display: flex;
   flex-direction: row;
@@ -115,20 +112,47 @@ export const DarkMode = styled.div`
   border-radius: 40px;
 
   background: var(--text-pastel-black-nonwhite-dark);
-  box-shadow: 0 0 4px var(--shadow-black-dark);
+  box-shadow: 0 0 2px var(--shadow-black-dark);
 
   transition: all 0.3s ease-in;
   cursor: pointer;
 
   &:hover {
-    width: 140px;
     height: 42px;
-    & > p {
+
+    @media only screen and (min-width: 0px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 42px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 140px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 140px;
+    }
+  }
+
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
       display: inherit;
       white-space: nowrap;
       text-overflow: clip;
     }
   }
+
   & > p {
     font-size: 14px;
     color: var(--glass-picker);
@@ -204,6 +228,15 @@ export const HeaderItem = styled.div`
 export const HeaderOuter = styled.div`
   .slider-all {
     display: flex;
+  }
+  .left-down-button-space {
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    z-index: 20;
   }
 `;
 // 헤더 부분
@@ -281,7 +314,7 @@ export const Header = styled.header<IHeader>`
       padding-left: 0 !important;
     }
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .isSSmallHeader {
       display: none;
     }

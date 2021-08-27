@@ -1,6 +1,5 @@
-import { useMain } from '@client/hooks/main/main';
 import { IProduct } from '@server/models/Product';
-import Card from '../../Card/Card';
+import InnerCard from '@components/InnerCard/InnerCard';
 import { IMain } from '../common/type';
 import * as S from './style';
 
@@ -14,7 +13,7 @@ const MainSale = ({ main }: IMain) => {
         <div className="content">
           {main &&
             main.sale.map((item: IProduct, index: number) => (
-              <Card key={index} index={index} item={item} />
+              <InnerCard key={index} index={index} item={item} />
             ))}
         </div>
       </div>

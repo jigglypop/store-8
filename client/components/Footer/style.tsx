@@ -6,29 +6,59 @@ export const Footer = styled.footer`
   width: 100%;
   height: 240px;
   background: var(--footer-background-dark);
-  padding-left: 120px;
   display: flex;
-  flex-direction: row;
   align-items: center;
+
+  @media only screen and (min-width: 0px) {
+    padding-left: 20px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media only screen and (min-width: 375px) {
+    padding-left: 30px;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media only screen and (min-width: 768px) {
+    padding-left: 80px;
+    flex-direction: row;
+    justify-content: center;
+  }
+  @media only screen and (min-width: 1300px) {
+    padding-left: 120px;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
 
   .link-to {
     cursor: pointer;
   }
 
   .footerLogo {
+    margin-right: 24px;
+
     .mainVertical_svg__later-dark {
       fill: var(--text-pastel-black-dark);
     }
-    transform: scale(0.4);
-    transform-origin: center;
-    margin-right: -120px;
   }
 
   .footerTextContainer {
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 114px;
+
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: flex;
+    }
+    @media only screen and (min-width: 1300px) {
+      display: flex;
+    }
   }
 
   .footerTextTop {
