@@ -64,9 +64,9 @@ export const OrderNow = styled.div`
     justify-content: center;
     align-items: center;
     margin: 11px 0px 8px 0px;
-    background-color: var(--prime-picker);
+    background-color: var(--background-mint);
     &:hover {
-      background-color: var(--prime-hover-picker);
+      background-color: var(--background-dark-mint);
     }
   }
   .order-info {

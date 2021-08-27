@@ -21,11 +21,11 @@ export const UserInfo = styled.div`
       width: 180px;
       height: 32px;
       border-radius: 3px;
-      background-color: var(--prime-picker);
+      background-color: var(--background-mint);
       font-weight: 400;
       color: var(--text-white);
       &:hover {
-        background-color: var(--prime-hover-picker);
+        background-color: var(--background-dark-mint);
       }
     }
   }

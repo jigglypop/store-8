@@ -65,10 +65,10 @@ export const AddressAddModal = styled.div`
     }
 
     .submit-btn {
-      background-color: var(--prime-picker);
+      background-color: var(--background-mint);
       color: var(--text-white);
       &:hover {
-        background-color: var(--prime-hover-picker);
+        background-color: var(--background-dark-mint);
       }
     }
   }
