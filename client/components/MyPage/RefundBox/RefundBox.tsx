@@ -2,12 +2,19 @@ import { dateStringFormat } from '@client/utils/date';
 import { ReactElement } from 'react';
 import * as S from './style';
 import { IRefund } from '@middle/type/myRefund/myRefund';
+import { createToast } from '@client/utils/createToast';
 
 interface Props {
   result: IRefund;
 }
 
 export default function RefundBox({ result }: Props): ReactElement {
+  const notYet = (e: React.MouseEvent) => {
+    const { target } = e;
+    if (!(target instanceof HTMLButtonElement)) return;
+
+    createToast('구현 중입니다. 기다려주세요', true);
+  };
   return (
     <S.RefundBox>
       <div className="column-date">
@@ -31,7 +38,7 @@ export default function RefundBox({ result }: Props): ReactElement {
       <div className="column-status">
         <div>{result.state}</div>
       </div>
-      <div className="column-confirm">
+      <div className="column-confirm" onClick={notYet}>
         <button>취소</button>
         <button>환불확정</button>
       </div>

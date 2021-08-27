@@ -65,7 +65,10 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
   return (
     <Modal closeModal={props.closeForm}>
       <S.EditProfileModal>
-        <form>
+        <div>프로필을 수정할 수 있는 모달입니다. </div>
+        <div>현재 구현중입니다 ㅠㅠ </div>
+        <div>테투리를 누르시면 닫을 수 있습니다.</div>
+        {/* <form>
           <div className="container-input-img-src">
             {check?.imageUrl ? (
               <ImgItem
@@ -90,7 +93,7 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
               onChange={handleInputChange}
             />
           </div>
-        </form>
+        </form> */}
       </S.EditProfileModal>
     </Modal>
   );
