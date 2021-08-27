@@ -3,7 +3,7 @@ import { MainItem } from '../common/style';
 
 export const MainGift = styled(MainItem)`
   position: relative;
-  width: 100%;
+  width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,6 +79,8 @@ export const MainGift = styled(MainItem)`
   }
 
   @media only screen and (max-width: 1200px) {
+    width: 897.5px;
+
     .large {
       font-size: 20px;
     }
@@ -88,6 +90,13 @@ export const MainGift = styled(MainItem)`
     }
   }
   @media only screen and (max-width: 900px) {
+    width: 595px;
+    .gift-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .large {
       font-size: 15px;
     }
@@ -98,6 +107,8 @@ export const MainGift = styled(MainItem)`
     }
   }
   @media only screen and (max-width: 600px) {
+    width: 292.5px;
+
     .large {
       font-size: 12px;
     }

@@ -12,6 +12,7 @@ import Recommend from '../Recommend/Recommend';
 import { throttle } from '@client/utils/performance';
 import StoreMode from '../Store/StoreMode';
 import GoIntro from '../GoIntro/GoIntro';
+import { $ } from '@client/utils/jQurey';
 
 export interface IHeader {
   check: ICheckRes | null;
@@ -46,6 +47,16 @@ const Header = ({ check, onLogout }: IHeader) => {
       setIsLeft(0);
     }
   };
+
+  const hambergerUp = throttle(() => {
+    setIsLeft(150);
+  }, 200);
+  useEffect(() => {
+    $('.hamberger-outer').on('mouseenter', hambergerUp);
+    return () => {
+      $('.hamberger-outer').on('mouseenter', hambergerUp);
+    };
+  }, []);
 
   return (
     <S.HeaderOuter>

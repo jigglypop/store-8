@@ -15,7 +15,6 @@ export const CategoryPagination = styled.div`
     background-color: rgb(0, 0, 0, 0.4);
     padding: 10px;
     border-radius: 20px;
-    // box-shadow: 0 0 20px rgb(0, 0, 0, 0.4);
   }
 `;
 
@@ -30,6 +29,21 @@ export const PaginationItem = styled.div`
       font-size: 20px;
       font-weight: 800;
       color: var(--text-picker);
+      text-shadow: var(--shadow-picker);
     }
+  }
+  @media only screen and (max-width: 600px) {
+    margin: 5px;
+    .pagination-text {
+      p {
+        font-size: 12px;
+      }
+      .now {
+        font-size: 12px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    margin: 3px;
   }
 `;

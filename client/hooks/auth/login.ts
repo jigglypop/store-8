@@ -10,6 +10,7 @@ import { getMyWish } from '@client/store/mywish/mywish';
 import { getCart, localAddCart } from '@client/store/product/cart';
 import localCart from '@utils/cart';
 import { ICartAddReq } from '@middle/type/cart/cart';
+import { getRecommend } from '@client/store/recommend/recommend';
 
 export function useLogin() {
   const { loginform, login, error, loading } = useSelector((state: RootState) => state.login);
@@ -29,14 +30,13 @@ export function useLogin() {
       HistoryPush('main');
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
+      dispatch(getRecommend(cache.get('token')));
 
       // 만약 로그인을 안한 상태에서 local cart 에 추가된게 있다면 모두 올려주기.
       const localCartData = localCart.get();
       // 서버와 Cart 데이터 동기화
       dispatch(localAddCart({ data: localCartData }));
       localCart.init(); // 모두 서버와 동기화 후 초기화하기.
-
-      // dispatch(getCart(cache.get('token')));
       dispatch(initLogin());
     }
   }, [login]);

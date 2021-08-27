@@ -84,4 +84,33 @@ export const InnerCard = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 600px) {
+    .cardInner {
+      height: 180.5px;
+
+      .image {
+        img {
+          width: 146.25px;
+        }
+      }
+      .text {
+        margin-top: 5px;
+        .red {
+          font-size: 12px;
+        }
+
+        .large {
+          font-size: 12px;
+        }
+
+        .line {
+          font-size: 10px;
+        }
+
+        .small {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 `;

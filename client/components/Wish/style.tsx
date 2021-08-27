@@ -16,7 +16,7 @@ export const Wish = styled.div<IWish>`
   }
   svg {
     transition: all 0.3s;
-    fill: ${(props) => (props.isInMyWish ? 'var(--text-dark-picker)' : 'var(--gray3)')};
+    fill: ${(props) => (props.isInMyWish ? 'var(--text-picker)' : 'var(--gray3)')};
     transform: scale(0.8);
   }
   svg:hover {

@@ -46,7 +46,7 @@ const InnerCard = ({ index, item }: ICard) => {
       <div className="cardInner">
         <div className="image">
           <Link to={`/product/${item.id}`}>
-            <img src={imgsrc} alt="title" />
+            <img src={imgsrc} alt="title" loading="lazy" />
           </Link>
           <div className="wc-container">
             <Wish productId={item.id.toString()} name={item.title} isContainer={true} />

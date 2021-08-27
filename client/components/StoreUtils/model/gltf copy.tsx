@@ -14,7 +14,6 @@ export const useGltf = (url: string) => {
     dracoLoader.setDecoderPath(
       'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/libs/draco/'
     );
-    dracoLoader.preload();
     const gltf = new GLTFLoader();
     gltf.setDRACOLoader(dracoLoader);
     gltf.load(
