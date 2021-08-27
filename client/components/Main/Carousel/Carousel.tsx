@@ -1,13 +1,8 @@
 import { Link } from '@client/utils/router';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { $, getPixelNumber } from '../../../utils/jQurey';
 import * as S from './style';
 
-interface ICarouselDot {
-  index: number;
-  currentIdx: number;
-  setCurrentIdx: Dispatch<SetStateAction<number>>;
-}
 type ICarouselItem = {
   id: number;
   url: string;
@@ -28,42 +23,32 @@ const imageUrls: ICarouselItem[] = [
     url: 'public/image/carousel/main298.gif',
   },
 ];
-const CarouselDot = ({ index, currentIdx, setCurrentIdx }: ICarouselDot) => {
-  const dotRef = useRef(null);
-  const onClick = () => {
-    setCurrentIdx(index);
-  };
-  return (
-    <S.CarouselDot>
-      <button
-        className={index === currentIdx ? 'dot-white' : 'dot-gray'}
-        id={`btn${index}`}
-        ref={dotRef}
-        onClick={onClick}
-      >
-        <h4>{index}</h4>
-      </button>
-    </S.CarouselDot>
-  );
-};
-
 const Carousel = () => {
   // carousel의 ref
   const carouselRef = useRef<HTMLDivElement>(null);
   // 현재 선택된 index 값
   const [currentIdx, setCurrentIdx] = useState(0);
+
+  const onClick = (index: number) => {
+    setCurrentIdx(index);
+  };
   // currentIdx가 바뀔 때
   useEffect(() => {
-    // 짝수일때
     const carouselWidth = $('body').val('--carousel-width') || '0px';
-    // 픽셀 변환
     const width = getPixelNumber(carouselWidth);
     const transform = `translateX(-${currentIdx * width}px)`;
     if (carouselRef.current) {
       carouselRef.current.style.transform = transform;
     }
   }, [currentIdx]);
-
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIdx((currentIdx) => (currentIdx + 1) % 3);
+    }, 2000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [currentIdx]);
   return (
     <S.Carousel>
       <div className="carouselInner">
@@ -77,12 +62,15 @@ const Carousel = () => {
       </div>
       <div className="carouselButton">
         {imageUrls.map((_, index: number) => (
-          <CarouselDot
-            key={index}
-            index={index}
-            currentIdx={currentIdx}
-            setCurrentIdx={setCurrentIdx}
-          />
+          <S.CarouselDot key={index}>
+            <button
+              className={index === currentIdx ? 'dot-white' : 'dot-gray'}
+              id={`btn${index}`}
+              onClick={() => onClick(index)}
+            >
+              <h4>{index}</h4>
+            </button>
+          </S.CarouselDot>
         ))}
       </div>
     </S.Carousel>

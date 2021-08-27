@@ -12,7 +12,7 @@ export const createPage = (title: string) => {
       <link href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css" rel="stylesheet"/>
       <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-      <title>배민 문방구 | ${title}</title>
+      <title>드림 문방구 | ${title}</title>
     </head>
     <body>
       <div id="root"></div>

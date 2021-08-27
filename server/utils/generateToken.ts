@@ -13,7 +13,7 @@ export const generateToken = (user: User): string => {
 
   const payload: JWTPayload = {
     id: user.id,
-    username: user.username,
+    email: user.email,
   };
 
   return jwt.sign(payload, jwt_secret, {

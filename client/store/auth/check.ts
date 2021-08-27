@@ -29,7 +29,7 @@ const checkSlice = createSlice({
   reducers: {
     initLogin: () => initialState,
     logout: (state) => {
-      localStorage.clear();
+      localStorage.removeItem('token');
       state.check = null;
     },
     setUser: (state, { payload: user }) => {

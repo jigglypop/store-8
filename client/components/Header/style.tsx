@@ -99,82 +99,90 @@ export const Picker = styled.div`
 `;
 
 export const DarkMode = styled.div`
-  padding-left: 8px;
-  margin-right: 8px;
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  z-index: 20;
+  padding-left: 12px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   overflow: hidden;
 
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   border-radius: 40px;
-
-  background: var(--text-pastel-black-nonwhite-dark);
-  box-shadow: 0 0 2px var(--shadow-black-dark);
-
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px var(--black);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px var(--text-black);
   transition: all 0.3s ease-in;
   cursor: pointer;
 
   &:hover {
-    height: 42px;
+    width: 150px;
+    height: 50px;
+    & > p {
+      height: 42px;
 
-    @media only screen and (min-width: 0px) {
-      width: 42px;
+      @media only screen and (min-width: 0px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 140px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 140px;
+      }
     }
-    @media only screen and (min-width: 375px) {
-      width: 42px;
-    }
-    @media only screen and (min-width: 768px) {
-      width: 140px;
-    }
-    @media only screen and (min-width: 1300px) {
-      width: 140px;
-    }
-  }
 
-  &:hover > p {
-    @media only screen and (min-width: 0px) {
-      display: none;
-    }
-    @media only screen and (min-width: 375px) {
-      display: none;
-    }
-    @media only screen and (min-width: 768px) {
-      display: inherit;
-      white-space: nowrap;
-      text-overflow: clip;
-    }
-    @media only screen and (min-width: 1300px) {
-      display: inherit;
-      white-space: nowrap;
-      text-overflow: clip;
+    &:hover > p {
+      @media only screen and (min-width: 0px) {
+        display: none;
+      }
+      @media only screen and (min-width: 375px) {
+        display: none;
+      }
+      @media only screen and (min-width: 768px) {
+        display: inherit;
+        white-space: nowrap;
+        text-overflow: clip;
+      }
+      @media only screen and (min-width: 1300px) {
+        display: inherit;
+        white-space: nowrap;
+        text-overflow: clip;
+      }
     }
   }
 
   & > p {
     font-size: 14px;
-    color: var(--glass-picker);
+    color: var(--text-picker);
     margin-left: 8px;
     display: none;
   }
 
   path {
-    fill: var(--glass-picker);
-    stroke: var(--glass-picker);
+    fill: var(--text-picker);
+    stroke: var(--text-picker);
   }
 
   svg {
     path:first-child {
-      fill: var(--glass-picker);
+      fill: var(--text-picker);
       stroke: none;
     }
     circle {
-      stroke: var(--glass-picker);
+      stroke: var(--text-picker);
     }
     rect {
-      fill: var(--glass-picker);
+      fill: var(--text-picker);
     }
   }
 `;
@@ -188,7 +196,19 @@ export const HeaderItem = styled.div`
   cursor: pointer;
   font-size: var(--body-middle-font);
 
+  .isSSmallHeader {
+    margin: 0;
+  }
+
+  .hamberger-outer {
+    position: absolute;
+    width: 10%;
+    height: 100%;
+    z-index: 5;
+  }
+
   .main-logo {
+    transform: scale(0.75);
     .mainHorizontal_svg__letter {
       stroke-dasharray: 0px, 40px;
       stroke: #000;
@@ -302,7 +322,12 @@ export const Header = styled.header<IHeader>`
   .isSmallHeader {
     display: none;
   }
-
+  .mainHorizontal_svg__letter {
+    fill: var(--text-picker);
+  }
+  .mainHorizontal_svg__letter.mainHorizontal_svg__later-dark {
+    fill: var(--text-black-dark);
+  }
   @media only screen and (max-width: 1000px) {
     .isSmallHeader {
       display: flex;
