@@ -69,7 +69,7 @@ const Header = ({ check, onLogout }: IHeader) => {
               </div>
               <div className="hamberger-outer" onClick={() => onToggle()}></div>
             </S.HeaderItem>
-            <S.HeaderItem className="isSSmallHeader">
+            <S.HeaderItem className="isSSmallHeader logo">
               <Link to="/main">
                 <div className="main-logo">
                   <MainSvg />
