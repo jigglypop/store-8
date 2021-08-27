@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { debounce } from '@client/utils/performance';
+import { throttle } from '@client/utils/performance';
 
 interface IArgs {
   minWidth?: number;
@@ -10,9 +10,9 @@ interface IArgs {
 export const useResponse = ({ minWidth, maxWidth }: IArgs) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleWindowSize = debounce(() => {
+  const handleWindowSize = throttle(() => {
     setWindowWidth(window.innerWidth);
-  }, 0);
+  }, 100);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowSize);
