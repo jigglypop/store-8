@@ -16,7 +16,7 @@ export default function LoginNeedModal({ cancelCbFn }: Props): ReactElement {
           <button onClick={cancelCbFn} className="cancle-btn">
             {'취소'}
           </button>
-          <Link to={'login'}>
+          <Link to="/login">
             <button className="delete-btn">{'로그인하러 가기'}</button>
           </Link>
         </div>
