@@ -40,9 +40,6 @@ export function useProduct() {
   // 페이지 시작
   useEffect(() => {
     dispatch(getProduct(productId));
-    return () => {
-      dispatch(initProduct());
-    };
   }, []);
 
   return {
