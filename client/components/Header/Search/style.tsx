@@ -20,7 +20,6 @@ export const SearchInner = styled.div`
   align-items: flex-start;
   text-align: center;
   transition: all 0.3s ease-in-out;
-  border: 2px solid black;
 
   height: 42px;
   width: 42px;
@@ -87,7 +86,7 @@ export const SearchInner = styled.div`
     left: 8px;
     circle {
       stroke: white;
-      fill: rgba(0, 0, 0, 0.8);
+      fill: transparent;
     }
     rect {
       fill: white;
