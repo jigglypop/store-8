@@ -100,10 +100,10 @@ export const AccountInfo = styled.div`
       display: flex;
 
       @media only screen and (min-width: 0px) {
-        flex-direction: row;
+        flex-direction: column;
       }
       @media only screen and (min-width: 375px) {
-        flex-direction: row;
+        flex-direction: column;
       }
       @media only screen and (min-width: 768px) {
         flex-direction: column;

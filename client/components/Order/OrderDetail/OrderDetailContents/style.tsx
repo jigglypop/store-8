@@ -30,31 +30,36 @@ export const OrderDetailContents = styled.div`
   }
 
   .contents-detail-row {
-    display: flex;
-    flex-direction: row;
     margin-top: 8px;
+    display: flex;
+    @media only screen and (min-width: 0px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 375px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+    @media only screen and (min-width: 1300px) {
+      flex-direction: row;
+    }
 
     .contents-detail-amount {
       margin-right: 3px;
       color: var(--text-black-dark);
-      @media only screen and (min-width: 0px) {
-        font-size: var(--body-middle-font);
-      }
-      @media only screen and (min-width: 375px) {
-        font-size: var(--body-middle-font);
-      }
-      @media only screen and (min-width: 768px) {
-        font-size: 1rem;
-      }
-      @media only screen and (min-width: 1300px) {
-        font-size: 1rem;
-      }
     }
     .contents-detail-count {
       margin-top: 3px;
       font-size: var(--body-small-font);
       color: var(--text-black-dark);
     }
+  }
+
+  .contents-detail-mileage {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
     .contents-detail-mileage-title {
       font-weight: 700;
       font-size: var(--body-small-font);

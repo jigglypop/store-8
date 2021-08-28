@@ -158,19 +158,25 @@ export const SearchInner = styled.div`
       height: 200px;
       width: 105px;
       margin-left: -10px;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
     @media only screen and (min-width: 375px) {
       height: 200px;
       width: 105px;
       margin-left: -10px;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
     @media only screen and (min-width: 768px) {
       height: 332px;
       width: 210px;
+      overflow: hidden;
     }
     @media only screen and (min-width: 1300px) {
       height: 332px;
       width: 210px;
+      overflow: hidden;
     }
 
     input {
@@ -180,10 +186,10 @@ export const SearchInner = styled.div`
       border-bottom: 2px solid var(--gray3);
 
       @media only screen and (min-width: 0px) {
-        width: 95px;
+        width: 85px;
       }
       @media only screen and (min-width: 375px) {
-        width: 95px;
+        width: 85px;
       }
       @media only screen and (min-width: 768px) {
         width: 190px;
@@ -242,18 +248,48 @@ export const TagItem = styled.div`
   }
 
   .search-button-container {
-    width: 24px;
-    height: 24px;
     border-radius: 24px;
-    margin: 2px 7px;
 
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (min-width: 0px) {
+      width: 12px;
+      height: 12px;
+      margin: 2px 4px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 12x;
+      height: 12px;
+      margin: 2px 4px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 24px;
+      height: 24px;
+      margin: 2px 7px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 24px;
+      height: 24px;
+      margin: 2px 7px;
+    }
   }
 
   .search-button {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+    }
+    @media only screen and (min-width: 1300px) {
+      display: inherit;
+    }
     circle {
       stroke: var(--background-pastel-black);
       fill: white;
@@ -264,6 +300,7 @@ export const TagItem = styled.div`
   }
 
   .tag-container {
+    max-width: 80%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -285,18 +322,48 @@ export const ElaItem = styled.div`
   }
 
   .search-button-container {
-    width: 24px;
-    height: 24px;
     border-radius: 24px;
-    margin: 2px 7px;
 
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (min-width: 0px) {
+      width: 12px;
+      height: 12px;
+      margin: 2px 4px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 12x;
+      height: 12px;
+      margin: 2px 4px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 24px;
+      height: 24px;
+      margin: 2px 7px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 24px;
+      height: 24px;
+      margin: 2px 7px;
+    }
   }
 
   .search-button {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+    }
+    @media only screen and (min-width: 1300px) {
+      display: inherit;
+    }
     path {
       stroke: var(--background-pastel-black);
       fill: white;
@@ -304,6 +371,7 @@ export const ElaItem = styled.div`
   }
 
   .tag-container {
+    max-width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
