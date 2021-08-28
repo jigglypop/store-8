@@ -53,7 +53,18 @@ export const InnerCard = styled.div`
 
     &:hover {
       .wc-container {
-        top: 8px;
+        @media only screen and (min-width: 0px) {
+          top: 4px;
+        }
+        @media only screen and (min-width: 375px) {
+          top: 4px;
+        }
+        @media only screen and (min-width: 768px) {
+          top: 8px;
+        }
+        @media only screen and (min-width: 1300px) {
+          top: 8px;
+        }
       }
       .card-inner-text-container {
         bottom: 0px;
