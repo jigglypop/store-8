@@ -22,16 +22,57 @@ export const Progress = styled.div<IProgress>`
   text-align: center;
   align-items: center;
 
+  .img-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px 0;
+
+    img {
+      width: 250px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .img-content {
+      flex-direction: column;
+    }
+  }
   .progress-inner {
     position: relative;
-    width: 60vw;
-    height: 60vh;
+    width: 90vw;
+    height: 90vh;
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--text-white);
     box-shadow: 0 0 20px var(--black);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    /* 기본 백그라운드 */
+    background: var(--body-background-dark);
 
+    /* 스크롤 */
+    ::-webkit-scrollbar {
+      width: 15px;
+      background-color: var(--text-white-dark);
+    }
+    /* 스크롤 엄지부분 */
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--header-gradient-picker);
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+    }
+    /* 스크롤 트랙 */
+    ::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.6);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+    /* 스크롤 코너 */
+    ::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +83,8 @@ export const Progress = styled.div<IProgress>`
       font-size: 80px;
       color: var(--text-picker);
       text-shadow: 0 0 10px var(--text-picker);
+      margin: 0;
+      padding: 0;
     }
 
     .progress-text {

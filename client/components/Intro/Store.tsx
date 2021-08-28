@@ -9,6 +9,7 @@ import { BaedalInfo, DreamMoonbangooInfo, NameInfo } from './info/InfoItem';
 import Picker from '../Header/Dark/Picker';
 import { ABaedal } from './model/ABaedal';
 import Progress from '../StoreUtils/Progress/Progress';
+import MainStoreTitle from './MainTitle/MainStoreTitle';
 
 interface IMarker {
   position: [number, number, number];
@@ -17,7 +18,7 @@ interface IMarker {
 }
 
 export default function Three() {
-  const initialCameraPos: [number, number, number] = [20, 20, 20];
+  const initialCameraPos: [number, number, number] = [12, 14, 12];
   const initialControlsTarget: [number, number, number] = [0, 0, 0];
   const initMarker: IMarker[] = [
     {
@@ -68,6 +69,7 @@ export default function Three() {
   return (
     <>
       <S.ThreeWrapper>
+        <MainStoreTitle />
         <div className="ui">
           <Picker />
           <div>
