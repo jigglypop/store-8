@@ -10,7 +10,7 @@ export const Recommend = styled.div`
   @media only screen and (min-width: 0px) {
     display: none;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 1300px) {
     display: inherit;
   }
 `;

@@ -24,18 +24,7 @@ export const InnerCard = styled.div`
         transform: scale(0.6);
         transform-origin: left top;
       }
-      @media only screen and (min-width: 375px) {
-        top: 4px;
-        margin-left: 4px;
-        transform: scale(0.6);
-        transform-origin: left top;
-      }
       @media only screen and (min-width: 768px) {
-        top: -36px;
-        margin-left: 8px;
-        transform: scale(1);
-      }
-      @media only screen and (min-width: 1300px) {
         top: -36px;
         margin-left: 8px;
         transform: scale(1);
@@ -60,13 +49,7 @@ export const InnerCard = styled.div`
         @media only screen and (min-width: 0px) {
           top: 4px;
         }
-        @media only screen and (min-width: 375px) {
-          top: 4px;
-        }
         @media only screen and (min-width: 768px) {
-          top: 8px;
-        }
-        @media only screen and (min-width: 1300px) {
           top: 8px;
         }
       }
@@ -87,13 +70,7 @@ export const InnerCard = styled.div`
       @media only screen and (min-width: 0px) {
         bottom: 0px;
       }
-      @media only screen and (min-width: 375px) {
-        bottom: 0px;
-      }
       @media only screen and (min-width: 768px) {
-        bottom: -60px;
-      }
-      @media only screen and (min-width: 1300px) {
         bottom: -60px;
       }
     }
