@@ -48,10 +48,14 @@ export const InnerCard = styled.div`
         width: 292.5px;
         object-fit: cover;
         cursor: pointer;
+        transition: all 0.3s;
       }
     }
 
     &:hover {
+      .image img {
+        transform: scale(1.1);
+      }
       .wc-container {
         @media only screen and (min-width: 0px) {
           top: 4px;
