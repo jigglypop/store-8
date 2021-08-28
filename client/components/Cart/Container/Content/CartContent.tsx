@@ -5,8 +5,6 @@ import checked from '@image/checked.png';
 import unchecked from '@image/unchecked.png';
 import NumAdd from '@image/svg/numAdd.svg';
 import NumMinus from '@image/svg/numMinus.svg';
-import numUp from '@image/numUp.png';
-import numDown from '@image/numDown.png';
 
 import { ClientCartData } from '@middle/type/cart/cart';
 
