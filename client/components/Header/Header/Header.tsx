@@ -95,7 +95,7 @@ const Header = ({ check, onLogout }: IHeader) => {
         <DarkMode />
         <StoreMode />
       </div>
-      {/*<Recommend />*/}
+      <Recommend />
     </S.HeaderOuter>
   );
 };

@@ -43,19 +43,7 @@ export const SearchInner = styled.div`
         width: 101px;
       }
     }
-    @media only screen and (min-width: 375px) {
-      width: 105px;
-      & > p {
-        width: 101px;
-      }
-    }
     @media only screen and (min-width: 768px) {
-      width: 210px;
-      & > p {
-        width: 202px;
-      }
-    }
-    @media only screen and (min-width: 1300px) {
       width: 210px;
       & > p {
         width: 202px;
@@ -83,19 +71,7 @@ export const SearchInner = styled.div`
         width: 101px;
       }
     }
-    @media only screen and (min-width: 375px) {
-      width: 105px;
-      & > p {
-        width: 101px;
-      }
-    }
     @media only screen and (min-width: 768px) {
-      width: 210px;
-      & > p {
-        width: 202px;
-      }
-    }
-    @media only screen and (min-width: 1300px) {
       width: 210px;
       & > p {
         width: 202px;
@@ -161,19 +137,7 @@ export const SearchInner = styled.div`
       overflow-y: scroll;
       overflow-x: hidden;
     }
-    @media only screen and (min-width: 375px) {
-      height: 200px;
-      width: 105px;
-      margin-left: -10px;
-      overflow-y: scroll;
-      overflow-x: hidden;
-    }
     @media only screen and (min-width: 768px) {
-      height: 332px;
-      width: 210px;
-      overflow: hidden;
-    }
-    @media only screen and (min-width: 1300px) {
       height: 332px;
       width: 210px;
       overflow: hidden;
@@ -188,13 +152,7 @@ export const SearchInner = styled.div`
       @media only screen and (min-width: 0px) {
         width: 85px;
       }
-      @media only screen and (min-width: 375px) {
-        width: 85px;
-      }
       @media only screen and (min-width: 768px) {
-        width: 190px;
-      }
-      @media only screen and (min-width: 1300px) {
         width: 190px;
       }
     }
@@ -205,15 +163,7 @@ export const SearchInner = styled.div`
         left: 75px;
         opacity: 0;
       }
-      @media only screen and (min-width: 375px) {
-        left: 75px;
-        opacity: 0;
-      }
       @media only screen and (min-width: 768px) {
-        left: 170px;
-        opacity: 1;
-      }
-      @media only screen and (min-width: 1300px) {
         left: 170px;
         opacity: 1;
       }
@@ -229,6 +179,13 @@ export const TagItem = styled.div`
   flex-direction: row;
   align-items: center;
   overflow: hidden;
+
+  @media only screen and (min-width: 0px) {
+    padding: 0px 2px 0px 0px;
+  }
+  @media only screen and (min-width: 768px) {
+    padding: 0px 5px 0px 0px;
+  }
 
   &:hover {
     background-color: var(--background-dark-gray);
@@ -260,17 +217,7 @@ export const TagItem = styled.div`
       height: 12px;
       margin: 2px 4px;
     }
-    @media only screen and (min-width: 375px) {
-      width: 12x;
-      height: 12px;
-      margin: 2px 4px;
-    }
     @media only screen and (min-width: 768px) {
-      width: 24px;
-      height: 24px;
-      margin: 2px 7px;
-    }
-    @media only screen and (min-width: 1300px) {
       width: 24px;
       height: 24px;
       margin: 2px 7px;
@@ -281,13 +228,7 @@ export const TagItem = styled.div`
     @media only screen and (min-width: 0px) {
       display: none;
     }
-    @media only screen and (min-width: 375px) {
-      display: none;
-    }
     @media only screen and (min-width: 768px) {
-      display: inherit;
-    }
-    @media only screen and (min-width: 1300px) {
       display: inherit;
     }
     circle {
@@ -342,12 +283,12 @@ export const ElaItem = styled.div`
     @media only screen and (min-width: 768px) {
       width: 24px;
       height: 24px;
-      margin: 2px 7px;
+      margin: 4px 7px;
     }
     @media only screen and (min-width: 1300px) {
       width: 24px;
       height: 24px;
-      margin: 2px 7px;
+      margin: 4px 7px;
     }
   }
 
@@ -355,13 +296,7 @@ export const ElaItem = styled.div`
     @media only screen and (min-width: 0px) {
       display: none;
     }
-    @media only screen and (min-width: 375px) {
-      display: none;
-    }
     @media only screen and (min-width: 768px) {
-      display: inherit;
-    }
-    @media only screen and (min-width: 1300px) {
       display: inherit;
     }
     path {

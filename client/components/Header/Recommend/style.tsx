@@ -2,27 +2,43 @@ import styled from 'styled-components';
 
 export const Recommend = styled.div`
   position: fixed;
-  bottom: 110px;
+  bottom: 130px;
   left: 50px;
 
   z-index: 5;
+
+  @media only screen and (min-width: 0px) {
+    display: none;
+  }
+  @media only screen and (min-width: 768px) {
+    display: inherit;
+  }
 `;
 
-export const RecommendItem = styled.div`
+type IStoreMode = {
+  storemode: boolean;
+};
+
+export const RecommendItem = styled.div<IStoreMode>`
   width: 200px;
   height: 100px;
   border-radius: 10px;
+  padding-left: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   text-align: center;
 
-  background-color: rgba(0, 0, 0, 0.6);
   color: var(--text-white);
-  box-shadow: 0 0 20px var(--black);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+
+  background-color: ${({ storemode }) =>
+    storemode ? 'var(--text-pastel-black-nonwhite-dark);' : 'rgba(0, 0, 0, 0.8);'};
+
+  box-shadow: ${({ storemode }) =>
+    storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
 
   .recommend-item {
     margin: 5px;
@@ -32,6 +48,7 @@ export const RecommendItem = styled.div`
   }
 
   .recommend-item:hover {
+    transform-origin: left;
     transform: scale(1.2);
   }
   h4 {
