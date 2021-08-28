@@ -41,7 +41,8 @@ export default function ProductInfoCount({}: Props): ReactElement {
       setCount(100);
       setInputValue('100');
     } else {
-      setCount(+inputValue);
+      setCount(Math.floor(+inputValue));
+      setInputValue(Math.floor(+inputValue) + '');
     }
   };
 
