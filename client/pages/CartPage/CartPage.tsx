@@ -4,7 +4,7 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
-import { CartData, ICartAddData } from '@middle/type/cart/cart';
+import { CartData, ICartChangeReq } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
@@ -12,10 +12,11 @@ import cache from '@utils/cache';
 import localCart from '@utils/cart';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, delCart, localGetCart, localAddCart } from '@store/product/cart';
+import { getCart, delCart, localGetCart, changeCart } from '@store/product/cart';
 import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
+import _ from 'lodash';
 
 import * as S from './style';
 
@@ -205,6 +206,19 @@ function Cart(): ReactElement {
     setContents([...temp]);
   };
 
+  const changeCartRequest = _.debounce(() => {
+    const changeCartData: ICartChangeReq = {
+      cartIds: [],
+      productCounts: [],
+    };
+    contents.forEach((element) => {
+      changeCartData.cartIds.push(element.id);
+      changeCartData.productCounts.push(element.count);
+    });
+
+    dispatch(changeCart(changeCartData));
+  }, 1000);
+
   return (
     <S.Cart>
       <CartHeader nowStep={ORDER_READY}></CartHeader>
@@ -214,6 +228,7 @@ function Cart(): ReactElement {
             toggleAllHandler={toggleAllHandler}
             toggleOneHandler={toggleOneHandler}
             deleteCheckedItem={deleteCheckedItem}
+            changeCartRequest={changeCartRequest}
             changeItem={changeItem}
             contents={contents}
             metaData={metaData}

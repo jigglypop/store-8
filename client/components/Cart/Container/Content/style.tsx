@@ -150,7 +150,7 @@ export const CartContent = styled.div`
       width: 60px;
     }
     @media only screen and (min-width: 768px) {
-      width: 60px;
+      width: 100px;
     }
     @media only screen and (min-width: 1300px) {
       width: 100px;
@@ -164,7 +164,7 @@ export const CartContent = styled.div`
       transform: scale(0.8);
     }
     @media only screen and (min-width: 768px) {
-      transform: scale(1);
+      transform: scale(0.8);
     }
     @media only screen and (min-width: 1300px) {
       transform: scale(1);

@@ -147,3 +147,24 @@ export const remove = async (req: Request, res: Response) => {
 
   res.status(200).json({ data: result });
 };
+
+export const changeAll = async (req: Request, res: Response) => {
+  const { userId, productCounts, cartIds } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  productCounts.forEach(async (productCount: number, index: number) => {
+    const valid = await Cart.update({ productCount }, { where: { id: cartIds[index] } });
+    if (!valid) {
+      throw new HttpError({
+        status: 400,
+        message: '요청한 Cart 내역 변경을 진행 할 수 없었습니다.',
+      });
+    }
+  });
+
+  let result = await findAll(userId);
+
+  res.status(200).json({ data: result });
+};

@@ -29,6 +29,15 @@ export interface ICartDeleteReq {
   cartIds: number[];
 }
 
+export interface ICartChangeReq {
+  cartIds: number[];
+  productCounts: number[];
+}
+
+export interface ICartChangeRes {
+  cartIds: number[];
+}
+
 export type ICartDeleteRes = CartData[];
 export interface ICartAddReq {
   productId: number;

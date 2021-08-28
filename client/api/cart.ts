@@ -3,6 +3,7 @@ import {
   ICartAddReq,
   ICartLocalAddData,
   ICartLocalGetData,
+  ICartChangeReq,
 } from '@middle/type/cart/cart';
 import cache from '@utils/cache';
 import request, { IThunkApi } from './utils/request';
@@ -50,6 +51,16 @@ export const cartLocalGetApi = async (requestForm: ICartLocalGetData, thunkApi: 
 export const cartLocalAddApi = async (requestForm: ICartLocalAddData, thunkApi: IThunkApi) => {
   const token = cache.get('token');
   const data = await request.post<ICartLocalAddData>('/api/cart/addLocal', requestForm, token);
+  if (data.status !== 200) {
+    const error = data.message;
+    return await thunkApi.rejectWithValue(error);
+  }
+  return await data.data;
+};
+
+export const cartChangeApi = async (requestForm: ICartChangeReq, thunkApi: IThunkApi) => {
+  const token = cache.get('token');
+  const data = await request.post<ICartChangeReq>('/api/cart/change', requestForm, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);
