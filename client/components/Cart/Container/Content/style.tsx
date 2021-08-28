@@ -81,13 +81,7 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       font-size: var(--body-small-font);
     }
-    @media only screen and (min-width: 375px) {
-      font-size: var(--body-small-font);
-    }
     @media only screen and (min-width: 768px) {
-      font-size: var(--body-middle-font);
-    }
-    @media only screen and (min-width: 1300px) {
       font-size: var(--body-middle-font);
     }
   }
@@ -96,13 +90,7 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       font-size: var(--body-middle-font);
     }
-    @media only screen and (min-width: 375px) {
-      font-size: var(--body-middle-font);
-    }
     @media only screen and (min-width: 768px) {
-      font-size: 1rem;
-    }
-    @media only screen and (min-width: 1300px) {
       font-size: 1rem;
     }
   }
@@ -118,16 +106,7 @@ export const CartContent = styled.div`
       transform: scale(0.8);
       transform-origin: left;
     }
-    @media only screen and (min-width: 375px) {
-      width: 80px;
-      transform: scale(0.8);
-      transform-origin: left;
-    }
     @media only screen and (min-width: 768px) {
-      width: 100px;
-      transform: scale(1);
-    }
-    @media only screen and (min-width: 1300px) {
       width: 100px;
       transform: scale(1);
     }
@@ -146,13 +125,7 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       width: 60px;
     }
-    @media only screen and (min-width: 375px) {
-      width: 60px;
-    }
     @media only screen and (min-width: 768px) {
-      width: 100px;
-    }
-    @media only screen and (min-width: 1300px) {
       width: 100px;
     }
   }
@@ -160,14 +133,8 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       transform: scale(0.8);
     }
-    @media only screen and (min-width: 375px) {
-      transform: scale(0.8);
-    }
     @media only screen and (min-width: 768px) {
       transform: scale(0.8);
-    }
-    @media only screen and (min-width: 1300px) {
-      transform: scale(1);
     }
   }
 

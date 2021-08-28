@@ -77,6 +77,10 @@ export const SearchInner = styled.div`
         width: 202px;
       }
     }
+
+    .elastic.search {
+      color: var(--text-white);
+    }
   }
 
   .search-inner-input {
@@ -134,7 +138,7 @@ export const SearchInner = styled.div`
       height: 200px;
       width: 105px;
       margin-left: -10px;
-      overflow-y: scroll;
+      overflow-y: auto;
       overflow-x: hidden;
     }
     @media only screen and (min-width: 768px) {

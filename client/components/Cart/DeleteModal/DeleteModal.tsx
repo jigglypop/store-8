@@ -17,14 +17,15 @@ function DeleteModal(props: DeleteModalProps): ReactElement {
       <S.DeleteModal>
         <div>
           <p className="delete-modal-title">{NEXT_DELETE_TEXT}</p>
-          <div>
+          <div className="delete-modal-contents-container">
             {props.deleteLists.map((deleteIndex) => {
               const { option, title, count } = props.contents[deleteIndex];
+              const infoText = `${title} ${
+                option.length !== 0 ? `${'(' + option + ')'}` : ''
+              } ${` x ${count}`}`;
               return (
                 <div className="delete-row" key={deleteIndex}>
-                  <p>{title}</p>
-                  {option.length !== 0 ? <p>{'(' + option + ')'}</p> : <></>}
-                  <p>{'_x ' + count}</p>
+                  <p>{infoText}</p>
                 </div>
               );
             })}
