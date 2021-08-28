@@ -37,6 +37,18 @@ export const OrderDetailContents = styled.div`
     .contents-detail-amount {
       margin-right: 3px;
       color: var(--text-black-dark);
+      @media only screen and (min-width: 0px) {
+        font-size: var(--body-middle-font);
+      }
+      @media only screen and (min-width: 375px) {
+        font-size: var(--body-middle-font);
+      }
+      @media only screen and (min-width: 768px) {
+        font-size: 1rem;
+      }
+      @media only screen and (min-width: 1300px) {
+        font-size: 1rem;
+      }
     }
     .contents-detail-count {
       margin-top: 3px;

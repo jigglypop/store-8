@@ -164,7 +164,5 @@ export const changeAll = async (req: Request, res: Response) => {
     }
   });
 
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
+  res.status(200).json({ data: 'ok' });
 };

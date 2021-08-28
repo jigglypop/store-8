@@ -12,7 +12,8 @@ import cache from '@utils/cache';
 import localCart from '@utils/cart';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, delCart, localGetCart, changeCart } from '@store/product/cart';
+import { useCart } from '@client/hooks/order/cart';
+import { getCart, delCart, localGetCart } from '@store/product/cart';
 import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
@@ -23,9 +24,10 @@ import * as S from './style';
 function Cart(): ReactElement {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
-  const [contents, setContents] = useState(cartDataChanger(cart));
-  const [deleteItem, setDeleteLists] = useState([0]);
+  const [contents, setContents] = useState<ClientCartData[]>(cartDataChanger(cart));
+  const [deleteItem, setDeleteLists] = useState<number[]>([0]);
   const [isOpenForm, setOpenForm] = useState(false);
+  const { changeCart } = useCart();
   const token = cache.get('token');
 
   useEffect(() => {
@@ -117,7 +119,6 @@ function Cart(): ReactElement {
   // Contents 가 바뀔 때 마다 toggle, 가격 등의 변화를 주기 위한 useEffect
   useEffect(() => {
     setMetaData(calcMetaData());
-    dispatch(setOrderList(makeOrderData()));
   }, [contents]);
 
   // 전체 toggle이 켜져있다면 모두 끄고, 꺼져있다면 모두 키는 함수
@@ -203,7 +204,7 @@ function Cart(): ReactElement {
       temp[index].isChecked = true;
     }
 
-    setContents([...temp]);
+    setContents([...contents]);
   };
 
   const changeCartRequest = _.debounce(() => {
@@ -211,13 +212,14 @@ function Cart(): ReactElement {
       cartIds: [],
       productCounts: [],
     };
+
     contents.forEach((element) => {
       changeCartData.cartIds.push(element.id);
       changeCartData.productCounts.push(element.count);
     });
 
-    dispatch(changeCart(changeCartData));
-  }, 1000);
+    changeCart(changeCartData);
+  });
 
   return (
     <S.Cart>
