@@ -92,9 +92,9 @@ export default function AddressSection(): ReactElement {
           );
         })}
       </div>
-      <div className="add-address">
+      <div className="add-address" onClick={openAddModal}>
         <NumAdd className="add-image" />
-        <p onClick={openAddModal}>{'배송지 추가하기'}</p>
+        <p>{'배송지 추가하기'}</p>
       </div>
       {isDeleteModalFocused && (
         <AddressDeleteModal
