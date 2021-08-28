@@ -205,9 +205,11 @@ export const SearchInner = styled.div`
       }
       @media only screen and (min-width: 768px) {
         left: 170px;
+        opacity: 1;
       }
       @media only screen and (min-width: 1300px) {
         left: 170px;
+        opacity: 1;
       }
     }
   }
@@ -262,9 +264,10 @@ export const TagItem = styled.div`
   }
 
   .tag-container {
-    p {
-      color: white;
-    }
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: white;
   }
 `;
 
@@ -301,8 +304,9 @@ export const ElaItem = styled.div`
   }
 
   .tag-container {
-    p {
-      color: white;
-    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
   }
 `;

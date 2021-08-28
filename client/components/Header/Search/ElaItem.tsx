@@ -15,9 +15,7 @@ export default function ElaItem({ item }: ElaItemProps) {
         <div className="search-button-container search">
           <SearchGotoButton className="search-button search" />
         </div>
-        <div className="tag-container search">
-          <p>{title}</p>
-        </div>
+        <div className="tag-container search">{title}</div>
       </S.ElaItem>
     </Link>
   );
