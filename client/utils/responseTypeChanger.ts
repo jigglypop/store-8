@@ -6,7 +6,7 @@ export function cartDataChanger(responseCart: CartData[] | null): ClientCartData
     responseCart.map((element) => {
       result.push({
         id: element.id,
-        isChecked: true,
+        isChecked: element.count !== 0,
         imgLink: element.imgSrc,
         title: element.title,
         option: element.option,

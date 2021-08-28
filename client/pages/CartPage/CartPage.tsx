@@ -140,6 +140,7 @@ function Cart(): ReactElement {
     temp[index].isChecked = !temp[index].isChecked;
     if (temp[index].count === 0) {
       temp[index].count = 1;
+      changeCartRequest();
     }
     setContents([...temp]);
   };
@@ -194,7 +195,11 @@ function Cart(): ReactElement {
       return;
     }
 
-    temp[index].count += changeAmount;
+    if (temp[index].count + changeAmount <= 100) {
+      temp[index].count += changeAmount;
+    } else {
+      temp[index].count = 100;
+    }
 
     if (temp[index].count === 0) {
       temp[index].isChecked = false;

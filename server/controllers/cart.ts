@@ -127,12 +127,15 @@ export const add = async (req: Request, res: Response) => {
   const search = await Cart.findOne({ where: { userId, productId, productOptionId } });
   {
     if (search) {
+      const count =
+        search.productCount + productCount > 100 ? 100 : search.productCount + productCount;
       valid = await Cart.update(
-        { productCount: search.productCount + productCount },
+        { productCount: count },
         { where: { userId, productId, productOptionId } }
       );
     } else {
-      valid = await Cart.create({ userId, productId, productOptionId, productCount });
+      const count = productCount > 100 ? 100 : productCount;
+      valid = await Cart.create({ userId, productId, productOptionId, productCount: count });
     }
   }
 
