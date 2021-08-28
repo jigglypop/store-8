@@ -98,10 +98,11 @@ export const Picker = styled.div`
   }
 `;
 
-export const DarkMode = styled.div`
-  position: fixed;
-  bottom: 50px;
-  left: 50px;
+type IStoreMode = {
+  storemode: boolean;
+};
+
+export const DarkMode = styled.div<IStoreMode>`
   z-index: 20;
   padding-left: 12px;
 
@@ -113,19 +114,23 @@ export const DarkMode = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 40px;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px var(--black);
+
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px var(--text-black);
   transition: all 0.3s ease-in;
   cursor: pointer;
+
+  background-color: ${({ storemode }) =>
+    storemode ? 'var(--text-pastel-black-nonwhite-dark);' : 'rgba(0, 0, 0, 0.8);'};
+
+  box-shadow: ${({ storemode }) =>
+    storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
 
   &:hover {
     width: 150px;
     height: 50px;
     & > p {
-      height: 42px;
+      line-height: 42px;
 
       @media only screen and (min-width: 0px) {
         width: 42px;
@@ -134,10 +139,10 @@ export const DarkMode = styled.div`
         width: 42px;
       }
       @media only screen and (min-width: 768px) {
-        width: 140px;
+        width: 100px;
       }
       @media only screen and (min-width: 1300px) {
-        width: 140px;
+        width: 100px;
       }
     }
 
@@ -168,12 +173,12 @@ export const DarkMode = styled.div`
     display: none;
   }
 
-  path {
-    fill: var(--text-picker);
-    stroke: var(--text-picker);
-  }
-
   svg {
+    path {
+      fill: var(--text-picker);
+      stroke: var(--text-picker);
+    }
+
     path:first-child {
       fill: var(--text-picker);
       stroke: none;
@@ -249,14 +254,18 @@ export const HeaderOuter = styled.div`
   .slider-all {
     display: flex;
   }
-  .left-down-button-space {
-    display: flex;
-    flex-direction: row;
 
+  .fab-container {
+    z-index: 20;
     position: fixed;
     bottom: 50px;
     left: 50px;
-    z-index: 20;
+    display: flex;
+    flex-direction: row;
+
+    & > * {
+      margin-right: 10px;
+    }
   }
 `;
 // 헤더 부분

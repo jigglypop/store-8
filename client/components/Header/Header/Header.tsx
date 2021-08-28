@@ -90,10 +90,12 @@ const Header = ({ check, onLogout }: IHeader) => {
         </div>
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
-      <DarkMode />
-      <Recommend />
-      <StoreMode />
-      <GoIntro />
+      <div className="fab-container">
+        <GoIntro />
+        <DarkMode />
+        <StoreMode />
+      </div>
+      {/*<Recommend />*/}
     </S.HeaderOuter>
   );
 };
