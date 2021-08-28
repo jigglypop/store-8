@@ -34,7 +34,7 @@ export default function ImgListForm({
     }
 
     if (!checkImgSize(imgBlob)) {
-      setFormError('0MB 이하 이미지만 업로드 가능합니다.');
+      setFormError('10MB 이하 이미지만 업로드 가능합니다.');
       return;
     }
 

@@ -5,34 +5,31 @@ import * as S from './style';
 
 interface Props {
   src: string;
+  isTablet?: boolean;
+  isMobile?: boolean;
 }
 
-export default function ImgMagifier({ src }: Props): ReactElement {
+export default function ImgMagifier({
+  src,
+  isTablet = false,
+  isMobile = false,
+}: Props): ReactElement {
   const IMG_SRC = src;
-  const [imgWidth, setImgWitdh] = useState(480);
-  const [imgHeight, setImgHeight] = useState(530);
-  const [magifiedHeight, setMagifiedHeight] = useState(300);
-  const [magnifiedWidth, setMagnifiedWidth] = useState(300);
+  let imgWidth: number = 480;
+  let imgHeight: number = 530;
+  let magifiedHeight: number = 300;
+  let magnifiedWidth: number = 300;
+
+  if (isTablet) {
+    imgWidth = 300;
+    imgHeight = 330;
+    magifiedHeight = 150;
+    magnifiedWidth = 150;
+  }
+
   const [showMagifier, setShowMagifier] = useState(false);
   const [[positionX, positionY], setPosition] = useState([0, 0]);
 
-  const resizeImg = () => {
-    const width = window.innerWidth;
-
-    if (width > 1300) {
-      setImgWitdh(480);
-      setImgHeight(530);
-      setMagifiedHeight(300);
-      setMagnifiedWidth(300);
-    } else {
-      setImgWitdh(300);
-      setImgHeight(330);
-      setMagifiedHeight(150);
-      setMagnifiedWidth(150);
-    }
-  };
-
-  const handleWindowSize = debounce(resizeImg, 200);
   const handleMouseEnter = () => setShowMagifier(true);
   const handleMouseLeave = () => setShowMagifier(false);
 
@@ -65,12 +62,6 @@ export default function ImgMagifier({ src }: Props): ReactElement {
     return positionY;
   };
 
-  useEffect(() => {
-    resizeImg();
-    window.addEventListener('resize', handleWindowSize);
-    return () => window.removeEventListener('resize', handleWindowSize);
-  }, []);
-
   return (
     <S.ZoomImg
       imgWitdh={imgWidth}
@@ -80,7 +71,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
       onMouseMove={handleMouseMove}
     >
       <img src={IMG_SRC} alt="image" />
-      {showMagifier && (
+      {showMagifier && !isMobile && (
         <S.Magnifier
           width={magnifiedWidth}
           height={magifiedHeight}
@@ -88,7 +79,7 @@ export default function ImgMagifier({ src }: Props): ReactElement {
           positionY={positionY}
         />
       )}
-      {showMagifier && (
+      {showMagifier && !isMobile && (
         <S.MagnifiedImg
           imgWidth={imgWidth}
           imgHeight={imgHeight}

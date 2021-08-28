@@ -24,6 +24,7 @@ export const QuestionDetail = styled.div`
 
   .question-detail__title {
     width: 60px;
+    margin-right: 20px;
     padding-top: 25px;
   }
 
@@ -34,7 +35,8 @@ export const QuestionDetail = styled.div`
 
   .question-detail__btns {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 20px;
     padding-right: 30px;
     .question-detail__edit-btn {
       cursor: pointer;
@@ -45,5 +47,13 @@ export const QuestionDetail = styled.div`
       stroke: var(--text-red);
       margin-left: 20px;
     }
+  }
+  @media only screen and (max-width: 1300px) {
+  }
+  @media only screen and (max-width: 768px) {
+    .question-detail__title {
+      width: 20px;
+    }
+    font-size: var(--body-tiny-font);
   }
 `;

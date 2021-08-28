@@ -11,23 +11,8 @@ export const DetailInfo = styled.section`
   }
   .detail-imgs {
     text-align: center;
-  }
-  @media only screen and (min-width: 375px) {
-    width: 100vw;
-    .detail-imgs > img {
-      width: 100vw;
-    }
-  }
-  @media only screen and (min-width: 768px) {
-    width: 668px;
-    .detail-imgs > img {
-      width: 668px;
-    }
-  }
-  @media only screen and (min-width: 1300px) {
-    width: 1200px;
-    .detail-imgs > img {
-      width: 1200px;
+    & > img {
+      width: 100%;
     }
   }
 `;

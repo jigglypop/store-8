@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ProductQuestionList = styled.section`
+  width: 100%;
   background-color: var(--body-background-dark);
   color: var(--text-pastel-black-dark);
   margin-top: 45px;
