@@ -7,7 +7,7 @@ export const Modal = styled.div`
   width: 800px;
   height: 65vh;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 9;
   border-radius: 20px;
 
   display: flex;

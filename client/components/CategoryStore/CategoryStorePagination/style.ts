@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const CategoryPagination = styled.div`
   position: fixed;
-  top: 100px;
-  right: 50px;
+  bottom: 100px;
+  left: 50%;
   min-width: 200px;
   height: 100px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  transform: translateX(-50%);
   z-index: 8;
 
   .pagination-inner {
@@ -39,5 +40,19 @@ export const PaginationItem = styled.div`
       font-weight: 800;
       color: var(--text-picker);
     }
+  }
+  @media only screen and (max-width: 600px) {
+    margin: 5px;
+    .pagination-text {
+      p {
+        font-size: 12px;
+      }
+      .now {
+        font-size: 12px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    margin: 3px;
   }
 `;

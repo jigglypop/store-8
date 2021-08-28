@@ -10,6 +10,7 @@ import { useRouter } from '@client/hooks/router/router';
 import CategoryStoreOuter from './model/CategoryStoreOuter';
 import Progress from '../StoreUtils/Progress/Progress';
 import { useState } from 'react';
+import TipButton from '../Tip/TipButton';
 
 export default function CategoryStore() {
   const [progress, setProgress] = useState(0);
@@ -19,6 +20,7 @@ export default function CategoryStore() {
   return (
     <>
       <S.ThreeWrapper>
+        <TipButton />
         <CategoryStoreTitle />
         <CategoryStorePagination />
         <Canvas

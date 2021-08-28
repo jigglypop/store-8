@@ -22,7 +22,7 @@ export const DreamMoonbangooInfo = () => {
     <div className="info">
       <h1>드림 문방구</h1>
       <h4>생산성 있는 태클을 걸고, 이유있게 반박하자!</h4>
-      <h4>안녕하세요! 저희는 D가 4명이 모인 개발팀 Dream D4 입니다!</h4>
+      <h4>저희는 D가 4명이 모인 개발팀 Dream D4 입니다!</h4>
     </div>
   );
 };

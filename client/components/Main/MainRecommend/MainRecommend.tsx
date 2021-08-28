@@ -33,7 +33,7 @@ const MainRecommend = () => {
           <div className="content">
             {recommend.map((element, index) => {
               return (
-                <Link to={`/product/${element.id + 1}`} className="rec-link" key={index}>
+                <Link to={`/product/${element.id}`} className="rec-link" key={index}>
                   <div className="rec-item">
                     <div className="text">
                       <p className="large">{element.title}</p>

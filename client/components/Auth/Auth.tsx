@@ -88,22 +88,7 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
           <MainSvg />
         </S.LogoText>
         <div className="auth-title">{text.logo}</div>
-        {types === 'register' && (
-          <>
-            <S.Input>
-              <input
-                autoComplete="username"
-                name="username"
-                placeholder="아이디 (2자 ~ 16자)"
-                onChange={(e) => onChangeUsername('username', e)}
-              />
-            </S.Input>
 
-            <div className="error-msg">
-              <h4>{usernameError}</h4>
-            </div>
-          </>
-        )}
         <S.Input>
           <input
             name="email"
@@ -115,7 +100,22 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
         <div className="error-msg">
           <h4>{emailError}</h4>
         </div>
+        {types === 'register' && (
+          <>
+            <S.Input>
+              <input
+                autoComplete="username"
+                name="username"
+                placeholder="닉네임 (2자 ~ 16자)"
+                onChange={(e) => onChangeUsername('username', e)}
+              />
+            </S.Input>
 
+            <div className="error-msg">
+              <h4>{usernameError}</h4>
+            </div>
+          </>
+        )}
         <S.Input>
           <input
             autoComplete="password"
