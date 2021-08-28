@@ -122,15 +122,34 @@ export const GlobalStyle = createGlobalStyle`
     @media only screen and (min-width: 1300px) {
       --app-width: 1200px;
     }
+    
     /* 캐러셀  width만 조정 */
     @media only screen and (max-width: 1300px) {
-      --carousel-width: 1200px;
+      --carousel-width: 1150px;
+    }
+    @media only screen and (max-width: 1200px) {
+      --carousel-width: 1050px;
+    }
+    @media only screen and (max-width: 1100px) {
+      --carousel-width: 950px;
+    }
+    @media only screen and (max-width: 1000px) {
+      --carousel-width: 850px;
     }
     @media only screen and (max-width: 900px) {
-      --carousel-width: 800px;
+      --carousel-width: 750px;
+    }
+    @media only screen and (max-width: 800px) {
+      --carousel-width: 650px;
+    }
+    @media only screen and (max-width: 700px) {
+      --carousel-width: 550px;
     }
     @media only screen and (max-width: 600px) {
-      --carousel-width: 400px;
+      --carousel-width: 450px;
+    }
+    @media only screen and (max-width: 500px) {
+      --carousel-width: 350px;
     }
     @media only screen and (max-width: 375px) {
       --carousel-width: 300px;

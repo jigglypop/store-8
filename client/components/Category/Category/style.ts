@@ -39,6 +39,13 @@ export const Category = styled(MainItem)`
     }
     .category-item.isSelected {
       color: var(--text-picker);
+      text-shadow: var(--shadow-picker);
+    }
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      .category-item {
+        font-size: 10px;
+      }
     }
   }
 `;

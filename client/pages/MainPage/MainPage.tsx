@@ -1,3 +1,4 @@
+import MainRecommend from '@client/components/Main/MainRecommend/MainRecommend';
 import Carousel from '../../components/Main/Carousel/Carousel';
 import MainBest from '../../components/Main/MainBest/MainBest';
 import MainGift from '../../components/Main/MainGift/MainGift';
@@ -20,6 +21,7 @@ const MainPage = () => {
           <MainNew main={main} />
           <MainSale main={main} />
           <MainGift />
+          <MainRecommend />
         </S.MainPage>
       ) : (
         <>

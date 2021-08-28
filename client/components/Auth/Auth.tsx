@@ -1,7 +1,6 @@
 import * as S from './style';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { Link } from '../../utils/router';
-import { Input } from '../common/input/Input';
 import { GITHUB_URL } from '@client/constants/server_url';
 import MainSvg from '@image/svg/mainHorizontal.svg';
 import { validate } from '@client/utils/validate';

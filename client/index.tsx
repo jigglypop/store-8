@@ -27,8 +27,6 @@ const loadUser = async () => {
       // 서버와 Cart 데이터 동기화
       store.dispatch(localAddCart({ data: localCartData }));
       localCart.init(); // 모두 서버와 동기화 후 초기화하기.
-
-      // dispatch(getCart(cache.get('token')));
       await store.dispatch(getRecommend(cache.get('token')));
     }
   } catch (e) {

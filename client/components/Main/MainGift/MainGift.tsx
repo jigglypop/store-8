@@ -27,7 +27,7 @@ const MainGift = () => {
               </div>
               <div className="text">
                 <p className="large">우리 둘만 아는 이야기</p>
-                <p className="small">쉿 비밀펜</p>
+                <p className="small">쉿 비밀펜으로 써보세요</p>
               </div>
             </div>
           </Link>

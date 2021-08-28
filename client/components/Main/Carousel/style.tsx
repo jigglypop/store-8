@@ -41,6 +41,8 @@ export const Carousel = styled.div`
   align-items: center;
 
   .carouselInner {
+    position: relative;
+    width: 100%;
     width: var(--carousel-width);
     margin: 20px;
     height: 600px;
