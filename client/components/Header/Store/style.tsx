@@ -29,9 +29,52 @@ export const StoreMode = styled.div<IStoreMode>`
     storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
 
   &:hover {
-    width: 150px;
     height: 50px;
+    @media only screen and (min-width: 0px) {
+      width: 50px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 50px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 150px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 150px;
+    }
     & > p {
+      line-height: 42px;
+
+      @media only screen and (min-width: 0px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 100px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 100px;
+      }
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+  }
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
       display: inherit;
       white-space: nowrap;
       text-overflow: clip;
