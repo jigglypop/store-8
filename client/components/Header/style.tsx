@@ -255,13 +255,32 @@ export const HeaderOuter = styled.div`
   .fab-container {
     z-index: 20;
     position: fixed;
-    bottom: 50px;
-    left: 50px;
     display: flex;
     flex-direction: row;
 
     & > * {
       margin-right: 10px;
+    }
+
+    @media only screen and (min-width: 0px) {
+      bottom: 10px;
+      left: 0px;
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 375px) {
+      bottom: 10px;
+      left: 0px;
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 768px) {
+      bottom: 50px;
+      left: 50px;
+      transform: scale(1);
+    }
+    @media only screen and (min-width: 1300px) {
+      bottom: 50px;
+      left: 50px;
+      transform: scale(1);
     }
   }
 `;

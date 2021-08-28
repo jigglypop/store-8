@@ -31,27 +31,75 @@ export const SearchInner = styled.div`
   .tags {
     display: flex;
     flex-direction: column;
-    width: 210px;
 
     & > p {
-      width: 202px;
       text-align: start;
       margin: 6px 0px 6px 8px;
     }
+
+    @media only screen and (min-width: 0px) {
+      width: 105px;
+      & > p {
+        width: 101px;
+      }
+    }
+    @media only screen and (min-width: 375px) {
+      width: 105px;
+      & > p {
+        width: 101px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      width: 210px;
+      & > p {
+        width: 202px;
+      }
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 210px;
+      & > p {
+        width: 202px;
+      }
+    }
   }
+
   .tags.search {
     color: var(--text-white);
   }
+
   .elastic {
     display: flex;
     flex-direction: column;
-    width: 210px;
     margin-bottom: 6px;
 
     & > p {
-      width: 202px;
       text-align: start;
       margin: 6px 0px 6px 8px;
+    }
+
+    @media only screen and (min-width: 0px) {
+      width: 105px;
+      & > p {
+        width: 101px;
+      }
+    }
+    @media only screen and (min-width: 375px) {
+      width: 105px;
+      & > p {
+        width: 101px;
+      }
+    }
+    @media only screen and (min-width: 768px) {
+      width: 210px;
+      & > p {
+        width: 202px;
+      }
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 210px;
+      & > p {
+        width: 202px;
+      }
     }
   }
 
@@ -84,6 +132,18 @@ export const SearchInner = styled.div`
     position: absolute;
     top: 8px;
     left: 8px;
+    @media only screen and (min-width: 0px) {
+      transform: scale(0.7);
+    }
+    @media only screen and (min-width: 375px) {
+      transform: scale(0.7);
+    }
+    @media only screen and (min-width: 768px) {
+      transform: scale(1);
+    }
+    @media only screen and (min-width: 1300px) {
+      transform: scale(1);
+    }
     circle {
       stroke: white;
       fill: transparent;
@@ -94,37 +154,60 @@ export const SearchInner = styled.div`
   }
 
   &.wide {
-    height: 332px;
-    width: 210px;
-    /* overflow: scroll; */
+    @media only screen and (min-width: 0px) {
+      height: 200px;
+      width: 105px;
+      margin-left: -10px;
+    }
+    @media only screen and (min-width: 375px) {
+      height: 200px;
+      width: 105px;
+      margin-left: -10px;
+    }
+    @media only screen and (min-width: 768px) {
+      height: 332px;
+      width: 210px;
+    }
+    @media only screen and (min-width: 1300px) {
+      height: 332px;
+      width: 210px;
+    }
 
     input {
       display: inherit;
-      width: 190px;
       margin: 8px 10px;
       padding: 0px 12px;
       border-bottom: 2px solid var(--gray3);
+
+      @media only screen and (min-width: 0px) {
+        width: 95px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 95px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 190px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 190px;
+      }
     }
     .search-icon {
       position: absolute;
-      left: 170px;
       top: 11px;
-    }
-    .tag-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 30px;
-      font-size: 12px;
-      margin: 5px;
-      padding: 5px;
-      background-color: var(--text-white);
-      border-radius: 10px;
-      color: var(--text-black);
-
-      span {
-        margin: 0 5px;
-        cursor: pointer;
+      @media only screen and (min-width: 0px) {
+        left: 75px;
+        opacity: 0;
+      }
+      @media only screen and (min-width: 375px) {
+        left: 75px;
+        opacity: 0;
+      }
+      @media only screen and (min-width: 768px) {
+        left: 170px;
+      }
+      @media only screen and (min-width: 1300px) {
+        left: 170px;
       }
     }
   }
