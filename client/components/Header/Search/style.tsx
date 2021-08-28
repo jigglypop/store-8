@@ -35,6 +35,7 @@ export const SearchInner = styled.div`
     & > p {
       text-align: start;
       margin: 6px 0px 6px 8px;
+      color: var(--text-white);
     }
 
     @media only screen and (min-width: 0px) {
@@ -49,10 +50,6 @@ export const SearchInner = styled.div`
         width: 202px;
       }
     }
-  }
-
-  .tags.search {
-    color: var(--text-white);
   }
 
   .elastic {
@@ -63,6 +60,7 @@ export const SearchInner = styled.div`
     & > p {
       text-align: start;
       margin: 6px 0px 6px 8px;
+      color: var(--text-white);
     }
 
     @media only screen and (min-width: 0px) {
@@ -76,10 +74,6 @@ export const SearchInner = styled.div`
       & > p {
         width: 202px;
       }
-    }
-
-    .elastic.search {
-      color: var(--text-white);
     }
   }
 
