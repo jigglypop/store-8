@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import { ReactElement, useState, MouseEvent } from 'react';
 import * as S from './style';
 
 interface Props {
@@ -31,7 +31,15 @@ export default function ImgMagifier({
   const handleMouseEnter = () => setShowMagifier(true);
   const handleMouseLeave = () => setShowMagifier(false);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isMobile) return;
+
+    const target = e.target;
+    if (target instanceof HTMLImageElement && target.alt === 'magnified-image') {
+      setShowMagifier(false);
+      return;
+    }
+
     const imgElem = e.currentTarget;
     const { top, left } = imgElem.getBoundingClientRect();
 
@@ -77,7 +85,7 @@ export default function ImgMagifier({
           positionY={positionY}
         />
       )}
-      {showMagifier && !isMobile && (
+      {!isMobile && (
         <S.MagnifiedImg
           imgWidth={imgWidth}
           imgHeight={imgHeight}
@@ -85,6 +93,7 @@ export default function ImgMagifier({
           magnifierHeight={magifiedHeight}
           positionX={positionX}
           positionY={positionY}
+          showMagifier={showMagifier}
         >
           <img src={IMG_SRC} alt="magnified-image" />
         </S.MagnifiedImg>
