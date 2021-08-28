@@ -5,9 +5,9 @@ import ImgMagifier from './ImgMagnifier/ImgMagifier';
 import ProductInfo from './ProductInfo/ProductInfo';
 import DetailBtns from './DetailBtns /DetailBtns';
 import ProductInfoTitle from './ProductInfo/ProductInfoTitle';
+import { Desktop, Tablet, Mobile } from '../common/ResponseComp/ResponseComp';
 
 import { useProduct } from '@client/hooks/product/product';
-import { Desktop, Tablet, Mobile } from '../common/ResponseComp/ResponseComp';
 
 interface Props {}
 

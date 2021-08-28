@@ -1,5 +1,7 @@
-import PaginationItem from './PaginationItem';
 import * as S from './style';
+
+import PaginationItem from './PaginationItem';
+
 import { useSearch } from '@client/hooks/search/search';
 
 interface ISearchPaginationComponent {

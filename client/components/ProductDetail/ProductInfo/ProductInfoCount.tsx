@@ -1,9 +1,10 @@
 import { useState, ReactElement, FormEvent } from 'react';
 import * as S from './style';
 
+import { TITLE_BUY_AMOUNT } from '@constants/productDetail/productDetailInfo/productDetailInfo';
+
 import ProductCountForm from './ProductCountForm/ProductCountForm';
 
-import { TITLE_BUY_AMOUNT } from '@constants/productDetail/productDetailInfo/productDetailInfo';
 import { useProduct } from '@client/hooks/product/product';
 
 interface Props {}

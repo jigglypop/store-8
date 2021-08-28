@@ -1,9 +1,9 @@
-import React, { ReactElement, Dispatch, SetStateAction, useState, ChangeEvent } from 'react';
-
+import { ReactElement, Dispatch, SetStateAction, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
 import Plus from '@image/icon/plusIcon.svg';
 import ImgItem from './ImgItem';
+
 import { uploadImg } from '@api/upload';
 
 interface Props {

@@ -1,6 +1,4 @@
-import { debounce } from '@client/utils/performance';
 import React, { ReactElement, useState } from 'react';
-import { useEffect } from 'react';
 import * as S from './style';
 
 interface Props {
