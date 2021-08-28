@@ -6,7 +6,6 @@ import DetailInfo from './DetailInfo/DetailInfo';
 import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
 import RefundInfo from './RefundInfo/RefundInfo';
 import ProductReviewList from './ProductReviewList/ProductReviewList';
-import styled from 'styled-components';
 import ProductQuestionList from './ProductQuestionList/ProductQuestionList';
 
 import {

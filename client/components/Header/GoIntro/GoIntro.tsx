@@ -3,6 +3,7 @@ import * as S from './style';
 import { useRouter } from '@client/hooks/router/router';
 import { Link } from '@client/utils/router';
 import { useStoreMode } from '@client/hooks/storemode/storemode';
+
 export default function GoIntro() {
   const { router } = useRouter();
   const { storemode } = useStoreMode();

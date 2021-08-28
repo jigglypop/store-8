@@ -5,6 +5,7 @@ import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 import { CartData, ICartAddReq } from '../../middle/type/cart/cart';
+import { Transaction } from 'sequelize';
 
 const findAll = async (userId: number) => {
   const carts = await Cart.findAll({ where: { userId } });
@@ -122,14 +123,28 @@ export const add = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
 
-  const valid = await Cart.create({ userId, productId, productOptionId, productCount });
-  if (!valid) {
-    throw new HttpError({ status: 400, message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.' });
+  let valid: boolean | [number, Cart[]] | Cart = true;
+  const search = await Cart.findOne({ where: { userId, productId, productOptionId } });
+  {
+    if (search) {
+      valid = await Cart.update(
+        { productCount: search.productCount + productCount },
+        { where: { userId, productId, productOptionId } }
+      );
+    } else {
+      valid = await Cart.create({ userId, productId, productOptionId, productCount });
+    }
   }
 
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
+  if (!valid) {
+    throw new HttpError({
+      status: 400,
+      message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.',
+    });
+  } else {
+    let result = await findAll(userId);
+    res.status(200).json({ data: result });
+  }
 };
 
 export const remove = async (req: Request, res: Response) => {
