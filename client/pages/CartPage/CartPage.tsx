@@ -224,7 +224,7 @@ function Cart(): ReactElement {
     });
 
     changeCart(changeCartData);
-  });
+  }, 300);
 
   return (
     <S.Cart>

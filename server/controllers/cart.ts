@@ -5,7 +5,6 @@ import Cart from '../models/Cart';
 import HttpError from '../utils/HttpError';
 import { err } from '../constants/error';
 import { CartData, ICartAddReq } from '../../middle/type/cart/cart';
-import { Transaction } from 'sequelize';
 
 const findAll = async (userId: number) => {
   const carts = await Cart.findAll({ where: { userId } });
