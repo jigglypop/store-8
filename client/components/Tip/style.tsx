@@ -71,6 +71,24 @@ export const TipButton = styled.div`
   border-radius: 15px;
   animation: ${textBlink} 1s alternate infinite;
   cursor: pointer;
+
+  @media only screen and (max-width: 900px) {
+    top: 140px;
+
+    width: 80px;
+    height: 40px;
+    .tip-item {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    top: 160px;
+
+    width: 70px;
+    .tip-item {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const TipItem = styled.div`
@@ -82,21 +100,7 @@ export const TipItem = styled.div`
     font-size: 40px;
     font-weight: 800;
   }
-  @media only screen and (max-width: 900px) {
-    h1 {
-      font-size: 30px;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    h1 {
-      font-size: 20px;
-    }
-    .img-content {
-      img {
-        width: 300px;
-      }
-    }
-  }
+
   .img-content {
     display: flex;
     flex-direction: column;
@@ -106,6 +110,26 @@ export const TipItem = styled.div`
 
     img {
       width: 400px;
+    }
+  }
+  @media only screen and (max-width: 900px) {
+    h1 {
+      font-size: 30px;
+    }
+    .img-content {
+      img {
+        width: 300px;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 20px;
+    }
+    .img-content {
+      img {
+        width: 250px;
+      }
     }
   }
 `;

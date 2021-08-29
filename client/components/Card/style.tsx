@@ -89,19 +89,23 @@ export const Card = styled.div`
       .text {
         margin-top: 5px;
         .red {
-          font-size: 12px;
-        }
-
-        .large {
-          font-size: 12px;
-        }
-
-        .line {
+          margin: 2px 2px;
           font-size: 10px;
         }
 
+        .large {
+          margin: 2px 2px;
+          font-size: 10px;
+        }
+
+        .line {
+          margin: 2px 2px;
+          font-size: 8px;
+        }
+
         .small {
-          font-size: 12px;
+          margin: 2px 2px;
+          font-size: 10px;
         }
       }
     }

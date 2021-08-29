@@ -35,7 +35,17 @@ export const Progress = styled.div<IProgress>`
   }
   @media only screen and (max-width: 600px) {
     .img-content {
+      margin: 10px 0;
       flex-direction: column;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .img-content {
+      margin: 0;
+      flex-direction: column;
+    }
+    img {
+      width: 180px;
     }
   }
   .progress-inner {
@@ -47,32 +57,7 @@ export const Progress = styled.div<IProgress>`
     box-shadow: 0 0 20px var(--black);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    /* 기본 백그라운드 */
-    background: var(--body-background-dark);
 
-    /* 스크롤 */
-    ::-webkit-scrollbar {
-      width: 15px;
-      background-color: var(--text-white-dark);
-    }
-    /* 스크롤 엄지부분 */
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--header-gradient-picker);
-      border-radius: 10px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-    /* 스크롤 트랙 */
-    ::-webkit-scrollbar-track {
-      background-color: rgba(0, 0, 0, 0.6);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-    }
-    /* 스크롤 코너 */
-    ::-webkit-scrollbar-corner {
-      background-color: transparent;
-    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,9 +80,10 @@ export const Progress = styled.div<IProgress>`
       font-size: 20px;
     }
     .progress-bar {
+      margin-top: -10px;
       overflow: hidden;
       position: relative;
-      padding: 10px 0;
+      padding: 5px 0;
       width: 200px;
       height: 35px;
       background: transparent;
@@ -135,7 +121,23 @@ export const Progress = styled.div<IProgress>`
   @media only screen and (max-width: 600px) {
     .progress-inner {
       .progress-title {
+        margin-top: 5px;
         font-size: 40px;
+      }
+
+      .progress-number {
+        font-size: 15px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .progress-inner {
+      .progress-title {
+        margin-top: 10px;
+        font-size: 25px;
+      }
+      .progress-number {
+        display: none;
       }
     }
   }
