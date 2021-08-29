@@ -6,6 +6,7 @@ export const Captcha = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+
     & > canvas {
       border-radius: 3px;
     }
@@ -35,6 +36,10 @@ export const Captcha = styled.div`
   .captcha-input {
     width: 100%;
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
     & > input {
       width: 100%;
       margin-right: 12px;

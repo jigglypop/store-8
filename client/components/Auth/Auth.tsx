@@ -4,6 +4,7 @@ import { Link } from '../../utils/router';
 import { GITHUB_URL } from '@client/constants/server_url';
 import MainSvg from '@image/svg/mainHorizontal.svg';
 import { validate } from '@client/utils/validate';
+import Captcha from '@components/common/Captcha/Captcha';
 
 interface IAuthForm {
   types: 'login' | 'register';
@@ -42,13 +43,14 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
   };
   const text = textMap[types];
   const [usernameError, setUsernameError] = useState(
-    '유저 이름은 2자 이상 16자 이하로 입력해야 합니다.'
+    '유저 이름은 2자 이상 8자 이하로 입력해야 합니다.'
   );
   const [emailError, setEmailError] = useState('이메일의 형식이 맞지 않습니다.');
   const [passwordError, setPasswordError] = useState(
     '비밀번호는 8자 이상 16자 이하로 입력해야 합니다.'
   );
   const [disable, setDisable] = useState(false);
+  const [isCaptcha, setIsCaptcha] = useState(false);
 
   const onChangeUsername = (name: string, e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
@@ -74,13 +76,13 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
         setDisable(false);
       }
     } else {
-      if (usernameError === '' && emailError === '' && passwordError === '') {
+      if (usernameError === '' && emailError === '' && passwordError === '' && isCaptcha) {
         setDisable(true);
       } else {
         setDisable(false);
       }
     }
-  }, [usernameError, emailError, passwordError]);
+  }, [usernameError, emailError, passwordError, isCaptcha]);
   return (
     <S.Auth>
       <S.AuthForm>
@@ -106,7 +108,8 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
               <input
                 autoComplete="username"
                 name="username"
-                placeholder="닉네임 (2자 ~ 16자)"
+                maxLength={8}
+                placeholder="닉네임 (2자 ~ 8자)"
                 onChange={(e) => onChangeUsername('username', e)}
               />
             </S.Input>
@@ -130,6 +133,13 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
           <h4>{passwordError}</h4>
         </div>
 
+        {types === 'register' && (
+          <S.Input>
+            <div className="captcha-input">
+              <Captcha checkCaptcha={setIsCaptcha} />
+            </div>
+          </S.Input>
+        )}
         <S.Error>
           <h3>{error}</h3>
         </S.Error>

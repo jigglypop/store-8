@@ -23,6 +23,12 @@ export const Input = styled.div`
     background: var(--gray1);
     color: var(--text-white);
   }
+
+  .captcha-input {
+    display: flex;
+    padding: 1rem;
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
