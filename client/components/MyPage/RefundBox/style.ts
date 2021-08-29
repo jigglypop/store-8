@@ -108,6 +108,7 @@ export const RefundBox = styled.div`
     .column-date {
       text-align: left;
       width: 100%;
+      border-right: none;
     }
 
     .product-link,
