@@ -3,11 +3,8 @@ import * as S from './style';
 import Modal from '@client/components/common/Modal/Modal';
 import ImgItem from '@client/components/ProductDetailSection/ProductReviewList/ReviewForm/ImgListForm/ImgItem';
 import { useCheck } from '@client/hooks/auth/check';
-import { useDispatch } from 'react-redux';
 import cache from '@client/utils/cache';
-import { updateCheck } from '@client/store/auth/check';
-import { ICheckRes, ICheckBody } from '@middle/type/auth/check';
-import PenSvg from '@image/svg/pen.svg';
+import { ICheckBody } from '@middle/type/auth/check';
 import Plus from '@image/icon/plusIcon.svg';
 import { uploadImg } from '@client/api/upload';
 import { createToast } from '@client/utils/createToast';
@@ -21,24 +18,23 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
   const [isImgExist, setIsImgExist] = useState(true);
 
   const { check, setCheck } = useCheck();
-  const dispatch = useDispatch();
   const [imgFormError, setImgFormError] = useState('');
   const [usernameFormError, setUsernameError] = useState('');
   const [username, setUsername] = useState(check?.username ?? '');
-  const [imageUrl, setImageUrl] = useState(check?.imageUrl ?? '');
+  const [imageUrl, setImageUrl] = useState<string>(check?.imageUrl ?? '');
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
     if (validUsernameInput(target.value)) {
       setUsernameError('');
       setUsername(target.value);
     } else {
-      setUsernameError('16글자를 초과할 수 없습니다.');
-      setUsername(target.value.substr(0, 16));
+      setUsernameError('8글자를 초과할 수 없습니다.');
+      setUsername(target.value.substr(0, 8));
     }
   };
 
   const validUsernameInput = (username: string): boolean => {
-    return username.length < 17;
+    return username.length < 9;
   };
 
   const handleDeleteClick = async (idx: number) => {
@@ -77,7 +73,7 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
     }
 
     if (!checkImgSize(imgBlob)) {
-      setImgFormError('0MB 이하 이미지만 업로드 가능합니다.');
+      setImgFormError('10MB 이하 이미지만 업로드 가능합니다.');
       return;
     }
 
@@ -87,13 +83,14 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
       createToast('업로드 실패', true);
       return;
     }
-    setImageUrl(data.imgSrc);
+
+    setImageUrl(data.imgSrc[0]);
   };
 
   const requestEditProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // API 요청으로 적용
-    if (username.length < 2 || username.length > 16) {
-      setUsernameError('닉네임은 2글자 이상 16글자 이하로 설정해주세요.');
+    if (username.length < 2 || username.length > 8) {
+      setUsernameError('닉네임은 2글자 이상 8글자 이하로 설정해주세요.');
       return;
     }
     if (check) {
@@ -127,7 +124,7 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
             <input
               type="text"
               id="input-profile-username"
-              placeholder="새로운 닉네임을 입력하세요 (2자~16자)"
+              placeholder="새로운 닉네임을 입력하세요 (2자~8자)"
               value={username}
               onChange={handleInputChange}
             />
