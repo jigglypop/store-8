@@ -41,7 +41,7 @@ export const checkApi = async (token: string, thunkApi: IThunkApi) => {
 
 // 체크
 export const checkUpdateApi = async ({ checkForm, token }: IUpdateUserReq, thunkApi: IThunkApi) => {
-  const data = await request.put(BASE_URL + '/check', '', token);
+  const data = await request.put(BASE_URL + '/check', checkForm, token);
   if (data.status !== 200) {
     const error = data.message;
     return await thunkApi.rejectWithValue(error);

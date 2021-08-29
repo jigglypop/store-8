@@ -23,10 +23,10 @@ export default function RefundFilter({ filterIndex, eventHandler }: Props): Reac
       }}
     >
       <S.FilterButton value="0" isClicked={isButtonClicked(0)}>
-        반품/환불 신청 내역
+        반품/환불 처리대기 내역
       </S.FilterButton>
       <S.FilterButton value="1" isClicked={isButtonClicked(1)}>
-        반품/환불 처리 현황
+        반품/환불 처리완료 내역
       </S.FilterButton>
     </S.RefundFilter>
   );

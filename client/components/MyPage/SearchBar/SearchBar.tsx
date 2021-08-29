@@ -13,8 +13,8 @@ interface Props {
 }
 
 export default function SearchBar({ title, page }: Props): ReactElement {
-  const setMyOrder = page == 'order' ? useMyOrder().setMyOrder : () => null;
-  const setMyRefund = page == 'refund' ? useMyRefund().setMyRefund : () => null;
+  const getMyOrderWithDate = page == 'order' ? useMyOrder().getMyOrderWithDate : () => null;
+  const getMyRefundWithDate = page == 'refund' ? useMyRefund().getMyRefundWithDate : () => null;
 
   const today = new Date();
   const [selectedOffset, setSelectedOffset] = useState(7);
@@ -39,8 +39,8 @@ export default function SearchBar({ title, page }: Props): ReactElement {
   };
 
   const onSearchButtonClicked = async (e: React.MouseEvent) => {
-    if (page === 'order') await setMyOrder(cache.get('token'), startDate, endDate);
-    else if (page === 'refund') await setMyRefund(cache.get('token'), startDate, endDate);
+    if (page === 'order') await getMyOrderWithDate(cache.get('token'), startDate, endDate);
+    else if (page === 'refund') await getMyRefundWithDate(cache.get('token'), startDate, endDate);
 
     createToast(`${page.toUpperCase()} 데이터 조회`);
   };

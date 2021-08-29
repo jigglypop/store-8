@@ -31,8 +31,8 @@ export interface IOrder {
   optionId?: number;
   state: string;
   isConfirmed: boolean;
-  reviewId?: number;
-  refundId?: number;
+  reviewId?: number | null;
+  refundId?: number | null;
 }
 
 @Table({

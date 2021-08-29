@@ -22,16 +22,46 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
 
   const { check, setCheck } = useCheck();
   const dispatch = useDispatch();
+  const [imgFormError, setImgFormError] = useState('');
+  const [usernameFormError, setUsernameError] = useState('');
   const [username, setUsername] = useState(check?.username ?? '');
   const [imageUrl, setImageUrl] = useState(check?.imageUrl ?? '');
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
-    setUsername(target.value);
+    if (validUsernameInput(target.value)) {
+      setUsernameError('');
+      setUsername(target.value);
+    } else {
+      setUsernameError('16글자를 초과할 수 없습니다.');
+      setUsername(target.value.substr(0, 16));
+    }
+  };
+
+  const validUsernameInput = (username: string): boolean => {
+    return username.length < 17;
   };
 
   const handleDeleteClick = async (idx: number) => {
     setImageUrl('');
     setIsImgExist(false);
+  };
+
+  const isImgFile = (type: string) => {
+    return type === 'image/jpeg' || type === 'image/png' || type === 'image/jpg';
+  };
+
+  const checkImgSize = (imgBlob: File[]) => {
+    for (const file of imgBlob) {
+      if (file.size > 10000000) return false;
+    }
+    return true;
+  };
+
+  const checkImgExtension = (imgBlob: File[]) => {
+    for (const file of imgBlob) {
+      if (!isImgFile(file.type)) return false;
+    }
+    return true;
   };
 
   const handleImgSubmit = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,20 +71,31 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
 
     const imgBlob = Object.values(uploadImage);
 
+    if (!checkImgExtension(imgBlob)) {
+      setImgFormError('이미지는 jpg, jpeg, png 파일만 업로드 가능합니다.');
+      return;
+    }
+
+    if (!checkImgSize(imgBlob)) {
+      setImgFormError('0MB 이하 이미지만 업로드 가능합니다.');
+      return;
+    }
+
     imgBlob.forEach((blob) => formData.append('image', blob));
-
     const data = await uploadImg(formData);
-
     if (!data.success) {
       createToast('업로드 실패', true);
       return;
     }
-
     setImageUrl(data.imgSrc);
   };
 
-  const confirmEdit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const requestEditProfile = async (e: React.MouseEvent<HTMLButtonElement>) => {
     // API 요청으로 적용
+    if (username.length < 2 || username.length > 16) {
+      setUsernameError('닉네임은 2글자 이상 16글자 이하로 설정해주세요.');
+      return;
+    }
     if (check) {
       const body: ICheckBody = { id: check.id, username, imageUrl };
       await setCheck(body, cache.get('token'));
@@ -65,35 +106,42 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
   return (
     <Modal closeModal={props.closeForm}>
       <S.EditProfileModal>
-        <div>프로필을 수정할 수 있는 모달입니다. </div>
-        <div>현재 구현중입니다 ㅠㅠ </div>
-        <div>테투리를 누르시면 닫을 수 있습니다.</div>
-        {/* <form>
+        <h2>프로필 수정하기</h2>
+        <form>
+          <h3>프로필 이미지 수정</h3>
           <div className="container-input-img-src">
-            {check?.imageUrl ? (
-              <ImgItem
-                key={check?.imageUrl}
-                idx={0}
-                {...{ imgSrc: check?.imageUrl, handleDeleteClick }}
-              />
+            {imageUrl ? (
+              <ImgItem key={imageUrl} idx={0} {...{ imgSrc: imageUrl, handleDeleteClick }} />
             ) : (
-              <form>
+              <>
                 <label className="img-form__add-btn" htmlFor="input-file">
-                  <Plus className="img-form__plus-icon" />
+                  <Plus className="img-form__plus-icon" stroke="black" />
                 </label>
                 <input type="file" id="input-file" onChange={handleImgSubmit} />
-              </form>
+              </>
             )}
           </div>
+          <div className="text-error text-img-error">{imgFormError}</div>
+          <h3>닉네임 수정</h3>
           <div className="container-input-username">
             <input
               type="text"
               id="input-profile-username"
+              placeholder="새로운 닉네임을 입력하세요 (2자~16자)"
               value={username}
               onChange={handleInputChange}
             />
           </div>
-        </form> */}
+          <div className="text-error text-username-error">{usernameFormError}</div>
+        </form>
+        <div className="container-button">
+          <button className="button-cancel" onClick={props.closeForm}>
+            취소
+          </button>
+          <button className="button-ok" onClick={requestEditProfile}>
+            확인
+          </button>
+        </div>
       </S.EditProfileModal>
     </Modal>
   );

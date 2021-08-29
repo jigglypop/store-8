@@ -1,34 +1,64 @@
 import styled from '@lib/styledComponent';
 
 export const EditProfileModal = styled.div`
-  min-height: 250px;
-  width: 400px;
+  min-height: 440px;
+  width: 500px;
   border-radius: 20px;
   padding: 40px;
   background-color: var(--background-white);
 
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+  h2 {
+    font-size: var(--body-title-font);
+    font-weight: 600;
+    font-family: 'Do Hyeon';
+  }
 
   form {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
     overflow-x: scroll;
     width: 100%;
-    height: 90px;
+    height: 300px;
 
+    h3 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: var(--body-large-font);
+    }
     /* color: var(--text-black-dark); */
     color: var(--text-dark-gray-dark);
+
+    label {
+      width: 76px;
+    }
+
+    .container-input-img-src {
+      display: flex;
+      justify-content: flex-start;
+    }
 
     &::-webkit-scrollbar {
       display: none;
     }
-    input {
+    input[type='file'] {
       display: none;
     }
 
-    .img-form__plus-icon {
+    input[type='text'] {
+      height: 30px;
+      width: 100%;
+      border: 1px solid var(--line-gray);
+      border-radius: 7px;
+      padding-left: 10px;
+    }
+
+    .text-error {
+      height: 16px;
+      color: red;
+      margin-top: 10px;
+    }
+
+    .text-error .img-form__plus-icon {
       stroke: var(--line-gray);
       margin-top: 4px;
       margin-bottom: 8px;
@@ -46,11 +76,35 @@ export const EditProfileModal = styled.div`
       margin-right: 16px;
       border: 1px solid var(--line-gray);
       border-radius: 8px;
+
       .form-img-count {
         font-size: 12px;
         color: var(--gray1);
         margin-top: 7px;
       }
+    }
+  }
+
+  .container-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+      width: 50px;
+    }
+
+    button:hover {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .button-ok {
+      color: blue;
+    }
+
+    .button-cancel {
+      color: red;
     }
   }
 `;

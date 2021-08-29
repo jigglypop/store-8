@@ -7,7 +7,7 @@ export interface JWTPayload {
 }
 
 export interface IAuthRequest extends Request {
-  body: {
+  body: Request['body'] & {
     userId: number;
   };
   user?: JWTPayload;

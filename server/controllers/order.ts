@@ -11,42 +11,11 @@ import { IAuthRequest, JWTPayload } from '@middle/type/request';
 //상품 문의 조회
 export const getAllOrders = async (req: IAuthRequest, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
-  const { productId } = req.params;
-  const userId = req.user?.id;
+  const productId = req.params.productId ? parseInt(req.params.productId, 10) : undefined;
+  const userId = req.body.userId;
+  let orders = await findAllOrdersByDate(userId, productId, startDate, endDate);
 
-  let refunds = await Order.findAll({
-    where: {
-      ...makeWhereQueryWithDate('createdAt', startDate, endDate),
-      ...makeWhereQueryWithObj({ userId, productId }),
-    },
-    include: [
-      {
-        model: Product,
-        as: 'product',
-        attributes: ['title', 'productImgSrc'],
-      },
-    ],
-  });
-
-  const results: IOrder[] = refunds.map((order) => {
-    const result: IOrder = {
-      id: order.id,
-      orderNumber: order.orderNumber,
-      title: order.product.title,
-      productAmount: order.productAmount,
-      productCount: order.productCount,
-      state: order.state,
-      productId: order.productId,
-      isConfirmed: order.isConfirmed,
-      productImgSrc: order.product.productImgSrc,
-      date: order.createdAt.toString(),
-      reviewId: order.reviewId,
-      refundId: order.refundId,
-    };
-    return result;
-  });
-
-  res.status(200).json({ data: results });
+  res.status(200).json({ data: orders });
 };
 
 export const getMileage = async (req: Request, res: Response) => {
@@ -131,4 +100,69 @@ export const updateOrderState = async (req: IAuthRequest, res: Response) => {
   const updatedOrder = await order.update({ state: '구매확정', isConfirmed: true });
 
   res.status(200).json({ data: updatedOrder });
+};
+
+export const findOneOrderByPk = async (id: number) => {
+  let order = await Order.findOne({
+    where: { id },
+    include: [
+      {
+        model: Product,
+        as: 'product',
+        attributes: ['title', 'productImgSrc'],
+      },
+    ],
+  });
+
+  if (!order) {
+    throw new HttpError(err.NO_DATA);
+  }
+
+  const result: IOrder = makeIOrder(order);
+
+  return result;
+};
+
+export const findAllOrdersByDate = async (
+  userId: number,
+  productId?: number,
+  startDate?: string,
+  endDate?: string
+) => {
+  let orders = await Order.findAll({
+    where: {
+      ...makeWhereQueryWithDate('createdAt', startDate, endDate),
+      ...makeWhereQueryWithObj({ userId, productId }),
+    },
+    order: [['createdAt', 'DESC']],
+    include: [
+      {
+        model: Product,
+        as: 'product',
+        attributes: ['title', 'productImgSrc'],
+      },
+    ],
+  });
+
+  const results: IOrder[] = orders.map((order) => makeIOrder(order));
+
+  return results;
+};
+
+const makeIOrder = (order: Order) => {
+  const result: IOrder = {
+    id: order.id,
+    orderNumber: order.orderNumber,
+    title: order.product.title,
+    productAmount: order.productAmount,
+    productCount: order.productCount,
+    state: order.state,
+    productId: order.productId,
+    isConfirmed: order.isConfirmed,
+    productImgSrc: order.product.productImgSrc,
+    date: order.createdAt.toString(),
+    reviewId: order.reviewId,
+    refundId: order.refundId,
+  };
+  return result;
 };

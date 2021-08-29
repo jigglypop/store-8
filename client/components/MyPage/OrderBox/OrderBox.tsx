@@ -5,17 +5,10 @@ import { Link } from '@client/utils/router';
 import { IOrder } from '@middle/type/myOrder/myOrder';
 import ConfirmCheckModal from '@components/MyPage/ConfirmOrderModal/ConfirmOrderModal';
 import { myOrderConfirmApi } from '@client/api/myOrder';
-import { myRefundRequestApi } from '@client/api/myRefund';
+import { myRefundCreateApi } from '@client/api/myRefund';
 import { createToast } from '@client/utils/createToast';
 import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
-import {
-  AFTER_CONFIRM,
-  BEFORE_DELIVERY,
-  FINISH_DELIVERY,
-  FINISH_REVIEW,
-  IN_DELIVERY,
-  REQUEST_REFUND,
-} from '@client/constants/Order';
+import * as c from '@client/constants/Order';
 import cache from '@client/utils/cache';
 
 interface Props {
@@ -34,15 +27,15 @@ export default function OrderBox({ result }: Props): ReactElement {
     const delta = (now.getTime() - new Date(_state.date).getTime()) / 1000;
     if (!_state.isConfirmed) {
       if (!_state.refundId) {
-        if (delta >= 0 && delta < 20) return BEFORE_DELIVERY;
-        else if (delta >= 20 && delta < 40) return IN_DELIVERY;
-        return FINISH_DELIVERY;
+        if (delta >= 0 && delta < 20) return c.BEFORE_DELIVERY;
+        else if (delta >= 20 && delta < 40) return c.IN_DELIVERY;
+        return c.FINISH_DELIVERY;
       } else {
-        return REQUEST_REFUND;
+        return c.REQUEST_REFUND;
       }
     } else {
-      if (!_state.reviewId) return AFTER_CONFIRM;
-      else return FINISH_REVIEW;
+      if (!_state.reviewId) return c.AFTER_CONFIRM;
+      else return c.FINISH_REVIEW;
     }
   };
 
@@ -71,11 +64,11 @@ export default function OrderBox({ result }: Props): ReactElement {
   };
 
   const confirmOrderConfirm = async () => {
-    if (state.isConfirmed || getStateByDate(state) !== FINISH_DELIVERY) {
-      //state.state -> stateByDate
+    if (state.isConfirmed) {
+      createToast('이미 구매확정된 주문입니다.!!', true);
+    } else if (getStateByDate(state) !== c.FINISH_DELIVERY) {
       createToast('배송이 완료된 이후 구매확정을 할 수 있습니다!!', true);
     } else {
-      console.log(cache.get('token'));
       const order = await myOrderConfirmApi({ token: cache.get('token'), orderId: result.id });
 
       if (order.isConfirmed) {
@@ -92,10 +85,12 @@ export default function OrderBox({ result }: Props): ReactElement {
   };
 
   const requestRefundConfirm = async () => {
-    if (state.isConfirmed || getStateByDate(state) !== FINISH_DELIVERY) {
+    if (state.isConfirmed) {
+      createToast('이미 구매확정된 주문입니다.!!', true);
+    } else if (getStateByDate(state) !== c.FINISH_DELIVERY) {
       createToast('배송이 완료된 이후 환불요청을 할 수 있습니다!!', true);
     } else {
-      const { refund, order } = await myRefundRequestApi({
+      const { refund, order } = await myRefundCreateApi({
         token: cache.get('token'),
         orderId: result.id,
       });
