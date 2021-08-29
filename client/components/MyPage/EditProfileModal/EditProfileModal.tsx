@@ -21,7 +21,6 @@ export function EditProfileModal(props: EditProfileModalProps): ReactElement {
   const [isImgExist, setIsImgExist] = useState(true);
 
   const { check, setCheck } = useCheck();
-  const dispatch = useDispatch();
   const [imgFormError, setImgFormError] = useState('');
   const [usernameFormError, setUsernameError] = useState('');
   const [username, setUsername] = useState(check?.username ?? '');

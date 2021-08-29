@@ -70,7 +70,7 @@ export default function SearchBar({ title, page }: Props): ReactElement {
             1년
           </S.OffsetRadioButton>
         </div>
-        <div>
+        <div className="container-date">
           <input
             type="date"
             name="startDate"
