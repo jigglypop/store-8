@@ -1,11 +1,12 @@
 import { ReactElement, useState } from 'react';
 import * as S from './style';
 
-import Star from '@components/common/Star/Star';
 import Clip from '@image/icon/clipIcon.svg';
+import Star from '@components/common/Star/Star';
+import ReviewDetail from './ReviewDetail/ReviewDetail';
+
 import { IReview } from '@middle/type/review/review';
 import { hideId } from '@utils/encode';
-import ReviewDetail from './ReviewDetail/ReviewDetail';
 
 interface Props {
   reviewData: IReview;

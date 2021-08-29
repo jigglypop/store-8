@@ -69,6 +69,12 @@ export const DetailBtns = styled.div<StyledProps>`
       width: 150px;
     }
   }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 475px) {
+    .cart-btn {
+      width: 100px;
+    }
+    .purchase-btn {
+      width: 120px;
+    }
   }
 `;

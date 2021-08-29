@@ -5,13 +5,13 @@ import EditIcon from '@image/icon/editIcon.svg';
 import DeleteIcon from '@image/icon/deleteIcon.svg';
 import LikeBtn from '@image/icon/likeIcon.svg';
 import DislikeBtn from '@image/icon/dislikeIcon.svg';
-import { IMyReview, IReview } from '@middle/type/review/review';
 import ReviewForm from '@components/ProductDetailSection/ProductReviewList/ReviewForm/ReviewForm';
 import DeleteModal from '@components/common/DeleteModal/DeleteModal';
 
 import { useReview } from '@client/hooks/review/review';
 import { useCheck } from '@client/hooks/auth/check';
 import { IProductInfo } from '@middle/type/product/product';
+import { IMyReview, IReview } from '@middle/type/review/review';
 
 interface Props {
   reviewData: IReview | IMyReview;

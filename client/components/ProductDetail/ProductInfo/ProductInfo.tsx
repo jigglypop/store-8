@@ -14,6 +14,7 @@ import ProductInfoCount from './ProductInfoCount';
 import ProductOption from './ProductOption/ProductOption';
 
 import { useProduct } from '@client/hooks/product/product';
+import { kstFormatter } from '@client/utils/utils';
 
 interface Props {}
 
@@ -65,14 +66,4 @@ export default function ProductInfo({}: Props): ReactElement {
       </div>
     </S.ProductInfo>
   );
-}
-
-//여기 utils import에서 에러 발생해서 임시로 가져다 놨습니다.
-function kstFormatter(amount: number | void, suffix: boolean = true) {
-  if (!amount) return;
-  if (suffix) {
-    return amount.toLocaleString() + '원';
-  } else {
-    return amount.toLocaleString();
-  }
 }

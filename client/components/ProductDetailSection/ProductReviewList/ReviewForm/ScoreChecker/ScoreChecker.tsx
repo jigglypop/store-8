@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactElement, SetStateAction } from 'react';
+import { Dispatch, ReactElement, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 import Star from '@components/common/Star/Star';

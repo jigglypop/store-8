@@ -1,6 +1,13 @@
 import { ReactElement, useState } from 'react';
 import * as S from './style';
 
+import {
+  SECTION_DETAIL_KEY,
+  SECTION_SEVERAL_KEY,
+  SECTION_REVIEW_KEY,
+  SECTION_QUESTION_KEY,
+} from '@constants/productDetail/productDetailSection/ProductDetailSection';
+
 import SectionNav from './SectionNav/SectionNav';
 import DetailInfo from './DetailInfo/DetailInfo';
 import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
@@ -8,12 +15,6 @@ import RefundInfo from './RefundInfo/RefundInfo';
 import ProductReviewList from './ProductReviewList/ProductReviewList';
 import ProductQuestionList from './ProductQuestionList/ProductQuestionList';
 
-import {
-  SECTION_DETAIL_KEY,
-  SECTION_SEVERAL_KEY,
-  SECTION_REVIEW_KEY,
-  SECTION_QUESTION_KEY,
-} from '@constants/productDetail/productDetailSection/ProductDetailSection';
 import { useQuestion } from '@client/hooks/question/question';
 import { useReview } from '@client/hooks/review/review';
 

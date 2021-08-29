@@ -1,9 +1,10 @@
 import { useState, ReactElement, FormEvent } from 'react';
 import * as S from './style';
 
+import { TITLE_BUY_AMOUNT } from '@constants/productDetail/productDetailInfo/productDetailInfo';
+
 import ProductCountForm from './ProductCountForm/ProductCountForm';
 
-import { TITLE_BUY_AMOUNT } from '@constants/productDetail/productDetailInfo/productDetailInfo';
 import { useProduct } from '@client/hooks/product/product';
 
 interface Props {}
@@ -41,7 +42,8 @@ export default function ProductInfoCount({}: Props): ReactElement {
       setCount(100);
       setInputValue('100');
     } else {
-      setCount(+inputValue);
+      setCount(Math.floor(+inputValue));
+      setInputValue(Math.floor(+inputValue) + '');
     }
   };
 

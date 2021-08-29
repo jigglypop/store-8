@@ -1,10 +1,12 @@
-import Card from '@client/components/Card/Card';
-import { useRouter } from '@client/hooks/router/router';
-import { IProduct } from '@server/models/Product';
 import * as S from './style';
+
+import Card from '@components/Card/Card';
+import NoData from '@components/NoData/NoData';
+
 import { Link } from '@client/utils/router';
+import { useRouter } from '@client/hooks/router/router';
 import { useSearch } from '@client/hooks/search/search';
-import NoData from '@client/components/NoData/NoData';
+import { IProduct } from '@server/models/Product';
 
 interface IsearchComponent {
   cards: IProduct[] | undefined;

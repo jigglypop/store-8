@@ -1,14 +1,16 @@
 import { ReactElement, useState } from 'react';
 import * as S from './style';
 import * as CommonS from '../style';
+
+import { DEFAULT_QUESTION_LIMIT } from '@middle/constants/default';
+
 import QuestionItem from './QuestionItem/QuestionItem';
 import QuestionForm from './QuestionForm/QuestionForm';
 import Pagination from '@components/common/Pagination/Pagination';
-import LoginNeedModal from '@client/components/common/LoginNeedModal/LoginNeedModal';
+import LoginNeedModal from '@components/common/LoginNeedModal/LoginNeedModal';
 
 import { useCheck } from '@client/hooks/auth/check';
 import { useQuestion } from '@client/hooks/question/question';
-import { DEFAULT_QUESTION_LIMIT } from '@middle/constants/default';
 
 interface Props {}
 
