@@ -15,7 +15,6 @@ export const ProductDetail = styled.div`
     justify-content: space-between;
   }
   @media only screen and (max-width: 1300px) {
-    width: 668px;
     .product-detail__info {
       margin-left: 20px;
     }

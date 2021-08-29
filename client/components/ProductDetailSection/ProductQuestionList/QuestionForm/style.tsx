@@ -135,4 +135,18 @@ export const QuestionForm = styled.div`
     min-width: 0px;
     width: 480px;
   }
+  @media only screen and (max-width: 480px) {
+    /* min-width: 0px; */
+    width: 320px;
+    .question-form__title-input,
+    .question-form__contents-input {
+      .title {
+        display: none;
+      }
+      input,
+      textarea {
+        width: 100%;
+      }
+    }
+  }
 `;

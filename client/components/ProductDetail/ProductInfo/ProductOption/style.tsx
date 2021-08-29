@@ -92,8 +92,13 @@ export const ProductOption = styled.div<ProductOptionProps>`
       }
     }
   }
-  @media only screen and (max-width: 375px) {
-  }
+  @media only screen and (max-width: 475px) {
+    .option__box {
+      width: 200px;
+      .option__selectable-wrapper {
+        width: 200px;
+      }
+    }
 `;
 
 export const ProductOptionItem = styled.div`

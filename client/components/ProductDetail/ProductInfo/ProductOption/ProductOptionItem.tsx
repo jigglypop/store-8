@@ -43,7 +43,8 @@ export default function ProductOptionItem({ id }: Props): ReactElement {
       setOptionCount(id, 100);
       setInputValue('100');
     } else {
-      setOptionCount(id, +inputValue);
+      setInputValue(Math.floor(+inputValue) + '');
+      setOptionCount(id, Math.floor(+inputValue));
     }
   };
 

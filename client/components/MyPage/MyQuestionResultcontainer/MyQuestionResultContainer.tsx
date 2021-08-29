@@ -14,7 +14,7 @@ interface Props {}
 export default function MyQuestionResultContainer({}: Props): ReactElement {
   const { myQuestions, totalCount, currentPage, setCurrentPage } = useMyQuestion();
 
-  const myQuestionList = !myQuestions ? (
+  const myQuestionList = !myQuestions.length ? (
     <TextNoData>조회 내역이 없습니다.</TextNoData>
   ) : (
     myQuestions.map((questionData: IMyQuestion) => (
@@ -28,7 +28,7 @@ export default function MyQuestionResultContainer({}: Props): ReactElement {
         나의 상품문의 <b>{totalCount}</b>건
       </h4>
       <div className="container-column">
-        <div className="column-title">상품</div>
+        <div className="column-product">상품</div>
         <div className="column-title">문의 제목</div>
         <div className="column-date">날짜</div>
         <div className="column-status">답변상태</div>

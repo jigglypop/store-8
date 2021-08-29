@@ -17,7 +17,7 @@ export default function ImgMagifier({
   let imgHeight: number = 530;
   let magifiedHeight: number = 300;
   let magnifiedWidth: number = 300;
-
+  console.log(isTablet);
   if (isTablet) {
     imgWidth = 300;
     imgHeight = 330;

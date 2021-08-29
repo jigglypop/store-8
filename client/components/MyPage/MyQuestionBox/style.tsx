@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const MyQuestionBox = styled.li`
+  width: 100%;
   display: flex;
   align-items: center;
   font-size: var(--body-middle-font);
@@ -36,6 +37,32 @@ export const MyQuestionBox = styled.li`
     img {
       width: 40px;
       height: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    font-size: var(--body-small-font);
+    .column-date,
+    .column-status {
+      flex-grow: 0;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    font-size: var(--body-small-font);
+    .column-status,
+    .column-product {
+      flex-grow: 0;
+    }
+    .column-date {
+      display: none;
+    }
+    .wrapper-title {
+      display: none;
+    }
+    .column-product {
+      .product-link {
+        text-align: center;
+      }
     }
   }
 `;

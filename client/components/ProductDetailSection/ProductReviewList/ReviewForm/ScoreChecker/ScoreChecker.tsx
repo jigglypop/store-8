@@ -29,4 +29,12 @@ const StyledScoreChecker = styled.div`
       height: 30px;
     }
   }
+  @media only screen and (max-width: 480px) {
+    & > div {
+      & > svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 `;

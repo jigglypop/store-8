@@ -24,13 +24,13 @@ export default function MyQuestionBox({ questionData }: Props): ReactElement {
   return (
     <>
       <S.MyQuestionBox onClick={handleQuestionClick}>
-        <div className="column-title">
+        <div className="column-product">
           <Link to={`/product/${productId}`} className="product-link">
             <>
               <div className="wrapper-thumbnail">
                 <img src={productImgSrc} />
               </div>
-              <div className="wrapper-title-thumbnail">
+              <div className="wrapper-title">
                 <div>{productTitle}</div>
               </div>
             </>

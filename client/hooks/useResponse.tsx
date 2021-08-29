@@ -19,8 +19,8 @@ export const useResponse = ({ minWidth, maxWidth }: IArgs) => {
     return () => window.removeEventListener('resize', handleWindowSize);
   }, []);
 
-  if (minWidth && maxWidth) return windowWidth >= minWidth && windowWidth < maxWidth;
-  else if (maxWidth) return windowWidth < maxWidth;
-  else if (minWidth) return windowWidth >= minWidth;
+  if (minWidth && maxWidth) return windowWidth > minWidth && windowWidth <= maxWidth;
+  else if (maxWidth) return windowWidth <= maxWidth;
+  else if (minWidth) return windowWidth > minWidth;
   return false;
 };

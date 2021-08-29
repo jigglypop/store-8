@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 export const ReviewDetail = styled.div`
+  width: 100%;
   background-color: var(--footer-background-dark);
   color: var(--text-black-dark);
   font-size: var(--body-middle-font);
@@ -101,5 +102,7 @@ export const ReviewDetail = styled.div`
   }
   @media only screen and (max-width: 375px) {
     font-size: var(--body-tiny-font);
+    padding-left: 0;
+    padding-right: 0;
   }
 `;

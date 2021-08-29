@@ -30,7 +30,7 @@ export default function MyReviewBox({ reviewData }: Props): ReactElement {
     <>
       <S.MyReviewBox onClick={handleQuestionClick}>
         <div className="column-score">{stars}</div>
-        <div className="column-title">
+        <div className="column-product-title">
           <Link to={`/product/${productId}`} className="product-link">
             <>
               <div className="wrapper-thumbnail">
