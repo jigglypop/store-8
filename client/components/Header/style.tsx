@@ -410,6 +410,15 @@ export const Slider = styled.div<IHeader>`
   @media only screen and (max-width: 900px) {
     top: ${(props) => (props.isUp ? '70px' : '100px')};
   }
+
+  @media only screen and (max-width: 600px) {
+    width: 130px;
+    transform: translateX(${(props) => (props.isLeft === 0 ? '-130px' : '0')});
+  }
+  @media only screen and (max-width: 600px) {
+    width: 120px;
+    transform: translateX(${(props) => (props.isLeft === 0 ? '-120px' : '0')});
+  }
 `;
 
 // 슬라이더 두번째 부분
@@ -433,5 +442,13 @@ export const SliderTwo = styled.div<IHeader>`
   }
   @media only screen and (max-width: 900px) {
     top: ${(props) => (props.isUp ? '70px' : '100px')};
+  }
+  @media only screen and (max-width: 600px) {
+    width: 130px;
+    transform: translateX(${(props) => (props.isLeft === 300 ? '130px' : '-130px')});
+  }
+  @media only screen and (max-width: 600px) {
+    width: 120px;
+    transform: translateX(${(props) => (props.isLeft === 300 ? '120px' : '-120px')});
   }
 `;

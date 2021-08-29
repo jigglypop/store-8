@@ -32,7 +32,6 @@ export default function Progress({ progress }: IProgress) {
                 <img src={'/public/image/tip/6.png'} />
               </div>
             )}
-
             <div className="progress-bar">
               <div className="progress-color"></div>
               <div className="progress-gray"></div>

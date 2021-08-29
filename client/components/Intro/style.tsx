@@ -70,7 +70,7 @@ export const ThreeWrapper = styled.div`
     backdrop-filter: blur(10px);
     border-radius: 15px;
 
-    h1 {
+    .info-title {
       font-family: 'Do Hyeon', sans-serif;
       font-size: 50px;
       color: var(--text-picker);
@@ -88,7 +88,9 @@ export const ThreeWrapper = styled.div`
     @media only screen and (max-width: 1200px) {
       width: 350px;
       height: 250px;
-      h1 {
+      top: 250px;
+
+      .info-title {
         font-size: 40px;
       }
       h4 {
@@ -96,15 +98,32 @@ export const ThreeWrapper = styled.div`
         line-height: 2rem;
       }
     }
+
     @media only screen and (max-width: 900px) {
       width: 300px;
       height: 250px;
-      h1 {
+      top: 300px;
+
+      .info-title {
         font-size: 35px;
       }
       h4 {
         font-size: 12px;
-        line-height: 2rem;
+        line-height: 1.5rem;
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      width: 250px;
+      height: 120px;
+      top: 350px;
+
+      .info-title {
+        font-size: 20px;
+      }
+
+      h4 {
+        font-size: 10px;
+        line-height: 1rem;
       }
     }
   }
@@ -119,8 +138,14 @@ export const ThreeWrapper = styled.div`
     margin: 10px;
     cursor: pointer;
 
+    @media only screen and (max-width: 600px) {
+      .colorpicker-outer {
+        visibility: hidden;
+      }
+    }
     .ui-item {
       background-color: rgba(0, 0, 0, 0.6);
+      width: 140px;
       color: var(--text-white);
       box-shadow: 0 0 20px var(--black);
       -webkit-backdrop-filter: blur(10px);
@@ -129,10 +154,32 @@ export const ThreeWrapper = styled.div`
       margin: 20px;
       border-radius: 15px;
       transition: all 0.3s ease-in;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         color: var(--text-picker);
         cursor: pointer;
+      }
+    }
+    @media only screen and (max-width: 600px) {
+      font-size: 12px;
+
+      .ui-item {
+        width: 120px;
+
+        padding: 16px;
+        margin: 16px;
+      }
+    }
+    @media only screen and (max-width: 375px) {
+      font-size: 10px;
+
+      .ui-item {
+        width: 100px;
+        padding: 12px;
+        margin: 12px;
       }
     }
   }

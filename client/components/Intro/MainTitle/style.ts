@@ -27,4 +27,35 @@ export const MainStoreTitle = styled.div`
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
   }
+
+  @media only screen and (max-width: 900px) {
+    top: 30px;
+    width: 350px;
+    height: 80px;
+    .main-name {
+      h4 {
+        font-size: 35px;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    top: 20px;
+    width: 300px;
+    height: 70px;
+    .main-name {
+      h4 {
+        font-size: 30px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    top: 10px;
+    width: 250px;
+    height: 60px;
+    .main-name {
+      h4 {
+        font-size: 20px;
+      }
+    }
+  }
 `;
