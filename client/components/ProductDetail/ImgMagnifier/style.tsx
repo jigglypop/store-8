@@ -20,7 +20,7 @@ export const ZoomImg = styled.div<IZoomImg>`
     width: 100%;
     & > img {
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     margin-bottom: 20px;
   }
