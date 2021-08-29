@@ -8,10 +8,17 @@ import { err } from '../constants/error';
 import UserCoupon from '../models/UserCoupon';
 import { IAuthRequest } from '@middle/type/request';
 
-
 interface IUpdateUserImgRequest extends IAuthRequest {
   body: IAuthRequest['body'] & {
     imageUrl: string;
+  };
+}
+
+interface IUpdateUserProfileRequest extends IAuthRequest {
+  body: IAuthRequest['body'] & {
+    imageUrl?: string;
+    id: number;
+    username: string;
   };
 }
 
@@ -109,4 +116,37 @@ export const getUsername = async (userId: number): Promise<string> => {
   }
   const userSerialized = await serialize(user);
   return userSerialized.username;
+};
+
+export const updateProfile = async (req: IUpdateUserProfileRequest, res: Response) => {
+  const { userId, username, id } = req.body;
+  let imageUrl = req.body?.imageUrl;
+
+  if (imageUrl.length === 1) {
+    imageUrl = imageUrl[0];
+  } else {
+    imageUrl = '';
+  }
+
+  console.log(userId, username, id, imageUrl);
+
+  if (userId !== id) {
+    throw new HttpError(err.INVALID_INPUT_ERROR);
+  }
+
+  const [affectedRow] = await User.update({ imageUrl, username }, { where: { id: userId } });
+
+  if (!affectedRow) {
+    throw new HttpError(err.UPDATE_ERROR);
+  }
+
+  const user = await User.findByPk(id);
+
+  if (!user) {
+    throw new HttpError({ ...err.TEST_ERROR });
+  }
+
+  const serialized = await serialize(user);
+
+  res.status(200).json({ status: 200, data: serialized });
 };

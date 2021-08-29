@@ -14,11 +14,11 @@ function ConfirmCheckModal(props: ConfirmModalProps): ReactElement {
       <S.ConfirmCheckModal>
         <h4>{props.text}</h4>
         <div className="container-button">
-          <button className="button-ok" onClick={props.confirm}>
-            확인
-          </button>
           <button className="button-cancel" onClick={props.closeForm}>
             취소
+          </button>
+          <button className="button-ok" onClick={props.confirm}>
+            확인
           </button>
         </div>
       </S.ConfirmCheckModal>

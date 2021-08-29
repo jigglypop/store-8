@@ -8,9 +8,9 @@ export function useMyOrder() {
   const { myOrder } = useSelector((state: RootState) => state.myOrder);
   const dispatch = useDispatch();
 
-  const setMyOrder = (token: string, startDate: string, endDate: string) => {
+  const getMyOrderWithDate = (token: string, startDate: string, endDate: string) => {
     dispatch(getMyOrder({ token, startDate, endDate }));
   };
 
-  return { myOrder: myOrder ?? [], setMyOrder };
+  return { myOrder: myOrder ?? [], getMyOrderWithDate };
 }
