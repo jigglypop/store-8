@@ -5,12 +5,22 @@ export const EditProfileModal = styled.div`
   width: 500px;
   border-radius: 20px;
   padding: 40px;
-  background-color: var(--background-white);
+  background-color: var(--body-background-dark);
+  color: var(--text-black-dark);
+
+  @media only screen and (max-width: 600px) {
+    min-width: 300px;
+    width: 90vw;
+  }
 
   h2 {
     font-size: var(--body-title-font);
     font-weight: 600;
     font-family: 'Do Hyeon';
+
+    @media only screen and (max-width: 600px) {
+      font-size: var(--body-huge-font);
+    }
   }
 
   form {
@@ -19,14 +29,16 @@ export const EditProfileModal = styled.div`
     overflow-x: scroll;
     width: 100%;
     height: 300px;
-
+    color: var(--text-black-dark);
     h3 {
       margin-top: 20px;
       margin-bottom: 20px;
       font-size: var(--body-large-font);
+
+      @media only screen and (max-width: 600px) {
+        font-size: var(--body-middle-font);
+      }
     }
-    /* color: var(--text-black-dark); */
-    color: var(--text-dark-gray-dark);
 
     label {
       width: 76px;
@@ -50,11 +62,12 @@ export const EditProfileModal = styled.div`
       border: 1px solid var(--line-gray);
       border-radius: 7px;
       padding-left: 10px;
+      color: var(--text-black-dark);
     }
 
     .text-error {
       height: 16px;
-      color: red;
+      color: #b96969;
       margin-top: 10px;
     }
 
@@ -76,12 +89,6 @@ export const EditProfileModal = styled.div`
       margin-right: 16px;
       border: 1px solid var(--line-gray);
       border-radius: 8px;
-
-      .form-img-count {
-        font-size: 12px;
-        color: var(--gray1);
-        margin-top: 7px;
-      }
     }
   }
 
@@ -100,11 +107,11 @@ export const EditProfileModal = styled.div`
     }
 
     .button-ok {
-      color: blue;
+      color: #7878d1;
     }
 
     .button-cancel {
-      color: red;
+      color: #b96969;
     }
   }
 `;

@@ -1,29 +1,23 @@
 import styled from 'styled-components';
 
 export const Intro = styled.div`
-  min-height: 150px;
-  display: flex;
-  flex-direction: row;
+  position: relative;
+  height: 150px;
+  display: grid;
+  flex-direction: column;
   font-size: var(--largeFont);
   grid-template-columns: 200px 1fr;
 
-  @media only screen and (max-width: 500px) {
-    flex-direction: column;
-    align-items: center;
-  }
-
   .left {
-    max-width: 200px;
-    min-width: 100px;
-    flex-grow: 1;
+    grid-column: 1/2;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .right {
-    min-width: 100px;
-    flex-grow: 5;
+    grid-column: 2/3;
+    line-height: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
