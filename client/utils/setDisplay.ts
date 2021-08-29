@@ -2,12 +2,13 @@ import cache from './cache';
 import { $ } from './jQurey';
 import { store } from '../store';
 import { changeModeAll } from '@client/store/mode/mode';
+import { checkNameString } from './inputTypeChecker';
 
 // 다크모드 확인해보고 있으면 boolean 값 변환
 export const isDark = () => {
   const flag = cache.get('dark');
   if (!flag) {
-    return true;
+    return false;
   } else {
     if (flag === 'false') {
       return false;
@@ -218,7 +219,8 @@ export const changeSun = () => {
 // 초기셋용
 export const setDarkMode = () => {
   const dark = cache.get('dark');
-  if (dark === 'false') {
+  // 여기만 바꾸면 됨
+  if (dark === 'false' || dark === null) {
     changeMoon();
   } else {
     changeSun();

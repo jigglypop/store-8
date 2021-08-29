@@ -289,6 +289,12 @@ export const Header = styled.header<IHeader>`
       display: flex;
     }
 
+    .isSSmallHeader.logo {
+      margin: 0;
+      padding: 0;
+      width: 130px;
+    }
+
     .hamberger {
       transform: scale(0.8);
     }

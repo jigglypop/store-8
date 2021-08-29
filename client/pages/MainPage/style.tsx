@@ -3,9 +3,13 @@ import styled from 'styled-components';
 // 메인
 export const MainPage = styled.div`
   position: relative;
-  width: var(--app-width);
-  margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2);
-
+  /* width: var(--app-width);
+  margin: 0px calc(50vw - var(--app-width) / 2) 30px calc(50vw - var(--app-width) / 2); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
   .title {
     grid-row: 1/2;
     display: flex;
@@ -16,9 +20,5 @@ export const MainPage = styled.div`
     margin: 10px 0px;
     padding: 30px;
     color: var(--text-black-dark);
-
-    h3 {
-      font-size: 36px;
-    }
   }
 `;

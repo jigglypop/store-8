@@ -5,6 +5,7 @@ export const ProductDetail = styled.div`
   background-color: var(--body-background-dark);
   color: var(--text-gray-dark);
   margin-bottom: 48px;
+  width: 100%;
   .product-detail__info {
     margin-left: 80px;
     margin-top: 8px;
@@ -14,12 +15,15 @@ export const ProductDetail = styled.div`
     justify-content: space-between;
   }
   @media only screen and (max-width: 1300px) {
+    width: 668px;
     .product-detail__info {
       margin-left: 20px;
     }
   }
   @media only screen and (max-width: 768px) {
+    width: 100%;
   }
   @media only screen and (max-width: 375px) {
+    width: 100vh;
   }
 `;

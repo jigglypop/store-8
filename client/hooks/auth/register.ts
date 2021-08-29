@@ -10,6 +10,7 @@ import _ from 'lodash';
 import { debounceRedux } from '@client/utils/debounce';
 import { getMyWish } from '@client/store/mywish/mywish';
 import { getCart } from '@client/store/product/cart';
+import { getRecommend } from '@client/store/recommend/recommend';
 
 export function useRegister() {
   const { registerform, register, error, loading } = useSelector(
@@ -33,6 +34,7 @@ export function useRegister() {
       dispatch(getCheck(cache.get('token')));
       dispatch(getMyWish(cache.get('token')));
       dispatch(getCart(cache.get('token')));
+      dispatch(getRecommend(cache.get('token')));
       dispatch(initRegister());
     }
   }, [register]);

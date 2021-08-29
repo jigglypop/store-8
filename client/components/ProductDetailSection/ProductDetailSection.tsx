@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import * as S from './style';
 
 import SectionNav from './SectionNav/SectionNav';
 import DetailInfo from './DetailInfo/DetailInfo';
@@ -22,7 +23,8 @@ interface Props {}
 export default function ProductDetailSection({}: Props): ReactElement {
   const { totalCount: questionCount } = useQuestion();
   const { totalCount: reviewCount } = useReview();
-  const [section, setSection] = useState(SECTION_DETAIL_KEY);
+  const [section, setSection] = useState(SECTION_REVIEW_KEY);
+  // const [section, setSection] = useState(SECTION_DETAIL_KEY);
 
   const detailSection: { [key: string]: ReactElement } = {
     [SECTION_DETAIL_KEY]: <DetailInfo />,
@@ -37,17 +39,13 @@ export default function ProductDetailSection({}: Props): ReactElement {
   };
 
   return (
-    <StyledProductDetailSection>
+    <S.ProductDetailSection>
       <SectionNav
         reviewCount={reviewCount}
         questionCount={questionCount}
         {...{ section, setSection }}
       />
       {detailSection[section]}
-    </StyledProductDetailSection>
+    </S.ProductDetailSection>
   );
 }
-
-const StyledProductDetailSection = styled.div`
-  margin-bottom: 3rem;
-`;

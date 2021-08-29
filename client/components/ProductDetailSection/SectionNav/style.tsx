@@ -13,6 +13,7 @@ export const SectionNav = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 8px;
     height: 100%;
     cursor: pointer;
     flex: 1;
@@ -27,13 +28,13 @@ export const SectionNav = styled.ul`
     background-color: var(--background-select-section-dark);
   }
   width: 100%;
-  @media only screen and (max-width: 1200px) {
-    width: 100%;
+  @media only screen and (max-width: 1300px) {
+    font-size: var(--body-middle-font);
   }
-  @media only screen and (max-width: 900px) {
-    width: 100%;
+  @media only screen and (max-width: 768px) {
+    font-size: var(--body-small-font);
   }
-  @media only screen and (max-width: 600px) {
-    width: 100%;
+  @media only screen and (max-width: 375px) {
+    font-size: var(--body-tiny-font);
   }
 `;

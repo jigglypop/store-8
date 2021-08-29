@@ -3,7 +3,7 @@ import { MainItem } from '../common/style';
 
 export const MainRecommend = styled(MainItem)`
   position: relative;
-  width: 100%;
+  width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +81,7 @@ export const MainRecommend = styled(MainItem)`
   }
 
   .number {
-    color: var(--glass-picker);
+    color: var(--text-dark-picker);
   }
 
   .text-wrapper {
@@ -99,6 +99,8 @@ export const MainRecommend = styled(MainItem)`
   }
 
   @media only screen and (max-width: 1200px) {
+    width: 897.5px;
+
     .large {
       font-size: 20px;
     }
@@ -108,6 +110,8 @@ export const MainRecommend = styled(MainItem)`
     }
   }
   @media only screen and (max-width: 900px) {
+    width: 595px;
+
     .large {
       font-size: 15px;
     }
@@ -118,6 +122,13 @@ export const MainRecommend = styled(MainItem)`
     }
   }
   @media only screen and (max-width: 600px) {
+    width: 292.5px;
+    .rec-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     .large {
       font-size: 12px;
     }

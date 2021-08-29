@@ -14,6 +14,15 @@ export const ZoomImg = styled.div<IZoomImg>`
     width: ${(props) => props.imgWitdh}px;
     height: ${(props) => props.imgHeight}px;
   }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    & > img {
+      width: 100%;
+      object-fit: contain;
+    }
+    margin-bottom: 20px;
+  }
 `;
 
 interface IMagnifier {
@@ -54,6 +63,15 @@ export const MagnifiedImg = styled.div<IMagnifiedImg>`
   left: ${(props) => props.imgWidth + 80}px;
   z-index: 9999;
   animation: slowShow 1s;
+
+  @media only screen and (max-width: 1300px) {
+  }
+  @media only screen and (max-width: 768px) {
+    left: 0;
+    top: ${(props) => props.imgHeight + 24}px;
+  }
+  @media only screen and (max-width: 375px) {
+  }
 
   @keyframes slowShow {
     0% {

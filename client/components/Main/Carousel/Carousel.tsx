@@ -55,7 +55,14 @@ const Carousel = () => {
         <div ref={carouselRef} className="carousels">
           {imageUrls.map((item: ICarouselItem, index: number) => (
             <Link to={`/product/${item.id}`} key={index}>
-              <img key={index} src={item.url} className="carousel" id="imgc1" />
+              <img key={index} src={item.url} className="carousel" id="imgc1" loading="lazy" />
+              {/* <video
+                className="carousel"
+                poster="캐러셀 이미지"
+                src={item.url}
+                autoPlay
+                loop
+              ></video> */}
             </Link>
           ))}
         </div>

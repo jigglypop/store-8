@@ -129,4 +129,9 @@ export const QuestionForm = styled.div`
       color: var(--text-black-dark);
     }
   }
+
+  @media only screen and (max-width: 768px) {
+    min-width: 0px;
+    width: 480px;
+  }
 `;
