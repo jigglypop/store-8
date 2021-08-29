@@ -18,6 +18,24 @@ export const MyPage = styled.div`
   justify-content: center;
   gap: 32px;
   min-height: 650px;
+
+  @media only screen and (min-width: 1200px) {
+    flex-direction: row;
+    justify-content: center;
+
+    #navigation-small {
+      display: none;
+    }
+  }
+  /* 캐러셀  width만 조정 */
+  @media only screen and (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+
+    #navigation-big {
+      display: none;
+    }
+  }
 `;
 
 export const SectionItem = styled.div`
