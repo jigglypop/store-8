@@ -8,6 +8,7 @@ import Slider from '../Slider/Slider';
 import DarkMode from '../Dark/DarkMode';
 import Search from '../Search/Search';
 import MainSvg from '@image/svg/mainHorizontal.svg';
+import CoffeeSvg from '@image/svg/Coffee.svg';
 import Recommend from '../Recommend/Recommend';
 import { throttle } from '@client/utils/performance';
 import StoreMode from '../Store/StoreMode';
@@ -67,9 +68,14 @@ const Header = ({ check, onLogout }: IHeader) => {
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader logo">
               <Link to="/main">
-                <div className="main-logo">
-                  <MainSvg />
-                </div>
+                <>
+                  <div className="main-logo">
+                    <MainSvg />
+                  </div>
+                  <div className="coffee-logo">
+                    <CoffeeSvg />
+                  </div>
+                </>
               </Link>
             </S.HeaderItem>
             <S.HeaderItem>
