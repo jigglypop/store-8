@@ -12,7 +12,7 @@ export function useCheck() {
 
   const setCheck = async (checkForm: ICheckBody, token: any) => {
     await dispatch(updateCheck({ checkForm, token }));
-    // await dispatch(getCheck(token));
+    await dispatch(getCheck(token));
   };
 
   const onLogout = async () => {
