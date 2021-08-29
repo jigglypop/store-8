@@ -30,7 +30,7 @@ export default function MyReviewResultContainer({}: Props): ReactElement {
       <div className="container-column">
         <div className="column-score">평가점수</div>
         <div className="column-product-title">상품</div>
-        <div className="column-title">문의 제목</div>
+        <div className="column-title">후기 제목</div>
         <div className="column-date">날짜</div>
       </div>
       <ul className="container-result-list">{myReviewList}</ul>
