@@ -68,14 +68,16 @@ const Header = ({ check, onLogout }: IHeader) => {
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader logo">
               <Link to="/main">
-                <>
-                  <div className="main-logo">
-                    <MainSvg />
-                  </div>
-                  <div className="coffee-logo">
-                    <CoffeeSvg />
-                  </div>
-                </>
+                <div className="main-logo">
+                  <MainSvg />
+                </div>
+              </Link>
+            </S.HeaderItem>
+            <S.HeaderItem className="isSSmallCoffee">
+              <Link to="/main">
+                <div className="coffee-logo">
+                  <CoffeeSvg />
+                </div>
               </Link>
             </S.HeaderItem>
             <S.HeaderItem>
