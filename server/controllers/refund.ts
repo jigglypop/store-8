@@ -15,7 +15,6 @@ export const getAllRefunds = async (req: Request, res: Response) => {
   const { startDate, endDate }: { startDate?: string; endDate?: string } = req.query;
   const userId = req.body.userId; // TODO req.user 로 바꾸기
 
-  console.log(userId, startDate, endDate);
   let refunds = await findAllRefundsByDate(userId, startDate, endDate);
 
   res.status(200).json({ data: refunds });
