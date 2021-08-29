@@ -12,6 +12,7 @@ export const SearchBar = styled.div`
     font-size: var(--body-middle-font);
     font-weight: 600;
     margin-bottom: 12px;
+    width: 100%;
 
     @media only screen and (max-width: 1000px) {
       width: 90vw;

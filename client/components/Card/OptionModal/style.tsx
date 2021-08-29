@@ -1,19 +1,34 @@
 import styled from '@lib/styledComponent';
 
 export const OptionModal = styled.div`
-  min-height: 350px;
-  width: 700px;
   border-radius: 20px;
-  padding: 40px;
   background-color: var(--background-white);
 
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
+  @media only screen and (min-width: 0px) {
+    width: 300px;
+    min-height: 150px;
+    padding: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 700px;
+    min-height: 350px;
+    padding: 40px;
+  }
+
   .option-modal-title {
     font-size: var(--body-huge-font);
-    margin-bottom: 28px;
+    @media only screen and (min-width: 0px) {
+      font-size: var(--body-large-font);
+      margin-bottom: 18px;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: var(--body-huge-font);
+      margin-bottom: 28px;
+    }
   }
 
   .product-count-header {
@@ -42,6 +57,24 @@ export const OptionModal = styled.div`
       width: 18px;
       height: 18px;
       cursor: pointer;
+    }
+
+    @media only screen and (min-width: 0px) {
+      transform-origin: right;
+      transform: scale(0.6);
+    }
+    @media only screen and (min-width: 768px) {
+      transform-origin: right;
+      transform: scale(1);
+    }
+  }
+  .option-subtitle {
+    line-height: 24px;
+    @media only screen and (min-width: 0px) {
+      font-size: 0.75rem;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
     }
   }
 

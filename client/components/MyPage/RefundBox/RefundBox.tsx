@@ -79,7 +79,6 @@ export default function RefundBox({ result, cancelFn, confirmFn }: Props): React
   };
 
   const buttonByState = (_state: IRefund) => {
-    console.log(_state);
     if (!_state.isConfirmed) {
       return (
         <>

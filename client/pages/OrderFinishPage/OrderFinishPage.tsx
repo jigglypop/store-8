@@ -6,12 +6,13 @@ import CartHeader from '@components/Cart/Header/CartHeader';
 import OrderFinishContents from '@components/Order/OrderFinishContents/OrderFinishContents';
 
 import { getRouterObj } from '@utils/pathname';
-
+import { createToast } from '@client/utils/createToast';
 import { ORDER_FINISH } from '@constants/Cart';
+
 import { useRouter } from '@client/hooks/router/router';
-import { IRouterReq } from '@client/store/router/router';
 import { initOrderStatus } from '@store/product/order';
-import { RootState } from '@client/store';
+import { IRouterReq } from '@store/router/router';
+import { RootState } from '@store/index';
 
 const OrderFinishPage = () => {
   const { cart } = useSelector((state: RootState) => state.order);
@@ -37,6 +38,8 @@ const OrderFinishPage = () => {
         history.pushState({ path: to }, to, to);
       }
     }, 5000);
+    createToast('60초 뒤에 물품이 도착합니다', true);
+    createToast('프로필을 확인 해 주세요', true);
   }, []);
 
   return (

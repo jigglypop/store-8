@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContainerItem } from '../common/style';
+import { ContainerItem } from '@components/MyPage/common/style';
 
 export const MyReviewResultContainer = styled(ContainerItem)`
   .container-column {

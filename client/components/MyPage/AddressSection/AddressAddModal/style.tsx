@@ -2,7 +2,6 @@ import styled from '@lib/styledComponent';
 
 export const AddressAddModal = styled.div`
   min-height: 350px;
-  width: 650px;
   border-radius: 20px;
   padding: 40px;
   background-color: var(--background-select-section-dark);
@@ -10,6 +9,18 @@ export const AddressAddModal = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  @media only screen and (min-width: 0px) {
+    max-height: 150px;
+    width: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  @media only screen and (min-width: 768px) {
+    min-height: 350px;
+    max-height: 100vh;
+    width: 650px;
+    overflow: hidden;
+  }
 
   .address-modal-title {
     font-size: var(--body-huge-font);
@@ -31,7 +42,6 @@ export const AddressAddModal = styled.div`
       margin-bottom: 8px;
     }
     input {
-      width: 360px;
       height: 32px;
       border-radius: 4px;
       padding: 6px;
@@ -40,6 +50,12 @@ export const AddressAddModal = styled.div`
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
+      }
+      @media only screen and (min-width: 0px) {
+        width: 170px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 360px;
       }
     }
   }
@@ -83,13 +99,18 @@ export const AddressAddModal = styled.div`
     }
 
     input {
-      width: 360px;
       height: 32px;
       padding: 6px;
       color: var(--text-black-dark);
       &::placeholder {
         font-size: var(--body-middle-font);
         color: var(--text-lightgray);
+      }
+      @media only screen and (min-width: 0px) {
+        width: 170px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 360px;
       }
     }
     .address-search-container {
@@ -125,10 +146,14 @@ export const AddressAddModal = styled.div`
 
     .detail-address-page {
       display: flex;
-      flex-direction: row;
+      @media only screen and (min-width: 0px) {
+        flex-direction: column;
+      }
+      @media only screen and (min-width: 768px) {
+        flex-direction: row;
+      }
 
       .set-base-section {
-        margin-left: 18px;
         display: flex;
         flex-direction: row;
 
@@ -146,6 +171,13 @@ export const AddressAddModal = styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
+        }
+
+        @media only screen and (min-width: 0px) {
+          margin-left: 0px;
+        }
+        @media only screen and (min-width: 768px) {
+          margin-left: 18px;
         }
       }
     }

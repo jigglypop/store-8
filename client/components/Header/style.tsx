@@ -225,7 +225,10 @@ export const HeaderItem = styled.div`
       fill: var(--text-pastel-black-dark);
     }
   }
-
+  .coffee-logo {
+    display: none;
+    transform: scale(0.3);
+  }
   .main-logo:hover {
     .mainHorizontal_svg__letter {
       stroke-dasharray: 40px, 0px;
@@ -305,9 +308,6 @@ export const Header = styled.header<IHeader>`
     height: 100px;
     transition: all 0.3s ease-in;
 
-    svg {
-      fill: var(--text-black-dark);
-    }
     .left,
     .right {
       position: relative;
@@ -322,6 +322,9 @@ export const Header = styled.header<IHeader>`
 
     .hamberger {
       transform: scale(0.8);
+      svg {
+        fill: var(--text-black-dark);
+      }
     }
 
     .main-img {
@@ -370,9 +373,18 @@ export const Header = styled.header<IHeader>`
       padding-left: 0 !important;
     }
   }
+
   @media only screen and (max-width: 800px) {
+    .isSSmallHeader.logo {
+      width: 50px !important;
+    }
     .isSSmallHeader {
-      display: none;
+      .main-logo {
+        display: none;
+      }
+      .coffee-logo {
+        display: flex;
+      }
     }
   }
 `;
