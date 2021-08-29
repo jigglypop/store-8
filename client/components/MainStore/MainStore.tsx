@@ -9,6 +9,8 @@ import Products from './model/Products';
 import Progress from '../StoreUtils/Progress/Progress';
 import { useState } from 'react';
 import MainStoreTitle from './MainTitle/MainStoreTitle';
+import Tip from '../Tip/Tip';
+import TipButton from '../Tip/TipButton';
 
 export default function MainStore({ main }: IMain) {
   const [progress, setProgress] = useState(0);
@@ -18,6 +20,7 @@ export default function MainStore({ main }: IMain) {
   return (
     <>
       <S.ThreeWrapper>
+        <TipButton />
         <MainStoreTitle />
         <Canvas
           camera={{

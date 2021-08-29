@@ -14,6 +14,32 @@ export const LayoutWrapper = styled.div<ILayoutWrapper>`
   height: ${(props) => (props.isMain ? '80px' : '100vh')};
 `;
 
+export const Tag = styled.div`
+  flex-direction: column;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-left: -50px;
+  margin-top: -250px;
+  min-width: 50px;
+  height: 60px;
+  position: relative;
+  width: 200px;
+  color: var(--text-white);
+  box-shadow: 0 0 20px var(--black);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h6 {
+    margin: 5px;
+    font-size: 12px;
+  }
+`;
+
 export const OuterWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -31,7 +57,7 @@ export const ThreeWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 50px;
+    top: 200px;
     right: 0;
     z-index: 100;
     color: var(--text-white);
@@ -58,13 +84,36 @@ export const ThreeWrapper = styled.div`
     span {
       color: var(--text-picker);
     }
+
+    @media only screen and (max-width: 1200px) {
+      width: 350px;
+      height: 250px;
+      h1 {
+        font-size: 40px;
+      }
+      h4 {
+        font-size: 14px;
+        line-height: 2rem;
+      }
+    }
+    @media only screen and (max-width: 900px) {
+      width: 300px;
+      height: 250px;
+      h1 {
+        font-size: 35px;
+      }
+      h4 {
+        font-size: 12px;
+        line-height: 2rem;
+      }
+    }
   }
 
   .ui {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 9;
     color: var(--text-white);
     font-size: 14px;
     margin: 10px;
