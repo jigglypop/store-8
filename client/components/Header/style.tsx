@@ -225,10 +225,7 @@ export const HeaderItem = styled.div`
       fill: var(--text-pastel-black-dark);
     }
   }
-  .coffee-logo {
-    display: none;
-    transform: scale(0.3);
-  }
+
   .main-logo:hover {
     .mainHorizontal_svg__letter {
       stroke-dasharray: 40px, 0px;
@@ -373,18 +370,25 @@ export const Header = styled.header<IHeader>`
       padding-left: 0 !important;
     }
   }
+  .isSSmallCoffee {
+    display: none;
+    margin: 0;
+    padding: 0;
+    width: 30px;
+
+    .coffee-logo {
+      transform: scale(0.3);
+    }
+  }
+  @media only screen and (max-width: 800px) {
+    .isSSmallHeader {
+      display: none;
+    }
+  }
 
   @media only screen and (max-width: 800px) {
-    .isSSmallHeader.logo {
-      width: 50px !important;
-    }
-    .isSSmallHeader {
-      .main-logo {
-        display: none;
-      }
-      .coffee-logo {
-        display: flex;
-      }
+    .isSSmallCoffee {
+      display: flex;
     }
   }
 `;
