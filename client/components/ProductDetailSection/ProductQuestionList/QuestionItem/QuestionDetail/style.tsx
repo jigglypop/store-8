@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const QuestionDetail = styled.div`
+  width: 100%;
   background-color: var(--footer-background-dark);
   color: var(--text-black-dark);
   font-size: var(--body-middle-font);
