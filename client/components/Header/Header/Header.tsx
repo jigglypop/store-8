@@ -40,16 +40,12 @@ const Header = ({ check, onLogout }: IHeader) => {
     return () => window.addEventListener('scroll', setHeaderUpPosition);
   }, []);
 
-  const onToggle = () => {
+  const hambergerUp = throttle(() => {
     if (isLeft === 0) {
       setIsLeft(150);
     } else {
       setIsLeft(0);
     }
-  };
-
-  const hambergerUp = throttle(() => {
-    setIsLeft(150);
   }, 200);
   useEffect(() => {
     $('.hamberger-outer').on('mouseenter', hambergerUp);
@@ -64,10 +60,10 @@ const Header = ({ check, onLogout }: IHeader) => {
         <div className="headerInner" ref={header}>
           <div className="left">
             <S.HeaderItem>
-              <div className="hamberger" onClick={() => onToggle()}>
+              <div className="hamberger-outer" onClick={(e) => hambergerUp(e)}></div>
+              <div className="hamberger">
                 <Hamberger />
               </div>
-              <div className="hamberger-outer" onClick={() => onToggle()}></div>
             </S.HeaderItem>
             <S.HeaderItem className="isSSmallHeader logo">
               <Link to="/main">
@@ -90,10 +86,12 @@ const Header = ({ check, onLogout }: IHeader) => {
         </div>
       </S.Header>
       <Slider isLeft={isLeft} setIsLeft={setIsLeft} isUp={isUp} />
-      <DarkMode />
+      <div className="fab-container">
+        <GoIntro />
+        <DarkMode />
+        <StoreMode />
+      </div>
       <Recommend />
-      <StoreMode />
-      <GoIntro />
     </S.HeaderOuter>
   );
 };

@@ -98,6 +98,7 @@ export const QuestionForm = styled.div`
   .question-form__error {
     height: 15px;
     color: var(--text-red);
+    margin-bottom: 8px;
   }
 
   .question-form__btns {

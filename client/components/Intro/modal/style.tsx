@@ -18,23 +18,6 @@ export const Modal = styled.div`
   color: var(--text-white);
   font-weight: 800;
 
-  .title {
-    background-color: rgba(0, 0, 0, 0.6);
-    font-size: 20px;
-    color: var(--text-white);
-    box-shadow: 0 0 20px var(--black);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    margin: 20px;
-    border-radius: 15px;
-    transition: all 0.3s ease-in;
-
-    &:hover {
-      color: var(--text-picker);
-    }
-  }
-
   .buttonset {
     display: flex;
     justify-content: center;
@@ -57,6 +40,43 @@ export const Modal = styled.div`
       &:hover {
         color: var(--text-picker);
         cursor: pointer;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 900px) {
+    .buttonset {
+      margin-top: 110px;
+      .button {
+        h4 {
+          font-size: 14px;
+        }
+        padding: 20px;
+        margin: 20px;
+      }
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .buttonset {
+      margin-top: 120px;
+
+      h4 {
+        font-size: 12px;
+      }
+      .button {
+        padding: 16px;
+        margin: 16px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .buttonset {
+      h4 {
+        font-size: 10px;
+      }
+      .button {
+        padding: 12px;
+        margin: 10px;
       }
     }
   }

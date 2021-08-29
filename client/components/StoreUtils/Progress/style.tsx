@@ -22,10 +22,36 @@ export const Progress = styled.div<IProgress>`
   text-align: center;
   align-items: center;
 
+  .img-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px 0;
+
+    img {
+      width: 250px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .img-content {
+      margin: 10px 0;
+      flex-direction: column;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .img-content {
+      margin: 0;
+      flex-direction: column;
+    }
+    img {
+      width: 180px;
+    }
+  }
   .progress-inner {
     position: relative;
-    width: 60vw;
-    height: 60vh;
+    width: 90vw;
+    height: 90vh;
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--text-white);
     box-shadow: 0 0 20px var(--black);
@@ -42,6 +68,8 @@ export const Progress = styled.div<IProgress>`
       font-size: 80px;
       color: var(--text-picker);
       text-shadow: 0 0 10px var(--text-picker);
+      margin: 0;
+      padding: 0;
     }
 
     .progress-text {
@@ -52,9 +80,10 @@ export const Progress = styled.div<IProgress>`
       font-size: 20px;
     }
     .progress-bar {
+      margin-top: -10px;
       overflow: hidden;
       position: relative;
-      padding: 10px 0;
+      padding: 5px 0;
       width: 200px;
       height: 35px;
       background: transparent;
@@ -92,7 +121,23 @@ export const Progress = styled.div<IProgress>`
   @media only screen and (max-width: 600px) {
     .progress-inner {
       .progress-title {
+        margin-top: 5px;
         font-size: 40px;
+      }
+
+      .progress-number {
+        font-size: 15px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .progress-inner {
+      .progress-title {
+        margin-top: 10px;
+        font-size: 25px;
+      }
+      .progress-number {
+        display: none;
       }
     }
   }

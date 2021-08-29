@@ -30,9 +30,20 @@ export const OrderDetailContents = styled.div`
   }
 
   .contents-detail-row {
-    display: flex;
-    flex-direction: row;
     margin-top: 8px;
+    display: flex;
+    @media only screen and (min-width: 0px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 375px) {
+      flex-direction: column;
+    }
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+    }
+    @media only screen and (min-width: 1300px) {
+      flex-direction: row;
+    }
 
     .contents-detail-amount {
       margin-right: 3px;
@@ -43,6 +54,12 @@ export const OrderDetailContents = styled.div`
       font-size: var(--body-small-font);
       color: var(--text-black-dark);
     }
+  }
+
+  .contents-detail-mileage {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
     .contents-detail-mileage-title {
       font-weight: 700;
       font-size: var(--body-small-font);

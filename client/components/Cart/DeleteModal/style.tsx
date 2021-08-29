@@ -13,20 +13,19 @@ export const DeleteModal = styled.div`
     min-height: 150px;
     padding: 20px;
   }
-  @media only screen and (min-width: 375px) {
-    width: 300px;
-    min-height: 150px;
-    padding: 20px;
-  }
   @media only screen and (min-width: 768px) {
     width: 650px;
     min-height: 350px;
     padding: 40px;
   }
-  @media only screen and (min-width: 1300px) {
-    width: 650px;
-    min-height: 350px;
-    padding: 40px;
+
+  .delete-modal-contents-container {
+    @media only screen and (min-width: 0px) {
+      overflow-y: auto;
+    }
+    @media only screen and (min-width: 768px) {
+      overflow-y: inherit;
+    }
   }
 
   .delete-modal-title {
@@ -36,15 +35,7 @@ export const DeleteModal = styled.div`
       font-size: var(--body-large-font);
       margin-bottom: 18px;
     }
-    @media only screen and (min-width: 375px) {
-      font-size: var(--body-large-font);
-      margin-bottom: 18px;
-    }
     @media only screen and (min-width: 768px) {
-      font-size: var(--body-huge-font);
-      margin-bottom: 28px;
-    }
-    @media only screen and (min-width: 1300px) {
       font-size: var(--body-huge-font);
       margin-bottom: 28px;
     }
@@ -58,8 +49,8 @@ export const DeleteModal = styled.div`
     @media only screen and (min-width: 0px) {
       font-size: var(--body-middle-font);
     }
-    @media only screen and (min-width: 375px) {
-      font-size: var(--body-middle-font);
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
     }
 
     & > p {
@@ -79,17 +70,7 @@ export const DeleteModal = styled.div`
         height: 24px;
         border-radius: 3px;
       }
-      @media only screen and (min-width: 375px) {
-        width: 80px;
-        height: 24px;
-        border-radius: 3px;
-      }
       @media only screen and (min-width: 768px) {
-        width: 100px;
-        height: 36px;
-        border-radius: 4px;
-      }
-      @media only screen and (min-width: 1300px) {
         width: 100px;
         height: 36px;
         border-radius: 4px;

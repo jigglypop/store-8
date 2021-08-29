@@ -1,18 +1,20 @@
-import { MouseEvent, ReactElement } from 'react';
+import { useState, MouseEvent, ReactElement } from 'react';
 import * as S from './style';
+import { useDispatch } from 'react-redux';
 
-import { useWish } from '@client/hooks/wish/wish';
 import HeartIcon from '@image/heartIcon.svg';
+import AlertModal from '@client/components/common/AlertModal/AlertModal';
+
 import { createToast } from '@client/utils/createToast';
+import localCart from '@utils/cart';
+import { getRouterObj } from '@client/utils/pathname';
+import { localGetCart } from '@client/store/product/cart';
+import { IRouterReq } from '@client/store/router/router';
+import { useRouter } from '@client/hooks/router/router';
+import { useWish } from '@client/hooks/wish/wish';
 import { useCheck } from '@client/hooks/auth/check';
 import { useProduct } from '@client/hooks/product/product';
 import { useCart } from '@client/hooks/product/cart';
-import { Link } from '@utils/router';
-import { useState } from 'react';
-import AlertModal from '@client/components/common/AlertModal/AlertModal';
-import { useDispatch } from 'react-redux';
-import localCart from '@utils/cart';
-import { localGetCart } from '@client/store/product/cart';
 
 interface Props {
   id: number;
@@ -20,6 +22,7 @@ interface Props {
 }
 
 export default function DetailBtns({ id, title }: Props): ReactElement {
+  const { onChangeRouterAll } = useRouter();
   const { product, count, optionCount } = useProduct();
   const { addToCart } = useCart();
   const { isInMyWish, isLoggedIn, toggleWish } = useWish(id + '', title);
@@ -34,7 +37,7 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
   //TODO 비로그인 시 처리 필요 - 임시로 toast사용
   const handleLikeClick = () => {
     if (isLoggedIn) toggleWish();
-    else createToast('로그인이 필요한 서비스입니다.');
+    else createToast('로그인이 필요한 서비스입니다', true);
   };
 
   const unLoginedAddCart = (productId: number, productOptionId: number | null, count: number) => {
@@ -76,7 +79,12 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
       renderNotOptionAlert();
       return;
     }
+    createToast(`장바구니로 이동합니다`, true);
     addProductToCart();
+    const to = '/cart';
+    const RouterObj: IRouterReq = getRouterObj(to);
+    onChangeRouterAll(RouterObj);
+    history.pushState({ path: to }, to, to);
   };
   const handleClickCart = () => {
     if (isOptionNotSelected()) return renderNotOptionAlert();
@@ -103,8 +111,8 @@ export default function DetailBtns({ id, title }: Props): ReactElement {
       <button className="cart-btn" onClick={handleClickCart}>
         장바구니
       </button>
-      <button className="purchase-btn" onClickCapture={handleClickPurchase}>
-        <Link to="/cart">바로 구매</Link>
+      <button className="purchase-btn" onClick={handleClickPurchase}>
+        바로 구매
       </button>
       {isOpenAlertModal && <AlertModal msg={alertMsg} cancelCbFn={closeAlertModal} />}
     </S.DetailBtns>

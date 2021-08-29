@@ -1,10 +1,22 @@
 import styled from '@lib/styledComponent';
 
 export const ReceiptContainer = styled.div`
-  margin-top: 60px;
   display: flex;
   flex-direction: column;
   width: 100%;
+
+  @media only screen and (min-width: 0px) {
+    margin-top: 0px;
+  }
+  @media only screen and (min-width: 375px) {
+    margin-top: 0px;
+  }
+  @media only screen and (min-width: 768px) {
+    margin-top: 60px;
+  }
+  @media only screen and (min-width: 1300px) {
+    margin-top: 60px;
+  }
 `;
 
 export const Receipt = styled.div`

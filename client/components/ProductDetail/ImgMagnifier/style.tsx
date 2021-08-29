@@ -8,6 +8,7 @@ interface IZoomImg {
 
 export const ZoomImg = styled.div<IZoomImg>`
   width: ${(props) => props.imgWitdh}px;
+  height: ${(props) => props.imgHeight}px;
   position: relative;
 
   & > img {
@@ -19,7 +20,7 @@ export const ZoomImg = styled.div<IZoomImg>`
     width: 100%;
     & > img {
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     margin-bottom: 20px;
   }
@@ -52,34 +53,25 @@ interface IMagnifiedImg {
   magnifierHeight: number;
   positionX: number;
   positionY: number;
+  showMagifier: boolean;
 }
 
 export const MagnifiedImg = styled.div<IMagnifiedImg>`
   position: absolute;
   overflow: hidden;
+  visibility: ${({ showMagifier }) => (showMagifier ? 'visible' : 'hidden')};
+  opacity: ${({ showMagifier }) => (showMagifier ? 1 : 0)};
+  transition: visibility 0.2s linear, opacity 0.2s linear;
   width: ${(props) => props.imgWidth}px;
   height: ${(props) => props.imgHeight}px;
   top: 0;
   left: ${(props) => props.imgWidth + 80}px;
-  z-index: 9999;
-  animation: slowShow 1s;
+  z-index: 9;
+  animation: slowShow 0.5s;
 
-  @media only screen and (max-width: 1300px) {
-  }
   @media only screen and (max-width: 768px) {
     left: 0;
     top: ${(props) => props.imgHeight + 24}px;
-  }
-  @media only screen and (max-width: 375px) {
-  }
-
-  @keyframes slowShow {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
   }
 
   img {

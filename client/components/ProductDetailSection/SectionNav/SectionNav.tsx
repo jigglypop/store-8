@@ -12,8 +12,6 @@ import {
   SECTION_QUESTION_NAME,
 } from '@constants/productDetail/productDetailSection/ProductDetailSection';
 
-import { throttle } from '@client/utils/performance';
-
 interface Props {
   reviewCount: number;
   questionCount: number;

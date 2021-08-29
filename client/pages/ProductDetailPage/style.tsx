@@ -10,6 +10,7 @@ export const ProductDetailPage = styled.div`
   @media only screen and (max-width: 768px) {
     width: calc(100% - 100px);
   }
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 475px) {
+    width: 100vw;
   }
 `;

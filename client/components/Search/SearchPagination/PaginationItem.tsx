@@ -1,6 +1,7 @@
-import { useRouter } from '@client/hooks/router/router';
-import { Link } from '@client/utils/router';
 import * as S from './style';
+
+import { Link } from '@client/utils/router';
+import { useRouter } from '@client/hooks/router/router';
 
 interface IPaginationItemComponent {
   num: number;

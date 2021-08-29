@@ -5,10 +5,13 @@ import loadable from '@loadable/component';
 import { routes } from '@middle/router/routes';
 import { IRouterItem } from '@middle/type/router/router';
 import { useRouter } from './hooks/router/router';
+import { useStoreMode } from './hooks/storemode/storemode';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import * as S from './GlobalStyle';
+import Tip from './components/Tip/Tip';
 function App() {
   const { router } = useRouter();
+  const { storemode } = useStoreMode();
   return (
     <S.App>
       <Router>
@@ -20,9 +23,17 @@ function App() {
           })}
           {router.notfound === 'false' ? <NotFoundPage /> : ''}
           <RouterSet />
-          <Footer />
+          {!storemode &&
+          (router.pathname === '' ||
+            router.pathname === 'main' ||
+            router.pathname === 'category') ? (
+            ''
+          ) : (
+            <Footer />
+          )}
         </>
       </Router>
+      <Tip />
       <S.ToastDiv id="toasts"></S.ToastDiv>
     </S.App>
   );

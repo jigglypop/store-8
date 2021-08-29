@@ -49,11 +49,27 @@ const cartLocalAddPostReducer = createExtraPost<ICartLocalAddData, ICartAddRes |
   name
 );
 
+interface ChangeCartProps {
+  cartId: number;
+  cartCount: number;
+}
+
+export interface IChangeCartState {
+  payload: ChangeCartProps;
+}
+
 const cartSlice = createSlice({
   name,
   initialState,
   reducers: {
     initCartStatus: () => initialState,
+    changeCartStatus: (state, { payload }: IChangeCartState) => {
+      state.cart?.forEach((element) => {
+        if (element.id === payload.cartId) {
+          element.count = payload.cartCount;
+        }
+      });
+    },
   },
   extraReducers: {
     ...cartGetPostReducer,
@@ -64,5 +80,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { initCartStatus } = cartSlice.actions;
+export const { initCartStatus, changeCartStatus } = cartSlice.actions;
 export default cartSlice.reducer;

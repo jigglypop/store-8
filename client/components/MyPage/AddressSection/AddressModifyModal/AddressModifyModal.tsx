@@ -33,7 +33,7 @@ function AddressModifyModal(props: AddressModifyModalProps): ReactElement {
   const [nameCheck, setNameCheck] = useState(0);
   const [callCheck, setCallCheck] = useState(0);
   const [emailCheck, setEmailCheck] = useState(0);
-  const [extraEdit, setExtraEdit] = useState(true);
+  const [extraEdit, setExtraEdit] = useState(false);
 
   const setName = (name: string) => {
     setAddressData({ ...addressData, name });

@@ -9,7 +9,7 @@ export const MainPage = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   .title {
     grid-row: 1/2;
     display: flex;

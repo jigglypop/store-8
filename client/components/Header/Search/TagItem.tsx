@@ -16,7 +16,7 @@ export default function TagItem({ tag, onRemove }: TagItemProps) {
           <SmallSearchButton className="search-button search" />
         </div>
         <div className="tag-container search">
-          <p>{tag}</p>
+          {tag}
           <SmallXButton onClick={() => onRemove(tag)} className="x-button search" />
         </div>
       </S.TagItem>

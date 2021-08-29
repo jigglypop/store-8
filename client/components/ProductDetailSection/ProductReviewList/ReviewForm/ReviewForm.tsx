@@ -1,8 +1,8 @@
 import { ReactElement, useState, MouseEvent } from 'react';
 import * as S from './style';
 
-import Modal from '@components/common/Modal/Modal';
 import XIcon from '@image/icon/xIcon.svg';
+import Modal from '@components/common/Modal/Modal';
 import ImgListForm from './ImgListForm/ImgListForm';
 import ScoreChecker from './ScoreChecker/ScoreChecker';
 
