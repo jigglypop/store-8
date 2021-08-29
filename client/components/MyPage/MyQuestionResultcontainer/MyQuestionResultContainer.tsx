@@ -14,7 +14,7 @@ interface Props {}
 export default function MyQuestionResultContainer({}: Props): ReactElement {
   const { myQuestions, totalCount, currentPage, setCurrentPage } = useMyQuestion();
 
-  const myQuestionList = !myQuestions ? (
+  const myQuestionList = !myQuestions.length ? (
     <TextNoData>조회 내역이 없습니다.</TextNoData>
   ) : (
     myQuestions.map((questionData: IMyQuestion) => (

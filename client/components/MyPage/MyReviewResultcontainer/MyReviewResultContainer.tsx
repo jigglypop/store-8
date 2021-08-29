@@ -14,7 +14,7 @@ interface Props {}
 export default function MyReviewResultContainer({}: Props): ReactElement {
   const { myReviews, totalCount, currentPage, setCurrentPage } = useMyReview();
 
-  const myReviewList = !myReviews ? (
+  const myReviewList = !myReviews.length ? (
     <TextNoData>조회 내역이 없습니다.</TextNoData>
   ) : (
     myReviews.map((reviewData: IMyReview) => (
