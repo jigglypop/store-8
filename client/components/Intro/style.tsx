@@ -70,6 +70,12 @@ export const ThreeWrapper = styled.div`
     backdrop-filter: blur(10px);
     border-radius: 15px;
 
+    .team-info-contents {
+      display: flex;
+      flex-direction: column;
+      padding-left: 16px;
+      align-items: flex-start;
+    }
     .info-title {
       font-family: 'Do Hyeon', sans-serif;
       font-size: 50px;
