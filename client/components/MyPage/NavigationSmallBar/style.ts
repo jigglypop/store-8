@@ -58,6 +58,8 @@ export const NavigatorGroup = styled.div`
     margin: 10px 10px 0px 0px;
     height: 30px;
     transition: all 0.3s ease-in;
+    padding: 4px;
+    border-radius: 2px;
   }
 
   div:hover {

@@ -1,4 +1,5 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as S from './style';
 
 import Intro from '@components/MyPage/Intro/Intro';
@@ -9,10 +10,8 @@ import AddressModifyModal from './AddressModifyModal/AddressModifyModal';
 import NumAdd from '@image/svg/numAdd.svg';
 
 import { getAddress } from '@client/store/address/address';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { Desktop, Tablet, Mobile } from '@components/common/ResponseComp/ResponseComp';
 import cache from '@client/utils/cache';
 
 export default function AddressSection(): ReactElement {
