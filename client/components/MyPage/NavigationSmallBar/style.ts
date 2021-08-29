@@ -16,9 +16,31 @@ export const NavigationSmallBar = styled.div`
     border-bottom: 1.5px solid var(--gray5-button-hover);
     padding-left: 12px;
   }
-  @media only screen and (max-width: 768px) {
+
+  .navigation-small-item {
+    flex-grow: 1;
+    min-width: 250px;
+    h4 {
+      font-size: var(--body-large-font);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 550px) {
     flex-direction: column;
     justify-content: center;
+
+    .navigation-small-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h4 {
+        font-size: var(--body-large-font);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+    }
   }
 `;
 
@@ -31,7 +53,7 @@ export const NavigatorGroup = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 10px;
+    margin: 10px 10px 0px 0px;
     height: 30px;
     transition: all 0.3s ease-in;
   }
@@ -41,14 +63,7 @@ export const NavigatorGroup = styled.div`
     background-color: var(--gray3);
   }
 
-  h4 {
-    font-size: var(--body-middle-font);
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
   .router-link {
-    padding: 10px 12px;
     color: var(--text-black-dark);
     cursor: pointer;
   }
@@ -63,5 +78,19 @@ export const NavigatorGroup = styled.div`
     font-weight: 600;
     color: var(--black);
     background-color: var(--background-button-clicked);
+  }
+
+  @media only screen and (max-width: 550px) {
+    justify-content: center;
+    margin-bottom: 10px;
+
+    div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin: 0px 10px 0px 0px;
+      height: 30px;
+      transition: all 0.3s ease-in;
+    }
   }
 `;
