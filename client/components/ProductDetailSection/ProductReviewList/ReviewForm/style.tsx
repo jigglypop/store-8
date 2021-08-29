@@ -131,4 +131,13 @@ export const ReviewForm = styled.div`
     min-width: 0px;
     width: 480px;
   }
+  @media only screen and (max-width: 480px) {
+    .review-form__header {
+      h2 {
+        font-size: var(--body-huge-font);
+      }
+    }
+    min-width: 0px;
+    width: 320px;
+  }
 `;

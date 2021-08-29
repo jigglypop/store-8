@@ -47,19 +47,19 @@ export default function ProductReviewList({}: Props): ReactElement {
       return;
     }
 
-    // if (!orderInfo) {
-    //   setAlertMsg('구매 후 이용 가능합니다.');
-    //   setIsOpenAlertModal(true);
-    //   return;
-    // }
+    if (!orderInfo) {
+      setAlertMsg('구매 후 이용 가능합니다.');
+      setIsOpenAlertModal(true);
+      return;
+    }
 
-    // const orderStatus = checkOrderStatus(orderInfo.status);
+    const orderStatus = checkOrderStatus(orderInfo.status);
 
-    // if (!orderStatus) {
-    //   setAlertMsg('구매 확정 후 이용 가능합니다.');
-    //   setIsOpenAlertModal(true);
-    //   return;
-    // }
+    if (!orderStatus) {
+      setAlertMsg('구매 확정 후 이용 가능합니다.');
+      setIsOpenAlertModal(true);
+      return;
+    }
 
     setIsOpenForm(true);
   };

@@ -62,7 +62,7 @@ export const QuestionForm = styled.div`
     }
 
     .question-form__input {
-      width: 100%;
+      /* width: 100%; */
       border: 1px solid var(--gray5);
       border-radius: 4px;
       padding: 10px 15px;
@@ -134,5 +134,19 @@ export const QuestionForm = styled.div`
   @media only screen and (max-width: 768px) {
     min-width: 0px;
     width: 480px;
+  }
+  @media only screen and (max-width: 480px) {
+    /* min-width: 0px; */
+    width: 320px;
+    .question-form__title-input,
+    .question-form__contents-input {
+      .title {
+        display: none;
+      }
+      input,
+      textarea {
+        width: 100%;
+      }
+    }
   }
 `;
