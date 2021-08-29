@@ -20,7 +20,7 @@ export const ZoomImg = styled.div<IZoomImg>`
     width: 100%;
     & > img {
       width: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     margin-bottom: 20px;
   }
@@ -66,7 +66,7 @@ export const MagnifiedImg = styled.div<IMagnifiedImg>`
   height: ${(props) => props.imgHeight}px;
   top: 0;
   left: ${(props) => props.imgWidth + 80}px;
-  z-index: 9999;
+  z-index: 9;
   animation: slowShow 0.5s;
 
   @media only screen and (max-width: 768px) {

@@ -119,16 +119,7 @@ export const getUsername = async (userId: number): Promise<string> => {
 };
 
 export const updateProfile = async (req: IUpdateUserProfileRequest, res: Response) => {
-  const { userId, username, id } = req.body;
-  let imageUrl = req.body?.imageUrl;
-
-  if (imageUrl.length === 1) {
-    imageUrl = imageUrl[0];
-  } else {
-    imageUrl = '';
-  }
-
-  console.log(userId, username, id, imageUrl);
+  const { userId, username, id, imageUrl } = req.body;
 
   if (userId !== id) {
     throw new HttpError(err.INVALID_INPUT_ERROR);

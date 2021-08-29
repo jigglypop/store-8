@@ -2,7 +2,6 @@ import styled from '@client/lib/styledComponent';
 
 export const AlertModal = styled.div`
   min-height: 300px;
-  width: 450px;
   padding: 40px;
   background-color: var(--background-select-section-dark);
   color: var(--text-black-dark);
@@ -12,6 +11,16 @@ export const AlertModal = styled.div`
   align-items: center;
   flex-direction: column;
   box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.1), 0px 0px 4px rgba(51, 51, 51, 0.05);
+
+  @media only screen and (min-width: 0px) {
+    width: 350px;
+    padding: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 450px;
+    padding: 40px;
+  }
+
   .alert-modal-title {
     display: flex;
     align-items: center;

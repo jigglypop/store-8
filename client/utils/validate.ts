@@ -13,9 +13,9 @@ export const validate = (name: string, value: string) => {
       error = '비밀번호는 8자 이상 16자 이하로 입력해야 합니다.';
     }
   } else if (name === 'username') {
-    if (value.length < 2 || value.length > 16) {
+    if (value.length < 2 || value.length > 8) {
       flag = false;
-      error = '유저 이름은 2자 이상 16자 이하로 입력해야 합니다.';
+      error = '유저 이름은 2자 이상 8자 이하로 입력해야 합니다.';
     }
   }
   return { flag, error };

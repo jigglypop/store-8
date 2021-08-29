@@ -2,18 +2,20 @@ export const NameInfo = () => {
   return (
     <div className="info">
       <h1 className="info-title">팀원 소개</h1>
-      <h4>
-        <span>남영우</span> : 더 나은 팀 경험과 개발을 위해 노력하겠습니다.
-      </h4>
-      <h4>
-        <span>송하영</span>: 기능의 완성보다 코드의 완성을 중요하게 생각합니다.
-      </h4>
-      <h4>
-        <span>염동환</span> : 다작으로 승부한다 다양한 포트폴리오를 가진 개발자.
-      </h4>
-      <h4>
-        <span>최현준</span> : 내가 표현하지 못하면 남들이 알지 못합니다.
-      </h4>
+      <div className="team-info-contents">
+        <h4>
+          <span>남영우</span>: 더 나은 팀 경험과 개발을 위해 노력하겠습니다.
+        </h4>
+        <h4>
+          <span>송하영</span>: 기능보다 코드의 완성을 더 중요하게 생각합니다.
+        </h4>
+        <h4>
+          <span>염동환</span>: 다작으로 승부! 다양한 사이트를 가진 개발자.
+        </h4>
+        <h4>
+          <span>최현준</span>: 내가 표현하지 못하면 남들이 알지 못합니다.
+        </h4>
+      </div>
     </div>
   );
 };
