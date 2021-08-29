@@ -25,7 +25,7 @@ function AddressDeleteModal(props: AddressDeleteModalProps): ReactElement {
         <div>
           <p className="address-modal-title">{'다음 주소가 삭제됩니다.'}</p>
           <p className="address-modal-info">{`[${props.addressData.title}] - ${props.addressData.address} ${props.addressData.extraAddress} `}</p>
-          <p className="address-modal-info">{`[받는 사람] : ${props.addressData.name} ( ${props.addressData.call} )`}</p>
+          <p className="address-modal-info">{`[수신인] : ${props.addressData.name} ( ${props.addressData.call} )`}</p>
         </div>
         <div className="button-space">
           <button onClick={props.closeForm} className="cancle-btn">

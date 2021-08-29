@@ -2,7 +2,6 @@ import styled from '@lib/styledComponent';
 
 export const AddressDeleteModal = styled.div`
   min-height: 1 50px;
-  width: 650px;
   border-radius: 20px;
   padding: 40px;
   background-color: var(--background-select-section-dark);
@@ -11,15 +10,33 @@ export const AddressDeleteModal = styled.div`
   justify-content: space-between;
   flex-direction: column;
 
+  @media only screen and (min-width: 0px) {
+    width: 300px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 650px;
+  }
+
   .address-modal-title {
-    font-size: var(--body-huge-font);
     color: var(--text-black-dark);
     margin-bottom: 16px;
+    @media only screen and (min-width: 0px) {
+      font-size: 1rem;
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: var(--body-huge-font);
+    }
   }
 
   .address-modal-info {
     color: var(--text-black-dark);
     margin-bottom: 16px;
+    @media only screen and (min-width: 0px) {
+      font-size: var(--body-small-font);
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   .button-space {
