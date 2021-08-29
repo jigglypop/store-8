@@ -142,7 +142,7 @@ const Auth = ({ types, error, onChange, onSubmit }: IAuthForm) => {
           <h4>{text.logo}</h4>
         </S.FormButton>
         <a href={`${GITHUB_URL}`}>
-          <S.GitHub className="github-button">GITHUB 로그인/ 회원가입 </S.GitHub>
+          <S.GitHub className="github-button">GITHUB 로그인/ 회원가입</S.GitHub>
         </a>
       </S.AuthForm>
     </S.Auth>

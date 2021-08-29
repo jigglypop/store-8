@@ -5,6 +5,9 @@ export const QuestionDetail = styled.div`
   color: var(--text-black-dark);
   font-size: var(--body-middle-font);
   padding: 0 13px;
+  display: flex;
+  flex-direction: row;
+
   .question-detail__question,
   .question-detail__answer {
     display: flex;
@@ -36,7 +39,7 @@ export const QuestionDetail = styled.div`
   .question-detail__btns {
     display: flex;
     align-items: flex-start;
-    padding-top: 20px;
+    padding-top: 30px;
     padding-right: 30px;
     .question-detail__edit-btn {
       cursor: pointer;

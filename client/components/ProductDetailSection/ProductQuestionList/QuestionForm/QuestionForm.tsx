@@ -4,10 +4,12 @@ import * as S from './style';
 import XIcon from '@image/icon/xIcon.svg';
 import Modal from '@components/common/Modal/Modal';
 import CheckBox from '@components/common/CheckBox/CheckBox';
+import Captcha from '@components/common/Captcha/Captcha';
 
 import { useProduct } from '@client/hooks/product/product';
 import { useQuestion } from '@client/hooks/question/question';
 import { IProductInfo } from '@middle/type/product/product';
+import { useEffect } from 'react';
 
 interface Props {
   cancelCbFn: () => void;
@@ -33,9 +35,10 @@ export default function QuestionForm({
   const [title, setTitle] = useState(editTitle ?? '');
   const [contents, setContents] = useState(editContents ?? '');
   const [isSecret, setIsSecret] = useState(editIsSecret || false);
+  const [isCaptcha, setIsCaptcha] = useState(false);
 
   const handleInputChange = ({ target }: { target: HTMLInputElement }) => {
-    if (target.value.length > 60) {
+    if (target.value.length >= 60) {
       setFormError('제목은 최대 60자까지만 입력 가능합니다.');
       return;
     }
@@ -46,7 +49,7 @@ export default function QuestionForm({
   };
 
   const handleTextareaChange = ({ target }: { target: HTMLTextAreaElement }) => {
-    if (target.value.length > 500) {
+    if (target.value.length >= 500) {
       setFormError('내용은 최대 500자까지만 입력 가능합니다.');
       return;
     }
@@ -73,7 +76,13 @@ export default function QuestionForm({
     cancelCbFn();
   };
 
-  const isAbleSubmit = !!(title && contents);
+  const isAbleSubmit = title && contents && isCaptcha;
+
+  useEffect(() => {
+    console.log(isAbleSubmit);
+  }, [isAbleSubmit]);
+
+  console.log('CAPTCHA: ', isCaptcha);
 
   return (
     <Modal>
@@ -115,6 +124,7 @@ export default function QuestionForm({
                 <div>비밀글로 문의하기</div>
               </div>
               <div className="question-form__error">{formError || error}</div>
+              <Captcha checkCaptcha={setIsCaptcha} />
             </div>
           </div>
           <div className="question-form__btns">
