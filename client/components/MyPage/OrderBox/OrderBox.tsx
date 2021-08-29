@@ -106,8 +106,6 @@ export default function OrderBox({ result }: Props): ReactElement {
   };
 
   const buttonByState = (_state: IOrder) => {
-    console.log('buttonByState');
-    console.log(_state);
     if (!_state.isConfirmed) {
       if (!_state.refundId) {
         return (

@@ -1,11 +1,4 @@
 import styled from 'styled-components';
+import { MyPage } from '@components/MyPage/common/style';
 
-export const MyGoodsReviewPage = styled.div`
-  margin-top: 12px;
-  margin-left: 12px;
-  display: flex;
-  flex-direction: row;
-  gap: 32px;
-  justify-content: center;
-  min-height: 650px;
-`;
+export const MyGoodsReviewPage = styled(MyPage)``;

@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 import * as S from './style';
 
-import OrderBox from '../OrderBox/OrderBox';
+import OrderBox from '@components/MyPage/OrderBox/OrderBox';
 import { TextNoData } from '@components/MyPage/common/style';
 import { useMyOrder } from '@client/hooks/myOrder/myOrder';
 import { useMyReview } from '@client/hooks/my/useMyReview';

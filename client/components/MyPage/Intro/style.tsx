@@ -59,6 +59,7 @@ export const Intro = styled.div`
   .text-user-info {
     & > div:first-child {
       color: var(--text-black-dark);
+      margin-top: 10px;
       margin-bottom: 10px;
     }
   }

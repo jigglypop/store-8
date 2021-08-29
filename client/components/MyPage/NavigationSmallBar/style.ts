@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 
 export const NavigationSmallBar = styled.div`
-  margin: 20px;
-  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 100%;
+  width: 80vw;
   color: var(--text-black-dark);
 
   h3 {
@@ -25,6 +23,10 @@ export const NavigationSmallBar = styled.div`
       font-weight: 600;
       margin-bottom: 12px;
     }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    width: 80vw;
   }
 
   @media only screen and (max-width: 550px) {
