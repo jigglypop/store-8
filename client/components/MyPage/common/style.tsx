@@ -9,6 +9,10 @@ export const MyPage = styled.div`
   gap: 32px;
   min-height: 650px;
 
+  @media screen and (max-width: 800px) {
+    margin-left: 0px;
+  }
+
   @media only screen and (min-width: 1200px) {
     flex-direction: row;
     justify-content: center;
