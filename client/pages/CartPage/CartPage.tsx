@@ -4,7 +4,7 @@ import CartContentsContainer from '@components/Cart/Container/CartContentsContai
 import Receipt from '@components/Cart/Receipt/Receipt';
 import DeleteModal from '@components/Cart/DeleteModal/DeleteModal';
 
-import { CartData, ICartAddData } from '@middle/type/cart/cart';
+import { CartData, ICartChangeReq } from '@middle/type/cart/cart';
 import { ClientCartData } from '@middle/type/cart/cart';
 import { ORDER_READY } from '@constants/Cart';
 import { getShipmentAmount } from '@utils/utils';
@@ -12,19 +12,22 @@ import cache from '@utils/cache';
 import localCart from '@utils/cart';
 import { cartDataChanger } from '@utils/responseTypeChanger';
 
-import { getCart, delCart, localGetCart, localAddCart } from '@store/product/cart';
+import { useCart } from '@client/hooks/order/cart';
+import { getCart, delCart, localGetCart } from '@store/product/cart';
 import { setOrderList } from '@store/product/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@client/store';
+import _ from 'lodash';
 
 import * as S from './style';
 
 function Cart(): ReactElement {
   const dispatch = useDispatch();
   const { cart } = useSelector((state: RootState) => state.cart);
-  const [contents, setContents] = useState(cartDataChanger(cart));
-  const [deleteItem, setDeleteLists] = useState([0]);
+  const [contents, setContents] = useState<ClientCartData[]>(cartDataChanger(cart));
+  const [deleteItem, setDeleteLists] = useState<number[]>([0]);
   const [isOpenForm, setOpenForm] = useState(false);
+  const { changeCart } = useCart();
   const token = cache.get('token');
 
   useEffect(() => {
@@ -116,7 +119,6 @@ function Cart(): ReactElement {
   // Contents 가 바뀔 때 마다 toggle, 가격 등의 변화를 주기 위한 useEffect
   useEffect(() => {
     setMetaData(calcMetaData());
-    dispatch(setOrderList(makeOrderData()));
   }, [contents]);
 
   // 전체 toggle이 켜져있다면 모두 끄고, 꺼져있다면 모두 키는 함수
@@ -138,6 +140,7 @@ function Cart(): ReactElement {
     temp[index].isChecked = !temp[index].isChecked;
     if (temp[index].count === 0) {
       temp[index].count = 1;
+      changeCartRequest();
     }
     setContents([...temp]);
   };
@@ -192,7 +195,11 @@ function Cart(): ReactElement {
       return;
     }
 
-    temp[index].count += changeAmount;
+    if (temp[index].count + changeAmount <= 100) {
+      temp[index].count += changeAmount;
+    } else {
+      temp[index].count = 100;
+    }
 
     if (temp[index].count === 0) {
       temp[index].isChecked = false;
@@ -202,8 +209,22 @@ function Cart(): ReactElement {
       temp[index].isChecked = true;
     }
 
-    setContents([...temp]);
+    setContents([...contents]);
   };
+
+  const changeCartRequest = _.debounce(() => {
+    const changeCartData: ICartChangeReq = {
+      cartIds: [],
+      productCounts: [],
+    };
+
+    contents.forEach((element) => {
+      changeCartData.cartIds.push(element.id);
+      changeCartData.productCounts.push(element.count);
+    });
+
+    changeCart(changeCartData);
+  }, 300);
 
   return (
     <S.Cart>
@@ -214,6 +235,7 @@ function Cart(): ReactElement {
             toggleAllHandler={toggleAllHandler}
             toggleOneHandler={toggleOneHandler}
             deleteCheckedItem={deleteCheckedItem}
+            changeCartRequest={changeCartRequest}
             changeItem={changeItem}
             contents={contents}
             metaData={metaData}

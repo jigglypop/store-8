@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const GoIntro = styled.div`
-  position: fixed;
-  bottom: 190px;
-  left: 50px;
   z-index: 20;
 `;
 
-export const GoIntroItem = styled.div`
+type IStoreMode = {
+  storemode: boolean;
+};
+
+export const GoIntroItem = styled.div<IStoreMode>`
   width: 50px;
   height: 50px;
   border-radius: 50px;
@@ -16,10 +17,14 @@ export const GoIntroItem = styled.div`
   justify-content: center;
   text-align: center;
 
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px var(--black);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
+
+  background-color: ${({ storemode }) =>
+    storemode ? 'var(--text-pastel-black-nonwhite-dark);' : 'rgba(0, 0, 0, 0.8);'};
+
+  box-shadow: ${({ storemode }) =>
+    storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
 
   .storemode-item {
     margin: 5px;

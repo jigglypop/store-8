@@ -122,14 +122,31 @@ export const add = async (req: Request, res: Response) => {
     throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
   }
 
-  const valid = await Cart.create({ userId, productId, productOptionId, productCount });
-  if (!valid) {
-    throw new HttpError({ status: 400, message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.' });
+  let valid: boolean | [number, Cart[]] | Cart = true;
+  const search = await Cart.findOne({ where: { userId, productId, productOptionId } });
+  {
+    if (search) {
+      const count =
+        search.productCount + productCount > 100 ? 100 : search.productCount + productCount;
+      valid = await Cart.update(
+        { productCount: count },
+        { where: { userId, productId, productOptionId } }
+      );
+    } else {
+      const count = productCount > 100 ? 100 : productCount;
+      valid = await Cart.create({ userId, productId, productOptionId, productCount: count });
+    }
   }
 
-  let result = await findAll(userId);
-
-  res.status(200).json({ data: result });
+  if (!valid) {
+    throw new HttpError({
+      status: 400,
+      message: '요청한 Cart 내역 추가를 진행 할 수 없었습니다.',
+    });
+  } else {
+    let result = await findAll(userId);
+    res.status(200).json({ data: result });
+  }
 };
 
 export const remove = async (req: Request, res: Response) => {
@@ -146,4 +163,23 @@ export const remove = async (req: Request, res: Response) => {
   let result = await findAll(userId);
 
   res.status(200).json({ data: result });
+};
+
+export const changeAll = async (req: Request, res: Response) => {
+  const { userId, productCounts, cartIds } = req.body;
+  if (!userId) {
+    throw new HttpError({ status: 400, message: '요청한 Body 내용에 User ID가 없습니다.' });
+  }
+
+  productCounts.forEach(async (productCount: number, index: number) => {
+    const valid = await Cart.update({ productCount }, { where: { id: cartIds[index] } });
+    if (!valid) {
+      throw new HttpError({
+        status: 400,
+        message: '요청한 Cart 내역 변경을 진행 할 수 없었습니다.',
+      });
+    }
+  });
+
+  res.status(200).json({ data: 'ok' });
 };

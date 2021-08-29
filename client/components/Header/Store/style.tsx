@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-export const StoreMode = styled.div`
-  position: fixed;
-  bottom: 120px;
-  left: 50px;
+type IStoreMode = {
+  storemode: boolean;
+};
+
+export const StoreMode = styled.div<IStoreMode>`
   z-index: 20;
   padding-left: 12px;
 
@@ -16,19 +17,64 @@ export const StoreMode = styled.div`
   height: 50px;
   border-radius: 40px;
 
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px var(--black);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px var(--text-black);
-
   transition: all 0.3s ease-in;
   cursor: pointer;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  background-color: ${({ storemode }) =>
+    storemode ? 'var(--text-pastel-black-nonwhite-dark);' : 'rgba(0, 0, 0, 0.8);'};
+
+  box-shadow: ${({ storemode }) =>
+    storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
 
   &:hover {
-    width: 150px;
     height: 50px;
+    @media only screen and (min-width: 0px) {
+      width: 50px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: 50px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 150px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 150px;
+    }
     & > p {
+      line-height: 42px;
+
+      @media only screen and (min-width: 0px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 375px) {
+        width: 42px;
+      }
+      @media only screen and (min-width: 768px) {
+        width: 100px;
+      }
+      @media only screen and (min-width: 1300px) {
+        width: 100px;
+      }
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+  }
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
       display: inherit;
       white-space: nowrap;
       text-overflow: clip;

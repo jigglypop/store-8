@@ -58,23 +58,58 @@ export const CartContent = styled.div`
     align-items: flex-end;
   }
 
+  .cart-amount-container {
+    @media only screen and (min-width: 0px) {
+      width: 60px;
+    }
+    @media only screen and (min-width: 375px) {
+      width: calc(100% - 44px);
+    }
+    @media only screen and (min-width: 768px) {
+      flex-grow: 1;
+    }
+    @media only screen and (min-width: 1300px) {
+      flex-grow: 1;
+    }
+  }
+
   .original-amount {
     text-decoration: line-through;
     text-decoration-color: var(--text-gray);
     color: var(--text-gray);
     margin-bottom: 8px;
-    font-size: var(--body-middle-font);
+    @media only screen and (min-width: 0px) {
+      font-size: var(--body-small-font);
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: var(--body-middle-font);
+    }
   }
   .real-amount {
     color: var(--text-black-dark);
+    @media only screen and (min-width: 0px) {
+      font-size: var(--body-middle-font);
+    }
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
   .product-count-container {
     display: flex;
     flex-direction: row;
-    width: 100px;
     height: 22px;
     align-items: center;
     justify-content: space-between;
+
+    @media only screen and (min-width: 0px) {
+      width: 80px;
+      transform: scale(0.8);
+      transform-origin: left;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 100px;
+      transform: scale(1);
+    }
 
     & > p {
       margin-top: 3px;
@@ -90,13 +125,7 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       width: 60px;
     }
-    @media only screen and (min-width: 375px) {
-      width: 60px;
-    }
     @media only screen and (min-width: 768px) {
-      width: 60px;
-    }
-    @media only screen and (min-width: 1300px) {
       width: 100px;
     }
   }
@@ -104,7 +133,7 @@ export const CartContent = styled.div`
     @media only screen and (min-width: 0px) {
       transform: scale(0.8);
     }
-    @media only screen and (min-width: 375px) {
+    @media only screen and (min-width: 768px) {
       transform: scale(0.8);
     }
   }

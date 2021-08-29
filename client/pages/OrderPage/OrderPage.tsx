@@ -52,6 +52,15 @@ const OrderPage = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (cart.length === 0) {
+      const to = '/main';
+      const RouterObj: IRouterReq = getRouterObj(to);
+      onChangeRouterAll(RouterObj);
+      history.pushState({ path: to }, to, to);
+    }
+  }, [cart]);
+
   const [totalState, setTotalState] = useState<ProceedOrderProps>({
     useCouponId: 0,
     useCouponAmount: 0,

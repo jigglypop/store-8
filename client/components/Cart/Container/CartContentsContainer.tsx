@@ -12,6 +12,7 @@ interface CartContentProps {
   contents: ClientCartData[];
   metaData: CartContentMetaData;
   toggleAllHandler: () => void;
+  changeCartRequest: () => void;
   toggleOneHandler: (index: number) => void;
   changeItem: (index: number, changeAmount: number) => void;
   deleteCheckedItem: () => void;
@@ -49,6 +50,7 @@ function CartContentsContainer(props: CartContentProps): ReactElement {
             index={index}
             toggleHandler={props.toggleOneHandler}
             changeItem={props.changeItem}
+            changeCartRequest={props.changeCartRequest}
           ></CartContent>
         );
       })}

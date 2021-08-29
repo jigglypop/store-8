@@ -7,7 +7,7 @@ function StoreMode() {
   return (
     <>
       {router && router.pathname !== '' && (
-        <S.StoreMode onClick={() => onToggleStoreMode()}>
+        <S.StoreMode storemode={storemode} onClick={() => onToggleStoreMode()}>
           {storemode ? <PlaneSVG /> : <CubeSVG />}
           <p>{storemode ? '3D모드로 보기' : '2D모드로 보기'}</p>
         </S.StoreMode>

@@ -6,7 +6,6 @@ import DetailInfo from './DetailInfo/DetailInfo';
 import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
 import RefundInfo from './RefundInfo/RefundInfo';
 import ProductReviewList from './ProductReviewList/ProductReviewList';
-import styled from 'styled-components';
 import ProductQuestionList from './ProductQuestionList/ProductQuestionList';
 
 import {
@@ -23,8 +22,8 @@ interface Props {}
 export default function ProductDetailSection({}: Props): ReactElement {
   const { totalCount: questionCount } = useQuestion();
   const { totalCount: reviewCount } = useReview();
-  const [section, setSection] = useState(SECTION_REVIEW_KEY);
-  // const [section, setSection] = useState(SECTION_DETAIL_KEY);
+  // const [section, setSection] = useState(SECTION_REVIEW_KEY);
+  const [section, setSection] = useState(SECTION_DETAIL_KEY);
 
   const detailSection: { [key: string]: ReactElement } = {
     [SECTION_DETAIL_KEY]: <DetailInfo />,

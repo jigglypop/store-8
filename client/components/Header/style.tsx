@@ -98,10 +98,11 @@ export const Picker = styled.div`
   }
 `;
 
-export const DarkMode = styled.div`
-  position: fixed;
-  bottom: 50px;
-  left: 50px;
+type IStoreMode = {
+  storemode: boolean;
+};
+
+export const DarkMode = styled.div<IStoreMode>`
   z-index: 20;
   padding-left: 12px;
 
@@ -113,51 +114,52 @@ export const DarkMode = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 40px;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px var(--black);
+
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  box-shadow: 0 0 10px var(--text-black);
   transition: all 0.3s ease-in;
   cursor: pointer;
 
+  background-color: ${({ storemode }) =>
+    storemode ? 'var(--text-pastel-black-nonwhite-dark);' : 'rgba(0, 0, 0, 0.8);'};
+
+  box-shadow: ${({ storemode }) =>
+    storemode ? '0 0 10px rgba(0, 0, 0, 0.5);' : '0 0 20px black;'};
+
   &:hover {
-    width: 150px;
     height: 50px;
-    & > p {
-      height: 42px;
-
-      @media only screen and (min-width: 0px) {
-        width: 42px;
-      }
-      @media only screen and (min-width: 375px) {
-        width: 42px;
-      }
-      @media only screen and (min-width: 768px) {
-        width: 140px;
-      }
-      @media only screen and (min-width: 1300px) {
-        width: 140px;
-      }
+    @media only screen and (min-width: 0px) {
+      width: 50px;
     }
-
-    &:hover > p {
-      @media only screen and (min-width: 0px) {
-        display: none;
-      }
-      @media only screen and (min-width: 375px) {
-        display: none;
-      }
-      @media only screen and (min-width: 768px) {
-        display: inherit;
-        white-space: nowrap;
-        text-overflow: clip;
-      }
-      @media only screen and (min-width: 1300px) {
-        display: inherit;
-        white-space: nowrap;
-        text-overflow: clip;
-      }
+    @media only screen and (min-width: 375px) {
+      width: 50px;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 150px;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 150px;
+    }
+    & > p {
+      line-height: 42px;
+    }
+  }
+  &:hover > p {
+    @media only screen and (min-width: 0px) {
+      display: none;
+    }
+    @media only screen and (min-width: 375px) {
+      display: none;
+    }
+    @media only screen and (min-width: 768px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+    @media only screen and (min-width: 1300px) {
+      display: inherit;
+      white-space: nowrap;
+      text-overflow: clip;
     }
   }
 
@@ -168,12 +170,12 @@ export const DarkMode = styled.div`
     display: none;
   }
 
-  path {
-    fill: var(--text-picker);
-    stroke: var(--text-picker);
-  }
-
   svg {
+    path {
+      fill: var(--text-picker);
+      stroke: var(--text-picker);
+    }
+
     path:first-child {
       fill: var(--text-picker);
       stroke: none;
@@ -249,14 +251,37 @@ export const HeaderOuter = styled.div`
   .slider-all {
     display: flex;
   }
-  .left-down-button-space {
+
+  .fab-container {
+    z-index: 20;
+    position: fixed;
     display: flex;
     flex-direction: row;
 
-    position: fixed;
-    bottom: 50px;
-    left: 50px;
-    z-index: 20;
+    & > * {
+      margin-right: 10px;
+    }
+
+    @media only screen and (min-width: 0px) {
+      bottom: 10px;
+      left: 0px;
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 375px) {
+      bottom: 10px;
+      left: 0px;
+      transform: scale(0.8);
+    }
+    @media only screen and (min-width: 768px) {
+      bottom: 50px;
+      left: 50px;
+      transform: scale(1);
+    }
+    @media only screen and (min-width: 1300px) {
+      bottom: 50px;
+      left: 50px;
+      transform: scale(1);
+    }
   }
 `;
 // 헤더 부분

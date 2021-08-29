@@ -99,7 +99,7 @@ const UserInfo = ({ totalState, setTotalState, openForm }: UserInfoProps): React
       <div className="user-info-title">
         <p>{USER_ORDER_LIST}</p>
         <button onClick={openForm} className="center-align">
-          {'기존 배송지에서 선택'}
+          {'내 배송지 보기'}
         </button>
       </div>
       <AlertInput

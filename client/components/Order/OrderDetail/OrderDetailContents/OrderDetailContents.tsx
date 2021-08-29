@@ -22,7 +22,7 @@ const OrderDetailContents = ({ content }: OrderDetailContentsProps): ReactElemen
           <p className="contents-detail-amount">{kstFormatter(content.amount * content.count)}</p>
           <p className="contents-detail-count">{'( 주문 수량 : ' + content.count + ' )'}</p>
         </div>
-        <div className="contents-detail-row">
+        <div className="contents-detail-mileage">
           <p className="contents-detail-mileage-title">{'적립금 : '}</p>
           <p className="contents-detail-mileage-amount">
             {'+' + kstFormatter(getMileage(content.amount * content.count))}

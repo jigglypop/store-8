@@ -18,7 +18,6 @@ export const UserInfo = styled.div`
       font-weight: 600;
     }
     & > button {
-      width: 180px;
       height: 32px;
       border-radius: 3px;
       background-color: var(--background-mint);
@@ -27,6 +26,25 @@ export const UserInfo = styled.div`
       &:hover {
         background-color: var(--background-dark-mint);
       }
+    }
+  }
+
+  .user-info-title > button {
+    @media only screen and (min-width: 0px) {
+      width: 100px;
+      font-size: var(--body-middle-font);
+    }
+    @media only screen and (min-width: 375px) {
+      width: 100px;
+      font-size: var(--body-middle-font);
+    }
+    @media only screen and (min-width: 768px) {
+      width: 180px;
+      font-size: 1rem;
+    }
+    @media only screen and (min-width: 1300px) {
+      width: 180px;
+      font-size: 1rem;
     }
   }
 
@@ -101,10 +119,10 @@ export const UserInfo = styled.div`
     .detail-address-page {
       display: flex;
       @media only screen and (min-width: 0px) {
-        flex-direction: row;
+        flex-direction: column;
       }
       @media only screen and (min-width: 375px) {
-        flex-direction: row;
+        flex-direction: column;
       }
       @media only screen and (min-width: 768px) {
         flex-direction: column;
@@ -115,10 +133,10 @@ export const UserInfo = styled.div`
 
       .set-base-section {
         @media only screen and (min-width: 0px) {
-          margin-left: 18px;
+          margin-left: 0px;
         }
         @media only screen and (min-width: 375px) {
-          margin-left: 18px;
+          margin-left: 0px;
         }
         @media only screen and (min-width: 768px) {
           margin-left: 0px;
