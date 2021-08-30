@@ -1,4 +1,5 @@
-cp -r public ./store-8/dist/public
+cp -r product ./store-8/dist/public/
+
 
 cd /home/ubuntu/store-8
 
