@@ -21,9 +21,5 @@ export const useOrderProduct = () => {
     setOrderdProduct(data ?? []);
   };
 
-  useEffect(() => {
-    getOrderedProduct();
-  }, []);
-
-  return { orderedProduct, error };
+  return { orderedProduct, error, getOrderedProduct };
 };

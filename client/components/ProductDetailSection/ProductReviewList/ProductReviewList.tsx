@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import * as S from './style';
 import * as CommonS from '../style';
 
@@ -19,7 +19,7 @@ interface Props {}
 
 export default function ProductReviewList({}: Props): ReactElement {
   const { totalCount, reviews, currentPage, setCurrentPage } = useReview();
-  const { orderedProduct, error } = useOrderProduct();
+  const { orderedProduct, getOrderedProduct } = useOrderProduct();
   const { check } = useCheck();
   const [isOpenForm, setIsOpenForm] = useState(false);
   const [isOpenLoginModal, setIsOpenLoginModal] = useState(false);
@@ -63,6 +63,10 @@ export default function ProductReviewList({}: Props): ReactElement {
 
     setIsOpenForm(true);
   };
+
+  useEffect(() => {
+    getOrderedProduct();
+  }, [isOpenForm]);
 
   const reviewList = reviews.map((data, idx) => {
     const reviewNo = totalCount - (currentPage - 1) * DEFAULT_REVIEW_LIMIT - idx;
