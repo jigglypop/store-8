@@ -5,13 +5,16 @@ import * as S from './style';
 import OrderBox from '@components/MyPage/OrderBox/OrderBox';
 import { TextNoData } from '@components/MyPage/common/style';
 import { useMyOrder } from '@client/hooks/myOrder/myOrder';
-import { useMyReview } from '@client/hooks/my/useMyReview';
 
 interface Props {}
 
 export default function OrderResultContainer({}: Props): ReactElement {
-  const { myReviews } = useMyReview();
-  const { myOrder } = useMyOrder();
+  // const { myReviews } = useMyReview();
+  const { myOrder, getMyOrderAgain } = useMyOrder();
+
+  const onWriteReview = (token: string) => {
+    getMyOrderAgain(token);
+  };
 
   return (
     <S.OrderResultContainer>
@@ -32,7 +35,7 @@ export default function OrderResultContainer({}: Props): ReactElement {
       ) : (
         <div className={'container-result-list'}>
           {myOrder.map((data, idx) => (
-            <OrderBox result={data} key={idx} />
+            <OrderBox reviewFn={onWriteReview} result={data} key={idx} />
           ))}
         </div>
       )}

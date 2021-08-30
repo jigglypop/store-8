@@ -46,7 +46,7 @@ export const ContainerItem = styled.div`
   flex-direction: column;
   width: 940px;
 
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 1200px) {
     width: 90vw;
   }
 

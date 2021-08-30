@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const RefundBox = styled.div`
   width: 100%;
-  height: 100px;
+  height: 90px;
+  padding: 10px;
   margin-bottom: 3px;
   display: flex;
   flex-direction: row;
@@ -27,7 +28,6 @@ export const RefundBox = styled.div`
   .column-date {
     text-align: left;
     width: 70px;
-    border-right: 1px dotted var(--line-gray);
   }
 
   .column-title {
@@ -86,6 +86,7 @@ export const RefundBox = styled.div`
     width: 100%;
     height: 250px;
     margin-bottom: 3px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,7 +109,6 @@ export const RefundBox = styled.div`
     .column-date {
       text-align: left;
       width: 100%;
-      border-right: none;
     }
 
     .product-link,

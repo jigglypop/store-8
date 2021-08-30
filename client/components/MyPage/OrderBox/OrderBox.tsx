@@ -1,5 +1,5 @@
 import { dateStringFormat } from '@client/utils/date';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import * as S from './style';
 import { Link } from '@client/utils/router';
 import { IOrder } from '@middle/type/myOrder/myOrder';
@@ -13,14 +13,19 @@ import cache from '@client/utils/cache';
 
 interface Props {
   result: IOrder;
+  reviewFn: Function;
 }
 
-export default function OrderBox({ result }: Props): ReactElement {
+export default function OrderBox({ result, reviewFn }: Props): ReactElement {
   // 과연 result가 바뀌는 것을 감지하는 방법이 없을까? 내부 state 로 관리하지 않고
   const [state, setState] = useState(result);
   const [isConfirmOrderOpenForm, setConfirmOrderOpenForm] = useState(false);
   const [isConfirmRefundOpenForm, setConfirmRefundOpenForm] = useState(false);
   const [isReviewOpenForm, setReviewOpenForm] = useState(false);
+
+  useEffect(() => {
+    setState(result);
+  }, [result]);
 
   const getStateByDate = (_state: IOrder): string => {
     const now = new Date();
@@ -60,6 +65,7 @@ export default function OrderBox({ result }: Props): ReactElement {
   };
 
   const closeReviewForm = () => {
+    reviewFn(cache.get('token'));
     setReviewOpenForm(false);
   };
 

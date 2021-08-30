@@ -19,6 +19,7 @@ interface Props {
   editScore?: number;
   productInfo?: IProductInfo;
   orderId?: number;
+  confirmReview?: Function;
 }
 
 export default function ReviewForm({

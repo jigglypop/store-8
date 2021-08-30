@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const OrderBox = styled.div`
   width: 100%;
-  height: 100px;
+  height: 90px;
+  padding: 10px;
   margin-bottom: 3px;
   display: flex;
   flex-direction: row;
@@ -28,7 +29,6 @@ export const OrderBox = styled.div`
   .column-date {
     text-align: left;
     width: 70px;
-    border-right: 1px dotted var(--line-gray);
   }
 
   .product-link,
@@ -103,6 +103,7 @@ export const OrderBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
 
     > *,
     .column-title {
@@ -122,7 +123,6 @@ export const OrderBox = styled.div`
     .column-date {
       text-align: left;
       width: 100%;
-      border-right: none;
     }
 
     .product-link,

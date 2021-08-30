@@ -3,7 +3,7 @@ import Card from '@components/Card/Card';
 import InnerCard from '@components/InnerCard/InnerCard';
 import { IMain } from '../common/type';
 import * as S from './style';
-
+import { Desktop, Tablet, Mobile } from '@components/common/ResponseComp/ResponseComp';
 const MainBest = ({ main }: IMain) => {
   return (
     <S.MainBest>
@@ -12,10 +12,24 @@ const MainBest = ({ main }: IMain) => {
           <h3>잘나가요</h3>
         </div>
         <div className="content">
-          {main &&
-            main.best.map((item: IProduct, index: number) => (
-              <Card key={index} index={index} item={item} />
-            ))}
+          <Desktop>
+            {main &&
+              main.best.map((item: IProduct, index: number) => (
+                <Card key={index} index={index} item={item} />
+              ))}
+          </Desktop>
+          <Tablet>
+            {main &&
+              main.best.map((item: IProduct, index: number) => (
+                <InnerCard key={index} index={index} item={item} />
+              ))}
+          </Tablet>
+          <Mobile>
+            {main &&
+              main.best.map((item: IProduct, index: number) => (
+                <InnerCard key={index} index={index} item={item} />
+              ))}
+          </Mobile>
         </div>
       </div>
     </S.MainBest>

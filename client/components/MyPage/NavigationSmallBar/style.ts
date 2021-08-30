@@ -25,11 +25,11 @@ export const NavigationSmallBar = styled.div`
     }
   }
 
-  @media only screen and (max-width: 1000px) {
-    width: 80vw;
+  @media only screen and (max-width: 1201px) {
+    width: 90vw;
   }
 
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: 650px) {
     flex-direction: column;
     justify-content: center;
 
@@ -58,7 +58,8 @@ export const NavigatorGroup = styled.div`
     margin: 10px 10px 0px 0px;
     height: 30px;
     transition: all 0.3s ease-in;
-    padding: 4px;
+    /* padding: 4px; */
+    padding: 4px 8px 4px 8px;
     border-radius: 2px;
   }
 
@@ -84,7 +85,7 @@ export const NavigatorGroup = styled.div`
     background-color: var(--background-button-clicked);
   }
 
-  @media only screen and (max-width: 550px) {
+  @media only screen and (max-width: 650px) {
     justify-content: center;
     margin-bottom: 10px;
 
@@ -94,6 +95,7 @@ export const NavigatorGroup = styled.div`
       align-items: center;
       margin: 0px 10px 0px 0px;
       height: 30px;
+      /* padding: 4px 8px 4px 8px; */
       transition: all 0.3s ease-in;
     }
   }

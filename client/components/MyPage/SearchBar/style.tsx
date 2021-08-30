@@ -14,7 +14,7 @@ export const SearchBar = styled.div`
     margin-bottom: 12px;
     width: 100%;
 
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 1200px) {
       width: 90vw;
     }
   }
@@ -29,7 +29,7 @@ export const SearchBar = styled.div`
     border: 3px solid var(--gray6);
     color: var(--gray3);
 
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (max-width: 1200px) {
       /* min-width: 300px; */
       display: flex;
       flex-direction: row;
@@ -67,10 +67,11 @@ export const SearchBar = styled.div`
       }
 
       @media only screen and (max-width: 590px) {
-        width: 102px;
+        display: none;
       }
 
       @media only screen and (max-width: 550px) {
+        display: inherit;
         width: 302px;
       }
       @media only screen and (max-width: 360px) {
@@ -101,6 +102,10 @@ export const SearchBar = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+
+      @media only screen and (max-width: 590px) {
+        flex-direction: row;
       }
 
       @media only screen and (max-width: 550px) {
