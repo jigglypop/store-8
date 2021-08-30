@@ -30,13 +30,16 @@ export const Progress = styled.div<IProgress>`
     padding: 20px 0;
 
     img {
-      width: 250px;
+      width: 35vw;
     }
   }
   @media only screen and (max-width: 600px) {
     .img-content {
       margin: 10px 0;
       flex-direction: column;
+      img {
+        width: 250px;
+      }
     }
   }
   @media only screen and (max-width: 375px) {
@@ -77,7 +80,7 @@ export const Progress = styled.div<IProgress>`
     }
 
     .progress-number {
-      font-size: 20px;
+      font-size: 12px;
     }
     .progress-bar {
       margin-top: -10px;
