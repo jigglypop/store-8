@@ -24,21 +24,25 @@ export function useProduct() {
   const dispatch = useDispatch();
 
   const setCount = (count: number) => {
+    if (!productId) return;
     if (count < 0) return;
     if (count >= 100) count = 100;
     dispatch(setCountState(count));
   };
 
   const setOptionCount = (optionId: number, count: number) => {
+    if (!productId) return;
     dispatch(setOptionCountState({ optionId, count }));
   };
 
   const deleteOptionCount = (optionId: number) => {
+    if (!productId && !optionId) return;
     dispatch(deleteOptionCountState(optionId));
   };
 
   // 페이지 시작
   useEffect(() => {
+    if (!productId) return;
     dispatch(getProduct(productId));
   }, []);
 
