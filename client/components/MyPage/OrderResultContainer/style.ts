@@ -20,6 +20,7 @@ export const OrderResultContainer = styled(ContainerItem)`
 
     .container-result-list {
       border-top: 1px solid var(--gray5);
+      margin-top: 12px;
     }
   }
 `;
