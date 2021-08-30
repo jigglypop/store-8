@@ -47,6 +47,9 @@ export const RecommendItem = styled.div<IStoreMode>`
     transition: all 0.3s ease-in;
   }
 
+  .recomment-item-link {
+    cursor: pointer;
+  }
   .recommend-item:hover {
     transform-origin: left;
     transform: scale(1.2);
