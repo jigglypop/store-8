@@ -1,4 +1,4 @@
-cp -r public ./server/dist/public
+cp -r public ./store-8/dist/public
 
 cd /home/ubuntu/store-8
 
