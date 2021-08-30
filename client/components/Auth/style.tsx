@@ -90,6 +90,19 @@ export const AuthForm = styled.div`
     text-shadow: var(--shadow-picker);
     margin: 10px;
   }
+  @media only screen and (max-width: 600px) {
+    .auth-title {
+      font-size: 60px;
+    }
+    .text-goto {
+      font-size: 12px;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    .auth-title {
+      font-size: 40px;
+    }
+  }
 `;
 
 export const Error = styled.div`

@@ -56,12 +56,13 @@ const textBlink = keyframes`
 export const TipButton = styled.div`
   position: fixed;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   top: 120px;
-  right: 50px;
-  width: 100px;
-  height: 50px;
+  right: 20px;
+  width: 140px;
+  height: 130px;
   z-index: 9;
   color: var(--text-white);
   background-color: rgba(0, 0, 0, 0.8);
@@ -72,22 +73,23 @@ export const TipButton = styled.div`
   animation: ${textBlink} 1s alternate infinite;
   cursor: pointer;
 
+  .tip-item {
+    font-size: 15px;
+    margin: 10px;
+  }
+  .tip-text {
+    line-height: 1.2rem;
+    font-size: 12px;
+  }
   @media only screen and (max-width: 900px) {
     top: 140px;
 
-    width: 80px;
-    height: 40px;
-    .tip-item {
-      font-size: 14px;
-    }
+    width: 130px;
   }
   @media only screen and (max-width: 600px) {
     top: 160px;
 
-    width: 70px;
-    .tip-item {
-      font-size: 12px;
-    }
+    width: 120px;
   }
 `;
 
