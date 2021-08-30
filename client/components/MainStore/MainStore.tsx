@@ -11,6 +11,8 @@ import { useState } from 'react';
 import MainStoreTitle from './MainTitle/MainStoreTitle';
 import Tip from '../Tip/Tip';
 import TipButton from '../Tip/TipButton';
+import Totoro from './model/Totoro';
+import Baedal from './model/Baedal';
 
 export default function MainStore({ main }: IMain) {
   const [progress, setProgress] = useState(0);
@@ -37,6 +39,8 @@ export default function MainStore({ main }: IMain) {
             maxAzimuthAngle={-Math.PI / 1.5}
             minAzimuthAngle={Math.PI / 1.5}
           />
+          <Totoro setProgress={setProgress} />
+          <Baedal setProgress={setProgress} />
           <MainStoreOuter setProgress={setProgress} />
           <Products
             products={main ? main.best : []}
