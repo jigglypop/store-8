@@ -48,8 +48,10 @@ export const RecommendItem = styled.div<IStoreMode>`
   }
 
   .recomment-item-link {
+    margin: 5px;
     font-size: 9px;
     cursor: pointer;
+    transition: all 0.3s ease-in;
   }
   .recommend-item:hover {
     transform-origin: left;
