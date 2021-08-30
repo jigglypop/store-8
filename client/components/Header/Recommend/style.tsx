@@ -48,6 +48,7 @@ export const RecommendItem = styled.div<IStoreMode>`
   }
 
   .recomment-item-link {
+    font-size: 9px;
     cursor: pointer;
   }
   .recommend-item:hover {
