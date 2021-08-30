@@ -30,7 +30,7 @@ export const Progress = styled.div<IProgress>`
     padding: 20px 0;
 
     img {
-      width: 35vw;
+      width: 30vw;
     }
   }
   @media only screen and (max-width: 600px) {
@@ -68,6 +68,7 @@ export const Progress = styled.div<IProgress>`
 
     .progress-title {
       font-family: 'Do Hyeon';
+      margin-top: -50px;
       font-size: 80px;
       color: var(--text-picker);
       text-shadow: 0 0 10px var(--text-picker);
@@ -80,7 +81,7 @@ export const Progress = styled.div<IProgress>`
     }
 
     .progress-number {
-      font-size: 12px;
+      font-size: 16px;
     }
     .progress-bar {
       margin-top: -10px;
