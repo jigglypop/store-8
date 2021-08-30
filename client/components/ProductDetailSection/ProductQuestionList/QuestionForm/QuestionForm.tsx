@@ -78,12 +78,6 @@ export default function QuestionForm({
 
   const isAbleSubmit = title && contents && isCaptcha;
 
-  useEffect(() => {
-    console.log(isAbleSubmit);
-  }, [isAbleSubmit]);
-
-  console.log('CAPTCHA: ', isCaptcha);
-
   return (
     <Modal>
       <S.QuestionForm>
