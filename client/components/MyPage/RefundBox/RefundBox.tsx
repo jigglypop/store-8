@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 import * as S from './style';
 import { IRefund } from '@middle/type/myRefund/myRefund';
 import { createToast } from '@client/utils/createToast';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ConfirmCheckModal from '@components/MyPage/ConfirmOrderModal/ConfirmOrderModal';
 import * as c from '@constants/Refund';
 import { useMyRefund } from '@client/hooks/myRefund/myRefund';
@@ -18,6 +18,10 @@ export default function RefundBox({ result, cancelFn, confirmFn }: Props): React
   const [state, setState] = useState(result);
   const [isCancelRefundForm, setCancelRefundForm] = useState(false);
   const [isConfirmRefundForm, setConfirmRefundForm] = useState(false);
+
+  useEffect(() => {
+    setState(result);
+  }, [result]);
 
   const getStateByDate = (_state: IRefund): string => {
     const now = new Date();
