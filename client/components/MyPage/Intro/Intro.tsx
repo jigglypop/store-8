@@ -46,9 +46,12 @@ export default function Intro(): ReactElement {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCoupon(cache.get('token')));
-    getUsableMileage();
-    getAllCoupon();
+    const isLoggedIn = cache.get('token');
+    if (isLoggedIn) {
+      dispatch(getCoupon(cache.get('token')));
+      getUsableMileage();
+      getAllCoupon();
+    }
   }, []);
 
   useEffect(() => {
