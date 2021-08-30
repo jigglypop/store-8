@@ -1,3 +1,5 @@
+cd /home/ubuntu/
+
 cp -r product ./store-8/dist/public/
 
 
