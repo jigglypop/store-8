@@ -23,7 +23,7 @@ export default function Recommend() {
           <h4>추천해요</h4>
           {recommend.map((item: IRecommend, key: number) => (
             <Link to={`/product/${idOver(item.id) - 1}`} key={key} className="">
-              {item.title}
+              <h5>{item.title}</h5>
             </Link>
           ))}
         </S.RecommendItem>
