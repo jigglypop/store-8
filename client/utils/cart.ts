@@ -33,7 +33,22 @@ const localCart = {
   add: (addCartData: LocalCartData) => {
     try {
       const localCartData = cache.get(CART_KEY).data;
-      localCartData.push(addCartData);
+      let added = false;
+      localCartData.forEach((element: LocalCartData) => {
+        if (
+          element.productId === addCartData.productId &&
+          element.productOptionId === addCartData.productOptionId
+        ) {
+          added = true;
+          element.productCount =
+            100 < element.productCount + addCartData.productCount
+              ? 100
+              : element.productCount + addCartData.productCount;
+        }
+      });
+      if (!added) {
+        localCartData.push(addCartData);
+      }
       cache.set(CART_KEY, { data: localCartData });
     } catch {
       cache.set(CART_KEY, { data: [addCartData] });
