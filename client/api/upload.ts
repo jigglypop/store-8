@@ -5,7 +5,7 @@ import fetchWrapper from '@client/utils/fetchWrapper';
 export const uploadImg = async (formData: any) => {
   try {
     const token = cache.get('token') ?? '';
-    const res = await fetch('http://localhost:3000/api/upload', {
+    const res = await fetch('/api/upload', {
       method: 'POST',
       headers: {
         Authorization: token,
